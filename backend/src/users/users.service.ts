@@ -1,10 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { DatabaseService } from 'src/database/dadabase/database.service';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
+  constructor(private readonly dbServise: DatabaseService) {}
+  async create(payload: CreateUserDto) {
+    return await this.dbServise.user.create({
+      data: payload,
+      select: {
+        email: true
+      }
+    })
     return 'This action adds a new user';
   }
 
