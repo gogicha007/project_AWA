@@ -7,13 +7,24 @@ import { DatabaseService } from 'src/database/dadabase/database.service';
 export class UsersService {
   constructor(private readonly dbServise: DatabaseService) {}
   async create(payload: CreateUserDto) {
-    return await this.dbServise.user.create({
-      data: payload,
+    let user = await this.dbServise.user.findUnique({
+      where: { firebaseUid: payload.firebaseUid },
       select: {
-        email: true
-      }
-    })
-    return 'This action adds a new user';
+        email: true,
+        id: true,
+      },
+    });
+
+    if (!user) {
+      user = await this.dbServise.user.create({
+        data: payload,
+        select: {
+          email: true,
+          id: true,
+        },
+      });
+    }
+    return user;
   }
 
   findAll() {

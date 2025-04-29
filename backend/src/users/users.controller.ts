@@ -17,9 +17,7 @@ export class UsersController {
 
   @Post('/signup')
   create(@Body() createUserDto: CreateUserDto) {
-    console.log(createUserDto)
-    return createUserDto
-    // return this.usersService.create(createUserDto);
+    return this.usersService.create(createUserDto);
   }
 
   @Get()
