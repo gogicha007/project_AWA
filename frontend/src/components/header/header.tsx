@@ -2,6 +2,7 @@
 import styles from './header.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import AuthBar from '../auth-bar/authBar';
 
 const Header = () => {
   return (
@@ -17,6 +18,7 @@ const Header = () => {
         />
       </Link>
       <h2>header</h2>
+      <AuthBar/>
     </div>
   );
 };
