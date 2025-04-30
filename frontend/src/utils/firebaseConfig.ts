@@ -3,9 +3,9 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
+import { destroyCookie } from 'nookies';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -31,17 +31,10 @@ const login = (email: string, password: string) => {
 const logout = async () => {
   try {
     await signOut(auth);
+    destroyCookie(null, 'authtoken', { path: '/' });
   } catch (error) {
     throw error;
   }
 };
 
-const authState = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-    } else {
-    }
-  });
-};
-export { app, auth, register, login, logout, authState };
+export { app, auth, register, login, logout };

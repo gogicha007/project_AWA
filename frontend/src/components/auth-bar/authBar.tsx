@@ -1,11 +1,17 @@
 import styles from './auth-bar.module.css';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/auth';
+import { logout } from '@/utils/firebaseConfig';
 
 const AuthBar = () => {
-  const currentUser = { email: 'email' };
+  const { currentUser } = useAuth();
+  console.log('currentUser', currentUser);
+  const tA = useTranslations('AuthForm');
   const router = useRouter();
+
   const signOut = () => {
-    console.log('sign out');
+    logout();
     router.push('/');
   };
 
@@ -14,17 +20,17 @@ const AuthBar = () => {
       {!currentUser && (
         <div className={styles['auth-bar__login']}>
           <button className="button" onClick={() => router.push('/sign-up')}>
-            register
+            {tA('register')}
           </button>
           <button className="button" onClick={() => router.push('/sign-in')}>
-            login
+            {tA('login')}
           </button>
         </div>
       )}
       {currentUser && (
         <div className={styles['auth-bar__logout']}>
           <button className="button" onClick={signOut}>
-            logout, {currentUser.email}
+            {tA('logout')}, {currentUser.email}
           </button>
         </div>
       )}

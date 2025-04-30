@@ -1,0 +1,31 @@
+{
+    "LocaleSwitcher": {
+        "ge": "ქართული",
+        "en": "English",
+        "label": "ენა"
+    },
+    "HomePage": {
+        "title": "მთავარი გვერდი"
+    },
+    "HeaderMenu": {
+        "home": "მთავარი"
+    },
+    "LoginPage": {
+        "pageError": "შესვლის გვერდის შეცდომა!"
+    },
+    "RegisterPage": {
+        "pageError": "რეგისტრაციის გვერდის შეცდომა!"
+    },
+    "AuthForm": {
+        "login": "შესვლა",
+        "register": "რეგისტრაცია",
+        "email": "ელ-ფოსტა",
+        "password": "პაროლი",
+        "logout": "გასვლა",
+        "error": "მოხდა მოულოდნელი შეცდომა."
+    },
+    "Buttons": {
+        "toMain": "მთავარზე დაბრუნება",
+        "tryAgain": "სცადეთ კვლავ"
+    }
+}
