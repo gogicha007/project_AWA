@@ -68,9 +68,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
       <form className={styles.auth__form} onSubmit={handleSubmit(onSubmit)}>
         {authType === 'register' && (
           <div className={styles.auth__item}>
-            <label htmlFor='name' className="form__label"></label>
-            Name
-            </div>
+            <label htmlFor="name" className={styles.auth__label}>
+              Name
+              <input
+                {...register('name')}
+                id="name"
+                type="text"
+                className={styles.auth__input}
+                
+              />
+            </label>
+            <p className={styles.auth__error}>{errors?.name?.message}</p>
+          </div>
         )}
         <div className={styles.auth__item}>
           <label htmlFor="email" className={styles.auth__label}>

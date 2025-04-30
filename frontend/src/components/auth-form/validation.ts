@@ -1,6 +1,13 @@
 import { z } from 'zod';
 
 export const schema = z.object({
+  name: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.match(/^[A-Z]/), {
+      message: 'First letter of name must be uppercase',
+      path: ['name'],
+    }),
   email: z.string().email({ message: 'Invalid email' }),
   password: z
     .string()
