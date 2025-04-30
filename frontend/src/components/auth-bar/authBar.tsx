@@ -6,7 +6,6 @@ import { logout } from '@/utils/firebaseConfig';
 
 const AuthBar = () => {
   const { currentUser } = useAuth();
-  console.log('currentUser', currentUser);
   const tA = useTranslations('AuthForm');
   const router = useRouter();
 
