@@ -66,6 +66,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
     <div className={styles.auth}>
       <h1>{t(authType)}</h1>
       <form className={styles.auth__form} onSubmit={handleSubmit(onSubmit)}>
+        {authType === 'register' && (
+          <div className={styles.auth__item}>
+            <label htmlFor='name' className="form__label"></label>
+            Name
+            </div>
+        )}
         <div className={styles.auth__item}>
           <label htmlFor="email" className={styles.auth__label}>
             {t('email')}
@@ -94,6 +100,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
             {errors?.password?.message}
           </p>
         </div>
+
         <button className="button" type="submit" disabled={!isValid}>
           {t(authType)}
         </button>
