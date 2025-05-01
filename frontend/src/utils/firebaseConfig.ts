@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { destroyCookie } from 'nookies';
 
@@ -20,8 +21,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const register = (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+const register = async (email: string, password: string, name: string) => {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  if (userCredential.user) {
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
+  }
+  return userCredential;
 };
 
 const login = (email: string, password: string) => {

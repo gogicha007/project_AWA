@@ -2,20 +2,14 @@
 import styles from './auth-form.module.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { register as firebaseRegister, login } from '@/utils/firebaseConfig';
+import { login } from '@/utils/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { schema, FormFields } from './validation';
+import { loginSchema, LoginFields } from './validation';
 import Loader from '../loader/loader';
-import { UserCredential } from 'firebase/auth';
 import { useTranslations } from 'next-intl';
 
-interface AuthFormProps {
-  authType: string;
-  authFunction?: (email: string, password: string) => Promise<void>;
-}
-
-const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
+const LoginForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const t = useTranslations('AuthForm');
@@ -23,23 +17,16 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<FormFields>({
-    resolver: zodResolver(schema),
+  } = useForm<LoginFields>({
+    resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
   const router = useRouter();
 
-  const handleAuth = async (
-    authFunction: (
-      email: string,
-      password: string
-    ) => Promise<void | UserCredential>,
-    email: string,
-    password: string
-  ) => {
+  const handleAuth = async (email: string, password: string) => {
     setLoading(true);
     try {
-      await authFunction(email, password);
+      await login(email, password);
       setError(null);
       router.push('/');
     } catch (err) {
@@ -53,34 +40,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
     }
   };
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    const { email, password } = data;
-    if (authType === 'register') {
-      await handleAuth(firebaseRegister, email, password);
-    } else if (authType === 'login') {
-      await handleAuth(login, email, password);
-    }
+  const onSubmit: SubmitHandler<LoginFields> = async ({ email, password }) => {
+    await handleAuth(email, password);
   };
 
   return (
     <div className={styles.auth}>
-      <h1>{t(authType)}</h1>
+      <h1>{t('login')}</h1>
       <form className={styles.auth__form} onSubmit={handleSubmit(onSubmit)}>
-        {authType === 'register' && (
-          <div className={styles.auth__item}>
-            <label htmlFor="name" className={styles.auth__label}>
-              Name
-              <input
-                {...register('name')}
-                id="name"
-                type="text"
-                className={styles.auth__input}
-                
-              />
-            </label>
-            <p className={styles.auth__error}>{errors?.name?.message}</p>
-          </div>
-        )}
         <div className={styles.auth__item}>
           <label htmlFor="email" className={styles.auth__label}>
             {t('email')}
@@ -111,7 +78,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
         </div>
 
         <button className="button" type="submit" disabled={!isValid}>
-          {t(authType)}
+          {t('login')}
         </button>
       </form>
       {error && (
@@ -124,4 +91,4 @@ const AuthForm: React.FC<AuthFormProps> = ({ authType }) => {
   );
 };
 
-export default AuthForm;
+export default LoginForm;

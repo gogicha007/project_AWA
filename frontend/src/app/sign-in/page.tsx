@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth';
-import AuthForm from '@/components/auth-form/authForm';
+import LoginForm from '@/components/auth-form/loginForm';
 import Loading from '@/components/loader/loader';
 
 const SignIn = () => {
@@ -23,7 +23,7 @@ const SignIn = () => {
     return null;
   }
 
-  return <AuthForm authType="login" />;
+  return <LoginForm />;
 };
 
 export default SignIn;
