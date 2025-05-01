@@ -6,6 +6,17 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+import { Request } from 'express';
+
+declare module 'express' {
+  interface Request {
+    user?: {
+      uid: string;
+      email?: string;
+      name?: string;
+    };
+  }
+}
 
 @Injectable()
 export class AuthGuard implements CanActivate, OnModuleInit {
@@ -43,8 +54,7 @@ export class AuthGuard implements CanActivate, OnModuleInit {
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
-
+    const request = context.switchToHttp().getRequest<Request>();
     const authHeader = request.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw new UnauthorizedException('Missing or invalid token');
@@ -60,22 +70,24 @@ export class AuthGuard implements CanActivate, OnModuleInit {
 
       if (cached && cached.expiry > now) {
         decodedToken = cached.decodedToken;
+        console.log('cached decoded token', decodedToken);
       } else {
         decodedToken = await admin.auth().verifyIdToken(token);
+
         const expiryTime = Math.min(
           now + 5 * 60 * 1000,
           decodedToken.exp * 1000,
         );
         if (this.tokenCache.size >= this.MAX_CACHE_SIZE) {
-          const entriesToDelete = Math.ceil(this.MAX_CACHE_SIZE * 0.2); // Delete 20% of entries
+          const entriesToDelete = Math.ceil(this.MAX_CACHE_SIZE * 0.2);
           const entries = Array.from(this.tokenCache.entries());
-          entries.sort((a, b) => a[1].expiry - b[1].expiry); // Sort by expiry
+          entries.sort((a, b) => a[1].expiry - b[1].expiry);
 
           for (let i = 0; i < entriesToDelete && i < entries.length; i++) {
             this.tokenCache.delete(entries[i][0]);
           }
         }
-        
+
         this.tokenCache.set(token, {
           decodedToken,
           expiry: expiryTime,
@@ -86,11 +98,31 @@ export class AuthGuard implements CanActivate, OnModuleInit {
       request.user = {
         uid: decodedToken.uid,
         email: decodedToken.email,
-        name: decodedToken.displayName,
+        name:
+          typeof decodedToken.name === 'string' ? decodedToken.name : undefined,
       };
       return true;
     } catch (error) {
-      throw new UnauthorizedException('Invalid token');
+      console.error('Token verification error:', error);
+
+      if (error && typeof error === 'object' && 'code' in error) {
+        const firebaseError = error as { code: string; message?: string };
+
+        if (firebaseError.code === 'auth/id-token-expired') {
+          throw new UnauthorizedException('Token has expired');
+        } else if (firebaseError.code === 'auth/id-token-revoked') {
+          throw new UnauthorizedException('Token has been revoked');
+        } else if (firebaseError.code === 'auth/invalid-id-token') {
+          throw new UnauthorizedException('Invalid token format');
+        } else if (firebaseError.code === 'auth/argument-error') {
+          throw new UnauthorizedException('Invalid token argument');
+        } else {
+          throw new UnauthorizedException(
+            'Invalid token: ' + firebaseError.message,
+          );
+        }
+      }
     }
+    throw new UnauthorizedException('Authentication failed');
   }
 }

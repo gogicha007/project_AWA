@@ -21,9 +21,9 @@ export class UserSyncInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const request = context.switchToHttp().getRequest<RequestWithUser>();
     return next.handle().pipe(
-      tap(async () => {
+      tap(() => {
         if (request.user && request.user.uid) {
-          await this.usersService.create({
+          this.usersService.create({
             firebaseUid: request.user.uid,
             email: request.user.email,
             name: request.user.name,

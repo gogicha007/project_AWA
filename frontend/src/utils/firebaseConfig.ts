@@ -42,7 +42,7 @@ const login = (email: string, password: string) => {
 const logout = async () => {
   try {
     await signOut(auth);
-    destroyCookie(null, 'authtoken', { path: '/' });
+    destroyCookie(null, 'authToken', { path: '/' });
   } catch (error) {
     throw error;
   }
