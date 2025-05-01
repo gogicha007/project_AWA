@@ -23,7 +23,7 @@ export class UserSyncInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(() => {
         if (request.user && request.user.uid) {
-          this.usersService.create({
+          void this.usersService.create({
             firebaseUid: request.user.uid,
             email: request.user.email,
             name: request.user.name,
