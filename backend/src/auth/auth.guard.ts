@@ -29,18 +29,18 @@ export class AuthGuard implements CanActivate, OnModuleInit {
     }
   > = new Map();
 
-  private cleanuupInterval: NodeJS.Timeout;
+  private cleanupInterval: NodeJS.Timeout;
 
   onModuleInit() {
-    this.cleanuupInterval = setInterval(
+    this.cleanupInterval = setInterval(
       () => this.cleanupExpiredTokens(),
       10 * 60 * 1000,
     );
   }
 
   onModuleDestroy() {
-    if (this.cleanuupInterval) {
-      clearInterval(this.cleanuupInterval);
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
     }
   }
 

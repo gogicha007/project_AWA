@@ -127,6 +127,31 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.VendorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  country: 'country',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UnitScalarFieldEnum = {
+  id: 'id',
+  unit: 'unit'
+};
+
+exports.Prisma.MaterialGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.MaterialTypeScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  groupId: 'groupId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -144,7 +169,11 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Vendor: 'Vendor',
+  Unit: 'Unit',
+  MaterialGroup: 'MaterialGroup',
+  MaterialType: 'MaterialType'
 };
 
 /**

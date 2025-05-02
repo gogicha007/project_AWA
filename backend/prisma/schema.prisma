@@ -22,4 +22,43 @@ model User {
   role        String   @default("user")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  Vendor      Vendor[]
+
+  @@map("user")
+}
+
+model Vendor {
+  id        Int      @id @default(autoincrement())
+  name      String
+  country   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+
+  @@map("vendor")
+}
+
+model Unit {
+  id   Int    @id @default(autoincrement())
+  unit String
+
+  @@map("unit")
+}
+
+model MaterialGroup {
+  id           Int            @id @default(autoincrement())
+  name         String
+  description  String
+  MaterialType MaterialType[]
+
+  @@map("material_group")
+}
+
+model MaterialType {
+  id      Int           @id @default(autoincrement())
+  type    String
+  group   MaterialGroup @relation(fields: [groupId], references: [id])
+  groupId Int
+
+  @@map("material_type")
 }
