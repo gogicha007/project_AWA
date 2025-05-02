@@ -1,1 +1,15 @@
 PORT=4000
+
+# This was inserted by `prisma init`:
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+# DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNGM1ZmM4OWMtMWZmYi00NGNkLWI0ODQtYTE3OWM3ZDEwNWMyIiwidGVuYW50X2lkIjoiNjQ4M2JiMDRjMDNmNzcxMDc0ZjEyZDFhOTdiZjA1MDg4NTFiYTc5OTZmMmUxZGJkMjU2ZjAxYmFmMGM5NjEyYSIsImludGVybmFsX3NlY3JldCI6ImJiYzVjZmI2LTc2NTgtNDc1My1hMmI3LTNhMjI3NWZhMDA5MCJ9.-rZqvHOhDhoBWqEF2b0A_-iDtbNcmW1rp9MVIWLf5ZQ"
+DATABASE_URL="postgresql://postgres:123@localhost:5432/awa_local?schema=public"
+FIREBASE_PROJECT_ID=project-awa-b71db
+
+LOG_LEVEL=info
+LOG_FILE_MAX_SIZE_KB=1024

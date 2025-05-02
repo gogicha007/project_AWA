@@ -11,15 +11,22 @@ import { UsersModule } from './users/users.module';
 import * as admin from 'firebase-admin';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR, APP_FILTER } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { UserSyncInterceptor } from './auth/user-sync.interceptor';
+import { LoggingService } from './common/services/logging.service';
+import { CustomExceptionFilter } from './common/filters/exception.filter';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), UsersModule],
   controllers: [AppController],
   providers: [
     AppService,
+    LoggingService,
+    {
+      provide: APP_FILTER,
+      useClass: CustomExceptionFilter
+    },
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
