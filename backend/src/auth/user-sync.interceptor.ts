@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable, tap, catchError, of } from 'rxjs';
 import { UsersService } from '../users/users.service';
+import { LoggingService } from 'src/common/services/logging.service';
 
 interface RequestWithUser extends Request {
   user: {
@@ -18,7 +19,10 @@ interface RequestWithUser extends Request {
 export class UserSyncInterceptor implements NestInterceptor {
   private userCache = new Map<string, boolean>();
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private loggingService: LoggingService,
+  ) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const request = context.switchToHttp().getRequest<RequestWithUser>();
@@ -39,13 +43,13 @@ export class UserSyncInterceptor implements NestInterceptor {
                 this.userCache.set(userId, true);
               })
               .catch((error) => {
-                console.error('Error creating user:', error);
+                this.loggingService.error('Error creating user:', error.stack);
               });
           }
         }
       }),
       catchError((error) => {
-        console.error('Error in user syng interceptor:', error);
+        this.loggingService.error('Error in user sync interceptor:', error.stack);
         return of(null);
       }),
     );

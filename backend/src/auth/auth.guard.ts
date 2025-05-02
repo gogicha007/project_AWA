@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { Request } from 'express';
+import { LoggingService } from 'src/common/services/logging.service';
 
 declare module 'express' {
   interface Request {
@@ -30,6 +31,8 @@ export class AuthGuard implements CanActivate, OnModuleInit {
   > = new Map();
 
   private cleanupInterval: NodeJS.Timeout;
+
+  constructor(private readonly loggingService: LoggingService) {}
 
   onModuleInit() {
     this.cleanupInterval = setInterval(
@@ -70,7 +73,7 @@ export class AuthGuard implements CanActivate, OnModuleInit {
 
       if (cached && cached.expiry > now) {
         decodedToken = cached.decodedToken;
-        console.log('cached decoded token', decodedToken);
+        this.loggingService.debug('Cached decoded token: ' + JSON.stringify(decodedToken));
       } else {
         decodedToken = await admin.auth().verifyIdToken(token);
 
@@ -103,7 +106,7 @@ export class AuthGuard implements CanActivate, OnModuleInit {
       };
       return true;
     } catch (error) {
-      console.error('Token verification error:', error);
+      this.loggingService.error('Token verification error:', error.stack);
 
       if (error && typeof error === 'object' && 'code' in error) {
         const firebaseError = error as { code: string; message?: string };

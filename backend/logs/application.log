@@ -1,0 +1,6 @@
+[2025-05-02T12:32:18.422Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T12:32:19.883Z] [INFO] Response: 200 - Body: undefined
+[2025-05-02T12:33:02.800Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T12:33:02.805Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-02T12:41:18.737Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T12:41:19.264Z] [INFO] Response: 200 - Body: "[{\"name\":\"Irakli Gogichaishvili\",\"email\":\"gogicha@gmail.com\"}]"
