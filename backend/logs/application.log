@@ -4,3 +4,16 @@
 [2025-05-02T12:33:02.805Z] [INFO] Response: 200 - Body: "[]"
 [2025-05-02T12:41:18.737Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
 [2025-05-02T12:41:19.264Z] [INFO] Response: 200 - Body: "[{\"name\":\"Irakli Gogichaishvili\",\"email\":\"gogicha@gmail.com\"}]"
+[2025-05-02T13:21:34.809Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T13:21:35.299Z] [INFO] Response: 200 - Body: "[{\"name\":\"Irakli Gogichaishvili\",\"email\":\"gogicha@gmail.com\"}]"
+[2025-05-02T13:21:53.328Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T13:21:53.330Z] [INFO] Response: 200 - Body: "[{\"name\":\"Irakli Gogichaishvili\",\"email\":\"gogicha@gmail.com\"}]"
+[2025-05-02T13:21:54.100Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T13:21:54.101Z] [INFO] Response: 200 - Body: "[{\"name\":\"Irakli Gogichaishvili\",\"email\":\"gogicha@gmail.com\"}]"
+[2025-05-02T13:21:54.822Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T13:21:54.823Z] [INFO] Response: 200 - Body: "[{\"name\":\"Irakli Gogichaishvili\",\"email\":\"gogicha@gmail.com\"}]"
+[2025-05-02T13:21:59.888Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-02T13:21:59.894Z] [ERROR] Error in user sync interceptor:
+Trace: NotFoundException: User with ID 10 not found
+    at UsersService.findOne (D:\CODES\project_AWA\backend\src\users\users.service.ts:52:13)
+[2025-05-02T13:21:59.894Z] [INFO] Response: 200 - Body: undefined
