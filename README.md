@@ -7,12 +7,12 @@
 - **Backend** authorization has auth.guard and interceptor(user-sync.interceptor)
   - auth guard
     1. checks if bearer containes the token
-    2. checks if is cached and not expired.
-    3. if it is not cached, it accesses firebase to verify the authorization of the token.
+    2. checks if token is cached and not expired.
+    3. if token not cached, it accesses firebase to verify the authorization of the token.
     4. adds user credentials(firebase uid, name, email) to the request.
   - interceptor
-    - it caches user
-    - if not cached checks if requested user is in db and updates with firebase credentials.
+    - caches user
+    - if user not cached checks if requested user is in db and updates with firebase credentials.
 
 ## Backend logger
 
