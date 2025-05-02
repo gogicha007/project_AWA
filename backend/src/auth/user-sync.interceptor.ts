@@ -4,7 +4,7 @@ import {
   ExecutionContext,
   CallHandler,
 } from '@nestjs/common';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, catchError, of } from 'rxjs';
 import { UsersService } from '../users/users.service';
 
 interface RequestWithUser extends Request {
@@ -29,15 +29,24 @@ export class UserSyncInterceptor implements NestInterceptor {
           const userId = request.user.uid;
 
           if (!this.userCache.has(userId)) {
-            void this.usersService.create({
-              firebaseUid: request.user.uid,
-              email: request.user.email,
-              name: request.user.name,
-            });
-
-            this.userCache.set(userId, true);
+            this.usersService
+              .create({
+                firebaseUid: request.user.uid,
+                email: request.user.email,
+                name: request.user.name,
+              })
+              .then(() => {
+                this.userCache.set(userId, true);
+              })
+              .catch((error) => {
+                console.error('Error creating user:', error);
+              });
           }
         }
+      }),
+      catchError((error) => {
+        console.error('Error in user syng interceptor:', error);
+        return of(null);
       }),
     );
   }
