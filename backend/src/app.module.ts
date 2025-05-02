@@ -25,7 +25,7 @@ import { CustomExceptionFilter } from './common/filters/exception.filter';
     LoggingService,
     {
       provide: APP_FILTER,
-      useClass: CustomExceptionFilter
+      useClass: CustomExceptionFilter,
     },
     {
       provide: APP_GUARD,

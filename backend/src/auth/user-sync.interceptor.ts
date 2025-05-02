@@ -43,13 +43,33 @@ export class UserSyncInterceptor implements NestInterceptor {
                 this.userCache.set(userId, true);
               })
               .catch((error) => {
-                this.loggingService.error('Error creating user:', error.stack);
+                if (error instanceof Error) {
+                  this.loggingService.error(
+                    'Error creating user:',
+                    error.stack || 'No stack trace available',
+                  );
+                } else {
+                  this.loggingService.error(
+                    'Unknown error while creating user:',
+                    JSON.stringify(error),
+                  );
+                }
               });
           }
         }
       }),
       catchError((error) => {
-        this.loggingService.error('Error in user sync interceptor:', error.stack);
+        if (error instanceof Error) {
+          this.loggingService.error(
+            'Error in user sync interceptor:',
+            error.stack || 'No stack trace available',
+          );
+        } else {
+          this.loggingService.error(
+            'Unknown error in user sync interceptor:',
+            JSON.stringify(error),
+          );
+        }
         return of(null);
       }),
     );

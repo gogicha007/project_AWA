@@ -73,7 +73,9 @@ export class AuthGuard implements CanActivate, OnModuleInit {
 
       if (cached && cached.expiry > now) {
         decodedToken = cached.decodedToken;
-        this.loggingService.debug('Cached decoded token: ' + JSON.stringify(decodedToken));
+        this.loggingService.debug(
+          'Cached decoded token: ' + JSON.stringify(decodedToken),
+        );
       } else {
         decodedToken = await admin.auth().verifyIdToken(token);
 
@@ -106,7 +108,17 @@ export class AuthGuard implements CanActivate, OnModuleInit {
       };
       return true;
     } catch (error) {
-      this.loggingService.error('Token verification error:', error.stack);
+      if (error instanceof Error) {
+        this.loggingService.error(
+          `Token verification error: ${error.message}`,
+          error.stack || 'No stack trace available',
+        );
+      } else {
+        this.loggingService.error(
+          'Unknown error during token verification:',
+          JSON.stringify(error),
+        );
+      }
 
       if (error && typeof error === 'object' && 'code' in error) {
         const firebaseError = error as { code: string; message?: string };
