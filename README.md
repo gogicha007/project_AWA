@@ -3,7 +3,8 @@
 ## Authorization
 
 - **Frontend** authorization done by firebase, sign up stores name to firebase.
-- request to have bearer with token.
+- backend is not reached while authorization, because backend automatically checks its db on any other requests sent by frontend and syncs with firebase users info.
+- requests must have bearer with token.
 - **Backend** authorization has auth.guard and interceptor(user-sync.interceptor)
   - auth guard
     1. checks if bearer containes the token
@@ -15,6 +16,7 @@
     - if user not cached checks if requested user is in db and updates with firebase credentials.
 
 ## Backend logger
+logs every request, response, error to log file. limited in size 1024kb.
 
 ## Tables
 ### Material group
