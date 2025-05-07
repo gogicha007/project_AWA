@@ -27,5 +27,10 @@
     "Buttons": {
         "toMain": "Back to main",
         "tryAgain": "Try again"
+    },
+    "SideBar": {
+        "home": "Home",
+        "settings": "Settings",
+        "masterData": "Master data"
     }
 }

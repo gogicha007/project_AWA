@@ -1,0 +1,44 @@
+.base {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.base__main {
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebarCollapsed .base__main {
+    width: 100%;
+}
+.toggleButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--foreground);
+    font-size: 18px;
+    border-radius: 4px;
+    position: fixed;
+    left: 215px;
+    top: 20px;
+    z-index: 1001;
+    background-color: var(--background);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+  }
+  
+  .toggleButton:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .buttonCollapsed {
+    left: 10px;
+  }

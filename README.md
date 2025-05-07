@@ -24,6 +24,7 @@ logs every request, response, error to log file. limited in size 1024kb.
 - Pipe
 - Fitting
 - Valve
+- Hydrant
 - Strainer
 - Other
 
