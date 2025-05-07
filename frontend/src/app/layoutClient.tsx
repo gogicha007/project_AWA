@@ -1,7 +1,7 @@
 'use client';
 import SideBar from '@/components/side-bar/SideBar';
 import styles from './layout.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function LayoutClient({
   children,
@@ -13,22 +13,6 @@ export default function LayoutClient({
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header?.classList.add('scrolled');
-      } else {
-        header?.classList.remove('scrolled');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
     <>

@@ -11,7 +11,7 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       href: '/',
     },
     {
-      name: 'Settings',
+      name: tS('settings'),
       href: '/',
     },
   ];
