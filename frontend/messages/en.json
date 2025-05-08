@@ -24,6 +24,14 @@
         "logout": "Sign Out",
         "error": "An unexpected error occurred."
     },
+    "MasterData": {
+        "menu" : {
+            "material_groups": "Material Group",
+            "material_types": "Material Types",
+            "material_names": "Material Names",
+            "units": "Units"
+        }
+    },
     "Buttons": {
         "toMain": "Back to main",
         "tryAgain": "Try again"

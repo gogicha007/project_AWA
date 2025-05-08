@@ -1,30 +1,31 @@
+import styles from './page.module.css';
 import React from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function MasterDataLayoutlayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const tM = useTranslations('MasterData');
   return (
     <section>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/master-data/material-groups">Material Groups</Link>
-          </li>
-          <li>
-            <Link href="/master-data/material-types">Material Types</Link>
-          </li>
-          <li>
-            <Link href="/master-data/units">Units</Link>
-          </li>
-          <li>
-            <Link href="/master-data/material-names">Material Names</Link>
-          </li>
-        </ul>
+      <nav className={styles['settings__nav']}>
+        <Link href="/master-data/material-groups" className="button">
+          {tM('menu.material_groups')}
+        </Link>
+        <Link href="/master-data/material-types" className="button">
+          {tM('menu.material_types')}
+        </Link>
+        <Link href="/master-data/material-names" className="button">
+          {tM('menu.material_names')}
+        </Link>
+        <Link href="/master-data/units" className="button">
+          {tM('menu.units')}
+        </Link>
       </nav>
-      {children}
+      <div className={styles.settings__main}>{children}</div>
     </section>
   );
 }
