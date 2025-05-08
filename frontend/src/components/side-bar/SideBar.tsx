@@ -25,7 +25,7 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       submenu: [
         {
           label: tS('masterData'),
-          href: '/',
+          href: '/master-data',
         }
       ],
     },

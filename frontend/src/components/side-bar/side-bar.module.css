@@ -47,19 +47,15 @@
   overflow: hidden;
   transition: height 0.3s ease;
 }
-
 .submenu_toggle {
   cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
 }
-
 .submenu_toggle:hover {
   color: var(--primary-color, #0070f3);
 }
-
-/* Add a plus/minus indicator (optional) */
 .submenu_toggle::after {
   content: '+';
   margin-left: 8px;
