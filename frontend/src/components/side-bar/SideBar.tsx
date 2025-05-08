@@ -2,19 +2,19 @@ import styles from './side-bar.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 interface IMenuItem {
   label: string;
-  href: string;
-  submenu?: [];
-}
-interface IMultiMenu {
-  label: string;
-  href: string;
+  href?: string;
   submenu?: IMenuItem[];
 }
 const SideBar = ({ collapsed }: { collapsed: boolean }) => {
   const tS = useTranslations('SideBar');
+  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
+    {}
+  );
+
   const sideBarItems = [
     {
       label: tS('home'),
@@ -22,29 +22,50 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
     },
     {
       label: tS('settings'),
-      href: '/',
       submenu: [
         {
           label: tS('masterData'),
           href: '/',
-        },
+        }
       ],
     },
   ];
 
-  const toggleSubMenu = () => {
-    console.log('submenu clicked');
+  const toggleSubMenu = (itemPath: string) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [itemPath]: !prev[itemPath],
+    }));
   };
 
-  const renderSubMenu = (subMenu: IMultiMenu[]) => {
+  const renderSubMenu = (subMenu: IMenuItem[], parentPath = '') => {
     return (
-      <ul>
-        {subMenu.map((subItem, idx) => (
-          <Link href={subItem.href} key={idx}>
-            {subItem.label}
-            {subItem.submenu && renderSubMenu(subItem.submenu)}
-          </Link>
-        ))}
+      <ul className={`${styles.sidebar__list} ${styles.submenu}`}>
+        {subMenu.map((subItem, idx) => {
+          const itemPath = `${parentPath}-${idx}`;
+          const isExpanded = expandedItems[itemPath];
+
+          return (
+            <li key={idx}>
+              {subItem.submenu ? (
+                <div className={styles.sidebar__list_item}>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSubMenu(itemPath);
+                    }}
+                    className={styles.submenu_toggle}
+                  >
+                    {subItem.label}
+                  </span>
+                  {isExpanded && renderSubMenu(subItem.submenu, itemPath)}
+                </div>
+              ) : (
+                <Link href={subItem.href as string}>{subItem.label}</Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     );
   };
@@ -67,12 +88,27 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
           </Link>
         </div>
         <ul className={styles.sidebar__list}>
-          {sideBarItems.map((item, idx) => (
-            <Link href={item.href} key={idx} onClick={toggleSubMenu}>
-              {item.label}
-              {item.submenu && renderSubMenu(item.submenu)}
-            </Link>
-          ))}
+          {sideBarItems.map((item, idx) => {
+            const itemPath = `root-${idx}`;
+            const isExpanded = expandedItems[itemPath];
+            return (
+              <li key={idx}>
+                {item.submenu ? (
+                  <div className={styles.sidebar__list_item}>
+                    <span
+                      onClick={() => toggleSubMenu(itemPath)}
+                      className={styles.submenu_toggle}
+                    >
+                      {item.label}
+                    </span>
+                    {isExpanded && renderSubMenu(item.submenu, itemPath)}
+                  </div>
+                ) : (
+                  <Link href={item.href}>{item.label} </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </aside>
     </>
