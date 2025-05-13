@@ -1,4 +1,5 @@
 import React from 'react';
+import MaterialGroupsClient from '@/components/master-data/MaterialGroupsClient';
 // import {
 //   useReactTable,
 //   getCoreRowModel,
@@ -7,11 +8,7 @@ import React from 'react';
 
 const MaterialGroups = () => {
   // const table = useReactTable({ data, columns });
-  return (
-    <div>
-      <h1>Material Groups</h1>
-    </div>
-  );
+  return <MaterialGroupsClient/>
 };
 
 export default MaterialGroups;

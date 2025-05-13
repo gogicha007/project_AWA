@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth';
 import LoginForm from '@/components/auth-form/loginForm';
-import Loading from '@/components/loader/loader';
+import Loader from '@/components/loader/loader';
 
 const SignIn = () => {
   const { currentUser, loading } = useAuth();
@@ -16,7 +16,7 @@ const SignIn = () => {
   }, [router, loading, currentUser]);
 
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   if (currentUser) {
