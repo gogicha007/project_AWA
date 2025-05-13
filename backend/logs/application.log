@@ -17,3 +17,17 @@
 Trace: NotFoundException: User with ID 10 not found
     at UsersService.findOne (D:\CODES\project_AWA\backend\src\users\users.service.ts:52:13)
 [2025-05-02T13:21:59.894Z] [INFO] Response: 200 - Body: undefined
+[2025-05-13T12:33:32.030Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-13T12:33:32.032Z] [ERROR] Error: {"message":"Cannot POST /material-groups","error":"Not Found","statusCode":404} - Request: POST /material-groups
+[2025-05-13T12:33:32.033Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot POST /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-13T12:33:53.577Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-13T12:33:53.578Z] [ERROR] Error: {"message":"Cannot POST /material-groups","error":"Not Found","statusCode":404} - Request: POST /material-groups
+[2025-05-13T12:33:53.578Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot POST /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-13T12:34:19.129Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-13T12:34:19.130Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-13T12:34:19.131Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-13T12:34:21.918Z] [INFO] Incoming Request: GET / - Query: {} - Body: {"email":"gogicha@gmail.com","firebaseUid":"8cvXCiWwMrdaOEq4Kj3PT70EyEE3"}
+[2025-05-13T12:34:21.918Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-13T12:34:21.919Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-13T12:42:42.343Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-13T12:42:43.640Z] [INFO] Response: 200 - Body: "[]"
