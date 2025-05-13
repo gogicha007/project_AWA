@@ -3,6 +3,7 @@
   --foreground: #333333;
   --primary-accent: #007acc;
   --secondary-accent: #ff4081;
+  --border: #0000001a
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,14 +41,6 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: var(--primary-accent);
-  transition: background-color 0.3s ease;
-  color: #fff;
-  padding: 10px 20px;
-}
-header.scrolled {
-  background-color: #f9f9f9;
-  color: var(--foreground); 
 }
 main {
   flex-grow: 1;

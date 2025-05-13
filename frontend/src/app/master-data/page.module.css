@@ -6,5 +6,6 @@
 .settings__main {
   height: 100%;
   padding: 10px;
-  border: 1px solid gray;
+  border-radius: 5px;
+  border: 1px solid var(--border);
 }

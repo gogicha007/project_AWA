@@ -4,8 +4,16 @@
   justify-content: space-between;
   padding: 10px 20px;
 }
-
 .logo {
   width: 120px;
   height: auto;
+}
+.header {
+  background-color: var(--primary-accent);
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+.header.scrolled {
+  background-color: #f9f9f9 ;
+  color: var(--foreground); 
 }

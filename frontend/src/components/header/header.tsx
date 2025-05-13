@@ -5,15 +5,15 @@ import AuthBar from '../auth-bar/authBar';
 import useScroll from '@/hooks/use-scroll';
 
 const Header = () => {
-  const scrolled = useScroll(50);
+  const scrolled = useScroll(10);
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (headerRef.current) {
       if (scrolled) {
-        headerRef.current.classList.add('scrolled');
+        headerRef.current.classList.add(styles.scrolled);
       } else {
-        headerRef.current.classList.remove('scrolled');
+        headerRef.current.classList.remove(styles.scrolled);
       }
     }
   }, [scrolled]);

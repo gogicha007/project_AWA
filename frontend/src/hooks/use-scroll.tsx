@@ -16,6 +16,5 @@ export default function useScroll(threshold: number) {
   useEffect(() => {
     onScroll();
   }, [onScroll]);
-
   return scrolled;
 }
