@@ -2,7 +2,7 @@
 
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroups';
 import Loader from '../loader/loader';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -22,12 +22,12 @@ export default function MaterialGroupsClient() {
     [materialGroups]
   );
 
-  const handleEdit = (id: number) => {
+  const handleEdit = useCallback((id: number) => {
     setEditingId(id);
     console.log(editingId)
     // open modal or go to edit page
     console.log(`Editing group id: ${id}`);
-  };
+  },[]);
 
   const handleDelete = (id: number) => {
     if (confirm('Are you sure you want to delete this Group?')) {
@@ -64,30 +64,15 @@ export default function MaterialGroupsClient() {
           const materialGroup = row.original;
           return (
             <div className="flex space-x-2">
-              <button
-                onClick={() => handleView(materialGroup.id)}
-                // className="p-1 text-blue-600 hover:text-blue-800"
-              >
-                View
-              </button>
-              <button
-                onClick={() => handleEdit(materialGroup.id)}
-                // className="p-1 text-yellow-600 hover:text-yellow-800"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(materialGroup.id)}
-                // className="p-1 text-red-600 hover:text-red-800"
-              >
-                Delete
-              </button>
+              <button onClick={() => handleView(materialGroup.id)}>View</button>
+              <button onClick={() => handleEdit(materialGroup.id)}>Edit</button>
+              <button onClick={() => handleDelete(materialGroup.id)}>Delete</button>
             </div>
           );
         },
       },
     ],
-    []
+    [handleEdit, handleView, handleDelete]
   );
 
   const table = useReactTable({
