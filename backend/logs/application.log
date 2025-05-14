@@ -94,3 +94,49 @@ Trace: NotFoundException: User with ID 10 not found
 [2025-05-14T10:36:19.144Z] [INFO] Response: 200 - Body: "[]"
 [2025-05-14T10:36:19.148Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-14T10:36:19.152Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:40:58.084Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:40:58.089Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:40:58.094Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:40:58.097Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:48:00.989Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:48:00.992Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T10:48:00.992Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T10:48:06.579Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:48:06.651Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:48:06.654Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:48:06.655Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:48:09.723Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:48:09.724Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T10:48:09.725Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T10:48:21.628Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:48:21.631Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:48:21.634Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:48:21.636Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:49:48.580Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:49:48.581Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T10:49:48.581Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T10:50:44.765Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:50:44.768Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:50:44.771Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:50:44.773Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:50:47.554Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:50:47.555Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T10:50:47.556Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T11:00:29.980Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:00:30.040Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T11:01:19.110Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:01:19.113Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T11:01:21.600Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:01:21.602Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T11:08:20.250Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:08:20.324Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-14T11:21:55.552Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:21:55.610Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-14T11:23:24.226Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:23:24.228Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-14T11:26:42.166Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:26:42.168Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-14T11:26:43.399Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:26:43.400Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-14T11:29:58.257Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T11:29:58.318Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"

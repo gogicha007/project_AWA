@@ -2,7 +2,7 @@
 
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroups';
 import Loader from '../loader/loader';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -11,7 +11,33 @@ import {
 
 export default function MaterialGroupsClient() {
   const { materialGroups, loading, error } = useMaterialGroups();
-  const data = useMemo(() => materialGroups, []);
+  const [editingId, setEditingId] = useState<number | null>(null);
+
+  const data = useMemo(
+    () =>
+      materialGroups.map((group) => ({
+        ...group,
+        id: group.id ? parseInt(group.id, 10) : 0,
+      })),
+    [materialGroups]
+  );
+
+  const handleEdit = (id: number) => {
+    setEditingId(id);
+    console.log(editingId)
+    // open modal or go to edit page
+    console.log(`Editing group id: ${id}`);
+  };
+
+  const handleDelete = (id: number) => {
+    if (confirm('Are you sure you want to delete this Group?')) {
+      console.log(`Delete group id: ${id}`);
+    }
+  };
+
+  const handleView = (id: number) => {
+    console.log(`view the group id: ${id}`);
+  };
 
   const columns = useMemo(
     () => [
@@ -26,6 +52,39 @@ export default function MaterialGroupsClient() {
       {
         accessorKey: 'description',
         header: 'Description',
+      },
+      {
+        id: 'actions',
+        header: 'Actions',
+        cell: ({
+          row,
+        }: {
+          row: { original: { id: number; name: string; description: string } };
+        }) => {
+          const materialGroup = row.original;
+          return (
+            <div className="flex space-x-2">
+              <button
+                onClick={() => handleView(materialGroup.id)}
+                // className="p-1 text-blue-600 hover:text-blue-800"
+              >
+                View
+              </button>
+              <button
+                onClick={() => handleEdit(materialGroup.id)}
+                // className="p-1 text-yellow-600 hover:text-yellow-800"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(materialGroup.id)}
+                // className="p-1 text-red-600 hover:text-red-800"
+              >
+                Delete
+              </button>
+            </div>
+          );
+        },
       },
     ],
     []
@@ -43,11 +102,9 @@ export default function MaterialGroupsClient() {
   return (
     <div>
       <h1>Material Groups</h1>
-      {materialGroups.length === 0 ? (
-        <p>No material group found</p>
-      ) : (
-        <div>
-          <table>
+      <div>
+        <table>
+          <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -60,9 +117,20 @@ export default function MaterialGroupsClient() {
                 ))}
               </tr>
             ))}
-          </table>
-        </div>
-      )}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
