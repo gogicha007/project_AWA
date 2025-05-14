@@ -31,3 +31,66 @@ Trace: NotFoundException: User with ID 10 not found
 [2025-05-13T12:34:21.919Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
 [2025-05-13T12:42:42.343Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-13T12:42:43.640Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T08:35:24.391Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T08:35:24.405Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T08:35:24.406Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T08:35:33.050Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T08:35:33.051Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T08:35:33.051Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T08:35:37.808Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:35:37.809Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:35:37.809Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:35:37.812Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:35:37.813Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:35:37.813Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:35:40.769Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T08:35:40.769Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-14T08:35:40.770Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-14T08:36:43.965Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:36:43.966Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:36:43.966Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:36:43.969Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:36:43.970Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:36:43.970Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:37:12.145Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:37:12.146Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:37:12.146Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:37:12.149Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:37:12.149Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:37:12.150Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:38:14.302Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T08:38:16.353Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T08:39:05.016Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:39:05.017Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:39:05.017Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:39:05.019Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:39:05.020Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:39:05.020Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:39:33.215Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:39:33.215Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:39:33.215Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:39:33.217Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:39:33.218Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:39:33.218Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:39:49.053Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:39:49.054Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:39:49.054Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T08:39:49.055Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T08:39:49.056Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T08:39:49.056Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T10:30:24.779Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T10:30:24.782Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T10:30:24.783Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T10:30:24.793Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T10:30:24.793Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T10:30:24.794Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T10:35:57.951Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T10:35:57.951Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T10:35:57.952Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T10:35:57.955Z] [INFO] Incoming Request: OPTIONS / - Query: {} - Body: undefined
+[2025-05-14T10:35:57.956Z] [ERROR] Error: {"message":"Cannot OPTIONS /material-groups","error":"Not Found","statusCode":404} - Request: OPTIONS /material-groups
+[2025-05-14T10:35:57.957Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot OPTIONS /material-groups\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-14T10:36:18.632Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:36:19.144Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-14T10:36:19.148Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-14T10:36:19.152Z] [INFO] Response: 200 - Body: "[]"
