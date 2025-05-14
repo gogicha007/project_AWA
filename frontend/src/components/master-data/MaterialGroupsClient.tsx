@@ -29,15 +29,15 @@ export default function MaterialGroupsClient() {
     console.log(`Editing group id: ${id}`);
   },[]);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = useCallback((id: number) => {
     if (confirm('Are you sure you want to delete this Group?')) {
       console.log(`Delete group id: ${id}`);
     }
-  };
+  },[]);
 
-  const handleView = (id: number) => {
+  const handleView = useCallback((id: number) => {
     console.log(`view the group id: ${id}`);
-  };
+  },[]);
 
   const columns = useMemo(
     () => [
