@@ -48,7 +48,7 @@ export default function MaterialGroupsClient() {
   );
 
   const handleSave = async (materialGroup: MaterialGroupDTO) => {
-    console.log('saving:', materialGroup);
+    console.log('saving:', materialGroup.id);
   };
 
   const handleDelete = useCallback((id: number) => {
@@ -65,19 +65,19 @@ export default function MaterialGroupsClient() {
     () => [
       {
         accessorKey: 'id',
-        header: tM('id'),
+        header: tM('material_groups.table.id'),
       },
       {
         accessorKey: 'name',
-        header: tM('name'),
+        header: tM('material_groups.table.name'),
       },
       {
         accessorKey: 'description',
-        header: tM('description'),
+        header: tM('material_groups.table.description'),
       },
       {
         id: 'actions',
-        header: tM('actions'),
+        header: tM('actions.title'),
         cell: ({
           row,
         }: {
@@ -164,7 +164,9 @@ export default function MaterialGroupsClient() {
         onSave={handleSave}
         initialData={currentMaterialGroup}
         title={
-          currentMaterialGroup ? tM('edit_form_title') : tM('add_form_title')
+          currentMaterialGroup
+            ? tM('material_groups.edit_form_title')
+            : tM('material_groups.add_form_title')
         }
       />
     </div>

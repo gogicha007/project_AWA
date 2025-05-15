@@ -45,6 +45,7 @@
             "title": "Units"
         },
         "actions": {
+            "title": "Actions",
             "add": "Add new item",
             "edit": "Edit",
             "delete": "Delete",
