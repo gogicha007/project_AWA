@@ -162,3 +162,80 @@ Trace: NotFoundException: User with ID 10 not found
 [2025-05-15T06:11:49.913Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
 [2025-05-15T06:13:48.982Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-15T06:13:48.992Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T10:56:26.936Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T10:56:27.438Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T10:56:27.444Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T10:56:27.447Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:09:00.383Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:09:00.470Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:09:01.807Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:09:01.811Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:10:11.750Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:10:11.754Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:10:13.716Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:10:13.717Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:10:23.734Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:10:23.736Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:27:43.887Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:27:43.889Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-15T11:27:43.889Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-15T11:27:53.151Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:27:53.213Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:27:53.215Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:27:53.217Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:36:18.328Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:36:18.561Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:44:08.403Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:44:08.886Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:44:08.890Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:44:08.894Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:45:00.603Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:45:00.607Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:45:06.440Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:45:06.443Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:45:08.008Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:45:08.010Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:45:29.968Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:45:29.971Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:52:46.661Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:52:46.723Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:52:46.725Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:52:46.726Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:53:28.685Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:53:28.688Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:53:28.691Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:53:28.694Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:54:33.222Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:54:33.671Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:54:33.676Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:54:33.679Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:55:02.064Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:55:02.068Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T11:55:02.072Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T11:55:02.075Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:01:05.244Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:01:07.596Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:01:07.599Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:01:07.602Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:01:37.601Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:01:37.605Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:01:37.607Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:01:37.609Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:01:54.367Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:01:54.370Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:01:54.373Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:01:54.375Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:04:26.971Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:04:26.974Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:10:12.525Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:10:12.613Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:15:34.845Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:15:34.964Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:15:36.695Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:15:36.697Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:15:38.552Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:15:38.555Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:15:43.369Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:15:43.371Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:21:33.433Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:21:33.612Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"

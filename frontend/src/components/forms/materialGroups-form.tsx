@@ -21,7 +21,6 @@ export default function MaterialGroupDialog({
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   
-  // Handle open/close
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -33,7 +32,6 @@ export default function MaterialGroupDialog({
     }
   }, [isOpen]);
 
-  // Form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);

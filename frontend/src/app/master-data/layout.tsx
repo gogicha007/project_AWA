@@ -13,16 +13,16 @@ export default function MasterDataLayoutlayout({
     <section>
       <nav className={styles['settings__nav']}>
         <Link href="/master-data/material-groups" className="button">
-          {tM('menu.material_groups')}
+          {tM('material_groups.title')}
         </Link>
         <Link href="/master-data/material-types" className="button">
-          {tM('menu.material_types')}
+          {tM('material_types.title')}
         </Link>
         <Link href="/master-data/material-names" className="button">
-          {tM('menu.material_names')}
+          {tM('material_names.title')}
         </Link>
         <Link href="/master-data/units" className="button">
-          {tM('menu.units')}
+          {tM('units.title')}
         </Link>
       </nav>
       <div className={styles.settings__main}>{children}</div>

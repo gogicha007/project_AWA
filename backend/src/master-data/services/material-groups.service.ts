@@ -19,6 +19,7 @@ export class MaterialGroupsService {
   async findAll() {
     const allGroups = await this.dbService.materialGroup.findMany({
       select: {
+        id: true,
         name: true,
         description: true,
       },

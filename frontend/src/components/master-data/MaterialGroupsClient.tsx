@@ -4,6 +4,7 @@ import styles from './master-data.module.css';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroups';
 import Loader from '../loader/loader';
 import { useMemo, useState, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   useReactTable,
   getCoreRowModel,
@@ -13,8 +14,8 @@ import MaterialGroupDialog from '../forms/materialGroups-form';
 import { MaterialGroupDTO } from '@/api/types';
 
 export default function MaterialGroupsClient() {
+  const tM = useTranslations('MasterData');
   const { materialGroups, loading, error } = useMaterialGroups();
-  const [editingId, setEditingId] = useState<number | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentMaterialGroup, setCurrentMaterialGroup] = useState<
     MaterialGroupDTO | undefined
@@ -24,32 +25,30 @@ export default function MaterialGroupsClient() {
     () =>
       materialGroups.map((group) => ({
         ...group,
-        id: group.id ? parseInt(group.id, 10) : 0,
+        id:
+          typeof group.id === 'string'
+            ? parseInt(group.id, 10)
+            : Number(group.id),
       })),
     [materialGroups]
   );
 
-  console.log(editingId);
   const handleAdd = () => {
     setCurrentMaterialGroup(undefined);
     setIsDialogOpen(true);
-    console.log('add button clicked');
   };
+
   const handleEdit = useCallback(
     (id: number) => {
-      setEditingId(id);
-      const materialGroup = materialGroups.find(
-        (group) => group.id === id.toString()
-      );
+      const materialGroup = materialGroups.find((group) => group.id === id);
       setCurrentMaterialGroup(materialGroup);
       setIsDialogOpen(true);
-      console.log(`Editing group id: ${id}`);
     },
     [materialGroups]
   );
 
   const handleSave = async (materialGroup: MaterialGroupDTO) => {
-    console.log('savint:', materialGroup);
+    console.log('saving:', materialGroup);
   };
 
   const handleDelete = useCallback((id: number) => {
@@ -66,19 +65,19 @@ export default function MaterialGroupsClient() {
     () => [
       {
         accessorKey: 'id',
-        header: 'ID',
+        header: tM('id'),
       },
       {
         accessorKey: 'name',
-        header: 'Name',
+        header: tM('name'),
       },
       {
         accessorKey: 'description',
-        header: 'Description',
+        header: tM('description'),
       },
       {
         id: 'actions',
-        header: 'Actions',
+        header: tM('actions'),
         cell: ({
           row,
         }: {
@@ -89,21 +88,21 @@ export default function MaterialGroupsClient() {
             <div className={styles.actionsContainer}>
               <button
                 onClick={() => handleView(materialGroup.id)}
-                className={`${styles.actionButton} ${styles.viewbutton}`}
+                className={`${styles.actionButton} ${styles.viewButton}`}
               >
-                View
+                {tM('actions.view')}
               </button>
               <button
                 onClick={() => handleEdit(materialGroup.id)}
                 className={`${styles.actionButton} ${styles.editButton}`}
               >
-                Edit
+                {tM('actions.edit')}
               </button>
               <button
                 onClick={() => handleDelete(materialGroup.id)}
                 className={`${styles.actionButton} ${styles.deleteButton}`}
               >
-                Delete
+                {tM('actions.delete')}
               </button>
             </div>
           );
@@ -128,7 +127,7 @@ export default function MaterialGroupsClient() {
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
           <button className={styles.addButton} onClick={handleAdd}>
-            Add new item
+            {tM('actions.add')}
           </button>
         </div>
         <table className={styles.table}>
@@ -164,7 +163,9 @@ export default function MaterialGroupsClient() {
         onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}
         initialData={currentMaterialGroup}
-        title={currentMaterialGroup ? 'Edit Material Group' : 'Add Material Group'}
+        title={
+          currentMaterialGroup ? tM('edit_form_title') : tM('add_form_title')
+        }
       />
     </div>
   );

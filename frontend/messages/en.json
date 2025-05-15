@@ -25,11 +25,30 @@
         "error": "An unexpected error occurred."
     },
     "MasterData": {
-        "menu" : {
-            "material_groups": "Material Group",
-            "material_types": "Material Types",
-            "material_names": "Material Names",
-            "units": "Units"
+        "material_groups": {
+            "title": "Material Group",
+            "table": {
+                "id": "ID",
+                "name": "Name",
+                "description": "Description"
+            },
+            "edit_form_title": "Edit Material Group",
+            "add_form_title": "Add Material Group"
+        },
+        "material_types": {
+            "title": "Material Types"
+        },
+        "material_names": {
+            "title": "Material Names"
+        },
+        "units": {
+            "title": "Units"
+        },
+        "actions": {
+            "add": "Add new item",
+            "edit": "Edit",
+            "delete": "Delete",
+            "view": "View"
         }
     },
     "Buttons": {

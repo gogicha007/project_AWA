@@ -13,7 +13,7 @@ export interface UserResponseDTO {
 }
 
 export interface MaterialGroupDTO {
-  id?: string;
+  id?: number;
   name: string;
   description: string;
 }
