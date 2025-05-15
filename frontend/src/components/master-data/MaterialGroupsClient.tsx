@@ -24,6 +24,9 @@ export default function MaterialGroupsClient() {
   );
 
   console.log(editingId);
+  const handleAdd = ()=> {
+    console.log('add button clicked')
+  }
   const handleEdit = useCallback((id: number) => {
     setEditingId(id);
     // open modal or go to edit page
@@ -104,6 +107,9 @@ export default function MaterialGroupsClient() {
     <div>
       <h1 className={styles.pageTitle}>Material Groups</h1>
       <div className={styles.tableContainer}>
+        <div className={styles.tableActions}>
+          <button className={styles.addButton} onClick={handleAdd}>Add new item</button>
+        </div>
         <table className={styles.table}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
