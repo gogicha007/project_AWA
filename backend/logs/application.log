@@ -239,3 +239,13 @@ Trace: NotFoundException: User with ID 10 not found
 [2025-05-15T12:15:43.371Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
 [2025-05-15T12:21:33.433Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-15T12:21:33.612Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T12:41:00.847Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T12:41:00.906Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T13:05:49.651Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T13:05:49.713Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T13:07:38.603Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T13:07:38.607Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T13:07:42.597Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"Irakli Gogichaishvili","description":""}
+[2025-05-15T13:07:42.748Z] [INFO] Response: 201 - Body: "{\"name\":\"Irakli Gogichaishvili\",\"description\":\"\"}"
+[2025-05-15T13:13:54.657Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T13:13:54.718Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"},{\"id\":2,\"name\":\"Irakli Gogichaishvili\",\"description\":\"\"}]"

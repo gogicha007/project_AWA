@@ -14,6 +14,20 @@ export const materialGroupsApi = {
       name: materialGroup.name,
       description: materialGroup.description,
     };
+
+    const response = await apiClient.post('/material-groups', materialGroupData)
+    return response.data;
+  },
+
+  update: async (
+    materialGroup: MaterialGroupDTO
+  ): Promise<MaterialGroupDTO> => {
+    const materialGroupData: MaterialGroupDTO = {
+      id: materialGroup.id,
+      name: materialGroup.name,
+      description: materialGroup.description,
+    };
+
     return materialGroupData;
   },
 };

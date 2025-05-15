@@ -2,6 +2,7 @@
 
 import styles from './master-data.module.css';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroups';
+import { materialGroupsApi } from '@/api/endpoints/master-data';
 import Loader from '../loader/loader';
 import { useMemo, useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
@@ -48,7 +49,12 @@ export default function MaterialGroupsClient() {
   );
 
   const handleSave = async (materialGroup: MaterialGroupDTO) => {
-    console.log('saving:', materialGroup.id);
+    if (materialGroup.id) {
+      console.log('save edited', materialGroup.id);
+    } else {
+      const response = await materialGroupsApi.create(materialGroup)
+      console.log('save new', response);
+    }
   };
 
   const handleDelete = useCallback((id: number) => {
