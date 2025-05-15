@@ -9,10 +9,16 @@ import {
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
+import MaterialGroupDialog from '../forms/materialGroups-form';
+import { MaterialGroupDTO } from '@/api/types';
 
 export default function MaterialGroupsClient() {
   const { materialGroups, loading, error } = useMaterialGroups();
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentMaterialGroup, setCurrentMaterialGroup] = useState<
+    MaterialGroupDTO | undefined
+  >();
 
   const data = useMemo(
     () =>
@@ -24,14 +30,27 @@ export default function MaterialGroupsClient() {
   );
 
   console.log(editingId);
-  const handleAdd = ()=> {
-    console.log('add button clicked')
-  }
-  const handleEdit = useCallback((id: number) => {
-    setEditingId(id);
-    // open modal or go to edit page
-    console.log(`Editing group id: ${id}`);
-  }, []);
+  const handleAdd = () => {
+    setCurrentMaterialGroup(undefined);
+    setIsDialogOpen(true);
+    console.log('add button clicked');
+  };
+  const handleEdit = useCallback(
+    (id: number) => {
+      setEditingId(id);
+      const materialGroup = materialGroups.find(
+        (group) => group.id === id.toString()
+      );
+      setCurrentMaterialGroup(materialGroup);
+      setIsDialogOpen(true);
+      console.log(`Editing group id: ${id}`);
+    },
+    [materialGroups]
+  );
+
+  const handleSave = async (materialGroup: MaterialGroupDTO) => {
+    console.log('savint:', materialGroup);
+  };
 
   const handleDelete = useCallback((id: number) => {
     if (confirm('Are you sure you want to delete this Group?')) {
@@ -108,7 +127,9 @@ export default function MaterialGroupsClient() {
       <h1 className={styles.pageTitle}>Material Groups</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
-          <button className={styles.addButton} onClick={handleAdd}>Add new item</button>
+          <button className={styles.addButton} onClick={handleAdd}>
+            Add new item
+          </button>
         </div>
         <table className={styles.table}>
           <thead>
@@ -138,6 +159,13 @@ export default function MaterialGroupsClient() {
           </tbody>
         </table>
       </div>
+      <MaterialGroupDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        onSave={handleSave}
+        initialData={currentMaterialGroup}
+        title={currentMaterialGroup ? 'Edit Material Group' : 'Add Material Group'}
+      />
     </div>
   );
 }

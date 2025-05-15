@@ -156,3 +156,9 @@ Trace: NotFoundException: User with ID 10 not found
 [2025-05-15T05:38:07.607Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
 [2025-05-15T05:38:09.033Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-15T05:38:09.035Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T06:10:48.393Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T06:10:48.450Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T06:11:49.899Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T06:11:49.913Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
+[2025-05-15T06:13:48.982Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-15T06:13:48.992Z] [INFO] Response: 200 - Body: "[{\"name\":\"test group\",\"description\":\"test description\"}]"
