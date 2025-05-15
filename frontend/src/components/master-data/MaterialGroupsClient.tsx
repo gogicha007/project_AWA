@@ -109,7 +109,7 @@ export default function MaterialGroupsClient() {
         },
       },
     ],
-    [handleEdit, handleView, handleDelete]
+    [handleEdit, handleView, handleDelete, tM]
   );
 
   const table = useReactTable({
