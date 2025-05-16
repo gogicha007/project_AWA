@@ -596,3 +596,19 @@ Trace: BadRequestException: Bad Request Exception
 [2025-05-16T12:39:02.679Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"}]"
 [2025-05-16T12:39:02.934Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-16T12:39:03.411Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"}]"
+[2025-05-16T12:58:36.151Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:58:37.246Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"}]"
+[2025-05-16T12:58:37.256Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:58:37.751Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"}]"
+[2025-05-16T12:59:08.644Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"valve","description":""}
+[2025-05-16T12:59:09.225Z] [INFO] Response: 201 - Body: "{\"name\":\"valve\",\"description\":\"\"}"
+[2025-05-16T12:59:09.234Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:59:09.724Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"\"}]"
+[2025-05-16T12:59:27.505Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"valve","description":"valves"}
+[2025-05-16T12:59:28.086Z] [INFO] Response: 200 - Body: "{\"id\":4,\"name\":\"valve\"}"
+[2025-05-16T12:59:28.104Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:59:28.586Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"}]"
+[2025-05-16T12:59:47.991Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"fitting","description":"could be tee, reducer, coupler, bend or"}
+[2025-05-16T12:59:48.569Z] [INFO] Response: 200 - Body: "{\"id\":2,\"name\":\"fitting\"}"
+[2025-05-16T12:59:48.585Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:59:49.067Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"}]"
