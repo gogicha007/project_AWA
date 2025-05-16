@@ -16,7 +16,7 @@ import { MaterialGroupDTO } from '@/api/types';
 
 export default function MaterialGroupsClient() {
   const tM = useTranslations('MasterData');
-  const { materialGroups, loading, error } = useMaterialGroups();
+  const { materialGroups, loading, error, mutate } = useMaterialGroups();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentMaterialGroup, setCurrentMaterialGroup] = useState<
     MaterialGroupDTO | undefined
@@ -24,13 +24,15 @@ export default function MaterialGroupsClient() {
 
   const data = useMemo(
     () =>
-      materialGroups.map((group) => ({
-        ...group,
-        id:
-          typeof group.id === 'string'
-            ? parseInt(group.id, 10)
-            : Number(group.id),
-      })),
+      materialGroups
+        .map((group) => ({
+          ...group,
+          id:
+            typeof group.id === 'string'
+              ? parseInt(group.id, 10)
+              : Number(group.id),
+        }))
+        .sort((a, b) => a.id - b.id),
     [materialGroups]
   );
 
@@ -45,22 +47,34 @@ export default function MaterialGroupsClient() {
       setCurrentMaterialGroup(materialGroup);
       setIsDialogOpen(true);
     },
-    [materialGroups]
+    [materialGroups, currentMaterialGroup]
   );
 
   const handleSave = async (materialGroup: MaterialGroupDTO) => {
-    if (materialGroup.id) {
-      console.log('save edited', materialGroup.id);
-    } else {
-      const response = await materialGroupsApi.create(materialGroup)
-      console.log('save new', response);
+    try {
+      if (materialGroup.id) {
+        await materialGroupsApi.update(materialGroup);
+        setCurrentMaterialGroup(materialGroup);
+      } else {
+        await materialGroupsApi.create(materialGroup);
+      }
+      await mutate();
+      setCurrentMaterialGroup(undefined)
+      setIsDialogOpen(false);
+    } catch (error) {
+      console.error('Error savint Material Groups:', error);
     }
   };
 
-  const handleDelete = useCallback((id: number) => {
+  const handleDelete = useCallback(async (id: number) => {
     if (confirm('Are you sure you want to delete this Group?')) {
-      console.log(`Delete group id: ${id}`);
+      try {
+        await materialGroupsApi.delete(id);
+      } catch (error) {
+        console.error(`Error deleting Material Group with id: ${id}`, error);
+      }
     }
+    mutate();
   }, []);
 
   const handleView = useCallback((id: number) => {
@@ -95,6 +109,7 @@ export default function MaterialGroupsClient() {
               <button
                 onClick={() => handleView(materialGroup.id)}
                 className={`${styles.actionButton} ${styles.viewButton}`}
+                disabled
               >
                 {tM('actions.view')}
               </button>

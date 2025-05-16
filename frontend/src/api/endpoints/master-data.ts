@@ -15,7 +15,10 @@ export const materialGroupsApi = {
       description: materialGroup.description,
     };
 
-    const response = await apiClient.post('/material-groups', materialGroupData)
+    const response = await apiClient.post(
+      '/material-groups',
+      materialGroupData
+    );
     return response.data;
   },
 
@@ -23,11 +26,18 @@ export const materialGroupsApi = {
     materialGroup: MaterialGroupDTO
   ): Promise<MaterialGroupDTO> => {
     const materialGroupData: MaterialGroupDTO = {
-      id: materialGroup.id,
       name: materialGroup.name,
       description: materialGroup.description,
     };
+    const response = await apiClient.patch(
+      `/material-groups/${materialGroup.id}`,
+      materialGroupData
+    );
+    return response.data;
+  },
 
-    return materialGroupData;
+  delete: async (id: number) => {
+    const response = await apiClient.delete(`/material-groups/${id}`);
+    return response.data
   },
 };

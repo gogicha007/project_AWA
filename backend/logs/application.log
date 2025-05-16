@@ -249,3 +249,310 @@ Trace: NotFoundException: User with ID 10 not found
 [2025-05-15T13:07:42.748Z] [INFO] Response: 201 - Body: "{\"name\":\"Irakli Gogichaishvili\",\"description\":\"\"}"
 [2025-05-15T13:13:54.657Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-15T13:13:54.718Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"test group\",\"description\":\"test description\"},{\"id\":2,\"name\":\"Irakli Gogichaishvili\",\"description\":\"\"}]"
+[2025-05-16T08:37:13.472Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T08:37:16.556Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-16T08:37:16.566Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T08:37:17.061Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-16T08:37:18.741Z] [ERROR] Error creating user:
+Trace: PrismaClientKnownRequestError: 
+Invalid `this.dbServise.user.create()` invocation in
+D:\CODES\project_AWA\backend\src\users\users.service.ts:20:40
+
+  17 });
+  18 
+  19 if (!user) {
+→ 20   user = await this.dbServise.user.create(
+Unique constraint failed on the fields: (`firebaseUid`)
+    at zn.handleRequestError (D:\CODES\project_AWA\backend\generated\prisma\runtime\library.js:121:7459)
+    at zn.handleAndLogRequestError (D:\CODES\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (D:\CODES\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (D:\CODES\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async UsersService.create (D:\CODES\project_AWA\backend\src\users\users.service.ts:20:14)
+[2025-05-16T08:39:23.767Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"pipe","description":""}
+[2025-05-16T08:39:24.361Z] [INFO] Response: 201 - Body: "{\"name\":\"pipe\",\"description\":\"\"}"
+[2025-05-16T08:39:26.540Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T08:39:27.028Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T08:39:39.948Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T08:39:40.533Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T08:40:15.877Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"fitting","description":""}
+[2025-05-16T08:40:17.135Z] [INFO] Response: 201 - Body: "{\"name\":\"fitting\",\"description\":\"\"}"
+[2025-05-16T08:40:22.270Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T08:40:22.759Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:30:40.166Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:30:41.237Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:30:41.245Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:30:41.739Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:32:02.764Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:32:03.352Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:33:44.296Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:33:45.520Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:34:04.566Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:34:05.143Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:34:05.147Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:34:05.615Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:37:40.669Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:37:40.671Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-16T10:37:40.672Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-16T10:49:50.631Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:49:51.863Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:49:51.868Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:49:52.349Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:50:00.058Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T10:50:00.063Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T10:50:00.063Z] [INFO] Response: 201 - Body: undefined
+[2025-05-16T10:50:04.770Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:50:05.245Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:51:25.736Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T10:51:26.249Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T10:51:26.250Z] [INFO] Response: 201 - Body: undefined
+[2025-05-16T10:53:25.264Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T10:53:25.265Z] [ERROR] Error: {"message":"Cannot POST /material-groups/1","error":"Not Found","statusCode":404} - Request: POST /material-groups/1
+[2025-05-16T10:53:25.265Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot POST /material-groups/1\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-16T10:56:37.497Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T10:56:37.501Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T10:56:37.501Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T10:56:56.992Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T10:56:58.247Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T10:57:23.004Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T10:57:23.006Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T10:57:23.006Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T11:00:48.089Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T11:00:48.090Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T11:00:48.090Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T11:14:23.698Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"id":1,"name":"pipe","description":"pipe"}
+[2025-05-16T11:14:23.702Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T11:14:23.703Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T11:16:06.253Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"id":1,"name":"pipe","description":"PIPE"}
+[2025-05-16T11:16:06.255Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T11:16:06.255Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T11:16:14.134Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:16:15.402Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"\"}]"
+[2025-05-16T11:16:52.434Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"id":1,"name":"pipe","description":"PIPE"}
+[2025-05-16T11:16:52.435Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-16T11:16:52.436Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T11:16:59.252Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":"PIPE"}
+[2025-05-16T11:16:59.842Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T11:17:23.865Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:17:24.451Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T11:30:03.424Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":""}
+[2025-05-16T11:30:04.872Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T11:30:12.011Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:30:12.518Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:35:49.530Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:35:50.812Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:36:29.643Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:36:30.287Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:40:30.837Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:40:31.424Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:40:51.855Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":"PIPE"}
+[2025-05-16T11:40:53.162Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T11:41:01.675Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:41:02.159Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T11:41:52.221Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:41:52.799Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T11:44:20.909Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:44:21.493Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T11:44:26.649Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:44:27.129Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T11:44:38.630Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:44:39.263Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T11:44:46.580Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":""}
+[2025-05-16T11:44:47.073Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T11:44:47.081Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:44:47.564Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:51:37.402Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:51:38.660Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:53:38.565Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:53:39.157Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:53:54.377Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:53:54.951Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:54:40.583Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:54:41.164Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:54:42.134Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:54:42.613Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:54:46.098Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:54:46.579Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"\"}]"
+[2025-05-16T11:54:59.437Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":"PIPE"}
+[2025-05-16T11:55:00.018Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T11:55:00.029Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T11:55:00.509Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:00:04.709Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:00:05.963Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:00:07.498Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:00:07.980Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:00:12.009Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:00:12.485Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:00:18.745Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:00:19.231Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:00:20.565Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:00:21.169Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:00:23.436Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:00:23.916Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:01:04.798Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:01:05.378Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:01:17.936Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:01:18.416Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:01:22.034Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:01:22.609Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:01:30.115Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:01:30.602Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:02:21.658Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:02:22.244Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:02:43.966Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:02:44.552Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:02:46.935Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:02:47.414Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:02:49.495Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:02:50.010Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:02:53.490Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:02:53.973Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:02:54.949Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:02:55.428Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:03:00.993Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:03:01.568Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:03:11.700Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:03:12.187Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:04:31.189Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:04:31.762Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:04:33.214Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:04:33.712Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:06:43.212Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"item","description":"item to delete"}
+[2025-05-16T12:06:44.439Z] [INFO] Response: 201 - Body: "{\"name\":\"item\",\"description\":\"item to delete\"}"
+[2025-05-16T12:06:44.453Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:06:44.931Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:06:51.965Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:06:52.439Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:07:08.573Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:07:09.142Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:07:24.312Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:07:24.881Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:08:54.484Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:08:55.068Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:08:57.453Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:08:57.963Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:08:59.454Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:08:59.930Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"},{\"id\":3,\"name\":\"item\",\"description\":\"item to delete\"}]"
+[2025-05-16T12:09:07.386Z] [INFO] Incoming Request: DELETE / - Query: {} - Body: undefined
+[2025-05-16T12:09:07.865Z] [INFO] Response: 200 - Body: undefined
+[2025-05-16T12:09:07.874Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:09:08.355Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:09:16.153Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:09:16.721Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"PIPE\"}]"
+[2025-05-16T12:12:00.276Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":"pipe could be made of pe, pp, steel and cast iron"}
+[2025-05-16T12:12:01.506Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T12:12:01.526Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:12:02.007Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:15:06.224Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:15:06.798Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:17:32.420Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:17:33.650Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:17:34.060Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:17:34.532Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:17:38.853Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:17:39.325Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:17:44.033Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:17:44.519Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:18:03.835Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:18:04.400Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
+[2025-05-16T12:18:21.019Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"fitting","description":"could be tee"}
+[2025-05-16T12:18:21.588Z] [INFO] Response: 200 - Body: "{\"id\":2,\"name\":\"fitting\"}"
+[2025-05-16T12:18:21.605Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:18:22.079Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:20:58.580Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:20:59.159Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:21:07.727Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:21:08.200Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:21:15.045Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:21:15.611Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:21:17.377Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:21:17.850Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:23:14.703Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:23:15.927Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:23:16.090Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:23:16.561Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee\"}]"
+[2025-05-16T12:23:36.294Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"fitting","description":"could be tee, reducer"}
+[2025-05-16T12:23:36.858Z] [INFO] Response: 200 - Body: "{\"id\":2,\"name\":\"fitting\"}"
+[2025-05-16T12:23:36.870Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:23:37.339Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer\"}]"
+[2025-05-16T12:24:09.563Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:24:10.145Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer\"}]"
+[2025-05-16T12:24:11.294Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:24:11.763Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer\"}]"
+[2025-05-16T12:24:23.978Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:24:24.780Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer\"}]"
+[2025-05-16T12:24:31.963Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"fitting","description":"could be tee, reducer, coupler"}
+[2025-05-16T12:24:32.526Z] [INFO] Response: 200 - Body: "{\"id\":2,\"name\":\"fitting\"}"
+[2025-05-16T12:24:32.547Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:24:33.025Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler\"}]"
+[2025-05-16T12:24:48.362Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":"pipe could be made of pe, pp, steel and cast"}
+[2025-05-16T12:24:49.249Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T12:24:49.275Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:24:49.742Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast\"}]"
+[2025-05-16T12:24:56.922Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"name":"pipe","description":"pipe could be made of pe, pp, steel and cast iron"}
+[2025-05-16T12:24:57.391Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"pipe\"}"
+[2025-05-16T12:24:57.418Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-16T12:24:58.217Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler\"},{\"id\":1,\"name\":\"pipe\",\"description\":\"pipe could be made of pe, pp, steel and cast iron\"}]"
