@@ -66,7 +66,7 @@ export default function MaterialGroupsClient() {
     }
   };
 
-  const handleDelete = useCallback(async (id: number) => {
+  const handleDelete = async (id: number) => {
     if (confirm('Are you sure you want to delete this Group?')) {
       try {
         await materialGroupsApi.delete(id);
@@ -74,8 +74,8 @@ export default function MaterialGroupsClient() {
         console.error(`Error deleting Material Group with id: ${id}`, error);
       }
     }
-    mutate();
-  }, []);
+    await mutate();
+  };
 
   const handleView = useCallback((id: number) => {
     console.log(`view the group id: ${id}`);
