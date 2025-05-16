@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Patch, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Param,
+  Body,
+} from '@nestjs/common';
 import { MaterialGroupsService } from '../services/material-groups.service';
 import { CreateMaterialGroupDTO } from '../dto/createMaterialGroup.dto';
 
@@ -21,12 +29,12 @@ export class MaterialGroupsController {
     @Param('id') id: number,
     @Body() updateMaterialGroupDTO: CreateMaterialGroupDTO,
   ) {
-    console.log('controller', id)
-    return this.materialGroupsService.update(+id, updateMaterialGroupDTO)
+    console.log('controller', id);
+    return this.materialGroupsService.update(+id, updateMaterialGroupDTO);
   }
 
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.materialGroupsService.remove(+id)
+    return this.materialGroupsService.remove(+id);
   }
 }
