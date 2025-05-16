@@ -186,16 +186,17 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres:123@localhost:5432/awa_local?schema=public"
+        "fromEnvVar": "DATABASE_URL_SB",
+        "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id          Int      @id @default(autoincrement())\n  firebaseUid String   @unique\n  email       String   @unique\n  name        String?\n  role        String   @default(\"user\")\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n  Vendor      Vendor[]\n\n  @@map(\"user\")\n}\n\nmodel Vendor {\n  id        Int      @id @default(autoincrement())\n  name      String\n  country   String\n  user      User     @relation(fields: [userId], references: [id])\n  userId    Int\n  createdAt DateTime @default(now())\n\n  @@map(\"vendor\")\n}\n\nmodel Unit {\n  id   Int    @id @default(autoincrement())\n  unit String\n\n  @@map(\"unit\")\n}\n\nmodel MaterialGroup {\n  id           Int            @id @default(autoincrement())\n  name         String\n  description  String\n  MaterialType MaterialType[]\n\n  @@map(\"material_group\")\n}\n\nmodel MaterialType {\n  id      Int           @id @default(autoincrement())\n  type    String\n  group   MaterialGroup @relation(fields: [groupId], references: [id])\n  groupId Int\n\n  @@map(\"material_type\")\n}\n",
-  "inlineSchemaHash": "340fb3f9c3a4a7d534eecf10ce51ba1c57d3c0ea5289bc2f83555766848d3a45",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL_SB\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel User {\n  id          Int      @id @default(autoincrement())\n  firebaseUid String   @unique\n  email       String   @unique\n  name        String?\n  role        String   @default(\"user\")\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n  Vendor      Vendor[]\n\n  @@map(\"user\")\n}\n\nmodel Vendor {\n  id        Int      @id @default(autoincrement())\n  name      String\n  country   String\n  user      User     @relation(fields: [userId], references: [id])\n  userId    Int\n  createdAt DateTime @default(now())\n\n  @@map(\"vendor\")\n}\n\nmodel Unit {\n  id   Int    @id @default(autoincrement())\n  unit String\n\n  @@map(\"unit\")\n}\n\nmodel MaterialGroup {\n  id           Int            @id @default(autoincrement())\n  name         String\n  description  String\n  MaterialType MaterialType[]\n\n  @@map(\"material_group\")\n}\n\nmodel MaterialType {\n  id      Int           @id @default(autoincrement())\n  type    String\n  group   MaterialGroup @relation(fields: [groupId], references: [id])\n  groupId Int\n\n  @@map(\"material_type\")\n}\n",
+  "inlineSchemaHash": "f5a19d7b2854e8095991456f316bf42e2f981e4ba1928ae792e2d49f03968d32",
   "copyEngine": true
 }
 config.dirname = '/'
@@ -207,7 +208,7 @@ config.compilerWasm = undefined
 
 config.injectableEdgeEnv = () => ({
   parsed: {
-    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
+    DATABASE_URL_SB: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL_SB'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL_SB || undefined
   }
 })
 
