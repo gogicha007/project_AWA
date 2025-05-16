@@ -59,14 +59,14 @@ export default function MaterialGroupsClient() {
         await materialGroupsApi.create(materialGroup);
       }
       await mutate();
-      setCurrentMaterialGroup(undefined);
+      setCurrentMaterialGroup(undefined)
       setIsDialogOpen(false);
     } catch (error) {
       console.error('Error savint Material Groups:', error);
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = useCallback(async (id: number) => {
     if (confirm('Are you sure you want to delete this Group?')) {
       try {
         await materialGroupsApi.delete(id);
@@ -74,8 +74,8 @@ export default function MaterialGroupsClient() {
         console.error(`Error deleting Material Group with id: ${id}`, error);
       }
     }
-    await mutate();
-  };
+    mutate();
+  }, []);
 
   const handleView = useCallback((id: number) => {
     console.log(`view the group id: ${id}`);
