@@ -10,5 +10,5 @@ export class MaterialTypeDTO {
   @ApiProperty()
   @IsInt()
   @IsNotEmpty()
-  groupId: number
+  groupId: number;
 }
