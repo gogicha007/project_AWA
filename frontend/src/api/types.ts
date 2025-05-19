@@ -17,3 +17,8 @@ export interface MaterialGroupDTO {
   name: string;
   description: string;
 }
+
+export interface UnitDTO {
+  id?: number;
+  unit: string;
+}

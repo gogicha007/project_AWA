@@ -52,21 +52,3 @@
   justify-content: flex-end;
   margin-bottom: 16px;
 }
-
-.addButton {
-  background-color: #10b981;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.addButton:hover {
-  background-color: #059669;
-}
