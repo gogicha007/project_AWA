@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './master-data.module.css';
-import { useUnits } from '@/api/hooks/useUnits';
+import { useUnits } from '@/api/hooks/useUnitsHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,

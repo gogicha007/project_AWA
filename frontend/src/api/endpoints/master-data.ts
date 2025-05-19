@@ -1,5 +1,5 @@
 import apiClient from '../api-client';
-import { MaterialGroupDTO, UnitDTO } from '../types';
+import { MaterialGroupDTO, MaterialTypeDTO, UnitDTO } from '../types';
 
 export const materialGroupsApi = {
   getAll: async (): Promise<MaterialGroupDTO[]> => {
@@ -80,3 +80,44 @@ export const unitsApi = {
     return response.data
   },
 };
+
+export const materialTypesApi = {
+  getAll: async (): Promise<MaterialTypeDTO[]> => {
+    const response = await apiClient.get('/material-types');
+    return response.data;
+  },
+
+  create: async (
+    materialType: MaterialTypeDTO
+  ): Promise<MaterialTypeDTO> => {
+    const materialGroupData: MaterialTypeDTO = {
+      type: materialType.type,
+      groupId: materialType.groupId,
+    };
+
+    const response = await apiClient.post(
+      '/material-groups',
+      materialGroupData
+    );
+    return response.data;
+  },
+
+  update: async (
+    materialType: MaterialTypeDTO
+  ): Promise<MaterialTypeDTO> => {
+    const materialTypeData: MaterialTypeDTO = {
+      type: materialType.type,
+      groupId: materialType.groupId
+    };
+    const response = await apiClient.patch(
+      `/material-types/${materialType.id}`,
+      materialTypeData
+    );
+    return response.data;
+  },
+
+  delete: async (id: number) => {
+    const response = await apiClient.delete(`/material-groups/${id}`);
+    return response.data
+  },
+}

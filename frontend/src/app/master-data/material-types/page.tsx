@@ -1,7 +1,8 @@
 import React from 'react';
+import MaterialTypesClient from '@/components/master-data/MaterialTypesClient';
 
 const MaterialTypes = () => {
-  return <div>MaterialTypes</div>;
+  return <MaterialTypesClient />;
 };
 
 export default MaterialTypes;

@@ -18,6 +18,12 @@ export interface MaterialGroupDTO {
   description: string;
 }
 
+export interface MaterialTypeDTO {
+  id?: number;
+  type: string;
+  groupId: number;
+}
+
 export interface UnitDTO {
   id?: number;
   unit: string;

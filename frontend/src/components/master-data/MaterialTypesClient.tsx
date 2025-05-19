@@ -1,21 +1,21 @@
 'use client';
 
 import styles from './master-data.module.css';
-import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
+import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import MaterialGroupDialog from '../forms/materialGroups-form';
+import MaterialTypeDialog from '../forms/materialTypes-form';
 import Loader from '../loader/loader';
 import AddButton from '../add-button/AddButton';
-import { useMaterialGroupsLogic } from './useMaterialGroupsLogic';
+import { useMaterialTypesLogic } from './useMaterialTypesLogic';
 
-export default function MaterialGroupsClient() {
-  const tM = useTranslations('MasterData');
-  const { materialGroups, loading, error, mutate } = useMaterialGroups();
+export default function MaterialTypesClient() {
+  const tT = useTranslations('MasterData');
+  const { materialTypes, loading, error, mutate } = useMaterialTypes();
 
   const {
     data,
@@ -24,8 +24,8 @@ export default function MaterialGroupsClient() {
     handleSave,
     isDialogOpen,
     setIsDialogOpen,
-    currentMaterialGroup,
-  } = useMaterialGroupsLogic(materialGroups, mutate, tM);
+    currentMaterialType,
+  } = useMaterialTypesLogic(materialTypes, mutate, tT);
 
   const table = useReactTable({
     data,
@@ -37,13 +37,13 @@ export default function MaterialGroupsClient() {
   if (error)
     return (
       <div>
-        `${tM('errors.loading')}: {String(error)}`
+        `${tT('material-tipes.errors.loading')}: {String(error)}`
       </div>
     );
 
   return (
     <div>
-      <h1 className={styles.pageTitle}>Material Groups</h1>
+      <h1 className={styles.pageTitle}>{tT('material_types.title')}</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
           <AddButton onAdd={handleAdd} />
@@ -76,15 +76,15 @@ export default function MaterialGroupsClient() {
           </tbody>
         </table>
       </div>
-      <MaterialGroupDialog
+      <MaterialTypeDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}
-        initialData={currentMaterialGroup}
+        initialData={currentMaterialType}
         title={
-          currentMaterialGroup
-            ? tM('material_groups.edit_form_title')
-            : tM('material_groups.add_form_title')
+          currentMaterialType
+            ? tT('material_types.edit_form_title')
+            : tT('material_types.add_form_title')
         }
       />
     </div>

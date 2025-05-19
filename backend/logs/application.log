@@ -929,3 +929,62 @@ Trace: BadRequestException: Bad Request Exception
 [2025-05-19T11:59:40.598Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
 [2025-05-19T11:59:40.600Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-19T11:59:41.090Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T12:40:42.255Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T12:40:42.758Z] [ERROR] Token verification error: Firebase ID token has expired. Get a fresh ID token from your client app and try again (auth/id-token-expired). See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.
+Trace: Error: Firebase ID token has expired. Get a fresh ID token from your client app and try again (auth/id-token-expired). See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token.
+    at FirebaseTokenVerifier.mapJwtErrorToAuthError (D:\CODES\project_AWA\backend\node_modules\firebase-admin\lib\auth\token-verifier.js:271:20)
+    at D:\CODES\project_AWA\backend\node_modules\firebase-admin\lib\auth\token-verifier.js:255:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AuthGuard.canActivate (D:\CODES\project_AWA\backend\src\auth\auth.guard.ts:80:24)
+    at async GuardsConsumer.tryActivate (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\guards\guards-consumer.js:16:17)
+    at async canActivateFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:135:33)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:42:31
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2025-05-19T12:40:42.759Z] [ERROR] Error: {"message":"Token has expired","error":"Unauthorized","statusCode":401} - Request: GET /material-types
+[2025-05-19T12:40:42.760Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Token has expired\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T12:40:56.437Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T12:40:57.664Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:43:42.563Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:43:43.884Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:43:43.887Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:43:44.387Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:45:38.243Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:45:38.828Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:45:39.794Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:45:40.273Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:45:41.179Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:45:41.661Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:50:58.615Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:50:59.837Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:52:04.116Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:52:04.689Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:52:53.910Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:52:54.489Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:52:56.105Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:52:56.584Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:53:01.685Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:53:02.164Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:53:02.986Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:53:03.465Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:53:05.470Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:53:05.950Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:53:11.028Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:53:11.602Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:53:32.679Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:53:33.253Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:58:30.321Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:58:31.573Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:58:33.316Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:58:33.796Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:58:42.983Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:58:43.462Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:58:53.656Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:58:54.232Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:59:13.346Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:59:13.928Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:59:43.489Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:59:44.062Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:59:48.087Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:59:48.565Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T13:59:49.382Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T13:59:49.867Z] [INFO] Response: 200 - Body: "[]"

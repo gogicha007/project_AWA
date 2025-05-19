@@ -44,7 +44,22 @@
             "add_form_title": "Add Material Group"
         },
         "material_types": {
-            "title": "Material Types"
+            "title": "Material Types",
+            "table": {
+                "id": "ID",
+                "name": "Type",
+                "group": "Group"
+            },
+            "errors": {
+                "loading": "Error loading Material Types",
+                "delete": "Error deleting Material Type with id:",
+                "save": "Error saving Material Type:"
+            },
+            "warnings": {
+                "delete": "Are you sure you want to delete this Type?"
+            },
+            "edit_form_title": "Edit Material Type",
+            "add_form_title": "Add Material Type"
         },
         "material_names": {
             "title": "Material Names"
