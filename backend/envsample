@@ -9,8 +9,8 @@ PORT=4000
 
 # DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNGM1ZmM4OWMtMWZmYi00NGNkLWI0ODQtYTE3OWM3ZDEwNWMyIiwidGVuYW50X2lkIjoiNjQ4M2JiMDRjMDNmNzcxMDc0ZjEyZDFhOTdiZjA1MDg4NTFiYTc5OTZmMmUxZGJkMjU2ZjAxYmFmMGM5NjEyYSIsImludGVybmFsX3NlY3JldCI6ImJiYzVjZmI2LTc2NTgtNDc1My1hMmI3LTNhMjI3NWZhMDA5MCJ9.-rZqvHOhDhoBWqEF2b0A_-iDtbNcmW1rp9MVIWLf5ZQ"
 # DATABASE_URL="postgresql://postgres:123@localhost:5432/awa_local?schema=public"
-DATABASE_URL_SB="postgresql://postgres:Vestry77%3F@db.vvuramvopsogwejcssfj.supabase.co:5432/postgres"
-DIRECT_URL="postgresql://postgres.vvuramvopsogwejcssfj:Vestry77%3F@aws-0-eu-north-1.pooler.supabase.com:5432/postgres"
+DATABASE_URL="postgresql://postgres.vvuramvopsogwejcssfj:Vestry77%3F@aws-0-eu-north-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DIRECT_URL="postgresql://postgres.vvuramvopsogwejcssfj:Vestry77%3F@aws-0-eu-north-1.pooler.supabase.com:5432/postgres?sslmode=require"
 FIREBASE_PROJECT_ID=project-awa-b71db
 
 LOG_LEVEL=info

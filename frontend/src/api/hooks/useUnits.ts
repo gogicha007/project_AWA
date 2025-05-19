@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
 import { unitsApi } from '../endpoints/master-data';
 import { UnitDTO } from '../types';
@@ -26,6 +28,7 @@ export function useUnits() {
     if (!authLoading) {
       return fetchUnits();
     }
+    return Promise.resolve()
   }, [authLoading, fetchUnits]);
 
   useEffect(() => {

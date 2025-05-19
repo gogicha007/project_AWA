@@ -16,13 +16,14 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserSyncInterceptor } from './auth/user-sync.interceptor';
 import { LoggingService } from './common/services/logging.service';
 import { CustomExceptionFilter } from './common/filters/exception.filter';
-import { MaterialGroupsModule } from './master-data/master-data.module';
+import { MasterDataModule } from './master-data/master-data.module';
+
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     UsersModule,
-    MaterialGroupsModule,
+    MasterDataModule,
   ],
   controllers: [AppController],
   providers: [

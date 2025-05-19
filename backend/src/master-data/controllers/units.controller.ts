@@ -10,13 +10,13 @@ import {
 import { UnitsService } from '../services/units.service';
 import { UnitDTO } from '../dto/units.dto';
 
-@Controller('material-groups')
+@Controller('units')
 export class UnitsController {
   constructor(private readonly unitsService: UnitsService) {}
 
   @Post()
-  create(@Body() createMaterialGroupDTO: UnitDTO) {
-    return this.unitsService.create(createMaterialGroupDTO);
+  create(@Body() unitDTO: UnitDTO) {
+    return this.unitsService.create(unitDTO);
   }
 
   @Get()

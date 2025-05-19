@@ -800,3 +800,132 @@ Trace: BadRequestException: Bad Request Exception
 [2025-05-19T10:37:07.793Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
 [2025-05-19T10:37:10.951Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-19T10:37:11.448Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:19:44.052Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:19:44.057Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:19:44.057Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:19:44.606Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:19:44.607Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:19:44.607Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:20:21.287Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:20:23.138Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:20:23.146Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:20:23.626Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:20:26.840Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:20:26.841Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:20:26.841Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:20:26.847Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:20:26.847Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:20:26.849Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:24:04.041Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:24:04.610Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:24:04.611Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:24:05.079Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:24:05.549Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:24:05.549Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:24:05.550Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:24:05.552Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:24:05.552Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:24:05.552Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:26:05.767Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:26:07.002Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:26:07.009Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:26:07.487Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:26:08.112Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:26:08.112Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:26:08.113Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:26:08.115Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:26:08.115Z] [ERROR] Error: {"message":"Cannot GET /units","error":"Not Found","statusCode":404} - Request: GET /units
+[2025-05-19T11:26:08.116Z] [INFO] Response: 404 - Body: "{\"statusCode\":404,\"message\":{\"message\":\"Cannot GET /units\",\"error\":\"Not Found\",\"statusCode\":404}}"
+[2025-05-19T11:33:42.884Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:33:42.887Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /units
+[2025-05-19T11:33:42.888Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T11:34:06.858Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:34:08.649Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:34:25.857Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:34:26.435Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:34:30.208Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:34:30.693Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:34:30.696Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:34:31.179Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:34:32.001Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:34:32.489Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:34:32.492Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:34:32.977Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:38:35.751Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:38:36.328Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:38:48.133Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":null}
+[2025-05-19T11:38:48.138Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-19T11:38:48.139Z] [INFO] Response: 201 - Body: undefined
+[2025-05-19T11:38:48.143Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:38:49.454Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:38:53.431Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:38:53.928Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:44:41.889Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:44:43.148Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:10.342Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:10.919Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:14.566Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:15.047Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:22.478Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:22.957Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:41.602Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:42.176Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:47.665Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:48.145Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:51.609Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:52.087Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:45:53.947Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:45:54.441Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:46:03.111Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":null}
+[2025-05-19T11:46:03.114Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (D:\CODES\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async D:\CODES\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-19T11:46:03.114Z] [INFO] Response: 201 - Body: undefined
+[2025-05-19T11:46:03.120Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:46:03.698Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T11:57:54.749Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":"mm"}
+[2025-05-19T11:57:56.034Z] [INFO] Response: 201 - Body: "{\"unit\":\"mm\"}"
+[2025-05-19T11:57:56.045Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:57:56.539Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"mm\"}]"
+[2025-05-19T11:58:07.555Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"unit":"m"}
+[2025-05-19T11:58:08.061Z] [INFO] Response: 200 - Body: "{\"id\":1,\"unit\":\"m\"}"
+[2025-05-19T11:58:08.082Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:58:08.578Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"}]"
+[2025-05-19T11:58:18.290Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":"mm"}
+[2025-05-19T11:58:18.882Z] [INFO] Response: 201 - Body: "{\"unit\":\"mm\"}"
+[2025-05-19T11:58:18.896Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:58:19.397Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"}]"
+[2025-05-19T11:58:25.766Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":"pcs"}
+[2025-05-19T11:58:26.260Z] [INFO] Response: 201 - Body: "{\"unit\":\"pcs\"}"
+[2025-05-19T11:58:26.275Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:58:26.768Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"}]"
+[2025-05-19T11:58:47.975Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":"kg"}
+[2025-05-19T11:58:48.566Z] [INFO] Response: 201 - Body: "{\"unit\":\"kg\"}"
+[2025-05-19T11:58:48.574Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:58:49.068Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"}]"
+[2025-05-19T11:58:58.621Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"unit":"t"}
+[2025-05-19T11:58:59.114Z] [INFO] Response: 201 - Body: "{\"unit\":\"t\"}"
+[2025-05-19T11:58:59.131Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:58:59.643Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T11:59:37.584Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:59:38.177Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:59:38.181Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:59:38.681Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T11:59:40.102Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:59:40.598Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T11:59:40.600Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T11:59:41.090Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"

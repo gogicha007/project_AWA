@@ -50,7 +50,21 @@
             "title": "Material Names"
         },
         "units": {
-            "title": "Units"
+            "title": "Units",
+            "table": {
+                "id": "ID",
+                "unit": "Unit"
+            },
+            "errors": {
+                "loading": "Error loading Units",
+                "delete": "Error deleting Unit with id:",
+                "save": "Error saving Unit:"
+            },
+            "warnings": {
+                "delete": "Are you sure you want to delete this Unit?"
+            },
+            "edit_form_title": "Edit Unit",
+            "add_form_title": "Add Unit"
         },
         "actions": {
             "title": "Actions",

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import UnitsClient from '@/components/master-data/UnitsClient';
 
 const Units = () => {
-  return (
-    <div>Units</div>
-  )
-}
+  return <UnitsClient />;
+};
 
-export default Units
+export default Units;
