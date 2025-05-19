@@ -2,8 +2,6 @@
 
 import styles from './master-data.module.css';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroups';
-import { materialGroupsApi } from '@/api/endpoints/master-data';
-import { useMemo, useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,
@@ -11,118 +9,23 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import MaterialGroupDialog from '../forms/materialGroups-form';
-import { MaterialGroupDTO } from '@/api/types';
 import Loader from '../loader/loader';
-import TableRowActions from '../table-row-actions/TableRowActions';
 import AddButton from '../add-button/AddButton';
+import { useMaterialGroupsLogic } from './useMaterialGroupsLogic';
 
 export default function MaterialGroupsClient() {
   const tM = useTranslations('MasterData');
   const { materialGroups, loading, error, mutate } = useMaterialGroups();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentMaterialGroup, setCurrentMaterialGroup] = useState<
-    MaterialGroupDTO | undefined
-  >();
 
-  const data = useMemo(
-    () =>
-      materialGroups
-        .map((group) => ({
-          ...group,
-          id:
-            typeof group.id === 'string'
-              ? parseInt(group.id, 10)
-              : Number(group.id),
-        }))
-        .sort((a, b) => a.id - b.id),
-    [materialGroups]
-  );
-
-  const handleAdd = () => {
-    setCurrentMaterialGroup(undefined);
-    setIsDialogOpen(true);
-  };
-
-  const handleEdit = useCallback(
-    (id: number) => {
-      const materialGroup = materialGroups.find((group) => group.id === id);
-      setCurrentMaterialGroup(materialGroup);
-      setIsDialogOpen(true);
-    },
-    [materialGroups, currentMaterialGroup]
-  );
-
-  const handleSave = async (materialGroup: MaterialGroupDTO) => {
-    try {
-      if (materialGroup.id) {
-        await materialGroupsApi.update(materialGroup);
-        setCurrentMaterialGroup(materialGroup);
-      } else {
-        await materialGroupsApi.create(materialGroup);
-      }
-      await mutate();
-      setCurrentMaterialGroup(undefined);
-      setIsDialogOpen(false);
-    } catch (error) {
-      console.error(tM('errors.save'), error);
-    }
-  };
-
-  const handleDelete = useCallback(
-    async (id: number) => {
-      if (confirm(tM("warnings.delete"))) {
-        try {
-          await materialGroupsApi.delete(id);
-        } catch (error) {
-          console.error(`${tM('errors.delete')} ${id}`, error);
-        }
-      }
-      await mutate();
-    },
-    [mutate]
-  );
-
-  const handleView = useCallback((id: number) => {
-    console.log(`view the group id: ${id}`);
-  }, []);
-
-  const columns = useMemo(
-    () => [
-      {
-        accessorKey: 'id',
-        header: tM('material_groups.table.id'),
-      },
-      {
-        accessorKey: 'name',
-        header: tM('material_groups.table.name'),
-      },
-      {
-        accessorKey: 'description',
-        header: tM('material_groups.table.description'),
-      },
-      {
-        id: 'actions',
-        header: tM('actions.title'),
-        cell: ({
-          row,
-        }: {
-          row: { original: { id: number; name: string; description: string } };
-        }) => {
-          const materialGroup = row.original;
-          return (
-            <TableRowActions
-              id={materialGroup.id}
-              onView={handleView}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-              disableView={true}
-            />
-          );
-        },
-      },
-    ],
-    [handleEdit, handleView, handleDelete, tM]
-  );
+  const {
+    data,
+    columns,
+    handleAdd,
+    handleSave,
+    isDialogOpen,
+    setIsDialogOpen,
+    currentMaterialGroup,
+  } = useMaterialGroupsLogic(materialGroups, mutate, tM);
 
   const table = useReactTable({
     data,
