@@ -14,6 +14,7 @@ import {
 import MaterialGroupDialog from '../forms/materialGroups-form';
 import { MaterialGroupDTO } from '@/api/types';
 import TableRowActions from '../table-row-actions/TableRowActions';
+import AddButton from '../add-button/AddButton';
 
 export default function MaterialGroupsClient() {
   const tM = useTranslations('MasterData');
@@ -60,23 +61,26 @@ export default function MaterialGroupsClient() {
         await materialGroupsApi.create(materialGroup);
       }
       await mutate();
-      setCurrentMaterialGroup(undefined)
+      setCurrentMaterialGroup(undefined);
       setIsDialogOpen(false);
     } catch (error) {
       console.error('Error savint Material Groups:', error);
     }
   };
 
-  const handleDelete = useCallback(async (id: number) => {
-    if (confirm('Are you sure you want to delete this Group?')) {
-      try {
-        await materialGroupsApi.delete(id);
-      } catch (error) {
-        console.error(`Error deleting Material Group with id: ${id}`, error);
+  const handleDelete = useCallback(
+    async (id: number) => {
+      if (confirm('Are you sure you want to delete this Group?')) {
+        try {
+          await materialGroupsApi.delete(id);
+        } catch (error) {
+          console.error(`Error deleting Material Group with id: ${id}`, error);
+        }
       }
-    }
-    await mutate();
-  }, [mutate]);
+      await mutate();
+    },
+    [mutate]
+  );
 
   const handleView = useCallback((id: number) => {
     console.log(`view the group id: ${id}`);
@@ -107,12 +111,12 @@ export default function MaterialGroupsClient() {
           const materialGroup = row.original;
           return (
             <TableRowActions
-            id={materialGroup.id}
-            onView={handleView}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            disableView={true}
-          />
+              id={materialGroup.id}
+              onView={handleView}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              disableView={true}
+            />
           );
         },
       },
@@ -134,9 +138,7 @@ export default function MaterialGroupsClient() {
       <h1 className={styles.pageTitle}>Material Groups</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
-          <button className={styles.addButton} onClick={handleAdd}>
-            {tM('actions.add')}
-          </button>
+          <AddButton onAdd={handleAdd} />
         </div>
         <table className={styles.table}>
           <thead>
