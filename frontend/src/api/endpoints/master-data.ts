@@ -51,13 +51,13 @@ export const unitsApi = {
   create: async (
     unit: UnitDTO
   ): Promise<UnitDTO> => {
-    const materialGroupData: UnitDTO = {
+    const unitData: UnitDTO = {
       unit: unit.unit,
     };
 
     const response = await apiClient.post(
       '/units',
-      materialGroupData
+      unitData
     );
     return response.data;
   },

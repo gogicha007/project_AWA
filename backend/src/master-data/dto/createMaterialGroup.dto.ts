@@ -12,4 +12,3 @@ export class CreateMaterialGroupDTO {
   @IsOptional()
   description: string;
 }
-
