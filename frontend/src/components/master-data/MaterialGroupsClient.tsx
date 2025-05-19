@@ -3,7 +3,6 @@
 import styles from './master-data.module.css';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroups';
 import { materialGroupsApi } from '@/api/endpoints/master-data';
-import Loader from '../loader/loader';
 import { useMemo, useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import {
@@ -13,6 +12,7 @@ import {
 } from '@tanstack/react-table';
 import MaterialGroupDialog from '../forms/materialGroups-form';
 import { MaterialGroupDTO } from '@/api/types';
+import Loader from '../loader/loader';
 import TableRowActions from '../table-row-actions/TableRowActions';
 import AddButton from '../add-button/AddButton';
 
@@ -64,17 +64,17 @@ export default function MaterialGroupsClient() {
       setCurrentMaterialGroup(undefined);
       setIsDialogOpen(false);
     } catch (error) {
-      console.error('Error savint Material Groups:', error);
+      console.error(tM('errors.save'), error);
     }
   };
 
   const handleDelete = useCallback(
     async (id: number) => {
-      if (confirm('Are you sure you want to delete this Group?')) {
+      if (confirm(tM("warnings.delete"))) {
         try {
           await materialGroupsApi.delete(id);
         } catch (error) {
-          console.error(`Error deleting Material Group with id: ${id}`, error);
+          console.error(`${tM('errors.delete')} ${id}`, error);
         }
       }
       await mutate();
@@ -131,7 +131,12 @@ export default function MaterialGroupsClient() {
   });
 
   if (loading) return <Loader />;
-  if (error) return <div>Error loading material groups: {String(error)}</div>;
+  if (error)
+    return (
+      <div>
+        `${tM('errors.loading')}: {String(error)}`
+      </div>
+    );
 
   return (
     <div>

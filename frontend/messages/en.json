@@ -44,6 +44,14 @@
         "units": {
             "title": "Units"
         },
+        "errors": {
+            "loading": "Error loading Material Groups",
+            "delete": "Error deleting Material Group with id:",
+            "save": "Error saving Material Group:"
+        },
+        "warnings":{
+            "delete": "Are you sure you want to delete this Group?"
+        },
         "actions": {
             "title": "Actions",
             "add": "Add new item",
