@@ -1,17 +1,43 @@
 import { useMemo, useState, useCallback } from 'react';
-import { MaterialTypeDTO } from '@/api/types';
+import { MaterialGroupDTO, MaterialTypeDTO } from '@/api/types';
 import { materialTypesApi } from '@/api/endpoints/master-data';
 import TableRowActions from '../table-row-actions/TableRowActions';
 
 export function useMaterialTypesLogic(
   materialTypes: MaterialTypeDTO[],
+  materialGroups: MaterialGroupDTO[],
   mutate: () => Promise<void | MaterialTypeDTO[]>,
-  tM: (key: string) => string
+  tVar: (key: string) => string
 ) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentMaterialType, setCurrentMaterialType] = useState<
     MaterialTypeDTO | undefined
   >();
+
+  const materialGroupsArray = useMemo(
+    () =>
+      materialGroups.map((group) => ({
+        id:
+          typeof group.id === 'string'
+            ? parseInt(group.id, 10)
+            : Number(group.id),
+        name: group.name,
+      })),
+    [materialGroups]
+  );
+  const materialGroupsObject = useMemo(
+    () =>
+      materialGroups.reduce(
+        (acc, cur) => {
+          if (cur.id !== undefined) {
+            acc[cur.id] = cur.name;
+          }
+          return acc;
+        },
+        {} as Record<number, string>
+      ),
+    [materialGroups]
+  );
 
   const data = useMemo(
     () =>
@@ -22,6 +48,7 @@ export function useMaterialTypesLogic(
             typeof type.id === 'string'
               ? parseInt(type.id, 10)
               : Number(type.id),
+          group: materialGroupsObject[type.groupId],
         }))
         .sort((a, b) => a.id - b.id),
     [materialTypes]
@@ -54,24 +81,24 @@ export function useMaterialTypesLogic(
         setCurrentMaterialType(undefined);
         setIsDialogOpen(false);
       } catch (error) {
-        console.error(tM('errors.save'), error);
+        console.error(tVar('errors.save'), error);
       }
     },
-    [mutate, tM]
+    [mutate, tVar]
   );
 
   const handleDelete = useCallback(
     async (id: number) => {
-      if (confirm(tM('warnings.delete'))) {
+      if (confirm(tVar('warnings.delete'))) {
         try {
           await materialTypesApi.delete(id);
         } catch (error) {
-          console.error(`${tM('errors.delete')} ${id}`, error);
+          console.error(`${tVar('errors.delete')} ${id}`, error);
         }
       }
       await mutate();
     },
-    [mutate, tM]
+    [mutate, tVar]
   );
 
   const handleView = useCallback((id: number) => {
@@ -82,23 +109,23 @@ export function useMaterialTypesLogic(
     () => [
       {
         accessorKey: 'id',
-        header: tM('material-types.table.id'),
+        header: tVar('material_types.table.id'),
       },
       {
         accessorKey: 'type',
-        header: tM('material-types.table.name'),
+        header: tVar('material_types.table.name'),
       },
       {
-        accessorKey: 'groupId',
-        header: tM('material-types.table.group'),
+        accessorKey: 'group',
+        header: tVar('material_types.table.group'),
       },
       {
         id: 'actions',
-        header: tM('actions.title'),
+        header: tVar('actions.title'),
         cell: ({
           row,
         }: {
-          row: { original: { id: number; type: string; groupId: number } };
+          row: { original: { id: number; type: string; group: string } };
         }) => {
           const materialType = row.original;
           return (
@@ -113,7 +140,7 @@ export function useMaterialTypesLogic(
         },
       },
     ],
-    [handleEdit, handleView, handleDelete, tM]
+    [handleEdit, handleView, handleDelete, tVar]
   );
 
   return {
@@ -128,5 +155,6 @@ export function useMaterialTypesLogic(
     setIsDialogOpen,
     currentMaterialType,
     setCurrentMaterialType,
+    materialGroupsArray,
   };
 }

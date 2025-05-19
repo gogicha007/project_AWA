@@ -1,108 +1,115 @@
 {
-    "LocaleSwitcher": {
-        "ge": "ქართული",
-        "en": "English",
-        "label": "Language"
+  "LocaleSwitcher": {
+    "ge": "ქართული",
+    "en": "English",
+    "label": "Language"
+  },
+  "HomePage": {
+    "title": "Home Page"
+  },
+  "HeaderMenu": {
+    "home": "Home"
+  },
+  "LoginPage": {
+    "pageError": "Sign In Page error!"
+  },
+  "RegisterPage": {
+    "pageError": "Sign Up Page error!"
+  },
+  "AuthForm": {
+    "login": "Sign In",
+    "register": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "logout": "Sign Out",
+    "error": "An unexpected error occurred."
+  },
+  "MasterData": {
+    "material_groups": {
+      "title": "Material Group",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "description": "Description"
+      },
+      "form": {},
+      "errors": {
+        "loading": "Error loading Material Groups",
+        "delete": "Error deleting Material Group with id:",
+        "save": "Error saving Material Group:"
+      },
+      "warnings": {
+        "delete": "Are you sure you want to delete this Group?"
+      },
+      "edit_form_title": "Edit Material Group",
+      "add_form_title": "Add Material Group"
     },
-    "HomePage": {
-        "title": "Home Page"
+    "material_types": {
+      "title": "Material Types",
+      "table": {
+        "id": "ID",
+        "name": "Type",
+        "group": "Group"
+      },
+      "form": {
+        "type_label": "Type",
+        "group_label": "Group"
+      },
+      "errors": {
+        "loading": "Error loading Material Types",
+        "delete": "Error deleting Material Type with id:",
+        "save": "Error saving Material Type:"
+      },
+      "warnings": {
+        "delete": "Are you sure you want to delete this Type?"
+      },
+      "edit_form_title": "Edit Material Type",
+      "add_form_title": "Add Material Type"
     },
-    "HeaderMenu": {
-        "home": "Home"
+    "material_names": {
+      "title": "Material Names"
     },
-    "LoginPage": {
-        "pageError": "Sign In Page error!"
+    "units": {
+      "title": "Units",
+      "table": {
+        "id": "ID",
+        "unit": "Unit"
+      },
+      "errors": {
+        "loading": "Error loading Units",
+        "delete": "Error deleting Unit with id:",
+        "save": "Error saving Unit:"
+      },
+      "warnings": {
+        "delete": "Are you sure you want to delete this Unit?"
+      },
+      "edit_form_title": "Edit Unit",
+      "add_form_title": "Add Unit"
     },
-    "RegisterPage": {
-        "pageError": "Sign Up Page error!"
-    },
-    "AuthForm": {
-        "login": "Sign In",
-        "register": "Sign Up",
-        "email": "Email",
-        "password": "Password",
-        "logout": "Sign Out",
-        "error": "An unexpected error occurred."
-    },
-    "MasterData": {
-        "material_groups": {
-            "title": "Material Group",
-            "table": {
-                "id": "ID",
-                "name": "Name",
-                "description": "Description"
-            },
-            "errors": {
-                "loading": "Error loading Material Groups",
-                "delete": "Error deleting Material Group with id:",
-                "save": "Error saving Material Group:"
-            },
-            "warnings": {
-                "delete": "Are you sure you want to delete this Group?"
-            },
-            "edit_form_title": "Edit Material Group",
-            "add_form_title": "Add Material Group"
-        },
-        "material_types": {
-            "title": "Material Types",
-            "table": {
-                "id": "ID",
-                "name": "Type",
-                "group": "Group"
-            },
-            "errors": {
-                "loading": "Error loading Material Types",
-                "delete": "Error deleting Material Type with id:",
-                "save": "Error saving Material Type:"
-            },
-            "warnings": {
-                "delete": "Are you sure you want to delete this Type?"
-            },
-            "edit_form_title": "Edit Material Type",
-            "add_form_title": "Add Material Type"
-        },
-        "material_names": {
-            "title": "Material Names"
-        },
-        "units": {
-            "title": "Units",
-            "table": {
-                "id": "ID",
-                "unit": "Unit"
-            },
-            "errors": {
-                "loading": "Error loading Units",
-                "delete": "Error deleting Unit with id:",
-                "save": "Error saving Unit:"
-            },
-            "warnings": {
-                "delete": "Are you sure you want to delete this Unit?"
-            },
-            "edit_form_title": "Edit Unit",
-            "add_form_title": "Add Unit"
-        },
-        "actions": {
-            "title": "Actions",
-            "add": "Add new item",
-            "edit": "Edit",
-            "delete": "Delete",
-            "view": "View"
-        }
-    },
-    "TableActions": {
-        "title": "Actions",
-        "add": "Add new item",
-        "edit": "Edit",
-        "delete": "Delete",
-        "view": "View"
-    },
-    "Buttons": {
-        "toMain": "Back to main",
-        "tryAgain": "Try again"
-    },
-    "SideBar": {
-        "home": "Home",
-        "settings": "Settings",
-        "masterData": "Master data"
+    "actions": {
+      "title": "Actions",
+      "add": "Add new item",
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View"
     }
+  },
+  "TableActions": {
+    "title": "Actions",
+    "add": "Add new item",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View"
+  },
+  "Buttons": {
+    "toMain": "Back to main",
+    "tryAgain": "Try again",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "SideBar": {
+    "home": "Home",
+    "settings": "Settings",
+    "masterData": "Master data"
+  }
 }

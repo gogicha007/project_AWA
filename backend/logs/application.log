@@ -988,3 +988,494 @@ Trace: Error: Firebase ID token has expired. Get a fresh ID token from your clie
 [2025-05-19T13:59:48.565Z] [INFO] Response: 200 - Body: "[]"
 [2025-05-19T13:59:49.382Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-19T13:59:49.867Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:46:32.765Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:32.770Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-19T16:46:32.771Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:32.784Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:32.785Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-19T16:46:32.786Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:47.968Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:47.970Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /units
+[2025-05-19T16:46:47.971Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:48.043Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:48.045Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /units
+[2025-05-19T16:46:48.046Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:53.022Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:53.023Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-types
+[2025-05-19T16:46:53.024Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:53.070Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:53.071Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-types
+[2025-05-19T16:46:53.072Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:55.687Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:55.688Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-19T16:46:55.688Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:46:55.692Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:46:55.693Z] [ERROR] Error: {"message":"Missing or invalid token","error":"Unauthorized","statusCode":401} - Request: GET /material-groups
+[2025-05-19T16:46:55.693Z] [INFO] Response: 401 - Body: "{\"statusCode\":401,\"message\":{\"message\":\"Missing or invalid token\",\"error\":\"Unauthorized\",\"statusCode\":401}}"
+[2025-05-19T16:48:44.174Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:48:45.791Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T16:48:45.805Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:48:46.315Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T16:48:48.119Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:48:48.607Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T16:48:48.614Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:48:49.106Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T16:48:52.609Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:48:53.126Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:48:53.129Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:48:53.635Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:51:56.970Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:51:58.374Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:52:52.107Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:52:52.700Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:52:56.592Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:52:57.100Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:53:35.180Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:53:35.818Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:53:38.180Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:53:38.669Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:53:41.026Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:53:41.529Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:58:18.378Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:58:19.704Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:58:19.724Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:58:20.202Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:58:28.495Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:58:29.000Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:58:32.454Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:58:32.931Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:59:57.469Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T16:59:58.135Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T16:59:59.879Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:00:00.368Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:01:24.072Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:01:24.647Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:01:33.919Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:01:34.414Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:01:40.811Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:01:41.389Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:01:56.186Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:01:56.756Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:03:37.703Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:03:38.975Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:03.818Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:04.393Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:07.817Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:08.333Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:11.323Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:11.819Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:28.968Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:29.606Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:31.258Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:31.796Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:32.260Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:32.773Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:34.833Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:35.320Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:04:49.286Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:04:49.862Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:05:03.734Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:05:04.217Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:05:22.950Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:05:23.555Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:05:31.592Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:05:32.087Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:11:14.411Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:11:15.748Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:13:21.972Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:13:22.542Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:13:22.545Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:13:23.040Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:31:08.191Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:31:09.472Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:31:09.477Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:31:09.971Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:31:20.092Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:31:20.580Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:31:20.582Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:31:21.078Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:35:48.606Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:35:49.188Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:35:49.192Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:35:49.680Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:35:57.014Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:35:57.549Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T17:35:57.553Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:35:58.071Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T17:36:03.366Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:36:03.897Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:36:03.902Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:36:04.496Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:36:06.483Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:36:06.982Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T17:36:06.988Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:36:07.503Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-19T17:36:09.312Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:36:10.632Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:36:10.643Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:36:11.121Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:40:43.205Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:40:43.797Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:40:52.830Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:40:53.322Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:43:22.451Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:43:22.458Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:43:23.858Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:43:23.860Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:46:27.954Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:46:27.956Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:46:28.588Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:46:28.592Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:46:39.292Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:46:39.294Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:46:39.805Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:46:39.806Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:47:59.667Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:47:59.669Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:00.293Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:48:00.297Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:48:06.929Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:06.930Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:07.416Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:48:07.421Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:48:18.673Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:18.688Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:19.278Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:48:19.285Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:48:50.582Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:50.585Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:48:51.924Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:48:51.926Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:49:14.270Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:49:14.274Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:49:14.874Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:49:14.892Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:02.005Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:02.006Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:02.636Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:02.637Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:04.696Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:04.700Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:05.269Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:05.270Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:26.205Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:26.208Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:26.847Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:26.849Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:27.247Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:27.273Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:27.762Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:27.813Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:40.217Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:40.218Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:40.719Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:40.721Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:48.423Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:48.425Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:49.065Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:49.066Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:51.752Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:51.753Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:52.316Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:51:52.318Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:59.246Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:59.281Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:51:59.782Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:51:59.786Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:12.176Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:12.185Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:12.816Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:52:12.818Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:20.205Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:20.208Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:20.729Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:20.730Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:52:25.536Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:25.539Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:26.171Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:26.173Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:52:30.629Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:30.630Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:31.268Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:31.271Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:52:34.813Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:34.816Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:35.340Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:52:35.342Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:49.747Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:49.758Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:50.338Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:52:50.341Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:55.585Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:55.587Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:52:56.131Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:52:56.135Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:53:02.374Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:02.376Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:02.883Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:53:02.885Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:53:30.495Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:30.500Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:31.099Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:53:31.100Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:53:45.942Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:45.951Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:46.581Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:53:46.582Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:53:52.219Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:52.246Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:53.574Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:53:53.737Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:53:55.423Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:55.425Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:53:55.942Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:53:55.944Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:56:57.213Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:56:57.215Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:56:57.792Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:56:57.794Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:57:29.667Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:29.675Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:30.281Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:57:30.283Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:57:44.308Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:44.311Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:44.845Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:57:44.846Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:57:45.245Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:45.251Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:45.874Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:57:45.875Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:57:49.970Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:49.973Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:50.511Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:57:50.514Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:57:58.438Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:58.440Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:57:58.918Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:57:58.920Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:01.053Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:01.057Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:01.624Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:01.631Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:04.022Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:04.024Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:04.503Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:04.506Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:25.144Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:25.146Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:25.735Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:25.739Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:30.127Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:30.131Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:30.643Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:30.645Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:34.067Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:34.070Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:34.564Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:34.565Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:39.948Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:39.949Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:40.443Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:40.446Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T17:58:44.128Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:44.134Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T17:58:44.719Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T17:58:44.727Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:06:32.045Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:06:32.048Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:06:33.384Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:06:33.418Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:06:58.843Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:06:58.850Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:06:59.440Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:06:59.445Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:07:01.811Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:01.814Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:02.288Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:07:02.290Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:07:28.102Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:28.105Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:28.694Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:07:28.698Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:07:31.473Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:31.475Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:31.970Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:07:31.977Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:07:40.534Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:40.535Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:41.023Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:07:41.027Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:07:49.612Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:49.616Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:50.257Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:07:50.265Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:07:58.020Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:58.025Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:07:58.496Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:07:58.497Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:08:00.388Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:00.390Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:00.878Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:08:00.881Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:08:06.843Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:06.845Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:07.437Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:08:07.441Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:08:48.694Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:48.696Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:49.279Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:08:49.281Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:08:52.783Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:52.785Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:53.272Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:08:53.277Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:08:56.179Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:56.181Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:08:56.658Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:08:56.663Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:09:01.451Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:01.455Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:01.933Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:09:01.935Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:09:09.659Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:09.661Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:10.239Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:09:10.240Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:09:22.702Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:22.708Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:23.221Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:09:23.222Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:09:25.361Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:25.368Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:25.938Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:09:25.939Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:09:50.756Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:50.760Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:09:51.358Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:09:51.363Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:10:05.458Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:05.462Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:05.921Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:10:05.931Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:10:13.019Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:13.024Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:13.602Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:10:13.605Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:10:28.400Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:28.402Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:28.970Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:10:28.972Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:10:51.288Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:51.290Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:10:51.876Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:10:51.879Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:11:29.294Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:11:29.296Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:11:29.913Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:11:29.915Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:11:32.250Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:11:32.253Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:11:32.775Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:11:32.777Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:12:21.154Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:21.207Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:22.572Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:12:22.596Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:12:34.302Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:34.303Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:34.791Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:12:34.792Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:12:40.465Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:40.467Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:41.055Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:12:41.058Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:12:44.379Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:44.381Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:12:44.874Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:12:44.876Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:13:24.163Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:13:24.168Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:13:24.748Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:13:24.749Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:13:29.599Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:13:29.614Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:13:30.136Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:13:30.139Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:13:35.639Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:13:35.640Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:13:36.218Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:13:36.220Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:29.318Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:29.322Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:30.659Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:22:30.660Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:33.231Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:33.233Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:33.722Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:22:33.726Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:34.857Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:34.859Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:35.350Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:22:35.352Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:49.581Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:49.583Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:50.188Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:50.198Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:22:54.135Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:54.137Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:54.661Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:54.663Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:22:59.323Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:59.326Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:22:59.887Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:22:59.889Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:23:05.142Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:23:05.147Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:23:05.757Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:23:05.759Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:24:11.925Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:11.927Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:12.531Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:24:12.533Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:24:30.224Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:30.229Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:30.807Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:24:30.816Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:24:36.280Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:36.281Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:36.790Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:24:36.792Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:24:41.971Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:41.972Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:24:42.462Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:24:42.465Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:27:37.367Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:27:37.372Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:27:38.681Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:27:38.683Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:27:39.502Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:27:39.506Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:27:39.997Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:27:39.998Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:27:46.167Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:27:46.169Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:27:46.685Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:27:46.687Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:28:23.957Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:28:23.958Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:28:24.578Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-19T18:28:24.580Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-19T18:28:53.891Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"type":"PE100 PIPE","groupId":null}
+[2025-05-19T18:28:53.900Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (C:\Codes\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (C:\Codes\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (C:\Codes\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (C:\Codes\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async C:\Codes\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-19T18:28:53.901Z] [INFO] Response: 201 - Body: undefined
+[2025-05-19T18:28:53.906Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-19T18:28:54.496Z] [INFO] Response: 200 - Body: "[]"

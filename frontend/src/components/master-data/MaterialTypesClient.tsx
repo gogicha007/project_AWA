@@ -1,7 +1,9 @@
 'use client';
 
 import styles from './master-data.module.css';
+import { useMemo } from 'react';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
+import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,
@@ -16,6 +18,11 @@ import { useMaterialTypesLogic } from './useMaterialTypesLogic';
 export default function MaterialTypesClient() {
   const tT = useTranslations('MasterData');
   const { materialTypes, loading, error, mutate } = useMaterialTypes();
+  const {
+    materialGroups,
+    loading: groupsLoading,
+    error: groupsError,
+  } = useMaterialGroups();
 
   const {
     data,
@@ -25,7 +32,8 @@ export default function MaterialTypesClient() {
     isDialogOpen,
     setIsDialogOpen,
     currentMaterialType,
-  } = useMaterialTypesLogic(materialTypes, mutate, tT);
+    materialGroupsArray,
+  } = useMaterialTypesLogic(materialTypes, materialGroups, mutate, tT);
 
   const table = useReactTable({
     data,
@@ -33,11 +41,12 @@ export default function MaterialTypesClient() {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (loading) return <Loader />;
-  if (error)
+  if (loading || groupsLoading) return <Loader />;
+
+  if (error || groupsError)
     return (
       <div>
-        `${tT('material-tipes.errors.loading')}: {String(error)}`
+        `${tT('errors.loading')}: {String(error || groupsError)}`
       </div>
     );
 
@@ -86,6 +95,8 @@ export default function MaterialTypesClient() {
             ? tT('material_types.edit_form_title')
             : tT('material_types.add_form_title')
         }
+        tVar={tT}
+        materialGroups={materialGroupsArray}
       />
     </div>
   );
