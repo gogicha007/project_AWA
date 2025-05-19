@@ -13,6 +13,7 @@ import {
 } from '@tanstack/react-table';
 import MaterialGroupDialog from '../forms/materialGroups-form';
 import { MaterialGroupDTO } from '@/api/types';
+import TableRowActions from '../table-row-actions/TableRowActions';
 
 export default function MaterialGroupsClient() {
   const tM = useTranslations('MasterData');
@@ -105,27 +106,13 @@ export default function MaterialGroupsClient() {
         }) => {
           const materialGroup = row.original;
           return (
-            <div className={styles.actionsContainer}>
-              <button
-                onClick={() => handleView(materialGroup.id)}
-                className={`${styles.actionButton} ${styles.viewButton}`}
-                disabled
-              >
-                {tM('actions.view')}
-              </button>
-              <button
-                onClick={() => handleEdit(materialGroup.id)}
-                className={`${styles.actionButton} ${styles.editButton}`}
-              >
-                {tM('actions.edit')}
-              </button>
-              <button
-                onClick={() => handleDelete(materialGroup.id)}
-                className={`${styles.actionButton} ${styles.deleteButton}`}
-              >
-                {tM('actions.delete')}
-              </button>
-            </div>
+            <TableRowActions
+            id={materialGroup.id}
+            onView={handleView}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            disableView={true}
+          />
           );
         },
       },

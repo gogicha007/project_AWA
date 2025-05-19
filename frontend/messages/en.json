@@ -52,6 +52,13 @@
             "view": "View"
         }
     },
+    "TableActions": {
+        "title": "Actions",
+        "add": "Add new item",
+        "edit": "Edit",
+        "delete": "Delete",
+        "view": "View"
+    },
     "Buttons": {
         "toMain": "Back to main",
         "tryAgain": "Try again"
