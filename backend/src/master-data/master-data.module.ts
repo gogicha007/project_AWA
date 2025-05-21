@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DatabaseService } from 'src/database/dadabase/database.service';
 import { MaterialTypesService } from './services/material-types.service';
-import { MaterialTypesController } from './controllers/material-types';
+import { MaterialTypesController } from './controllers/material-types.controller';
 import { MaterialGroupsService } from './services/material-groups.service';
 import { MaterialGroupsController } from './controllers/material-groups.controller';
+import { MaterialNamesService } from './services/material-names.service';
+import { MaterialNamesController } from './controllers/material-names.controller';
 import { UnitsController } from './controllers/units.controller';
 import { UnitsService } from './services/units.service';
 
@@ -11,14 +13,21 @@ import { UnitsService } from './services/units.service';
   controllers: [
     MaterialGroupsController,
     MaterialTypesController,
+    MaterialNamesController,
     UnitsController,
   ],
   providers: [
     MaterialGroupsService,
     MaterialTypesService,
+    MaterialNamesService,
     UnitsService,
     DatabaseService,
   ],
-  exports: [MaterialGroupsService, MaterialTypesService, UnitsService],
+  exports: [
+    MaterialGroupsService,
+    MaterialTypesService,
+    MaterialNamesService,
+    UnitsService,
+  ],
 })
 export class MasterDataModule {}

@@ -56,10 +56,24 @@ model MaterialGroup {
 }
 
 model MaterialType {
-  id      Int           @id @default(autoincrement())
-  type    String
-  group   MaterialGroup @relation(fields: [groupId], references: [id])
-  groupId Int
+  id           Int            @id @default(autoincrement())
+  type         String
+  group        MaterialGroup  @relation(fields: [groupId], references: [id])
+  groupId      Int
+  MaterialName MaterialName[]
 
   @@map("material_type")
+}
+
+model MaterialName {
+  id          Int          @id @default(autoincrement())
+  name        String
+  dn          String
+  pn          String
+  degree      Int
+  description String
+  type        MaterialType @relation(fields: [typeId], references: [id])
+  typeId      Int
+
+  @@map("material_name")
 }

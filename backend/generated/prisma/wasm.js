@@ -152,6 +152,16 @@ exports.Prisma.MaterialTypeScalarFieldEnum = {
   groupId: 'groupId'
 };
 
+exports.Prisma.MaterialNameScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  dn: 'dn',
+  pn: 'pn',
+  degree: 'degree',
+  description: 'description',
+  typeId: 'typeId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -173,7 +183,8 @@ exports.Prisma.ModelName = {
   Vendor: 'Vendor',
   Unit: 'Unit',
   MaterialGroup: 'MaterialGroup',
-  MaterialType: 'MaterialType'
+  MaterialType: 'MaterialType',
+  MaterialName: 'MaterialName'
 };
 
 /**
