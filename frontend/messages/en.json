@@ -53,7 +53,8 @@
       },
       "form": {
         "type_label": "Type",
-        "group_label": "Group"
+        "group_label": "Group",
+        "group_placeholder": "Select Material Group"
       },
       "errors": {
         "loading": "Error loading Material Types",

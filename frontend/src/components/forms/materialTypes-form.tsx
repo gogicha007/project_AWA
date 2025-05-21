@@ -1,6 +1,5 @@
-'use client';
-
 import { useRef, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import styles from './form.module.css';
 import { MaterialGroupDTO, MaterialTypeDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
@@ -15,6 +14,11 @@ type Props = {
   materialGroups: Omit<MaterialGroupDTO, 'description'>[];
 };
 
+type FormValues = {
+  name: string;
+  materialGroup: string;
+};
+
 export default function MaterialTypeDialog({
   isOpen,
   onClose,
@@ -25,7 +29,22 @@ export default function MaterialTypeDialog({
   materialGroups,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
   const tB = useTranslations('Buttons');
+
+  const { register, handleSubmit, reset, setFocus } = useForm<FormValues>({
+    defaultValues: {
+      name: initialData?.type || '',
+      materialGroup: initialData?.groupId !== undefined ? String(initialData.groupId) : '',
+    },
+  });
+
+  useEffect(() => {
+    reset({
+      name: initialData?.type || '',
+      materialGroup: initialData?.groupId !== undefined ? String(initialData.groupId) : '',
+    });
+  }, [initialData, isOpen, reset]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -33,21 +52,20 @@ export default function MaterialTypeDialog({
 
     if (isOpen) {
       dialog.showModal();
+      setTimeout(() => {
+        setFocus('name');
+      });
     } else {
       dialog.close();
     }
-  }, [isOpen]);
+  }, [isOpen, setFocus]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-
+  const onSubmit = (data: FormValues) => {
     onSave({
       id: initialData?.id,
-      type: formData.get('name') as string,
-      groupId: parseInt((formData.get('materialGroup') as string) || '0', 10),
+      type: data.name,
+      groupId: parseInt(data.materialGroup || '0', 10),
     });
-
     onClose();
   };
 
@@ -60,29 +78,28 @@ export default function MaterialTypeDialog({
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.formType}>
           <label htmlFor="name">{`${tVar('material_types.form.type_label')}:`}</label>
           <input
+            {...register('name', { required: true })}
             type="text"
             id="name"
-            name="name"
-            defaultValue={initialData?.type || ''}
-            required
             className={styles.input}
+            required
           />
         </div>
 
         <div className={styles.formType}>
           <label htmlFor="materialGroup">{`${tVar('material_types.form.group_label')}:`}</label>
           <select
+            {...register('materialGroup', { required: true })}
             id="materialGroup"
-            name="materialGroup"
-            defaultValue={initialData?.groupId || ''}
             className={styles.input}
           >
+            <option value="">{tVar('material_types.form.group_placeholder') || '-- Select --'}</option>
             {materialGroups.map((group) => (
-              <option key={group.id} value={group.name}>
+              <option key={group.id} value={String(group.id)}>
                 {group.name}
               </option>
             ))}

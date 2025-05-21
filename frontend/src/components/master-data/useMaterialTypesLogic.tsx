@@ -70,6 +70,7 @@ export function useMaterialTypesLogic(
 
   const handleSave = useCallback(
     async (materialType: MaterialTypeDTO) => {
+      console.log('material type save', materialType)
       try {
         if (materialType.id) {
           await materialTypesApi.update(materialType);

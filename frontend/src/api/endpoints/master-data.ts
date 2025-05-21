@@ -96,7 +96,7 @@ export const materialTypesApi = {
     };
 
     const response = await apiClient.post(
-      '/material-groups',
+      '/material-types',
       materialGroupData
     );
     return response.data;
