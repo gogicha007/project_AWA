@@ -29,7 +29,6 @@ export default function MaterialTypeDialog({
   materialGroups,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const nameInputRef = useRef<HTMLInputElement>(null);
   const tB = useTranslations('Buttons');
 
   const { register, handleSubmit, reset, setFocus } = useForm<FormValues>({

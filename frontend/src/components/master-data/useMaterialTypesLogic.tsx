@@ -51,7 +51,7 @@ export function useMaterialTypesLogic(
           group: materialGroupsObject[type.groupId],
         }))
         .sort((a, b) => a.id - b.id),
-    [materialTypes]
+    [materialTypes, materialGroupsObject]
   );
 
   const handleAdd = useCallback(() => {

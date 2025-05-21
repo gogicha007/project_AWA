@@ -1,7 +1,6 @@
 'use client';
 
 import styles from './master-data.module.css';
-import { useMemo } from 'react';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
 import { useTranslations } from 'next-intl';
