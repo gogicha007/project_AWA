@@ -11,7 +11,7 @@ type Props = {
   initialData?: MaterialNameDTO;
   title: string;
   tVar: (key: string) => string;
-  materialTypes: MaterialTypeDTO;
+  materialTypes: MaterialTypeDTO[];
 };
 
 interface FormValues extends Omit<MaterialNameDTO, 'typeId'> {
@@ -40,7 +40,7 @@ export default function MaterialNameDialog({
       description: initialData?.description || '',
     },
   });
-  console.log(materialTypes, tVar, tB, register)
+  console.log(materialTypes, tB);
 
   useEffect(() => {
     reset({
@@ -85,9 +85,76 @@ export default function MaterialNameDialog({
           ×
         </button>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.form_item}>
-          <label htmlFor="materialType"></label>
+          <label htmlFor="materialType">{`${tVar('material_names.form.type_label')}`}</label>
+          <select
+            {...register('materialType', { required: true })}
+            id="materialType"
+            className={styles.input}
+          >
+            <option value="">
+              {tVar('material_names.form.type_placeholder') || '-- Select --'}
+            </option>
+            {materialTypes.map((type) => (
+              <option key={type.id} value={String(type.id)}>
+                {type.type}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.form_item}>
+          <label htmlFor="dn">{`${tVar('material_names.form.dn_label')}`}</label>
+          <input
+            {...register('dn', { required: true })}
+            type="text"
+            id="dn"
+            className={styles.input}
+            required
+          />
+        </div>
+        <div className={styles.form_item}>
+          <label htmlFor="pn">{`${tVar('material_names.form.pn_label')}`}</label>
+          <input
+            {...register('pn', { required: true })}
+            type="text"
+            id="pn"
+            className={styles.input}
+            required
+          />
+        </div>
+        <div className={styles.form_item}>
+          <label htmlFor="name">{`${tVar('material_names.form.name_label')}`}</label>
+          <input
+            {...register('name', { required: true })}
+            type="text"
+            id="name"
+            className={styles.input}
+            required
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="description">{`${'material_names.form.description'}:`}</label>
+          <textarea
+            id="description"
+            name="description"
+            defaultValue={initialData?.description || ''}
+            rows={3}
+            className={styles.textarea}
+          />
+        </div>
+        <div className={styles.formActions}>
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={onClose}
+          >
+            {tB('cancel')}
+          </button>
+          <button type="submit" className={styles.saveButton}>
+            {tB('save')}
+          </button>
         </div>
       </form>
     </dialog>

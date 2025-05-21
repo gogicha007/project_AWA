@@ -32,7 +32,10 @@
         "name": "Name",
         "description": "Description"
       },
-      "form": {},
+      "form": {
+        "name_label": "Name",
+        "description_label": "Description"
+      },
       "errors": {
         "loading": "Error loading Material Groups",
         "delete": "Error deleting Material Group with id:",
@@ -80,6 +83,7 @@
         "name_label": "Name",
         "dn_label": "DN",
         "pn_label": "PN",
+        "description_label": "Description",
         "type_label": "Type",
         "type_placeholder": "Select material type"
       },

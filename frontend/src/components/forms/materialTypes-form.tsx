@@ -34,14 +34,16 @@ export default function MaterialTypeDialog({
   const { register, handleSubmit, reset, setFocus } = useForm<FormValues>({
     defaultValues: {
       name: initialData?.type || '',
-      materialGroup: initialData?.groupId !== undefined ? String(initialData.groupId) : '',
+      materialGroup:
+        initialData?.groupId !== undefined ? String(initialData.groupId) : '',
     },
   });
 
   useEffect(() => {
     reset({
       name: initialData?.type || '',
-      materialGroup: initialData?.groupId !== undefined ? String(initialData.groupId) : '',
+      materialGroup:
+        initialData?.groupId !== undefined ? String(initialData.groupId) : '',
     });
   }, [initialData, isOpen, reset]);
 
@@ -96,7 +98,9 @@ export default function MaterialTypeDialog({
             id="materialGroup"
             className={styles.input}
           >
-            <option value="">{tVar('material_types.form.group_placeholder') || '-- Select --'}</option>
+            <option value="">
+              {tVar('material_types.form.group_placeholder') || '-- Select --'}
+            </option>
             {materialGroups.map((group) => (
               <option key={group.id} value={String(group.id)}>
                 {group.name}
