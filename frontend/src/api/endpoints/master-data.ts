@@ -1,5 +1,5 @@
 import apiClient from '../api-client';
-import { MaterialGroupDTO, MaterialTypeDTO, UnitDTO } from '../types';
+import { MaterialGroupDTO, MaterialTypeDTO, MaterialNameDTO, UnitDTO } from '../types';
 
 export const materialGroupsApi = {
   getAll: async (): Promise<MaterialGroupDTO[]> => {
@@ -90,14 +90,14 @@ export const materialTypesApi = {
   create: async (
     materialType: MaterialTypeDTO
   ): Promise<MaterialTypeDTO> => {
-    const materialGroupData: MaterialTypeDTO = {
+    const materialTypeData: MaterialTypeDTO = {
       type: materialType.type,
       groupId: materialType.groupId,
     };
 
     const response = await apiClient.post(
       '/material-types',
-      materialGroupData
+      materialTypeData
     );
     return response.data;
   },
@@ -117,7 +117,52 @@ export const materialTypesApi = {
   },
 
   delete: async (id: number) => {
-    const response = await apiClient.delete(`/material-groups/${id}`);
+    const response = await apiClient.delete(`/material-types/${id}`);
+    return response.data
+  },
+}
+
+export const materialNamesApi = {
+  getAll: async (): Promise<MaterialNameDTO[]> => {
+    const response = await apiClient.get('/material-names');
+    return response.data;
+  },
+
+  create: async (
+    materialName: MaterialNameDTO
+  ): Promise<MaterialNameDTO> => {
+    const materialNameData: MaterialNameDTO = {
+      name: materialName.name,
+      dn: materialName.dn,
+      pn: materialName.pn,
+      typeId: materialName.typeId,
+    };
+
+    const response = await apiClient.post(
+      '/material-names',
+      materialNameData
+    );
+    return response.data;
+  },
+
+  update: async (
+    materialName: MaterialNameDTO
+  ): Promise<MaterialNameDTO> => {
+    const materialNameData: MaterialNameDTO = {
+      name: materialName.name,
+      dn: materialName.dn,
+      pn: materialName.pn,
+      typeId: materialName.typeId
+    };
+    const response = await apiClient.patch(
+      `/material-names/${materialName.id}`,
+      materialNameData
+    );
+    return response.data;
+  },
+
+  delete: async (id: number) => {
+    const response = await apiClient.delete(`/material-names/${id}`);
     return response.data
   },
 }

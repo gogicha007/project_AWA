@@ -68,7 +68,31 @@
       "add_form_title": "Add Material Type"
     },
     "material_names": {
-      "title": "Material Names"
+      "title": "Material Names",
+      "table": {
+        "id": "ID",
+        "type": "Type",
+        "dn": "DN",
+        "pn": "PN",
+        "name": "Name"
+      },
+      "form": {
+        "name_label": "Name",
+        "dn_label": "DN",
+        "pn_label": "PN",
+        "type_label": "Type",
+        "type_placeholder": "Select material type"
+      },
+      "errors": {
+        "loading": "Error loading Material Names",
+        "delete": "Error deleting Material Name with id:",
+        "save": "Error saving Material Name:"
+      },
+      "warnings": {
+        "delete": "Are you sure you want to delete this Name?"
+      },
+      "edit_form_title": "Edit Material Name",
+      "add_form_title": "Add Material Name"
     },
     "units": {
       "title": "Units",

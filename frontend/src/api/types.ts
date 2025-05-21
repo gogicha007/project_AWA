@@ -28,3 +28,13 @@ export interface UnitDTO {
   id?: number;
   unit: string;
 }
+
+export interface MaterialNameDTO {
+  id?: number;
+  name: string;
+  dn: string;
+  pn: string;
+  degree?: number;
+  typeId: number;
+  description?: string;
+}
