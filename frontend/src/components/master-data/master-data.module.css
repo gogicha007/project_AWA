@@ -52,3 +52,14 @@
   justify-content: flex-end;
   margin-bottom: 16px;
 }
+
+.sortIcon {
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  font-size: 1em;
+  margin-left: 0.25em;
+  color: #888;
+}

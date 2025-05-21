@@ -2,6 +2,14 @@ import { useMemo, useState, useCallback } from 'react';
 import { MaterialGroupDTO, MaterialTypeDTO } from '@/api/types';
 import { materialTypesApi } from '@/api/endpoints/master-data';
 import TableRowActions from '../table-row-actions/TableRowActions';
+import { CellContext} from '@tanstack/react-table';
+
+type MaterialTypeRow = {
+  id: number;
+  type: string;
+  group: string;
+  groupId: number;
+};
 
 export function useMaterialTypesLogic(
   materialTypes: MaterialTypeDTO[],
@@ -39,7 +47,7 @@ export function useMaterialTypesLogic(
     [materialGroups]
   );
 
-  const data = useMemo(
+  const data: MaterialTypeRow[] = useMemo(
     () =>
       materialTypes
         .map((type) => ({
@@ -70,7 +78,7 @@ export function useMaterialTypesLogic(
 
   const handleSave = useCallback(
     async (materialType: MaterialTypeDTO) => {
-      console.log('material type save', materialType)
+      console.log('material type save', materialType);
       try {
         if (materialType.id) {
           await materialTypesApi.update(materialType);
@@ -115,10 +123,14 @@ export function useMaterialTypesLogic(
       {
         accessorKey: 'type',
         header: tVar('material_types.table.name'),
+        enableSorting: true,
       },
       {
         accessorKey: 'group',
         header: tVar('material_types.table.group'),
+        enableSorting: true,
+        cell: ({ getValue }: CellContext<MaterialTypeRow, string>) =>
+          getValue(),
       },
       {
         id: 'actions',

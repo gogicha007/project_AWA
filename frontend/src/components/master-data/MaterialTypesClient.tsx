@@ -1,13 +1,16 @@
 'use client';
 
 import styles from './master-data.module.css';
+import { useState } from 'react';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,
   getCoreRowModel,
+  getSortedRowModel,
   flexRender,
+  SortingState,
 } from '@tanstack/react-table';
 import MaterialTypeDialog from '../forms/materialTypes-form';
 import Loader from '../loader/loader';
@@ -22,6 +25,7 @@ export default function MaterialTypesClient() {
     loading: groupsLoading,
     error: groupsError,
   } = useMaterialGroups();
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const {
     data,
@@ -38,6 +42,11 @@ export default function MaterialTypesClient() {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
   });
 
   if (loading || groupsLoading) return <Loader />;
@@ -61,11 +70,25 @@ export default function MaterialTypesClient() {
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className={styles.tableHeader}>
+                  <th
+                    key={header.id}
+                    className={styles.tableHeader}
+                    onClick={header.column.getToggleSortingHandler?.()}
+                    style={{
+                      cursor: header.column.getCanSort()
+                        ? 'pointer'
+                        : 'default',
+                    }}
+                  >
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext()
                     )}
+                    <span className={styles.sortIcon}>
+                      {header.column.getIsSorted() === 'asc' && ' 🔼'}
+                      {header.column.getIsSorted() === 'desc' && ' 🔽'}
+                      {header.column.getIsSorted() === false && <>&nbsp;</>}
+                    </span>
                   </th>
                 ))}
               </tr>
