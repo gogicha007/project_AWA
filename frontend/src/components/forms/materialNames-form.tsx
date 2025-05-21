@@ -40,6 +40,7 @@ export default function MaterialNameDialog({
       description: initialData?.description || '',
     },
   });
+  console.log(materialTypes, tVar, tB, register)
 
   useEffect(() => {
     reset({
