@@ -72,11 +72,11 @@ export function useMaterialNamesLogic(
 
   const handleEdit = useCallback(
     (id: number) => {
-      const materialName = materialNames.find((type) => type.id === id);
+      const materialName = materialNames.find((name) => name.id === id);
       setCurrentMaterialName(materialName);
       setIsDialogOpen(true);
     },
-    [materialTypes]
+    [materialNames]
   );
 
   const handleSave = useCallback(
