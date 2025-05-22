@@ -11,7 +11,7 @@ type Props = {
   initialData?: MaterialNameDTO;
   title: string;
   tVar: (key: string) => string;
-  materialTypes: MaterialTypeDTO[];
+  materialTypes: Omit<MaterialTypeDTO, "groupId">[];
 };
 
 interface FormValues extends Omit<MaterialNameDTO, 'typeId'> {
@@ -40,7 +40,6 @@ export default function MaterialNameDialog({
       description: initialData?.description || '',
     },
   });
-  console.log(materialTypes, tB);
 
   useEffect(() => {
     reset({
@@ -77,6 +76,7 @@ export default function MaterialNameDialog({
     });
     onClose();
   };
+
   return (
     <dialog ref={dialogRef} className={styles.dialog} onClose={onClose}>
       <div className={styles.dialogHeader}>
