@@ -12,7 +12,7 @@ import {
   flexRender,
   SortingState,
 } from '@tanstack/react-table';
-import MaterialTypeDialog from '../forms/materialTypes-form';
+import MaterialTypeDialog from '../forms/master-data-forms/materialTypes-form';
 import Loader from '../loader/loader';
 import AddButton from '../add-button/AddButton';
 import { useMaterialTypesLogic } from './useMaterialTypesLogic';

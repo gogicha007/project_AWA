@@ -1,8 +1,9 @@
 import { useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './form.module.css';
+import styles from '../form.module.css';
 import { MaterialNameDTO, MaterialTypeDTO } from '@/api/types';
 import { useTranslations } from 'use-intl';
+import { TbBrandUpwork } from 'react-icons/tb';
 
 type Props = {
   isOpen: boolean;
@@ -11,7 +12,7 @@ type Props = {
   initialData?: MaterialNameDTO;
   title: string;
   tVar: (key: string) => string;
-  materialTypes: Omit<MaterialTypeDTO, "groupId">[];
+  materialTypes: Omit<MaterialTypeDTO, 'groupId'>[];
 };
 
 interface FormValues extends Omit<MaterialNameDTO, 'typeId'> {
@@ -30,22 +31,43 @@ export default function MaterialNameDialog({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
 
-  const { register, handleSubmit, reset, setFocus } = useForm<FormValues>({
-    defaultValues: {
-      name: initialData?.name || '',
-      dn: initialData?.dn || '',
-      pn: initialData?.pn || '',
-      materialType:
-        initialData?.typeId !== undefined ? String(initialData.typeId) : '',
-      description: initialData?.description || '',
-    },
-  });
+  const { register, handleSubmit, reset, setFocus, watch, setValue } =
+    useForm<FormValues>({
+      defaultValues: {
+        name: initialData?.name || '',
+        dn: initialData?.dn || '',
+        pn: initialData?.pn || '16',
+        degree: initialData?.degree || 0,
+        materialType:
+          initialData?.typeId !== undefined ? String(initialData.typeId) : '',
+        description: initialData?.description || '',
+      },
+    });
+
+  const materialType = watch('materialType');
+  const dn = watch('dn');
+  const pn = watch('pn');
+  const degree = watch('degree');
+
+  const selectedType =
+    materialTypes.find((type) => String(type.id) === materialType)?.type || '';
+
+  useEffect(() => {
+    const dnStr = dn ? `DN${dn}` : '';
+    const pnStr = pn ? `PN${pn}` : '';
+    const degreeStr = degree ? `${degree}*` : '';
+    const composedName = [selectedType, dnStr, pnStr, degreeStr]
+      .filter(Boolean)
+      .join(' ');
+    setValue('name', composedName);
+  }, [selectedType, dn, pn, degree, setValue]);
 
   useEffect(() => {
     reset({
       name: initialData?.name || '',
       dn: initialData?.dn || '',
-      pn: initialData?.pn || '',
+      pn: initialData?.pn || '16',
+      degree: initialData?.degree || 0,
       materialType:
         initialData?.typeId !== undefined ? String(initialData.typeId) : '',
       description: initialData?.description || '',
@@ -72,7 +94,12 @@ export default function MaterialNameDialog({
       name: data.name,
       dn: data.dn,
       pn: data.pn,
+      degree: parseInt(
+        data.degree !== undefined ? String(data.degree) : '0',
+        10
+      ),
       typeId: parseInt(data.materialType || '0', 10),
+      description: data.description,
     });
     onClose();
   };
@@ -124,6 +151,15 @@ export default function MaterialNameDialog({
             required
           />
         </div>
+        <div>
+          <label htmlFor="degree">{`${tVar('material_names.form.degree_label')}`}</label>
+          <input
+            {...register('degree', { required: false })}
+            type="number"
+            id="degree"
+            className={styles.input}
+          />
+        </div>
         <div className={styles.form_item}>
           <label htmlFor="name">{`${tVar('material_names.form.name_label')}`}</label>
           <input
@@ -135,11 +171,11 @@ export default function MaterialNameDialog({
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="description">{`${'material_names.form.description'}:`}</label>
+          <label htmlFor="description">{`${tVar('material_names.form.description_label')}:`}</label>
           <textarea
+            {...register('description', { required: false })}
             id="description"
             name="description"
-            defaultValue={initialData?.description || ''}
             rows={3}
             className={styles.textarea}
           />

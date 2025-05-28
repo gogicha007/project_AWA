@@ -140,7 +140,7 @@ export function useMaterialNamesLogic(
       },
       {
         accessorKey: 'degree',
-        header: tVar('material)names.table.degree'),
+        header: tVar('material_names.table.degree'),
       },
       {
         accessorKey: 'name',

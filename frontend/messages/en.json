@@ -77,15 +77,18 @@
         "type": "Type",
         "dn": "DN",
         "pn": "PN",
-        "name": "Name"
+        "degree": "Degree",
+        "name": "Name",
+        "description": "Description"
       },
       "form": {
         "name_label": "Name",
         "dn_label": "DN",
         "pn_label": "PN",
+        "degree_label": "Degree",
         "description_label": "Description",
         "type_label": "Type",
-        "type_placeholder": "Select material type"
+        "type_placeholder": "Select material type..."
       },
       "errors": {
         "loading": "Error loading Material Names",

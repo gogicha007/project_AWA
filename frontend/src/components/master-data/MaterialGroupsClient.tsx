@@ -8,7 +8,7 @@ import {
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import MaterialGroupDialog from '../forms/materialGroups-form';
+import MaterialGroupDialog from '../forms/master-data-forms/materialGroups-form';
 import Loader from '../loader/loader';
 import AddButton from '../add-button/AddButton';
 import { useMaterialGroupsLogic } from './useMaterialGroupsLogic';

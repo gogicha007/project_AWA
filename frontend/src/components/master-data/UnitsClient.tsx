@@ -11,7 +11,7 @@ import {
 import Loader from '../loader/loader';
 import AddButton from '../add-button/AddButton';
 import { useUnitsLogic } from './useUnitsLogic';
-import UnitDialog from '../forms/units-form';
+import UnitDialog from '../forms/master-data-forms/units-form';
 
 export default function UnitsClient() {
   const tU = useTranslations('MasterData');

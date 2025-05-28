@@ -8,7 +8,7 @@ export class MaterialNamesService {
   constructor(private readonly dbService: DatabaseService) {}
   async create(payload: MaterialNameDTO) {
     const materialName = await this.dbService.materialName.create({
-      data: payload,
+      data: { ...payload, degree: payload.degree ?? 0 },
       select: {
         name: true,
       },
@@ -25,6 +25,7 @@ export class MaterialNamesService {
         pn: true,
         degree: true,
         typeId: true,
+        description: true
       },
     });
     return allMaterialNames;

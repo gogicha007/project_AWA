@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import MaterialNamesClient from '@/components/master-data/MaterialNamesClient';
 
 const MaterialNames = () => {
-  return (
-    <div>MaterialNames</div>
-  )
-}
+  return <MaterialNamesClient />;
+};
 
-export default MaterialNames
+export default MaterialNames;

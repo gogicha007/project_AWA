@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import styles from './form.module.css';
+import styles from '../form.module.css';
 import { UnitDTO } from '@/api/types';
 
 type Props = {

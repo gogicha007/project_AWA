@@ -2014,3 +2014,682 @@ Foreign key constraint violated: `material_type_groupId_fkey (index)`
 [2025-05-21T13:06:16.890Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
 [2025-05-21T13:06:16.898Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
 [2025-05-21T13:06:17.359Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T10:07:09.348Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:07:10.772Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T10:07:10.778Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:07:11.270Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T10:07:14.447Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:07:14.947Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T10:07:14.950Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:07:15.446Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T10:08:56.333Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:08:56.372Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:08:56.947Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T10:08:56.949Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:08:57.432Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T10:08:57.688Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T10:08:57.691Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:08:58.156Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T10:12:45.574Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:12:45.579Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:12:46.195Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T10:12:47.065Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T10:14:05.625Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:14:05.627Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:14:06.265Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T10:14:07.045Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T10:17:10.227Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"PE100 PIPE DN20 PN16","dn":"20","pn":"16","typeId":1}
+[2025-05-28T10:17:10.374Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN20 PN16",
+             dn: "20",
+             pn: "16",
+             description: undefined,
+             typeId: 1,
+         +   degree: Int
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `degree` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T10:17:10.376Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T10:17:10.386Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:17:10.894Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T10:40:27.796Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:40:27.800Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T10:40:29.222Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T10:40:29.241Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:32:39.392Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:40.756Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T11:32:43.828Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:44.358Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T11:32:44.362Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:44.877Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T11:32:47.570Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:47.572Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:48.081Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:32:48.084Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:48.598Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:32:48.918Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T11:32:48.925Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:49.417Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"pipe\",\"description\":\"pe, pp, iron or steel\"},{\"id\":4,\"name\":\"valve\",\"description\":\"valves\"},{\"id\":2,\"name\":\"fitting\",\"description\":\"could be tee, reducer, coupler, bend or\"},{\"id\":5,\"name\":\"hydrant\",\"description\":\"\"},{\"id\":6,\"name\":\"strainer\",\"description\":\"\"},{\"id\":7,\"name\":\"other\",\"description\":\"\"}]"
+[2025-05-28T11:32:51.067Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:51.070Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:51.578Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:32:51.581Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:32:51.586Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:51.590Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:52.099Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:32:52.103Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:32:53.341Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:53.859Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T11:32:53.862Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:54.362Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T11:32:55.653Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:55.655Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:56.159Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:32:56.166Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:56.281Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:32:56.291Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:32:56.699Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:32:56.799Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:44:06.946Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:06.951Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:08.401Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:44:08.430Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:44:10.367Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:10.371Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:10.889Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:44:10.890Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:44:11.809Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:11.819Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:12.318Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:44:12.320Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:44:14.156Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:14.157Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:44:14.679Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:44:14.682Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:45:56.057Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:45:56.058Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:45:56.675Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:45:56.676Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:46:10.376Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:46:10.377Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:46:10.905Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:46:10.906Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:46:12.687Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:46:12.689Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:46:13.319Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:46:13.321Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:46:19.369Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:46:19.370Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:46:19.877Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:46:19.880Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:47:09.343Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:09.348Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:09.964Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:47:09.965Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:47:13.820Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:13.823Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:14.344Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:47:14.346Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:47:46.206Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:46.207Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:46.849Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:47:46.850Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:47:49.509Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:49.513Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:47:50.050Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:47:50.052Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:48:22.887Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:48:22.889Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:48:23.516Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:48:23.519Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:52:29.217Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:52:29.221Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:52:30.634Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:52:30.651Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:54:20.156Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:54:20.159Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:54:20.810Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:54:20.811Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:54:22.199Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:54:22.201Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:54:22.708Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T11:54:22.712Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T11:59:05.294Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"PE100 PIPE DN20 PN16","dn":"20","pn":"16","typeId":1}
+[2025-05-28T11:59:06.239Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN20 PN16",
+             dn: "20",
+             pn: "16",
+             description: undefined,
+             typeId: 1,
+         +   degree: Int
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `degree` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T11:59:06.241Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T11:59:06.256Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T11:59:06.794Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:01:02.204Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"PE100 PIPE DN20 PN16","dn":"20","pn":"16","typeId":1}
+[2025-05-28T12:01:02.308Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN20 PN16",
+             dn: "20",
+             pn: "16",
+             description: undefined,
+             typeId: 1,
+         +   degree: Int
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `degree` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T12:01:02.309Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:01:02.316Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:01:02.848Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:02:56.894Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"PE100 PIPE DN20 PN16","dn":"20","pn":"16","typeId":1}
+[2025-05-28T12:02:57.006Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN20 PN16",
+             dn: "20",
+             pn: "16",
+             description: undefined,
+             typeId: 1,
+         +   degree: Int
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `degree` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T12:02:57.007Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:02:57.013Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:02:57.527Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:04:29.117Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"PE100 PIPE DN20 PN16","dn":"20","pn":"16","typeId":1}
+[2025-05-28T12:04:30.064Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN20 PN16",
+             dn: "20",
+             pn: "16",
+             description: undefined,
+             typeId: 1,
+         +   degree: Int
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `degree` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T12:04:30.065Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:04:30.073Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:04:30.601Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:05:11.133Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"name":"PE100 PIPE DN20 PN16 0*","dn":"20","pn":"16","typeId":1}
+[2025-05-28T12:05:11.246Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN20 PN16 0*",
+             dn: "20",
+             pn: "16",
+             description: undefined,
+             typeId: 1,
+         +   degree: Int
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `degree` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T12:05:11.247Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:05:11.253Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:05:11.765Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:06:35.623Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:35.626Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:36.273Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:06:37.086Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:06:37.734Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:37.736Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:38.217Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:06:38.259Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:06:40.230Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:40.232Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:40.737Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:06:40.764Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:06:47.578Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:47.579Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:06:48.119Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:06:48.159Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:07:03.270Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:03.272Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:03.886Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:07:03.889Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:07:14.191Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:14.192Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:14.703Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:07:14.705Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:07:21.964Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:21.966Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:22.587Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T12:07:22.589Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:07:35.345Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"20","pn":"16","degree":"","name":"PE100 PIPE DN20 PN16","description":""}
+[2025-05-28T12:07:35.349Z] [ERROR] Error in user sync interceptor:
+Trace: BadRequestException: Bad Request Exception
+    at ValidationPipe.exceptionFactory (C:\Codes\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:107:20)
+    at ValidationPipe.transform (C:\Codes\project_AWA\backend\node_modules\@nestjs\common\pipes\validation.pipe.js:74:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async resolveParamValue (C:\Codes\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:148:23)
+    at async Promise.all (index 0)
+    at async pipesFn (C:\Codes\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:151:13)
+    at async C:\Codes\project_AWA\backend\node_modules\@nestjs\core\router\router-execution-context.js:37:30
+[2025-05-28T12:07:35.350Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:07:35.362Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:07:35.886Z] [INFO] Response: 200 - Body: "[]"
+[2025-05-28T12:10:43.672Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":""}
+[2025-05-28T12:10:45.134Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN25 PN16\"}"
+[2025-05-28T12:10:45.148Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:10:45.655Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:11:35.263Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"50","pn":"16","degree":null,"name":"PE100 PIPE DN50 PN16","description":""}
+[2025-05-28T12:11:35.361Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN50 PN16",
+             dn: "50",
+             pn: "16",
+             degree: null,
+             description: "",
+             typeId: 1,
+         +   type: {
+         +     create: MaterialTypeCreateWithoutMaterialNameInput | MaterialTypeUncheckedCreateWithoutMaterialNameInput,
+         +     connectOrCreate: MaterialTypeCreateOrConnectWithoutMaterialNameInput,
+         +     connect: MaterialTypeWhereUniqueInput
+         +   }
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `type` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T12:11:35.362Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:11:35.366Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:11:35.883Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:11:57.082Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"50","pn":"16","degree":0,"name":"PE100 PIPE DN50 PN16","description":""}
+[2025-05-28T12:11:57.705Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN50 PN16\"}"
+[2025-05-28T12:11:57.728Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:11:58.244Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:22:42.642Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"50","pn":"20","degree":0,"name":"PE100 PIPE DN50 PN20","description":""}
+[2025-05-28T12:22:44.021Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN50 PN20\"}"
+[2025-05-28T12:22:44.037Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:22:44.560Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:22:56.259Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"50","pn":"25","degree":null,"name":"PE100 PIPE DN50 PN25","description":""}
+[2025-05-28T12:22:56.263Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN50 PN25",
+             dn: "50",
+             pn: "25",
+             degree: null,
+             description: "",
+             typeId: 1,
+         +   type: {
+         +     create: MaterialTypeCreateWithoutMaterialNameInput | MaterialTypeUncheckedCreateWithoutMaterialNameInput,
+         +     connectOrCreate: MaterialTypeCreateOrConnectWithoutMaterialNameInput,
+         +     connect: MaterialTypeWhereUniqueInput
+         +   }
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `type` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T12:22:56.263Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T12:22:56.281Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:22:56.782Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:23:39.736Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"50","pn":"25","degree":0,"name":"PE100 PIPE DN50 PN25","description":""}
+[2025-05-28T12:23:40.335Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN50 PN25\"}"
+[2025-05-28T12:23:40.346Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:23:40.868Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:24:29.892Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"63","pn":"16","degree":0,"name":"PE100 PIPE DN63 PN16","description":""}
+[2025-05-28T12:24:30.797Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN63 PN16\"}"
+[2025-05-28T12:24:30.806Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:24:31.300Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:24:41.700Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"63","pn":"20","degree":0,"name":"PE100 PIPE DN63 PN20","description":""}
+[2025-05-28T12:24:42.219Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN63 PN20\"}"
+[2025-05-28T12:24:42.234Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:24:42.760Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:24:52.895Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"63","pn":"25","degree":0,"name":"PE100 PIPE DN63 PN25","description":""}
+[2025-05-28T12:24:53.500Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN63 PN25\"}"
+[2025-05-28T12:24:53.515Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:24:54.039Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:25:18.600Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":""}
+[2025-05-28T12:25:19.205Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"typeId\":1}"
+[2025-05-28T12:25:19.225Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:25:19.743Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T12:26:18.953Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":""}
+[2025-05-28T12:26:19.572Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"typeId\":1}"
+[2025-05-28T12:26:19.589Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T12:26:20.112Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:01:32.078Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"75","pn":"16","degree":null,"name":"PE100 PIPE DN75 PN16","description":""}
+[2025-05-28T16:01:32.957Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN75 PN16",
+             dn: "75",
+             pn: "16",
+             degree: null,
+             description: "",
+             typeId: 1,
+         +   type: {
+         +     create: MaterialTypeCreateWithoutMaterialNameInput | MaterialTypeUncheckedCreateWithoutMaterialNameInput,
+         +     connectOrCreate: MaterialTypeCreateOrConnectWithoutMaterialNameInput,
+         +     connect: MaterialTypeWhereUniqueInput
+         +   }
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `type` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T16:01:32.959Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T16:01:32.965Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:01:33.483Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:01:58.397Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"75","pn":"16","degree":0,"name":"PE100 PIPE DN75 PN16","description":""}
+[2025-05-28T16:01:58.984Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN75 PN16\"}"
+[2025-05-28T16:01:58.998Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:01:59.497Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:02:32.106Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:02:32.723Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T16:02:32.734Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:02:33.245Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"unit\":\"m\"},{\"id\":2,\"unit\":\"mm\"},{\"id\":3,\"unit\":\"pcs\"},{\"id\":4,\"unit\":\"kg\"},{\"id\":5,\"unit\":\"t\"}]"
+[2025-05-28T16:02:37.175Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:02:37.178Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:02:37.684Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:02:37.688Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:02:38.204Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:02:38.591Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T16:02:38.596Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:02:39.106Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T16:03:00.473Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"75","pn":"20","degree":0,"name":"PE100 PIPE DN75 PN20","description":""}
+[2025-05-28T16:03:01.078Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN75 PN20\"}"
+[2025-05-28T16:03:01.093Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:03:01.609Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:03:25.706Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"75","pn":"25","degree":0,"name":"PE100 PIPE DN75 PN25","description":""}
+[2025-05-28T16:03:26.311Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN75 PN25\"}"
+[2025-05-28T16:03:26.329Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:03:26.850Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:07:18.401Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"16","degree":null,"name":"PE100 PIPE DN90 PN16","description":""}
+[2025-05-28T16:07:18.507Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN90 PN16",
+             dn: "90",
+             pn: "16",
+             degree: null,
+             description: "",
+             typeId: 1,
+         +   type: {
+         +     create: MaterialTypeCreateWithoutMaterialNameInput | MaterialTypeUncheckedCreateWithoutMaterialNameInput,
+         +     connectOrCreate: MaterialTypeCreateOrConnectWithoutMaterialNameInput,
+         +     connect: MaterialTypeWhereUniqueInput
+         +   }
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `type` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T16:07:18.508Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T16:07:18.514Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:07:19.046Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:09:05.883Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"16","degree":0,"name":"PE100 PIPE DN90 PN16","description":""}
+[2025-05-28T16:09:07.202Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN90 PN16\"}"
+[2025-05-28T16:09:07.217Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:09:07.739Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:17:48.164Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"25","degree":null,"name":"PE100 PIPE DN90 PN25","description":""}
+[2025-05-28T16:17:49.081Z] [ERROR] Error in user sync interceptor:
+Trace: PrismaClientValidationError: 
+Invalid `this.dbService.materialName.create()` invocation in
+C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:60
+
+   7 export class MaterialNamesService {
+   8   constructor(private readonly dbService: DatabaseService) {}
+   9   async create(payload: MaterialNameDTO) {
+→ 10     const materialName = await this.dbService.materialName.create({
+           data: {
+             name: "PE100 PIPE DN90 PN25",
+             dn: "90",
+             pn: "25",
+             degree: null,
+             description: "",
+             typeId: 1,
+         +   type: {
+         +     create: MaterialTypeCreateWithoutMaterialNameInput | MaterialTypeUncheckedCreateWithoutMaterialNameInput,
+         +     connectOrCreate: MaterialTypeCreateOrConnectWithoutMaterialNameInput,
+         +     connect: MaterialTypeWhereUniqueInput
+         +   }
+           },
+           select: {
+             name: true
+           }
+         })
+
+Argument `type` is missing.
+    at An (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:29:1363)
+    at zn.handleRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:7102)
+    at zn.handleAndLogRequestError (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6784)
+    at zn.request (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:121:6491)
+    at async l (C:\Codes\project_AWA\backend\generated\prisma\runtime\library.js:130:9778)
+    at async MaterialNamesService.create (C:\Codes\project_AWA\backend\src\master-data\services\material-names.service.ts:10:26)
+[2025-05-28T16:17:49.082Z] [INFO] Response: 201 - Body: undefined
+[2025-05-28T16:17:49.087Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:17:49.599Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:18:32.487Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"25","degree":0,"name":"PE100 PIPE DN90 PN25","description":""}
+[2025-05-28T16:18:33.809Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN90 PN25\"}"
+[2025-05-28T16:18:33.820Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:18:34.346Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN25\",\"dn\":\"90\",\"pn\":\"25\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:18:42.215Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"20","degree":0,"name":"PE100 PIPE DN90 PN20","description":""}
+[2025-05-28T16:18:42.728Z] [INFO] Response: 200 - Body: "{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"typeId\":1}"
+[2025-05-28T16:18:42.767Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:18:43.308Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:18:52.818Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"20","degree":0,"name":"PE100 PIPE DN90 PN20","description":""}
+[2025-05-28T16:18:53.457Z] [INFO] Response: 200 - Body: "{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"typeId\":1}"
+[2025-05-28T16:18:53.481Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:18:53.988Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:24:27.203Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":""}
+[2025-05-28T16:24:28.639Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"typeId\":1}"
+[2025-05-28T16:24:28.707Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:24:29.218Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:25:23.140Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":""}
+[2025-05-28T16:25:23.748Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"typeId\":1}"
+[2025-05-28T16:25:23.773Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:25:24.287Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:28:20.000Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:28:20.001Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:28:20.759Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:28:21.553Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T16:28:36.394Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":"description"}
+[2025-05-28T16:28:37.068Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"typeId\":1}"
+[2025-05-28T16:28:37.084Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:28:37.662Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:29:59.282Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:29:59.285Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:29:59.910Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:30:00.628Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T16:31:52.463Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:31:52.465Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:31:53.143Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1}]"
+[2025-05-28T16:31:53.145Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T16:32:23.512Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:32:24.130Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:32:24.960Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"description\"}]"
+[2025-05-28T16:32:25.773Z] [INFO] Response: 200 - Body: "[{\"id\":1,\"type\":\"PE100 PIPE\",\"groupId\":1},{\"id\":2,\"type\":\"PE100 BEND\",\"groupId\":2},{\"id\":3,\"type\":\"PE100 REDUCER\",\"groupId\":2},{\"id\":4,\"type\":\"PE100 TEE\",\"groupId\":2},{\"id\":5,\"type\":\"PE100 COUPLER\",\"groupId\":2},{\"id\":6,\"type\":\"PE100 END CAP\",\"groupId\":2},{\"id\":7,\"type\":\"PE100 VALVE\",\"groupId\":4},{\"id\":11,\"type\":\"CI VALVE\",\"groupId\":4},{\"id\":14,\"type\":\"CI PIPE\",\"groupId\":1},{\"id\":15,\"type\":\"CI REDUCER\",\"groupId\":2},{\"id\":16,\"type\":\"CI TEE\",\"groupId\":2},{\"id\":17,\"type\":\"CI CROSS\",\"groupId\":2},{\"id\":18,\"type\":\"CI DISMANTLING JOINT\",\"groupId\":2},{\"id\":19,\"type\":\"STEEL PIPE\",\"groupId\":1},{\"id\":20,\"type\":\"STEEL FLANGE\",\"groupId\":2}]"
+[2025-05-28T16:32:36.976Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"25","pn":"16","degree":0,"name":"PE100 PIPE DN25 PN16","description":""}
+[2025-05-28T16:32:37.495Z] [INFO] Response: 200 - Body: "{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"typeId\":1}"
+[2025-05-28T16:32:37.518Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:32:38.031Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"}]"
+[2025-05-28T16:33:01.096Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"90","pn":"25","degree":0,"name":"PE100 PIPE DN90 PN25","description":""}
+[2025-05-28T16:33:01.716Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN90 PN25\"}"
+[2025-05-28T16:33:01.726Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:33:02.258Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":13,\"name\":\"PE100 PIPE DN90 PN25\",\"dn\":\"90\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"}]"
+[2025-05-28T16:33:11.133Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"110","pn":"16","degree":0,"name":"PE100 PIPE DN110 PN16","description":""}
+[2025-05-28T16:33:11.657Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN110 PN16\"}"
+[2025-05-28T16:33:11.670Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:33:12.198Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":13,\"name\":\"PE100 PIPE DN90 PN25\",\"dn\":\"90\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":14,\"name\":\"PE100 PIPE DN110 PN16\",\"dn\":\"110\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"}]"
+[2025-05-28T16:33:24.383Z] [INFO] Incoming Request: POST / - Query: {} - Body: {"typeId":1,"dn":"110","pn":"16","degree":0,"name":"PE100 PIPE DN110 PN16","description":""}
+[2025-05-28T16:33:25.000Z] [INFO] Response: 201 - Body: "{\"name\":\"PE100 PIPE DN110 PN16\"}"
+[2025-05-28T16:33:25.015Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:33:25.539Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":13,\"name\":\"PE100 PIPE DN90 PN25\",\"dn\":\"90\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":14,\"name\":\"PE100 PIPE DN110 PN16\",\"dn\":\"110\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":15,\"name\":\"PE100 PIPE DN110 PN16\",\"dn\":\"110\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"}]"
+[2025-05-28T16:33:37.729Z] [INFO] Incoming Request: PATCH / - Query: {} - Body: {"typeId":1,"dn":"110","pn":"20","degree":0,"name":"PE100 PIPE DN110 PN20","description":""}
+[2025-05-28T16:33:38.254Z] [INFO] Response: 200 - Body: "{\"id\":15,\"name\":\"PE100 PIPE DN110 PN20\",\"typeId\":1}"
+[2025-05-28T16:33:38.279Z] [INFO] Incoming Request: GET / - Query: {} - Body: undefined
+[2025-05-28T16:33:38.800Z] [INFO] Response: 200 - Body: "[{\"id\":2,\"name\":\"PE100 PIPE DN50 PN16\",\"dn\":\"50\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":3,\"name\":\"PE100 PIPE DN50 PN20\",\"dn\":\"50\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":4,\"name\":\"PE100 PIPE DN50 PN25\",\"dn\":\"50\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":5,\"name\":\"PE100 PIPE DN63 PN16\",\"dn\":\"63\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":6,\"name\":\"PE100 PIPE DN63 PN20\",\"dn\":\"63\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":7,\"name\":\"PE100 PIPE DN63 PN25\",\"dn\":\"63\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":8,\"name\":\"PE100 PIPE DN75 PN16\",\"dn\":\"75\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":9,\"name\":\"PE100 PIPE DN75 PN20\",\"dn\":\"75\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":10,\"name\":\"PE100 PIPE DN75 PN25\",\"dn\":\"75\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":11,\"name\":\"PE100 PIPE DN90 PN16\",\"dn\":\"90\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":12,\"name\":\"PE100 PIPE DN90 PN20\",\"dn\":\"90\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":1,\"name\":\"PE100 PIPE DN25 PN16\",\"dn\":\"25\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":13,\"name\":\"PE100 PIPE DN90 PN25\",\"dn\":\"90\",\"pn\":\"25\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":14,\"name\":\"PE100 PIPE DN110 PN16\",\"dn\":\"110\",\"pn\":\"16\",\"degree\":0,\"typeId\":1,\"description\":\"\"},{\"id\":15,\"name\":\"PE100 PIPE DN110 PN20\",\"dn\":\"110\",\"pn\":\"20\",\"degree\":0,\"typeId\":1,\"description\":\"\"}]"

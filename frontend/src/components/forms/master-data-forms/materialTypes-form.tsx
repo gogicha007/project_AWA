@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './form.module.css';
+import styles from '../form.module.css';
 import { MaterialGroupDTO, MaterialTypeDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
 

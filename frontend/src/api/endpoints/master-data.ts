@@ -1,5 +1,10 @@
 import apiClient from '../api-client';
-import { MaterialGroupDTO, MaterialTypeDTO, MaterialNameDTO, UnitDTO } from '../types';
+import {
+  MaterialGroupDTO,
+  MaterialTypeDTO,
+  MaterialNameDTO,
+  UnitDTO,
+} from '../types';
 
 export const materialGroupsApi = {
   getAll: async (): Promise<MaterialGroupDTO[]> => {
@@ -38,7 +43,7 @@ export const materialGroupsApi = {
 
   delete: async (id: number) => {
     const response = await apiClient.delete(`/material-groups/${id}`);
-    return response.data
+    return response.data;
   },
 };
 
@@ -48,36 +53,26 @@ export const unitsApi = {
     return response.data;
   },
 
-  create: async (
-    unit: UnitDTO
-  ): Promise<UnitDTO> => {
+  create: async (unit: UnitDTO): Promise<UnitDTO> => {
     const unitData: UnitDTO = {
       unit: unit.unit,
     };
 
-    const response = await apiClient.post(
-      '/units',
-      unitData
-    );
+    const response = await apiClient.post('/units', unitData);
     return response.data;
   },
 
-  update: async (
-    unit: UnitDTO
-  ): Promise<UnitDTO> => {
+  update: async (unit: UnitDTO): Promise<UnitDTO> => {
     const unitData: UnitDTO = {
       unit: unit.unit,
     };
-    const response = await apiClient.patch(
-      `/units/${unit.id}`,
-      unitData
-    );
+    const response = await apiClient.patch(`/units/${unit.id}`, unitData);
     return response.data;
   },
 
   delete: async (id: number) => {
     const response = await apiClient.delete(`/units/${id}`);
-    return response.data
+    return response.data;
   },
 };
 
@@ -87,27 +82,20 @@ export const materialTypesApi = {
     return response.data;
   },
 
-  create: async (
-    materialType: MaterialTypeDTO
-  ): Promise<MaterialTypeDTO> => {
+  create: async (materialType: MaterialTypeDTO): Promise<MaterialTypeDTO> => {
     const materialTypeData: MaterialTypeDTO = {
       type: materialType.type,
       groupId: materialType.groupId,
     };
 
-    const response = await apiClient.post(
-      '/material-types',
-      materialTypeData
-    );
+    const response = await apiClient.post('/material-types', materialTypeData);
     return response.data;
   },
 
-  update: async (
-    materialType: MaterialTypeDTO
-  ): Promise<MaterialTypeDTO> => {
+  update: async (materialType: MaterialTypeDTO): Promise<MaterialTypeDTO> => {
     const materialTypeData: MaterialTypeDTO = {
       type: materialType.type,
-      groupId: materialType.groupId
+      groupId: materialType.groupId,
     };
     const response = await apiClient.patch(
       `/material-types/${materialType.id}`,
@@ -118,9 +106,9 @@ export const materialTypesApi = {
 
   delete: async (id: number) => {
     const response = await apiClient.delete(`/material-types/${id}`);
-    return response.data
+    return response.data;
   },
-}
+};
 
 export const materialNamesApi = {
   getAll: async (): Promise<MaterialNameDTO[]> => {
@@ -128,31 +116,28 @@ export const materialNamesApi = {
     return response.data;
   },
 
-  create: async (
-    materialName: MaterialNameDTO
-  ): Promise<MaterialNameDTO> => {
+  create: async (materialName: MaterialNameDTO): Promise<MaterialNameDTO> => {
     const materialNameData: MaterialNameDTO = {
-      name: materialName.name,
+      typeId: materialName.typeId,
       dn: materialName.dn,
       pn: materialName.pn,
-      typeId: materialName.typeId,
+      degree: materialName.degree,
+      name: materialName.name,
+      description: materialName.description,
     };
 
-    const response = await apiClient.post(
-      '/material-names',
-      materialNameData
-    );
+    const response = await apiClient.post('/material-names', materialNameData);
     return response.data;
   },
 
-  update: async (
-    materialName: MaterialNameDTO
-  ): Promise<MaterialNameDTO> => {
+  update: async (materialName: MaterialNameDTO): Promise<MaterialNameDTO> => {
     const materialNameData: MaterialNameDTO = {
-      name: materialName.name,
+      typeId: materialName.typeId,
       dn: materialName.dn,
       pn: materialName.pn,
-      typeId: materialName.typeId
+      degree: materialName.degree,
+      name: materialName.name,
+      description: materialName.description,
     };
     const response = await apiClient.patch(
       `/material-names/${materialName.id}`,
@@ -163,6 +148,6 @@ export const materialNamesApi = {
 
   delete: async (id: number) => {
     const response = await apiClient.delete(`/material-names/${id}`);
-    return response.data
+    return response.data;
   },
-}
+};
