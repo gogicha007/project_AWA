@@ -31,7 +31,7 @@ export function useMaterialNamesLogic(
       materialTypes.map((type) => ({
         id:
           typeof type.id === 'string' ? parseInt(type.id, 10) : Number(type.id),
-        type: type.type
+        type: type.type,
       })),
     [materialTypes]
   );
@@ -121,6 +121,7 @@ export function useMaterialNamesLogic(
       {
         accessorKey: 'id',
         header: tVar('material_names.table.id'),
+        enableSorting: true,
       },
       {
         accessorKey: 'type',
@@ -137,10 +138,12 @@ export function useMaterialNamesLogic(
       {
         accessorKey: 'pn',
         header: tVar('material_names.table.pn'),
+        enableSorring: true,
       },
       {
         accessorKey: 'degree',
         header: tVar('material_names.table.degree'),
+        enableSorring: true,
       },
       {
         accessorKey: 'name',
@@ -150,6 +153,7 @@ export function useMaterialNamesLogic(
       {
         accessorKey: 'description',
         header: tVar('material_names.table.description'),
+        enableSorting: false,
       },
       {
         id: 'actions',
@@ -166,6 +170,7 @@ export function useMaterialNamesLogic(
             />
           );
         },
+        enableSorting: false,
       },
     ],
     [handleEdit, handleView, handleDelete, tVar]
