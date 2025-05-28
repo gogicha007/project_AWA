@@ -65,47 +65,52 @@ export default function MaterialNamesClient() {
         <div className={styles.tableActions}>
           <AddButton onAdd={handleAdd} />
         </div>
-        <table className={styles.table}>
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className={styles.tableHeader}
-                    onClick={header.column.getToggleSortingHandler?.()}
-                    style={{
-                      cursor: header.column.getCanSort()
-                        ? 'pointer'
-                        : 'default',
-                    }}
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                    <span className={styles.sortIcon}>
-                      {header.column.getIsSorted() === 'asc' && ' 🔼'}
-                      {header.column.getIsSorted() === 'desc' && ' 🔽'}
-                      {header.column.getIsSorted() === false && <>&nbsp;</>}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className={styles.tableRow}>
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className={styles.tableCell}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className={styles.tableScrollContainer}>
+          <table className={styles.table}>
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className={styles.tableHeader}
+                      onClick={header.column.getToggleSortingHandler?.()}
+                      style={{
+                        cursor: header.column.getCanSort()
+                          ? 'pointer'
+                          : 'default',
+                      }}
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      <span className={styles.sortIcon}>
+                        {header.column.getIsSorted() === 'asc' && ' 🔼'}
+                        {header.column.getIsSorted() === 'desc' && ' 🔽'}
+                        {header.column.getIsSorted() === false && <>&nbsp;</>}
+                      </span>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody className={styles.tableBody}>
+              {table.getRowModel().rows.map((row) => (
+                <tr key={row.id} className={styles.tableRow}>
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className={styles.tableCell}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       <MaterialNameDialog
         isOpen={isDialogOpen}
@@ -118,7 +123,8 @@ export default function MaterialNamesClient() {
             : tN('material_names.add_form_title')
         }
         tVar={tN}
-        materialTypes={materialTypesArray}/>
+        materialTypes={materialTypesArray}
+      />
     </div>
   );
 }
