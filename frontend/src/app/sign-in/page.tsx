@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth';
-import LoginForm from '@/components/auth-form/loginForm';
+import LoginForm from '@/components/forms/auth-form/loginForm';
 import Loader from '@/components/loader/loader';
 
 const SignIn = () => {

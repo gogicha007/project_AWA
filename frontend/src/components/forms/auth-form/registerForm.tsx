@@ -2,14 +2,14 @@
 import styles from './auth-form.module.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { login } from '@/utils/firebaseConfig';
+import { register as firebaseRegister } from '@/utils/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { loginSchema, LoginFields } from './validation';
-import Loader from '../loader/loader';
+import { registerSchema, RegisterFields } from './validation';
+import Loader from '../../loader/loader';
 import { useTranslations } from 'next-intl';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const t = useTranslations('AuthForm');
@@ -17,16 +17,16 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<LoginFields>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterFields>({
+    resolver: zodResolver(registerSchema),
     mode: 'onChange',
   });
   const router = useRouter();
 
-  const handleAuth = async (email: string, password: string) => {
+  const handleAuth = async (email: string, password: string, name: string) => {
     setLoading(true);
     try {
-      await login(email, password);
+      await firebaseRegister(email, password, name);
       setError(null);
       router.push('/');
     } catch (err) {
@@ -40,14 +40,30 @@ const LoginForm = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<LoginFields> = async ({ email, password }) => {
-    await handleAuth(email, password);
+  const onSubmit: SubmitHandler<RegisterFields> = async ({
+    email,
+    password,
+    name,
+  }) => {
+    await handleAuth(email, password, name);
   };
 
   return (
     <div className={styles.auth}>
-      <h1>{t('login')}</h1>
+      <h1>{t('register')}</h1>
       <form className={styles.auth__form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.auth__item}>
+          <label htmlFor="name" className={styles.auth__label}>
+            Name
+            <input
+              {...register('name')}
+              id="name"
+              type="text"
+              className={styles.auth__input}
+            />
+          </label>
+          <p className={styles.auth__error}>{errors?.name?.message}</p>
+        </div>
         <div className={styles.auth__item}>
           <label htmlFor="email" className={styles.auth__label}>
             {t('email')}
@@ -78,7 +94,7 @@ const LoginForm = () => {
         </div>
 
         <button className="button" type="submit" disabled={!isValid}>
-          {t('login')}
+          {t('register')}
         </button>
       </form>
       {error && (
@@ -91,4 +107,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -29,6 +29,11 @@ export type Vendor = $Result.DefaultSelection<Prisma.$VendorPayload>
  */
 export type Unit = $Result.DefaultSelection<Prisma.$UnitPayload>
 /**
+ * Model Currency
+ * 
+ */
+export type Currency = $Result.DefaultSelection<Prisma.$CurrencyPayload>
+/**
  * Model MaterialGroup
  * 
  */
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get unit(): Prisma.UnitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.currency`: Exposes CRUD operations for the **Currency** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Currencies
+    * const currencies = await prisma.currency.findMany()
+    * ```
+    */
+  get currency(): Prisma.CurrencyDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.materialGroup`: Exposes CRUD operations for the **MaterialGroup** model.
@@ -671,6 +686,7 @@ export namespace Prisma {
     User: 'User',
     Vendor: 'Vendor',
     Unit: 'Unit',
+    Currency: 'Currency',
     MaterialGroup: 'MaterialGroup',
     MaterialType: 'MaterialType',
     MaterialName: 'MaterialName'
@@ -692,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vendor" | "unit" | "materialGroup" | "materialType" | "materialName"
+      modelProps: "user" | "vendor" | "unit" | "currency" | "materialGroup" | "materialType" | "materialName"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -915,6 +931,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UnitCountArgs<ExtArgs>
             result: $Utils.Optional<UnitCountAggregateOutputType> | number
+          }
+        }
+      }
+      Currency: {
+        payload: Prisma.$CurrencyPayload<ExtArgs>
+        fields: Prisma.CurrencyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CurrencyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CurrencyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          findFirst: {
+            args: Prisma.CurrencyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CurrencyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          findMany: {
+            args: Prisma.CurrencyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>[]
+          }
+          create: {
+            args: Prisma.CurrencyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          createMany: {
+            args: Prisma.CurrencyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CurrencyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>[]
+          }
+          delete: {
+            args: Prisma.CurrencyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          update: {
+            args: Prisma.CurrencyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          deleteMany: {
+            args: Prisma.CurrencyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CurrencyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CurrencyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>[]
+          }
+          upsert: {
+            args: Prisma.CurrencyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          aggregate: {
+            args: Prisma.CurrencyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCurrency>
+          }
+          groupBy: {
+            args: Prisma.CurrencyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CurrencyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CurrencyCountArgs<ExtArgs>
+            result: $Utils.Optional<CurrencyCountAggregateOutputType> | number
           }
         }
       }
@@ -1227,6 +1317,7 @@ export namespace Prisma {
     user?: UserOmit
     vendor?: VendorOmit
     unit?: UnitOmit
+    currency?: CurrencyOmit
     materialGroup?: MaterialGroupOmit
     materialType?: MaterialTypeOmit
     materialName?: MaterialNameOmit
@@ -4633,6 +4724,1009 @@ export namespace Prisma {
 
 
   /**
+   * Model Currency
+   */
+
+  export type AggregateCurrency = {
+    _count: CurrencyCountAggregateOutputType | null
+    _avg: CurrencyAvgAggregateOutputType | null
+    _sum: CurrencySumAggregateOutputType | null
+    _min: CurrencyMinAggregateOutputType | null
+    _max: CurrencyMaxAggregateOutputType | null
+  }
+
+  export type CurrencyAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CurrencySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CurrencyMinAggregateOutputType = {
+    id: number | null
+    code: string | null
+    name: string | null
+  }
+
+  export type CurrencyMaxAggregateOutputType = {
+    id: number | null
+    code: string | null
+    name: string | null
+  }
+
+  export type CurrencyCountAggregateOutputType = {
+    id: number
+    code: number
+    name: number
+    _all: number
+  }
+
+
+  export type CurrencyAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CurrencySumAggregateInputType = {
+    id?: true
+  }
+
+  export type CurrencyMinAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+  }
+
+  export type CurrencyMaxAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+  }
+
+  export type CurrencyCountAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    _all?: true
+  }
+
+  export type CurrencyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Currency to aggregate.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Currencies
+    **/
+    _count?: true | CurrencyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CurrencyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CurrencySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CurrencyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CurrencyMaxAggregateInputType
+  }
+
+  export type GetCurrencyAggregateType<T extends CurrencyAggregateArgs> = {
+        [P in keyof T & keyof AggregateCurrency]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCurrency[P]>
+      : GetScalarType<T[P], AggregateCurrency[P]>
+  }
+
+
+
+
+  export type CurrencyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CurrencyWhereInput
+    orderBy?: CurrencyOrderByWithAggregationInput | CurrencyOrderByWithAggregationInput[]
+    by: CurrencyScalarFieldEnum[] | CurrencyScalarFieldEnum
+    having?: CurrencyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CurrencyCountAggregateInputType | true
+    _avg?: CurrencyAvgAggregateInputType
+    _sum?: CurrencySumAggregateInputType
+    _min?: CurrencyMinAggregateInputType
+    _max?: CurrencyMaxAggregateInputType
+  }
+
+  export type CurrencyGroupByOutputType = {
+    id: number
+    code: string
+    name: string
+    _count: CurrencyCountAggregateOutputType | null
+    _avg: CurrencyAvgAggregateOutputType | null
+    _sum: CurrencySumAggregateOutputType | null
+    _min: CurrencyMinAggregateOutputType | null
+    _max: CurrencyMaxAggregateOutputType | null
+  }
+
+  type GetCurrencyGroupByPayload<T extends CurrencyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CurrencyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CurrencyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CurrencyGroupByOutputType[P]>
+            : GetScalarType<T[P], CurrencyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CurrencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["currency"]>
+
+  export type CurrencySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["currency"]>
+
+  export type CurrencySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["currency"]>
+
+  export type CurrencySelectScalar = {
+    id?: boolean
+    code?: boolean
+    name?: boolean
+  }
+
+  export type CurrencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name", ExtArgs["result"]["currency"]>
+
+  export type $CurrencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Currency"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      code: string
+      name: string
+    }, ExtArgs["result"]["currency"]>
+    composites: {}
+  }
+
+  type CurrencyGetPayload<S extends boolean | null | undefined | CurrencyDefaultArgs> = $Result.GetResult<Prisma.$CurrencyPayload, S>
+
+  type CurrencyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CurrencyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CurrencyCountAggregateInputType | true
+    }
+
+  export interface CurrencyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Currency'], meta: { name: 'Currency' } }
+    /**
+     * Find zero or one Currency that matches the filter.
+     * @param {CurrencyFindUniqueArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CurrencyFindUniqueArgs>(args: SelectSubset<T, CurrencyFindUniqueArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Currency that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CurrencyFindUniqueOrThrowArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CurrencyFindUniqueOrThrowArgs>(args: SelectSubset<T, CurrencyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Currency that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyFindFirstArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CurrencyFindFirstArgs>(args?: SelectSubset<T, CurrencyFindFirstArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Currency that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyFindFirstOrThrowArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CurrencyFindFirstOrThrowArgs>(args?: SelectSubset<T, CurrencyFindFirstOrThrowArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Currencies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Currencies
+     * const currencies = await prisma.currency.findMany()
+     * 
+     * // Get first 10 Currencies
+     * const currencies = await prisma.currency.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const currencyWithIdOnly = await prisma.currency.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CurrencyFindManyArgs>(args?: SelectSubset<T, CurrencyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Currency.
+     * @param {CurrencyCreateArgs} args - Arguments to create a Currency.
+     * @example
+     * // Create one Currency
+     * const Currency = await prisma.currency.create({
+     *   data: {
+     *     // ... data to create a Currency
+     *   }
+     * })
+     * 
+     */
+    create<T extends CurrencyCreateArgs>(args: SelectSubset<T, CurrencyCreateArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Currencies.
+     * @param {CurrencyCreateManyArgs} args - Arguments to create many Currencies.
+     * @example
+     * // Create many Currencies
+     * const currency = await prisma.currency.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CurrencyCreateManyArgs>(args?: SelectSubset<T, CurrencyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Currencies and returns the data saved in the database.
+     * @param {CurrencyCreateManyAndReturnArgs} args - Arguments to create many Currencies.
+     * @example
+     * // Create many Currencies
+     * const currency = await prisma.currency.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Currencies and only return the `id`
+     * const currencyWithIdOnly = await prisma.currency.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CurrencyCreateManyAndReturnArgs>(args?: SelectSubset<T, CurrencyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Currency.
+     * @param {CurrencyDeleteArgs} args - Arguments to delete one Currency.
+     * @example
+     * // Delete one Currency
+     * const Currency = await prisma.currency.delete({
+     *   where: {
+     *     // ... filter to delete one Currency
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CurrencyDeleteArgs>(args: SelectSubset<T, CurrencyDeleteArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Currency.
+     * @param {CurrencyUpdateArgs} args - Arguments to update one Currency.
+     * @example
+     * // Update one Currency
+     * const currency = await prisma.currency.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CurrencyUpdateArgs>(args: SelectSubset<T, CurrencyUpdateArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Currencies.
+     * @param {CurrencyDeleteManyArgs} args - Arguments to filter Currencies to delete.
+     * @example
+     * // Delete a few Currencies
+     * const { count } = await prisma.currency.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CurrencyDeleteManyArgs>(args?: SelectSubset<T, CurrencyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Currencies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Currencies
+     * const currency = await prisma.currency.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CurrencyUpdateManyArgs>(args: SelectSubset<T, CurrencyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Currencies and returns the data updated in the database.
+     * @param {CurrencyUpdateManyAndReturnArgs} args - Arguments to update many Currencies.
+     * @example
+     * // Update many Currencies
+     * const currency = await prisma.currency.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Currencies and only return the `id`
+     * const currencyWithIdOnly = await prisma.currency.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CurrencyUpdateManyAndReturnArgs>(args: SelectSubset<T, CurrencyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Currency.
+     * @param {CurrencyUpsertArgs} args - Arguments to update or create a Currency.
+     * @example
+     * // Update or create a Currency
+     * const currency = await prisma.currency.upsert({
+     *   create: {
+     *     // ... data to create a Currency
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Currency we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CurrencyUpsertArgs>(args: SelectSubset<T, CurrencyUpsertArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Currencies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyCountArgs} args - Arguments to filter Currencies to count.
+     * @example
+     * // Count the number of Currencies
+     * const count = await prisma.currency.count({
+     *   where: {
+     *     // ... the filter for the Currencies we want to count
+     *   }
+     * })
+    **/
+    count<T extends CurrencyCountArgs>(
+      args?: Subset<T, CurrencyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CurrencyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Currency.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CurrencyAggregateArgs>(args: Subset<T, CurrencyAggregateArgs>): Prisma.PrismaPromise<GetCurrencyAggregateType<T>>
+
+    /**
+     * Group by Currency.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CurrencyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CurrencyGroupByArgs['orderBy'] }
+        : { orderBy?: CurrencyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CurrencyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCurrencyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Currency model
+   */
+  readonly fields: CurrencyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Currency.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Currency model
+   */
+  interface CurrencyFieldRefs {
+    readonly id: FieldRef<"Currency", 'Int'>
+    readonly code: FieldRef<"Currency", 'String'>
+    readonly name: FieldRef<"Currency", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Currency findUnique
+   */
+  export type CurrencyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency findUniqueOrThrow
+   */
+  export type CurrencyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency findFirst
+   */
+  export type CurrencyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Currencies.
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Currencies.
+     */
+    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
+  }
+
+  /**
+   * Currency findFirstOrThrow
+   */
+  export type CurrencyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Currencies.
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Currencies.
+     */
+    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
+  }
+
+  /**
+   * Currency findMany
+   */
+  export type CurrencyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Filter, which Currencies to fetch.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Currencies.
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
+  }
+
+  /**
+   * Currency create
+   */
+  export type CurrencyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Currency.
+     */
+    data: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
+  }
+
+  /**
+   * Currency createMany
+   */
+  export type CurrencyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Currencies.
+     */
+    data: CurrencyCreateManyInput | CurrencyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Currency createManyAndReturn
+   */
+  export type CurrencyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * The data used to create many Currencies.
+     */
+    data: CurrencyCreateManyInput | CurrencyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Currency update
+   */
+  export type CurrencyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Currency.
+     */
+    data: XOR<CurrencyUpdateInput, CurrencyUncheckedUpdateInput>
+    /**
+     * Choose, which Currency to update.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency updateMany
+   */
+  export type CurrencyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Currencies.
+     */
+    data: XOR<CurrencyUpdateManyMutationInput, CurrencyUncheckedUpdateManyInput>
+    /**
+     * Filter which Currencies to update
+     */
+    where?: CurrencyWhereInput
+    /**
+     * Limit how many Currencies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Currency updateManyAndReturn
+   */
+  export type CurrencyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * The data used to update Currencies.
+     */
+    data: XOR<CurrencyUpdateManyMutationInput, CurrencyUncheckedUpdateManyInput>
+    /**
+     * Filter which Currencies to update
+     */
+    where?: CurrencyWhereInput
+    /**
+     * Limit how many Currencies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Currency upsert
+   */
+  export type CurrencyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Currency to update in case it exists.
+     */
+    where: CurrencyWhereUniqueInput
+    /**
+     * In case the Currency found by the `where` argument doesn't exist, create a new Currency with this data.
+     */
+    create: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
+    /**
+     * In case the Currency was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CurrencyUpdateInput, CurrencyUncheckedUpdateInput>
+  }
+
+  /**
+   * Currency delete
+   */
+  export type CurrencyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Filter which Currency to delete.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency deleteMany
+   */
+  export type CurrencyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Currencies to delete
+     */
+    where?: CurrencyWhereInput
+    /**
+     * Limit how many Currencies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Currency without action
+   */
+  export type CurrencyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model MaterialGroup
    */
 
@@ -7982,6 +9076,15 @@ export namespace Prisma {
   export type UnitScalarFieldEnum = (typeof UnitScalarFieldEnum)[keyof typeof UnitScalarFieldEnum]
 
 
+  export const CurrencyScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    name: 'name'
+  };
+
+  export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
+
+
   export const MaterialGroupScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -8262,6 +9365,50 @@ export namespace Prisma {
     NOT?: UnitScalarWhereWithAggregatesInput | UnitScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Unit"> | number
     unit?: StringWithAggregatesFilter<"Unit"> | string
+  }
+
+  export type CurrencyWhereInput = {
+    AND?: CurrencyWhereInput | CurrencyWhereInput[]
+    OR?: CurrencyWhereInput[]
+    NOT?: CurrencyWhereInput | CurrencyWhereInput[]
+    id?: IntFilter<"Currency"> | number
+    code?: StringFilter<"Currency"> | string
+    name?: StringFilter<"Currency"> | string
+  }
+
+  export type CurrencyOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    code?: string
+    AND?: CurrencyWhereInput | CurrencyWhereInput[]
+    OR?: CurrencyWhereInput[]
+    NOT?: CurrencyWhereInput | CurrencyWhereInput[]
+    name?: StringFilter<"Currency"> | string
+  }, "id" | "code">
+
+  export type CurrencyOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    _count?: CurrencyCountOrderByAggregateInput
+    _avg?: CurrencyAvgOrderByAggregateInput
+    _max?: CurrencyMaxOrderByAggregateInput
+    _min?: CurrencyMinOrderByAggregateInput
+    _sum?: CurrencySumOrderByAggregateInput
+  }
+
+  export type CurrencyScalarWhereWithAggregatesInput = {
+    AND?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
+    OR?: CurrencyScalarWhereWithAggregatesInput[]
+    NOT?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Currency"> | number
+    code?: StringWithAggregatesFilter<"Currency"> | string
+    name?: StringWithAggregatesFilter<"Currency"> | string
   }
 
   export type MaterialGroupWhereInput = {
@@ -8581,6 +9728,45 @@ export namespace Prisma {
   export type UnitUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     unit?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CurrencyCreateInput = {
+    code: string
+    name: string
+  }
+
+  export type CurrencyUncheckedCreateInput = {
+    id?: number
+    code: string
+    name: string
+  }
+
+  export type CurrencyUpdateInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CurrencyUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CurrencyCreateManyInput = {
+    id?: number
+    code: string
+    name: string
+  }
+
+  export type CurrencyUpdateManyMutationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CurrencyUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type MaterialGroupCreateInput = {
@@ -8964,6 +10150,32 @@ export namespace Prisma {
   }
 
   export type UnitSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CurrencyCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CurrencyAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CurrencyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CurrencyMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CurrencySumOrderByAggregateInput = {
     id?: SortOrder
   }
 

@@ -46,6 +46,14 @@ model Unit {
   @@map("unit")
 }
 
+model Currency {
+  id   Int    @id @default(autoincrement())
+  code String @unique // e.g., "USD"
+  name String // e.g., "US Dollar"
+
+  @@map("currency")
+}
+
 model MaterialGroup {
   id           Int            @id @default(autoincrement())
   name         String         @unique

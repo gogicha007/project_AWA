@@ -140,6 +140,12 @@ exports.Prisma.UnitScalarFieldEnum = {
   unit: 'unit'
 };
 
+exports.Prisma.CurrencyScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+};
+
 exports.Prisma.MaterialGroupScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -182,6 +188,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Vendor: 'Vendor',
   Unit: 'Unit',
+  Currency: 'Currency',
   MaterialGroup: 'MaterialGroup',
   MaterialType: 'MaterialType',
   MaterialName: 'MaterialName'
