@@ -85,8 +85,6 @@ export class UserSyncInterceptor implements NestInterceptor {
     );
   }
   private isAuthenticationError(error: unknown): boolean {
-    // Check if error is related to missing or invalid authentication
-    // Customize this based on your actual error patterns
     if (error instanceof Error) {
       return (
         error.message.includes('authentication') ||
@@ -99,7 +97,6 @@ export class UserSyncInterceptor implements NestInterceptor {
   }
 
   private isPermissionError(error: unknown): boolean {
-    // Check if error is related to permissions/access rights
     if (error instanceof Error) {
       return (
         error.message.includes('permission') ||
