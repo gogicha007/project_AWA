@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './master-data.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
 import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
 import { useTranslations } from 'next-intl';
@@ -16,6 +16,7 @@ import MaterialTypeDialog from '../forms/master-data-forms/materialTypes-form';
 import Loader from '../feedback/loader/loader';
 import AddButton from '../controls/add-button/AddButton';
 import { useMaterialTypesLogic } from './useMaterialTypesLogic';
+import Snackbar from '../feedback/snackbar/snackbar';
 
 export default function MaterialTypesClient() {
   const tT = useTranslations('MasterData');
@@ -36,7 +37,14 @@ export default function MaterialTypesClient() {
     setIsDialogOpen,
     currentMaterialType,
     materialGroupsArray,
+    errorMessage,
   } = useMaterialTypesLogic(materialTypes, materialGroups, mutate, tT);
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  useEffect(() => {
+    if (errorMessage) setSnackbarOpen(true);
+  }, [errorMessage]);
 
   const table = useReactTable({
     data,
@@ -107,6 +115,11 @@ export default function MaterialTypesClient() {
           </tbody>
         </table>
       </div>
+      <Snackbar
+        message={errorMessage || ''}
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+      />
       <MaterialTypeDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

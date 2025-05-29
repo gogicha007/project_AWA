@@ -2,7 +2,7 @@ import { useMemo, useState, useCallback } from 'react';
 import { MaterialGroupDTO, MaterialTypeDTO } from '@/api/types';
 import { materialTypesApi } from '@/api/endpoints/master-data';
 import TableRowActions from '../controls/table-row-actions/TableRowActions';
-import { CellContext} from '@tanstack/react-table';
+import { CellContext } from '@tanstack/react-table';
 
 type MaterialTypeRow = {
   id: number;
@@ -21,6 +21,9 @@ export function useMaterialTypesLogic(
   const [currentMaterialType, setCurrentMaterialType] = useState<
     MaterialTypeDTO | undefined
   >();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
 
   const materialGroupsArray = useMemo(
     () =>
@@ -33,6 +36,7 @@ export function useMaterialTypesLogic(
       })),
     [materialGroups]
   );
+
   const materialGroupsObject = useMemo(
     () =>
       materialGroups.reduce(
@@ -88,8 +92,14 @@ export function useMaterialTypesLogic(
         await mutate();
         setCurrentMaterialType(undefined);
         setIsDialogOpen(false);
+        setErrorMessage(undefined);
       } catch (error) {
-        console.error(tVar('errors.save'), error);
+        setErrorMessage(
+          typeof error === 'string'
+            ? `${tVar('material_types.errors.save')}. ${error}`
+            : tVar('material_types.errors.save')
+        );
+        console.error(tVar('material_names.errors.save'), error);
       }
     },
     [mutate, tVar]
@@ -97,11 +107,16 @@ export function useMaterialTypesLogic(
 
   const handleDelete = useCallback(
     async (id: number) => {
-      if (confirm(tVar('warnings.delete'))) {
+      if (confirm(tVar('material_types.warnings.delete'))) {
         try {
           await materialTypesApi.delete(id);
         } catch (error) {
-          console.error(`${tVar('errors.delete')} ${id}`, error);
+          setErrorMessage(
+            typeof error === 'string'
+              ? `${tVar('material_types.errors.delete')} ${id}. ${error}`
+              : `${tVar('material_types.errors.delete')} ${id}`
+          );
+          console.error(`${tVar('material_types.errors.delete')} ${id}`, error);
         }
       }
       await mutate();
@@ -168,5 +183,7 @@ export function useMaterialTypesLogic(
     currentMaterialType,
     setCurrentMaterialType,
     materialGroupsArray,
+    errorMessage,
+    setErrorMessage,
   };
 }

@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import apiClient from '../api-client';
 import {
   MaterialGroupDTO,
@@ -6,6 +5,7 @@ import {
   MaterialNameDTO,
   UnitDTO,
 } from '../types';
+import { handleApiError } from '@/utils/handleApiError';
 
 export const materialGroupsApi = {
   getAll: async (): Promise<MaterialGroupDTO[]> => {
@@ -16,30 +16,38 @@ export const materialGroupsApi = {
   create: async (
     materialGroup: MaterialGroupDTO
   ): Promise<MaterialGroupDTO> => {
-    const materialGroupData: MaterialGroupDTO = {
-      name: materialGroup.name,
-      description: materialGroup.description,
-    };
+    try {
+      const materialGroupData: MaterialGroupDTO = {
+        name: materialGroup.name,
+        description: materialGroup.description,
+      };
 
-    const response = await apiClient.post(
-      '/material-groups',
-      materialGroupData
-    );
-    return response.data;
+      const response = await apiClient.post(
+        '/material-groups',
+        materialGroupData
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 
   update: async (
     materialGroup: MaterialGroupDTO
   ): Promise<MaterialGroupDTO> => {
-    const materialGroupData: MaterialGroupDTO = {
-      name: materialGroup.name,
-      description: materialGroup.description,
-    };
-    const response = await apiClient.patch(
-      `/material-groups/${materialGroup.id}`,
-      materialGroupData
-    );
-    return response.data;
+    try {
+      const materialGroupData: MaterialGroupDTO = {
+        name: materialGroup.name,
+        description: materialGroup.description,
+      };
+      const response = await apiClient.patch(
+        `/material-groups/${materialGroup.id}`,
+        materialGroupData
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 
   delete: async (id: number) => {
@@ -63,19 +71,20 @@ export const unitsApi = {
       const response = await apiClient.post('/units', unitData);
       return response.data;
     } catch (error) {
-      if (error instanceof AxiosError && error.response?.data?.message) {
-        throw error.response?.data?.message;
-      }
-      throw 'Unknown error';
+      handleApiError(error);
     }
   },
 
   update: async (unit: UnitDTO): Promise<UnitDTO> => {
-    const unitData: UnitDTO = {
-      unit: unit.unit,
-    };
-    const response = await apiClient.patch(`/units/${unit.id}`, unitData);
-    return response.data;
+    try {
+      const unitData: UnitDTO = {
+        unit: unit.unit,
+      };
+      const response = await apiClient.patch(`/units/${unit.id}`, unitData);
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 
   delete: async (id: number) => {
@@ -91,13 +100,20 @@ export const materialTypesApi = {
   },
 
   create: async (materialType: MaterialTypeDTO): Promise<MaterialTypeDTO> => {
-    const materialTypeData: MaterialTypeDTO = {
-      type: materialType.type,
-      groupId: materialType.groupId,
-    };
+    try {
+      const materialTypeData: MaterialTypeDTO = {
+        type: materialType.type,
+        groupId: materialType.groupId,
+      };
 
-    const response = await apiClient.post('/material-types', materialTypeData);
-    return response.data;
+      const response = await apiClient.post(
+        '/material-types',
+        materialTypeData
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 
   update: async (materialType: MaterialTypeDTO): Promise<MaterialTypeDTO> => {
@@ -141,10 +157,7 @@ export const materialNamesApi = {
       );
       return response.data;
     } catch (error) {
-      if (error instanceof AxiosError && error.response?.data?.message) {
-        throw error.response?.data?.message;
-      }
-      throw 'Unknown error';
+      handleApiError(error);
     }
   },
 
@@ -164,10 +177,7 @@ export const materialNamesApi = {
       );
       return response.data;
     } catch (error) {
-      if (error instanceof AxiosError && error.response?.data?.message) {
-        throw error.response?.data?.message;
-      }
-      throw 'Unknown error';
+      handleApiError(error);
     }
   },
 
