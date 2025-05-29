@@ -95,13 +95,13 @@ export function useMaterialNamesLogic(
         setCurrentMaterialName(undefined);
         setIsDialogOpen(false);
         setErrorMessage(undefined);
-        console.log('saved ');
       } catch (error) {
-        console.log('error');
         setErrorMessage(
-          typeof error === 'string' ? error : tVar('errors.save')
+          typeof error === 'string'
+            ? `${tVar('material_names.errors.save')}. ${error}`
+            : tVar('material_names.errors.save')
         );
-        console.error(tVar('errors.save'), error);
+        console.error(tVar('material_names.errors.save'), error);
       }
     },
     [mutate, tVar]
@@ -109,15 +109,17 @@ export function useMaterialNamesLogic(
 
   const handleDelete = useCallback(
     async (id: number) => {
-      if (confirm(tVar('warnings.delete'))) {
+      if (confirm(tVar('material_names.warnings.delete'))) {
         try {
           await materialNamesApi.delete(id);
           setErrorMessage(undefined);
         } catch (error) {
           setErrorMessage(
-            typeof error === 'string' ? error : tVar('errors.delete')
+            typeof error === 'string'
+              ? `${tVar('material_names.errors.delete')} ${id}. ${error}`
+              : `${tVar('material_names.errors.delete')} ${id}`
           );
-          console.error(`${tVar('errors.delete')} ${id}`, error);
+          console.error(`${tVar('material_names.errors.delete')} ${id}`, error);
         }
       }
       await mutate();
@@ -202,6 +204,6 @@ export function useMaterialNamesLogic(
     setCurrentMaterialName,
     materialTypesArray,
     errorMessage,
-    setErrorMessage
+    setErrorMessage,
   };
 }

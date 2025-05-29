@@ -65,7 +65,6 @@ export default function MaterialNameDialog({
       name: initialData?.name || '',
       dn: initialData?.dn || '',
       pn: initialData?.pn || '16',
-      // degree: initialData?.degree || 0,
       materialType:
         initialData?.typeId !== undefined ? String(initialData.typeId) : '',
       description: initialData?.description || '',

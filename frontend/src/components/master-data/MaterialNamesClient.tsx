@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './master-data.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMaterialNames } from '@/api/hooks/useMaterialNamesHook';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
 import { useTranslations } from 'next-intl';
@@ -16,6 +16,7 @@ import MaterialNameDialog from '../forms/master-data-forms/materialNames-form';
 import Loader from '../loader/loader';
 import AddButton from '../add-button/AddButton';
 import { useMaterialNamesLogic } from './useMaterialNamesLogic';
+import Snackbar from '../snackbar/snackbar';
 
 export default function MaterialNamesClient() {
   const tN = useTranslations('MasterData');
@@ -26,7 +27,7 @@ export default function MaterialNamesClient() {
     error: typesError,
   } = useMaterialTypes();
   const [sorting, setSorting] = useState<SortingState>([]);
-
+  
   const {
     data,
     columns,
@@ -36,9 +37,15 @@ export default function MaterialNamesClient() {
     setIsDialogOpen,
     currentMaterialName,
     materialTypesArray,
-    errorMessage
+    errorMessage,
   } = useMaterialNamesLogic(materialNames, materialTypes, mutate, tN);
-  console.log('material names client', errorMessage)
+  
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  useEffect(()=> {
+    if(errorMessage) setSnackbarOpen(true)
+  }, [errorMessage])
+
   const table = useReactTable({
     data,
     columns,
@@ -111,9 +118,13 @@ export default function MaterialNamesClient() {
               ))}
             </tbody>
           </table>
-          {errorMessage && <div className="error">{errorMessage}</div>}
         </div>
       </div>
+      <Snackbar
+        message={errorMessage || ''}
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+      />
       <MaterialNameDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
