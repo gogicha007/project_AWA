@@ -8240,11 +8240,11 @@ export namespace Prisma {
 
   export type UnitWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    unit?: string
     AND?: UnitWhereInput | UnitWhereInput[]
     OR?: UnitWhereInput[]
     NOT?: UnitWhereInput | UnitWhereInput[]
-    unit?: StringFilter<"Unit"> | string
-  }, "id">
+  }, "id" | "unit">
 
   export type UnitOrderByWithAggregationInput = {
     id?: SortOrder

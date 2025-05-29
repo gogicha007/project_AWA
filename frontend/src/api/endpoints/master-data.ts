@@ -55,12 +55,19 @@ export const unitsApi = {
   },
 
   create: async (unit: UnitDTO): Promise<UnitDTO> => {
-    const unitData: UnitDTO = {
-      unit: unit.unit,
-    };
+    try {
+      const unitData: UnitDTO = {
+        unit: unit.unit,
+      };
 
-    const response = await apiClient.post('/units', unitData);
-    return response.data;
+      const response = await apiClient.post('/units', unitData);
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data?.message) {
+        throw error.response?.data?.message;
+      }
+      throw 'Unknown error';
+    }
   },
 
   update: async (unit: UnitDTO): Promise<UnitDTO> => {
@@ -127,12 +134,14 @@ export const materialNamesApi = {
         name: materialName.name,
         description: materialName.description,
       };
-  
-      const response = await apiClient.post('/material-names', materialNameData);
-      console.log('master-data response', response)
+
+      const response = await apiClient.post(
+        '/material-names',
+        materialNameData
+      );
       return response.data;
-    } catch(error) {
-       if (error instanceof AxiosError && error.response?.data?.message) {
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data?.message) {
         throw error.response?.data?.message;
       }
       throw 'Unknown error';

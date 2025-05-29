@@ -7,14 +7,23 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 export class MaterialGroupsService {
   constructor(private readonly dbService: DatabaseService) {}
   async create(payload: CreateMaterialGroupDTO) {
-    const materialGroup = await this.dbService.materialGroup.create({
-      data: payload,
-      select: {
-        name: true,
-        description: true,
-      },
-    });
-    return materialGroup;
+    try {
+      const materialGroup = await this.dbService.materialGroup.create({
+        data: payload,
+        select: {
+          name: true,
+          description: true,
+        },
+      });
+      return materialGroup;
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        throw new NotFoundException('Unit already exists');
+      }
+    }
   }
 
   async findAll() {

@@ -41,7 +41,7 @@ model Vendor {
 
 model Unit {
   id   Int    @id @default(autoincrement())
-  unit String
+  unit String @unique
 
   @@map("unit")
 }
