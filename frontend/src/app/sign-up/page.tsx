@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth';
 import RegisterForm from '@/components/forms/auth-form/registerForm';
-import Loading from '@/components/loader/loader';
+import Loading from '@/components/feedback/loader/loader';
 
 const SignUp = () => {
   const { currentUser, loading } = useAuth();

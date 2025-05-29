@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import styles from './header.module.css';
-import AuthBar from '../auth-bar/authBar';
+import styles from './header.module.css'
+import AuthBar from '../../controls/auth-bar/authBar';
 import useScroll from '@/hooks/use-scroll';
 
 const Header = () => {

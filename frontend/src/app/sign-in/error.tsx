@@ -1,5 +1,5 @@
 'use client';
-import ErrorFallback from '@/components/ErrorFallback';
+import ErrorFallback from '@/components/feedback/ErrorFallback';
 import { useTranslations } from 'next-intl';
 
 export default function Error({

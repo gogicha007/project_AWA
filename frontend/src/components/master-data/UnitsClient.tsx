@@ -8,8 +8,8 @@ import {
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import Loader from '../loader/loader';
-import AddButton from '../add-button/AddButton';
+import Loader from '../feedback/loader/loader';
+import AddButton from '../controls/add-button/AddButton';
 import { useUnitsLogic } from './useUnitsLogic';
 import UnitDialog from '../forms/master-data-forms/units-form';
 

@@ -13,10 +13,10 @@ import {
   SortingState,
 } from '@tanstack/react-table';
 import MaterialNameDialog from '../forms/master-data-forms/materialNames-form';
-import Loader from '../loader/loader';
-import AddButton from '../add-button/AddButton';
+import Loader from '../feedback/loader/loader';
+import AddButton from '../controls/add-button/AddButton';
 import { useMaterialNamesLogic } from './useMaterialNamesLogic';
-import Snackbar from '../snackbar/snackbar';
+import Snackbar from '../feedback/snackbar/snackbar';
 
 export default function MaterialNamesClient() {
   const tN = useTranslations('MasterData');

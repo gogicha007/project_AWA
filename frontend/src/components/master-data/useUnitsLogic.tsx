@@ -3,7 +3,7 @@
 import { useMemo, useState, useCallback } from 'react';
 import { UnitDTO } from '@/api/types';
 import { unitsApi } from '@/api/endpoints/master-data';
-import TableRowActions from '../table-row-actions/TableRowActions';
+import TableRowActions from '../controls/table-row-actions/TableRowActions';
 
 export function useUnitsLogic(
   units: UnitDTO[],

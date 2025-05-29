@@ -6,7 +6,7 @@ import { register as firebaseRegister } from '@/utils/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { registerSchema, RegisterFields } from './validation';
-import Loader from '../../loader/loader';
+import Loader from '../../feedback/loader/loader';
 import { useTranslations } from 'next-intl';
 
 const RegisterForm = () => {

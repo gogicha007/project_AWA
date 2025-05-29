@@ -1,5 +1,5 @@
 'use client';
-import SideBar from '@/components/side-bar/SideBar';
+import SideBar from '@/components/layout/side-bar/SideBar';
 import styles from './layout.module.css';
 import { useState } from 'react';
 

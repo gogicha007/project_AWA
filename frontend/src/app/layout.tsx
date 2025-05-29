@@ -4,7 +4,7 @@ import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import LayoutClient from './layoutClient';
-import Header from '../components/header/header';
+import Header from '../components/layout/header/header';
 import { AuthProvider } from '@/context/auth';
 
 const geistSans = Geist({

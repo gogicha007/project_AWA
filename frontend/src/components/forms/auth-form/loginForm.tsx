@@ -6,7 +6,7 @@ import { login } from '@/utils/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { loginSchema, LoginFields } from './validation';
-import Loader from '../../loader/loader';
+import Loader from '../../feedback/loader/loader';
 import { useTranslations } from 'next-intl';
 
 const LoginForm = () => {

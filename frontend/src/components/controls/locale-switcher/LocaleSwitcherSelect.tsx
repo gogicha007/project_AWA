@@ -4,7 +4,7 @@ import styles from './locale-switcher.module.scss';
 import { useTransition, useState } from 'react';
 import { Locale } from '@/i18n/config';
 import { setUserLocale } from '@/utils/locale';
-import Loader from '../loader/loader';
+import Loader from '../../feedback/loader/loader';
 
 export type LocaleSwitcherSelectProps = {
   defaultValue: string;
