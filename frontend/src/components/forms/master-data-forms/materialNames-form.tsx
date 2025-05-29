@@ -91,11 +91,11 @@ export default function MaterialNameDialog({
       name: data.name,
       dn: data.dn,
       pn: data.pn,
-      degree: data.degree,
-      // degree: parseInt(
-      //   data.degree !== undefined ? String(data.degree) : '0',
-      //   10
-      // ),
+      // degree: data.degree,
+      degree: parseInt(
+        data.degree !== undefined ? String(data.degree) : '0',
+        10
+      ),
       typeId: parseInt(data.materialType || '0', 10),
       description: data.description,
     });
