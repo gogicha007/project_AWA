@@ -12,6 +12,9 @@ export function useUnitsLogic(
 ) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentUnit, setCurrentUnit] = useState<UnitDTO | undefined>();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
 
   const data = useMemo(
     () =>
@@ -42,7 +45,7 @@ export function useUnitsLogic(
 
   const handleSave = useCallback(
     async (unit: UnitDTO) => {
-      console.log('handle unit save', unit)
+      console.log('handle unit save', unit);
       try {
         if (unit.id) {
           await unitsApi.update(unit);
@@ -53,7 +56,13 @@ export function useUnitsLogic(
         await mutate();
         setCurrentUnit(undefined);
         setIsDialogOpen(false);
+        setErrorMessage(undefined);
       } catch (error) {
+        setErrorMessage(
+          typeof error === 'string'
+            ? `${tU('units.errors.save')}. ${error}`
+            : tU('units.errors.save')
+        );
         console.error(tU('units.errors.save'), error);
       }
     },
@@ -65,7 +74,13 @@ export function useUnitsLogic(
       if (confirm(tU('units.warnings.delete'))) {
         try {
           await unitsApi.delete(id);
+          setErrorMessage(undefined);
         } catch (error) {
+          setErrorMessage(
+            typeof error === 'string'
+              ? `${tU('units.errors.delete')} ${id}. ${error}`
+              : `${tU('units.errors.delete')} ${id}`
+          );
           console.error(`${tU('units.errors.delete')} ${id}`, error);
         }
       }
@@ -124,5 +139,6 @@ export function useUnitsLogic(
     setIsDialogOpen,
     currentUnit,
     setCurrentUnit,
+    errorMessage
   };
 }

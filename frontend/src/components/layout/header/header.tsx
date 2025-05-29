@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <div className={styles.header} ref={headerRef}>
-      <h2>header</h2>
+      <h2></h2>
       <AuthBar />
     </div>
   );

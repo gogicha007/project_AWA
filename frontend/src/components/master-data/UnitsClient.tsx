@@ -1,6 +1,7 @@
 'use client';
 
 import styles from './master-data.module.css';
+import { useState, useEffect } from 'react';
 import { useUnits } from '@/api/hooks/useUnitsHook';
 import { useTranslations } from 'next-intl';
 import {
@@ -12,6 +13,7 @@ import Loader from '../feedback/loader/loader';
 import AddButton from '../controls/add-button/AddButton';
 import { useUnitsLogic } from './useUnitsLogic';
 import UnitDialog from '../forms/master-data-forms/units-form';
+import Snackbar from '../feedback/snackbar/snackbar';
 
 export default function UnitsClient() {
   const tU = useTranslations('MasterData');
@@ -25,8 +27,13 @@ export default function UnitsClient() {
     isDialogOpen,
     setIsDialogOpen,
     currentUnit,
+    errorMessage,
   } = useUnitsLogic(units, mutate, tU);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+  useEffect(() => {
+    if (errorMessage) setSnackbarOpen(true);
+  }, [errorMessage]);
   const table = useReactTable({
     data,
     columns,
@@ -76,6 +83,11 @@ export default function UnitsClient() {
           </tbody>
         </table>
       </div>
+      <Snackbar
+        message={errorMessage || ''}
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+      />
       <UnitDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
