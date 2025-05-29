@@ -11,7 +11,7 @@
   border-collapse: collapse;
   background-color: white;
   font-size: 0.9rem;
-  table-layout: fixed;
+  /* table-layout: fixed; */
 }
 
 .tableHeader {

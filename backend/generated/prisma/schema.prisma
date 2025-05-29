@@ -48,7 +48,7 @@ model Unit {
 
 model MaterialGroup {
   id           Int            @id @default(autoincrement())
-  name         String
+  name         String         @unique
   description  String
   MaterialType MaterialType[]
 
@@ -57,7 +57,7 @@ model MaterialGroup {
 
 model MaterialType {
   id           Int            @id @default(autoincrement())
-  type         String
+  type         String         @unique
   group        MaterialGroup  @relation(fields: [groupId], references: [id])
   groupId      Int
   MaterialName MaterialName[]
@@ -67,7 +67,7 @@ model MaterialType {
 
 model MaterialName {
   id          Int          @id @default(autoincrement())
-  name        String
+  name        String       @unique
   dn          String
   pn          String
   degree      Int

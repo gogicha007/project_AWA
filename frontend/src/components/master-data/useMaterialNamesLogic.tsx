@@ -31,11 +31,25 @@ export function useMaterialNamesLogic(
 
   const materialTypesArray = useMemo(
     () =>
-      materialTypes.map((type) => ({
-        id:
-          typeof type.id === 'string' ? parseInt(type.id, 10) : Number(type.id),
-        type: type.type,
-      })),
+      materialTypes
+        .map((type) => ({
+          id:
+            typeof type.id === 'string'
+              ? parseInt(type.id, 10)
+              : Number(type.id),
+          type: type.type,
+        }))
+        .sort((a, b) => {
+          const nameA = a.type.toUpperCase();
+          const nameB = b.type.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        }),
     [materialTypes]
   );
 

@@ -8283,13 +8283,13 @@ export namespace Prisma {
 
   export type MaterialGroupWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name?: string
     AND?: MaterialGroupWhereInput | MaterialGroupWhereInput[]
     OR?: MaterialGroupWhereInput[]
     NOT?: MaterialGroupWhereInput | MaterialGroupWhereInput[]
-    name?: StringFilter<"MaterialGroup"> | string
     description?: StringFilter<"MaterialGroup"> | string
     MaterialType?: MaterialTypeListRelationFilter
-  }, "id">
+  }, "id" | "name">
 
   export type MaterialGroupOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8332,14 +8332,14 @@ export namespace Prisma {
 
   export type MaterialTypeWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    type?: string
     AND?: MaterialTypeWhereInput | MaterialTypeWhereInput[]
     OR?: MaterialTypeWhereInput[]
     NOT?: MaterialTypeWhereInput | MaterialTypeWhereInput[]
-    type?: StringFilter<"MaterialType"> | string
     groupId?: IntFilter<"MaterialType"> | number
     group?: XOR<MaterialGroupScalarRelationFilter, MaterialGroupWhereInput>
     MaterialName?: MaterialNameListRelationFilter
-  }, "id">
+  }, "id" | "type">
 
   export type MaterialTypeOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8388,17 +8388,17 @@ export namespace Prisma {
 
   export type MaterialNameWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name?: string
     AND?: MaterialNameWhereInput | MaterialNameWhereInput[]
     OR?: MaterialNameWhereInput[]
     NOT?: MaterialNameWhereInput | MaterialNameWhereInput[]
-    name?: StringFilter<"MaterialName"> | string
     dn?: StringFilter<"MaterialName"> | string
     pn?: StringFilter<"MaterialName"> | string
     degree?: IntFilter<"MaterialName"> | number
     description?: StringFilter<"MaterialName"> | string
     typeId?: IntFilter<"MaterialName"> | number
     type?: XOR<MaterialTypeScalarRelationFilter, MaterialTypeWhereInput>
-  }, "id">
+  }, "id" | "name">
 
   export type MaterialNameOrderByWithAggregationInput = {
     id?: SortOrder

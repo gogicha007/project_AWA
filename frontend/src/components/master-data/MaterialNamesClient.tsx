@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './master-data.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useMaterialNames } from '@/api/hooks/useMaterialNamesHook';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
 import { useTranslations } from 'next-intl';
@@ -27,7 +27,7 @@ export default function MaterialNamesClient() {
     error: typesError,
   } = useMaterialTypes();
   const [sorting, setSorting] = useState<SortingState>([]);
-  
+
   const {
     data,
     columns,
@@ -39,12 +39,25 @@ export default function MaterialNamesClient() {
     materialTypesArray,
     errorMessage,
   } = useMaterialNamesLogic(materialNames, materialTypes, mutate, tN);
-  
+
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  useEffect(()=> {
-    if(errorMessage) setSnackbarOpen(true)
-  }, [errorMessage])
+  useEffect(() => {
+    if (errorMessage) setSnackbarOpen(true);
+  }, [errorMessage]);
+
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const prevDataLength = useRef(data.length);
+
+  useEffect(() => {
+    if (data.length > prevDataLength.current) {
+      tableScrollRef.current?.scrollTo({
+        top: tableScrollRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+    prevDataLength.current = data.length;
+  }, [data.length]);
 
   const table = useReactTable({
     data,
@@ -73,7 +86,7 @@ export default function MaterialNamesClient() {
         <div className={styles.tableActions}>
           <AddButton onAdd={handleAdd} />
         </div>
-        <div className={styles.tableScrollContainer}>
+        <div className={styles.tableScrollContainer} ref={tableScrollRef}>
           <table className={styles.table}>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
