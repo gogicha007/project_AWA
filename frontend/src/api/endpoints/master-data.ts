@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import apiClient from '../api-client';
 import {
   MaterialGroupDTO,
@@ -117,33 +118,48 @@ export const materialNamesApi = {
   },
 
   create: async (materialName: MaterialNameDTO): Promise<MaterialNameDTO> => {
-    const materialNameData: MaterialNameDTO = {
-      typeId: materialName.typeId,
-      dn: materialName.dn,
-      pn: materialName.pn,
-      degree: materialName.degree,
-      name: materialName.name,
-      description: materialName.description,
-    };
-
-    const response = await apiClient.post('/material-names', materialNameData);
-    return response.data;
+    try {
+      const materialNameData: MaterialNameDTO = {
+        typeId: materialName.typeId,
+        dn: materialName.dn,
+        pn: materialName.pn,
+        degree: materialName.degree,
+        name: materialName.name,
+        description: materialName.description,
+      };
+  
+      const response = await apiClient.post('/material-names', materialNameData);
+      console.log('master-data response', response)
+      return response.data;
+    } catch(error) {
+       if (error instanceof AxiosError && error.response?.data?.message) {
+        throw error.response?.data?.message;
+      }
+      throw 'Unknown error';
+    }
   },
 
   update: async (materialName: MaterialNameDTO): Promise<MaterialNameDTO> => {
-    const materialNameData: MaterialNameDTO = {
-      typeId: materialName.typeId,
-      dn: materialName.dn,
-      pn: materialName.pn,
-      degree: materialName.degree,
-      name: materialName.name,
-      description: materialName.description,
-    };
-    const response = await apiClient.patch(
-      `/material-names/${materialName.id}`,
-      materialNameData
-    );
-    return response.data;
+    try {
+      const materialNameData: MaterialNameDTO = {
+        typeId: materialName.typeId,
+        dn: materialName.dn,
+        pn: materialName.pn,
+        degree: materialName.degree,
+        name: materialName.name,
+        description: materialName.description,
+      };
+      const response = await apiClient.patch(
+        `/material-names/${materialName.id}`,
+        materialNameData
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data?.message) {
+        throw error.response?.data?.message;
+      }
+      throw 'Unknown error';
+    }
   },
 
   delete: async (id: number) => {

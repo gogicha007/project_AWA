@@ -25,6 +25,9 @@ export function useMaterialNamesLogic(
   const [currentMaterialName, setCurrentMaterialName] = useState<
     MaterialNameDTO | undefined
   >();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined
+  );
 
   const materialTypesArray = useMemo(
     () =>
@@ -91,7 +94,13 @@ export function useMaterialNamesLogic(
         await mutate();
         setCurrentMaterialName(undefined);
         setIsDialogOpen(false);
+        setErrorMessage(undefined);
+        console.log('saved ');
       } catch (error) {
+        console.log('error');
+        setErrorMessage(
+          typeof error === 'string' ? error : tVar('errors.save')
+        );
         console.error(tVar('errors.save'), error);
       }
     },
@@ -103,7 +112,11 @@ export function useMaterialNamesLogic(
       if (confirm(tVar('warnings.delete'))) {
         try {
           await materialNamesApi.delete(id);
+          setErrorMessage(undefined);
         } catch (error) {
+          setErrorMessage(
+            typeof error === 'string' ? error : tVar('errors.delete')
+          );
           console.error(`${tVar('errors.delete')} ${id}`, error);
         }
       }
@@ -188,5 +201,7 @@ export function useMaterialNamesLogic(
     currentMaterialName,
     setCurrentMaterialName,
     materialTypesArray,
+    errorMessage,
+    setErrorMessage
   };
 }

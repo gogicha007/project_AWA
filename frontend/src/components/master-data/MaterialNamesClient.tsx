@@ -36,8 +36,9 @@ export default function MaterialNamesClient() {
     setIsDialogOpen,
     currentMaterialName,
     materialTypesArray,
+    errorMessage
   } = useMaterialNamesLogic(materialNames, materialTypes, mutate, tN);
-
+  console.log('material names client', errorMessage)
   const table = useReactTable({
     data,
     columns,
@@ -110,6 +111,7 @@ export default function MaterialNamesClient() {
               ))}
             </tbody>
           </table>
+          {errorMessage && <div className="error">{errorMessage}</div>}
         </div>
       </div>
       <MaterialNameDialog

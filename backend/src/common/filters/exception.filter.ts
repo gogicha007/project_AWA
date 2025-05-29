@@ -8,6 +8,16 @@ import {
 import { Response, Request } from 'express';
 import { LoggingService } from '../services/logging.service';
 
+function hasMessageProperty(
+  obj: object,
+): obj is { message: string | string[] } {
+  return Boolean(
+    Object.prototype.hasOwnProperty.call(obj, 'message') &&
+    (typeof (obj as { message?: unknown }).message === 'string' ||
+      Array.isArray((obj as { message?: unknown }).message))
+  );
+}
+
 @Catch()
 export class CustomExceptionFilter implements ExceptionFilter {
   constructor(private readonly loggingService: LoggingService) {}
@@ -27,16 +37,28 @@ export class CustomExceptionFilter implements ExceptionFilter {
         ? exception.getResponse()
         : 'Internal Server Error';
 
+    let errorMessage: string;
+    if (typeof message === 'string') {
+      errorMessage = message;
+    } else if (typeof message === 'object' && message !== null) {
+      if (hasMessageProperty(message)) {
+        errorMessage = Array.isArray(message.message)
+          ? message.message.join(', ')
+          : message.message;
+      } else {
+        errorMessage = JSON.stringify(message);
+      }
+    } else {
+      errorMessage = 'Internal Server Error';
+    }
+
     this.loggingService.error(
-      `Error: ${JSON.stringify(message)} - Request: ${request.method} ${request.url}`,
+      `Error: ${errorMessage} - Request: ${request.method} ${request.url}`,
     );
 
     response.status(status).json({
       statusCode: status,
-      message:
-        (status as HttpStatus) === HttpStatus.INTERNAL_SERVER_ERROR
-          ? 'Internal Server Error'
-          : message,
+      message: errorMessage,
     });
   }
 }

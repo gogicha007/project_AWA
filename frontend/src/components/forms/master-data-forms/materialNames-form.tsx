@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import styles from '../form.module.css';
 import { MaterialNameDTO, MaterialTypeDTO } from '@/api/types';
 import { useTranslations } from 'use-intl';
-import { TbBrandUpwork } from 'react-icons/tb';
 
 type Props = {
   isOpen: boolean;
@@ -37,7 +36,6 @@ export default function MaterialNameDialog({
         name: initialData?.name || '',
         dn: initialData?.dn || '',
         pn: initialData?.pn || '16',
-        degree: initialData?.degree || 0,
         materialType:
           initialData?.typeId !== undefined ? String(initialData.typeId) : '',
         description: initialData?.description || '',
@@ -67,7 +65,7 @@ export default function MaterialNameDialog({
       name: initialData?.name || '',
       dn: initialData?.dn || '',
       pn: initialData?.pn || '16',
-      degree: initialData?.degree || 0,
+      // degree: initialData?.degree || 0,
       materialType:
         initialData?.typeId !== undefined ? String(initialData.typeId) : '',
       description: initialData?.description || '',
@@ -94,10 +92,11 @@ export default function MaterialNameDialog({
       name: data.name,
       dn: data.dn,
       pn: data.pn,
-      degree: parseInt(
-        data.degree !== undefined ? String(data.degree) : '0',
-        10
-      ),
+      degree: data.degree,
+      // degree: parseInt(
+      //   data.degree !== undefined ? String(data.degree) : '0',
+      //   10
+      // ),
       typeId: parseInt(data.materialType || '0', 10),
       description: data.description,
     });
