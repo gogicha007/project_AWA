@@ -13,8 +13,8 @@ function hasMessageProperty(
 ): obj is { message: string | string[] } {
   return Boolean(
     Object.prototype.hasOwnProperty.call(obj, 'message') &&
-    (typeof (obj as { message?: unknown }).message === 'string' ||
-      Array.isArray((obj as { message?: unknown }).message))
+      (typeof (obj as { message?: unknown }).message === 'string' ||
+        Array.isArray((obj as { message?: unknown }).message)),
   );
 }
 
