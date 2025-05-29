@@ -3,8 +3,10 @@ import {
   NestInterceptor,
   ExecutionContext,
   CallHandler,
+  UnauthorizedException,
+  ForbiddenException,
 } from '@nestjs/common';
-import { Observable, tap, catchError, of } from 'rxjs';
+import { Observable, tap, catchError } from 'rxjs';
 import { UsersService } from '../users/users.service';
 import { LoggingService } from 'src/common/services/logging.service';
 
@@ -70,8 +72,41 @@ export class UserSyncInterceptor implements NestInterceptor {
             JSON.stringify(error),
           );
         }
-        return of(null);
+
+        if (this.isAuthenticationError(error)) {
+          throw new UnauthorizedException('Authentication required');
+        } else if (this.isPermissionError(error)) {
+          throw new ForbiddenException('Insufficient permissions');
+        } else {
+          // For other errors (like validation errors), rethrow as is
+          throw error;
+        }
       }),
     );
+  }
+  private isAuthenticationError(error: unknown): boolean {
+    // Check if error is related to missing or invalid authentication
+    // Customize this based on your actual error patterns
+    if (error instanceof Error) {
+      return (
+        error.message.includes('authentication') ||
+        error.message.includes('token') ||
+        error.message.includes('unauthorized') ||
+        error.message.includes('login')
+      );
+    }
+    return false;
+  }
+
+  private isPermissionError(error: unknown): boolean {
+    // Check if error is related to permissions/access rights
+    if (error instanceof Error) {
+      return (
+        error.message.includes('permission') ||
+        error.message.includes('forbidden') ||
+        error.message.includes('access denied')
+      );
+    }
+    return false;
   }
 }
