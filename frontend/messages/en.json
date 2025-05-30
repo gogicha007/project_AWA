@@ -142,6 +142,7 @@
   "SideBar": {
     "home": "Home",
     "settings": "Settings",
-    "masterData": "Master data"
+    "masterData": "Master data",
+    "vendors": "Vendors"
   }
 }

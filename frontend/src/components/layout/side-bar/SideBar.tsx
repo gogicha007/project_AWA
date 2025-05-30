@@ -25,7 +25,11 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       submenu: [
         {
           label: tS('masterData'),
-          href: '/master-data',
+          href: '/settings//master-data',
+        },
+        {
+          label: tS('vendors'),
+          href: '/settings/vendors'
         }
       ],
     },

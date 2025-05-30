@@ -18,10 +18,10 @@ const AuthBar = () => {
     <div>
       {!currentUser && (
         <div className={styles['auth-bar__login']}>
-          <button className="button" onClick={() => router.push('/sign-up')}>
+          <button className="button" onClick={() => router.push('/auth/sign-up')}>
             {tA('register')}
           </button>
-          <button className="button" onClick={() => router.push('/sign-in')}>
+          <button className="button" onClick={() => router.push('/auth/sign-in')}>
             {tA('login')}
           </button>
         </div>
