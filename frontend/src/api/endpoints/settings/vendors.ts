@@ -12,14 +12,14 @@ export const vendorsApi = {
     }
   },
 
-  create: async (vendor: VendorDTO): Promise<VendorDTO> => {
+  create: async (vendor: VendorDTO, userId: number): Promise<VendorDTO> => {
     try {
       const vendorCreateData: VendorDTO = {
         alias: vendor.alias,
         name: vendor.name,
         address: vendor.address,
         country: vendor.country,
-        user_id: 1,
+        user_id: userId,
       };
       const response = await apiClient.post('/vendors', vendorCreateData);
       return response.data;

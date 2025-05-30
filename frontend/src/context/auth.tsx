@@ -11,12 +11,15 @@ import { setCookie } from 'nookies';
 import { auth, logout } from '@/utils/firebaseConfig';
 import { isTokenExpired } from '@/utils/authUtils';
 import { useRouter, usePathname } from 'next/navigation';
+import { usersApi } from '@/api/endpoints/users';
 
 export const AuthContext = createContext<{
   currentUser: User | null;
+  dbUserId: number | null;
   loading: boolean;
 }>({
   currentUser: null,
+  dbUserId: null,
   loading: true,
 });
 
@@ -26,6 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [dbUserId, setDbUserId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const pathName = usePathname();
@@ -44,7 +48,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         path: '/',
         maxAge: 60 * 60 * 24,
       });
-
       return user;
     },
     [router]
@@ -55,6 +58,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         const validatedUser = user ? await handleTokenExpiration(user) : null;
         setCurrentUser(validatedUser);
+        if (validatedUser) {
+          const res = await usersApi.getByFBUid(validatedUser.uid);
+          if (res.id) {
+            setDbUserId(+res.id);
+          } else setDbUserId(null);
+        } else setDbUserId(null);
       } catch (error) {
         console.error('Auth state change error:', error);
         setCurrentUser(null);
@@ -76,7 +85,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [pathName, currentUser, handleTokenExpiration]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, loading }}>
+    <AuthContext.Provider value={{ currentUser, dbUserId, loading }}>
       {children}
     </AuthContext.Provider>
   );

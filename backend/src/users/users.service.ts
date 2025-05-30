@@ -55,7 +55,7 @@ export class UsersService {
     return user;
   }
 
-  async fingByFBUid(id: string) {
+  async findByFBUid(id: string) {
     const user = await this.dbServise.user.findUnique({
       where: { firebaseUid: id },
       select: {

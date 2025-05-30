@@ -2,8 +2,6 @@
 
 import styles from '../settings.module.css';
 import { useState, useEffect, useRef } from 'react';
-import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
-import { useMaterialTypes } from '@/api/hooks/settings/useMaterialTypesHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,
@@ -15,6 +13,8 @@ import {
 import MaterialNameDialog from '../../forms/master-data-forms/materialNames-form';
 import Loader from '../../feedback/loader/loader';
 import AddButton from '../../controls/add-button/AddButton';
+import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
+import { useMaterialTypes } from '@/api/hooks/settings/useMaterialTypesHook';
 import { useMaterialNamesLogic } from './useMaterialNamesLogic';
 import Snackbar from '../../feedback/snackbar/snackbar';
 

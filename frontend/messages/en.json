@@ -134,6 +134,23 @@
       "name": "Name",
       "address": "Address",
       "country": "Country"
+    },
+    "errors": {
+      "loading": "Error loading Vendors",
+      "delete": "Error deleting Vendor with id:",
+      "save": "Error saving Vendor:"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this Vendor?"
+    },
+    "edit_form_title": "Edit Vendor",
+    "add_form_title": "Add Vendor",
+    "actions": {
+      "title": "Actions",
+      "add": "Add new item",
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View"
     }
   },
   "TableActions": {
