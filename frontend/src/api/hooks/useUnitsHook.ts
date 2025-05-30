@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { unitsApi } from '../endpoints/master-data';
+import { unitsApi } from '../endpoints/settings/master-data';
 import { UnitDTO } from '../types';
 import { useAuth } from '@/context/auth';
 

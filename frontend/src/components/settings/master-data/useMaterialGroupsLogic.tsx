@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback } from 'react';
 import { MaterialGroupDTO } from '@/api/types';
-import { materialGroupsApi } from '@/api/endpoints/master-data';
-import TableRowActions from '../controls/table-row-actions/TableRowActions';
+import { materialGroupsApi } from '@/api/endpoints/settings/master-data';
+import TableRowActions from '../../controls/table-row-actions/TableRowActions';
 
 export function useMaterialGroupsLogic(
   materialGroups: MaterialGroupDTO[],

@@ -12,11 +12,11 @@ import {
   flexRender,
   SortingState,
 } from '@tanstack/react-table';
-import MaterialTypeDialog from '../forms/master-data-forms/materialTypes-form';
-import Loader from '../feedback/loader/loader';
-import AddButton from '../controls/add-button/AddButton';
+import MaterialTypeDialog from '../../forms/master-data-forms/materialTypes-form';
+import Loader from '../../feedback/loader/loader';
+import AddButton from '../../controls/add-button/AddButton';
 import { useMaterialTypesLogic } from './useMaterialTypesLogic';
-import Snackbar from '../feedback/snackbar/snackbar';
+import Snackbar from '../../feedback/snackbar/snackbar';
 
 export default function MaterialTypesClient() {
   const tT = useTranslations('MasterData');

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './master-data.module.css';
+import styles from '../settings.module.css';
 import { useState, useEffect, useRef } from 'react';
 import { useMaterialNames } from '@/api/hooks/useMaterialNamesHook';
 import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
@@ -12,11 +12,11 @@ import {
   flexRender,
   SortingState,
 } from '@tanstack/react-table';
-import MaterialNameDialog from '../forms/master-data-forms/materialNames-form';
-import Loader from '../feedback/loader/loader';
-import AddButton from '../controls/add-button/AddButton';
+import MaterialNameDialog from '../../forms/master-data-forms/materialNames-form';
+import Loader from '../../feedback/loader/loader';
+import AddButton from '../../controls/add-button/AddButton';
 import { useMaterialNamesLogic } from './useMaterialNamesLogic';
-import Snackbar from '../feedback/snackbar/snackbar';
+import Snackbar from '../../feedback/snackbar/snackbar';
 
 export default function MaterialNamesClient() {
   const tN = useTranslations('MasterData');

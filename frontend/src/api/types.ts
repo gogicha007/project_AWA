@@ -38,3 +38,12 @@ export interface MaterialNameDTO {
   typeId: number;
   description?: string;
 }
+
+export interface VendorDTO {
+  id?: number;
+  alias: string;
+  name?: string;
+  address?: string;
+  country: string;
+  user_id: number;
+}

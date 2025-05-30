@@ -2661,7 +2661,9 @@ export namespace Prisma {
 
   export type VendorMinAggregateOutputType = {
     id: number | null
+    alias: string | null
     name: string | null
+    address: string | null
     country: string | null
     userId: number | null
     createdAt: Date | null
@@ -2669,7 +2671,9 @@ export namespace Prisma {
 
   export type VendorMaxAggregateOutputType = {
     id: number | null
+    alias: string | null
     name: string | null
+    address: string | null
     country: string | null
     userId: number | null
     createdAt: Date | null
@@ -2677,7 +2681,9 @@ export namespace Prisma {
 
   export type VendorCountAggregateOutputType = {
     id: number
+    alias: number
     name: number
+    address: number
     country: number
     userId: number
     createdAt: number
@@ -2697,7 +2703,9 @@ export namespace Prisma {
 
   export type VendorMinAggregateInputType = {
     id?: true
+    alias?: true
     name?: true
+    address?: true
     country?: true
     userId?: true
     createdAt?: true
@@ -2705,7 +2713,9 @@ export namespace Prisma {
 
   export type VendorMaxAggregateInputType = {
     id?: true
+    alias?: true
     name?: true
+    address?: true
     country?: true
     userId?: true
     createdAt?: true
@@ -2713,7 +2723,9 @@ export namespace Prisma {
 
   export type VendorCountAggregateInputType = {
     id?: true
+    alias?: true
     name?: true
+    address?: true
     country?: true
     userId?: true
     createdAt?: true
@@ -2808,7 +2820,9 @@ export namespace Prisma {
 
   export type VendorGroupByOutputType = {
     id: number
+    alias: string
     name: string
+    address: string
     country: string
     userId: number
     createdAt: Date
@@ -2835,7 +2849,9 @@ export namespace Prisma {
 
   export type VendorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    alias?: boolean
     name?: boolean
+    address?: boolean
     country?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -2844,7 +2860,9 @@ export namespace Prisma {
 
   export type VendorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    alias?: boolean
     name?: boolean
+    address?: boolean
     country?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -2853,7 +2871,9 @@ export namespace Prisma {
 
   export type VendorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    alias?: boolean
     name?: boolean
+    address?: boolean
     country?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -2862,13 +2882,15 @@ export namespace Prisma {
 
   export type VendorSelectScalar = {
     id?: boolean
+    alias?: boolean
     name?: boolean
+    address?: boolean
     country?: boolean
     userId?: boolean
     createdAt?: boolean
   }
 
-  export type VendorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "country" | "userId" | "createdAt", ExtArgs["result"]["vendor"]>
+  export type VendorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alias" | "name" | "address" | "country" | "userId" | "createdAt", ExtArgs["result"]["vendor"]>
   export type VendorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2886,7 +2908,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      alias: string
       name: string
+      address: string
       country: string
       userId: number
       createdAt: Date
@@ -3315,7 +3339,9 @@ export namespace Prisma {
    */
   interface VendorFieldRefs {
     readonly id: FieldRef<"Vendor", 'Int'>
+    readonly alias: FieldRef<"Vendor", 'String'>
     readonly name: FieldRef<"Vendor", 'String'>
+    readonly address: FieldRef<"Vendor", 'String'>
     readonly country: FieldRef<"Vendor", 'String'>
     readonly userId: FieldRef<"Vendor", 'Int'>
     readonly createdAt: FieldRef<"Vendor", 'DateTime'>
@@ -9059,7 +9085,9 @@ export namespace Prisma {
 
   export const VendorScalarFieldEnum: {
     id: 'id',
+    alias: 'alias',
     name: 'name',
+    address: 'address',
     country: 'country',
     userId: 'userId',
     createdAt: 'createdAt'
@@ -9276,7 +9304,9 @@ export namespace Prisma {
     OR?: VendorWhereInput[]
     NOT?: VendorWhereInput | VendorWhereInput[]
     id?: IntFilter<"Vendor"> | number
+    alias?: StringFilter<"Vendor"> | string
     name?: StringFilter<"Vendor"> | string
+    address?: StringFilter<"Vendor"> | string
     country?: StringFilter<"Vendor"> | string
     userId?: IntFilter<"Vendor"> | number
     createdAt?: DateTimeFilter<"Vendor"> | Date | string
@@ -9285,7 +9315,9 @@ export namespace Prisma {
 
   export type VendorOrderByWithRelationInput = {
     id?: SortOrder
+    alias?: SortOrder
     name?: SortOrder
+    address?: SortOrder
     country?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -9294,19 +9326,23 @@ export namespace Prisma {
 
   export type VendorWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    alias?: string
     AND?: VendorWhereInput | VendorWhereInput[]
     OR?: VendorWhereInput[]
     NOT?: VendorWhereInput | VendorWhereInput[]
     name?: StringFilter<"Vendor"> | string
+    address?: StringFilter<"Vendor"> | string
     country?: StringFilter<"Vendor"> | string
     userId?: IntFilter<"Vendor"> | number
     createdAt?: DateTimeFilter<"Vendor"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "alias">
 
   export type VendorOrderByWithAggregationInput = {
     id?: SortOrder
+    alias?: SortOrder
     name?: SortOrder
+    address?: SortOrder
     country?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -9322,7 +9358,9 @@ export namespace Prisma {
     OR?: VendorScalarWhereWithAggregatesInput[]
     NOT?: VendorScalarWhereWithAggregatesInput | VendorScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Vendor"> | number
+    alias?: StringWithAggregatesFilter<"Vendor"> | string
     name?: StringWithAggregatesFilter<"Vendor"> | string
+    address?: StringWithAggregatesFilter<"Vendor"> | string
     country?: StringWithAggregatesFilter<"Vendor"> | string
     userId?: IntWithAggregatesFilter<"Vendor"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Vendor"> | Date | string
@@ -9647,7 +9685,9 @@ export namespace Prisma {
   }
 
   export type VendorCreateInput = {
+    alias: string
     name: string
+    address: string
     country: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutVendorInput
@@ -9655,14 +9695,18 @@ export namespace Prisma {
 
   export type VendorUncheckedCreateInput = {
     id?: number
+    alias: string
     name: string
+    address: string
     country: string
     userId: number
     createdAt?: Date | string
   }
 
   export type VendorUpdateInput = {
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutVendorNestedInput
@@ -9670,7 +9714,9 @@ export namespace Prisma {
 
   export type VendorUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9678,21 +9724,27 @@ export namespace Prisma {
 
   export type VendorCreateManyInput = {
     id?: number
+    alias: string
     name: string
+    address: string
     country: string
     userId: number
     createdAt?: Date | string
   }
 
   export type VendorUpdateManyMutationInput = {
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VendorUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10098,7 +10150,9 @@ export namespace Prisma {
 
   export type VendorCountOrderByAggregateInput = {
     id?: SortOrder
+    alias?: SortOrder
     name?: SortOrder
+    address?: SortOrder
     country?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10111,7 +10165,9 @@ export namespace Prisma {
 
   export type VendorMaxOrderByAggregateInput = {
     id?: SortOrder
+    alias?: SortOrder
     name?: SortOrder
+    address?: SortOrder
     country?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10119,7 +10175,9 @@ export namespace Prisma {
 
   export type VendorMinOrderByAggregateInput = {
     id?: SortOrder
+    alias?: SortOrder
     name?: SortOrder
+    address?: SortOrder
     country?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10630,14 +10688,18 @@ export namespace Prisma {
   }
 
   export type VendorCreateWithoutUserInput = {
+    alias: string
     name: string
+    address: string
     country: string
     createdAt?: Date | string
   }
 
   export type VendorUncheckedCreateWithoutUserInput = {
     id?: number
+    alias: string
     name: string
+    address: string
     country: string
     createdAt?: Date | string
   }
@@ -10673,7 +10735,9 @@ export namespace Prisma {
     OR?: VendorScalarWhereInput[]
     NOT?: VendorScalarWhereInput | VendorScalarWhereInput[]
     id?: IntFilter<"Vendor"> | number
+    alias?: StringFilter<"Vendor"> | string
     name?: StringFilter<"Vendor"> | string
+    address?: StringFilter<"Vendor"> | string
     country?: StringFilter<"Vendor"> | string
     userId?: IntFilter<"Vendor"> | number
     createdAt?: DateTimeFilter<"Vendor"> | Date | string
@@ -10913,27 +10977,35 @@ export namespace Prisma {
 
   export type VendorCreateManyUserInput = {
     id?: number
+    alias: string
     name: string
+    address: string
     country: string
     createdAt?: Date | string
   }
 
   export type VendorUpdateWithoutUserInput = {
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VendorUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VendorUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

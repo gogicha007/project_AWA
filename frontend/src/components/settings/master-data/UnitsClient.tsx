@@ -1,21 +1,23 @@
 'use client';
 
-import styles from './master-data.module.css';
-import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
+import styles from '../settings.module.css';
+import { useState, useEffect } from 'react';
+import { useUnits } from '@/api/hooks/useUnitsHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import MaterialGroupDialog from '../forms/master-data-forms/materialGroups-form';
-import Loader from '../feedback/loader/loader';
-import AddButton from '../controls/add-button/AddButton';
-import { useMaterialGroupsLogic } from './useMaterialGroupsLogic';
+import Loader from '../../feedback/loader/loader';
+import AddButton from '../../controls/add-button/AddButton';
+import { useUnitsLogic } from './useUnitsLogic';
+import UnitDialog from '../../forms/master-data-forms/units-form';
+import Snackbar from '../../feedback/snackbar/snackbar';
 
-export default function MaterialGroupsClient() {
-  const tM = useTranslations('MasterData');
-  const { materialGroups, loading, error, mutate } = useMaterialGroups();
+export default function UnitsClient() {
+  const tU = useTranslations('MasterData');
+  const { units, loading, error, mutate } = useUnits();
 
   const {
     data,
@@ -24,9 +26,14 @@ export default function MaterialGroupsClient() {
     handleSave,
     isDialogOpen,
     setIsDialogOpen,
-    currentMaterialGroup,
-  } = useMaterialGroupsLogic(materialGroups, mutate, tM);
+    currentUnit,
+    errorMessage,
+  } = useUnitsLogic(units, mutate, tU);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+  useEffect(() => {
+    if (errorMessage) setSnackbarOpen(true);
+  }, [errorMessage]);
   const table = useReactTable({
     data,
     columns,
@@ -37,13 +44,13 @@ export default function MaterialGroupsClient() {
   if (error)
     return (
       <div>
-        `${tM('errors.loading')}: {String(error)}`
+        `${tU('units.errors.loading')}: {String(error)}`
       </div>
     );
 
   return (
     <div>
-      <h1 className={styles.pageTitle}>Material Groups</h1>
+      <h1 className={styles.pageTitle}>Units</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
           <AddButton onAdd={handleAdd} />
@@ -76,15 +83,18 @@ export default function MaterialGroupsClient() {
           </tbody>
         </table>
       </div>
-      <MaterialGroupDialog
+      <Snackbar
+        message={errorMessage || ''}
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+      />
+      <UnitDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}
-        initialData={currentMaterialGroup}
+        initialData={currentUnit}
         title={
-          currentMaterialGroup
-            ? tM('material_groups.edit_form_title')
-            : tM('material_groups.add_form_title')
+          currentUnit ? tU('units.edit_form_title') : tU('units.add_form_title')
         }
       />
     </div>

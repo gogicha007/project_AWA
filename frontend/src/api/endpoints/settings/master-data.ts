@@ -1,10 +1,10 @@
-import apiClient from '../api-client';
+import apiClient from '../../api-client';
 import {
   MaterialGroupDTO,
   MaterialTypeDTO,
   MaterialNameDTO,
   UnitDTO,
-} from '../types';
+} from '../../types';
 import { handleApiError } from '@/utils/handleApiError';
 
 export const materialGroupsApi = {
@@ -51,8 +51,12 @@ export const materialGroupsApi = {
   },
 
   delete: async (id: number) => {
-    const response = await apiClient.delete(`/material-groups/${id}`);
-    return response.data;
+    try {
+      const response = await apiClient.delete(`/material-groups/${id}`);
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 };
 
@@ -88,8 +92,12 @@ export const unitsApi = {
   },
 
   delete: async (id: number) => {
-    const response = await apiClient.delete(`/units/${id}`);
-    return response.data;
+    try {
+      const response = await apiClient.delete(`/units/${id}`);
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 };
 
@@ -117,20 +125,28 @@ export const materialTypesApi = {
   },
 
   update: async (materialType: MaterialTypeDTO): Promise<MaterialTypeDTO> => {
-    const materialTypeData: MaterialTypeDTO = {
-      type: materialType.type,
-      groupId: materialType.groupId,
-    };
-    const response = await apiClient.patch(
-      `/material-types/${materialType.id}`,
-      materialTypeData
-    );
-    return response.data;
+    try {
+      const materialTypeData: MaterialTypeDTO = {
+        type: materialType.type,
+        groupId: materialType.groupId,
+      };
+      const response = await apiClient.patch(
+        `/material-types/${materialType.id}`,
+        materialTypeData
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 
   delete: async (id: number) => {
-    const response = await apiClient.delete(`/material-types/${id}`);
-    return response.data;
+    try {
+      const response = await apiClient.delete(`/material-types/${id}`);
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
   },
 };
 
