@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsInt, IsNotEmpty, IsString, IsOptional } from 'class-validator';
 
-export class VendorsDTO {
+export class VendorDTO {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -25,5 +25,5 @@ export class VendorsDTO {
   @ApiProperty()
   @IsInt()
   @IsNotEmpty()
-  user_id: number;
+  userId: number;
 }

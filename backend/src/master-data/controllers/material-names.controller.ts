@@ -29,7 +29,6 @@ export class MaterialNamesController {
     @Param('id') id: number,
     @Body() updateMaterialNameDTO: MaterialNameDTO,
   ) {
-    console.log('controller', id);
     return this.materialNamesService.update(+id, updateMaterialNameDTO);
   }
 
