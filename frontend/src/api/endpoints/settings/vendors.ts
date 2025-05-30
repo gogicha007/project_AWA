@@ -15,7 +15,7 @@ export const vendorsApi = {
   create: async (vendor: VendorDTO): Promise<VendorDTO> => {
     try {
       const vendorCreateData: VendorDTO = {
-        short_name: vendor.short_name,
+        alias: vendor.alias,
         name: vendor.name,
         address: vendor.address,
         country: vendor.country,
@@ -31,7 +31,7 @@ export const vendorsApi = {
   update: async (vendor: VendorDTO): Promise<VendorDTO> => {
     try {
       const vendorUpdateData: VendorDTO = {
-        short_name: vendor.short_name,
+        alias: vendor.alias,
         name: vendor.name,
         address: vendor.address,
         country: vendor.country,

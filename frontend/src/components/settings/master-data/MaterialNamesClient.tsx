@@ -2,8 +2,8 @@
 
 import styles from '../settings.module.css';
 import { useState, useEffect, useRef } from 'react';
-import { useMaterialNames } from '@/api/hooks/useMaterialNamesHook';
-import { useMaterialTypes } from '@/api/hooks/useMaterialTypesHook';
+import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
+import { useMaterialTypes } from '@/api/hooks/settings/useMaterialTypesHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,

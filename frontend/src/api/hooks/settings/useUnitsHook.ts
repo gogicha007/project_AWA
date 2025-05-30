@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { unitsApi } from '../endpoints/settings/master-data';
-import { UnitDTO } from '../types';
+import { unitsApi } from '../../endpoints/settings/master-data';
+import { UnitDTO } from '../../types';
 import { useAuth } from '@/context/auth';
 
 export function useUnits() {
@@ -25,10 +25,8 @@ export function useUnits() {
   }, []);
 
   const mutate = useCallback(() => {
-    if (!authLoading) {
-      return fetchUnits();
-    }
-    return Promise.resolve()
+    if (!authLoading) return fetchUnits();
+    return Promise.resolve();
   }, [authLoading, fetchUnits]);
 
   useEffect(() => {

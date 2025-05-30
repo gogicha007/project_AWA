@@ -2,7 +2,7 @@
 
 import styles from '../settings.module.css';
 import { useState, useEffect } from 'react';
-import { useUnits } from '@/api/hooks/useUnitsHook';
+import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,

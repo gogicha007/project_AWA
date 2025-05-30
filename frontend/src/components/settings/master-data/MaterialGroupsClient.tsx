@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '../settings.module.css';
-import { useMaterialGroups } from '@/api/hooks/useMaterialGroupsHook';
+import { useMaterialGroups } from '@/api/hooks/settings/useMaterialGroupsHook';
 import { useTranslations } from 'next-intl';
 import {
   useReactTable,

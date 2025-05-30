@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { materialGroupsApi } from '../endpoints/settings/master-data';
-import { MaterialGroupDTO } from '../types';
+import { materialGroupsApi } from '../../endpoints/settings/master-data';
+import { MaterialGroupDTO } from '../../types';
 import { useAuth } from '@/context/auth';
 
 export function useMaterialGroups() {
