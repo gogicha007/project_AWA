@@ -1,7 +1,8 @@
 import React from 'react';
+import VendorsClient from '@/components/settings/vendors/VendorsClient';
 
 const Vendors = () => {
-  return <h1>vendors</h1>
+  return <VendorsClient />;
 };
 
 export default Vendors;

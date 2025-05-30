@@ -126,6 +126,16 @@
       "view": "View"
     }
   },
+  "Vendors": {
+    "title": "Vendors",
+    "table": {
+      "id": "ID",
+      "alias": "Alias",
+      "name": "Name",
+      "address": "Address",
+      "country": "Country"
+    }
+  },
   "TableActions": {
     "title": "Actions",
     "add": "Add new item",

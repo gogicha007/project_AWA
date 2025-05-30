@@ -55,6 +55,22 @@ export class UsersService {
     return user;
   }
 
+  async fingByFBUid(id: string) {
+    const user = await this.dbServise.user.findUnique({
+      where: { firebaseUid: id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+    
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    return user;
+  }
   async update(id: number, updateUserDto: UpdateUserDto) {
     try {
       const user = await this.dbServise.user.update({

@@ -16,7 +16,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserSyncInterceptor } from './auth/user-sync.interceptor';
 import { LoggingService } from './common/services/logging.service';
 import { CustomExceptionFilter } from './common/filters/exception.filter';
-import { MasterDataModule } from './master-data/master-data.module';
+import { MasterDataModule } from './settings/master-data/master-data.module';
 import { VendorsModule } from './settings/vendors/vendor.module';
 
 @Module({
