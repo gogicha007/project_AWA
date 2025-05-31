@@ -107,6 +107,9 @@
         "id": "ID",
         "unit": "Unit"
       },
+      "form": {
+        "unit_label": "Unit"
+      },
       "errors": {
         "loading": "Error loading Units",
         "delete": "Error deleting Unit with id:",
@@ -134,6 +137,12 @@
       "name": "Name",
       "address": "Address",
       "country": "Country"
+    },
+    "form": {
+      "alias_label": "Alias",
+      "name_label": "Name",
+      "address_label": "Address",
+      "country_label": "Country"
     },
     "errors": {
       "loading": "Error loading Vendors",

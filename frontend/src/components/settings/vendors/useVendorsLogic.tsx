@@ -13,14 +13,12 @@ type VendorRow = {
 };
 
 export function useVendorsLogic(
-  vendors: Omit<VendorDTO, 'user_id'>[],
+  vendors: VendorDTO[],
   mutate: () => Promise<void | VendorDTO[]>,
   tVar: (key: string) => string
 ) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentVendor, setCurrentVendor] = useState<
-    Omit<VendorDTO, 'user_id'> | undefined
-  >();
+  const [currentVendor, setCurrentVendor] = useState<VendorDTO | undefined>();
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const { dbUserId } = useAuth();
 
@@ -56,7 +54,10 @@ export function useVendorsLogic(
     async (vendor: VendorDTO) => {
       try {
         if (vendor.id) {
-          await vendorsApi.update(vendor);
+          if (dbUserId === null) {
+            throw new Error('User ID is required to create a vendor.');
+          }
+          await vendorsApi.update(vendor, dbUserId);
           setCurrentVendor(vendor);
         } else {
           if (dbUserId === null) {

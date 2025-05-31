@@ -45,5 +45,5 @@ export interface VendorDTO {
   name?: string;
   address?: string;
   country: string;
-  user_id: number;
+  // user_id: number;
 }
