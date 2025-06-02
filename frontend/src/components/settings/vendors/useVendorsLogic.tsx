@@ -72,10 +72,10 @@ export function useVendorsLogic(
       } catch (error) {
         setErrorMessage(
           typeof error === 'string'
-            ? `${tVar('vendors.errors.save')}. ${error}`
-            : tVar('vendors.errors.save')
+            ? `${tVar('errors.save')}. ${error}`
+            : tVar('errors.save')
         );
-        console.error(tVar('vendors.errors.save'), error);
+        console.error(tVar('errors.save'), error);
       }
     },
     [mutate, tVar, dbUserId]
@@ -83,17 +83,17 @@ export function useVendorsLogic(
 
   const handleDelete = useCallback(
     async (id: number) => {
-      if (confirm(tVar('vendors.warnings.delete'))) {
+      if (confirm(tVar('warnings.delete'))) {
         try {
           await vendorsApi.delete(id);
           setErrorMessage(undefined);
         } catch (error) {
           setErrorMessage(
             typeof error === 'string'
-              ? `${tVar('vendors.errors.delete')} ${id}. ${error}`
-              : `${tVar('vendors.errors.delete')} ${id}`
+              ? `${tVar('errors.delete')} ${id}. ${error}`
+              : `${tVar('errors.delete')} ${id}`
           );
-          console.error(`${tVar('vendors.errors.delete')} ${id}`, error);
+          console.error(`${tVar('errors.delete')} ${id}`, error);
         }
       }
       await mutate();
@@ -109,26 +109,26 @@ export function useVendorsLogic(
     () => [
       {
         accessorKey: 'id',
-        header: tVar('vendors.table.id'),
+        header: tVar('table.id'),
       },
       {
         accessorKey: 'alias',
-        header: tVar('vendors.table.alias'),
+        header: tVar('table.alias'),
         enableSorting: true,
       },
       {
         accessorKey: 'name',
-        header: tVar('vendors.table.name'),
+        header: tVar('table.name'),
         enableSorting: true,
       },
       {
         accessorKey: 'address',
-        header: tVar('vendors.table.address'),
+        header: tVar('table.address'),
         enableSorting: true,
       },
       {
-        accessorKey: 'name',
-        header: tVar('vendors.table.country'),
+        accessorKey: 'country',
+        header: tVar('table.country'),
         enableSorting: true,
       },
       {

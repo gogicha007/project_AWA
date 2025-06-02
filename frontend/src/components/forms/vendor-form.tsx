@@ -80,7 +80,7 @@ export default function VendorDialog({
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.form_item}>
-          <label htmlFor="alias">{`${tVar('vendors.form.alias_label')}`}</label>
+          <label htmlFor="alias">{`${tVar('form.alias_label')}`}</label>
           <input
             {...register('alias', { required: true })}
             type="text"
