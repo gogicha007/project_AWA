@@ -21,6 +21,14 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       href: '/',
     },
     {
+      label: tS('logistics'),
+      href: '/logistics',
+    },
+    {
+      label: tS('warehouse'),
+      href: '/warehouse',
+    },
+    {
       label: tS('settings'),
       submenu: [
         {
@@ -29,8 +37,8 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
         },
         {
           label: tS('vendors'),
-          href: '/settings/vendors'
-        }
+          href: '/settings/vendors',
+        },
       ],
     },
   ];

@@ -170,6 +170,51 @@ exports.Prisma.MaterialNameScalarFieldEnum = {
   typeId: 'typeId'
 };
 
+exports.Prisma.ShipmentScalarFieldEnum = {
+  id: 'id',
+  alias: 'alias',
+  status: 'status',
+  declaration_number: 'declaration_number',
+  declaration_date: 'declaration_date',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  invoiceNumber: 'invoiceNumber',
+  invoiceDate: 'invoiceDate',
+  totalAmount: 'totalAmount',
+  isArrived: 'isArrived',
+  truckNumber: 'truckNumber',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InvoiceItemsScalarFieldEnum = {
+  id: 'id',
+  invoiceId: 'invoiceId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  total: 'total',
+  isArrived: 'isArrived'
+};
+
+exports.Prisma.ShipmentInvoiceScalarFieldEnum = {
+  shipmentId: 'shipmentId',
+  invoiceId: 'invoiceId'
+};
+
+exports.Prisma.ShipmentFileScalarFieldEnum = {
+  id: 'id',
+  shipmentId: 'shipmentId',
+  filePath: 'filePath',
+  fileType: 'fileType'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -184,7 +229,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
+  APPLIED: 'APPLIED',
+  DECLARED: 'DECLARED',
+  ARRIVED: 'ARRIVED'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -193,7 +242,12 @@ exports.Prisma.ModelName = {
   Currency: 'Currency',
   MaterialGroup: 'MaterialGroup',
   MaterialType: 'MaterialType',
-  MaterialName: 'MaterialName'
+  MaterialName: 'MaterialName',
+  Shipment: 'Shipment',
+  Invoice: 'Invoice',
+  InvoiceItems: 'InvoiceItems',
+  ShipmentInvoice: 'ShipmentInvoice',
+  ShipmentFile: 'ShipmentFile'
 };
 
 /**

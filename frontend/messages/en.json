@@ -162,6 +162,12 @@
       "view": "View"
     }
   },
+  "Logistics":{
+    "title": "Logistics"
+  },
+  "Warehouse": {
+    "title": "Warehouse"
+  },
   "TableActions": {
     "title": "Actions",
     "add": "Add new item",
@@ -177,6 +183,8 @@
   },
   "SideBar": {
     "home": "Home",
+    "logistics": "Logistics",
+    "warehouse": "Warehouse",
     "settings": "Settings",
     "masterData": "Master data",
     "vendors": "Vendors"

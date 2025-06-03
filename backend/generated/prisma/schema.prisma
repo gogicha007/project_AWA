@@ -16,34 +16,37 @@ datasource db {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
-  firebaseUid String   @unique
-  email       String   @unique
+  id          Int       @id @default(autoincrement())
+  firebaseUid String    @unique
+  email       String    @unique
   name        String?
-  role        String   @default("user")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  role        String    @default("user")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   Vendor      Vendor[]
+  Invoice     Invoice[]
 
   @@map("user")
 }
 
 model Vendor {
-  id        Int      @id @default(autoincrement())
-  alias     String   @unique
+  id        Int       @id @default(autoincrement())
+  alias     String    @unique
   name      String
   address   String
   country   String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  createdAt DateTime @default(now())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int       @map("user_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  Invoice   Invoice[]
 
   @@map("vendor")
 }
 
 model Unit {
-  id   Int    @id @default(autoincrement())
-  unit String @unique
+  id           Int            @id @default(autoincrement())
+  unit         String         @unique
+  InvoiceItems InvoiceItems[]
 
   @@map("unit")
 }
@@ -69,21 +72,92 @@ model MaterialType {
   id           Int            @id @default(autoincrement())
   type         String         @unique
   group        MaterialGroup  @relation(fields: [groupId], references: [id])
-  groupId      Int
+  groupId      Int            @map("group_id")
   MaterialName MaterialName[]
 
   @@map("material_type")
 }
 
 model MaterialName {
-  id          Int          @id @default(autoincrement())
-  name        String       @unique
-  dn          String
-  pn          String
-  degree      Int
-  description String
-  type        MaterialType @relation(fields: [typeId], references: [id])
-  typeId      Int
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  dn           String
+  pn           String
+  degree       Int
+  description  String
+  type         MaterialType   @relation(fields: [typeId], references: [id])
+  typeId       Int            @map("type_id")
+  InvoiceItems InvoiceItems[]
 
   @@map("material_name")
+}
+
+enum ShipmentStatus {
+  APPLIED
+  DECLARED
+  ARRIVED
+}
+
+model Shipment {
+  id                 Int               @id @default(autoincrement())
+  alias              String
+  status             ShipmentStatus
+  declaration_number String?           @map("declaration_number")
+  declaration_date   DateTime?         @map("declaration_date")
+  invoices           ShipmentInvoice[]
+  files              ShipmentFile[]
+  createdAt          DateTime          @default(now()) @map("created_at")
+}
+
+model Invoice {
+  id            Int               @id @default(autoincrement())
+  shipments     ShipmentInvoice[]
+  vendor        Vendor            @relation(fields: [vendorId], references: [id])
+  vendorId      Int               @map("vendor_id")
+  invoiceNumber String            @map("invoice_number")
+  invoiceDate   DateTime          @map("invoice_date")
+  totalAmount   Decimal           @map("total_amount")
+  isArrived     Boolean           @map("is_arrived")
+  truckNumber   String?           @map("truck_number")
+  user          User              @relation(fields: [userId], references: [id])
+  userId        Int               @map("user_id")
+  createdAt     DateTime          @default(now()) @map("created_at")
+  InvoiceItems  InvoiceItems[]
+}
+
+model InvoiceItems {
+  id          Int          @id @default(autoincrement())
+  invoice     Invoice      @relation(fields: [invoiceId], references: [id])
+  invoiceId   Int
+  product     MaterialName @relation(fields: [productId], references: [id])
+  productId   Int          @map("product_id")
+  description String
+  quantity    Decimal
+  unit        Unit         @relation(fields: [unitId], references: [id])
+  unitId      Int
+  unitPrice   Decimal      @map("unit_price")
+  total       Decimal      @map("total")
+  isArrived   Boolean      @map("is_arrived")
+
+  @@map("invoice_items")
+}
+
+model ShipmentInvoice {
+  shipment   Shipment @relation(fields: [shipmentId], references: [id])
+  shipmentId Int      @map("shipment_id")
+  invoice    Invoice  @relation(fields: [invoiceId], references: [id])
+  invoiceId  Int      @map("invoice_id")
+
+  @@id([shipmentId, invoiceId])
+  @@map("shipment_invoice")
+}
+
+model ShipmentFile {
+  id         Int      @id @default(autoincrement())
+  shipment   Shipment @relation(fields: [shipmentId], references: [id])
+  shipmentId Int      @map("shipment_id")
+  filePath   String   @map("file_path")
+  fileType   String   @map("file_type")
+
+  @@map("shipment_file")
 }
