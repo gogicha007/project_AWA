@@ -1,9 +1,12 @@
-import React from 'react'
+import styles from './page.module.css';
+import React from 'react';
 
 const Logistics = () => {
   return (
-    <div>Logistics</div>
-  )
-}
+    <section>
+      <div className={styles.logistics__main}>Logistics</div>
+    </section>
+  );
+};
 
-export default Logistics
+export default Logistics;

@@ -191,7 +191,7 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.InvoiceItemsScalarFieldEnum = {
+exports.Prisma.InvoiceItemScalarFieldEnum = {
   id: 'id',
   invoiceId: 'invoiceId',
   productId: 'productId',
@@ -245,7 +245,7 @@ exports.Prisma.ModelName = {
   MaterialName: 'MaterialName',
   Shipment: 'Shipment',
   Invoice: 'Invoice',
-  InvoiceItems: 'InvoiceItems',
+  InvoiceItem: 'InvoiceItem',
   ShipmentInvoice: 'ShipmentInvoice',
   ShipmentFile: 'ShipmentFile'
 };
