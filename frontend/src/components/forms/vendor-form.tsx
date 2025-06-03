@@ -88,7 +88,33 @@ export default function VendorDialog({
             className={styles.input}
           />
         </div>
-
+        <div className={styles.form_item}>
+          <label htmlFor="name">{`${tVar('form.name_label')}`}</label>
+          <input
+            {...register('name', { required: false })}
+            type="text"
+            id="name"
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.form_item}>
+          <label htmlFor="address">{`${tVar('form.address_label')}`}</label>
+          <input
+            {...register('address', { required: false })}
+            type="text"
+            id="address"
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.form_item}>
+          <label htmlFor="country">{`${tVar('form.country_label')}`}</label>
+          <input
+            {...register('country', { required: false })}
+            type="text"
+            id="country"
+            className={styles.input}
+          />
+        </div>
         <div className={styles.formActions}>
           <button
             type="button"

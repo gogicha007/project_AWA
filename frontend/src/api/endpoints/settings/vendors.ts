@@ -19,7 +19,7 @@ export const vendorsApi = {
         name: vendor.name,
         address: vendor.address,
         country: vendor.country,
-        user_id: userId,
+        userId: userId,
       };
       const response = await apiClient.post('/vendors', vendorCreateData);
       return response.data;
@@ -35,7 +35,7 @@ export const vendorsApi = {
         name: vendor.name,
         address: vendor.address,
         country: vendor.country,
-        user_id: userId,
+        userId: userId,
       };
       const response = await apiClient.patch(
         `/vendors/${vendor.id}`,
