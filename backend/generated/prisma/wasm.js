@@ -188,7 +188,8 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   isArrived: 'isArrived',
   truckNumber: 'truckNumber',
   userId: 'userId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  currencyId: 'currencyId'
 };
 
 exports.Prisma.InvoiceItemScalarFieldEnum = {

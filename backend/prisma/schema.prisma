@@ -44,17 +44,18 @@ model Vendor {
 }
 
 model Unit {
-  id           Int            @id @default(autoincrement())
-  unit         String         @unique
+  id          Int           @id @default(autoincrement())
+  unit        String        @unique
   InvoiceItem InvoiceItem[]
 
   @@map("unit")
 }
 
 model Currency {
-  id   Int    @id @default(autoincrement())
-  code String @unique // e.g., "USD"
-  name String // e.g., "US Dollar"
+  id      Int       @id @default(autoincrement())
+  code    String    @unique // e.g., "USD"
+  name    String // e.g., "US Dollar"
+  Invoice Invoice[]
 
   @@map("currency")
 }
@@ -79,14 +80,14 @@ model MaterialType {
 }
 
 model MaterialName {
-  id           Int            @id @default(autoincrement())
-  name         String         @unique
-  dn           String
-  pn           String
-  degree       Int
-  description  String
-  type         MaterialType   @relation(fields: [typeId], references: [id])
-  typeId       Int            @map("type_id")
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  dn          String
+  pn          String
+  degree      Int
+  description String
+  type        MaterialType  @relation(fields: [typeId], references: [id])
+  typeId      Int           @map("type_id")
   InvoiceItem InvoiceItem[]
 
   @@map("material_name")
@@ -124,7 +125,9 @@ model Invoice {
   user          User              @relation(fields: [userId], references: [id])
   userId        Int               @map("user_id")
   createdAt     DateTime          @default(now()) @map("created_at")
-  InvoiceItem  InvoiceItem[]
+  InvoiceItem   InvoiceItem[]
+  currency      Currency          @relation(fields: [currencyId], references: [id])
+  currencyId    Int               @map("currency_id")
 
   @@map("invoice")
 }

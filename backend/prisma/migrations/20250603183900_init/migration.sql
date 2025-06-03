@@ -98,6 +98,7 @@ CREATE TABLE "invoice" (
     "truck_number" TEXT,
     "user_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "currency_id" INTEGER NOT NULL,
 
     CONSTRAINT "invoice_pkey" PRIMARY KEY ("id")
 );
@@ -175,6 +176,9 @@ ALTER TABLE "invoice" ADD CONSTRAINT "invoice_vendor_id_fkey" FOREIGN KEY ("vend
 ALTER TABLE "invoice" ADD CONSTRAINT "invoice_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "invoice" ADD CONSTRAINT "invoice_currency_id_fkey" FOREIGN KEY ("currency_id") REFERENCES "currency"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "invoice_item" ADD CONSTRAINT "invoice_item_invoiceId_fkey" FOREIGN KEY ("invoiceId") REFERENCES "invoice"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -191,4 +195,3 @@ ALTER TABLE "shipment_invoice" ADD CONSTRAINT "shipment_invoice_invoice_id_fkey"
 
 -- AddForeignKey
 ALTER TABLE "shipment_file" ADD CONSTRAINT "shipment_file_shipment_id_fkey" FOREIGN KEY ("shipment_id") REFERENCES "shipment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-

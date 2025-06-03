@@ -52,9 +52,10 @@ model Unit {
 }
 
 model Currency {
-  id   Int    @id @default(autoincrement())
-  code String @unique // e.g., "USD"
-  name String // e.g., "US Dollar"
+  id      Int       @id @default(autoincrement())
+  code    String    @unique // e.g., "USD"
+  name    String // e.g., "US Dollar"
+  Invoice Invoice[]
 
   @@map("currency")
 }
@@ -125,6 +126,8 @@ model Invoice {
   userId        Int               @map("user_id")
   createdAt     DateTime          @default(now()) @map("created_at")
   InvoiceItem   InvoiceItem[]
+  currency      Currency          @relation(fields: [currencyId], references: [id])
+  currencyId    Int               @map("currency_id")
 
   @@map("invoice")
 }
