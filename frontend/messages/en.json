@@ -162,8 +162,38 @@
       "view": "View"
     }
   },
-  "Logistics":{
-    "title": "Shipments"
+  "Logistics": {
+    "title": "Shipments",
+    "table": {
+      "id": "ID",
+      "alias": "Alias",
+      "declaration_number": "Declaration number",
+      "declaration_date": "Declaration date",
+      "status": "Status"
+    },
+    "form": {
+      "alias_label": "Alias",
+      "declaration_number_label": "Declaration number",
+      "declaration_date_lavel": "Declaration date",
+      "status_label": "Status"
+    },
+    "errors": {
+      "loading": "Error loading Shipments",
+      "delete": "Error deleting Shipment with id:",
+      "save": "Error saving Shipment:"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this Shipment?"
+    },
+    "edit_form_title": "Edit Shipment",
+    "add_form_title": "Add Shipment",
+    "actions": {
+      "title": "Actions",
+      "add": "Add new item",
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View"
+    }
   },
   "Warehouse": {
     "title": "Warehouse"

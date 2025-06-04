@@ -50,4 +50,7 @@ export interface VendorDTO {
 export interface ShipmentDTO {
   id?: number;
   alias: string;
+  declaration_number: string;
+  declaration_date: Date;
+  status: string;
 }

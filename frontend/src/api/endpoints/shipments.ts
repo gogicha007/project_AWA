@@ -8,23 +8,44 @@ export const shipmentsApi = {
     return response.data;
   },
 
-  create: async (shipment: ShipmentDTO): Promise<ShipmentDTO> => {
+  create: async (
+    shipment: ShipmentDTO,
+    userId: number
+  ): Promise<ShipmentDTO> => {
     try {
-      const shipmentData: ShipmentDTO = {
+      const shipmentCreateData = {
         alias: shipment.alias,
+        declaration_number: shipment.declaration_number,
+        declaration_date: shipment.declaration_date,
+        status: shipment.status,
+        userId: userId,
       };
-      return shipmentData;
+      console.log('shipment create data', shipmentCreateData);
+      const response = await apiClient.post('/shipments', shipmentCreateData);
+      return response.data;
     } catch (error) {
       handleApiError(error);
     }
   },
 
-  update: async (shipment: ShipmentDTO): Promise<ShipmentDTO> => {
+  update: async (
+    shipment: ShipmentDTO,
+    userId: number
+  ): Promise<ShipmentDTO> => {
     try {
-      const shipmentData: ShipmentDTO = {
+      const shipmentUpdateData = {
         alias: shipment.alias,
+        declaration_number: shipment.declaration_number,
+        declaration_date: shipment.declaration_date,
+        status: shipment.status,
+        userId: userId,
       };
-      return shipmentData;
+      console.log('shipment update data', shipmentUpdateData);
+      const response = await apiClient.patch(
+        `/shipments/${shipment.id}`,
+        shipmentUpdateData
+      );
+      return response.data;
     } catch (error) {
       handleApiError(error);
     }

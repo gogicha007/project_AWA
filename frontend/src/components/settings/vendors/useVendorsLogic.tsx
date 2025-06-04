@@ -52,7 +52,6 @@ export function useVendorsLogic(
 
   const handleSave = useCallback(
     async (vendor: VendorDTO) => {
-      console.log('vendor', vendor)
       try {
         if (vendor.id) {
           if (dbUserId === null) {
