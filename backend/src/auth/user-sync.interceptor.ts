@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
   ForbiddenException,
 } from '@nestjs/common';
-import { Observable, tap, catchError } from 'rxjs';
+import { Observable, catchError, from, switchMap } from 'rxjs';
 import { UsersService } from '../users/users.service';
 import { LoggingService } from 'src/common/services/logging.service';
 
@@ -28,38 +28,47 @@ export class UserSyncInterceptor implements NestInterceptor {
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const request = context.switchToHttp().getRequest<RequestWithUser>();
+    if (request.user && request.user.uid) {
+      const userId = request.user.uid;
+      if (!this.userCache.has(userId)) {
+        return from(
+          this.usersService
+            .create({
+              firebaseUid: request.user.uid,
+              email: request.user.email,
+              name: request.user.name,
+            })
+            .then(() => {
+              this.userCache.set(userId, true);
+            }),
+        ).pipe(
+          switchMap(() => next.handle()),
+          catchError((error) => {
+            if (error instanceof Error) {
+              this.loggingService.error(
+                'Error in user sync interceptor:',
+                error.stack || 'No stack trace available',
+              );
+            } else {
+              this.loggingService.error(
+                'Unknown error in user sync interceptor:',
+                JSON.stringify(error),
+              );
+            }
 
+            if (this.isAuthenticationError(error)) {
+              throw new UnauthorizedException('Authentication required');
+            } else if (this.isPermissionError(error)) {
+              throw new ForbiddenException('Insufficient permissions');
+            } else {
+              // For other errors (like validation errors), rethrow as is
+              throw error;
+            }
+          }),
+        );
+      }
+    }
     return next.handle().pipe(
-      tap(() => {
-        if (request.user && request.user.uid) {
-          const userId = request.user.uid;
-
-          if (!this.userCache.has(userId)) {
-            this.usersService
-              .create({
-                firebaseUid: request.user.uid,
-                email: request.user.email,
-                name: request.user.name,
-              })
-              .then(() => {
-                this.userCache.set(userId, true);
-              })
-              .catch((error) => {
-                if (error instanceof Error) {
-                  this.loggingService.error(
-                    'Error creating user:',
-                    error.stack || 'No stack trace available',
-                  );
-                } else {
-                  this.loggingService.error(
-                    'Unknown error while creating user:',
-                    JSON.stringify(error),
-                  );
-                }
-              });
-          }
-        }
-      }),
       catchError((error) => {
         if (error instanceof Error) {
           this.loggingService.error(
