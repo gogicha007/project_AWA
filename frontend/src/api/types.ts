@@ -46,3 +46,8 @@ export interface VendorDTO {
   address?: string;
   country: string;
 }
+
+export interface ShipmentDTO {
+  id?: number;
+  alias: string;
+}
