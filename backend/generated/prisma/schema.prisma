@@ -163,8 +163,10 @@ model ShipmentFile {
   id         Int      @id @default(autoincrement())
   shipment   Shipment @relation(fields: [shipmentId], references: [id])
   shipmentId Int      @map("shipment_id")
-  filePath   String   @map("file_path")
-  fileType   String   @map("file_type")
+  fileName   String   @map("file_name")
+  filePath   String?  @map("file_path")
+  fileType   String?  @map("file_type")
+  fileData   Bytes?   @map("file_data")
 
   @@map("shipment_file")
 }

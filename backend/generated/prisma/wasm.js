@@ -212,8 +212,10 @@ exports.Prisma.ShipmentInvoiceScalarFieldEnum = {
 exports.Prisma.ShipmentFileScalarFieldEnum = {
   id: 'id',
   shipmentId: 'shipmentId',
+  fileName: 'fileName',
   filePath: 'filePath',
-  fileType: 'fileType'
+  fileType: 'fileType',
+  fileData: 'fileData'
 };
 
 exports.Prisma.SortOrder = {
