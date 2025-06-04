@@ -18,6 +18,7 @@ import { LoggingService } from './common/services/logging.service';
 import { CustomExceptionFilter } from './common/filters/exception.filter';
 import { MasterDataModule } from './settings/master-data/master-data.module';
 import { VendorsModule } from './settings/vendors/vendor.module';
+import { ShipmentsModule } from './shipments/shipments.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { VendorsModule } from './settings/vendors/vendor.module';
     UsersModule,
     MasterDataModule,
     VendorsModule,
+    ShipmentsModule,
   ],
   controllers: [AppController],
   providers: [
