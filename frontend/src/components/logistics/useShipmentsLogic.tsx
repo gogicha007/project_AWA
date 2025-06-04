@@ -1,8 +1,8 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { ShipmentDTO } from '@/api/types';
 import { shipmentsApi } from '@/api/endpoints/shipments';
 import TableRowActions from '../controls/table-row-actions/TableRowActions';
-import { useAuth } from '@/context/auth';
+import { useRouter } from 'next/navigation';
 
 type ShipmentRow = {
   id: number;
@@ -17,12 +17,7 @@ export function useShipmentsLogic(
   mutate: () => Promise<void | ShipmentDTO[]>,
   tVar: (key: string) => string
 ) {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentShipment, setCurrentShipment] = useState<
-    ShipmentDTO | undefined
-  >();
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-  const { dbUserId } = useAuth();
+  const router = useRouter();
 
   const data: ShipmentRow[] = useMemo(
     () =>
@@ -37,48 +32,21 @@ export function useShipmentsLogic(
   );
 
   const handleAdd = useCallback(() => {
-    setCurrentShipment(undefined);
-    setIsDialogOpen(true);
-  }, []);
+    router.push('/shipments/add');
+  }, [router]);
 
   const handleEdit = useCallback(
     (id: number) => {
-      const shipment = shipments.find((s) => s.id === id);
-      setCurrentShipment(shipment);
-      setIsDialogOpen(true);
+      router.push(`/shipments/${id}/edit`);
     },
-    [shipments]
+    [router]
   );
 
-  const handleSave = useCallback(
-    async (shipment: ShipmentDTO) => {
-      try {
-        if (shipment.id) {
-          if (dbUserId === null) {
-            throw new Error('User ID is required to create a shipment');
-          }
-          await shipmentsApi.update(shipment, dbUserId);
-          setCurrentShipment(shipment);
-        } else {
-          if (dbUserId === null) {
-            throw new Error('User ID is required to create a shipment');
-          }
-          await shipmentsApi.create(shipment, dbUserId);
-        }
-        await mutate();
-        setCurrentShipment(undefined);
-        setIsDialogOpen(false);
-        setErrorMessage(undefined);
-      } catch (error) {
-        setErrorMessage(
-          typeof error === 'string'
-            ? `${tVar('errors.save')}`
-            : tVar('errors.save')
-        );
-        console.error(tVar('errors.save'), error);
-      }
+  const handleView = useCallback(
+    (id: number) => {
+      router.push(`/shipments/${id}`);
     },
-    [mutate, tVar, dbUserId]
+    [router]
   );
 
   const handleDelete = useCallback(
@@ -86,13 +54,7 @@ export function useShipmentsLogic(
       if (confirm(tVar('warnings.delete'))) {
         try {
           await shipmentsApi.delete(id);
-          setErrorMessage(undefined);
         } catch (error) {
-          setErrorMessage(
-            typeof error === 'string'
-              ? `${tVar('errors.delete')} ${id}. ${error}`
-              : `${tVar('errors.delete')} ${id}`
-          );
           console.error(`${tVar('errors.delete')} ${id}`, error);
         }
       }
@@ -100,10 +62,6 @@ export function useShipmentsLogic(
     },
     [mutate, tVar]
   );
-
-  const handleView = useCallback((id: number) => {
-    console.log(`view the shipment id: ${id}`);
-  }, []);
 
   const columns = useMemo(
     () => [
@@ -157,12 +115,6 @@ export function useShipmentsLogic(
     handleAdd,
     handleEdit,
     handleDelete,
-    handleSave,
     handleView,
-    isDialogOpen,
-    setIsDialogOpen,
-    currentShipment,
-    errorMessage,
-    setErrorMessage,
   };
 }

@@ -22,7 +22,7 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
     },
     {
       label: tS('logistics'),
-      href: '/logistics',
+      href: '/shipments',
     },
     {
       label: tS('warehouse'),
