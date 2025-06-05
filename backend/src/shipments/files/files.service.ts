@@ -54,7 +54,7 @@ export class ShipmentFilesService {
   }
 
   async findAll() {
-    return this.dbService.shipmentFile.findMany()
+    return this.dbService.shipmentFile.findMany();
   }
   async remove(id: number) {
     return this.dbService.shipmentFile.delete({
