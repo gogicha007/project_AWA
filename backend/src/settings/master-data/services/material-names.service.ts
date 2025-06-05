@@ -3,7 +3,7 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
-import { DatabaseService } from 'src/database/dadabase/database.service';
+import { DatabaseService } from 'src/database/database/database.service';
 import { MaterialNameDTO } from '../dto/materialNames.dto';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 

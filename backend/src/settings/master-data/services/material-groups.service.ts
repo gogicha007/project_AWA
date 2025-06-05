@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DatabaseService } from 'src/database/dadabase/database.service';
+import { DatabaseService } from 'src/database/database/database.service';
 import { CreateMaterialGroupDTO } from '../dto/createMaterialGroup.dto';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 

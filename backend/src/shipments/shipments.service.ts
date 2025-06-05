@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DatabaseService } from 'src/database/dadabase/database.service';
+import { DatabaseService } from 'src/database/database/database.service';
 import { CreateShipmentDTO } from './dto/create-shipment.dto';
 import { UpdateShipmentDTO } from './dto/update-shipment.dto'; // Uncomment if you have update DTO
 
 @Injectable()
 export class ShipmentsService {
   constructor(private readonly dbService: DatabaseService) {}
+
   async create(createShipmentDto: CreateShipmentDTO) {
     const {
       alias,
