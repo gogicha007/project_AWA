@@ -11,6 +11,7 @@ import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/context/auth';
 import { shipmentsApi } from '@/api/endpoints/shipments';
+import convertToBase64 from '@/utils/file-utils';
 
 const localeMap = {
   en: enUSLocale,
@@ -89,15 +90,6 @@ export default function AddShipmentForm() {
     );
 
     setFileDataArray([...fileDataArray, ...filesData]);
-  };
-
-  const convertToBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
   };
 
   const handleRemoveFile = (index: number) => {
