@@ -14,23 +14,33 @@ export const shipmentsApi = {
   ): Promise<ShipmentDTO> => {
     console.log('shipment create data', shipment.files);
     try {
-      let fileIds: number[] = [];
-      if (shipment.files && shipment.files.length > 0) {
-        const fileUploadResponse = await apiClient.post('/files', {
-          files: shipment.files,
-        });
-        fileIds = fileUploadResponse.data.map((f: { id: number }) => f.id);
-      }
       const shipmentCreateData = {
         alias: shipment.alias,
         declaration_number: shipment.declaration_number,
         declaration_date: shipment.declaration_date,
         status: shipment.status,
         userId: userId,
-        fileIds: fileIds,
       };
-      const response = await apiClient.post('/shipments', shipmentCreateData);
-      return response.data;
+      const shipmentResponse = await apiClient.post(
+        '/shipments',
+        shipmentCreateData
+      );
+      const newShipmentId = shipmentResponse.data.id;
+
+      if (shipment.files && shipment.files.length > 0) {
+        // Add shipmentId to each file
+        const filesWithShipmentId = shipment.files.map((file) => ({
+          ...file,
+          shipmentId: newShipmentId,
+        }));
+
+        // Upload files
+        await apiClient.post('/shipment-files', {
+          files: filesWithShipmentId,
+        });
+      }
+
+      return shipmentResponse.data;
     } catch (error) {
       handleApiError(error);
     }

@@ -214,7 +214,6 @@ exports.Prisma.ShipmentFileScalarFieldEnum = {
   id: 'id',
   shipmentId: 'shipmentId',
   fileName: 'fileName',
-  filePath: 'filePath',
   fileType: 'fileType',
   fileData: 'fileData'
 };
