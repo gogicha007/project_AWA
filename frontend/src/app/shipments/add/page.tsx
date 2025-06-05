@@ -1,9 +1,15 @@
-import React from 'react'
+import styles from '../page.module.css';
+import React from 'react';
+import AddShipmentForm from '@/components/logistics/shipmentsCRUD/add-shipment-form';
 
 const AddShipment = () => {
   return (
-    <div>Add shipment</div>
-  )
-}
+    <section>
+      <div className={styles.logistics__main}>
+        <AddShipmentForm />
+      </div>
+    </section>
+  );
+};
 
-export default AddShipment
+export default AddShipment;
