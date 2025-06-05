@@ -1,101 +1,28 @@
 'use client';
 
 import styles from './shipment-form.module.css';
-import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
+import { useAddShipmentForm } from './hooks/useAddShipmentForm';
+import { Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useLocale } from 'next-intl';
-import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
-import { useTranslations } from 'next-intl';
-import { useAuth } from '@/context/auth';
-import { shipmentsApi } from '@/api/endpoints/shipments';
-import convertToBase64 from '@/utils/file-utils';
-
-const localeMap = {
-  en: enUSLocale,
-  ka: kaLocale,
-};
-
-type ShipmentFormValues = {
-  alias: string;
-  status: 'APPLIED' | 'DECLARED' | 'ARRIVED';
-  declaration_number?: string;
-  declaration_date?: Date;
-  files?: Array<FileData>;
-};
-
-type FileData = {
-  fileName: string;
-  fileType: string;
-  fileData: string;
-};
 
 export default function AddShipmentForm() {
-  const tS = useTranslations('Logistics');
-  const tB = useTranslations('Buttons');
-  const localeCode = useLocale();
-  const router = useRouter();
   const {
+    tS,
+    tB,
+    localeCode,
+    localeMap,
     control,
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<ShipmentFormValues>();
-  const { dbUserId } = useAuth();
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+    errors,
+    selectedFiles,
+    submitHandler,
+    handleCancel,
+    handleFileChange,
+    handleRemoveFile,
+  } = useAddShipmentForm();
 
-  const submitHandler = async (data: ShipmentFormValues) => {
-    try {
-      if (dbUserId === null) {
-        throw new Error('User ID is required to create a shipment.');
-      }
-      await shipmentsApi.create(
-        {
-          ...data,
-          declaration_number: data.declaration_number ?? '',
-          declaration_date: data.declaration_date ?? new Date(0),
-          files: fileDataArray,
-        },
-        dbUserId
-      );
-    } catch (error) {
-      console.error(error);
-    }
-    router.push('/shipments');
-  };
-
-  const handleCancel = () => {
-    router.push('/shipments');
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.length) return;
-
-    const newFiles = Array.from(e.target.files);
-    setSelectedFiles([...selectedFiles, ...newFiles]);
-
-    // Convert files to base64
-    const filesData = await Promise.all(
-      newFiles.map(async (file) => {
-        const base64 = await convertToBase64(file);
-        return {
-          fileName: file.name,
-          fileType: file.type,
-          fileData: base64,
-        } as FileData;
-      })
-    );
-
-    setFileDataArray([...fileDataArray, ...filesData]);
-  };
-
-  const handleRemoveFile = (index: number) => {
-    setSelectedFiles(selectedFiles.filter((_, i) => i !== index));
-    setFileDataArray(fileDataArray.filter((_, i) => i !== index));
-  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
