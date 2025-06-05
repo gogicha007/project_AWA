@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import { LoggingService } from './common/services/logging.service';
 import { CustomExceptionFilter } from './common/filters/exception.filter';
+import * as express from 'express';
 
 dotenv.config();
 
@@ -13,6 +14,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const loggingService = app.get(LoggingService);
 
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+  
   app.useGlobalFilters(new CustomExceptionFilter(loggingService));
 
   app.enableCors({
