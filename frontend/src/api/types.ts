@@ -59,3 +59,8 @@ export interface ShipmentDTO {
     fileData: string;
   }>;
 }
+
+export interface InvoiceDTO {
+  id?: number;
+  invoiceNumber: string
+}
