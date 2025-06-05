@@ -1,8 +1,20 @@
 .form {
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  gap: 24px;
+}
+
+.formSection {
+  min-width: 340px;
+  flex: 1 1 340px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .formGroup {
@@ -44,6 +56,8 @@
   justify-content: flex-end;
   gap: 12px;
   margin-top: 24px;
+  width: 100%;
+  flex-basis: 100%;
 }
 
 .cancelButton {
