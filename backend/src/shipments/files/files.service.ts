@@ -61,4 +61,10 @@ export class ShipmentFilesService {
       where: { id },
     });
   }
+
+  async removeByShipmentId(shipmentId: number) {
+    return this.dbService.shipmentFile.deleteMany({
+      where: { shipmentId },
+    });
+  }
 }

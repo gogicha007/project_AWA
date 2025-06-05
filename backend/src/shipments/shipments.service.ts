@@ -2,10 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { CreateShipmentDTO } from './dto/create-shipment.dto';
 import { UpdateShipmentDTO } from './dto/update-shipment.dto'; // Uncomment if you have update DTO
+import { ShipmentFilesService } from './files/files.service';
 
 @Injectable()
 export class ShipmentsService {
-  constructor(private readonly dbService: DatabaseService) {}
+  constructor(
+    private readonly dbService: DatabaseService,
+    private readonly shipmentFilesService: ShipmentFilesService,
+  ) {}
 
   async create(createShipmentDto: CreateShipmentDTO) {
     const {
@@ -85,6 +89,8 @@ export class ShipmentsService {
   }
 
   async remove(id: number) {
+    await this.shipmentFilesService.removeByShipmentId(id);
+
     return this.dbService.shipment.delete({
       where: { id },
     });
