@@ -53,4 +53,9 @@ export interface ShipmentDTO {
   declaration_number: string;
   declaration_date: Date;
   status: string;
+  files?: Array<{
+    fileName: string;
+    fileType: string;
+    fileData: string;
+  }>;
 }

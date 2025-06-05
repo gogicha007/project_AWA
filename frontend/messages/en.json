@@ -175,7 +175,9 @@
       "alias_label": "Alias",
       "declaration_number_label": "Declaration number",
       "declaration_date_label": "Declaration date",
-      "status_label": "Status"
+      "status_label": "Status",
+      "files_label": "Select files",
+      "selected_files": "Attached files"
     },
     "errors": {
       "loading": "Error loading Shipments",

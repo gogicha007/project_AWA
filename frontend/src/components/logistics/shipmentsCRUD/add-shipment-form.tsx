@@ -1,6 +1,7 @@
 'use client';
 
 import styles from './shipment-form.module.css';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import DatePicker from 'react-datepicker';
@@ -21,6 +22,13 @@ type ShipmentFormValues = {
   status: 'APPLIED' | 'DECLARED' | 'ARRIVED';
   declaration_number?: string;
   declaration_date?: Date;
+  files?: Array<FileData>;
+};
+
+type FileData = {
+  fileName: string;
+  fileType: string;
+  fileData: string;
 };
 
 export default function AddShipmentForm() {
@@ -35,9 +43,10 @@ export default function AddShipmentForm() {
     formState: { errors },
   } = useForm<ShipmentFormValues>();
   const { dbUserId } = useAuth();
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
 
   const submitHandler = async (data: ShipmentFormValues) => {
-    console.log(data);
     try {
       if (dbUserId === null) {
         throw new Error('User ID is required to create a shipment.');
@@ -47,6 +56,7 @@ export default function AddShipmentForm() {
           ...data,
           declaration_number: data.declaration_number ?? '',
           declaration_date: data.declaration_date ?? new Date(0),
+          files: fileDataArray,
         },
         dbUserId
       );
@@ -58,6 +68,41 @@ export default function AddShipmentForm() {
 
   const handleCancel = () => {
     router.push('/shipments');
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files?.length) return;
+
+    const newFiles = Array.from(e.target.files);
+    setSelectedFiles([...selectedFiles, ...newFiles]);
+
+    // Convert files to base64
+    const filesData = await Promise.all(
+      newFiles.map(async (file) => {
+        const base64 = await convertToBase64(file);
+        return {
+          fileName: file.name,
+          fileType: file.type,
+          fileData: base64,
+        } as FileData;
+      })
+    );
+
+    setFileDataArray([...fileDataArray, ...filesData]);
+  };
+
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const handleRemoveFile = (index: number) => {
+    setSelectedFiles(selectedFiles.filter((_, i) => i !== index));
+    setFileDataArray(fileDataArray.filter((_, i) => i !== index));
   };
 
   return (
@@ -138,6 +183,41 @@ export default function AddShipmentForm() {
               />
             )}
           />
+        </div>
+      </div>
+
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
+          <label htmlFor="files">{tS('form.files_label')}</label>
+          <input
+            id="files"
+            type="file"
+            className={styles.input}
+            onChange={handleFileChange}
+            accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx"
+            multiple
+          />
+
+          {/* Display selected files */}
+          {selectedFiles.length > 0 && (
+            <div className={styles.filesList}>
+              <h4>{tS('form.selected_files')}</h4>
+              <ul>
+                {selectedFiles.map((file, index) => (
+                  <li key={index}>
+                    {file.name}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveFile(index)}
+                      className={styles.removeFileBtn}
+                    >
+                      ✖
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 
