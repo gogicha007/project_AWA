@@ -53,8 +53,6 @@ export default function AddShipmentForm() {
     } catch (error) {
       console.error(error);
     }
-    // TODO: Replace with your API call
-    // await fetch('/api/shipments', { method: 'POST', body: JSON.stringify(data) });
     router.push('/shipments');
   };
 

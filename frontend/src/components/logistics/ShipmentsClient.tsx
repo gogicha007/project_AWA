@@ -85,7 +85,7 @@ export default function ShipmentsClient() {
             <tbody className={styles.tableBody}>
               {table.getRowModel().rows.map((row) => (
                 <tr key={row.id} className={styles.tableRow}>
-                  {row.getLeftVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className={styles.tableCell}>
                       {flexRender(
                         cell.column.columnDef.cell,

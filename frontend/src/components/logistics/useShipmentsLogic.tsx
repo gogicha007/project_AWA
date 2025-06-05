@@ -109,6 +109,7 @@ export function useShipmentsLogic(
     ],
     [handleEdit, handleView, handleDelete, tVar]
   );
+  
   return {
     data,
     columns,
