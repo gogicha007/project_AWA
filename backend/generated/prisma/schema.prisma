@@ -16,15 +16,16 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  firebaseUid String    @unique
-  email       String    @unique
+  id          Int        @id @default(autoincrement())
+  firebaseUid String     @unique
+  email       String     @unique
   name        String?
-  role        String    @default("user")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  role        String     @default("user")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   Vendor      Vendor[]
   Invoice     Invoice[]
+  Shipment    Shipment[]
 
   @@map("user")
 }
@@ -107,6 +108,8 @@ model Shipment {
   declaration_date   DateTime?         @map("declaration_date")
   invoices           ShipmentInvoice[]
   files              ShipmentFile[]
+  user               User              @relation(fields: [userId], references: [id])
+  userId             Int               @map("user_id")
   createdAt          DateTime          @default(now()) @map("created_at")
 
   @@map("shipment")

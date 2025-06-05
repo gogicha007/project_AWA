@@ -6,6 +6,7 @@ import {
   IsEnum,
   IsDateString,
   IsArray,
+  IsInt,
 } from 'class-validator';
 
 export enum ShipmentStatus {
@@ -33,6 +34,11 @@ export class CreateShipmentDTO {
   @IsDateString()
   @IsOptional()
   declaration_date?: string;
+
+  @ApiProperty()
+  @IsInt()
+  @IsNotEmpty()
+  userId: number;
 
   @ApiProperty({ required: false, type: [Number] })
   @IsArray()

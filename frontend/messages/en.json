@@ -174,7 +174,7 @@
     "form": {
       "alias_label": "Alias",
       "declaration_number_label": "Declaration number",
-      "declaration_date_lavel": "Declaration date",
+      "declaration_date_label": "Declaration date",
       "status_label": "Status"
     },
     "errors": {
@@ -209,7 +209,8 @@
     "toMain": "Back to main",
     "tryAgain": "Try again",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "add": "Add"
   },
   "SideBar": {
     "home": "Home",

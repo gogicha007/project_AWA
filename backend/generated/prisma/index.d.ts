@@ -1890,11 +1890,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     Vendor: number
     Invoice: number
+    Shipment: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Vendor?: boolean | UserCountOutputTypeCountVendorArgs
     Invoice?: boolean | UserCountOutputTypeCountInvoiceArgs
+    Shipment?: boolean | UserCountOutputTypeCountShipmentArgs
   }
 
   // Custom InputTypes
@@ -1920,6 +1922,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountInvoiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InvoiceWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountShipmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShipmentWhereInput
   }
 
 
@@ -2409,6 +2418,7 @@ export namespace Prisma {
     updatedAt?: boolean
     Vendor?: boolean | User$VendorArgs<ExtArgs>
     Invoice?: boolean | User$InvoiceArgs<ExtArgs>
+    Shipment?: boolean | User$ShipmentArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2446,6 +2456,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Vendor?: boolean | User$VendorArgs<ExtArgs>
     Invoice?: boolean | User$InvoiceArgs<ExtArgs>
+    Shipment?: boolean | User$ShipmentArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2456,6 +2467,7 @@ export namespace Prisma {
     objects: {
       Vendor: Prisma.$VendorPayload<ExtArgs>[]
       Invoice: Prisma.$InvoicePayload<ExtArgs>[]
+      Shipment: Prisma.$ShipmentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2861,6 +2873,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Vendor<T extends User$VendorArgs<ExtArgs> = {}>(args?: Subset<T, User$VendorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Invoice<T extends User$InvoiceArgs<ExtArgs> = {}>(args?: Subset<T, User$InvoiceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Shipment<T extends User$ShipmentArgs<ExtArgs> = {}>(args?: Subset<T, User$ShipmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3330,6 +3343,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvoiceScalarFieldEnum | InvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * User.Shipment
+   */
+  export type User$ShipmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Shipment
+     */
+    select?: ShipmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Shipment
+     */
+    omit?: ShipmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentInclude<ExtArgs> | null
+    where?: ShipmentWhereInput
+    orderBy?: ShipmentOrderByWithRelationInput | ShipmentOrderByWithRelationInput[]
+    cursor?: ShipmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ShipmentScalarFieldEnum | ShipmentScalarFieldEnum[]
   }
 
   /**
@@ -9994,10 +10031,12 @@ export namespace Prisma {
 
   export type ShipmentAvgAggregateOutputType = {
     id: number | null
+    userId: number | null
   }
 
   export type ShipmentSumAggregateOutputType = {
     id: number | null
+    userId: number | null
   }
 
   export type ShipmentMinAggregateOutputType = {
@@ -10006,6 +10045,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus | null
     declaration_number: string | null
     declaration_date: Date | null
+    userId: number | null
     createdAt: Date | null
   }
 
@@ -10015,6 +10055,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus | null
     declaration_number: string | null
     declaration_date: Date | null
+    userId: number | null
     createdAt: Date | null
   }
 
@@ -10024,6 +10065,7 @@ export namespace Prisma {
     status: number
     declaration_number: number
     declaration_date: number
+    userId: number
     createdAt: number
     _all: number
   }
@@ -10031,10 +10073,12 @@ export namespace Prisma {
 
   export type ShipmentAvgAggregateInputType = {
     id?: true
+    userId?: true
   }
 
   export type ShipmentSumAggregateInputType = {
     id?: true
+    userId?: true
   }
 
   export type ShipmentMinAggregateInputType = {
@@ -10043,6 +10087,7 @@ export namespace Prisma {
     status?: true
     declaration_number?: true
     declaration_date?: true
+    userId?: true
     createdAt?: true
   }
 
@@ -10052,6 +10097,7 @@ export namespace Prisma {
     status?: true
     declaration_number?: true
     declaration_date?: true
+    userId?: true
     createdAt?: true
   }
 
@@ -10061,6 +10107,7 @@ export namespace Prisma {
     status?: true
     declaration_number?: true
     declaration_date?: true
+    userId?: true
     createdAt?: true
     _all?: true
   }
@@ -10157,6 +10204,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus
     declaration_number: string | null
     declaration_date: Date | null
+    userId: number
     createdAt: Date
     _count: ShipmentCountAggregateOutputType | null
     _avg: ShipmentAvgAggregateOutputType | null
@@ -10185,9 +10233,11 @@ export namespace Prisma {
     status?: boolean
     declaration_number?: boolean
     declaration_date?: boolean
+    userId?: boolean
     createdAt?: boolean
     invoices?: boolean | Shipment$invoicesArgs<ExtArgs>
     files?: boolean | Shipment$filesArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | ShipmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shipment"]>
 
@@ -10197,7 +10247,9 @@ export namespace Prisma {
     status?: boolean
     declaration_number?: boolean
     declaration_date?: boolean
+    userId?: boolean
     createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shipment"]>
 
   export type ShipmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10206,7 +10258,9 @@ export namespace Prisma {
     status?: boolean
     declaration_number?: boolean
     declaration_date?: boolean
+    userId?: boolean
     createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shipment"]>
 
   export type ShipmentSelectScalar = {
@@ -10215,23 +10269,30 @@ export namespace Prisma {
     status?: boolean
     declaration_number?: boolean
     declaration_date?: boolean
+    userId?: boolean
     createdAt?: boolean
   }
 
-  export type ShipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alias" | "status" | "declaration_number" | "declaration_date" | "createdAt", ExtArgs["result"]["shipment"]>
+  export type ShipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alias" | "status" | "declaration_number" | "declaration_date" | "userId" | "createdAt", ExtArgs["result"]["shipment"]>
   export type ShipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     invoices?: boolean | Shipment$invoicesArgs<ExtArgs>
     files?: boolean | Shipment$filesArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | ShipmentCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type ShipmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ShipmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ShipmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ShipmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $ShipmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Shipment"
     objects: {
       invoices: Prisma.$ShipmentInvoicePayload<ExtArgs>[]
       files: Prisma.$ShipmentFilePayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10239,6 +10300,7 @@ export namespace Prisma {
       status: $Enums.ShipmentStatus
       declaration_number: string | null
       declaration_date: Date | null
+      userId: number
       createdAt: Date
     }, ExtArgs["result"]["shipment"]>
     composites: {}
@@ -10636,6 +10698,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     invoices<T extends Shipment$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     files<T extends Shipment$filesArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$filesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10670,6 +10733,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Shipment", 'ShipmentStatus'>
     readonly declaration_number: FieldRef<"Shipment", 'String'>
     readonly declaration_date: FieldRef<"Shipment", 'DateTime'>
+    readonly userId: FieldRef<"Shipment", 'Int'>
     readonly createdAt: FieldRef<"Shipment", 'DateTime'>
   }
     
@@ -10920,6 +10984,10 @@ export namespace Prisma {
      */
     data: ShipmentCreateManyInput | ShipmentCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -10990,6 +11058,10 @@ export namespace Prisma {
      * Limit how many Shipments to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -15824,6 +15896,7 @@ export namespace Prisma {
     status: 'status',
     declaration_number: 'declaration_number',
     declaration_date: 'declaration_date',
+    userId: 'userId',
     createdAt: 'createdAt'
   };
 
@@ -16031,6 +16104,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Vendor?: VendorListRelationFilter
     Invoice?: InvoiceListRelationFilter
+    Shipment?: ShipmentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -16043,6 +16117,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     Vendor?: VendorOrderByRelationAggregateInput
     Invoice?: InvoiceOrderByRelationAggregateInput
+    Shipment?: ShipmentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -16058,6 +16133,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Vendor?: VendorListRelationFilter
     Invoice?: InvoiceListRelationFilter
+    Shipment?: ShipmentListRelationFilter
   }, "id" | "firebaseUid" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -16423,9 +16499,11 @@ export namespace Prisma {
     status?: EnumShipmentStatusFilter<"Shipment"> | $Enums.ShipmentStatus
     declaration_number?: StringNullableFilter<"Shipment"> | string | null
     declaration_date?: DateTimeNullableFilter<"Shipment"> | Date | string | null
+    userId?: IntFilter<"Shipment"> | number
     createdAt?: DateTimeFilter<"Shipment"> | Date | string
     invoices?: ShipmentInvoiceListRelationFilter
     files?: ShipmentFileListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ShipmentOrderByWithRelationInput = {
@@ -16434,9 +16512,11 @@ export namespace Prisma {
     status?: SortOrder
     declaration_number?: SortOrderInput | SortOrder
     declaration_date?: SortOrderInput | SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     invoices?: ShipmentInvoiceOrderByRelationAggregateInput
     files?: ShipmentFileOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ShipmentWhereUniqueInput = Prisma.AtLeast<{
@@ -16448,9 +16528,11 @@ export namespace Prisma {
     status?: EnumShipmentStatusFilter<"Shipment"> | $Enums.ShipmentStatus
     declaration_number?: StringNullableFilter<"Shipment"> | string | null
     declaration_date?: DateTimeNullableFilter<"Shipment"> | Date | string | null
+    userId?: IntFilter<"Shipment"> | number
     createdAt?: DateTimeFilter<"Shipment"> | Date | string
     invoices?: ShipmentInvoiceListRelationFilter
     files?: ShipmentFileListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type ShipmentOrderByWithAggregationInput = {
@@ -16459,6 +16541,7 @@ export namespace Prisma {
     status?: SortOrder
     declaration_number?: SortOrderInput | SortOrder
     declaration_date?: SortOrderInput | SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     _count?: ShipmentCountOrderByAggregateInput
     _avg?: ShipmentAvgOrderByAggregateInput
@@ -16476,6 +16559,7 @@ export namespace Prisma {
     status?: EnumShipmentStatusWithAggregatesFilter<"Shipment"> | $Enums.ShipmentStatus
     declaration_number?: StringNullableWithAggregatesFilter<"Shipment"> | string | null
     declaration_date?: DateTimeNullableWithAggregatesFilter<"Shipment"> | Date | string | null
+    userId?: IntWithAggregatesFilter<"Shipment"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Shipment"> | Date | string
   }
 
@@ -16773,6 +16857,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     Vendor?: VendorCreateNestedManyWithoutUserInput
     Invoice?: InvoiceCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16785,6 +16870,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -16796,6 +16882,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Vendor?: VendorUpdateManyWithoutUserNestedInput
     Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16808,6 +16895,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
     Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -17151,6 +17239,7 @@ export namespace Prisma {
     createdAt?: Date | string
     invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
     files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+    user: UserCreateNestedOneWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateInput = {
@@ -17159,6 +17248,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus
     declaration_number?: string | null
     declaration_date?: Date | string | null
+    userId: number
     createdAt?: Date | string
     invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
     files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
@@ -17172,6 +17262,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
     files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+    user?: UserUpdateOneRequiredWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateInput = {
@@ -17180,6 +17271,7 @@ export namespace Prisma {
     status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
     files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
@@ -17191,6 +17283,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus
     declaration_number?: string | null
     declaration_date?: Date | string | null
+    userId: number
     createdAt?: Date | string
   }
 
@@ -17208,6 +17301,7 @@ export namespace Prisma {
     status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -17539,6 +17633,12 @@ export namespace Prisma {
     none?: InvoiceWhereInput
   }
 
+  export type ShipmentListRelationFilter = {
+    every?: ShipmentWhereInput
+    some?: ShipmentWhereInput
+    none?: ShipmentWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -17549,6 +17649,10 @@ export namespace Prisma {
   }
 
   export type InvoiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ShipmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17930,11 +18034,13 @@ export namespace Prisma {
     status?: SortOrder
     declaration_number?: SortOrder
     declaration_date?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
   }
 
   export type ShipmentAvgOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
   }
 
   export type ShipmentMaxOrderByAggregateInput = {
@@ -17943,6 +18049,7 @@ export namespace Prisma {
     status?: SortOrder
     declaration_number?: SortOrder
     declaration_date?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -17952,11 +18059,13 @@ export namespace Prisma {
     status?: SortOrder
     declaration_number?: SortOrder
     declaration_date?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
   }
 
   export type ShipmentSumOrderByAggregateInput = {
     id?: SortOrder
+    userId?: SortOrder
   }
 
   export type EnumShipmentStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -18262,6 +18371,13 @@ export namespace Prisma {
     connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
   }
 
+  export type ShipmentCreateNestedManyWithoutUserInput = {
+    create?: XOR<ShipmentCreateWithoutUserInput, ShipmentUncheckedCreateWithoutUserInput> | ShipmentCreateWithoutUserInput[] | ShipmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShipmentCreateOrConnectWithoutUserInput | ShipmentCreateOrConnectWithoutUserInput[]
+    createMany?: ShipmentCreateManyUserInputEnvelope
+    connect?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+  }
+
   export type VendorUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -18274,6 +18390,13 @@ export namespace Prisma {
     connectOrCreate?: InvoiceCreateOrConnectWithoutUserInput | InvoiceCreateOrConnectWithoutUserInput[]
     createMany?: InvoiceCreateManyUserInputEnvelope
     connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+  }
+
+  export type ShipmentUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ShipmentCreateWithoutUserInput, ShipmentUncheckedCreateWithoutUserInput> | ShipmentCreateWithoutUserInput[] | ShipmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShipmentCreateOrConnectWithoutUserInput | ShipmentCreateOrConnectWithoutUserInput[]
+    createMany?: ShipmentCreateManyUserInputEnvelope
+    connect?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -18316,6 +18439,20 @@ export namespace Prisma {
     deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
   }
 
+  export type ShipmentUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ShipmentCreateWithoutUserInput, ShipmentUncheckedCreateWithoutUserInput> | ShipmentCreateWithoutUserInput[] | ShipmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShipmentCreateOrConnectWithoutUserInput | ShipmentCreateOrConnectWithoutUserInput[]
+    upsert?: ShipmentUpsertWithWhereUniqueWithoutUserInput | ShipmentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ShipmentCreateManyUserInputEnvelope
+    set?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    disconnect?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    delete?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    connect?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    update?: ShipmentUpdateWithWhereUniqueWithoutUserInput | ShipmentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ShipmentUpdateManyWithWhereWithoutUserInput | ShipmentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ShipmentScalarWhereInput | ShipmentScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -18350,6 +18487,20 @@ export namespace Prisma {
     update?: InvoiceUpdateWithWhereUniqueWithoutUserInput | InvoiceUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: InvoiceUpdateManyWithWhereWithoutUserInput | InvoiceUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
+  }
+
+  export type ShipmentUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ShipmentCreateWithoutUserInput, ShipmentUncheckedCreateWithoutUserInput> | ShipmentCreateWithoutUserInput[] | ShipmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShipmentCreateOrConnectWithoutUserInput | ShipmentCreateOrConnectWithoutUserInput[]
+    upsert?: ShipmentUpsertWithWhereUniqueWithoutUserInput | ShipmentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ShipmentCreateManyUserInputEnvelope
+    set?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    disconnect?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    delete?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    connect?: ShipmentWhereUniqueInput | ShipmentWhereUniqueInput[]
+    update?: ShipmentUpdateWithWhereUniqueWithoutUserInput | ShipmentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ShipmentUpdateManyWithWhereWithoutUserInput | ShipmentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ShipmentScalarWhereInput | ShipmentScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutVendorInput = {
@@ -18660,6 +18811,12 @@ export namespace Prisma {
     connect?: ShipmentFileWhereUniqueInput | ShipmentFileWhereUniqueInput[]
   }
 
+  export type UserCreateNestedOneWithoutShipmentInput = {
+    create?: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShipmentInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput = {
     create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
     connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
@@ -18708,6 +18865,14 @@ export namespace Prisma {
     update?: ShipmentFileUpdateWithWhereUniqueWithoutShipmentInput | ShipmentFileUpdateWithWhereUniqueWithoutShipmentInput[]
     updateMany?: ShipmentFileUpdateManyWithWhereWithoutShipmentInput | ShipmentFileUpdateManyWithWhereWithoutShipmentInput[]
     deleteMany?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutShipmentNestedInput = {
+    create?: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShipmentInput
+    upsert?: UserUpsertWithoutShipmentInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShipmentInput, UserUpdateWithoutShipmentInput>, UserUncheckedUpdateWithoutShipmentInput>
   }
 
   export type ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput = {
@@ -19265,6 +19430,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ShipmentCreateWithoutUserInput = {
+    alias: string
+    status: $Enums.ShipmentStatus
+    declaration_number?: string | null
+    declaration_date?: Date | string | null
+    createdAt?: Date | string
+    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
+    files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+  }
+
+  export type ShipmentUncheckedCreateWithoutUserInput = {
+    id?: number
+    alias: string
+    status: $Enums.ShipmentStatus
+    declaration_number?: string | null
+    declaration_date?: Date | string | null
+    createdAt?: Date | string
+    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
+    files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
+  }
+
+  export type ShipmentCreateOrConnectWithoutUserInput = {
+    where: ShipmentWhereUniqueInput
+    create: XOR<ShipmentCreateWithoutUserInput, ShipmentUncheckedCreateWithoutUserInput>
+  }
+
+  export type ShipmentCreateManyUserInputEnvelope = {
+    data: ShipmentCreateManyUserInput | ShipmentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type VendorUpsertWithWhereUniqueWithoutUserInput = {
     where: VendorWhereUniqueInput
     update: XOR<VendorUpdateWithoutUserInput, VendorUncheckedUpdateWithoutUserInput>
@@ -19326,6 +19522,35 @@ export namespace Prisma {
     currencyId?: IntFilter<"Invoice"> | number
   }
 
+  export type ShipmentUpsertWithWhereUniqueWithoutUserInput = {
+    where: ShipmentWhereUniqueInput
+    update: XOR<ShipmentUpdateWithoutUserInput, ShipmentUncheckedUpdateWithoutUserInput>
+    create: XOR<ShipmentCreateWithoutUserInput, ShipmentUncheckedCreateWithoutUserInput>
+  }
+
+  export type ShipmentUpdateWithWhereUniqueWithoutUserInput = {
+    where: ShipmentWhereUniqueInput
+    data: XOR<ShipmentUpdateWithoutUserInput, ShipmentUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ShipmentUpdateManyWithWhereWithoutUserInput = {
+    where: ShipmentScalarWhereInput
+    data: XOR<ShipmentUpdateManyMutationInput, ShipmentUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ShipmentScalarWhereInput = {
+    AND?: ShipmentScalarWhereInput | ShipmentScalarWhereInput[]
+    OR?: ShipmentScalarWhereInput[]
+    NOT?: ShipmentScalarWhereInput | ShipmentScalarWhereInput[]
+    id?: IntFilter<"Shipment"> | number
+    alias?: StringFilter<"Shipment"> | string
+    status?: EnumShipmentStatusFilter<"Shipment"> | $Enums.ShipmentStatus
+    declaration_number?: StringNullableFilter<"Shipment"> | string | null
+    declaration_date?: DateTimeNullableFilter<"Shipment"> | Date | string | null
+    userId?: IntFilter<"Shipment"> | number
+    createdAt?: DateTimeFilter<"Shipment"> | Date | string
+  }
+
   export type UserCreateWithoutVendorInput = {
     firebaseUid: string
     email: string
@@ -19334,6 +19559,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Invoice?: InvoiceCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVendorInput = {
@@ -19345,6 +19571,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVendorInput = {
@@ -19408,6 +19635,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVendorInput = {
@@ -19419,6 +19647,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceUpsertWithWhereUniqueWithoutVendorInput = {
@@ -19822,6 +20051,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserCreateWithoutShipmentInput = {
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutShipmentInput = {
+    id?: number
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutShipmentInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+  }
+
   export type ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput = {
     where: ShipmentInvoiceWhereUniqueInput
     update: XOR<ShipmentInvoiceUpdateWithoutShipmentInput, ShipmentInvoiceUncheckedUpdateWithoutShipmentInput>
@@ -19874,6 +20131,40 @@ export namespace Prisma {
     fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
   }
 
+  export type UserUpsertWithoutShipmentInput = {
+    update: XOR<UserUpdateWithoutShipmentInput, UserUncheckedUpdateWithoutShipmentInput>
+    create: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutShipmentInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutShipmentInput, UserUncheckedUpdateWithoutShipmentInput>
+  }
+
+  export type UserUpdateWithoutShipmentInput = {
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutShipmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type ShipmentInvoiceCreateWithoutInvoiceInput = {
     shipment: ShipmentCreateNestedOneWithoutInvoicesInput
   }
@@ -19924,6 +20215,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Vendor?: VendorCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvoiceInput = {
@@ -19935,6 +20227,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvoiceInput = {
@@ -20054,6 +20347,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Vendor?: VendorUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvoiceInput = {
@@ -20065,6 +20359,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceItemUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -20270,6 +20565,7 @@ export namespace Prisma {
     declaration_date?: Date | string | null
     createdAt?: Date | string
     files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+    user: UserCreateNestedOneWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateWithoutInvoicesInput = {
@@ -20278,6 +20574,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus
     declaration_number?: string | null
     declaration_date?: Date | string | null
+    userId: number
     createdAt?: Date | string
     files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
   }
@@ -20337,6 +20634,7 @@ export namespace Prisma {
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+    user?: UserUpdateOneRequiredWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateWithoutInvoicesInput = {
@@ -20345,6 +20643,7 @@ export namespace Prisma {
     status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
   }
@@ -20394,6 +20693,7 @@ export namespace Prisma {
     declaration_date?: Date | string | null
     createdAt?: Date | string
     invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
+    user: UserCreateNestedOneWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateWithoutFilesInput = {
@@ -20402,6 +20702,7 @@ export namespace Prisma {
     status: $Enums.ShipmentStatus
     declaration_number?: string | null
     declaration_date?: Date | string | null
+    userId: number
     createdAt?: Date | string
     invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
   }
@@ -20429,6 +20730,7 @@ export namespace Prisma {
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
+    user?: UserUpdateOneRequiredWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateWithoutFilesInput = {
@@ -20437,6 +20739,7 @@ export namespace Prisma {
     status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
   }
@@ -20460,6 +20763,15 @@ export namespace Prisma {
     truckNumber?: string | null
     createdAt?: Date | string
     currencyId: number
+  }
+
+  export type ShipmentCreateManyUserInput = {
+    id?: number
+    alias: string
+    status: $Enums.ShipmentStatus
+    declaration_number?: string | null
+    declaration_date?: Date | string | null
+    createdAt?: Date | string
   }
 
   export type VendorUpdateWithoutUserInput = {
@@ -20527,6 +20839,36 @@ export namespace Prisma {
     truckNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShipmentUpdateWithoutUserInput = {
+    alias?: StringFieldUpdateOperationsInput | string
+    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
+    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
+    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
+    files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+  }
+
+  export type ShipmentUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
+    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
+    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
+    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
+    files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
+  }
+
+  export type ShipmentUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
+    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
+    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
+    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InvoiceCreateManyVendorInput = {

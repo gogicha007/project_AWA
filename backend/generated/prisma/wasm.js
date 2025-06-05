@@ -176,6 +176,7 @@ exports.Prisma.ShipmentScalarFieldEnum = {
   status: 'status',
   declaration_number: 'declaration_number',
   declaration_date: 'declaration_date',
+  userId: 'userId',
   createdAt: 'createdAt'
 };
 

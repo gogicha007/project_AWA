@@ -14,6 +14,7 @@ export class ShipmentsService {
       declaration_date,
       invoiceIds,
       fileIds,
+      userId,
     } = createShipmentDto;
 
     const shipment = await this.dbService.shipment.create({
@@ -36,6 +37,7 @@ export class ShipmentsService {
               connect: fileIds.map((fileId) => ({ id: fileId })),
             }
           : undefined,
+        userId,
       },
       include: {
         invoices: true,

@@ -7,6 +7,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useLocale } from 'next-intl';
 import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
+import { useTranslations } from 'next-intl';
+import { useAuth } from '@/context/auth';
+import { shipmentsApi } from '@/api/endpoints/shipments';
 
 const localeMap = {
   en: enUSLocale,
@@ -17,10 +20,12 @@ type ShipmentFormValues = {
   alias: string;
   status: 'APPLIED' | 'DECLARED' | 'ARRIVED';
   declaration_number?: string;
-  declaration_date?: string;
+  declaration_date?: Date;
 };
 
 export default function AddShipmentForm() {
+  const tS = useTranslations('Logistics');
+  const tB = useTranslations('Buttons');
   const localeCode = useLocale();
   const router = useRouter();
   const {
@@ -29,9 +34,25 @@ export default function AddShipmentForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<ShipmentFormValues>();
+  const { dbUserId } = useAuth();
 
   const submitHandler = async (data: ShipmentFormValues) => {
     console.log(data);
+    try {
+      if (dbUserId === null) {
+        throw new Error('User ID is required to create a shipment.');
+      }
+      await shipmentsApi.create(
+        {
+          ...data,
+          declaration_number: data.declaration_number ?? '',
+          declaration_date: data.declaration_date ?? new Date(0),
+        },
+        dbUserId
+      );
+    } catch (error) {
+      console.error(error);
+    }
     // TODO: Replace with your API call
     // await fetch('/api/shipments', { method: 'POST', body: JSON.stringify(data) });
     router.push('/shipments');
@@ -46,7 +67,7 @@ export default function AddShipmentForm() {
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
           <label className={styles.required} htmlFor="alias">
-            Alias
+            {tS('form.alias_label')}
           </label>
           <input
             id="alias"
@@ -61,7 +82,7 @@ export default function AddShipmentForm() {
 
         <div className={styles.formGroup}>
           <label className={styles.required} htmlFor="status">
-            Status
+            {tS('form.status_label')}
           </label>
           <select
             id="status"
@@ -81,7 +102,9 @@ export default function AddShipmentForm() {
 
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label htmlFor="declaration_number">Declaration Number</label>
+          <label htmlFor="declaration_number">
+            {tS('form.declaration_number_label')}
+          </label>
           <input
             id="declaration_number"
             className={styles.input}
@@ -91,7 +114,10 @@ export default function AddShipmentForm() {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="declaration_date">Declaration Date</label>
+          <label htmlFor="declaration_date">
+            {' '}
+            {tS('form.declaration_date_label')}
+          </label>
           <Controller
             control={control}
             name="declaration_date"
@@ -117,10 +143,10 @@ export default function AddShipmentForm() {
           className={styles.cancelButton}
           onClick={handleCancel}
         >
-          Cancel
+          {tB('cancel')}
         </button>
         <button type="submit" className={styles.saveButton}>
-          Add
+          {tB('add')}
         </button>
       </div>
     </form>
