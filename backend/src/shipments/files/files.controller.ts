@@ -16,13 +16,9 @@ export class ShipmentFilesController {
 
   @Post()
   async create(@Body() body: FileUploadRequest) {
-    console.log('many files');
-    // If body.files exists and is an array, use createMany
     if (body.files && Array.isArray(body.files)) {
       return this.filesService.createMany(body.files);
     }
-    // Otherwise treat as a single file
-    console.log('single file');
     const singleFile: CreateShipmentFileDto = {
       ...body,
       shipmentId: body.shipmentId ? +body.shipmentId : undefined,
@@ -42,7 +38,6 @@ export class ShipmentFilesController {
 
   @Get()
   async findAll() {
-    console.log('find many');
     return this.filesService.findAll();
   }
 
