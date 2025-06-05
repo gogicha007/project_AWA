@@ -133,14 +133,22 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .filesList li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 0;
+  padding: 4px 8px;
   font-size: 0.85rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  margin: 0;
+  /* Prevent shrinking too small */
+  min-width: 0;
 }
 
 .removeFileBtn {
