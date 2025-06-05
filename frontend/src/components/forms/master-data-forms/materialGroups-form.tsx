@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import styles from '../form.module.css'
+import styles from '../form.module.css';
 import { MaterialGroupDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
 
@@ -21,6 +21,7 @@ export default function MaterialGroupDialog({
   title,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const tG = useTranslations('MasterData');
   const tB = useTranslations('Buttons');
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -57,7 +58,7 @@ export default function MaterialGroupDialog({
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">{tG('material_groups.form.name_label')}</label>
           <input
             type="text"
             id="name"
@@ -69,7 +70,9 @@ export default function MaterialGroupDialog({
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description">
+            {tG('material_groups.form.description_label')}
+          </label>
           <textarea
             id="description"
             name="description"

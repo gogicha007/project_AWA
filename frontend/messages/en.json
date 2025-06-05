@@ -162,6 +162,19 @@
       "view": "View"
     }
   },
+  "Invoices": {
+    "title": "Invoices",
+    "table": {
+      "id": "ID",
+      "vendor": "Vendor",
+      "invoice_number": "Invoice #",
+      "invoice_date": "Invoice date",
+      "currency": "Currency",
+      "total_amount": "Total amount",
+      "truck_number": "Truck number",
+      "is_arrived": "Is Arrived"
+    }
+  },
   "Logistics": {
     "title": "Shipments",
     "table": {
