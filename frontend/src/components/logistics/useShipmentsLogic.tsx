@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useCallback } from 'react';
 import { ShipmentDTO } from '@/api/types';
 import { shipmentsApi } from '@/api/endpoints/shipments';
@@ -82,7 +84,14 @@ export function useShipmentsLogic(
       {
         accessorKey: 'declaration_date',
         header: tVar('table.declaration_date'),
-        enableSorting: true,
+        cell: ({ row }: { row: { original: ShipmentRow } }) => {
+          const date = row.original.declaration_date;
+          if (!date) return '';
+          if (typeof date === 'string') return (date as string).substring(0, 10);
+          if (date instanceof Date) return date.toISOString().substring(0, 10);
+          return String(date);
+        },
+        enableSorting: false,
       },
       {
         accessorKey: 'status',
@@ -109,7 +118,7 @@ export function useShipmentsLogic(
     ],
     [handleEdit, handleView, handleDelete, tVar]
   );
-  
+
   return {
     data,
     columns,
