@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './shipment-form.module.css';
-import { useShipmentForm } from './hooks/useAddShipmentForm';
+import { useShipmentForm } from './hooks/useShipmentForm';
 import { Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
