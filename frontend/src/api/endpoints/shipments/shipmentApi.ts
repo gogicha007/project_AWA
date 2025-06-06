@@ -1,6 +1,8 @@
 import { handleApiError } from '@/utils/handleApiError';
 import apiClient from '../../api-client';
 import { ShipmentDTO } from '../../types';
+import { shipmentFileApi } from './shipmentFileApi';
+
 
 export const shipmentApi = {
   getAll: async (): Promise<ShipmentDTO[]> => {
@@ -12,7 +14,6 @@ export const shipmentApi = {
     shipment: ShipmentDTO,
     userId: number
   ): Promise<ShipmentDTO> => {
-    console.log('shipment create data', shipment.files);
     try {
       const shipmentCreateData = {
         alias: shipment.alias,
@@ -27,17 +28,7 @@ export const shipmentApi = {
       );
       const newShipmentId = shipmentResponse.data.id;
 
-      if (shipment.files && shipment.files.length > 0) {
-        const filesWithShipmentId = shipment.files.map((file) => ({
-          ...file,
-          shipmentId: newShipmentId,
-        }));
-
-        // Upload files
-        await apiClient.post('/shipment-files', {
-          files: filesWithShipmentId,
-        });
-      }
+      await shipmentFileApi.create(shipment.files ?? [], newShipmentId)
 
       return shipmentResponse.data;
     } catch (error) {

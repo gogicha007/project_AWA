@@ -57,9 +57,11 @@ export interface ShipmentDTO {
 }
 
 export interface ShipmentFileDTO {
+  id?: number;
   fileName: string;
   fileType: string;
   fileData: string;
+  shipmentId?: number;
 }
 
 export interface InvoiceDTO {

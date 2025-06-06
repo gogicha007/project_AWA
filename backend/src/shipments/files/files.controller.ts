@@ -45,4 +45,9 @@ export class ShipmentFilesController {
   remove(@Param('id') id: string) {
     return this.filesService.remove(+id);
   }
+
+  @Delete('shipment/:id')
+  removeMany(@Param('id') id: string) {
+    return this.filesService.removeByShipmentId(+id);
+  }
 }

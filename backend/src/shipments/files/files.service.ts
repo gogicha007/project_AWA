@@ -36,6 +36,10 @@ export class ShipmentFilesService {
     );
   }
 
+  async findAll() {
+    return this.dbService.shipmentFile.findMany();
+  }
+
   async findAllByShipmentId(shipmentId: number) {
     return this.dbService.shipmentFile.findMany({
       where: { shipmentId },
@@ -50,12 +54,15 @@ export class ShipmentFilesService {
   async findOne(id: number) {
     return this.dbService.shipmentFile.findUnique({
       where: { id },
+      select: {
+        id: true,
+        fileName: true,
+        fileType: true,
+        fileData: true,
+      },
     });
   }
 
-  async findAll() {
-    return this.dbService.shipmentFile.findMany();
-  }
   async remove(id: number) {
     return this.dbService.shipmentFile.delete({
       where: { id },

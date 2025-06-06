@@ -5,7 +5,6 @@ import {
   IsOptional,
   IsEnum,
   IsDateString,
-  IsArray,
   IsInt,
 } from 'class-validator';
 
@@ -39,14 +38,4 @@ export class CreateShipmentDTO {
   @IsInt()
   @IsNotEmpty()
   userId: number;
-
-  @ApiProperty({ required: false, type: [Number] })
-  @IsArray()
-  @IsOptional()
-  invoiceIds?: number[];
-
-  @ApiProperty({ required: false, type: [Number] })
-  @IsArray()
-  @IsOptional()
-  fileIds?: number[];
 }

@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { ShipmentDTO } from '../../types';
-import { shipmentApi } from '../../endpoints/shipments/shipmentApi';
+import { ShipmentFileDTO } from '../../types';
+import { shipmentFileApi } from '../../endpoints/shipments/shipmentFileApi';
 import { useAuth } from '@/context/auth';
 
-export function useShipmentApi() {
-  const [shipments, setShipments] = useState<ShipmentDTO[]>([]);
+export function useShipmentFileApi() {
+  const [shipmentFiles, setShipmentFiles] = useState<ShipmentFileDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);
   const { currentUser, loading: authLoading } = useAuth();
@@ -15,8 +15,8 @@ export function useShipmentApi() {
     setLoading(true);
     setError(null);
     try {
-      const data = await shipmentApi.getAll();
-      setShipments(data);
+      const data = await shipmentFileApi.getAll();
+      setShipmentFiles(data);
     } catch (err) {
       setError(err);
     } finally {
@@ -34,5 +34,5 @@ export function useShipmentApi() {
     fetchFiles();
   }, [authLoading, currentUser?.uid, fetchFiles]);
 
-  return { shipments, loading, error, mutate };
+  return { shipmentFiles, loading, error, mutate };
 }

@@ -12,15 +12,8 @@ export class ShipmentsService {
   ) {}
 
   async create(createShipmentDto: CreateShipmentDTO) {
-    const {
-      alias,
-      status,
-      declaration_number,
-      declaration_date,
-      invoiceIds,
-      fileIds,
-      userId,
-    } = createShipmentDto;
+    const { alias, status, declaration_number, declaration_date, userId } =
+      createShipmentDto;
 
     const shipment = await this.dbService.shipment.create({
       data: {
@@ -29,18 +22,6 @@ export class ShipmentsService {
         declaration_number,
         declaration_date: declaration_date
           ? new Date(declaration_date)
-          : undefined,
-        invoices: invoiceIds
-          ? {
-              create: invoiceIds.map((invoiceId) => ({
-                invoice: { connect: { id: invoiceId } },
-              })),
-            }
-          : undefined,
-        files: fileIds
-          ? {
-              connect: fileIds.map((fileId) => ({ id: fileId })),
-            }
           : undefined,
         userId,
       },
@@ -82,7 +63,7 @@ export class ShipmentsService {
       data: updateShipmentDto,
       include: {
         invoices: true,
-        files: true,
+        files: false,
       },
     });
   }
