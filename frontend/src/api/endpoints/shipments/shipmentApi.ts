@@ -3,10 +3,14 @@ import apiClient from '../../api-client';
 import { ShipmentDTO } from '../../types';
 import { shipmentFileApi } from './shipmentFileApi';
 
-
 export const shipmentApi = {
   getAll: async (): Promise<ShipmentDTO[]> => {
     const response = await apiClient.get('/shipments');
+    return response.data;
+  },
+
+  getById: async (id: number): Promise<ShipmentDTO> => {
+    const response = await apiClient.get(`/shipments/${id}`);
     return response.data;
   },
 
@@ -28,7 +32,7 @@ export const shipmentApi = {
       );
       const newShipmentId = shipmentResponse.data.id;
 
-      await shipmentFileApi.create(shipment.files ?? [], newShipmentId)
+      await shipmentFileApi.create(shipment.files ?? [], newShipmentId);
 
       return shipmentResponse.data;
     } catch (error) {

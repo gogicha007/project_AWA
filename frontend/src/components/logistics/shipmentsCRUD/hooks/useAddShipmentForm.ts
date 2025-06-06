@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useAuth } from '@/context/auth';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
+import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import convertToBase64 from '@/utils/file-utils';
 import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 
@@ -26,39 +27,100 @@ export type FileData = {
   fileData: string;
 };
 
-export function useAddShipmentForm() {
+export function useShipmentForm(id?: number) {
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+  const isEditMode = !!id;
+  const router = useRouter();
   const tS = useTranslations('Logistics');
   const tB = useTranslations('Buttons');
+  const { dbUserId } = useAuth();
   const localeCode = useLocale();
-  const router = useRouter();
+
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<ShipmentFormValues>();
-  const { dbUserId } = useAuth();
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+  } = useForm<ShipmentFormValues>({
+    defaultValues: {
+      alias: '',
+      status: undefined,
+      declaration_number: '',
+      declaration_date: undefined,
+    },
+  });
+
+  useEffect(() => {
+    if (id) {
+      const fetchShipment = async () => {
+        try {
+          const shipment = await shipmentApi.getById(id);
+
+          reset({
+            alias: shipment.alias,
+            status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
+            declaration_number: shipment.declaration_number || '',
+            declaration_date: shipment.declaration_date || undefined,
+          });
+
+          const files = await shipmentFileApi.getAll(id);
+          setFileDataArray(files || []);
+          setSelectedFiles(
+            files.map(
+              (file) => new File([], file.fileName, { type: file.fileType })
+            )
+          );
+        } catch (error) {
+          console.error('Failed to fetch shipment:', error);
+        }
+      };
+      fetchShipment();
+    }
+  }, [id, reset]);
 
   const submitHandler = async (data: ShipmentFormValues) => {
     try {
       if (dbUserId === null) {
         throw new Error('User ID is required to create a shipment.');
       }
-      await shipmentApi.create(
-        {
-          ...data,
-          declaration_number: data.declaration_number ?? '',
-          declaration_date: data.declaration_date ?? new Date(0),
-          files: fileDataArray,
-        },
-        dbUserId
-      );
+      if (isEditMode && id) {
+        await shipmentApi.update(
+          {
+            id: id,
+            ...data,
+            declaration_number: data.declaration_number ?? '',
+            declaration_date: data.declaration_date ?? new Date(),
+          },
+          dbUserId
+        );
+
+        if (fileDataArray.length > 0) {
+          await shipmentFileApi.update(fileDataArray, id);
+        }
+      } else {
+        // create new shipment
+        const createdShipment = await shipmentApi.create(
+          {
+            ...data,
+            declaration_number: data.declaration_number ?? '',
+            declaration_date: data.declaration_date ?? new Date(),
+          },
+          dbUserId
+        );
+        if (fileDataArray.length > 0) {
+          if (createdShipment.id === undefined) {
+            throw new Error('Created shipment ID is undefined.');
+          }
+          await shipmentFileApi.create(fileDataArray, createdShipment.id);
+        }
+      }
+
+      router.push('/shipments');
     } catch (error) {
-      console.error(error);
+      console.error('Error saving shipment:', error);
     }
-    router.push('/shipments');
   };
 
   const handleCancel = () => {
@@ -106,5 +168,6 @@ export function useAddShipmentForm() {
     handleCancel,
     handleFileChange,
     handleRemoveFile,
+    isEditMode,
   };
 }

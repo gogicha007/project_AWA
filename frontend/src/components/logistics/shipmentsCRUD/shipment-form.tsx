@@ -1,13 +1,13 @@
 'use client';
 
 import styles from './shipment-form.module.css';
-import { useAddShipmentForm } from './hooks/useAddShipmentForm';
+import { useShipmentForm } from './hooks/useAddShipmentForm';
 import { Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 // import InvoiceTable from '@/components/purchases/invoice-table';
 
-export default function AddShipmentForm() {
+export default function ShipmentForm({id}: {id?: number}) {
   const {
     tS,
     tB,
@@ -22,7 +22,7 @@ export default function AddShipmentForm() {
     handleCancel,
     handleFileChange,
     handleRemoveFile,
-  } = useAddShipmentForm();
+  } = useShipmentForm(id);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>

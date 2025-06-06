@@ -1,6 +1,6 @@
 import styles from '../page.module.css';
 import React from 'react';
-import AddShipmentForm from '@/components/logistics/shipmentsCRUD/add-shipment-form';
+import AddShipmentForm from '@/components/logistics/shipmentsCRUD/shipment-form';
 
 const AddShipment = () => {
   return (
