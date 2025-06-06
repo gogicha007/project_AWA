@@ -64,10 +64,23 @@ export interface ShipmentFileDTO {
 
 export interface InvoiceDTO {
   id?: number;
+  vendorId: number;
   invoiceNumber: string;
   invoiceDate: Date;
   totalAmount?: number;
   isArrived?: boolean;
-  vendorId: number
+  userId?: number;
+  currencyId: number;
+}
 
+export interface InvoiceItemDTO {
+  id?: number;
+  invoiceId: number;
+  productId: number;
+  description: string;
+  quantity: number;
+  unitId: number;
+  unitPrice: number;
+  total: number;
+  isArrived?: boolean;
 }

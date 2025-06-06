@@ -56,10 +56,12 @@ export function useInvoiceTable(
       // Map InvoiceDTO to Invoice before passing
       const mappedInvoice: InvoiceDTO = {
         id: invoice.id ?? 0,
-        invoiceNumber: invoice.invoiceNumber,
         vendorId: (invoice as InvoiceDTO).vendorId ?? '',
+        invoiceNumber: invoice.invoiceNumber,
         invoiceDate: (invoice as InvoiceDTO).invoiceDate ?? '',
         totalAmount: (invoice as InvoiceDTO).totalAmount ?? 0,
+        currencyId: invoice.currencyId,
+        isArrived: false
       };
       options.onEditStart(mappedInvoice);
     }
