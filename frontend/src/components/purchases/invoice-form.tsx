@@ -11,6 +11,7 @@ type Props = {
   onSave: (invoice: InvoiceDTO) => void;
   initialData?: InvoiceDTO;
   title: string;
+  tVar: (key: string) => string;
 };
 
 export default function InvoiceDialog({
@@ -19,6 +20,7 @@ export default function InvoiceDialog({
   onSave,
   initialData,
   title,
+  tVar,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
@@ -53,7 +55,22 @@ export default function InvoiceDialog({
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
-            <label htmlFor="invoice_number"></label>
+          <label htmlFor="invoice_number">{tVar('invoice_number')}</label>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="invoice_date">{tVar('invoice_date')}</label>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="currency">{tVar('currency')}</label>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="total_amount">{tVar('total_amount')}</label>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="truck_number">{tVar('truck_number')}</label>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="is_arrived">{tVar('is_arrived')}</label>
         </div>
       </form>
       <div className={styles.formActions}>

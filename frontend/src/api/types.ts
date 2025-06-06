@@ -53,14 +53,21 @@ export interface ShipmentDTO {
   declaration_number: string;
   declaration_date: Date;
   status: string;
-  files?: Array<{
-    fileName: string;
-    fileType: string;
-    fileData: string;
-  }>;
+  files?: Array<ShipmentFileDTO>;
+}
+
+export interface ShipmentFileDTO {
+  fileName: string;
+  fileType: string;
+  fileData: string;
 }
 
 export interface InvoiceDTO {
   id?: number;
-  invoiceNumber: string
+  invoiceNumber: string;
+  invoiceDate: Date;
+  totalAmount?: number;
+  isArrived?: boolean;
+  vendorId: number
+
 }

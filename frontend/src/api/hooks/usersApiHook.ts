@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usersApi } from '../endpoints/users';
+import { usersApi } from '../endpoints/usersApi';
 import { UserResponseDTO } from '../types';
 
 export function useUsers() {

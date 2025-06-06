@@ -1,8 +1,8 @@
 import { handleApiError } from '@/utils/handleApiError';
-import apiClient from '../api-client';
-import { ShipmentDTO } from '../types';
+import apiClient from '../../api-client';
+import { ShipmentDTO } from '../../types';
 
-export const shipmentsApi = {
+export const shipmentApi = {
   getAll: async (): Promise<ShipmentDTO[]> => {
     const response = await apiClient.get('/shipments');
     return response.data;
@@ -28,7 +28,6 @@ export const shipmentsApi = {
       const newShipmentId = shipmentResponse.data.id;
 
       if (shipment.files && shipment.files.length > 0) {
-        // Add shipmentId to each file
         const filesWithShipmentId = shipment.files.map((file) => ({
           ...file,
           shipmentId: newShipmentId,

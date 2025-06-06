@@ -180,6 +180,14 @@ exports.Prisma.ShipmentScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ShipmentFileScalarFieldEnum = {
+  id: 'id',
+  shipmentId: 'shipmentId',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileData: 'fileData'
+};
+
 exports.Prisma.InvoiceScalarFieldEnum = {
   id: 'id',
   vendorId: 'vendorId',
@@ -208,14 +216,6 @@ exports.Prisma.InvoiceItemScalarFieldEnum = {
 exports.Prisma.ShipmentInvoiceScalarFieldEnum = {
   shipmentId: 'shipmentId',
   invoiceId: 'invoiceId'
-};
-
-exports.Prisma.ShipmentFileScalarFieldEnum = {
-  id: 'id',
-  shipmentId: 'shipmentId',
-  fileName: 'fileName',
-  fileType: 'fileType',
-  fileData: 'fileData'
 };
 
 exports.Prisma.SortOrder = {
@@ -247,10 +247,10 @@ exports.Prisma.ModelName = {
   MaterialType: 'MaterialType',
   MaterialName: 'MaterialName',
   Shipment: 'Shipment',
+  ShipmentFile: 'ShipmentFile',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
-  ShipmentInvoice: 'ShipmentInvoice',
-  ShipmentFile: 'ShipmentFile'
+  ShipmentInvoice: 'ShipmentInvoice'
 };
 
 /**

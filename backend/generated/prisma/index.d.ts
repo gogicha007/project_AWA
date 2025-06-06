@@ -54,6 +54,11 @@ export type MaterialName = $Result.DefaultSelection<Prisma.$MaterialNamePayload>
  */
 export type Shipment = $Result.DefaultSelection<Prisma.$ShipmentPayload>
 /**
+ * Model ShipmentFile
+ * 
+ */
+export type ShipmentFile = $Result.DefaultSelection<Prisma.$ShipmentFilePayload>
+/**
  * Model Invoice
  * 
  */
@@ -68,11 +73,6 @@ export type InvoiceItem = $Result.DefaultSelection<Prisma.$InvoiceItemPayload>
  * 
  */
 export type ShipmentInvoice = $Result.DefaultSelection<Prisma.$ShipmentInvoicePayload>
-/**
- * Model ShipmentFile
- * 
- */
-export type ShipmentFile = $Result.DefaultSelection<Prisma.$ShipmentFilePayload>
 
 /**
  * Enums
@@ -298,6 +298,16 @@ export class PrismaClient<
   get shipment(): Prisma.ShipmentDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.shipmentFile`: Exposes CRUD operations for the **ShipmentFile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ShipmentFiles
+    * const shipmentFiles = await prisma.shipmentFile.findMany()
+    * ```
+    */
+  get shipmentFile(): Prisma.ShipmentFileDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.invoice`: Exposes CRUD operations for the **Invoice** model.
     * Example usage:
     * ```ts
@@ -326,16 +336,6 @@ export class PrismaClient<
     * ```
     */
   get shipmentInvoice(): Prisma.ShipmentInvoiceDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.shipmentFile`: Exposes CRUD operations for the **ShipmentFile** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ShipmentFiles
-    * const shipmentFiles = await prisma.shipmentFile.findMany()
-    * ```
-    */
-  get shipmentFile(): Prisma.ShipmentFileDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -784,10 +784,10 @@ export namespace Prisma {
     MaterialType: 'MaterialType',
     MaterialName: 'MaterialName',
     Shipment: 'Shipment',
+    ShipmentFile: 'ShipmentFile',
     Invoice: 'Invoice',
     InvoiceItem: 'InvoiceItem',
-    ShipmentInvoice: 'ShipmentInvoice',
-    ShipmentFile: 'ShipmentFile'
+    ShipmentInvoice: 'ShipmentInvoice'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -806,7 +806,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vendor" | "unit" | "currency" | "materialGroup" | "materialType" | "materialName" | "shipment" | "invoice" | "invoiceItem" | "shipmentInvoice" | "shipmentFile"
+      modelProps: "user" | "vendor" | "unit" | "currency" | "materialGroup" | "materialType" | "materialName" | "shipment" | "shipmentFile" | "invoice" | "invoiceItem" | "shipmentInvoice"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1402,6 +1402,80 @@ export namespace Prisma {
           }
         }
       }
+      ShipmentFile: {
+        payload: Prisma.$ShipmentFilePayload<ExtArgs>
+        fields: Prisma.ShipmentFileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ShipmentFileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ShipmentFileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
+          }
+          findFirst: {
+            args: Prisma.ShipmentFileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ShipmentFileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
+          }
+          findMany: {
+            args: Prisma.ShipmentFileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>[]
+          }
+          create: {
+            args: Prisma.ShipmentFileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
+          }
+          createMany: {
+            args: Prisma.ShipmentFileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ShipmentFileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>[]
+          }
+          delete: {
+            args: Prisma.ShipmentFileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
+          }
+          update: {
+            args: Prisma.ShipmentFileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
+          }
+          deleteMany: {
+            args: Prisma.ShipmentFileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ShipmentFileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ShipmentFileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>[]
+          }
+          upsert: {
+            args: Prisma.ShipmentFileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
+          }
+          aggregate: {
+            args: Prisma.ShipmentFileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateShipmentFile>
+          }
+          groupBy: {
+            args: Prisma.ShipmentFileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ShipmentFileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ShipmentFileCountArgs<ExtArgs>
+            result: $Utils.Optional<ShipmentFileCountAggregateOutputType> | number
+          }
+        }
+      }
       Invoice: {
         payload: Prisma.$InvoicePayload<ExtArgs>
         fields: Prisma.InvoiceFieldRefs
@@ -1624,80 +1698,6 @@ export namespace Prisma {
           }
         }
       }
-      ShipmentFile: {
-        payload: Prisma.$ShipmentFilePayload<ExtArgs>
-        fields: Prisma.ShipmentFileFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ShipmentFileFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ShipmentFileFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
-          }
-          findFirst: {
-            args: Prisma.ShipmentFileFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ShipmentFileFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
-          }
-          findMany: {
-            args: Prisma.ShipmentFileFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>[]
-          }
-          create: {
-            args: Prisma.ShipmentFileCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
-          }
-          createMany: {
-            args: Prisma.ShipmentFileCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ShipmentFileCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>[]
-          }
-          delete: {
-            args: Prisma.ShipmentFileDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
-          }
-          update: {
-            args: Prisma.ShipmentFileUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
-          }
-          deleteMany: {
-            args: Prisma.ShipmentFileDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ShipmentFileUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ShipmentFileUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>[]
-          }
-          upsert: {
-            args: Prisma.ShipmentFileUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShipmentFilePayload>
-          }
-          aggregate: {
-            args: Prisma.ShipmentFileAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateShipmentFile>
-          }
-          groupBy: {
-            args: Prisma.ShipmentFileGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ShipmentFileGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ShipmentFileCountArgs<ExtArgs>
-            result: $Utils.Optional<ShipmentFileCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1790,10 +1790,10 @@ export namespace Prisma {
     materialType?: MaterialTypeOmit
     materialName?: MaterialNameOmit
     shipment?: ShipmentOmit
+    shipmentFile?: ShipmentFileOmit
     invoice?: InvoiceOmit
     invoiceItem?: InvoiceItemOmit
     shipmentInvoice?: ShipmentInvoiceOmit
-    shipmentFile?: ShipmentFileOmit
   }
 
   /* Types for Logging */
@@ -11198,6 +11198,1102 @@ export namespace Prisma {
 
 
   /**
+   * Model ShipmentFile
+   */
+
+  export type AggregateShipmentFile = {
+    _count: ShipmentFileCountAggregateOutputType | null
+    _avg: ShipmentFileAvgAggregateOutputType | null
+    _sum: ShipmentFileSumAggregateOutputType | null
+    _min: ShipmentFileMinAggregateOutputType | null
+    _max: ShipmentFileMaxAggregateOutputType | null
+  }
+
+  export type ShipmentFileAvgAggregateOutputType = {
+    id: number | null
+    shipmentId: number | null
+  }
+
+  export type ShipmentFileSumAggregateOutputType = {
+    id: number | null
+    shipmentId: number | null
+  }
+
+  export type ShipmentFileMinAggregateOutputType = {
+    id: number | null
+    shipmentId: number | null
+    fileName: string | null
+    fileType: string | null
+    fileData: Uint8Array | null
+  }
+
+  export type ShipmentFileMaxAggregateOutputType = {
+    id: number | null
+    shipmentId: number | null
+    fileName: string | null
+    fileType: string | null
+    fileData: Uint8Array | null
+  }
+
+  export type ShipmentFileCountAggregateOutputType = {
+    id: number
+    shipmentId: number
+    fileName: number
+    fileType: number
+    fileData: number
+    _all: number
+  }
+
+
+  export type ShipmentFileAvgAggregateInputType = {
+    id?: true
+    shipmentId?: true
+  }
+
+  export type ShipmentFileSumAggregateInputType = {
+    id?: true
+    shipmentId?: true
+  }
+
+  export type ShipmentFileMinAggregateInputType = {
+    id?: true
+    shipmentId?: true
+    fileName?: true
+    fileType?: true
+    fileData?: true
+  }
+
+  export type ShipmentFileMaxAggregateInputType = {
+    id?: true
+    shipmentId?: true
+    fileName?: true
+    fileType?: true
+    fileData?: true
+  }
+
+  export type ShipmentFileCountAggregateInputType = {
+    id?: true
+    shipmentId?: true
+    fileName?: true
+    fileType?: true
+    fileData?: true
+    _all?: true
+  }
+
+  export type ShipmentFileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ShipmentFile to aggregate.
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShipmentFiles to fetch.
+     */
+    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ShipmentFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShipmentFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShipmentFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ShipmentFiles
+    **/
+    _count?: true | ShipmentFileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ShipmentFileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ShipmentFileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ShipmentFileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ShipmentFileMaxAggregateInputType
+  }
+
+  export type GetShipmentFileAggregateType<T extends ShipmentFileAggregateArgs> = {
+        [P in keyof T & keyof AggregateShipmentFile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateShipmentFile[P]>
+      : GetScalarType<T[P], AggregateShipmentFile[P]>
+  }
+
+
+
+
+  export type ShipmentFileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShipmentFileWhereInput
+    orderBy?: ShipmentFileOrderByWithAggregationInput | ShipmentFileOrderByWithAggregationInput[]
+    by: ShipmentFileScalarFieldEnum[] | ShipmentFileScalarFieldEnum
+    having?: ShipmentFileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ShipmentFileCountAggregateInputType | true
+    _avg?: ShipmentFileAvgAggregateInputType
+    _sum?: ShipmentFileSumAggregateInputType
+    _min?: ShipmentFileMinAggregateInputType
+    _max?: ShipmentFileMaxAggregateInputType
+  }
+
+  export type ShipmentFileGroupByOutputType = {
+    id: number
+    shipmentId: number
+    fileName: string
+    fileType: string | null
+    fileData: Uint8Array | null
+    _count: ShipmentFileCountAggregateOutputType | null
+    _avg: ShipmentFileAvgAggregateOutputType | null
+    _sum: ShipmentFileSumAggregateOutputType | null
+    _min: ShipmentFileMinAggregateOutputType | null
+    _max: ShipmentFileMaxAggregateOutputType | null
+  }
+
+  type GetShipmentFileGroupByPayload<T extends ShipmentFileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ShipmentFileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ShipmentFileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ShipmentFileGroupByOutputType[P]>
+            : GetScalarType<T[P], ShipmentFileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ShipmentFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shipmentId?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileData?: boolean
+    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shipmentFile"]>
+
+  export type ShipmentFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shipmentId?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileData?: boolean
+    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shipmentFile"]>
+
+  export type ShipmentFileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shipmentId?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileData?: boolean
+    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["shipmentFile"]>
+
+  export type ShipmentFileSelectScalar = {
+    id?: boolean
+    shipmentId?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileData?: boolean
+  }
+
+  export type ShipmentFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "shipmentId" | "fileName" | "fileType" | "fileData", ExtArgs["result"]["shipmentFile"]>
+  export type ShipmentFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
+  }
+  export type ShipmentFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
+  }
+  export type ShipmentFileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
+  }
+
+  export type $ShipmentFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ShipmentFile"
+    objects: {
+      shipment: Prisma.$ShipmentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      shipmentId: number
+      fileName: string
+      fileType: string | null
+      fileData: Uint8Array | null
+    }, ExtArgs["result"]["shipmentFile"]>
+    composites: {}
+  }
+
+  type ShipmentFileGetPayload<S extends boolean | null | undefined | ShipmentFileDefaultArgs> = $Result.GetResult<Prisma.$ShipmentFilePayload, S>
+
+  type ShipmentFileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ShipmentFileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ShipmentFileCountAggregateInputType | true
+    }
+
+  export interface ShipmentFileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ShipmentFile'], meta: { name: 'ShipmentFile' } }
+    /**
+     * Find zero or one ShipmentFile that matches the filter.
+     * @param {ShipmentFileFindUniqueArgs} args - Arguments to find a ShipmentFile
+     * @example
+     * // Get one ShipmentFile
+     * const shipmentFile = await prisma.shipmentFile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ShipmentFileFindUniqueArgs>(args: SelectSubset<T, ShipmentFileFindUniqueArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ShipmentFile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ShipmentFileFindUniqueOrThrowArgs} args - Arguments to find a ShipmentFile
+     * @example
+     * // Get one ShipmentFile
+     * const shipmentFile = await prisma.shipmentFile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ShipmentFileFindUniqueOrThrowArgs>(args: SelectSubset<T, ShipmentFileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ShipmentFile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileFindFirstArgs} args - Arguments to find a ShipmentFile
+     * @example
+     * // Get one ShipmentFile
+     * const shipmentFile = await prisma.shipmentFile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ShipmentFileFindFirstArgs>(args?: SelectSubset<T, ShipmentFileFindFirstArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ShipmentFile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileFindFirstOrThrowArgs} args - Arguments to find a ShipmentFile
+     * @example
+     * // Get one ShipmentFile
+     * const shipmentFile = await prisma.shipmentFile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ShipmentFileFindFirstOrThrowArgs>(args?: SelectSubset<T, ShipmentFileFindFirstOrThrowArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ShipmentFiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ShipmentFiles
+     * const shipmentFiles = await prisma.shipmentFile.findMany()
+     * 
+     * // Get first 10 ShipmentFiles
+     * const shipmentFiles = await prisma.shipmentFile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const shipmentFileWithIdOnly = await prisma.shipmentFile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ShipmentFileFindManyArgs>(args?: SelectSubset<T, ShipmentFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ShipmentFile.
+     * @param {ShipmentFileCreateArgs} args - Arguments to create a ShipmentFile.
+     * @example
+     * // Create one ShipmentFile
+     * const ShipmentFile = await prisma.shipmentFile.create({
+     *   data: {
+     *     // ... data to create a ShipmentFile
+     *   }
+     * })
+     * 
+     */
+    create<T extends ShipmentFileCreateArgs>(args: SelectSubset<T, ShipmentFileCreateArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ShipmentFiles.
+     * @param {ShipmentFileCreateManyArgs} args - Arguments to create many ShipmentFiles.
+     * @example
+     * // Create many ShipmentFiles
+     * const shipmentFile = await prisma.shipmentFile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ShipmentFileCreateManyArgs>(args?: SelectSubset<T, ShipmentFileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ShipmentFiles and returns the data saved in the database.
+     * @param {ShipmentFileCreateManyAndReturnArgs} args - Arguments to create many ShipmentFiles.
+     * @example
+     * // Create many ShipmentFiles
+     * const shipmentFile = await prisma.shipmentFile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ShipmentFiles and only return the `id`
+     * const shipmentFileWithIdOnly = await prisma.shipmentFile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ShipmentFileCreateManyAndReturnArgs>(args?: SelectSubset<T, ShipmentFileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ShipmentFile.
+     * @param {ShipmentFileDeleteArgs} args - Arguments to delete one ShipmentFile.
+     * @example
+     * // Delete one ShipmentFile
+     * const ShipmentFile = await prisma.shipmentFile.delete({
+     *   where: {
+     *     // ... filter to delete one ShipmentFile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ShipmentFileDeleteArgs>(args: SelectSubset<T, ShipmentFileDeleteArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ShipmentFile.
+     * @param {ShipmentFileUpdateArgs} args - Arguments to update one ShipmentFile.
+     * @example
+     * // Update one ShipmentFile
+     * const shipmentFile = await prisma.shipmentFile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ShipmentFileUpdateArgs>(args: SelectSubset<T, ShipmentFileUpdateArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ShipmentFiles.
+     * @param {ShipmentFileDeleteManyArgs} args - Arguments to filter ShipmentFiles to delete.
+     * @example
+     * // Delete a few ShipmentFiles
+     * const { count } = await prisma.shipmentFile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ShipmentFileDeleteManyArgs>(args?: SelectSubset<T, ShipmentFileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ShipmentFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ShipmentFiles
+     * const shipmentFile = await prisma.shipmentFile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ShipmentFileUpdateManyArgs>(args: SelectSubset<T, ShipmentFileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ShipmentFiles and returns the data updated in the database.
+     * @param {ShipmentFileUpdateManyAndReturnArgs} args - Arguments to update many ShipmentFiles.
+     * @example
+     * // Update many ShipmentFiles
+     * const shipmentFile = await prisma.shipmentFile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ShipmentFiles and only return the `id`
+     * const shipmentFileWithIdOnly = await prisma.shipmentFile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ShipmentFileUpdateManyAndReturnArgs>(args: SelectSubset<T, ShipmentFileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ShipmentFile.
+     * @param {ShipmentFileUpsertArgs} args - Arguments to update or create a ShipmentFile.
+     * @example
+     * // Update or create a ShipmentFile
+     * const shipmentFile = await prisma.shipmentFile.upsert({
+     *   create: {
+     *     // ... data to create a ShipmentFile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ShipmentFile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ShipmentFileUpsertArgs>(args: SelectSubset<T, ShipmentFileUpsertArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ShipmentFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileCountArgs} args - Arguments to filter ShipmentFiles to count.
+     * @example
+     * // Count the number of ShipmentFiles
+     * const count = await prisma.shipmentFile.count({
+     *   where: {
+     *     // ... the filter for the ShipmentFiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends ShipmentFileCountArgs>(
+      args?: Subset<T, ShipmentFileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ShipmentFileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ShipmentFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ShipmentFileAggregateArgs>(args: Subset<T, ShipmentFileAggregateArgs>): Prisma.PrismaPromise<GetShipmentFileAggregateType<T>>
+
+    /**
+     * Group by ShipmentFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShipmentFileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ShipmentFileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ShipmentFileGroupByArgs['orderBy'] }
+        : { orderBy?: ShipmentFileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ShipmentFileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShipmentFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ShipmentFile model
+   */
+  readonly fields: ShipmentFileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ShipmentFile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ShipmentFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    shipment<T extends ShipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShipmentDefaultArgs<ExtArgs>>): Prisma__ShipmentClient<$Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ShipmentFile model
+   */
+  interface ShipmentFileFieldRefs {
+    readonly id: FieldRef<"ShipmentFile", 'Int'>
+    readonly shipmentId: FieldRef<"ShipmentFile", 'Int'>
+    readonly fileName: FieldRef<"ShipmentFile", 'String'>
+    readonly fileType: FieldRef<"ShipmentFile", 'String'>
+    readonly fileData: FieldRef<"ShipmentFile", 'Bytes'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ShipmentFile findUnique
+   */
+  export type ShipmentFileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * Filter, which ShipmentFile to fetch.
+     */
+    where: ShipmentFileWhereUniqueInput
+  }
+
+  /**
+   * ShipmentFile findUniqueOrThrow
+   */
+  export type ShipmentFileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * Filter, which ShipmentFile to fetch.
+     */
+    where: ShipmentFileWhereUniqueInput
+  }
+
+  /**
+   * ShipmentFile findFirst
+   */
+  export type ShipmentFileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * Filter, which ShipmentFile to fetch.
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShipmentFiles to fetch.
+     */
+    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ShipmentFiles.
+     */
+    cursor?: ShipmentFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShipmentFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShipmentFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ShipmentFiles.
+     */
+    distinct?: ShipmentFileScalarFieldEnum | ShipmentFileScalarFieldEnum[]
+  }
+
+  /**
+   * ShipmentFile findFirstOrThrow
+   */
+  export type ShipmentFileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * Filter, which ShipmentFile to fetch.
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShipmentFiles to fetch.
+     */
+    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ShipmentFiles.
+     */
+    cursor?: ShipmentFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShipmentFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShipmentFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ShipmentFiles.
+     */
+    distinct?: ShipmentFileScalarFieldEnum | ShipmentFileScalarFieldEnum[]
+  }
+
+  /**
+   * ShipmentFile findMany
+   */
+  export type ShipmentFileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * Filter, which ShipmentFiles to fetch.
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShipmentFiles to fetch.
+     */
+    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ShipmentFiles.
+     */
+    cursor?: ShipmentFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShipmentFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShipmentFiles.
+     */
+    skip?: number
+    distinct?: ShipmentFileScalarFieldEnum | ShipmentFileScalarFieldEnum[]
+  }
+
+  /**
+   * ShipmentFile create
+   */
+  export type ShipmentFileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ShipmentFile.
+     */
+    data: XOR<ShipmentFileCreateInput, ShipmentFileUncheckedCreateInput>
+  }
+
+  /**
+   * ShipmentFile createMany
+   */
+  export type ShipmentFileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ShipmentFiles.
+     */
+    data: ShipmentFileCreateManyInput | ShipmentFileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ShipmentFile createManyAndReturn
+   */
+  export type ShipmentFileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * The data used to create many ShipmentFiles.
+     */
+    data: ShipmentFileCreateManyInput | ShipmentFileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ShipmentFile update
+   */
+  export type ShipmentFileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ShipmentFile.
+     */
+    data: XOR<ShipmentFileUpdateInput, ShipmentFileUncheckedUpdateInput>
+    /**
+     * Choose, which ShipmentFile to update.
+     */
+    where: ShipmentFileWhereUniqueInput
+  }
+
+  /**
+   * ShipmentFile updateMany
+   */
+  export type ShipmentFileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ShipmentFiles.
+     */
+    data: XOR<ShipmentFileUpdateManyMutationInput, ShipmentFileUncheckedUpdateManyInput>
+    /**
+     * Filter which ShipmentFiles to update
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * Limit how many ShipmentFiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ShipmentFile updateManyAndReturn
+   */
+  export type ShipmentFileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * The data used to update ShipmentFiles.
+     */
+    data: XOR<ShipmentFileUpdateManyMutationInput, ShipmentFileUncheckedUpdateManyInput>
+    /**
+     * Filter which ShipmentFiles to update
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * Limit how many ShipmentFiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ShipmentFile upsert
+   */
+  export type ShipmentFileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ShipmentFile to update in case it exists.
+     */
+    where: ShipmentFileWhereUniqueInput
+    /**
+     * In case the ShipmentFile found by the `where` argument doesn't exist, create a new ShipmentFile with this data.
+     */
+    create: XOR<ShipmentFileCreateInput, ShipmentFileUncheckedCreateInput>
+    /**
+     * In case the ShipmentFile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ShipmentFileUpdateInput, ShipmentFileUncheckedUpdateInput>
+  }
+
+  /**
+   * ShipmentFile delete
+   */
+  export type ShipmentFileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+    /**
+     * Filter which ShipmentFile to delete.
+     */
+    where: ShipmentFileWhereUniqueInput
+  }
+
+  /**
+   * ShipmentFile deleteMany
+   */
+  export type ShipmentFileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ShipmentFiles to delete
+     */
+    where?: ShipmentFileWhereInput
+    /**
+     * Limit how many ShipmentFiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ShipmentFile without action
+   */
+  export type ShipmentFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentFile
+     */
+    select?: ShipmentFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentFile
+     */
+    omit?: ShipmentFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentFileInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Invoice
    */
 
@@ -14694,1102 +15790,6 @@ export namespace Prisma {
 
 
   /**
-   * Model ShipmentFile
-   */
-
-  export type AggregateShipmentFile = {
-    _count: ShipmentFileCountAggregateOutputType | null
-    _avg: ShipmentFileAvgAggregateOutputType | null
-    _sum: ShipmentFileSumAggregateOutputType | null
-    _min: ShipmentFileMinAggregateOutputType | null
-    _max: ShipmentFileMaxAggregateOutputType | null
-  }
-
-  export type ShipmentFileAvgAggregateOutputType = {
-    id: number | null
-    shipmentId: number | null
-  }
-
-  export type ShipmentFileSumAggregateOutputType = {
-    id: number | null
-    shipmentId: number | null
-  }
-
-  export type ShipmentFileMinAggregateOutputType = {
-    id: number | null
-    shipmentId: number | null
-    fileName: string | null
-    fileType: string | null
-    fileData: Uint8Array | null
-  }
-
-  export type ShipmentFileMaxAggregateOutputType = {
-    id: number | null
-    shipmentId: number | null
-    fileName: string | null
-    fileType: string | null
-    fileData: Uint8Array | null
-  }
-
-  export type ShipmentFileCountAggregateOutputType = {
-    id: number
-    shipmentId: number
-    fileName: number
-    fileType: number
-    fileData: number
-    _all: number
-  }
-
-
-  export type ShipmentFileAvgAggregateInputType = {
-    id?: true
-    shipmentId?: true
-  }
-
-  export type ShipmentFileSumAggregateInputType = {
-    id?: true
-    shipmentId?: true
-  }
-
-  export type ShipmentFileMinAggregateInputType = {
-    id?: true
-    shipmentId?: true
-    fileName?: true
-    fileType?: true
-    fileData?: true
-  }
-
-  export type ShipmentFileMaxAggregateInputType = {
-    id?: true
-    shipmentId?: true
-    fileName?: true
-    fileType?: true
-    fileData?: true
-  }
-
-  export type ShipmentFileCountAggregateInputType = {
-    id?: true
-    shipmentId?: true
-    fileName?: true
-    fileType?: true
-    fileData?: true
-    _all?: true
-  }
-
-  export type ShipmentFileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ShipmentFile to aggregate.
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShipmentFiles to fetch.
-     */
-    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ShipmentFileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShipmentFiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShipmentFiles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ShipmentFiles
-    **/
-    _count?: true | ShipmentFileCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ShipmentFileAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ShipmentFileSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ShipmentFileMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ShipmentFileMaxAggregateInputType
-  }
-
-  export type GetShipmentFileAggregateType<T extends ShipmentFileAggregateArgs> = {
-        [P in keyof T & keyof AggregateShipmentFile]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateShipmentFile[P]>
-      : GetScalarType<T[P], AggregateShipmentFile[P]>
-  }
-
-
-
-
-  export type ShipmentFileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ShipmentFileWhereInput
-    orderBy?: ShipmentFileOrderByWithAggregationInput | ShipmentFileOrderByWithAggregationInput[]
-    by: ShipmentFileScalarFieldEnum[] | ShipmentFileScalarFieldEnum
-    having?: ShipmentFileScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ShipmentFileCountAggregateInputType | true
-    _avg?: ShipmentFileAvgAggregateInputType
-    _sum?: ShipmentFileSumAggregateInputType
-    _min?: ShipmentFileMinAggregateInputType
-    _max?: ShipmentFileMaxAggregateInputType
-  }
-
-  export type ShipmentFileGroupByOutputType = {
-    id: number
-    shipmentId: number
-    fileName: string
-    fileType: string | null
-    fileData: Uint8Array | null
-    _count: ShipmentFileCountAggregateOutputType | null
-    _avg: ShipmentFileAvgAggregateOutputType | null
-    _sum: ShipmentFileSumAggregateOutputType | null
-    _min: ShipmentFileMinAggregateOutputType | null
-    _max: ShipmentFileMaxAggregateOutputType | null
-  }
-
-  type GetShipmentFileGroupByPayload<T extends ShipmentFileGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ShipmentFileGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ShipmentFileGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ShipmentFileGroupByOutputType[P]>
-            : GetScalarType<T[P], ShipmentFileGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ShipmentFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    shipmentId?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileData?: boolean
-    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["shipmentFile"]>
-
-  export type ShipmentFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    shipmentId?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileData?: boolean
-    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["shipmentFile"]>
-
-  export type ShipmentFileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    shipmentId?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileData?: boolean
-    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["shipmentFile"]>
-
-  export type ShipmentFileSelectScalar = {
-    id?: boolean
-    shipmentId?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileData?: boolean
-  }
-
-  export type ShipmentFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "shipmentId" | "fileName" | "fileType" | "fileData", ExtArgs["result"]["shipmentFile"]>
-  export type ShipmentFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
-  }
-  export type ShipmentFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
-  }
-  export type ShipmentFileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
-  }
-
-  export type $ShipmentFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ShipmentFile"
-    objects: {
-      shipment: Prisma.$ShipmentPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      shipmentId: number
-      fileName: string
-      fileType: string | null
-      fileData: Uint8Array | null
-    }, ExtArgs["result"]["shipmentFile"]>
-    composites: {}
-  }
-
-  type ShipmentFileGetPayload<S extends boolean | null | undefined | ShipmentFileDefaultArgs> = $Result.GetResult<Prisma.$ShipmentFilePayload, S>
-
-  type ShipmentFileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ShipmentFileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ShipmentFileCountAggregateInputType | true
-    }
-
-  export interface ShipmentFileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ShipmentFile'], meta: { name: 'ShipmentFile' } }
-    /**
-     * Find zero or one ShipmentFile that matches the filter.
-     * @param {ShipmentFileFindUniqueArgs} args - Arguments to find a ShipmentFile
-     * @example
-     * // Get one ShipmentFile
-     * const shipmentFile = await prisma.shipmentFile.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ShipmentFileFindUniqueArgs>(args: SelectSubset<T, ShipmentFileFindUniqueArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ShipmentFile that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ShipmentFileFindUniqueOrThrowArgs} args - Arguments to find a ShipmentFile
-     * @example
-     * // Get one ShipmentFile
-     * const shipmentFile = await prisma.shipmentFile.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ShipmentFileFindUniqueOrThrowArgs>(args: SelectSubset<T, ShipmentFileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ShipmentFile that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileFindFirstArgs} args - Arguments to find a ShipmentFile
-     * @example
-     * // Get one ShipmentFile
-     * const shipmentFile = await prisma.shipmentFile.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ShipmentFileFindFirstArgs>(args?: SelectSubset<T, ShipmentFileFindFirstArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ShipmentFile that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileFindFirstOrThrowArgs} args - Arguments to find a ShipmentFile
-     * @example
-     * // Get one ShipmentFile
-     * const shipmentFile = await prisma.shipmentFile.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ShipmentFileFindFirstOrThrowArgs>(args?: SelectSubset<T, ShipmentFileFindFirstOrThrowArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ShipmentFiles that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ShipmentFiles
-     * const shipmentFiles = await prisma.shipmentFile.findMany()
-     * 
-     * // Get first 10 ShipmentFiles
-     * const shipmentFiles = await prisma.shipmentFile.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const shipmentFileWithIdOnly = await prisma.shipmentFile.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ShipmentFileFindManyArgs>(args?: SelectSubset<T, ShipmentFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ShipmentFile.
-     * @param {ShipmentFileCreateArgs} args - Arguments to create a ShipmentFile.
-     * @example
-     * // Create one ShipmentFile
-     * const ShipmentFile = await prisma.shipmentFile.create({
-     *   data: {
-     *     // ... data to create a ShipmentFile
-     *   }
-     * })
-     * 
-     */
-    create<T extends ShipmentFileCreateArgs>(args: SelectSubset<T, ShipmentFileCreateArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ShipmentFiles.
-     * @param {ShipmentFileCreateManyArgs} args - Arguments to create many ShipmentFiles.
-     * @example
-     * // Create many ShipmentFiles
-     * const shipmentFile = await prisma.shipmentFile.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ShipmentFileCreateManyArgs>(args?: SelectSubset<T, ShipmentFileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ShipmentFiles and returns the data saved in the database.
-     * @param {ShipmentFileCreateManyAndReturnArgs} args - Arguments to create many ShipmentFiles.
-     * @example
-     * // Create many ShipmentFiles
-     * const shipmentFile = await prisma.shipmentFile.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ShipmentFiles and only return the `id`
-     * const shipmentFileWithIdOnly = await prisma.shipmentFile.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ShipmentFileCreateManyAndReturnArgs>(args?: SelectSubset<T, ShipmentFileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ShipmentFile.
-     * @param {ShipmentFileDeleteArgs} args - Arguments to delete one ShipmentFile.
-     * @example
-     * // Delete one ShipmentFile
-     * const ShipmentFile = await prisma.shipmentFile.delete({
-     *   where: {
-     *     // ... filter to delete one ShipmentFile
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ShipmentFileDeleteArgs>(args: SelectSubset<T, ShipmentFileDeleteArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ShipmentFile.
-     * @param {ShipmentFileUpdateArgs} args - Arguments to update one ShipmentFile.
-     * @example
-     * // Update one ShipmentFile
-     * const shipmentFile = await prisma.shipmentFile.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ShipmentFileUpdateArgs>(args: SelectSubset<T, ShipmentFileUpdateArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ShipmentFiles.
-     * @param {ShipmentFileDeleteManyArgs} args - Arguments to filter ShipmentFiles to delete.
-     * @example
-     * // Delete a few ShipmentFiles
-     * const { count } = await prisma.shipmentFile.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ShipmentFileDeleteManyArgs>(args?: SelectSubset<T, ShipmentFileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ShipmentFiles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ShipmentFiles
-     * const shipmentFile = await prisma.shipmentFile.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ShipmentFileUpdateManyArgs>(args: SelectSubset<T, ShipmentFileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ShipmentFiles and returns the data updated in the database.
-     * @param {ShipmentFileUpdateManyAndReturnArgs} args - Arguments to update many ShipmentFiles.
-     * @example
-     * // Update many ShipmentFiles
-     * const shipmentFile = await prisma.shipmentFile.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ShipmentFiles and only return the `id`
-     * const shipmentFileWithIdOnly = await prisma.shipmentFile.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ShipmentFileUpdateManyAndReturnArgs>(args: SelectSubset<T, ShipmentFileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ShipmentFile.
-     * @param {ShipmentFileUpsertArgs} args - Arguments to update or create a ShipmentFile.
-     * @example
-     * // Update or create a ShipmentFile
-     * const shipmentFile = await prisma.shipmentFile.upsert({
-     *   create: {
-     *     // ... data to create a ShipmentFile
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ShipmentFile we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ShipmentFileUpsertArgs>(args: SelectSubset<T, ShipmentFileUpsertArgs<ExtArgs>>): Prisma__ShipmentFileClient<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ShipmentFiles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileCountArgs} args - Arguments to filter ShipmentFiles to count.
-     * @example
-     * // Count the number of ShipmentFiles
-     * const count = await prisma.shipmentFile.count({
-     *   where: {
-     *     // ... the filter for the ShipmentFiles we want to count
-     *   }
-     * })
-    **/
-    count<T extends ShipmentFileCountArgs>(
-      args?: Subset<T, ShipmentFileCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ShipmentFileCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ShipmentFile.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ShipmentFileAggregateArgs>(args: Subset<T, ShipmentFileAggregateArgs>): Prisma.PrismaPromise<GetShipmentFileAggregateType<T>>
-
-    /**
-     * Group by ShipmentFile.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShipmentFileGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ShipmentFileGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ShipmentFileGroupByArgs['orderBy'] }
-        : { orderBy?: ShipmentFileGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ShipmentFileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShipmentFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ShipmentFile model
-   */
-  readonly fields: ShipmentFileFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ShipmentFile.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ShipmentFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    shipment<T extends ShipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShipmentDefaultArgs<ExtArgs>>): Prisma__ShipmentClient<$Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ShipmentFile model
-   */
-  interface ShipmentFileFieldRefs {
-    readonly id: FieldRef<"ShipmentFile", 'Int'>
-    readonly shipmentId: FieldRef<"ShipmentFile", 'Int'>
-    readonly fileName: FieldRef<"ShipmentFile", 'String'>
-    readonly fileType: FieldRef<"ShipmentFile", 'String'>
-    readonly fileData: FieldRef<"ShipmentFile", 'Bytes'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ShipmentFile findUnique
-   */
-  export type ShipmentFileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * Filter, which ShipmentFile to fetch.
-     */
-    where: ShipmentFileWhereUniqueInput
-  }
-
-  /**
-   * ShipmentFile findUniqueOrThrow
-   */
-  export type ShipmentFileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * Filter, which ShipmentFile to fetch.
-     */
-    where: ShipmentFileWhereUniqueInput
-  }
-
-  /**
-   * ShipmentFile findFirst
-   */
-  export type ShipmentFileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * Filter, which ShipmentFile to fetch.
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShipmentFiles to fetch.
-     */
-    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ShipmentFiles.
-     */
-    cursor?: ShipmentFileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShipmentFiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShipmentFiles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ShipmentFiles.
-     */
-    distinct?: ShipmentFileScalarFieldEnum | ShipmentFileScalarFieldEnum[]
-  }
-
-  /**
-   * ShipmentFile findFirstOrThrow
-   */
-  export type ShipmentFileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * Filter, which ShipmentFile to fetch.
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShipmentFiles to fetch.
-     */
-    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ShipmentFiles.
-     */
-    cursor?: ShipmentFileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShipmentFiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShipmentFiles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ShipmentFiles.
-     */
-    distinct?: ShipmentFileScalarFieldEnum | ShipmentFileScalarFieldEnum[]
-  }
-
-  /**
-   * ShipmentFile findMany
-   */
-  export type ShipmentFileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * Filter, which ShipmentFiles to fetch.
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShipmentFiles to fetch.
-     */
-    orderBy?: ShipmentFileOrderByWithRelationInput | ShipmentFileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ShipmentFiles.
-     */
-    cursor?: ShipmentFileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShipmentFiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShipmentFiles.
-     */
-    skip?: number
-    distinct?: ShipmentFileScalarFieldEnum | ShipmentFileScalarFieldEnum[]
-  }
-
-  /**
-   * ShipmentFile create
-   */
-  export type ShipmentFileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ShipmentFile.
-     */
-    data: XOR<ShipmentFileCreateInput, ShipmentFileUncheckedCreateInput>
-  }
-
-  /**
-   * ShipmentFile createMany
-   */
-  export type ShipmentFileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ShipmentFiles.
-     */
-    data: ShipmentFileCreateManyInput | ShipmentFileCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ShipmentFile createManyAndReturn
-   */
-  export type ShipmentFileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * The data used to create many ShipmentFiles.
-     */
-    data: ShipmentFileCreateManyInput | ShipmentFileCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ShipmentFile update
-   */
-  export type ShipmentFileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ShipmentFile.
-     */
-    data: XOR<ShipmentFileUpdateInput, ShipmentFileUncheckedUpdateInput>
-    /**
-     * Choose, which ShipmentFile to update.
-     */
-    where: ShipmentFileWhereUniqueInput
-  }
-
-  /**
-   * ShipmentFile updateMany
-   */
-  export type ShipmentFileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ShipmentFiles.
-     */
-    data: XOR<ShipmentFileUpdateManyMutationInput, ShipmentFileUncheckedUpdateManyInput>
-    /**
-     * Filter which ShipmentFiles to update
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * Limit how many ShipmentFiles to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ShipmentFile updateManyAndReturn
-   */
-  export type ShipmentFileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * The data used to update ShipmentFiles.
-     */
-    data: XOR<ShipmentFileUpdateManyMutationInput, ShipmentFileUncheckedUpdateManyInput>
-    /**
-     * Filter which ShipmentFiles to update
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * Limit how many ShipmentFiles to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ShipmentFile upsert
-   */
-  export type ShipmentFileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ShipmentFile to update in case it exists.
-     */
-    where: ShipmentFileWhereUniqueInput
-    /**
-     * In case the ShipmentFile found by the `where` argument doesn't exist, create a new ShipmentFile with this data.
-     */
-    create: XOR<ShipmentFileCreateInput, ShipmentFileUncheckedCreateInput>
-    /**
-     * In case the ShipmentFile was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ShipmentFileUpdateInput, ShipmentFileUncheckedUpdateInput>
-  }
-
-  /**
-   * ShipmentFile delete
-   */
-  export type ShipmentFileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-    /**
-     * Filter which ShipmentFile to delete.
-     */
-    where: ShipmentFileWhereUniqueInput
-  }
-
-  /**
-   * ShipmentFile deleteMany
-   */
-  export type ShipmentFileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ShipmentFiles to delete
-     */
-    where?: ShipmentFileWhereInput
-    /**
-     * Limit how many ShipmentFiles to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ShipmentFile without action
-   */
-  export type ShipmentFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentFile
-     */
-    select?: ShipmentFileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentFile
-     */
-    omit?: ShipmentFileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentFileInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -15890,6 +15890,17 @@ export namespace Prisma {
   export type ShipmentScalarFieldEnum = (typeof ShipmentScalarFieldEnum)[keyof typeof ShipmentScalarFieldEnum]
 
 
+  export const ShipmentFileScalarFieldEnum: {
+    id: 'id',
+    shipmentId: 'shipmentId',
+    fileName: 'fileName',
+    fileType: 'fileType',
+    fileData: 'fileData'
+  };
+
+  export type ShipmentFileScalarFieldEnum = (typeof ShipmentFileScalarFieldEnum)[keyof typeof ShipmentFileScalarFieldEnum]
+
+
   export const InvoiceScalarFieldEnum: {
     id: 'id',
     vendorId: 'vendorId',
@@ -15927,17 +15938,6 @@ export namespace Prisma {
   };
 
   export type ShipmentInvoiceScalarFieldEnum = (typeof ShipmentInvoiceScalarFieldEnum)[keyof typeof ShipmentInvoiceScalarFieldEnum]
-
-
-  export const ShipmentFileScalarFieldEnum: {
-    id: 'id',
-    shipmentId: 'shipmentId',
-    fileName: 'fileName',
-    fileType: 'fileType',
-    fileData: 'fileData'
-  };
-
-  export type ShipmentFileScalarFieldEnum = (typeof ShipmentFileScalarFieldEnum)[keyof typeof ShipmentFileScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -16026,6 +16026,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Bytes'
+   */
+  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+    
+
+
+  /**
+   * Reference to a field of type 'Bytes[]'
+   */
+  export type ListBytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Decimal'
    */
   export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -16043,20 +16057,6 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'Bytes'
-   */
-  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
-    
-
-
-  /**
-   * Reference to a field of type 'Bytes[]'
-   */
-  export type ListBytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes[]'>
     
 
 
@@ -16549,6 +16549,63 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Shipment"> | Date | string
   }
 
+  export type ShipmentFileWhereInput = {
+    AND?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
+    OR?: ShipmentFileWhereInput[]
+    NOT?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
+    id?: IntFilter<"ShipmentFile"> | number
+    shipmentId?: IntFilter<"ShipmentFile"> | number
+    fileName?: StringFilter<"ShipmentFile"> | string
+    fileType?: StringNullableFilter<"ShipmentFile"> | string | null
+    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+    shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
+  }
+
+  export type ShipmentFileOrderByWithRelationInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileData?: SortOrderInput | SortOrder
+    shipment?: ShipmentOrderByWithRelationInput
+  }
+
+  export type ShipmentFileWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
+    OR?: ShipmentFileWhereInput[]
+    NOT?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
+    shipmentId?: IntFilter<"ShipmentFile"> | number
+    fileName?: StringFilter<"ShipmentFile"> | string
+    fileType?: StringNullableFilter<"ShipmentFile"> | string | null
+    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+    shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
+  }, "id">
+
+  export type ShipmentFileOrderByWithAggregationInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileData?: SortOrderInput | SortOrder
+    _count?: ShipmentFileCountOrderByAggregateInput
+    _avg?: ShipmentFileAvgOrderByAggregateInput
+    _max?: ShipmentFileMaxOrderByAggregateInput
+    _min?: ShipmentFileMinOrderByAggregateInput
+    _sum?: ShipmentFileSumOrderByAggregateInput
+  }
+
+  export type ShipmentFileScalarWhereWithAggregatesInput = {
+    AND?: ShipmentFileScalarWhereWithAggregatesInput | ShipmentFileScalarWhereWithAggregatesInput[]
+    OR?: ShipmentFileScalarWhereWithAggregatesInput[]
+    NOT?: ShipmentFileScalarWhereWithAggregatesInput | ShipmentFileScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ShipmentFile"> | number
+    shipmentId?: IntWithAggregatesFilter<"ShipmentFile"> | number
+    fileName?: StringWithAggregatesFilter<"ShipmentFile"> | string
+    fileType?: StringNullableWithAggregatesFilter<"ShipmentFile"> | string | null
+    fileData?: BytesNullableWithAggregatesFilter<"ShipmentFile"> | Uint8Array | null
+  }
+
   export type InvoiceWhereInput = {
     AND?: InvoiceWhereInput | InvoiceWhereInput[]
     OR?: InvoiceWhereInput[]
@@ -16770,63 +16827,6 @@ export namespace Prisma {
     NOT?: ShipmentInvoiceScalarWhereWithAggregatesInput | ShipmentInvoiceScalarWhereWithAggregatesInput[]
     shipmentId?: IntWithAggregatesFilter<"ShipmentInvoice"> | number
     invoiceId?: IntWithAggregatesFilter<"ShipmentInvoice"> | number
-  }
-
-  export type ShipmentFileWhereInput = {
-    AND?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
-    OR?: ShipmentFileWhereInput[]
-    NOT?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
-    id?: IntFilter<"ShipmentFile"> | number
-    shipmentId?: IntFilter<"ShipmentFile"> | number
-    fileName?: StringFilter<"ShipmentFile"> | string
-    fileType?: StringNullableFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
-    shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
-  }
-
-  export type ShipmentFileOrderByWithRelationInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrderInput | SortOrder
-    fileData?: SortOrderInput | SortOrder
-    shipment?: ShipmentOrderByWithRelationInput
-  }
-
-  export type ShipmentFileWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
-    OR?: ShipmentFileWhereInput[]
-    NOT?: ShipmentFileWhereInput | ShipmentFileWhereInput[]
-    shipmentId?: IntFilter<"ShipmentFile"> | number
-    fileName?: StringFilter<"ShipmentFile"> | string
-    fileType?: StringNullableFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
-    shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
-  }, "id">
-
-  export type ShipmentFileOrderByWithAggregationInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrderInput | SortOrder
-    fileData?: SortOrderInput | SortOrder
-    _count?: ShipmentFileCountOrderByAggregateInput
-    _avg?: ShipmentFileAvgOrderByAggregateInput
-    _max?: ShipmentFileMaxOrderByAggregateInput
-    _min?: ShipmentFileMinOrderByAggregateInput
-    _sum?: ShipmentFileSumOrderByAggregateInput
-  }
-
-  export type ShipmentFileScalarWhereWithAggregatesInput = {
-    AND?: ShipmentFileScalarWhereWithAggregatesInput | ShipmentFileScalarWhereWithAggregatesInput[]
-    OR?: ShipmentFileScalarWhereWithAggregatesInput[]
-    NOT?: ShipmentFileScalarWhereWithAggregatesInput | ShipmentFileScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"ShipmentFile"> | number
-    shipmentId?: IntWithAggregatesFilter<"ShipmentFile"> | number
-    fileName?: StringWithAggregatesFilter<"ShipmentFile"> | string
-    fileType?: StringNullableWithAggregatesFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableWithAggregatesFilter<"ShipmentFile"> | Uint8Array | null
   }
 
   export type UserCreateInput = {
@@ -17286,11 +17286,63 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ShipmentFileCreateInput = {
+    fileName: string
+    fileType?: string | null
+    fileData?: Uint8Array | null
+    shipment: ShipmentCreateNestedOneWithoutFilesInput
+  }
+
+  export type ShipmentFileUncheckedCreateInput = {
+    id?: number
+    shipmentId: number
+    fileName: string
+    fileType?: string | null
+    fileData?: Uint8Array | null
+  }
+
+  export type ShipmentFileUpdateInput = {
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    shipment?: ShipmentUpdateOneRequiredWithoutFilesNestedInput
+  }
+
+  export type ShipmentFileUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    shipmentId?: IntFieldUpdateOperationsInput | number
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+  }
+
+  export type ShipmentFileCreateManyInput = {
+    id?: number
+    shipmentId: number
+    fileName: string
+    fileType?: string | null
+    fileData?: Uint8Array | null
+  }
+
+  export type ShipmentFileUpdateManyMutationInput = {
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+  }
+
+  export type ShipmentFileUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    shipmentId?: IntFieldUpdateOperationsInput | number
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+  }
+
   export type InvoiceCreateInput = {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     shipments?: ShipmentInvoiceCreateNestedManyWithoutInvoiceInput
@@ -17306,7 +17358,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -17350,7 +17402,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -17489,58 +17541,6 @@ export namespace Prisma {
   export type ShipmentInvoiceUncheckedUpdateManyInput = {
     shipmentId?: IntFieldUpdateOperationsInput | number
     invoiceId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ShipmentFileCreateInput = {
-    fileName: string
-    fileType?: string | null
-    fileData?: Uint8Array | null
-    shipment: ShipmentCreateNestedOneWithoutFilesInput
-  }
-
-  export type ShipmentFileUncheckedCreateInput = {
-    id?: number
-    shipmentId: number
-    fileName: string
-    fileType?: string | null
-    fileData?: Uint8Array | null
-  }
-
-  export type ShipmentFileUpdateInput = {
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    shipment?: ShipmentUpdateOneRequiredWithoutFilesNestedInput
-  }
-
-  export type ShipmentFileUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    shipmentId?: IntFieldUpdateOperationsInput | number
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-  }
-
-  export type ShipmentFileCreateManyInput = {
-    id?: number
-    shipmentId: number
-    fileName: string
-    fileType?: string | null
-    fileData?: Uint8Array | null
-  }
-
-  export type ShipmentFileUpdateManyMutationInput = {
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-  }
-
-  export type ShipmentFileUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    shipmentId?: IntFieldUpdateOperationsInput | number
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -18066,6 +18066,62 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type BytesNullableFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
+  }
+
+  export type ShipmentScalarRelationFilter = {
+    is?: ShipmentWhereInput
+    isNot?: ShipmentWhereInput
+  }
+
+  export type ShipmentFileCountOrderByAggregateInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileData?: SortOrder
+  }
+
+  export type ShipmentFileAvgOrderByAggregateInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+  }
+
+  export type ShipmentFileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileData?: SortOrder
+  }
+
+  export type ShipmentFileMinOrderByAggregateInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileData?: SortOrder
+  }
+
+  export type ShipmentFileSumOrderByAggregateInput = {
+    id?: SortOrder
+    shipmentId?: SortOrder
+  }
+
+  export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBytesNullableFilter<$PrismaModel>
+    _max?: NestedBytesNullableFilter<$PrismaModel>
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -18242,11 +18298,6 @@ export namespace Prisma {
     total?: SortOrder
   }
 
-  export type ShipmentScalarRelationFilter = {
-    is?: ShipmentWhereInput
-    isNot?: ShipmentWhereInput
-  }
-
   export type ShipmentInvoiceShipmentIdInvoiceIdCompoundUniqueInput = {
     shipmentId: number
     invoiceId: number
@@ -18275,57 +18326,6 @@ export namespace Prisma {
   export type ShipmentInvoiceSumOrderByAggregateInput = {
     shipmentId?: SortOrder
     invoiceId?: SortOrder
-  }
-
-  export type BytesNullableFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
-  }
-
-  export type ShipmentFileCountOrderByAggregateInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrder
-    fileData?: SortOrder
-  }
-
-  export type ShipmentFileAvgOrderByAggregateInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-  }
-
-  export type ShipmentFileMaxOrderByAggregateInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrder
-    fileData?: SortOrder
-  }
-
-  export type ShipmentFileMinOrderByAggregateInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrder
-    fileData?: SortOrder
-  }
-
-  export type ShipmentFileSumOrderByAggregateInput = {
-    id?: SortOrder
-    shipmentId?: SortOrder
-  }
-
-  export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBytesNullableFilter<$PrismaModel>
-    _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
   export type VendorCreateNestedManyWithoutUserInput = {
@@ -18874,6 +18874,24 @@ export namespace Prisma {
     deleteMany?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
   }
 
+  export type ShipmentCreateNestedOneWithoutFilesInput = {
+    create?: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
+    connectOrCreate?: ShipmentCreateOrConnectWithoutFilesInput
+    connect?: ShipmentWhereUniqueInput
+  }
+
+  export type NullableBytesFieldUpdateOperationsInput = {
+    set?: Uint8Array | null
+  }
+
+  export type ShipmentUpdateOneRequiredWithoutFilesNestedInput = {
+    create?: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
+    connectOrCreate?: ShipmentCreateOrConnectWithoutFilesInput
+    upsert?: ShipmentUpsertWithoutFilesInput
+    connect?: ShipmentWhereUniqueInput
+    update?: XOR<XOR<ShipmentUpdateToOneWithWhereWithoutFilesInput, ShipmentUpdateWithoutFilesInput>, ShipmentUncheckedUpdateWithoutFilesInput>
+  }
+
   export type ShipmentInvoiceCreateNestedManyWithoutInvoiceInput = {
     create?: XOR<ShipmentInvoiceCreateWithoutInvoiceInput, ShipmentInvoiceUncheckedCreateWithoutInvoiceInput> | ShipmentInvoiceCreateWithoutInvoiceInput[] | ShipmentInvoiceUncheckedCreateWithoutInvoiceInput[]
     connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutInvoiceInput | ShipmentInvoiceCreateOrConnectWithoutInvoiceInput[]
@@ -19082,24 +19100,6 @@ export namespace Prisma {
     update?: XOR<XOR<InvoiceUpdateToOneWithWhereWithoutShipmentsInput, InvoiceUpdateWithoutShipmentsInput>, InvoiceUncheckedUpdateWithoutShipmentsInput>
   }
 
-  export type ShipmentCreateNestedOneWithoutFilesInput = {
-    create?: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
-    connectOrCreate?: ShipmentCreateOrConnectWithoutFilesInput
-    connect?: ShipmentWhereUniqueInput
-  }
-
-  export type NullableBytesFieldUpdateOperationsInput = {
-    set?: Uint8Array | null
-  }
-
-  export type ShipmentUpdateOneRequiredWithoutFilesNestedInput = {
-    create?: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
-    connectOrCreate?: ShipmentCreateOrConnectWithoutFilesInput
-    upsert?: ShipmentUpsertWithoutFilesInput
-    connect?: ShipmentWhereUniqueInput
-    update?: XOR<XOR<ShipmentUpdateToOneWithWhereWithoutFilesInput, ShipmentUpdateWithoutFilesInput>, ShipmentUncheckedUpdateWithoutFilesInput>
-  }
-
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -19278,6 +19278,23 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedBytesNullableFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
+  }
+
+  export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
+    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBytesNullableFilter<$PrismaModel>
+    _max?: NestedBytesNullableFilter<$PrismaModel>
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -19318,23 +19335,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedBytesNullableFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
-  }
-
-  export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBytesNullableFilter<$PrismaModel>
-    _max?: NestedBytesNullableFilter<$PrismaModel>
-  }
-
   export type VendorCreateWithoutUserInput = {
     alias: string
     name: string
@@ -19368,7 +19368,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     shipments?: ShipmentInvoiceCreateNestedManyWithoutInvoiceInput
@@ -19383,7 +19383,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     currencyId: number
@@ -19554,7 +19554,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     shipments?: ShipmentInvoiceCreateNestedManyWithoutInvoiceInput
@@ -19568,7 +19568,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -19703,7 +19703,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     shipments?: ShipmentInvoiceCreateNestedManyWithoutInvoiceInput
@@ -19718,7 +19718,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -20133,6 +20133,64 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ShipmentCreateWithoutFilesInput = {
+    alias: string
+    status: $Enums.ShipmentStatus
+    declaration_number?: string | null
+    declaration_date?: Date | string | null
+    createdAt?: Date | string
+    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
+    user: UserCreateNestedOneWithoutShipmentInput
+  }
+
+  export type ShipmentUncheckedCreateWithoutFilesInput = {
+    id?: number
+    alias: string
+    status: $Enums.ShipmentStatus
+    declaration_number?: string | null
+    declaration_date?: Date | string | null
+    userId: number
+    createdAt?: Date | string
+    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
+  }
+
+  export type ShipmentCreateOrConnectWithoutFilesInput = {
+    where: ShipmentWhereUniqueInput
+    create: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
+  }
+
+  export type ShipmentUpsertWithoutFilesInput = {
+    update: XOR<ShipmentUpdateWithoutFilesInput, ShipmentUncheckedUpdateWithoutFilesInput>
+    create: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
+    where?: ShipmentWhereInput
+  }
+
+  export type ShipmentUpdateToOneWithWhereWithoutFilesInput = {
+    where?: ShipmentWhereInput
+    data: XOR<ShipmentUpdateWithoutFilesInput, ShipmentUncheckedUpdateWithoutFilesInput>
+  }
+
+  export type ShipmentUpdateWithoutFilesInput = {
+    alias?: StringFieldUpdateOperationsInput | string
+    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
+    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
+    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
+    user?: UserUpdateOneRequiredWithoutShipmentNestedInput
+  }
+
+  export type ShipmentUncheckedUpdateWithoutFilesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    alias?: StringFieldUpdateOperationsInput | string
+    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
+    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
+    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
+  }
+
   export type ShipmentInvoiceCreateWithoutInvoiceInput = {
     shipment: ShipmentCreateNestedOneWithoutInvoicesInput
   }
@@ -20372,7 +20430,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     shipments?: ShipmentInvoiceCreateNestedManyWithoutInvoiceInput
@@ -20387,7 +20445,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -20556,7 +20614,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
@@ -20571,7 +20629,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -20654,64 +20712,6 @@ export namespace Prisma {
     InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
-  export type ShipmentCreateWithoutFilesInput = {
-    alias: string
-    status: $Enums.ShipmentStatus
-    declaration_number?: string | null
-    declaration_date?: Date | string | null
-    createdAt?: Date | string
-    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
-    user: UserCreateNestedOneWithoutShipmentInput
-  }
-
-  export type ShipmentUncheckedCreateWithoutFilesInput = {
-    id?: number
-    alias: string
-    status: $Enums.ShipmentStatus
-    declaration_number?: string | null
-    declaration_date?: Date | string | null
-    userId: number
-    createdAt?: Date | string
-    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
-  }
-
-  export type ShipmentCreateOrConnectWithoutFilesInput = {
-    where: ShipmentWhereUniqueInput
-    create: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
-  }
-
-  export type ShipmentUpsertWithoutFilesInput = {
-    update: XOR<ShipmentUpdateWithoutFilesInput, ShipmentUncheckedUpdateWithoutFilesInput>
-    create: XOR<ShipmentCreateWithoutFilesInput, ShipmentUncheckedCreateWithoutFilesInput>
-    where?: ShipmentWhereInput
-  }
-
-  export type ShipmentUpdateToOneWithWhereWithoutFilesInput = {
-    where?: ShipmentWhereInput
-    data: XOR<ShipmentUpdateWithoutFilesInput, ShipmentUncheckedUpdateWithoutFilesInput>
-  }
-
-  export type ShipmentUpdateWithoutFilesInput = {
-    alias?: StringFieldUpdateOperationsInput | string
-    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
-    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
-    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
-    user?: UserUpdateOneRequiredWithoutShipmentNestedInput
-  }
-
-  export type ShipmentUncheckedUpdateWithoutFilesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    alias?: StringFieldUpdateOperationsInput | string
-    status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
-    declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
-    declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
-  }
-
   export type VendorCreateManyUserInput = {
     id?: number
     alias: string
@@ -20727,7 +20727,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     createdAt?: Date | string
     currencyId: number
@@ -20844,7 +20844,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string
@@ -20939,7 +20939,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived: boolean
+    isArrived?: boolean
     truckNumber?: string | null
     userId: number
     createdAt?: Date | string

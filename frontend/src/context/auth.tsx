@@ -11,7 +11,7 @@ import { setCookie } from 'nookies';
 import { auth, logout } from '@/utils/firebaseConfig';
 import { isTokenExpired } from '@/utils/authUtils';
 import { useRouter, usePathname } from 'next/navigation';
-import { usersApi } from '@/api/endpoints/users';
+import { usersApi } from '@/api/endpoints/usersApi';
 
 export const AuthContext = createContext<{
   currentUser: User | null;

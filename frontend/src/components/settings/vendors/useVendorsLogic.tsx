@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback } from 'react';
 import { VendorDTO } from '@/api/types';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
-import { vendorsApi } from '@/api/endpoints/settings/vendors';
+import { vendorsApi } from '@/api/endpoints/settings/vendorsApi';
 import { useAuth } from '@/context/auth';
 
 type VendorRow = {

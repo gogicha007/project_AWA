@@ -2,7 +2,7 @@
 
 import { useMemo, useCallback } from 'react';
 import { ShipmentDTO } from '@/api/types';
-import { shipmentsApi } from '@/api/endpoints/shipments';
+import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import TableRowActions from '../controls/table-row-actions/TableRowActions';
 import { useRouter } from 'next/navigation';
 
@@ -55,7 +55,7 @@ export function useShipmentsLogic(
     async (id: number) => {
       if (confirm(tVar('warnings.delete'))) {
         try {
-          await shipmentsApi.delete(id);
+          await shipmentApi.delete(id);
         } catch (error) {
           console.error(`${tVar('errors.delete')} ${id}`, error);
         }

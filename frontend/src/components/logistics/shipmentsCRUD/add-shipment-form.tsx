@@ -5,6 +5,7 @@ import { useAddShipmentForm } from './hooks/useAddShipmentForm';
 import { Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+// import InvoiceTable from '@/components/purchases/invoice-table';
 
 export default function AddShipmentForm() {
   const {
@@ -140,7 +141,9 @@ export default function AddShipmentForm() {
         </div>
       </div>
 
-      <div className={styles.formSection}></div>
+      <div className={styles.formSection}>
+        {/* <InvoiceTable/> */}
+      </div>
       <div className={styles.formActions}>
         <button
           type="button"

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { ShipmentDTO } from '../types';
-import { shipmentsApi } from '../endpoints/shipments';
+import { ShipmentDTO } from '../../types';
+import { shipmentApi } from '../../endpoints/shipments/shipmentApi';
 import { useAuth } from '@/context/auth';
 
-export function useShipments() {
+export function useShipmentApi() {
   const [shipments, setShipments] = useState<ShipmentDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);
@@ -15,7 +15,7 @@ export function useShipments() {
     setLoading(true);
     setError(null);
     try {
-      const data = await shipmentsApi.getAll();
+      const data = await shipmentApi.getAll();
       setShipments(data);
     } catch (err) {
       setError(err);

@@ -12,12 +12,12 @@ import {
 import { useTranslations } from 'next-intl';
 import AddButton from '../controls/add-button/AddButton';
 import { useShipmentsLogic } from './useShipmentsLogic';
-import { useShipments } from '@/api/hooks/shipmentsHook';
+import { useShipmentApi } from '@/api/hooks/shipments/shipmentApiHook';
 import Loader from '../feedback/loader/loader';
 
 export default function ShipmentsClient() {
   const tS = useTranslations('Logistics');
-  const { shipments, loading, error, mutate } = useShipments();
+  const { shipments, loading, error, mutate } = useShipmentApi();
   const [sorting, setSorting] = useState<SortingState>([]);
   const {
     data,

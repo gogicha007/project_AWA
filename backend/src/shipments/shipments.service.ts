@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { CreateShipmentDTO } from './dto/create-shipment.dto';
-import { UpdateShipmentDTO } from './dto/update-shipment.dto'; // Uncomment if you have update DTO
+import { UpdateShipmentDTO } from './dto/update-shipment.dto';
 import { ShipmentFilesService } from './files/files.service';
 
 @Injectable()
@@ -46,7 +46,7 @@ export class ShipmentsService {
       },
       include: {
         invoices: true,
-        files: true,
+        files: false,
       },
     });
 
@@ -57,7 +57,7 @@ export class ShipmentsService {
     return this.dbService.shipment.findMany({
       include: {
         invoices: true,
-        files: true,
+        files: false,
       },
     });
   }
@@ -77,7 +77,6 @@ export class ShipmentsService {
   }
 
   async update(id: number, updateShipmentDto: UpdateShipmentDTO) {
-    // Implement update logic as needed
     return this.dbService.shipment.update({
       where: { id },
       data: updateShipmentDto,

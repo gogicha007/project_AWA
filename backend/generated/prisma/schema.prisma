@@ -115,6 +115,17 @@ model Shipment {
   @@map("shipment")
 }
 
+model ShipmentFile {
+  id         Int      @id @default(autoincrement())
+  shipment   Shipment @relation(fields: [shipmentId], references: [id])
+  shipmentId Int      @map("shipment_id")
+  fileName   String   @map("file_name")
+  fileType   String?  @map("file_type")
+  fileData   Bytes?   @map("file_data")
+
+  @@map("shipment_file")
+}
+
 model Invoice {
   id            Int               @id @default(autoincrement())
   shipments     ShipmentInvoice[]
@@ -123,7 +134,7 @@ model Invoice {
   invoiceNumber String            @map("invoice_number")
   invoiceDate   DateTime          @map("invoice_date")
   totalAmount   Decimal           @map("total_amount")
-  isArrived     Boolean           @map("is_arrived")
+  isArrived     Boolean           @default(false) @map("is_arrived")
   truckNumber   String?           @map("truck_number")
   user          User              @relation(fields: [userId], references: [id])
   userId        Int               @map("user_id")
@@ -160,15 +171,4 @@ model ShipmentInvoice {
 
   @@id([shipmentId, invoiceId])
   @@map("shipment_invoice")
-}
-
-model ShipmentFile {
-  id         Int      @id @default(autoincrement())
-  shipment   Shipment @relation(fields: [shipmentId], references: [id])
-  shipmentId Int      @map("shipment_id")
-  fileName   String   @map("file_name")
-  fileType   String?  @map("file_type")
-  fileData   Bytes?   @map("file_data")
-
-  @@map("shipment_file")
 }

@@ -7,16 +7,9 @@ import {
   ColumnDef,
 } from '@tanstack/react-table';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
-import InvoiceDialog from './invoice-dialog';
+import InvoiceDialog from './invoice-form';
 import { InvoiceDTO } from '@/api/types';
-
-type Invoice = {
-  id: number;
-  invoiceNumber: string;
-  invoiceDate: string;
-  vendorName: string;
-  totalAmount: number;
-};
+import { useInvoiceTable } from './hooks/useInvoiceTable';
 
 type InvoiceTableProps = {
   invoices: InvoiceDTO[];
@@ -28,18 +21,10 @@ type InvoiceTableProps = {
   tB: (key: string) => string;
 };
 
-const InvoiceTable: React.FC<InvoiceTableProps> = ({
-  invoices,
-  onView,
-  onEdit,
-  onDelete,
-  onAdd,
-  tS,
-  tB,
-}) => {
+const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tS, tB }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const [editInvoice, setEditInvoice] = useState<Invoice | null>(null);
-
+  const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
+  const { handleAdd, handleEdit, handleDelete, handleView } = useInvoiceTable();
   const columns = useMemo<ColumnDef<InvoiceDTO>[]>(
     () => [
       {
@@ -65,14 +50,14 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
         cell: ({ row }) => (
           <TableRowActions
             id={row.original.id ?? 0}
-            onView={onView}
-            onEdit={onEdit}
-            onDelete={onDelete}
+            onView={handleView}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
           />
         ),
       },
     ],
-    [tS, onView, onEdit, onDelete]
+    [tS, handleView, handleEdit, handleDelete]
   );
 
   const table = useReactTable({
@@ -84,10 +69,10 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
   const handleSave = (invoice: InvoiceDTO) => {
     if (editInvoice) {
       if (invoice.id !== undefined) {
-        onEdit?.(invoice.id); // or pass invoice object if needed
+        handleEdit?.(invoice.id);
       }
     } else {
-      onAdd();
+      handleAdd(invoice);
     }
     setDialogOpen(false);
     setEditInvoice(null);
@@ -149,6 +134,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
         onSave={handleSave}
         initialData={editInvoice || undefined}
         title={editInvoice ? tB('edit_invoice') : tB('add_invoice')}
+        tVar={tS}
       />
     </div>
   );

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useAuth } from '@/context/auth';
-import { shipmentsApi } from '@/api/endpoints/shipments';
+import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import convertToBase64 from '@/utils/file-utils';
 import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 
@@ -46,7 +46,7 @@ export function useAddShipmentForm() {
       if (dbUserId === null) {
         throw new Error('User ID is required to create a shipment.');
       }
-      await shipmentsApi.create(
+      await shipmentApi.create(
         {
           ...data,
           declaration_number: data.declaration_number ?? '',

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { vendorsApi } from '@/api/endpoints/settings/vendors';
+import { vendorsApi } from '@/api/endpoints/settings/vendorsApi';
 import { useAuth } from '@/context/auth';
 import { VendorDTO } from '@/api/types';
 

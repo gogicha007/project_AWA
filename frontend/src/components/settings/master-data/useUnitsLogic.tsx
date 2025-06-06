@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useCallback } from 'react';
 import { UnitDTO } from '@/api/types';
-import { unitsApi } from '@/api/endpoints/settings/master-data';
+import { unitsApi } from '@/api/endpoints/settings/master-dataApi';
 import TableRowActions from '../../controls/table-row-actions/TableRowActions';
 
 export function useUnitsLogic(

@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback } from 'react';
 import { MaterialTypeDTO, MaterialNameDTO } from '@/api/types';
-import { materialNamesApi } from '@/api/endpoints/settings/master-data';
+import { materialNamesApi } from '@/api/endpoints/settings/master-dataApi';
 import TableRowActions from '../../controls/table-row-actions/TableRowActions';
 import { CellContext } from '@tanstack/react-table';
 
