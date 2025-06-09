@@ -81,6 +81,8 @@ export function useShipmentForm(id?: number) {
               (file) => new File([], file.fileName, { type: file.fileType })
             )
           );
+
+          // const invoices = []
         } catch (error) {
           console.error('Failed to fetch shipment:', error);
         } finally {
