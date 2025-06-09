@@ -195,7 +195,6 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   invoiceDate: 'invoiceDate',
   totalAmount: 'totalAmount',
   isArrived: 'isArrived',
-  truckNumber: 'truckNumber',
   userId: 'userId',
   createdAt: 'createdAt',
   currencyId: 'currencyId'
@@ -209,12 +208,29 @@ exports.Prisma.InvoiceItemScalarFieldEnum = {
   quantity: 'quantity',
   unitId: 'unitId',
   unitPrice: 'unitPrice',
-  total: 'total',
-  isArrived: 'isArrived'
+  total: 'total'
 };
 
 exports.Prisma.ShipmentInvoiceScalarFieldEnum = {
   shipmentId: 'shipmentId',
+  invoiceId: 'invoiceId'
+};
+
+exports.Prisma.FreightScalarFieldEnum = {
+  id: 'id',
+  truckNumber: 'truckNumber',
+  forwarder: 'forwarder',
+  billNumber: 'billNumber',
+  billDate: 'billDate',
+  freightRate: 'freightRate',
+  currencyId: 'currencyId',
+  shipmentId: 'shipmentId',
+  isArrived: 'isArrived',
+  userId: 'userId'
+};
+
+exports.Prisma.FreightInvoiceScalarFieldEnum = {
+  freightId: 'freightId',
   invoiceId: 'invoiceId'
 };
 
@@ -250,7 +266,9 @@ exports.Prisma.ModelName = {
   ShipmentFile: 'ShipmentFile',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
-  ShipmentInvoice: 'ShipmentInvoice'
+  ShipmentInvoice: 'ShipmentInvoice',
+  Freight: 'Freight',
+  FreightInvoice: 'FreightInvoice'
 };
 
 /**
