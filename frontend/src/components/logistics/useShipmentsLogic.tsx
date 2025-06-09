@@ -10,7 +10,7 @@ type ShipmentRow = {
   id: number;
   alias: string;
   declaration_number: string;
-  declaration_date: Date;
+  declaration_date: Date | string | null;
   status: string;
 };
 
@@ -23,13 +23,15 @@ export function useShipmentsLogic(
 
   const data: ShipmentRow[] = useMemo(
     () =>
-      shipments.map((shipment) => ({
-        ...shipment,
-        id:
-          typeof shipment.id === 'string'
-            ? parseInt(shipment.id, 10)
-            : Number(shipment.id),
-      })),
+      shipments
+        .map((shipment) => ({
+          ...shipment,
+          id:
+            typeof shipment.id === 'string'
+              ? parseInt(shipment.id, 10)
+              : Number(shipment.id),
+        }))
+        .sort((a, b) => a.id - b.id),
     [shipments]
   );
 
@@ -87,7 +89,8 @@ export function useShipmentsLogic(
         cell: ({ row }: { row: { original: ShipmentRow } }) => {
           const date = row.original.declaration_date;
           if (!date) return '';
-          if (typeof date === 'string') return (date as string).substring(0, 10);
+          if (typeof date === 'string')
+            return (date as string).substring(0, 10);
           if (date instanceof Date) return date.toISOString().substring(0, 10);
           return String(date);
         },
