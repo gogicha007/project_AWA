@@ -104,7 +104,7 @@ enum ShipmentStatus {
 
 model Shipment {
   id                 Int               @id @default(autoincrement())
-  alias              String
+  alias              String            @unique
   status             ShipmentStatus
   declaration_number String?           @map("declaration_number")
   declaration_date   DateTime?         @map("declaration_date")

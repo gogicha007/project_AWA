@@ -19156,10 +19156,10 @@ export namespace Prisma {
 
   export type ShipmentWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    alias?: string
     AND?: ShipmentWhereInput | ShipmentWhereInput[]
     OR?: ShipmentWhereInput[]
     NOT?: ShipmentWhereInput | ShipmentWhereInput[]
-    alias?: StringFilter<"Shipment"> | string
     status?: EnumShipmentStatusFilter<"Shipment"> | $Enums.ShipmentStatus
     declaration_number?: StringNullableFilter<"Shipment"> | string | null
     declaration_date?: DateTimeNullableFilter<"Shipment"> | Date | string | null
@@ -19169,7 +19169,7 @@ export namespace Prisma {
     files?: ShipmentFileListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Freight?: FreightListRelationFilter
-  }, "id">
+  }, "id" | "alias">
 
   export type ShipmentOrderByWithAggregationInput = {
     id?: SortOrder
