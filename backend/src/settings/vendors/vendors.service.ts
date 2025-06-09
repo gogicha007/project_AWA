@@ -79,7 +79,7 @@ export class VendorsService {
       throw error;
     }
   }
-  
+
   async remove(id: number) {
     try {
       const vendor = await this.dbService.vendor.delete({
