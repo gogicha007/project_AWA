@@ -91,7 +91,7 @@ export class VendorsService {
         error instanceof PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
-        throw new NotFoundException(`Material Name with ID ${id} not found`);
+        throw new NotFoundException(`Vendor with ID ${id} not found`);
       }
       throw error;
     }

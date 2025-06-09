@@ -1,8 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { CreateShipmentDTO } from './dto/create-shipment.dto';
 import { UpdateShipmentDTO } from './dto/update-shipment.dto';
 import { ShipmentFilesService } from './files/files.service';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class ShipmentsService {
@@ -14,24 +19,42 @@ export class ShipmentsService {
   async create(createShipmentDto: CreateShipmentDTO) {
     const { alias, status, declaration_number, declaration_date, userId } =
       createShipmentDto;
+    try {
+      const shipment = await this.dbService.shipment.create({
+        data: {
+          alias,
+          status,
+          declaration_number,
+          declaration_date: declaration_date
+            ? new Date(declaration_date)
+            : undefined,
+          userId,
+        },
+        include: {
+          invoices: true,
+          files: false,
+        },
+      });
 
-    const shipment = await this.dbService.shipment.create({
-      data: {
-        alias,
-        status,
-        declaration_number,
-        declaration_date: declaration_date
-          ? new Date(declaration_date)
-          : undefined,
-        userId,
-      },
-      include: {
-        invoices: true,
-        files: false,
-      },
-    });
+      return shipment;
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      )
+        throw new NotFoundException('Shipment already exists');
 
-    return shipment;
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2009'
+      )
+        throw new BadRequestException('Invalid input data');
+
+      if (error instanceof PrismaClientKnownRequestError)
+        throw new BadRequestException(`Database error: ${error.message}`);
+
+      throw new BadRequestException('Invalid input data');
+    }
   }
 
   async findAll() {
@@ -58,21 +81,42 @@ export class ShipmentsService {
   }
 
   async update(id: number, updateShipmentDto: UpdateShipmentDTO) {
-    return this.dbService.shipment.update({
-      where: { id },
-      data: updateShipmentDto,
-      include: {
-        invoices: true,
-        files: false,
-      },
-    });
+    try {
+      const shipment = this.dbService.shipment.update({
+        where: { id },
+        data: updateShipmentDto,
+        include: {
+          invoices: true,
+          files: false,
+        },
+      });
+      return shipment;
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException(`Shipment with ID ${id} not found`);
+      }
+      throw error;
+    }
   }
 
   async remove(id: number) {
-    await this.shipmentFilesService.removeByShipmentId(id);
+    try {
+      await this.shipmentFilesService.removeByShipmentId(id);
 
-    return this.dbService.shipment.delete({
-      where: { id },
-    });
+      return this.dbService.shipment.delete({
+        where: { id },
+      });
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException(`Shipment with ID ${id} not found`);
+      }
+      throw error;
+    }
   }
 }
