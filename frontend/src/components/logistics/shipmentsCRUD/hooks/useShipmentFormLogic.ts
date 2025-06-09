@@ -7,6 +7,7 @@ import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import convertToBase64 from '@/utils/file-utils';
 import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
+import { formatToISODateTime } from '@/utils/dateFormat';
 
 const localeMap = {
   en: enUSLocale,
@@ -28,8 +29,11 @@ export type FileData = {
 };
 
 export function useShipmentForm(id?: number) {
+  const [loading, setLoading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
   const isEditMode = !!id;
   const router = useRouter();
   const tS = useTranslations('Logistics');
@@ -54,6 +58,7 @@ export function useShipmentForm(id?: number) {
 
   useEffect(() => {
     if (id) {
+      setLoading(true);
       const fetchShipment = async () => {
         try {
           const shipment = await shipmentApi.getById(id);
@@ -62,7 +67,11 @@ export function useShipmentForm(id?: number) {
             alias: shipment.alias,
             status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
             declaration_number: shipment.declaration_number || '',
-            declaration_date: shipment.declaration_date || undefined,
+            declaration_date: shipment.declaration_date
+              ? typeof shipment.declaration_date === 'string'
+                ? new Date(shipment.declaration_date)
+                : shipment.declaration_date
+              : undefined,
           });
 
           const files = await shipmentFileApi.getAll(id);
@@ -74,6 +83,8 @@ export function useShipmentForm(id?: number) {
           );
         } catch (error) {
           console.error('Failed to fetch shipment:', error);
+        } finally {
+          setLoading(false);
         }
       };
       fetchShipment();
@@ -85,13 +96,15 @@ export function useShipmentForm(id?: number) {
       if (dbUserId === null) {
         throw new Error('User ID is required to create a shipment.');
       }
+      const formattedDate = formatToISODateTime(data.declaration_date);
+
       if (isEditMode && id) {
         await shipmentApi.update(
           {
             id: id,
             ...data,
             declaration_number: data.declaration_number ?? '',
-            declaration_date: data.declaration_date ?? new Date(),
+            declaration_date: formattedDate as Date,
           },
           dbUserId
         );
@@ -100,12 +113,11 @@ export function useShipmentForm(id?: number) {
           await shipmentFileApi.update(fileDataArray, id);
         }
       } else {
-        // create new shipment
         const createdShipment = await shipmentApi.create(
           {
             ...data,
             declaration_number: data.declaration_number ?? '',
-            declaration_date: data.declaration_date ?? new Date(),
+            declaration_date: formattedDate as Date,
           },
           dbUserId
         );
@@ -119,8 +131,17 @@ export function useShipmentForm(id?: number) {
 
       router.push('/shipments');
     } catch (error) {
-      console.error('Error saving shipment:', error);
+      setSnackbarMessage(
+        error instanceof Error
+          ? error.message
+          : 'An error occurred while saving the shipment'
+      );
+      setSnackbarOpen(true);
     }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   const handleCancel = () => {
@@ -156,6 +177,7 @@ export function useShipmentForm(id?: number) {
   return {
     tS,
     tB,
+    loading,
     localeCode,
     localeMap,
     control,
@@ -169,5 +191,8 @@ export function useShipmentForm(id?: number) {
     handleFileChange,
     handleRemoveFile,
     isEditMode,
+    snackbarOpen,
+    snackbarMessage,
+    handleSnackbarClose,
   };
 }

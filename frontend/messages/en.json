@@ -225,7 +225,8 @@
     "tryAgain": "Try again",
     "cancel": "Cancel",
     "save": "Save",
-    "add": "Add"
+    "add": "Add",
+    "edit": "Edit"
   },
   "SideBar": {
     "home": "Home",

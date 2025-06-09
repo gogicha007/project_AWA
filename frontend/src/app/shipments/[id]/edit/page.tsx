@@ -1,9 +1,21 @@
-import React from 'react'
+'use client';
+
+import styles from '../../page.module.css';
+import React from 'react';
+import { useParams } from 'next/navigation';
+import ShipmentForm from '@/components/logistics/shipmentsCRUD/shipment-form';
 
 const EditShipment = () => {
-  return (
-    <div>EditShipment</div>
-  )
-}
+  const params = useParams();
+  const shipmentId = params.id as string;
 
-export default EditShipment
+  return (
+    <section>
+      <div className={styles.logistics__main}>
+        <ShipmentForm id={+shipmentId} />
+      </div>
+    </section>
+  );
+};
+
+export default EditShipment;

@@ -51,7 +51,7 @@ export interface ShipmentDTO {
   id?: number;
   alias: string;
   declaration_number: string;
-  declaration_date: Date;
+  declaration_date: Date | string | null;
   status: string;
   files?: Array<ShipmentFileDTO>;
 }
