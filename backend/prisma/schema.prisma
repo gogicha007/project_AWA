@@ -179,11 +179,11 @@ model Freight {
   id          Int              @id @default(autoincrement())
   truckNumber String           @map("truck_number")
   forwarder   String?
-  billNumber  String?           @map("bill_number")
-  billDate    DateTime?         @map("bill_date")
-  freightRate Decimal          @map("freight_rate")
-  currency    Currency         @relation(fields: [currencyId], references: [id])
-  currencyId  Int              @map("currency_id")
+  billNumber  String?          @map("bill_number")
+  billDate    DateTime?        @map("bill_date")
+  freightRate Decimal?         @map("freight_rate")
+  currency    Currency?        @relation(fields: [currencyId], references: [id])
+  currencyId  Int?             @map("currency_id")
   shipment    Shipment         @relation(fields: [shipmentId], references: [id])
   shipmentId  Int              @map("shipment_id")
   invoices    FreightInvoice[]

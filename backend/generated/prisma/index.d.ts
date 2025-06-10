@@ -16338,11 +16338,11 @@ export namespace Prisma {
   export type FreightGroupByOutputType = {
     id: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date
-    freightRate: Decimal
-    currencyId: number
+    forwarder: string | null
+    billNumber: string | null
+    billDate: Date | null
+    freightRate: Decimal | null
+    currencyId: number | null
     shipmentId: number
     isArrived: boolean
     userId: number
@@ -16378,7 +16378,7 @@ export namespace Prisma {
     shipmentId?: boolean
     isArrived?: boolean
     userId?: boolean
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+    currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
     invoices?: boolean | Freight$invoicesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -16396,7 +16396,7 @@ export namespace Prisma {
     shipmentId?: boolean
     isArrived?: boolean
     userId?: boolean
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+    currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["freight"]>
@@ -16412,7 +16412,7 @@ export namespace Prisma {
     shipmentId?: boolean
     isArrived?: boolean
     userId?: boolean
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+    currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["freight"]>
@@ -16432,19 +16432,19 @@ export namespace Prisma {
 
   export type FreightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "truckNumber" | "forwarder" | "billNumber" | "billDate" | "freightRate" | "currencyId" | "shipmentId" | "isArrived" | "userId", ExtArgs["result"]["freight"]>
   export type FreightInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+    currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
     invoices?: boolean | Freight$invoicesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | FreightCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FreightIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+    currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type FreightIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+    currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -16452,7 +16452,7 @@ export namespace Prisma {
   export type $FreightPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Freight"
     objects: {
-      currency: Prisma.$CurrencyPayload<ExtArgs>
+      currency: Prisma.$CurrencyPayload<ExtArgs> | null
       shipment: Prisma.$ShipmentPayload<ExtArgs>
       invoices: Prisma.$FreightInvoicePayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
@@ -16460,11 +16460,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       truckNumber: string
-      forwarder: string
-      billNumber: string
-      billDate: Date
-      freightRate: Prisma.Decimal
-      currencyId: number
+      forwarder: string | null
+      billNumber: string | null
+      billDate: Date | null
+      freightRate: Prisma.Decimal | null
+      currencyId: number | null
       shipmentId: number
       isArrived: boolean
       userId: number
@@ -16862,7 +16862,7 @@ export namespace Prisma {
    */
   export interface Prisma__FreightClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    currency<T extends CurrencyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CurrencyDefaultArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    currency<T extends Freight$currencyArgs<ExtArgs> = {}>(args?: Subset<T, Freight$currencyArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     shipment<T extends ShipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShipmentDefaultArgs<ExtArgs>>): Prisma__ShipmentClient<$Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     invoices<T extends Freight$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, Freight$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FreightInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -17298,6 +17298,25 @@ export namespace Prisma {
      * Limit how many Freights to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Freight.currency
+   */
+  export type Freight$currencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    where?: CurrencyWhereInput
   }
 
   /**
@@ -19478,15 +19497,15 @@ export namespace Prisma {
     NOT?: FreightWhereInput | FreightWhereInput[]
     id?: IntFilter<"Freight"> | number
     truckNumber?: StringFilter<"Freight"> | string
-    forwarder?: StringFilter<"Freight"> | string
-    billNumber?: StringFilter<"Freight"> | string
-    billDate?: DateTimeFilter<"Freight"> | Date | string
-    freightRate?: DecimalFilter<"Freight"> | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFilter<"Freight"> | number
+    forwarder?: StringNullableFilter<"Freight"> | string | null
+    billNumber?: StringNullableFilter<"Freight"> | string | null
+    billDate?: DateTimeNullableFilter<"Freight"> | Date | string | null
+    freightRate?: DecimalNullableFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableFilter<"Freight"> | number | null
     shipmentId?: IntFilter<"Freight"> | number
     isArrived?: BoolFilter<"Freight"> | boolean
     userId?: IntFilter<"Freight"> | number
-    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
+    currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
     shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
     invoices?: FreightInvoiceListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -19495,11 +19514,11 @@ export namespace Prisma {
   export type FreightOrderByWithRelationInput = {
     id?: SortOrder
     truckNumber?: SortOrder
-    forwarder?: SortOrder
-    billNumber?: SortOrder
-    billDate?: SortOrder
-    freightRate?: SortOrder
-    currencyId?: SortOrder
+    forwarder?: SortOrderInput | SortOrder
+    billNumber?: SortOrderInput | SortOrder
+    billDate?: SortOrderInput | SortOrder
+    freightRate?: SortOrderInput | SortOrder
+    currencyId?: SortOrderInput | SortOrder
     shipmentId?: SortOrder
     isArrived?: SortOrder
     userId?: SortOrder
@@ -19515,15 +19534,15 @@ export namespace Prisma {
     OR?: FreightWhereInput[]
     NOT?: FreightWhereInput | FreightWhereInput[]
     truckNumber?: StringFilter<"Freight"> | string
-    forwarder?: StringFilter<"Freight"> | string
-    billNumber?: StringFilter<"Freight"> | string
-    billDate?: DateTimeFilter<"Freight"> | Date | string
-    freightRate?: DecimalFilter<"Freight"> | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFilter<"Freight"> | number
+    forwarder?: StringNullableFilter<"Freight"> | string | null
+    billNumber?: StringNullableFilter<"Freight"> | string | null
+    billDate?: DateTimeNullableFilter<"Freight"> | Date | string | null
+    freightRate?: DecimalNullableFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableFilter<"Freight"> | number | null
     shipmentId?: IntFilter<"Freight"> | number
     isArrived?: BoolFilter<"Freight"> | boolean
     userId?: IntFilter<"Freight"> | number
-    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
+    currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
     shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
     invoices?: FreightInvoiceListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -19532,11 +19551,11 @@ export namespace Prisma {
   export type FreightOrderByWithAggregationInput = {
     id?: SortOrder
     truckNumber?: SortOrder
-    forwarder?: SortOrder
-    billNumber?: SortOrder
-    billDate?: SortOrder
-    freightRate?: SortOrder
-    currencyId?: SortOrder
+    forwarder?: SortOrderInput | SortOrder
+    billNumber?: SortOrderInput | SortOrder
+    billDate?: SortOrderInput | SortOrder
+    freightRate?: SortOrderInput | SortOrder
+    currencyId?: SortOrderInput | SortOrder
     shipmentId?: SortOrder
     isArrived?: SortOrder
     userId?: SortOrder
@@ -19553,11 +19572,11 @@ export namespace Prisma {
     NOT?: FreightScalarWhereWithAggregatesInput | FreightScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Freight"> | number
     truckNumber?: StringWithAggregatesFilter<"Freight"> | string
-    forwarder?: StringWithAggregatesFilter<"Freight"> | string
-    billNumber?: StringWithAggregatesFilter<"Freight"> | string
-    billDate?: DateTimeWithAggregatesFilter<"Freight"> | Date | string
-    freightRate?: DecimalWithAggregatesFilter<"Freight"> | Decimal | DecimalJsLike | number | string
-    currencyId?: IntWithAggregatesFilter<"Freight"> | number
+    forwarder?: StringNullableWithAggregatesFilter<"Freight"> | string | null
+    billNumber?: StringNullableWithAggregatesFilter<"Freight"> | string | null
+    billDate?: DateTimeNullableWithAggregatesFilter<"Freight"> | Date | string | null
+    freightRate?: DecimalNullableWithAggregatesFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableWithAggregatesFilter<"Freight"> | number | null
     shipmentId?: IntWithAggregatesFilter<"Freight"> | number
     isArrived?: BoolWithAggregatesFilter<"Freight"> | boolean
     userId?: IntWithAggregatesFilter<"Freight"> | number
@@ -20327,12 +20346,12 @@ export namespace Prisma {
 
   export type FreightCreateInput = {
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
-    currency: CurrencyCreateNestedOneWithoutFreightInput
+    currency?: CurrencyCreateNestedOneWithoutFreightInput
     shipment: ShipmentCreateNestedOneWithoutFreightInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
@@ -20341,11 +20360,11 @@ export namespace Prisma {
   export type FreightUncheckedCreateInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     shipmentId: number
     isArrived?: boolean
     userId: number
@@ -20354,12 +20373,12 @@ export namespace Prisma {
 
   export type FreightUpdateInput = {
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
-    currency?: CurrencyUpdateOneRequiredWithoutFreightNestedInput
+    currency?: CurrencyUpdateOneWithoutFreightNestedInput
     shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
@@ -20368,11 +20387,11 @@ export namespace Prisma {
   export type FreightUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
@@ -20382,11 +20401,11 @@ export namespace Prisma {
   export type FreightCreateManyInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     shipmentId: number
     isArrived?: boolean
     userId: number
@@ -20394,21 +20413,21 @@ export namespace Prisma {
 
   export type FreightUpdateManyMutationInput = {
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FreightUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
@@ -21247,6 +21266,33 @@ export namespace Prisma {
     invoiceId?: SortOrder
   }
 
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CurrencyNullableScalarRelationFilter = {
+    is?: CurrencyWhereInput | null
+    isNot?: CurrencyWhereInput | null
+  }
+
   export type FreightCountOrderByAggregateInput = {
     id?: SortOrder
     truckNumber?: SortOrder
@@ -21300,6 +21346,38 @@ export namespace Prisma {
     currencyId?: SortOrder
     shipmentId?: SortOrder
     userId?: SortOrder
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FreightScalarRelationFilter = {
@@ -22309,10 +22387,20 @@ export namespace Prisma {
     connect?: FreightInvoiceWhereUniqueInput | FreightInvoiceWhereUniqueInput[]
   }
 
-  export type CurrencyUpdateOneRequiredWithoutFreightNestedInput = {
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type CurrencyUpdateOneWithoutFreightNestedInput = {
     create?: XOR<CurrencyCreateWithoutFreightInput, CurrencyUncheckedCreateWithoutFreightInput>
     connectOrCreate?: CurrencyCreateOrConnectWithoutFreightInput
     upsert?: CurrencyUpsertWithoutFreightInput
+    disconnect?: CurrencyWhereInput | boolean
+    delete?: CurrencyWhereInput | boolean
     connect?: CurrencyWhereUniqueInput
     update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutFreightInput, CurrencyUpdateWithoutFreightInput>, CurrencyUncheckedUpdateWithoutFreightInput>
   }
@@ -22345,6 +22433,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutFreightInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFreightInput, UserUpdateWithoutFreightInput>, UserUncheckedUpdateWithoutFreightInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput = {
@@ -22624,6 +22720,60 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type VendorCreateWithoutUserInput = {
     alias: string
     name: string
@@ -22725,12 +22875,12 @@ export namespace Prisma {
 
   export type FreightCreateWithoutUserInput = {
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
-    currency: CurrencyCreateNestedOneWithoutFreightInput
+    currency?: CurrencyCreateNestedOneWithoutFreightInput
     shipment: ShipmentCreateNestedOneWithoutFreightInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
   }
@@ -22738,11 +22888,11 @@ export namespace Prisma {
   export type FreightUncheckedCreateWithoutUserInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     shipmentId: number
     isArrived?: boolean
     invoices?: FreightInvoiceUncheckedCreateNestedManyWithoutFreightInput
@@ -22869,11 +23019,11 @@ export namespace Prisma {
     NOT?: FreightScalarWhereInput | FreightScalarWhereInput[]
     id?: IntFilter<"Freight"> | number
     truckNumber?: StringFilter<"Freight"> | string
-    forwarder?: StringFilter<"Freight"> | string
-    billNumber?: StringFilter<"Freight"> | string
-    billDate?: DateTimeFilter<"Freight"> | Date | string
-    freightRate?: DecimalFilter<"Freight"> | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFilter<"Freight"> | number
+    forwarder?: StringNullableFilter<"Freight"> | string | null
+    billNumber?: StringNullableFilter<"Freight"> | string | null
+    billDate?: DateTimeNullableFilter<"Freight"> | Date | string | null
+    freightRate?: DecimalNullableFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableFilter<"Freight"> | number | null
     shipmentId?: IntFilter<"Freight"> | number
     isArrived?: BoolFilter<"Freight"> | boolean
     userId?: IntFilter<"Freight"> | number
@@ -23096,10 +23246,10 @@ export namespace Prisma {
 
   export type FreightCreateWithoutCurrencyInput = {
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
     shipment: ShipmentCreateNestedOneWithoutFreightInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
@@ -23109,10 +23259,10 @@ export namespace Prisma {
   export type FreightUncheckedCreateWithoutCurrencyInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     shipmentId: number
     isArrived?: boolean
     userId: number
@@ -23459,12 +23609,12 @@ export namespace Prisma {
 
   export type FreightCreateWithoutShipmentInput = {
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
-    currency: CurrencyCreateNestedOneWithoutFreightInput
+    currency?: CurrencyCreateNestedOneWithoutFreightInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
   }
@@ -23472,11 +23622,11 @@ export namespace Prisma {
   export type FreightUncheckedCreateWithoutShipmentInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     isArrived?: boolean
     userId: number
     invoices?: FreightInvoiceUncheckedCreateNestedManyWithoutFreightInput
@@ -24436,12 +24586,12 @@ export namespace Prisma {
 
   export type FreightCreateWithoutInvoicesInput = {
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
-    currency: CurrencyCreateNestedOneWithoutFreightInput
+    currency?: CurrencyCreateNestedOneWithoutFreightInput
     shipment: ShipmentCreateNestedOneWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
   }
@@ -24449,11 +24599,11 @@ export namespace Prisma {
   export type FreightUncheckedCreateWithoutInvoicesInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     shipmentId: number
     isArrived?: boolean
     userId: number
@@ -24509,12 +24659,12 @@ export namespace Prisma {
 
   export type FreightUpdateWithoutInvoicesInput = {
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
-    currency?: CurrencyUpdateOneRequiredWithoutFreightNestedInput
+    currency?: CurrencyUpdateOneWithoutFreightNestedInput
     shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
   }
@@ -24522,11 +24672,11 @@ export namespace Prisma {
   export type FreightUncheckedUpdateWithoutInvoicesInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
@@ -24602,11 +24752,11 @@ export namespace Prisma {
   export type FreightCreateManyUserInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     shipmentId: number
     isArrived?: boolean
   }
@@ -24711,12 +24861,12 @@ export namespace Prisma {
 
   export type FreightUpdateWithoutUserInput = {
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
-    currency?: CurrencyUpdateOneRequiredWithoutFreightNestedInput
+    currency?: CurrencyUpdateOneWithoutFreightNestedInput
     shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
   }
@@ -24724,11 +24874,11 @@ export namespace Prisma {
   export type FreightUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     invoices?: FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput
@@ -24737,11 +24887,11 @@ export namespace Prisma {
   export type FreightUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -24848,10 +24998,10 @@ export namespace Prisma {
   export type FreightCreateManyCurrencyInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
     shipmentId: number
     isArrived?: boolean
     userId: number
@@ -24897,10 +25047,10 @@ export namespace Prisma {
 
   export type FreightUpdateWithoutCurrencyInput = {
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
@@ -24910,10 +25060,10 @@ export namespace Prisma {
   export type FreightUncheckedUpdateWithoutCurrencyInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
@@ -24923,10 +25073,10 @@ export namespace Prisma {
   export type FreightUncheckedUpdateManyWithoutCurrencyInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     shipmentId?: IntFieldUpdateOperationsInput | number
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
@@ -25043,11 +25193,11 @@ export namespace Prisma {
   export type FreightCreateManyShipmentInput = {
     id?: number
     truckNumber: string
-    forwarder: string
-    billNumber: string
-    billDate: Date | string
-    freightRate: Decimal | DecimalJsLike | number | string
-    currencyId: number
+    forwarder?: string | null
+    billNumber?: string | null
+    billDate?: Date | string | null
+    freightRate?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
     isArrived?: boolean
     userId: number
   }
@@ -25086,12 +25236,12 @@ export namespace Prisma {
 
   export type FreightUpdateWithoutShipmentInput = {
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
-    currency?: CurrencyUpdateOneRequiredWithoutFreightNestedInput
+    currency?: CurrencyUpdateOneWithoutFreightNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
   }
@@ -25099,11 +25249,11 @@ export namespace Prisma {
   export type FreightUncheckedUpdateWithoutShipmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
     invoices?: FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput
@@ -25112,11 +25262,11 @@ export namespace Prisma {
   export type FreightUncheckedUpdateManyWithoutShipmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     truckNumber?: StringFieldUpdateOperationsInput | string
-    forwarder?: StringFieldUpdateOperationsInput | string
-    billNumber?: StringFieldUpdateOperationsInput | string
-    billDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    freightRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    currencyId?: IntFieldUpdateOperationsInput | number
+    forwarder?: NullableStringFieldUpdateOperationsInput | string | null
+    billNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
   }

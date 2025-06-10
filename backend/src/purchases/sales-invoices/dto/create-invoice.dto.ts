@@ -21,8 +21,8 @@ export class CreateInvoiceDTO {
 
   @ApiProperty({ required: false, type: String, format: 'date-time' })
   @IsDateString()
-  @IsOptional()
-  invoiceDate?: string;
+  @IsNotEmpty()
+  invoiceDate: string;
 
   @ApiProperty()
   @IsInt()

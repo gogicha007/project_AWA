@@ -27,7 +27,7 @@ export class ShipmentsService {
           declaration_number,
           declaration_date: declaration_date
             ? new Date(declaration_date)
-            : undefined,
+            : null,
           userId,
         },
         include: {

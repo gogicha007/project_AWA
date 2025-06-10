@@ -10,7 +10,7 @@ import {
 
 export class CreateFreightDTO {
   @ApiProperty()
-  @IsInt()
+  @IsString()
   @IsNotEmpty()
   truckNumber: string;
 
@@ -27,7 +27,7 @@ export class CreateFreightDTO {
   @ApiProperty()
   @IsDateString()
   @IsOptional()
-  billDate: string;
+  billDate?: string;
 
   @ApiProperty()
   @IsInt()

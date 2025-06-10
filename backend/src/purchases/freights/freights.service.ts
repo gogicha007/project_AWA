@@ -1,7 +1,7 @@
 import {
   Injectable,
-//   NotFoundException,
-//   BadRequestException,
+  //   NotFoundException,
+  //   BadRequestException,
 } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { CreateFreightDTO } from './dto/create-freight.dto';
@@ -31,7 +31,7 @@ export class FreightsService {
           truckNumber,
           forwarder,
           billNumber,
-          billDate,
+          billDate: billDate ? new Date(billDate) : null,
           freightRate,
           currencyId,
           isArrived,
@@ -39,7 +39,7 @@ export class FreightsService {
           userId,
         },
       });
-      return freight
+      return freight;
     } catch (error) {
       console.log(error);
     }
