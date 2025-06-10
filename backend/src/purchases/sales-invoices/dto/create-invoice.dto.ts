@@ -34,11 +34,6 @@ export class CreateInvoiceDTO {
   isArrived: boolean;
 
   @ApiProperty()
-  @IsString()
-  @IsOptional()
-  truckNumber: string;
-
-  @ApiProperty()
   @IsInt()
   @IsNotEmpty()
   currencyId: number;
