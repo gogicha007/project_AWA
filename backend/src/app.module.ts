@@ -20,6 +20,7 @@ import { MasterDataModule } from './settings/master-data/master-data.module';
 import { VendorsModule } from './settings/vendors/vendor.module';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { InvoicesModule } from './purchases/sales-invoices/invoices.module';
+import { FreightsModule } from './purchases/freights/freights.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { InvoicesModule } from './purchases/sales-invoices/invoices.module';
     VendorsModule,
     ShipmentsModule,
     InvoicesModule,
+    FreightsModule,
   ],
   controllers: [AppController],
   providers: [
