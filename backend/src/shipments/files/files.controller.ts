@@ -27,7 +27,7 @@ export class ShipmentFilesController {
   }
 
   @Get('shipment/:id')
-  findAllByShipmentId(@Param('id') id: string) {
+  async findAllByShipmentId(@Param('id') id: string) {
     return this.filesService.findAllByShipmentId(+id);
   }
 

@@ -78,7 +78,7 @@ export class InvoiceItemsService {
       });
     } catch (error) {
       console.error(error);
-      throw new BadRequestException('Failed to fetch vendors');
+      throw new BadRequestException('Failed to fetch invoice items');
     }
   }
 
@@ -102,7 +102,7 @@ export class InvoiceItemsService {
     });
   }
 
-  async removeByInvoiceId(invoiceId: number) {
+  async removeAllByInvoiceId(invoiceId: number) {
     try {
       return this.dbService.invoiceItem.deleteMany({
         where: { invoiceId },
