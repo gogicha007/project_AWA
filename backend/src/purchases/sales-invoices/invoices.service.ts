@@ -31,7 +31,7 @@ export class InvoicesService {
         data: {
           vendorId,
           invoiceNumber,
-          invoiceDate,
+          invoiceDate: invoiceDate ? new Date(invoiceDate) : null,
           totalAmount,
           currencyId,
           isArrived,

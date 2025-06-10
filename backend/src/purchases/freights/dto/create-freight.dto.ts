@@ -8,35 +8,46 @@ import {
   IsBoolean,
 } from 'class-validator';
 
-export class CreateInvoiceDTO {
+export class CreateFreightDTO {
   @ApiProperty()
   @IsInt()
   @IsNotEmpty()
-  vendorId: number;
+  truckNumber: string;
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
-  invoiceNumber: string;
+  @IsOptional()
+  forwarder: string;
 
-  @ApiProperty({ required: false, type: String, format: 'date-time' })
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  billNumber: string;
+
+  @ApiProperty()
   @IsDateString()
   @IsOptional()
-  invoiceDate?: string;
+  billDate: string;
 
   @ApiProperty()
   @IsInt()
   @IsOptional()
-  totalAmount: number;
+  freightRate: number;
+
+  @ApiProperty()
+  @IsInt()
+  @IsOptional()
+  currencyId: number;
+
+  @ApiProperty()
+  @IsInt()
+  @IsNotEmpty()
+  shipmentId: number;
 
   @ApiProperty()
   @IsBoolean()
-  isArrived: boolean;
-
-  @ApiProperty()
-  @IsInt()
   @IsNotEmpty()
-  currencyId: number;
+  isArrived: boolean;
 
   @ApiProperty()
   @IsInt()

@@ -19,6 +19,7 @@ import { CustomExceptionFilter } from './common/filters/exception.filter';
 import { MasterDataModule } from './settings/master-data/master-data.module';
 import { VendorsModule } from './settings/vendors/vendor.module';
 import { ShipmentsModule } from './shipments/shipments.module';
+import { InvoicesModule } from './purchases/sales-invoices/invoices.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ShipmentsModule } from './shipments/shipments.module';
     MasterDataModule,
     VendorsModule,
     ShipmentsModule,
+    InvoicesModule,
   ],
   controllers: [AppController],
   providers: [
