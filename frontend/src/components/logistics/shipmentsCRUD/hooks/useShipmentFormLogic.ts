@@ -7,6 +7,7 @@ import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 import { formatToISODateTime } from '@/utils/dateFormat';
+import { FileData } from '@/components/controls/file-uploader/FileUploader';
 
 const localeMap = {
   en: enUSLocale,
@@ -19,12 +20,6 @@ export type ShipmentFormValues = {
   declaration_number?: string;
   declaration_date?: Date;
   files?: Array<FileData>;
-};
-
-export type FileData = {
-  fileName: string;
-  fileType: string;
-  fileData: string;
 };
 
 export function useShipmentForm(id?: number) {

@@ -7,7 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
-import FileUploader, {FileData} from '@/components/controls/file-uploader/FileUploader';
+import FileUploader from '@/components/controls/file-uploader/FileUploader';
 
 // import InvoiceTable from '@/components/purchases/invoice-table';
 
