@@ -23,6 +23,11 @@ export type ShipmentFormValues = {
 };
 
 export function useShipmentForm(id?: number) {
+  const router = useRouter();
+  const localeCode = useLocale();
+  const tS = useTranslations('Logistics');
+  const tB = useTranslations('Buttons');
+  const { dbUserId } = useAuth();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const [originalFiles, setOriginalFiles] = useState<FileData[]>([]);
@@ -30,11 +35,6 @@ export function useShipmentForm(id?: number) {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const isEditMode = !!id;
-  const router = useRouter();
-  const tS = useTranslations('Logistics');
-  const tB = useTranslations('Buttons');
-  const { dbUserId } = useAuth();
-  const localeCode = useLocale();
 
   const {
     control,

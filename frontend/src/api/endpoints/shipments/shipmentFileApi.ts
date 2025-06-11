@@ -15,7 +15,9 @@ export const shipmentFileApi = {
     shipmentId: number
   ): Promise<ShipmentFileDTO[]> => {
     try {
+      console.log('shipmentFiles', shipmentFiles)
       const filesWithShipmentId = mapShipmentFiles(shipmentFiles, shipmentId);
+      console.log('with id', filesWithShipmentId)
       const shipmentFileResponse = await apiClient.post('/shipment-files', {
         files: filesWithShipmentId,
       });
@@ -65,8 +67,12 @@ export const mapShipmentFiles = (
     return [];
   }
 
-  return shipmentFiles.map((file) => ({
-    ...file,
-    shipmentId,
-  }));
+  return shipmentFiles.map(file => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id, ...rest } = file;
+    return {
+      ...rest,
+      shipmentId,
+    };
+  });
 };

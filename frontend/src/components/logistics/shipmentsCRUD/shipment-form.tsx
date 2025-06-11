@@ -133,6 +133,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
         </div>
 
         <div className={styles.formSection}>{/* <InvoiceTable/> */}</div>
+        
         <div className={styles.formActions}>
           <button
             type="button"

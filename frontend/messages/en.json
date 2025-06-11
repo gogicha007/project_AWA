@@ -235,5 +235,9 @@
     "settings": "Settings",
     "masterData": "Master data",
     "vendors": "Vendors"
+  },
+  "FileUploader": {
+    "select_files": "Select files",
+    "attached_files": "Attached files"
   }
 }
