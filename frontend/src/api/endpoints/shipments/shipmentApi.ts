@@ -52,7 +52,6 @@ export const shipmentApi = {
         status: shipment.status,
         userId: userId,
       };
-      console.log('shipment update data', shipmentUpdateData);
       const response = await apiClient.patch(
         `/shipments/${shipment.id}`,
         shipmentUpdateData

@@ -15,9 +15,8 @@ export const shipmentFileApi = {
     shipmentId: number
   ): Promise<ShipmentFileDTO[]> => {
     try {
-      console.log('shipmentFiles', shipmentFiles)
       const filesWithShipmentId = mapShipmentFiles(shipmentFiles, shipmentId);
-      console.log('with id', filesWithShipmentId)
+      console.log('with id', filesWithShipmentId);
       const shipmentFileResponse = await apiClient.post('/shipment-files', {
         files: filesWithShipmentId,
       });
@@ -59,6 +58,8 @@ export const shipmentFileApi = {
   },
 };
 
+type BufferLike = { type: 'Buffer'; data: number[] };
+
 export const mapShipmentFiles = (
   shipmentFiles: ShipmentFileDTO[],
   shipmentId: number
@@ -67,12 +68,41 @@ export const mapShipmentFiles = (
     return [];
   }
 
-  return shipmentFiles.map(file => {
+  return shipmentFiles.map((file) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...rest } = file;
+    let fileData = rest.fileData;
+
+    // Handle Buffer-like object
+    if (
+      fileData &&
+      typeof fileData === 'object' &&
+      (fileData as BufferLike).type === 'Buffer' &&
+      Array.isArray((fileData as BufferLike).data)
+    ) {
+      try {
+        fileData = Buffer.from((fileData as BufferLike).data).toString(
+          'base64'
+        );
+      } catch {
+        fileData = '';
+      }
+    }
+
+    // Handle data URL string (from FileReader)
+    if (typeof fileData === 'string' && fileData.startsWith('data:')) {
+      fileData = fileData.substring(fileData.indexOf(',') + 1);
+    }
+
+    // Ensure fileData is a string (base64) or empty string
+    if (typeof fileData !== 'string') {
+      fileData = '';
+    }
+
     return {
       ...rest,
       shipmentId,
+      fileData,
     };
   });
 };
