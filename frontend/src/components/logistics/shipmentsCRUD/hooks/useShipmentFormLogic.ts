@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useAuth } from '@/context/auth';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
-import convertToBase64 from '@/utils/file-utils';
 import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 import { formatToISODateTime } from '@/utils/dateFormat';
 
@@ -30,8 +29,9 @@ export type FileData = {
 
 export function useShipmentForm(id?: number) {
   const [loading, setLoading] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+  const [originalFiles, setOriginalFiles] = useState<FileData[]>([]);
+  const [isFilesChanged, setIsFilesChanged] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const isEditMode = !!id;
@@ -74,13 +74,9 @@ export function useShipmentForm(id?: number) {
               : undefined,
           });
 
-          const files = await shipmentFileApi.getAll(id);
-          setFileDataArray(files || []);
-          setSelectedFiles(
-            files.map(
-              (file) => new File([], file.fileName, { type: file.fileType })
-            )
-          );
+          const files = shipment.files || [];
+          setFileDataArray(files);
+          setOriginalFiles(files);
 
           // const invoices = []
         } catch (error) {
@@ -111,7 +107,7 @@ export function useShipmentForm(id?: number) {
           dbUserId
         );
 
-        if (fileDataArray.length > 0) {
+        if (isFilesChanged) {
           await shipmentFileApi.update(fileDataArray, id);
         }
       } else {
@@ -150,32 +146,6 @@ export function useShipmentForm(id?: number) {
     router.push('/shipments');
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.length) return;
-
-    const newFiles = Array.from(e.target.files);
-    setSelectedFiles((prev) => [...prev, ...newFiles]);
-
-    // Convert files to base64
-    const filesData = await Promise.all(
-      newFiles.map(async (file) => {
-        const base64 = await convertToBase64(file);
-        return {
-          fileName: file.name,
-          fileType: file.type,
-          fileData: base64,
-        } as FileData;
-      })
-    );
-
-    setFileDataArray((prev) => [...prev, ...filesData]);
-  };
-
-  const handleRemoveFile = (index: number) => {
-    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
-    setFileDataArray((prev) => prev.filter((_, i) => i !== index));
-  };
-
   return {
     tS,
     tB,
@@ -185,14 +155,15 @@ export function useShipmentForm(id?: number) {
     control,
     register,
     handleSubmit,
+    isEditMode,
     errors,
-    selectedFiles,
     fileDataArray,
+    setFileDataArray,
+    originalFiles,
+    isFilesChanged,
+    setIsFilesChanged,
     submitHandler,
     handleCancel,
-    handleFileChange,
-    handleRemoveFile,
-    isEditMode,
     snackbarOpen,
     snackbarMessage,
     handleSnackbarClose,

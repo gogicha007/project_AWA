@@ -7,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
+import FileUploader, {FileData} from '@/components/controls/file-uploader/FileUploader';
 
 // import InvoiceTable from '@/components/purchases/invoice-table';
 
@@ -21,11 +22,12 @@ export default function ShipmentForm({ id }: { id?: number }) {
     register,
     handleSubmit,
     errors,
-    selectedFiles,
+    fileDataArray,
+    setFileDataArray,
+    originalFiles,
+    setIsFilesChanged,
     submitHandler,
     handleCancel,
-    handleFileChange,
-    handleRemoveFile,
     isEditMode,
     snackbarOpen,
     snackbarMessage,
@@ -120,38 +122,14 @@ export default function ShipmentForm({ id }: { id?: number }) {
         </div>
 
         <div className={styles.formSection}>
-          <div className={styles.formGroup}>
-            <label htmlFor="files">{tS('form.files_label')}</label>
-            <input
-              id="files"
-              type="file"
-              className={styles.input}
-              onChange={handleFileChange}
-              accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx"
-              multiple
-            />
-
-            {/* Display selected files */}
-            {selectedFiles.length > 0 && (
-              <div className={styles.filesList}>
-                <h4>{tS('form.selected_files')}</h4>
-                <ul>
-                  {selectedFiles.map((file, index) => (
-                    <li key={index}>
-                      {file.name}
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveFile(index)}
-                        className={styles.removeFileBtn}
-                      >
-                        ✖
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          <FileUploader
+            tS={tS}
+            fileDataArray={fileDataArray}
+            setFileDataArray={setFileDataArray}
+            isEditMode={isEditMode}
+            originalFiles={originalFiles}
+            setIsFilesChanged={setIsFilesChanged}
+          />
         </div>
 
         <div className={styles.formSection}>{/* <InvoiceTable/> */}</div>
@@ -168,6 +146,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </button>
         </div>
       </form>
+
       <Snackbar
         message={snackbarMessage}
         open={snackbarOpen}
