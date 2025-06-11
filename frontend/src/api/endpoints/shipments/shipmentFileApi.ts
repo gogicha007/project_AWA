@@ -73,7 +73,6 @@ export const mapShipmentFiles = (
     const { id, ...rest } = file;
     let fileData = rest.fileData;
 
-    // Handle Buffer-like object
     if (
       fileData &&
       typeof fileData === 'object' &&
@@ -89,12 +88,10 @@ export const mapShipmentFiles = (
       }
     }
 
-    // Handle data URL string (from FileReader)
     if (typeof fileData === 'string' && fileData.startsWith('data:')) {
       fileData = fileData.substring(fileData.indexOf(',') + 1);
     }
 
-    // Ensure fileData is a string (base64) or empty string
     if (typeof fileData !== 'string') {
       fileData = '';
     }
