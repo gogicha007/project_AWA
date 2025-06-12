@@ -86,3 +86,16 @@ export interface InvoiceItemDTO {
   total?: number;
   isArrived?: boolean;
 }
+
+export interface FreightDTO {
+  id?: number;
+  truckNumber: string;
+  forwarder?: string;
+  billNumber?: string;
+  billDate?: Date;
+  freightRate?: number;
+  currencyId?: number;
+  shipmentId: number;
+  isArrived: boolean;
+  userId: number;
+}
