@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '../../forms/form.module.css';
+import styles from '../forms/form.module.css';
 import { useEffect, useRef } from 'react';
 import { InvoiceDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';

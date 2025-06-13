@@ -9,7 +9,7 @@ import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
 import FileUploader from '@/components/controls/file-uploader/FileUploader';
 
-// import InvoiceTable from '@/components/purchases/invoice-table';
+import InvoiceTable from '@/components/purchases/invoice-table';
 
 export default function ShipmentForm({ id }: { id?: number }) {
   const {
@@ -132,7 +132,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
           />
         </div>
 
-        <div className={styles.formSection}>{/* <InvoiceTable/> */}</div>
+        <div className={styles.formSection}><InvoiceTable tB={tB}/></div>
         
         <div className={styles.formActions}>
           <button

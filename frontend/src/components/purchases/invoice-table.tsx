@@ -1,5 +1,7 @@
+'use client'
+
 import React, { useState, useMemo } from 'react';
-import styles from './shipment-form.module.css';
+import styles from '../logistics/shipments.module.css'
 import {
   useReactTable,
   getCoreRowModel,
@@ -10,37 +12,38 @@ import TableRowActions from '@/components/controls/table-row-actions/TableRowAct
 import InvoiceDialog from './invoice-form';
 import { InvoiceDTO } from '@/api/types';
 import { useInvoiceTable } from './hooks/useInvoiceTable';
+import { useTranslations } from 'next-intl';
 
 type InvoiceTableProps = {
-  invoices: InvoiceDTO[];
+  invoices?: InvoiceDTO[];
   onView?: (id: number) => void;
   onEdit?: (id: number) => void;
   onDelete?: (id: number) => void;
-  onAdd: () => void;
-  tS: (key: string) => string;
+  onAdd?: () => void;
   tB: (key: string) => string;
 };
 
-const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tS, tB }) => {
+const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
   const { handleAdd, handleEdit, handleDelete, handleView } = useInvoiceTable();
+  const tI = useTranslations('Invoices')
   const columns = useMemo<ColumnDef<InvoiceDTO>[]>(
     () => [
       {
-        header: tS('form.invoice_number'),
+        header: tI('table.invoice_number'),
         accessorKey: 'invoiceNumber',
       },
       {
-        header: tS('form.vendor'),
+        header: tI('table.vendor'),
         accessorKey: 'vendorName',
       },
       {
-        header: tS('form.invoice_date'),
+        header: tI('table.invoice_date'),
         accessorKey: 'invoiceDate',
       },
       {
-        header: tS('form.total_amount'),
+        header: tI('table.total_amount'),
         accessorKey: 'totalAmount',
         cell: (info) => info.getValue()?.toLocaleString?.() ?? info.getValue(),
       },
@@ -57,7 +60,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tS, tB }) => {
         ),
       },
     ],
-    [tS, handleView, handleEdit, handleDelete]
+    [tI, handleView, handleEdit, handleDelete]
   );
 
   const table = useReactTable({
@@ -80,7 +83,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tS, tB }) => {
 
   return (
     <div className={styles.formSection}>
-      <h4>{tS('form.invoices_label') ?? 'Invoices'}</h4>
+      <h4>{tI('form.invoices_label') ?? 'Invoices'}</h4>
       <table className={styles.invoiceTable}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -102,7 +105,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tS, tB }) => {
           {table.getRowModel().rows.length === 0 ? (
             <tr>
               <td colSpan={columns.length} style={{ textAlign: 'center' }}>
-                {tS('form.no_invoices') ?? 'No invoices added.'}
+                {tI('form.no_invoices') ?? 'No invoices added.'}
               </td>
             </tr>
           ) : (
@@ -134,7 +137,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tS, tB }) => {
         onSave={handleSave}
         initialData={editInvoice || undefined}
         title={editInvoice ? tB('edit_invoice') : tB('add_invoice')}
-        tVar={tS}
+        tVar={tI}
       />
     </div>
   );
