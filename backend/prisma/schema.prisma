@@ -130,21 +130,21 @@ model ShipmentFile {
 }
 
 model Invoice {
-  id             Int               @id @default(autoincrement())
-  shipments      ShipmentInvoice[]
-  vendor         Vendor            @relation(fields: [vendorId], references: [id])
-  vendorId       Int               @map("vendor_id")
-  invoiceNumber  String            @map("invoice_number")
-  invoiceDate    DateTime          @map("invoice_date")
-  totalAmount    Decimal           @map("total_amount")
-  isArrived      Boolean           @default(false) @map("is_arrived")
-  user           User              @relation(fields: [userId], references: [id])
-  userId         Int               @map("user_id")
-  createdAt      DateTime          @default(now()) @map("created_at")
-  InvoiceItem    InvoiceItem[]
-  currency       Currency          @relation(fields: [currencyId], references: [id])
-  currencyId     Int               @map("currency_id")
-  FreightInvoice FreightInvoice[]
+  id            Int               @id @default(autoincrement())
+  vendor        Vendor            @relation(fields: [vendorId], references: [id])
+  vendorId      Int               @map("vendor_id")
+  invoiceNumber String            @map("invoice_number")
+  invoiceDate   DateTime          @map("invoice_date")
+  totalAmount   Decimal           @map("total_amount")
+  isArrived     Boolean           @default(false) @map("is_arrived")
+  user          User              @relation(fields: [userId], references: [id])
+  userId        Int               @map("user_id")
+  createdAt     DateTime          @default(now()) @map("created_at")
+  currency      Currency          @relation(fields: [currencyId], references: [id])
+  currencyId    Int               @map("currency_id")
+  Items         InvoiceItem[]
+  Shipments     ShipmentInvoice[]
+  Freights      FreightInvoice[]
 
   @@map("invoice")
 }
