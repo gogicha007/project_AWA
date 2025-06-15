@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import React, { useState, useMemo } from 'react';
-import styles from '../logistics/shipments.module.css'
+import styles from '../logistics/shipments.module.css';
 import {
   useReactTable,
   getCoreRowModel,
@@ -27,7 +27,8 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
   const { handleAdd, handleEdit, handleDelete, handleView } = useInvoiceTable();
-  const tI = useTranslations('Invoices')
+  const tI = useTranslations('Invoices');
+
   const columns = useMemo<ColumnDef<InvoiceDTO>[]>(
     () => [
       {
@@ -64,7 +65,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
   );
 
   const table = useReactTable({
-    data: invoices,
+    data: invoices ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -83,7 +84,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
 
   return (
     <div className={styles.formSection}>
-      <h4>{tI('form.invoices_label') ?? 'Invoices'}</h4>
+      <h4>{tI('title') ?? 'Invoices'}</h4>
       <table className={styles.invoiceTable}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -105,7 +106,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
           {table.getRowModel().rows.length === 0 ? (
             <tr>
               <td colSpan={columns.length} style={{ textAlign: 'center' }}>
-                {tI('form.no_invoices') ?? 'No invoices added.'}
+                {tI('table.no_invoices') ?? 'No invoices added.'}
               </td>
             </tr>
           ) : (
@@ -129,14 +130,14 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
           setDialogOpen(true);
         }}
       >
-        {tB('add_invoice') ?? 'Add Invoice'}
+        {`${tB('add')} invoice`}
       </button>
       <InvoiceDialog
         isOpen={isDialogOpen}
         onClose={() => setDialogOpen(false)}
         onSave={handleSave}
         initialData={editInvoice || undefined}
-        title={editInvoice ? tB('edit_invoice') : tB('add_invoice')}
+        title={editInvoice ? tB('edit') : tB('add')}
         tVar={tI}
       />
     </div>

@@ -4,6 +4,8 @@ import styles from '../forms/form.module.css';
 import { useEffect, useRef } from 'react';
 import { InvoiceDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
+import { formatToISODateTime } from '@/utils/dateFormat';
+import { useForm } from 'react-hook-form';
 
 type Props = {
   isOpen: boolean;
@@ -14,6 +16,7 @@ type Props = {
   tVar: (key: string) => string;
 };
 
+type FormValues = InvoiceDTO;
 export default function InvoiceDialog({
   isOpen,
   onClose,
@@ -24,6 +27,13 @@ export default function InvoiceDialog({
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
+
+  const { register } = useForm<FormValues>({
+    defaultValues: {
+      invoiceNumber: initialData?.invoiceNumber || '',
+      invoiceDate: initialData?.invoiceDate || undefined,
+    },
+  });
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -34,13 +44,16 @@ export default function InvoiceDialog({
     }
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
 
     onSave({
       id: initialData?.id,
-      invoiceNumber: formData.get('invoice-number') as string,
+      invoiceNumber: formData.get('invoiceNumber') as string,
+      invoiceDate: formatToISODateTime(formData.get('invoiceDate')) as Date,
+      vendorId: formData.get('vendorId') as number,
+      currencyId: formData.get('currencyId') as number
     });
 
     onClose();
@@ -53,24 +66,39 @@ export default function InvoiceDialog({
         ×
       </button>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={onSubmit} className={styles.form}>
         <div className={styles.formGroup}>
-          <label htmlFor="invoice_number">{tVar('invoice_number')}</label>
+          <label htmlFor="invoiceNumber">
+            {tVar('form.label.invoice_number')}
+          </label>
+          <input
+            id="invoiceNumber"
+            {...register('invoiceNumber', {
+              required: 'Invoice number is required',
+            })}
+            type="text"
+          />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="invoice_date">{tVar('invoice_date')}</label>
+          <label htmlFor="invoiceDate">
+            {tVar('form.label.invoice_date')}
+          </label>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="currency">{tVar('currency')}</label>
+          <label htmlFor="currency">{tVar('form.label.currency')}</label>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="total_amount">{tVar('total_amount')}</label>
+          <label htmlFor="total_amount">
+            {tVar('form.label.total_amount')}
+          </label>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="truck_number">{tVar('truck_number')}</label>
+          <label htmlFor="truck_number">
+            {tVar('form.label.truck_number')}
+          </label>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="is_arrived">{tVar('is_arrived')}</label>
+          <label htmlFor="is_arrived">{tVar('form.label.is_arrived')}</label>
         </div>
       </form>
       <div className={styles.formActions}>
