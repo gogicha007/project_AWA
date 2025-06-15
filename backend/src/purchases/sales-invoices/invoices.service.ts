@@ -68,8 +68,8 @@ export class InvoicesService {
     const invoice = await this.dbService.invoice.findUnique({
       where: { id },
       include: {
-        InvoiceItem: true,
-        FreightInvoice: true,
+        Items: true,
+        Freights: true,
       },
     });
     if (!invoice) {

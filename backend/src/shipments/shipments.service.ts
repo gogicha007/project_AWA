@@ -31,8 +31,8 @@ export class ShipmentsService {
           userId,
         },
         include: {
-          invoices: true,
-          files: false,
+          Invoices: true,
+          Files: false,
         },
       });
 
@@ -60,8 +60,8 @@ export class ShipmentsService {
   async findAll() {
     return this.dbService.shipment.findMany({
       include: {
-        invoices: true,
-        files: false,
+        Invoices: true,
+        Files: false,
       },
     });
   }
@@ -70,8 +70,8 @@ export class ShipmentsService {
     const shipment = await this.dbService.shipment.findUnique({
       where: { id },
       include: {
-        invoices: true,
-        files: true,
+        Invoices: true,
+        Files: true,
       },
     });
     if (!shipment) {
@@ -86,8 +86,8 @@ export class ShipmentsService {
         where: { id },
         data: updateShipmentDto,
         include: {
-          invoices: true,
-          files: false,
+          Invoices: true,
+          Files: false,
         },
       });
       return shipment;
