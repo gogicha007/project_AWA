@@ -90,7 +90,7 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
         <div className={styles.sidebarHeader}>
           <Link href="/">
             <Image
-              src="./logo.svg"
+              src="/logo.svg"
               alt="logo"
               className={styles.logo}
               width={120}
