@@ -2323,15 +2323,15 @@ export namespace Prisma {
    */
 
   export type ShipmentCountOutputType = {
-    invoices: number
-    files: number
-    Freight: number
+    Files: number
+    Freights: number
+    Invoices: number
   }
 
   export type ShipmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    invoices?: boolean | ShipmentCountOutputTypeCountInvoicesArgs
-    files?: boolean | ShipmentCountOutputTypeCountFilesArgs
-    Freight?: boolean | ShipmentCountOutputTypeCountFreightArgs
+    Files?: boolean | ShipmentCountOutputTypeCountFilesArgs
+    Freights?: boolean | ShipmentCountOutputTypeCountFreightsArgs
+    Invoices?: boolean | ShipmentCountOutputTypeCountInvoicesArgs
   }
 
   // Custom InputTypes
@@ -2348,13 +2348,6 @@ export namespace Prisma {
   /**
    * ShipmentCountOutputType without action
    */
-  export type ShipmentCountOutputTypeCountInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ShipmentInvoiceWhereInput
-  }
-
-  /**
-   * ShipmentCountOutputType without action
-   */
   export type ShipmentCountOutputTypeCountFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ShipmentFileWhereInput
   }
@@ -2362,8 +2355,15 @@ export namespace Prisma {
   /**
    * ShipmentCountOutputType without action
    */
-  export type ShipmentCountOutputTypeCountFreightArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShipmentCountOutputTypeCountFreightsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FreightWhereInput
+  }
+
+  /**
+   * ShipmentCountOutputType without action
+   */
+  export type ShipmentCountOutputTypeCountInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShipmentInvoiceWhereInput
   }
 
 
@@ -10540,10 +10540,10 @@ export namespace Prisma {
     declaration_date?: boolean
     userId?: boolean
     createdAt?: boolean
-    invoices?: boolean | Shipment$invoicesArgs<ExtArgs>
-    files?: boolean | Shipment$filesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Freight?: boolean | Shipment$FreightArgs<ExtArgs>
+    Files?: boolean | Shipment$FilesArgs<ExtArgs>
+    Freights?: boolean | Shipment$FreightsArgs<ExtArgs>
+    Invoices?: boolean | Shipment$InvoicesArgs<ExtArgs>
     _count?: boolean | ShipmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shipment"]>
 
@@ -10581,10 +10581,10 @@ export namespace Prisma {
 
   export type ShipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alias" | "status" | "declaration_number" | "declaration_date" | "userId" | "createdAt", ExtArgs["result"]["shipment"]>
   export type ShipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    invoices?: boolean | Shipment$invoicesArgs<ExtArgs>
-    files?: boolean | Shipment$filesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Freight?: boolean | Shipment$FreightArgs<ExtArgs>
+    Files?: boolean | Shipment$FilesArgs<ExtArgs>
+    Freights?: boolean | Shipment$FreightsArgs<ExtArgs>
+    Invoices?: boolean | Shipment$InvoicesArgs<ExtArgs>
     _count?: boolean | ShipmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ShipmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10597,10 +10597,10 @@ export namespace Prisma {
   export type $ShipmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Shipment"
     objects: {
-      invoices: Prisma.$ShipmentInvoicePayload<ExtArgs>[]
-      files: Prisma.$ShipmentFilePayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
-      Freight: Prisma.$FreightPayload<ExtArgs>[]
+      Files: Prisma.$ShipmentFilePayload<ExtArgs>[]
+      Freights: Prisma.$FreightPayload<ExtArgs>[]
+      Invoices: Prisma.$ShipmentInvoicePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11004,10 +11004,10 @@ export namespace Prisma {
    */
   export interface Prisma__ShipmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    invoices<T extends Shipment$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    files<T extends Shipment$filesArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$filesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Freight<T extends Shipment$FreightArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$FreightArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FreightPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Files<T extends Shipment$FilesArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$FilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Freights<T extends Shipment$FreightsArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$FreightsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FreightPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Invoices<T extends Shipment$InvoicesArgs<ExtArgs> = {}>(args?: Subset<T, Shipment$InvoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShipmentInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11440,33 +11440,9 @@ export namespace Prisma {
   }
 
   /**
-   * Shipment.invoices
+   * Shipment.Files
    */
-  export type Shipment$invoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShipmentInvoice
-     */
-    select?: ShipmentInvoiceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShipmentInvoice
-     */
-    omit?: ShipmentInvoiceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShipmentInvoiceInclude<ExtArgs> | null
-    where?: ShipmentInvoiceWhereInput
-    orderBy?: ShipmentInvoiceOrderByWithRelationInput | ShipmentInvoiceOrderByWithRelationInput[]
-    cursor?: ShipmentInvoiceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ShipmentInvoiceScalarFieldEnum | ShipmentInvoiceScalarFieldEnum[]
-  }
-
-  /**
-   * Shipment.files
-   */
-  export type Shipment$filesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Shipment$FilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ShipmentFile
      */
@@ -11488,9 +11464,9 @@ export namespace Prisma {
   }
 
   /**
-   * Shipment.Freight
+   * Shipment.Freights
    */
-  export type Shipment$FreightArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Shipment$FreightsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Freight
      */
@@ -11509,6 +11485,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FreightScalarFieldEnum | FreightScalarFieldEnum[]
+  }
+
+  /**
+   * Shipment.Invoices
+   */
+  export type Shipment$InvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipmentInvoice
+     */
+    select?: ShipmentInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ShipmentInvoice
+     */
+    omit?: ShipmentInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipmentInvoiceInclude<ExtArgs> | null
+    where?: ShipmentInvoiceWhereInput
+    orderBy?: ShipmentInvoiceOrderByWithRelationInput | ShipmentInvoiceOrderByWithRelationInput[]
+    cursor?: ShipmentInvoiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ShipmentInvoiceScalarFieldEnum | ShipmentInvoiceScalarFieldEnum[]
   }
 
   /**
@@ -19153,10 +19153,10 @@ export namespace Prisma {
     declaration_date?: DateTimeNullableFilter<"Shipment"> | Date | string | null
     userId?: IntFilter<"Shipment"> | number
     createdAt?: DateTimeFilter<"Shipment"> | Date | string
-    invoices?: ShipmentInvoiceListRelationFilter
-    files?: ShipmentFileListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Freight?: FreightListRelationFilter
+    Files?: ShipmentFileListRelationFilter
+    Freights?: FreightListRelationFilter
+    Invoices?: ShipmentInvoiceListRelationFilter
   }
 
   export type ShipmentOrderByWithRelationInput = {
@@ -19167,10 +19167,10 @@ export namespace Prisma {
     declaration_date?: SortOrderInput | SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
-    invoices?: ShipmentInvoiceOrderByRelationAggregateInput
-    files?: ShipmentFileOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
-    Freight?: FreightOrderByRelationAggregateInput
+    Files?: ShipmentFileOrderByRelationAggregateInput
+    Freights?: FreightOrderByRelationAggregateInput
+    Invoices?: ShipmentInvoiceOrderByRelationAggregateInput
   }
 
   export type ShipmentWhereUniqueInput = Prisma.AtLeast<{
@@ -19184,10 +19184,10 @@ export namespace Prisma {
     declaration_date?: DateTimeNullableFilter<"Shipment"> | Date | string | null
     userId?: IntFilter<"Shipment"> | number
     createdAt?: DateTimeFilter<"Shipment"> | Date | string
-    invoices?: ShipmentInvoiceListRelationFilter
-    files?: ShipmentFileListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Freight?: FreightListRelationFilter
+    Files?: ShipmentFileListRelationFilter
+    Freights?: FreightListRelationFilter
+    Invoices?: ShipmentInvoiceListRelationFilter
   }, "id" | "alias">
 
   export type ShipmentOrderByWithAggregationInput = {
@@ -20025,10 +20025,10 @@ export namespace Prisma {
     declaration_number?: string | null
     declaration_date?: Date | string | null
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
-    files?: ShipmentFileCreateNestedManyWithoutShipmentInput
     user: UserCreateNestedOneWithoutShipmentInput
-    Freight?: FreightCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+    Freights?: FreightCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateInput = {
@@ -20039,9 +20039,9 @@ export namespace Prisma {
     declaration_date?: Date | string | null
     userId: number
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
-    files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
-    Freight?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
+    Freights?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentUpdateInput = {
@@ -20050,10 +20050,10 @@ export namespace Prisma {
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
-    files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
     user?: UserUpdateOneRequiredWithoutShipmentNestedInput
-    Freight?: FreightUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateInput = {
@@ -20064,9 +20064,9 @@ export namespace Prisma {
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
-    files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
-    Freight?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
   }
 
   export type ShipmentCreateManyInput = {
@@ -20352,7 +20352,7 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
-    shipment: ShipmentCreateNestedOneWithoutFreightInput
+    shipment: ShipmentCreateNestedOneWithoutFreightsInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
   }
@@ -20379,7 +20379,7 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
-    shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
+    shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
   }
@@ -20916,23 +20916,23 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type ShipmentInvoiceListRelationFilter = {
-    every?: ShipmentInvoiceWhereInput
-    some?: ShipmentInvoiceWhereInput
-    none?: ShipmentInvoiceWhereInput
-  }
-
   export type ShipmentFileListRelationFilter = {
     every?: ShipmentFileWhereInput
     some?: ShipmentFileWhereInput
     none?: ShipmentFileWhereInput
   }
 
-  export type ShipmentInvoiceOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type ShipmentInvoiceListRelationFilter = {
+    every?: ShipmentInvoiceWhereInput
+    some?: ShipmentInvoiceWhereInput
+    none?: ShipmentInvoiceWhereInput
   }
 
   export type ShipmentFileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ShipmentInvoiceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21939,11 +21939,10 @@ export namespace Prisma {
     deleteMany?: InvoiceItemScalarWhereInput | InvoiceItemScalarWhereInput[]
   }
 
-  export type ShipmentInvoiceCreateNestedManyWithoutShipmentInput = {
-    create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
-    connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
-    createMany?: ShipmentInvoiceCreateManyShipmentInputEnvelope
-    connect?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
+  export type UserCreateNestedOneWithoutShipmentInput = {
+    create?: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShipmentInput
+    connect?: UserWhereUniqueInput
   }
 
   export type ShipmentFileCreateNestedManyWithoutShipmentInput = {
@@ -21953,12 +21952,6 @@ export namespace Prisma {
     connect?: ShipmentFileWhereUniqueInput | ShipmentFileWhereUniqueInput[]
   }
 
-  export type UserCreateNestedOneWithoutShipmentInput = {
-    create?: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
-    connectOrCreate?: UserCreateOrConnectWithoutShipmentInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type FreightCreateNestedManyWithoutShipmentInput = {
     create?: XOR<FreightCreateWithoutShipmentInput, FreightUncheckedCreateWithoutShipmentInput> | FreightCreateWithoutShipmentInput[] | FreightUncheckedCreateWithoutShipmentInput[]
     connectOrCreate?: FreightCreateOrConnectWithoutShipmentInput | FreightCreateOrConnectWithoutShipmentInput[]
@@ -21966,7 +21959,7 @@ export namespace Prisma {
     connect?: FreightWhereUniqueInput | FreightWhereUniqueInput[]
   }
 
-  export type ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput = {
+  export type ShipmentInvoiceCreateNestedManyWithoutShipmentInput = {
     create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
     connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
     createMany?: ShipmentInvoiceCreateManyShipmentInputEnvelope
@@ -21987,6 +21980,13 @@ export namespace Prisma {
     connect?: FreightWhereUniqueInput | FreightWhereUniqueInput[]
   }
 
+  export type ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput = {
+    create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
+    connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
+    createMany?: ShipmentInvoiceCreateManyShipmentInputEnvelope
+    connect?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
+  }
+
   export type EnumShipmentStatusFieldUpdateOperationsInput = {
     set?: $Enums.ShipmentStatus
   }
@@ -21995,18 +21995,12 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type ShipmentInvoiceUpdateManyWithoutShipmentNestedInput = {
-    create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
-    connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
-    upsert?: ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput | ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput[]
-    createMany?: ShipmentInvoiceCreateManyShipmentInputEnvelope
-    set?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
-    disconnect?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
-    delete?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
-    connect?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
-    update?: ShipmentInvoiceUpdateWithWhereUniqueWithoutShipmentInput | ShipmentInvoiceUpdateWithWhereUniqueWithoutShipmentInput[]
-    updateMany?: ShipmentInvoiceUpdateManyWithWhereWithoutShipmentInput | ShipmentInvoiceUpdateManyWithWhereWithoutShipmentInput[]
-    deleteMany?: ShipmentInvoiceScalarWhereInput | ShipmentInvoiceScalarWhereInput[]
+  export type UserUpdateOneRequiredWithoutShipmentNestedInput = {
+    create?: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutShipmentInput
+    upsert?: UserUpsertWithoutShipmentInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShipmentInput, UserUpdateWithoutShipmentInput>, UserUncheckedUpdateWithoutShipmentInput>
   }
 
   export type ShipmentFileUpdateManyWithoutShipmentNestedInput = {
@@ -22023,14 +22017,6 @@ export namespace Prisma {
     deleteMany?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
   }
 
-  export type UserUpdateOneRequiredWithoutShipmentNestedInput = {
-    create?: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
-    connectOrCreate?: UserCreateOrConnectWithoutShipmentInput
-    upsert?: UserUpsertWithoutShipmentInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShipmentInput, UserUpdateWithoutShipmentInput>, UserUncheckedUpdateWithoutShipmentInput>
-  }
-
   export type FreightUpdateManyWithoutShipmentNestedInput = {
     create?: XOR<FreightCreateWithoutShipmentInput, FreightUncheckedCreateWithoutShipmentInput> | FreightCreateWithoutShipmentInput[] | FreightUncheckedCreateWithoutShipmentInput[]
     connectOrCreate?: FreightCreateOrConnectWithoutShipmentInput | FreightCreateOrConnectWithoutShipmentInput[]
@@ -22045,7 +22031,7 @@ export namespace Prisma {
     deleteMany?: FreightScalarWhereInput | FreightScalarWhereInput[]
   }
 
-  export type ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput = {
+  export type ShipmentInvoiceUpdateManyWithoutShipmentNestedInput = {
     create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
     connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
     upsert?: ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput | ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput[]
@@ -22085,6 +22071,20 @@ export namespace Prisma {
     update?: FreightUpdateWithWhereUniqueWithoutShipmentInput | FreightUpdateWithWhereUniqueWithoutShipmentInput[]
     updateMany?: FreightUpdateManyWithWhereWithoutShipmentInput | FreightUpdateManyWithWhereWithoutShipmentInput[]
     deleteMany?: FreightScalarWhereInput | FreightScalarWhereInput[]
+  }
+
+  export type ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput = {
+    create?: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput> | ShipmentInvoiceCreateWithoutShipmentInput[] | ShipmentInvoiceUncheckedCreateWithoutShipmentInput[]
+    connectOrCreate?: ShipmentInvoiceCreateOrConnectWithoutShipmentInput | ShipmentInvoiceCreateOrConnectWithoutShipmentInput[]
+    upsert?: ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput | ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput[]
+    createMany?: ShipmentInvoiceCreateManyShipmentInputEnvelope
+    set?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
+    disconnect?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
+    delete?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
+    connect?: ShipmentInvoiceWhereUniqueInput | ShipmentInvoiceWhereUniqueInput[]
+    update?: ShipmentInvoiceUpdateWithWhereUniqueWithoutShipmentInput | ShipmentInvoiceUpdateWithWhereUniqueWithoutShipmentInput[]
+    updateMany?: ShipmentInvoiceUpdateManyWithWhereWithoutShipmentInput | ShipmentInvoiceUpdateManyWithWhereWithoutShipmentInput[]
+    deleteMany?: ShipmentInvoiceScalarWhereInput | ShipmentInvoiceScalarWhereInput[]
   }
 
   export type ShipmentCreateNestedOneWithoutFilesInput = {
@@ -22361,9 +22361,9 @@ export namespace Prisma {
     connect?: CurrencyWhereUniqueInput
   }
 
-  export type ShipmentCreateNestedOneWithoutFreightInput = {
-    create?: XOR<ShipmentCreateWithoutFreightInput, ShipmentUncheckedCreateWithoutFreightInput>
-    connectOrCreate?: ShipmentCreateOrConnectWithoutFreightInput
+  export type ShipmentCreateNestedOneWithoutFreightsInput = {
+    create?: XOR<ShipmentCreateWithoutFreightsInput, ShipmentUncheckedCreateWithoutFreightsInput>
+    connectOrCreate?: ShipmentCreateOrConnectWithoutFreightsInput
     connect?: ShipmentWhereUniqueInput
   }
 
@@ -22405,12 +22405,12 @@ export namespace Prisma {
     update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutFreightInput, CurrencyUpdateWithoutFreightInput>, CurrencyUncheckedUpdateWithoutFreightInput>
   }
 
-  export type ShipmentUpdateOneRequiredWithoutFreightNestedInput = {
-    create?: XOR<ShipmentCreateWithoutFreightInput, ShipmentUncheckedCreateWithoutFreightInput>
-    connectOrCreate?: ShipmentCreateOrConnectWithoutFreightInput
-    upsert?: ShipmentUpsertWithoutFreightInput
+  export type ShipmentUpdateOneRequiredWithoutFreightsNestedInput = {
+    create?: XOR<ShipmentCreateWithoutFreightsInput, ShipmentUncheckedCreateWithoutFreightsInput>
+    connectOrCreate?: ShipmentCreateOrConnectWithoutFreightsInput
+    upsert?: ShipmentUpsertWithoutFreightsInput
     connect?: ShipmentWhereUniqueInput
-    update?: XOR<XOR<ShipmentUpdateToOneWithWhereWithoutFreightInput, ShipmentUpdateWithoutFreightInput>, ShipmentUncheckedUpdateWithoutFreightInput>
+    update?: XOR<XOR<ShipmentUpdateToOneWithWhereWithoutFreightsInput, ShipmentUpdateWithoutFreightsInput>, ShipmentUncheckedUpdateWithoutFreightsInput>
   }
 
   export type FreightInvoiceUpdateManyWithoutFreightNestedInput = {
@@ -22846,9 +22846,9 @@ export namespace Prisma {
     declaration_number?: string | null
     declaration_date?: Date | string | null
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
-    files?: ShipmentFileCreateNestedManyWithoutShipmentInput
-    Freight?: FreightCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+    Freights?: FreightCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateWithoutUserInput = {
@@ -22858,9 +22858,9 @@ export namespace Prisma {
     declaration_number?: string | null
     declaration_date?: Date | string | null
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
-    files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
-    Freight?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
+    Freights?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentCreateOrConnectWithoutUserInput = {
@@ -22881,7 +22881,7 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
-    shipment: ShipmentCreateNestedOneWithoutFreightInput
+    shipment: ShipmentCreateNestedOneWithoutFreightsInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
   }
 
@@ -23251,7 +23251,7 @@ export namespace Prisma {
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
-    shipment: ShipmentCreateNestedOneWithoutFreightInput
+    shipment: ShipmentCreateNestedOneWithoutFreightsInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
   }
@@ -23536,47 +23536,6 @@ export namespace Prisma {
     data: XOR<InvoiceItemUpdateManyMutationInput, InvoiceItemUncheckedUpdateManyWithoutProductInput>
   }
 
-  export type ShipmentInvoiceCreateWithoutShipmentInput = {
-    invoice: InvoiceCreateNestedOneWithoutShipmentsInput
-  }
-
-  export type ShipmentInvoiceUncheckedCreateWithoutShipmentInput = {
-    invoiceId: number
-  }
-
-  export type ShipmentInvoiceCreateOrConnectWithoutShipmentInput = {
-    where: ShipmentInvoiceWhereUniqueInput
-    create: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput>
-  }
-
-  export type ShipmentInvoiceCreateManyShipmentInputEnvelope = {
-    data: ShipmentInvoiceCreateManyShipmentInput | ShipmentInvoiceCreateManyShipmentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ShipmentFileCreateWithoutShipmentInput = {
-    fileName: string
-    fileType?: string | null
-    fileData?: Uint8Array | null
-  }
-
-  export type ShipmentFileUncheckedCreateWithoutShipmentInput = {
-    id?: number
-    fileName: string
-    fileType?: string | null
-    fileData?: Uint8Array | null
-  }
-
-  export type ShipmentFileCreateOrConnectWithoutShipmentInput = {
-    where: ShipmentFileWhereUniqueInput
-    create: XOR<ShipmentFileCreateWithoutShipmentInput, ShipmentFileUncheckedCreateWithoutShipmentInput>
-  }
-
-  export type ShipmentFileCreateManyShipmentInputEnvelope = {
-    data: ShipmentFileCreateManyShipmentInput | ShipmentFileCreateManyShipmentInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserCreateWithoutShipmentInput = {
     firebaseUid: string
     email: string
@@ -23605,6 +23564,29 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutShipmentInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutShipmentInput, UserUncheckedCreateWithoutShipmentInput>
+  }
+
+  export type ShipmentFileCreateWithoutShipmentInput = {
+    fileName: string
+    fileType?: string | null
+    fileData?: Uint8Array | null
+  }
+
+  export type ShipmentFileUncheckedCreateWithoutShipmentInput = {
+    id?: number
+    fileName: string
+    fileType?: string | null
+    fileData?: Uint8Array | null
+  }
+
+  export type ShipmentFileCreateOrConnectWithoutShipmentInput = {
+    where: ShipmentFileWhereUniqueInput
+    create: XOR<ShipmentFileCreateWithoutShipmentInput, ShipmentFileUncheckedCreateWithoutShipmentInput>
+  }
+
+  export type ShipmentFileCreateManyShipmentInputEnvelope = {
+    data: ShipmentFileCreateManyShipmentInput | ShipmentFileCreateManyShipmentInput[]
+    skipDuplicates?: boolean
   }
 
   export type FreightCreateWithoutShipmentInput = {
@@ -23642,55 +23624,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput = {
+  export type ShipmentInvoiceCreateWithoutShipmentInput = {
+    invoice: InvoiceCreateNestedOneWithoutShipmentsInput
+  }
+
+  export type ShipmentInvoiceUncheckedCreateWithoutShipmentInput = {
+    invoiceId: number
+  }
+
+  export type ShipmentInvoiceCreateOrConnectWithoutShipmentInput = {
     where: ShipmentInvoiceWhereUniqueInput
-    update: XOR<ShipmentInvoiceUpdateWithoutShipmentInput, ShipmentInvoiceUncheckedUpdateWithoutShipmentInput>
     create: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput>
   }
 
-  export type ShipmentInvoiceUpdateWithWhereUniqueWithoutShipmentInput = {
-    where: ShipmentInvoiceWhereUniqueInput
-    data: XOR<ShipmentInvoiceUpdateWithoutShipmentInput, ShipmentInvoiceUncheckedUpdateWithoutShipmentInput>
-  }
-
-  export type ShipmentInvoiceUpdateManyWithWhereWithoutShipmentInput = {
-    where: ShipmentInvoiceScalarWhereInput
-    data: XOR<ShipmentInvoiceUpdateManyMutationInput, ShipmentInvoiceUncheckedUpdateManyWithoutShipmentInput>
-  }
-
-  export type ShipmentInvoiceScalarWhereInput = {
-    AND?: ShipmentInvoiceScalarWhereInput | ShipmentInvoiceScalarWhereInput[]
-    OR?: ShipmentInvoiceScalarWhereInput[]
-    NOT?: ShipmentInvoiceScalarWhereInput | ShipmentInvoiceScalarWhereInput[]
-    shipmentId?: IntFilter<"ShipmentInvoice"> | number
-    invoiceId?: IntFilter<"ShipmentInvoice"> | number
-  }
-
-  export type ShipmentFileUpsertWithWhereUniqueWithoutShipmentInput = {
-    where: ShipmentFileWhereUniqueInput
-    update: XOR<ShipmentFileUpdateWithoutShipmentInput, ShipmentFileUncheckedUpdateWithoutShipmentInput>
-    create: XOR<ShipmentFileCreateWithoutShipmentInput, ShipmentFileUncheckedCreateWithoutShipmentInput>
-  }
-
-  export type ShipmentFileUpdateWithWhereUniqueWithoutShipmentInput = {
-    where: ShipmentFileWhereUniqueInput
-    data: XOR<ShipmentFileUpdateWithoutShipmentInput, ShipmentFileUncheckedUpdateWithoutShipmentInput>
-  }
-
-  export type ShipmentFileUpdateManyWithWhereWithoutShipmentInput = {
-    where: ShipmentFileScalarWhereInput
-    data: XOR<ShipmentFileUpdateManyMutationInput, ShipmentFileUncheckedUpdateManyWithoutShipmentInput>
-  }
-
-  export type ShipmentFileScalarWhereInput = {
-    AND?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
-    OR?: ShipmentFileScalarWhereInput[]
-    NOT?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
-    id?: IntFilter<"ShipmentFile"> | number
-    shipmentId?: IntFilter<"ShipmentFile"> | number
-    fileName?: StringFilter<"ShipmentFile"> | string
-    fileType?: StringNullableFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+  export type ShipmentInvoiceCreateManyShipmentInputEnvelope = {
+    data: ShipmentInvoiceCreateManyShipmentInput | ShipmentInvoiceCreateManyShipmentInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutShipmentInput = {
@@ -23729,6 +23678,33 @@ export namespace Prisma {
     Freight?: FreightUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ShipmentFileUpsertWithWhereUniqueWithoutShipmentInput = {
+    where: ShipmentFileWhereUniqueInput
+    update: XOR<ShipmentFileUpdateWithoutShipmentInput, ShipmentFileUncheckedUpdateWithoutShipmentInput>
+    create: XOR<ShipmentFileCreateWithoutShipmentInput, ShipmentFileUncheckedCreateWithoutShipmentInput>
+  }
+
+  export type ShipmentFileUpdateWithWhereUniqueWithoutShipmentInput = {
+    where: ShipmentFileWhereUniqueInput
+    data: XOR<ShipmentFileUpdateWithoutShipmentInput, ShipmentFileUncheckedUpdateWithoutShipmentInput>
+  }
+
+  export type ShipmentFileUpdateManyWithWhereWithoutShipmentInput = {
+    where: ShipmentFileScalarWhereInput
+    data: XOR<ShipmentFileUpdateManyMutationInput, ShipmentFileUncheckedUpdateManyWithoutShipmentInput>
+  }
+
+  export type ShipmentFileScalarWhereInput = {
+    AND?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
+    OR?: ShipmentFileScalarWhereInput[]
+    NOT?: ShipmentFileScalarWhereInput | ShipmentFileScalarWhereInput[]
+    id?: IntFilter<"ShipmentFile"> | number
+    shipmentId?: IntFilter<"ShipmentFile"> | number
+    fileName?: StringFilter<"ShipmentFile"> | string
+    fileType?: StringNullableFilter<"ShipmentFile"> | string | null
+    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+  }
+
   export type FreightUpsertWithWhereUniqueWithoutShipmentInput = {
     where: FreightWhereUniqueInput
     update: XOR<FreightUpdateWithoutShipmentInput, FreightUncheckedUpdateWithoutShipmentInput>
@@ -23745,15 +23721,39 @@ export namespace Prisma {
     data: XOR<FreightUpdateManyMutationInput, FreightUncheckedUpdateManyWithoutShipmentInput>
   }
 
+  export type ShipmentInvoiceUpsertWithWhereUniqueWithoutShipmentInput = {
+    where: ShipmentInvoiceWhereUniqueInput
+    update: XOR<ShipmentInvoiceUpdateWithoutShipmentInput, ShipmentInvoiceUncheckedUpdateWithoutShipmentInput>
+    create: XOR<ShipmentInvoiceCreateWithoutShipmentInput, ShipmentInvoiceUncheckedCreateWithoutShipmentInput>
+  }
+
+  export type ShipmentInvoiceUpdateWithWhereUniqueWithoutShipmentInput = {
+    where: ShipmentInvoiceWhereUniqueInput
+    data: XOR<ShipmentInvoiceUpdateWithoutShipmentInput, ShipmentInvoiceUncheckedUpdateWithoutShipmentInput>
+  }
+
+  export type ShipmentInvoiceUpdateManyWithWhereWithoutShipmentInput = {
+    where: ShipmentInvoiceScalarWhereInput
+    data: XOR<ShipmentInvoiceUpdateManyMutationInput, ShipmentInvoiceUncheckedUpdateManyWithoutShipmentInput>
+  }
+
+  export type ShipmentInvoiceScalarWhereInput = {
+    AND?: ShipmentInvoiceScalarWhereInput | ShipmentInvoiceScalarWhereInput[]
+    OR?: ShipmentInvoiceScalarWhereInput[]
+    NOT?: ShipmentInvoiceScalarWhereInput | ShipmentInvoiceScalarWhereInput[]
+    shipmentId?: IntFilter<"ShipmentInvoice"> | number
+    invoiceId?: IntFilter<"ShipmentInvoice"> | number
+  }
+
   export type ShipmentCreateWithoutFilesInput = {
     alias: string
     status: $Enums.ShipmentStatus
     declaration_number?: string | null
     declaration_date?: Date | string | null
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
     user: UserCreateNestedOneWithoutShipmentInput
-    Freight?: FreightCreateNestedManyWithoutShipmentInput
+    Freights?: FreightCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateWithoutFilesInput = {
@@ -23764,8 +23764,8 @@ export namespace Prisma {
     declaration_date?: Date | string | null
     userId: number
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
-    Freight?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Freights?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentCreateOrConnectWithoutFilesInput = {
@@ -23790,9 +23790,9 @@ export namespace Prisma {
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
     user?: UserUpdateOneRequiredWithoutShipmentNestedInput
-    Freight?: FreightUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateWithoutFilesInput = {
@@ -23803,8 +23803,8 @@ export namespace Prisma {
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
-    Freight?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
   }
 
   export type VendorCreateWithoutInvoiceInput = {
@@ -24254,9 +24254,9 @@ export namespace Prisma {
     declaration_number?: string | null
     declaration_date?: Date | string | null
     createdAt?: Date | string
-    files?: ShipmentFileCreateNestedManyWithoutShipmentInput
     user: UserCreateNestedOneWithoutShipmentInput
-    Freight?: FreightCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+    Freights?: FreightCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentUncheckedCreateWithoutInvoicesInput = {
@@ -24267,8 +24267,8 @@ export namespace Prisma {
     declaration_date?: Date | string | null
     userId: number
     createdAt?: Date | string
-    files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
-    Freight?: FreightUncheckedCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
+    Freights?: FreightUncheckedCreateNestedManyWithoutShipmentInput
   }
 
   export type ShipmentCreateOrConnectWithoutInvoicesInput = {
@@ -24325,9 +24325,9 @@ export namespace Prisma {
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
     user?: UserUpdateOneRequiredWithoutShipmentNestedInput
-    Freight?: FreightUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUpdateManyWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateWithoutInvoicesInput = {
@@ -24338,8 +24338,8 @@ export namespace Prisma {
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
-    Freight?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
   }
 
   export type InvoiceUpsertWithoutShipmentsInput = {
@@ -24398,18 +24398,18 @@ export namespace Prisma {
     create: XOR<CurrencyCreateWithoutFreightInput, CurrencyUncheckedCreateWithoutFreightInput>
   }
 
-  export type ShipmentCreateWithoutFreightInput = {
+  export type ShipmentCreateWithoutFreightsInput = {
     alias: string
     status: $Enums.ShipmentStatus
     declaration_number?: string | null
     declaration_date?: Date | string | null
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
-    files?: ShipmentFileCreateNestedManyWithoutShipmentInput
     user: UserCreateNestedOneWithoutShipmentInput
+    Files?: ShipmentFileCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceCreateNestedManyWithoutShipmentInput
   }
 
-  export type ShipmentUncheckedCreateWithoutFreightInput = {
+  export type ShipmentUncheckedCreateWithoutFreightsInput = {
     id?: number
     alias: string
     status: $Enums.ShipmentStatus
@@ -24417,13 +24417,13 @@ export namespace Prisma {
     declaration_date?: Date | string | null
     userId: number
     createdAt?: Date | string
-    invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
-    files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
+    Files?: ShipmentFileUncheckedCreateNestedManyWithoutShipmentInput
+    Invoices?: ShipmentInvoiceUncheckedCreateNestedManyWithoutShipmentInput
   }
 
-  export type ShipmentCreateOrConnectWithoutFreightInput = {
+  export type ShipmentCreateOrConnectWithoutFreightsInput = {
     where: ShipmentWhereUniqueInput
-    create: XOR<ShipmentCreateWithoutFreightInput, ShipmentUncheckedCreateWithoutFreightInput>
+    create: XOR<ShipmentCreateWithoutFreightsInput, ShipmentUncheckedCreateWithoutFreightsInput>
   }
 
   export type FreightInvoiceCreateWithoutFreightInput = {
@@ -24498,29 +24498,29 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
-  export type ShipmentUpsertWithoutFreightInput = {
-    update: XOR<ShipmentUpdateWithoutFreightInput, ShipmentUncheckedUpdateWithoutFreightInput>
-    create: XOR<ShipmentCreateWithoutFreightInput, ShipmentUncheckedCreateWithoutFreightInput>
+  export type ShipmentUpsertWithoutFreightsInput = {
+    update: XOR<ShipmentUpdateWithoutFreightsInput, ShipmentUncheckedUpdateWithoutFreightsInput>
+    create: XOR<ShipmentCreateWithoutFreightsInput, ShipmentUncheckedCreateWithoutFreightsInput>
     where?: ShipmentWhereInput
   }
 
-  export type ShipmentUpdateToOneWithWhereWithoutFreightInput = {
+  export type ShipmentUpdateToOneWithWhereWithoutFreightsInput = {
     where?: ShipmentWhereInput
-    data: XOR<ShipmentUpdateWithoutFreightInput, ShipmentUncheckedUpdateWithoutFreightInput>
+    data: XOR<ShipmentUpdateWithoutFreightsInput, ShipmentUncheckedUpdateWithoutFreightsInput>
   }
 
-  export type ShipmentUpdateWithoutFreightInput = {
+  export type ShipmentUpdateWithoutFreightsInput = {
     alias?: StringFieldUpdateOperationsInput | string
     status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
-    files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
     user?: UserUpdateOneRequiredWithoutShipmentNestedInput
+    Files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
   }
 
-  export type ShipmentUncheckedUpdateWithoutFreightInput = {
+  export type ShipmentUncheckedUpdateWithoutFreightsInput = {
     id?: IntFieldUpdateOperationsInput | number
     alias?: StringFieldUpdateOperationsInput | string
     status?: EnumShipmentStatusFieldUpdateOperationsInput | $Enums.ShipmentStatus
@@ -24528,8 +24528,8 @@ export namespace Prisma {
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
-    files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
   }
 
   export type FreightInvoiceUpsertWithWhereUniqueWithoutFreightInput = {
@@ -24592,7 +24592,7 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
-    shipment: ShipmentCreateNestedOneWithoutFreightInput
+    shipment: ShipmentCreateNestedOneWithoutFreightsInput
     user: UserCreateNestedOneWithoutFreightInput
   }
 
@@ -24665,7 +24665,7 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
-    shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
+    shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
   }
 
@@ -24833,9 +24833,9 @@ export namespace Prisma {
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
-    files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
-    Freight?: FreightUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUpdateManyWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateWithoutUserInput = {
@@ -24845,9 +24845,9 @@ export namespace Prisma {
     declaration_number?: NullableStringFieldUpdateOperationsInput | string | null
     declaration_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
-    files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
-    Freight?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Files?: ShipmentFileUncheckedUpdateManyWithoutShipmentNestedInput
+    Freights?: FreightUncheckedUpdateManyWithoutShipmentNestedInput
+    Invoices?: ShipmentInvoiceUncheckedUpdateManyWithoutShipmentNestedInput
   }
 
   export type ShipmentUncheckedUpdateManyWithoutUserInput = {
@@ -24867,7 +24867,7 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
-    shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
+    shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
   }
 
@@ -25052,7 +25052,7 @@ export namespace Prisma {
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
-    shipment?: ShipmentUpdateOneRequiredWithoutFreightNestedInput
+    shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
   }
@@ -25179,10 +25179,6 @@ export namespace Prisma {
     total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
-  export type ShipmentInvoiceCreateManyShipmentInput = {
-    invoiceId: number
-  }
-
   export type ShipmentFileCreateManyShipmentInput = {
     id?: number
     fileName: string
@@ -25202,16 +25198,8 @@ export namespace Prisma {
     userId: number
   }
 
-  export type ShipmentInvoiceUpdateWithoutShipmentInput = {
-    invoice?: InvoiceUpdateOneRequiredWithoutShipmentsNestedInput
-  }
-
-  export type ShipmentInvoiceUncheckedUpdateWithoutShipmentInput = {
-    invoiceId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ShipmentInvoiceUncheckedUpdateManyWithoutShipmentInput = {
-    invoiceId?: IntFieldUpdateOperationsInput | number
+  export type ShipmentInvoiceCreateManyShipmentInput = {
+    invoiceId: number
   }
 
   export type ShipmentFileUpdateWithoutShipmentInput = {
@@ -25269,6 +25257,18 @@ export namespace Prisma {
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShipmentInvoiceUpdateWithoutShipmentInput = {
+    invoice?: InvoiceUpdateOneRequiredWithoutShipmentsNestedInput
+  }
+
+  export type ShipmentInvoiceUncheckedUpdateWithoutShipmentInput = {
+    invoiceId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShipmentInvoiceUncheckedUpdateManyWithoutShipmentInput = {
+    invoiceId?: IntFieldUpdateOperationsInput | number
   }
 
   export type InvoiceItemCreateManyInvoiceInput = {
