@@ -45,7 +45,6 @@ export function useUnitsLogic(
 
   const handleSave = useCallback(
     async (unit: UnitDTO) => {
-      console.log('handle unit save', unit);
       try {
         if (unit.id) {
           await unitsApi.update(unit);
@@ -139,6 +138,6 @@ export function useUnitsLogic(
     setIsDialogOpen,
     currentUnit,
     setCurrentUnit,
-    errorMessage
+    errorMessage,
   };
 }

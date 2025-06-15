@@ -53,7 +53,9 @@ export interface ShipmentDTO {
   declaration_number: string;
   declaration_date: Date | string | null;
   status: string;
-  files?: Array<ShipmentFileDTO>;
+  Files?: Array<ShipmentFileDTO>;
+  Invoices?: Array<InvoiceDTO>;
+  Freights?: Array<FreightDTO>;
 }
 
 export interface ShipmentFileDTO {
@@ -73,6 +75,7 @@ export interface InvoiceDTO {
   isArrived?: boolean;
   userId?: number;
   currencyId: number;
+  Items?: Array<InvoiceItemDTO>;
 }
 
 export interface InvoiceItemDTO {

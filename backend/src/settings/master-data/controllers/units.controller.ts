@@ -26,7 +26,6 @@ export class UnitsController {
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateUnitDTO: UnitDTO) {
-    console.log('controller', id);
     return this.unitsService.update(+id, updateUnitDTO);
   }
 

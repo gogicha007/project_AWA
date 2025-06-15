@@ -68,7 +68,7 @@ export function useShipmentForm(id?: number) {
               : shipment.declaration_date
             : undefined,
         });
-        const files = shipment.files || [];
+        const files = shipment.Files || [];
         setFileDataArray(files);
         setOriginalFiles(files);
 

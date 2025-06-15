@@ -71,7 +71,14 @@ export class ShipmentsService {
       where: { id },
       include: {
         Invoices: true,
-        Files: true,
+        Files: {
+          select: {
+            id: true,
+            fileName: true,
+            fileType: true,
+            fileData: false,
+          },
+        },
       },
     });
     if (!shipment) {

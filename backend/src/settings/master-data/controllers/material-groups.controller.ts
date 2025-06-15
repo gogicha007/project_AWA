@@ -29,7 +29,6 @@ export class MaterialGroupsController {
     @Param('id') id: number,
     @Body() updateMaterialGroupDTO: CreateMaterialGroupDTO,
   ) {
-    console.log('controller', id);
     return this.materialGroupsService.update(+id, updateMaterialGroupDTO);
   }
 
