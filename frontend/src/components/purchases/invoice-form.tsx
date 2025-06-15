@@ -17,6 +17,7 @@ type Props = {
 };
 
 type FormValues = InvoiceDTO;
+
 export default function InvoiceDialog({
   isOpen,
   onClose,

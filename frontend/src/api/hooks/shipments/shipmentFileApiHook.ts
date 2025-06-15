@@ -5,7 +5,7 @@ import { ShipmentFileDTO } from '../../types';
 import { shipmentFileApi } from '../../endpoints/shipments/shipmentFileApi';
 import { useAuth } from '@/context/auth';
 
-export function useShipmentFileApi() {
+export function useShipmentFileApi(shipmentId: number) {
   const [shipmentFiles, setShipmentFiles] = useState<ShipmentFileDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);
@@ -15,14 +15,14 @@ export function useShipmentFileApi() {
     setLoading(true);
     setError(null);
     try {
-      const data = await shipmentFileApi.getAll();
+      const data = await shipmentFileApi.getAll(shipmentId);
       setShipmentFiles(data);
     } catch (err) {
       setError(err);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [shipmentId]);
 
   const mutate = useCallback(() => {
     if (!authLoading) return fetchFiles();

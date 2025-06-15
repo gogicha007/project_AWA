@@ -16,7 +16,6 @@ export const shipmentFileApi = {
   ): Promise<ShipmentFileDTO[]> => {
     try {
       const filesWithShipmentId = mapShipmentFiles(shipmentFiles, shipmentId);
-      console.log('with id', filesWithShipmentId);
       const shipmentFileResponse = await apiClient.post('/shipment-files', {
         files: filesWithShipmentId,
       });

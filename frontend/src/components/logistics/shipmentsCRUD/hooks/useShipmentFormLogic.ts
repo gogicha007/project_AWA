@@ -27,7 +27,7 @@ export function useShipmentForm(id?: number) {
   const localeCode = useLocale();
   const tS = useTranslations('Logistics');
   const tB = useTranslations('Buttons');
-  const { dbUserId } = useAuth();
+  const { dbUserId, loading: authLoading } = useAuth();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const [originalFiles, setOriginalFiles] = useState<FileData[]>([]);
@@ -52,37 +52,35 @@ export function useShipmentForm(id?: number) {
   });
 
   useEffect(() => {
-    if (id) {
-      setLoading(true);
-      const fetchShipment = async () => {
-        try {
-          const shipment = await shipmentApi.getById(id);
+    if (!id || authLoading || dbUserId === null) return;
 
-          reset({
-            alias: shipment.alias,
-            status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
-            declaration_number: shipment.declaration_number || '',
-            declaration_date: shipment.declaration_date
-              ? typeof shipment.declaration_date === 'string'
-                ? new Date(shipment.declaration_date)
-                : shipment.declaration_date
-              : undefined,
-          });
+    setLoading(true);
+    const fetchShipment = async () => {
+      try {
+        const shipment = await shipmentApi.getById(id);
+        reset({
+          alias: shipment.alias,
+          status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
+          declaration_number: shipment.declaration_number || '',
+          declaration_date: shipment.declaration_date
+            ? typeof shipment.declaration_date === 'string'
+              ? new Date(shipment.declaration_date)
+              : shipment.declaration_date
+            : undefined,
+        });
+        const files = shipment.files || [];
+        setFileDataArray(files);
+        setOriginalFiles(files);
 
-          const files = shipment.files || [];
-          setFileDataArray(files);
-          setOriginalFiles(files);
-
-          // const invoices = []
-        } catch (error) {
-          console.error('Failed to fetch shipment:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchShipment();
-    }
-  }, [id, reset]);
+        // const invoices = []
+      } catch (error) {
+        console.error('Failed to fetch shipment:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchShipment();
+  }, [id, reset, authLoading, dbUserId]);
 
   const submitHandler = async (data: ShipmentFormValues) => {
     try {
