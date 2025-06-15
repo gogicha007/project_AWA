@@ -25,6 +25,10 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       href: '/shipments',
     },
     {
+      label: tS('purchases'),
+      href: '/purchases',
+    },
+    {
       label: tS('warehouse'),
       href: '/warehouse',
     },

@@ -242,6 +242,7 @@
   "SideBar": {
     "home": "Home",
     "logistics": "Logistics",
+    "purchases":"Purchases",
     "warehouse": "Warehouse",
     "settings": "Settings",
     "masterData": "Master data",

@@ -131,8 +131,6 @@ export default function ShipmentForm({ id }: { id?: number }) {
             setIsFilesChanged={setIsFilesChanged}
           />
         </div>
-
-        {/* <div className={styles.formSection}><InvoiceTable tB={tB}/></div> */}
         
         <div className={styles.formActions}>
           <button
@@ -147,7 +145,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </button>
         </div>
       </form>
-
+        {/* <div className={styles.formSection}><InvoiceTable tB={tB}/></div> */}
       <Snackbar
         message={snackbarMessage}
         open={snackbarOpen}
