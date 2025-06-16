@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useAuth } from '@/context/auth';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
-import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { FileData } from '@/components/controls/file-uploader/FileUploader';
 
-const localeMap = {
-  en: enUSLocale,
-  ka: kaLocale,
-};
 
 export type ShipmentFormValues = {
   alias: string;
@@ -24,7 +19,6 @@ export type ShipmentFormValues = {
 
 export function useShipmentForm(id?: number) {
   const router = useRouter();
-  const localeCode = useLocale();
   const tS = useTranslations('Logistics');
   const tB = useTranslations('Buttons');
   const { dbUserId, loading: authLoading } = useAuth();
@@ -143,8 +137,6 @@ export function useShipmentForm(id?: number) {
     tS,
     tB,
     loading,
-    localeCode,
-    localeMap,
     control,
     register,
     handleSubmit,
