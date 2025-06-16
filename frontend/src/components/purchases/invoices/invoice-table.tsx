@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import styles from '../logistics/shipments.module.css';
+import styles from './invoice-table.module.css';
 import {
   useReactTable,
   getCoreRowModel,
@@ -83,9 +83,9 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
   };
 
   return (
-    <div className={styles.formSection}>
+    <>
       <h4>{tI('title') ?? 'Invoices'}</h4>
-      <table className={styles.invoiceTable}>
+      <table className={styles.table}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -140,7 +140,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
         title={editInvoice ? tB('edit') : tB('add')}
         tVar={tI}
       />
-    </div>
+    </>
   );
 };
 

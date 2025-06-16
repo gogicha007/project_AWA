@@ -8,8 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
 import FileUploader from '@/components/controls/file-uploader/FileUploader';
-
-// import InvoiceTable from '@/components/purchases/invoice-table';
+import InvoiceTable from '@/components/purchases/invoices/invoice-table';
 
 export default function ShipmentForm({ id }: { id?: number }) {
   const {
@@ -131,7 +130,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
             setIsFilesChanged={setIsFilesChanged}
           />
         </div>
-        
+
         <div className={styles.formActions}>
           <button
             type="button"
@@ -145,7 +144,9 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </button>
         </div>
       </form>
-        {/* <div className={styles.formSection}><InvoiceTable tB={tB}/></div> */}
+      <div className={styles.formSection}>
+        <InvoiceTable tB={tB} />
+      </div>
       <Snackbar
         message={snackbarMessage}
         open={snackbarOpen}
