@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
 import FileUploader from '@/components/controls/file-uploader/FileUploader';
 import InvoiceTable from '@/components/purchases/invoices/invoice-table';
-import FreightTable from '@/components/logistics/freight-table';
+import FreightTable from '@/components/purchases/freights/freight-table';
 import { FileData } from '@/components/controls/file-uploader/FileUploader';
 
 interface ShipmentTabsProps {
@@ -54,7 +54,7 @@ export default function ShipmentTabs({
           />
         )}
         {activeTab === 1 && <InvoiceTable tB={tB} />}
-        {activeTab === 2 && <FreightTable tB={tB} />}
+        {activeTab === 2 && <FreightTable />}
       </div>
     </div>
   );

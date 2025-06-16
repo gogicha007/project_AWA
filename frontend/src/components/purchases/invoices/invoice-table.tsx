@@ -84,7 +84,6 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
 
   return (
     <>
-      <h4>{tI('title') ?? 'Invoices'}</h4>
       <table className={styles.table}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

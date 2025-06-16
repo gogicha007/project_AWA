@@ -2,22 +2,17 @@
 
 import styles from './shipment-form.module.css';
 import { useShipmentForm } from './hooks/useShipmentFormLogic';
-import { Controller } from 'react-hook-form';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
-import FileUploader from '@/components/controls/file-uploader/FileUploader';
-// import InvoiceTable from '@/components/purchases/invoices/invoice-table';
 import ShipmentTabs from './shipment-tabs';
+import DateInput from '@/components/controls/date-input/date-input';
 
 export default function ShipmentForm({ id }: { id?: number }) {
   const {
     tS,
     tB,
     loading,
-    localeCode,
-    localeMap,
     control,
     register,
     handleSubmit,
@@ -89,47 +84,14 @@ export default function ShipmentForm({ id }: { id?: number }) {
                 type="text"
               />
             </div>
-
             <div className={styles.formGroup}>
-              <label htmlFor="declaration_date">
-                {' '}
-                {tS('form.declaration_date_label')}
-              </label>
-              <Controller
-                control={control}
+              <DateInput
+                label={tS('form.declaration_date_label')}
                 name="declaration_date"
-                render={({ field }) => (
-                  <DatePicker
-                    locale={localeMap[localeCode as 'en' | 'ka']}
-                    className={styles.input}
-                    selected={field.value ? new Date(field.value) : null}
-                    onChange={(date: Date | null) => {
-                      if (!date) {
-                        field.onChange('');
-                        return;
-                      }
-                      const d = new Date(date);
-                      d.setHours(12, 0, 0, 0);
-                      field.onChange(d.toISOString().split('T')[0]);
-                    }}
-                    dateFormat="yyyy-MM-dd"
-                    placeholderText="yyyy-mm-dd"
-                  />
-                )}
+                control={control}
               />
             </div>
           </div>
-        </div>
-
-        <div className={styles.formSection}>
-          <FileUploader
-            tS={tS}
-            fileDataArray={fileDataArray}
-            setFileDataArray={setFileDataArray}
-            isEditMode={isEditMode}
-            originalFiles={originalFiles}
-            setIsFilesChanged={setIsFilesChanged}
-          />
         </div>
 
         <div className={styles.formActions}>
@@ -145,7 +107,8 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </button>
         </div>
       </form>
-      <div className={styles.formSection}>
+
+      <div className={styles.formTab}>
         <ShipmentTabs
           tS={tS}
           tB={tB}

@@ -8,6 +8,7 @@
 
 .formSection {
   min-width: 340px;
+  max-width: 650px;
   flex: 1 1 340px;
   box-sizing: border-box;
   background: #fff;
@@ -52,12 +53,15 @@
 }
 
 .formActions {
+  min-width: 340px;
+  max-width: 650px;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   gap: 12px;
-  margin-top: 24px;
-  width: 100%;
-  flex-basis: 100%;
+  /* margin-top: 24px; */
+  /* width: 100%; */
+  /* flex-basis: 100%; */
 }
 
 .cancelButton {
