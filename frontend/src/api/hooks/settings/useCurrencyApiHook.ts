@@ -5,7 +5,7 @@ import { currencyApi } from '@/api/endpoints/settings/master-dataApi';
 import { CurrencyDTO } from '@/api/types';
 import { useAuth } from '@/context/auth';
 
-export function useCurrencyApi() {
+export function useCurrencyApiHook() {
   const [currencies, setCurrencies] = useState<CurrencyDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);

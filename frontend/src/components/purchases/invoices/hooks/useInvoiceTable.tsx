@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { InvoiceDTO } from '@/api/types';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
 import {ColumnDef } from '@tanstack/react-table';
-// import { useCurrencyApi } from '@/api/hooks/settings/useCurrencyApiHook';
+// import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 
 type UseInvoiceTableOptions = {
   onEditStart?: (invoice: InvoiceDTO) => void;
@@ -38,6 +38,7 @@ export function useInvoiceTableLogic(
     null
   );
 
+  // const {currencies, loading } = useCurrencyApiHook()
 
 
   const handleAddToArray = (invoice: InvoiceDTO) => {
