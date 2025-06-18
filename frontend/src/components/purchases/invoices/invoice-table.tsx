@@ -1,18 +1,17 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import styles from './invoice-table.module.css';
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
-  ColumnDef,
 } from '@tanstack/react-table';
-import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
 import InvoiceDialog from './invoice-form';
 import { InvoiceDTO } from '@/api/types';
-import { useInvoiceTable } from './hooks/useInvoiceTable';
+import { useInvoiceTableLogic } from './hooks/useInvoiceTable';
 import { useTranslations } from 'next-intl';
+import AddButton from '@/components/controls/add-button/AddButton';
 
 type InvoiceTableProps = {
   invoices?: InvoiceDTO[];
@@ -24,45 +23,16 @@ type InvoiceTableProps = {
 };
 
 const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
-  const [isDialogOpen, setDialogOpen] = useState(false);
-  const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
-  const { handleAdd, handleEdit, handleDelete, handleView } = useInvoiceTable();
   const tI = useTranslations('Invoices');
-
-  const columns = useMemo<ColumnDef<InvoiceDTO>[]>(
-    () => [
-      {
-        header: tI('table.invoice_number'),
-        accessorKey: 'invoiceNumber',
-      },
-      {
-        header: tI('table.vendor'),
-        accessorKey: 'vendorName',
-      },
-      {
-        header: tI('table.invoice_date'),
-        accessorKey: 'invoiceDate',
-      },
-      {
-        header: tI('table.total_amount'),
-        accessorKey: 'totalAmount',
-        cell: (info) => info.getValue()?.toLocaleString?.() ?? info.getValue(),
-      },
-      {
-        id: 'actions',
-        header: '',
-        cell: ({ row }) => (
-          <TableRowActions
-            id={row.original.id ?? 0}
-            onView={handleView}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-        ),
-      },
-    ],
-    [tI, handleView, handleEdit, handleDelete]
-  );
+  const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
+  const {
+    columns,
+    isDialogOpen,
+    setIsDialogOpen,
+    handleAddToArray,
+    handleAdd,
+    handleEdit,
+  } = useInvoiceTableLogic(invoices, tI);
 
   const table = useReactTable({
     data: invoices ?? [],
@@ -76,64 +46,52 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
         handleEdit?.(invoice.id);
       }
     } else {
-      handleAdd(invoice);
+      handleAddToArray(invoice);
     }
-    setDialogOpen(false);
+    setIsDialogOpen(false);
     setEditInvoice(null);
   };
 
   return (
     <>
-      <table className={styles.table}>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.length === 0 ? (
-            <tr>
-              <td colSpan={columns.length} style={{ textAlign: 'center' }}>
-                {tI('table.no_invoices') ?? 'No invoices added.'}
-              </td>
-            </tr>
-          ) : (
-            table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+      <div className={styles.tableContainer}>
+        <div className={styles.tableActions}>
+          <AddButton onAdd={handleAdd} />
+        </div>
+        <table className={styles.table}>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className={styles.tableHeader}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className={styles.tableRow}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
+                  <td key={cell.id} className={styles.tableCell}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-      <button
-        type="button"
-        className={styles.saveButton}
-        onClick={() => {
-          setEditInvoice(null);
-          setDialogOpen(true);
-        }}
-      >
-        {`${tB('add')} invoice`}
-      </button>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
       <InvoiceDialog
         isOpen={isDialogOpen}
-        onClose={() => setDialogOpen(false)}
+        onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}
         initialData={editInvoice || undefined}
         title={editInvoice ? tB('edit') : tB('add')}

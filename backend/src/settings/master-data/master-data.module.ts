@@ -8,6 +8,8 @@ import { MaterialNamesService } from './services/material-names.service';
 import { MaterialNamesController } from './controllers/material-names.controller';
 import { UnitsController } from './controllers/units.controller';
 import { UnitsService } from './services/units.service';
+import { CurrencyController } from './controllers/currency.controller';
+import { CurrencyService } from './services/currency.service';
 
 @Module({
   controllers: [
@@ -15,12 +17,14 @@ import { UnitsService } from './services/units.service';
     MaterialTypesController,
     MaterialNamesController,
     UnitsController,
+    CurrencyController,
   ],
   providers: [
     MaterialGroupsService,
     MaterialTypesService,
     MaterialNamesService,
     UnitsService,
+    CurrencyService,
     DatabaseService,
   ],
   exports: [
@@ -28,6 +32,7 @@ import { UnitsService } from './services/units.service';
     MaterialTypesService,
     MaterialNamesService,
     UnitsService,
+    CurrencyService,
   ],
 })
 export class MasterDataModule {}

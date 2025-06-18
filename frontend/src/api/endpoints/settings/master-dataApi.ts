@@ -4,6 +4,7 @@ import {
   MaterialTypeDTO,
   MaterialNameDTO,
   UnitDTO,
+  CurrencyDTO,
 } from '../../types';
 import { handleApiError } from '@/utils/handleApiError';
 
@@ -199,6 +200,13 @@ export const materialNamesApi = {
 
   delete: async (id: number) => {
     const response = await apiClient.delete(`/material-names/${id}`);
+    return response.data;
+  },
+};
+
+export const currencyApi = {
+  getAll: async (): Promise<CurrencyDTO[]> => {
+    const response = await apiClient.get('/currency');
     return response.data;
   },
 };

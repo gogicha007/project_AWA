@@ -102,3 +102,9 @@ export interface FreightDTO {
   isArrived: boolean;
   userId: number;
 }
+
+export interface CurrencyDTO {
+  id?: number;
+  code: string;
+  name: string;
+}

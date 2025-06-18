@@ -172,7 +172,7 @@
       "currency": "Currency",
       "total_amount": "Total amount",
       "truck_number": "Truck number",
-      "is_arrived": "Is Arrived",
+      "is_arrived": "Arrived",
       "no_invoices": "No invoices added."
     },
     "form": {
