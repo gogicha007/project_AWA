@@ -5,7 +5,7 @@ import { vendorsApi } from '@/api/endpoints/settings/vendorsApi';
 import { useAuth } from '@/context/auth';
 import { VendorDTO } from '@/api/types';
 
-export function useVendors() {
+export function useVendorsApiHook() {
   const [vendors, setVendors] = useState<VendorDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);

@@ -12,7 +12,7 @@ import {
 import { useTranslations } from 'next-intl';
 import Loader from '../../feedback/loader/loader';
 import { useVendorsLogic } from './useVendorsLogic';
-import { useVendors } from '@/api/hooks/settings/useVendorsHook';
+import { useVendors } from '@/api/hooks/settings/useVendorsApiHook';
 import Snackbar from '../../feedback/snackbar/snackbar';
 import AddButton from '@/components/controls/add-button/AddButton';
 import VendorDialog from '@/components/forms/vendor-form';

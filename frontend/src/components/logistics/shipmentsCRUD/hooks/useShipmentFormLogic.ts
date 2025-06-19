@@ -7,7 +7,8 @@ import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { FileData } from '@/components/controls/file-uploader/FileUploader';
-
+// import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
+// import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 
 export type ShipmentFormValues = {
   alias: string;
@@ -17,7 +18,7 @@ export type ShipmentFormValues = {
   files?: Array<FileData>;
 };
 
-export function useShipmentForm(id?: number) {
+export function useShipmentFormLogic(id?: number) {
   const router = useRouter();
   const tS = useTranslations('Logistics');
   const tB = useTranslations('Buttons');
@@ -29,6 +30,14 @@ export function useShipmentForm(id?: number) {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const isEditMode = !!id;
+  // const {
+  //   currencies,
+  //   loading: carrenciesLoading,
+  // } = useCurrencyApiHook();
+  // const {
+  //   vendors,
+  //   loading: vendorsLoading,
+  // } = useVendorsApiHook();
 
   const {
     control,
@@ -63,10 +72,14 @@ export function useShipmentForm(id?: number) {
             : undefined,
         });
         const files = shipment.Files || [];
+        const invoices = shipment.Invoices || []
+        if(invoices.length > 0) {
+          
+        }
+        console.log(invoices)
         setFileDataArray(files);
         setOriginalFiles(files);
 
-        // const invoices = []
       } catch (error) {
         console.error('Failed to fetch shipment:', error);
       } finally {

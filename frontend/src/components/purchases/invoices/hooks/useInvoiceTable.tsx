@@ -1,8 +1,8 @@
+'use client';
 import { useState, useMemo } from 'react';
 import { InvoiceDTO } from '@/api/types';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
-import {ColumnDef } from '@tanstack/react-table';
-// import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
+import { ColumnDef } from '@tanstack/react-table';
 
 type UseInvoiceTableOptions = {
   onEditStart?: (invoice: InvoiceDTO) => void;
@@ -20,10 +20,9 @@ type UseInvoiceTableOptions = {
 //   isArrived: boolean;
 // };
 
-
 export function useInvoiceTableLogic(
   initialInvoices: InvoiceDTO[] = [],
-  tVar: (key: string) => string,
+  tVar: (key: string)=> string,
   options: UseInvoiceTableOptions = {}
 ) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -38,12 +37,10 @@ export function useInvoiceTableLogic(
     null
   );
 
-  // const {currencies, loading } = useCurrencyApiHook()
-
-
   const handleAddToArray = (invoice: InvoiceDTO) => {
     setInvoices((prev) => [...prev, invoice]);
   };
+
   const handleAdd = () => {
     setEditInvoice(null);
     setIsDialogOpen(true);

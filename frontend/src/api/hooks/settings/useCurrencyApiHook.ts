@@ -34,5 +34,5 @@ export function useCurrencyApiHook() {
     fetchCurrencies();
   }, [authLoading, currentUser?.uid, fetchCurrencies]);
 
-  return { currencies, loading: loading || authLoading, error, mutate };
+  return { currencies, loading: loading || authLoading, error,  mutate};
 }

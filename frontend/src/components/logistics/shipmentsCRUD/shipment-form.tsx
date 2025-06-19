@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './shipment-form.module.css';
-import { useShipmentForm } from './hooks/useShipmentFormLogic';
+import { useShipmentFormLogic } from './hooks/useShipmentFormLogic';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
@@ -27,7 +27,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
     snackbarOpen,
     snackbarMessage,
     handleSnackbarClose,
-  } = useShipmentForm(id);
+  } = useShipmentFormLogic(id);
 
   if (loading) return <Loader />;
 

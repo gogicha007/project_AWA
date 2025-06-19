@@ -12,7 +12,7 @@ import { InvoiceDTO } from '@/api/types';
 import { useInvoiceTableLogic } from './hooks/useInvoiceTable';
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
-// import Loader from '@/components/feedback/loader/loader';
+import Loader from '@/components/feedback/loader/loader';
 
 type InvoiceTableProps = {
   invoices?: InvoiceDTO[];
@@ -29,7 +29,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
   const {
     columns,
     isDialogOpen,
-    // loading, 
+    loading,
     setIsDialogOpen,
     handleAddToArray,
     handleAdd,
@@ -54,7 +54,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
     setEditInvoice(null);
   };
 
-  // if (loading) return <Loader />;
+  if (loading) return <Loader />;
 
   return (
     <>
