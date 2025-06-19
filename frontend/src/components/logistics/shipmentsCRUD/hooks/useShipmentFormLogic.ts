@@ -119,7 +119,7 @@ export function useShipmentFormLogic(id?: number) {
       }
     };
     fetchShipment();
-  }, [id, reset, authLoading, dbUserId]);
+  }, [id, reset, authLoading, dbUserId, currencies, vendors]);
 
   const submitHandler = async (data: ShipmentFormValues) => {
     try {
