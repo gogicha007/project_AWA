@@ -9,6 +9,7 @@ import { formatToISODateTime } from '@/utils/dateFormat';
 import { FileData } from '@/components/controls/file-uploader/FileUploader';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
+import { InvoiceDTO } from '@/api/types';
 
 export type ShipmentFormValues = {
   alias: string;
@@ -26,6 +27,7 @@ export function useShipmentFormLogic(id?: number) {
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const [originalFiles, setOriginalFiles] = useState<FileData[]>([]);
+  const [invoiceArray, setInvoiceArray] = useState<InvoiceDTO[]>([]);
   const [isFilesChanged, setIsFilesChanged] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -73,7 +75,7 @@ export function useShipmentFormLogic(id?: number) {
             : undefined,
         });
         const files = shipment.Files || [];
-        const invoices = shipment.Invoices || [];
+        let invoices = shipment.Invoices || [];
         if (invoices.length > 0) {
           const currenciesObj = currencies.reduce(
             (acc, { id, code }) => {
@@ -97,8 +99,17 @@ export function useShipmentFormLogic(id?: number) {
           );
           console.log('vendorsObj', vendorsObj);
           console.log('currency obj', currenciesObj);
+          invoices = invoices.map((inv) => ({
+            ...inv,
+            id:
+              typeof inv.id === 'string'
+                ? parseInt(inv.id, 10)
+                : Number(inv.id),
+            vendor: vendorsObj[id],
+            currency: currenciesObj[id],
+          }));
         }
-
+        setInvoiceArray(invoices);
         setFileDataArray(files);
         setOriginalFiles(files);
       } catch (error) {
@@ -180,6 +191,7 @@ export function useShipmentFormLogic(id?: number) {
     setFileDataArray,
     originalFiles,
     isFilesChanged,
+    invoiceArray,
     setIsFilesChanged,
     submitHandler,
     handleCancel,
