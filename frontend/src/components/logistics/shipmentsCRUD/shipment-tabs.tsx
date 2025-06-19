@@ -4,25 +4,32 @@ import FileUploader from '@/components/controls/file-uploader/FileUploader';
 import InvoiceTable from '@/components/purchases/invoices/invoice-table';
 import FreightTable from '@/components/purchases/freights/freight-table';
 import { FileData } from '@/components/controls/file-uploader/FileUploader';
+import { CurrencyDTO, InvoiceDTO, VendorDTO } from '@/api/types';
 
 interface ShipmentTabsProps {
+  currencies: Partial<CurrencyDTO>[];
   tS: (key: string) => string;
   tB: (key: string) => string;
+  invoices: InvoiceDTO[];
   fileDataArray: FileData[];
   setFileDataArray: (files: FileData[]) => void;
   isEditMode: boolean;
   originalFiles: FileData[];
   setIsFilesChanged: (changed: boolean) => void;
+  vendors: Partial<VendorDTO>[];
 }
 
 export default function ShipmentTabs({
+  currencies,
+  invoices,
   tS,
   tB,
   fileDataArray,
   setFileDataArray,
   isEditMode,
   originalFiles,
-  setIsFilesChanged
+  setIsFilesChanged,
+  vendors,
 }: ShipmentTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -41,7 +48,7 @@ export default function ShipmentTabs({
           </button>
         ))}
       </div>
-      
+
       <div className={styles.tabPanel}>
         {activeTab === 0 && (
           <FileUploader
@@ -53,7 +60,14 @@ export default function ShipmentTabs({
             setIsFilesChanged={setIsFilesChanged}
           />
         )}
-        {activeTab === 1 && <InvoiceTable tB={tB} />}
+        {activeTab === 1 && (
+          <InvoiceTable
+            invoices={invoices}
+            currencies={currencies}
+            vendors={vendors}
+            tB={tB}
+          />
+        )}
         {activeTab === 2 && <FreightTable />}
       </div>
     </div>

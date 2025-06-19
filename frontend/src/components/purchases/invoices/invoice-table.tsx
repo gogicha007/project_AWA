@@ -8,13 +8,15 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import InvoiceDialog from './invoice-form';
-import { InvoiceDTO } from '@/api/types';
-import { useInvoiceTableLogic } from './hooks/useInvoiceTable';
+import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
+import { useInvoiceTableLogic } from './hooks/useInvoiceTableLogic';
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 
 type InvoiceTableProps = {
   invoices?: InvoiceDTO[];
+  currencies: Partial<CurrencyDTO>[];
+  vendors: Partial<VendorDTO>[];
   onView?: (id: number) => void;
   onEdit?: (id: number) => void;
   onDelete?: (id: number) => void;
@@ -22,7 +24,7 @@ type InvoiceTableProps = {
   tB: (key: string) => string;
 };
 
-const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
+const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, currencies, vendors, tB }) => {
   const tI = useTranslations('Invoices');
   const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
   const {
@@ -33,7 +35,6 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
     handleAdd,
     handleEdit,
   } = useInvoiceTableLogic(invoices, tI);
-
   const table = useReactTable({
     data: invoices ?? [],
     columns,
@@ -51,7 +52,6 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
     setIsDialogOpen(false);
     setEditInvoice(null);
   };
-
 
   return (
     <>
@@ -95,6 +95,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, tB }) => {
         onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}
         initialData={editInvoice || undefined}
+        auxData={{currencies, vendors}}
         title={editInvoice ? tB('edit') : tB('add')}
         tVar={tI}
       />

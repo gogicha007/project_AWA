@@ -1,13 +1,18 @@
 'use client';
 
-import styles from '../../forms/form.module.css'
+import styles from '../../forms/form.module.css';
 import { useEffect, useRef } from 'react';
-import { InvoiceDTO } from '@/api/types';
+import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { useForm } from 'react-hook-form';
+import DateInput from '@/components/controls/date-input/date-input';
 
 type Props = {
+  auxData: {
+    currencies: Partial<CurrencyDTO>[];
+    vendors: Partial<VendorDTO>[];
+  };
   isOpen: boolean;
   onClose: () => void;
   onSave: (invoice: InvoiceDTO) => void;
@@ -19,22 +24,24 @@ type Props = {
 type FormValues = InvoiceDTO;
 
 export default function InvoiceDialog({
+  auxData,
+  initialData,
   isOpen,
   onClose,
   onSave,
-  initialData,
   title,
   tVar,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
-
-  const { register } = useForm<FormValues>({
+  console.log(auxData.currencies)
+  const { control, handleSubmit, register } = useForm<FormValues>({
     defaultValues: {
       invoiceNumber: initialData?.invoiceNumber || '',
       invoiceDate: initialData?.invoiceDate || undefined,
     },
   });
+
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -44,17 +51,16 @@ export default function InvoiceDialog({
       dialog.close();
     }
   }, [isOpen]);
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-
+  // console.log(tVar('form.label.vendor'))
+  const onSubmit = (data: FormValues) => {
     onSave({
       id: initialData?.id,
-      invoiceNumber: formData.get('invoiceNumber') as string,
-      invoiceDate: formatToISODateTime(formData.get('invoiceDate')) as Date,
-      vendorId: formData.get('vendorId') as number,
-      currencyId: formData.get('currencyId') as number
+      invoiceNumber: data.invoiceNumber,
+      invoiceDate: formatToISODateTime(
+        data.invoiceDate === null ? undefined : data.invoiceDate
+      ) as Date,
+      vendorId: data.vendorId,
+      currencyId: data.currencyId,
     });
 
     onClose();
@@ -67,8 +73,23 @@ export default function InvoiceDialog({
         ×
       </button>
 
-      <form onSubmit={onSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.formGroup}>
+          <label htmlFor="vendor">{tVar('form.label.vendor')}</label>
+          <select
+            {...register('vendorId', { required: true })}
+            id="vendorId"
+            className={styles.input}
+          >
+            <option value="">
+              {tVar('form.label.vendor_placeholder') || '--Select--'}
+            </option>
+            {auxData.vendors.map((v) => (
+              <option key={v.id} value={String(v.id)}>
+                {v.alias}
+              </option>
+            ))}
+          </select>
           <label htmlFor="invoiceNumber">
             {tVar('form.label.invoice_number')}
           </label>
@@ -81,9 +102,11 @@ export default function InvoiceDialog({
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="invoiceDate">
-            {tVar('form.label.invoice_date')}
-          </label>
+          <DateInput
+            label={tVar('form.label.invoice_date')}
+            name="invoiceDate"
+            control={control}
+          />
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="currency">{tVar('form.label.currency')}</label>
@@ -91,11 +114,6 @@ export default function InvoiceDialog({
         <div className={styles.formGroup}>
           <label htmlFor="total_amount">
             {tVar('form.label.total_amount')}
-          </label>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="truck_number">
-            {tVar('form.label.truck_number')}
           </label>
         </div>
         <div className={styles.formGroup}>

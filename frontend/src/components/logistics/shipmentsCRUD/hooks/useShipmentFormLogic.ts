@@ -1,15 +1,15 @@
+import { FileData } from '@/components/controls/file-uploader/FileUploader';
+import { formatToISODateTime } from '@/utils/dateFormat';
+import { InvoiceDTO } from '@/api/types';
+import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
+import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/context/auth';
-import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
-import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
-import { formatToISODateTime } from '@/utils/dateFormat';
-import { FileData } from '@/components/controls/file-uploader/FileUploader';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
-import { InvoiceDTO } from '@/api/types';
 
 export type ShipmentFormValues = {
   alias: string;
@@ -57,6 +57,27 @@ export function useShipmentFormLogic(id?: number) {
     }
   }, [currenciesLoading, vendorsLoading]);
 
+  const currenciesObj = currencies.reduce(
+    (acc, { id, code }) => {
+      if (id !== undefined) {
+        acc[id] = code;
+      }
+      return acc;
+    },
+    {} as Record<number, string>
+  );
+
+  const vendorsArray = vendors.map(({ id, alias }) => ({ id, alias }));
+  const vendorsObj = vendorsArray.reduce(
+    (acc, { id, alias }) => {
+      if (id !== undefined) {
+        acc[id] = alias;
+      }
+      return acc;
+    },
+    {} as Record<number, string>
+  );
+
   useEffect(() => {
     if (!id || authLoading || dbUserId === null) return;
 
@@ -77,26 +98,6 @@ export function useShipmentFormLogic(id?: number) {
         const files = shipment.Files || [];
         let invoices = shipment.Invoices || [];
         if (invoices.length > 0) {
-          const currenciesObj = currencies.reduce(
-            (acc, { id, code }) => {
-              if (id !== undefined) {
-                acc[id] = code;
-              }
-              return acc;
-            },
-            {} as Record<number, string>
-          );
-          const vendorsArray = vendors.map(({ id, alias }) => ({ id, alias }));
-
-          const vendorsObj = vendorsArray.reduce(
-            (acc, { id, alias }) => {
-              if (id !== undefined) {
-                acc[id] = alias;
-              }
-              return acc;
-            },
-            {} as Record<number, string>
-          );
           console.log('vendorsObj', vendorsObj);
           console.log('currency obj', currenciesObj);
           invoices = invoices.map((inv) => ({
@@ -179,24 +180,26 @@ export function useShipmentFormLogic(id?: number) {
   };
 
   return {
-    tS,
-    tB,
-    loading,
     control,
-    register,
-    handleSubmit,
-    isEditMode,
+    currencies,
     errors,
     fileDataArray,
-    setFileDataArray,
-    originalFiles,
-    isFilesChanged,
-    invoiceArray,
-    setIsFilesChanged,
-    submitHandler,
     handleCancel,
+    handleSnackbarClose,
+    handleSubmit,
+    invoiceArray,
+    isEditMode,
+    isFilesChanged,
+    loading,
+    originalFiles,
+    register,
+    setFileDataArray,
+    setIsFilesChanged,
     snackbarOpen,
     snackbarMessage,
-    handleSnackbarClose,
+    submitHandler,
+    tB,
+    tS,
+    vendors
   };
 }

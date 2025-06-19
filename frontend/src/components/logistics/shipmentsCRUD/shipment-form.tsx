@@ -10,23 +10,26 @@ import DateInput from '@/components/controls/date-input/date-input';
 
 export default function ShipmentForm({ id }: { id?: number }) {
   const {
-    tS,
-    tB,
-    loading,
     control,
-    register,
-    handleSubmit,
+    currencies,
     errors,
     fileDataArray,
-    setFileDataArray,
-    originalFiles,
-    setIsFilesChanged,
-    submitHandler,
+    handleSubmit,
     handleCancel,
+    handleSnackbarClose,
+    invoiceArray,
     isEditMode,
+    loading,
+    originalFiles,
+    register,
+    setFileDataArray,
+    setIsFilesChanged,
     snackbarOpen,
     snackbarMessage,
-    handleSnackbarClose,
+    submitHandler,
+    tB,
+    tS,
+    vendors
   } = useShipmentFormLogic(id);
 
   if (loading) return <Loader />;
@@ -110,13 +113,16 @@ export default function ShipmentForm({ id }: { id?: number }) {
 
       <div className={styles.formTab}>
         <ShipmentTabs
+          currencies={currencies}
           tS={tS}
           tB={tB}
           fileDataArray={fileDataArray}
+          invoices={invoiceArray}
           setFileDataArray={setFileDataArray}
           isEditMode={isEditMode}
           originalFiles={originalFiles}
           setIsFilesChanged={setIsFilesChanged}
+          vendors={vendors}
         />
       </div>
 
