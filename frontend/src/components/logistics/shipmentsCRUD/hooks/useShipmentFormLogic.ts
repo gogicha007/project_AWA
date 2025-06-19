@@ -7,8 +7,8 @@ import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { FileData } from '@/components/controls/file-uploader/FileUploader';
-// import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
-// import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
+import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
+import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 
 export type ShipmentFormValues = {
   alias: string;
@@ -30,15 +30,8 @@ export function useShipmentFormLogic(id?: number) {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const isEditMode = !!id;
-  // const {
-  //   currencies,
-  //   loading: carrenciesLoading,
-  // } = useCurrencyApiHook();
-  // const {
-  //   vendors,
-  //   loading: vendorsLoading,
-  // } = useVendorsApiHook();
-
+  const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
+  const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const {
     control,
     register,
@@ -53,6 +46,14 @@ export function useShipmentFormLogic(id?: number) {
       declaration_date: undefined,
     },
   });
+
+  useEffect(() => {
+    if (currenciesLoading || vendorsLoading) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [currenciesLoading, vendorsLoading]);
 
   useEffect(() => {
     if (!id || authLoading || dbUserId === null) return;
@@ -72,14 +73,34 @@ export function useShipmentFormLogic(id?: number) {
             : undefined,
         });
         const files = shipment.Files || [];
-        const invoices = shipment.Invoices || []
-        if(invoices.length > 0) {
-          
+        const invoices = shipment.Invoices || [];
+        if (invoices.length > 0) {
+          const currenciesObj = currencies.reduce(
+            (acc, { id, code }) => {
+              if (id !== undefined) {
+                acc[id] = code;
+              }
+              return acc;
+            },
+            {} as Record<number, string>
+          );
+          const vendorsArray = vendors.map(({ id, alias }) => ({ id, alias }));
+
+          const vendorsObj = vendorsArray.reduce(
+            (acc, { id, alias }) => {
+              if (id !== undefined) {
+                acc[id] = alias;
+              }
+              return acc;
+            },
+            {} as Record<number, string>
+          );
+          console.log('vendorsObj', vendorsObj);
+          console.log('currency obj', currenciesObj);
         }
-        console.log(invoices)
+
         setFileDataArray(files);
         setOriginalFiles(files);
-
       } catch (error) {
         console.error('Failed to fetch shipment:', error);
       } finally {
