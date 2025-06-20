@@ -12,14 +12,14 @@ import {
 import { useTranslations } from 'next-intl';
 import Loader from '../../feedback/loader/loader';
 import { useVendorsLogic } from './useVendorsLogic';
-import { useVendors } from '@/api/hooks/settings/useVendorsApiHook';
+import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import Snackbar from '../../feedback/snackbar/snackbar';
 import AddButton from '@/components/controls/add-button/AddButton';
 import VendorDialog from '@/components/forms/vendor-form';
 
 export default function VendorsClient() {
   const tV = useTranslations('Vendors');
-  const { vendors, loading, error, mutate } = useVendors();
+  const { vendors, loading, error, mutate } = useVendorsApiHook();
   const [sorting, setSorting] = useState<SortingState>([]);
   const {
     data,

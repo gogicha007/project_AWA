@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '../../forms/form.module.css';
+import styles from './invoice-form.module.css';
 import { useEffect, useRef } from 'react';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
@@ -34,7 +34,7 @@ export default function InvoiceDialog({
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
-  console.log(auxData.currencies)
+  console.log(auxData.currencies);
   const { control, handleSubmit, register } = useForm<FormValues>({
     defaultValues: {
       invoiceNumber: initialData?.invoiceNumber || '',
@@ -68,10 +68,12 @@ export default function InvoiceDialog({
 
   return (
     <dialog ref={dialogRef} className={styles.dialog} onClose={onClose}>
-      <h2>{title}</h2>
-      <button type="button" className={styles.closeButton} onClick={onClose}>
-        ×
-      </button>
+      <div className={styles.dialogHeader}>
+        <h2>{title}</h2>
+        <button type="button" className={styles.closeButton} onClick={onClose}>
+          ×
+        </button>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.formGroup}>
@@ -90,44 +92,77 @@ export default function InvoiceDialog({
               </option>
             ))}
           </select>
-          <label htmlFor="invoiceNumber">
-            {tVar('form.label.invoice_number')}
-          </label>
-          <input
-            id="invoiceNumber"
-            {...register('invoiceNumber', {
-              required: 'Invoice number is required',
-            })}
-            type="text"
-          />
+        </div>
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label htmlFor="invoiceNumber">
+              {tVar('form.label.invoice_number')}
+            </label>
+            <input
+              id="invoiceNumber"
+              {...register('invoiceNumber', {
+                required: 'Invoice number is required',
+              })}
+              type="text"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <DateInput
+              label={tVar('form.label.invoice_date')}
+              name="invoiceDate"
+              control={control}
+            />
+          </div>
+        </div>
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label htmlFor="currency">{tVar('form.label.currency')}</label>
+            <select
+              {...(register('currencyId'), { required: true })}
+              id="currency"
+              className={styles.input}
+            >
+              <option value="">
+                {tVar('form.label.currency_placeholder')}
+              </option>
+              {auxData.currencies.map((c) => (
+                <option key={c.id} value={String(c.id)}>
+                  {c.code}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="totalAmount">
+              {tVar('form.label.total_amount')}
+            </label>
+            <input
+              id="totalAmount"
+              {...register('totalAmount', {
+                required: 'Total amount is required',
+              })}
+              type="number"
+              className={styles.input}
+            />
+          </div>
         </div>
         <div className={styles.formGroup}>
-          <DateInput
-            label={tVar('form.label.invoice_date')}
-            name="invoiceDate"
-            control={control}
-          />
+          <label htmlFor="isArrived">{tVar('form.label.is_arrived')}</label>
+          <input type="checkbox" {...register('isArrived')} id="isArrived" />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="currency">{tVar('form.label.currency')}</label>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="total_amount">
-            {tVar('form.label.total_amount')}
-          </label>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="is_arrived">{tVar('form.label.is_arrived')}</label>
+        <div className={styles.formActions}>
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={onClose}
+          >
+            {tB('cancel')}
+          </button>
+          <button type="submit" className={styles.saveButton}>
+            {tB('save')}
+          </button>
         </div>
       </form>
-      <div className={styles.formActions}>
-        <button type="button" className={styles.cancelButton} onClick={onClose}>
-          {tB('cancel')}
-        </button>
-        <button type="submit" className={styles.saveButton}>
-          {tB('save')}
-        </button>
-      </div>
     </dialog>
   );
 }

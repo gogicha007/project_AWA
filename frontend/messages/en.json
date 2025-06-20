@@ -178,9 +178,10 @@
     "form": {
       "label": {
         "vendor": "Vendor",
-        "invoice_number": "Invoices",
+        "invoice_number": "Invoice #",
         "invoice_date": "Invoice date",
         "currency": "Currency",
+        "currency_placeholder": "Select currency...",
         "total_amount": "Total amount",
         "is_arrived": "Arrived",
         "vendor_placeholder": "Select vendor..."
