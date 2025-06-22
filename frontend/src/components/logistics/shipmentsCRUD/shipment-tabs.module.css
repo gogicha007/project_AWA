@@ -1,4 +1,5 @@
 .tabContainer {
+  width: 100%;
   margin-top: 0.5rem;
 }
 
@@ -6,9 +7,11 @@
   display: flex;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
+  width:100%
 }
 
 .tab {
+  fles: 1;
   padding: 0.75rem 1.5rem;
   border: none;
   background: none;
@@ -28,4 +31,5 @@
 
 .tabPanel {
   padding: 1rem 0;
+  width: 100%
 }

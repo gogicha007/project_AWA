@@ -220,8 +220,8 @@
     "add_form_title": "Add Shipment",
     "actions": {
       "title": "Actions",
-      "add": "Add new item",
-      "edit": "Edit",
+      "add": "Create shipment",
+      "edit": "Save changes",
       "delete": "Delete",
       "view": "View"
     }

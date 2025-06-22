@@ -14,6 +14,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
   const {
     control,
     currencies,
+    disableSubmitBtn,
     errors,
     fileDataArray,
     handleSubmit,
@@ -50,10 +51,11 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </button>
           <button
             type="button"
+            disabled={disableSubmitBtn}
             className={styles.saveButton}
             onClick={() => formRef.current?.requestSubmit()}
           >
-            {isEditMode ? tB('save') : tB('add')}
+            {isEditMode ? tS('actions.edit') : tS('actions.add')}
           </button>
         </div>
       </div>

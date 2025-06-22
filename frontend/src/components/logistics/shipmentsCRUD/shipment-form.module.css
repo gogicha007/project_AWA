@@ -12,9 +12,9 @@
 }
 
 .formSection {
+  width: 100%;
   display: flex;
   gap: 10px;
-  width: 100%;
   box-sizing: border-box;
   background: #fff;
   border-radius: 6px;
@@ -35,7 +35,7 @@
   font-size: 0.9rem;
 }
 
-.input{
+.input {
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #e5e7eb;
@@ -99,6 +99,14 @@
 
 .saveButton:hover {
   background-color: #059669;
+}
+
+.saveButton:disabled {
+  opacity: 50%;
+  cursor: default;
+}
+.saveButton:disabled:hover {
+  background-color: #10b981;
 }
 
 .errorText {

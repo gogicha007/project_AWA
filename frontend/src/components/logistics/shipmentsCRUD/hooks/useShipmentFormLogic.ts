@@ -34,13 +34,17 @@ export function useShipmentFormLogic(id?: number) {
   const [isFilesChanged, setIsFilesChanged] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
+  const [enableTabs, setEnableTabs] = useState<boolean>(false);
+  const [shipmentId, setShipmentId] = useState(id);
   const isEditMode = !!id;
   const {
     control,
     handleSubmit,
     register,
     reset,
-    formState: { errors },
+    watch,
+    formState: { errors, dirtyFields },
   } = useForm<ShipmentFormValues>({
     defaultValues: {
       alias: '',
@@ -51,6 +55,8 @@ export function useShipmentFormLogic(id?: number) {
       invoices: [],
     },
   });
+
+  console.log(dirtyFields);
 
   const currenciesObj = currencies.reduce(
     (acc, { id, code }) => {
@@ -72,6 +78,17 @@ export function useShipmentFormLogic(id?: number) {
     },
     {} as Record<number, string>
   );
+
+  useEffect(() => {
+    const subscription = watch((values) => {
+      setDisableSubmitBtn(!(values.alias && values.status));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  useEffect(() => {
+    setEnableTabs(!!shipmentId);
+  }, [shipmentId]);
 
   useEffect(() => {
     setLoading(currenciesLoading || vendorsLoading || authLoading);
@@ -156,12 +173,15 @@ export function useShipmentFormLogic(id?: number) {
           },
           dbUserId
         );
+
         if (fileDataArray.length > 0) {
           if (createdShipment.id === undefined) {
             throw new Error('Created shipment ID is undefined.');
           }
           await shipmentFileApi.create(fileDataArray, createdShipment.id);
         }
+
+        setShipmentId(createdShipment.id);
       }
 
       router.push('/shipments');
@@ -186,6 +206,8 @@ export function useShipmentFormLogic(id?: number) {
   return {
     control,
     currencies,
+    disableSubmitBtn,
+    enableTabs,
     errors,
     fileDataArray,
     handleCancel,
