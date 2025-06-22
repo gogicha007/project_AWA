@@ -17,6 +17,7 @@ export type ShipmentFormValues = {
   declaration_number?: string;
   declaration_date?: Date;
   files?: Array<FileData>;
+  invoices?: Array<InvoiceDTO>;
 };
 
 export function useShipmentFormLogic(id?: number) {
@@ -24,6 +25,8 @@ export function useShipmentFormLogic(id?: number) {
   const tS = useTranslations('Logistics');
   const tB = useTranslations('Buttons');
   const { dbUserId, loading: authLoading } = useAuth();
+  const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
+  const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const [originalFiles, setOriginalFiles] = useState<FileData[]>([]);
@@ -32,12 +35,10 @@ export function useShipmentFormLogic(id?: number) {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const isEditMode = !!id;
-  const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
-  const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const {
     control,
-    register,
     handleSubmit,
+    register,
     reset,
     formState: { errors },
   } = useForm<ShipmentFormValues>({
@@ -46,16 +47,10 @@ export function useShipmentFormLogic(id?: number) {
       status: undefined,
       declaration_number: '',
       declaration_date: undefined,
+      files: [],
+      invoices: [],
     },
   });
-
-  useEffect(() => {
-    if (currenciesLoading || vendorsLoading) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [currenciesLoading, vendorsLoading]);
 
   const currenciesObj = currencies.reduce(
     (acc, { id, code }) => {
@@ -79,7 +74,18 @@ export function useShipmentFormLogic(id?: number) {
   );
 
   useEffect(() => {
-    if (!id || authLoading || dbUserId === null) return;
+    setLoading(currenciesLoading || vendorsLoading || authLoading);
+  }, [currenciesLoading, vendorsLoading, authLoading]);
+
+  useEffect(() => {
+    if (
+      !id ||
+      authLoading ||
+      dbUserId === null ||
+      currenciesLoading ||
+      vendorsLoading
+    )
+      return;
 
     setLoading(true);
     const fetchShipment = async () => {
@@ -98,8 +104,6 @@ export function useShipmentFormLogic(id?: number) {
         const files = shipment.Files || [];
         let invoices = shipment.Invoices || [];
         if (invoices.length > 0) {
-          console.log('vendorsObj', vendorsObj);
-          console.log('currency obj', currenciesObj);
           invoices = invoices.map((inv) => ({
             ...inv,
             id:
@@ -200,6 +204,6 @@ export function useShipmentFormLogic(id?: number) {
     submitHandler,
     tB,
     tS,
-    vendors
+    vendors,
   };
 }

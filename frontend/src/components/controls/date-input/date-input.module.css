@@ -16,3 +16,11 @@
   border-color: #10b981;
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
+
+.errorText {
+  color: #b91c1c;
+  font-size: 0.8rem;
+  margin: 0;
+  height: 1.1em;
+  max-width: 300px;
+}

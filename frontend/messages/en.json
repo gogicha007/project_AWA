@@ -203,9 +203,12 @@
       "declaration_date_label": "Declaration date",
       "status_label": "Status",
       "files_label": "Select files",
-      "selected_files": "Attached files"
+      "selected_files": "Attached files",
+      "create_shipment": "Create shipment",
+      "save_shipment": "Save shipment"
     },
     "errors": {
+      "declaration_date_required": "Declaration date is required if declaration number is entered",
       "loading": "Error loading Shipments",
       "delete": "Error deleting Shipment with id:",
       "save": "Error saving Shipment:"

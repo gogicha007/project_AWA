@@ -29,7 +29,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
     submitHandler,
     tB,
     tS,
-    vendors
+    vendors,
   } = useShipmentFormLogic(id);
 
   if (loading) return <Loader />;
@@ -86,6 +86,17 @@ export default function ShipmentForm({ id }: { id?: number }) {
                 label={tS('form.declaration_date_label')}
                 name="declaration_date"
                 control={control}
+                rules={{
+                  validate: (value, formValues) => {
+                    if (
+                      formValues?.declaration_number &&
+                      (!value || value === '')
+                    ) {
+                      return `${tS('errors.declaration_date_required')}`;
+                    }
+                    return true;
+                  },
+                }}
               />
             </div>
           </div>
