@@ -104,6 +104,7 @@ export function useShipmentFormLogic(id?: number) {
     )
       return;
 
+    setShipmentId(id);
     setLoading(true);
     const fetchShipment = async () => {
       try {
