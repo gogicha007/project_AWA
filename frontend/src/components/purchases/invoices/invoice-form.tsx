@@ -51,7 +51,7 @@ export default function InvoiceDialog({
       dialog.close();
     }
   }, [isOpen]);
-  // console.log(tVar('form.label.vendor'))
+  
   const onSubmit = (data: FormValues) => {
     onSave({
       id: initialData?.id,

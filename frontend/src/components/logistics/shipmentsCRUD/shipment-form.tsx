@@ -49,11 +49,8 @@ export default function ShipmentForm({ id }: { id?: number }) {
                 {...register('alias', { required: 'Alias is required' })}
                 type="text"
               />
-              {errors.alias && (
-                <span className={styles.errorText}>{errors.alias.message}</span>
-              )}
+              <p className={styles.errorText}>{errors.alias?.message}</p>
             </div>
-
             <div className={styles.formGroup}>
               <label className={styles.required} htmlFor="status">
                 {tS('form.status_label')}
@@ -68,13 +65,10 @@ export default function ShipmentForm({ id }: { id?: number }) {
                 <option value="DECLARED">Declared</option>
                 <option value="ARRIVED">Arrived</option>
               </select>
-              {errors.status && (
-                <span className={styles.errorText}>
-                  {errors.status.message}
-                </span>
-              )}
+              <p className={styles.errorText}>{errors.status?.message}</p>
             </div>
           </div>
+
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
               <label htmlFor="declaration_number">
