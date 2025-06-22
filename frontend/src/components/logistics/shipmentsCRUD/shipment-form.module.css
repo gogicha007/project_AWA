@@ -2,15 +2,19 @@
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
-  /* flex-direction: column; */
   gap: 24px;
 }
 
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .formSection {
-  min-width: 340px;
-  max-width: 650px;
-  flex: 1 1 340px;
+  display: flex;
+  gap: 10px;
+  width: 100%;
   box-sizing: border-box;
   background: #fff;
   border-radius: 6px;
@@ -31,8 +35,7 @@
   font-size: 0.9rem;
 }
 
-.input,
-.textarea {
+.input{
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #e5e7eb;
@@ -41,16 +44,10 @@
   transition: border-color 0.2s;
 }
 
-.input:focus,
-.textarea:focus {
+.input:focus {
   outline: none;
   border-color: #10b981;
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 80px;
 }
 
 .formActions {
@@ -60,9 +57,16 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  /* margin-top: 24px; */
-  /* width: 100%; */
-  /* flex-basis: 100%; */
+}
+
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+
+.formRow .formGroup {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
 }
 
 .cancelButton {
@@ -109,14 +113,4 @@
   content: '*';
   color: #b91c1c;
   margin-left: 2px;
-}
-
-.formRow {
-  display: flex;
-  gap: 16px;
-}
-
-.formRow .formGroup {
-  flex: 1;
-  min-width: 0; /* Prevents flex items from overflowing */
 }

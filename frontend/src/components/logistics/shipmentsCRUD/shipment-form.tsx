@@ -1,6 +1,7 @@
 'use client';
 
 import styles from './shipment-form.module.css';
+import { useRef } from 'react';
 import { useShipmentFormLogic } from './hooks/useShipmentFormLogic';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
@@ -9,6 +10,7 @@ import ShipmentTabs from './shipment-tabs';
 import DateInput from '@/components/controls/date-input/date-input';
 
 export default function ShipmentForm({ id }: { id?: number }) {
+  const formRef = useRef<HTMLFormElement>(null);
   const {
     control,
     currencies,
@@ -36,8 +38,32 @@ export default function ShipmentForm({ id }: { id?: number }) {
 
   return (
     <>
-      <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
-        <div className={styles.formSection}>
+      <div className={styles.formHeader}>
+        <h2>{tS('title')}</h2>
+        <div className={styles.formActions}>
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
+            {tB('cancel')}
+          </button>
+          <button
+            type="button"
+            className={styles.saveButton}
+            onClick={() => formRef.current?.requestSubmit()}
+          >
+            {isEditMode ? tB('save') : tB('add')}
+          </button>
+        </div>
+      </div>
+
+      <div className={styles.formSection}>
+        <form
+          ref={formRef}
+          className={styles.form}
+          onSubmit={handleSubmit(submitHandler)}
+        >
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
               <label className={styles.required} htmlFor="alias">
@@ -100,35 +126,23 @@ export default function ShipmentForm({ id }: { id?: number }) {
               />
             </div>
           </div>
+        </form>
+      </div>
+      <div className={styles.formSection}>
+        <div className={styles.formTab}>
+          <ShipmentTabs
+            currencies={currencies}
+            tS={tS}
+            tB={tB}
+            fileDataArray={fileDataArray}
+            invoices={invoiceArray}
+            setFileDataArray={setFileDataArray}
+            isEditMode={isEditMode}
+            originalFiles={originalFiles}
+            setIsFilesChanged={setIsFilesChanged}
+            vendors={vendors}
+          />
         </div>
-
-        <div className={styles.formActions}>
-          <button
-            type="button"
-            className={styles.cancelButton}
-            onClick={handleCancel}
-          >
-            {tB('cancel')}
-          </button>
-          <button type="submit" className={styles.saveButton}>
-            {isEditMode ? tB('save') : tB('add')}
-          </button>
-        </div>
-      </form>
-
-      <div className={styles.formTab}>
-        <ShipmentTabs
-          currencies={currencies}
-          tS={tS}
-          tB={tB}
-          fileDataArray={fileDataArray}
-          invoices={invoiceArray}
-          setFileDataArray={setFileDataArray}
-          isEditMode={isEditMode}
-          originalFiles={originalFiles}
-          setIsFilesChanged={setIsFilesChanged}
-          vendors={vendors}
-        />
       </div>
 
       <Snackbar
