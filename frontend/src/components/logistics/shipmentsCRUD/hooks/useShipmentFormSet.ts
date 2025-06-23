@@ -4,10 +4,21 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'use-intl';
 import { useAuth } from '@/context/auth';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
-// import { ArrToObjById } from '@/utils/helper';
 import { arrayToIdValueMap } from '@/utils/helper';
+import { FileData } from '@/components/controls/file-uploader/FileUploader';
+import { InvoiceDTO } from '@/api/types';
+
+export type ShipmentFormValues = {
+  alias: string;
+  status: 'APPLIED' | 'DECLARED' | 'ARRIVED';
+  declaration_number?: string;
+  declaration_date?: Date;
+  files?: Array<FileData>;
+  invoices?: Array<InvoiceDTO>;
+};
 
 export function useShipmentFormSet(id?: number) {
   const router = useRouter();
@@ -16,9 +27,7 @@ export function useShipmentFormSet(id?: number) {
   const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
-
-  //   const currenciesObj = ArrToObjById(currencies, 'id', 'code');
-  //   const vendorsObj = ArrToObjById(vendors, 'id', 'alias');
+  const formMethods = useForm<ShipmentFormValues>();
 
   const currenciesObj = arrayToIdValueMap(currencies, 'code');
   const vendorsObj = arrayToIdValueMap(vendors, 'alias');
@@ -39,6 +48,11 @@ export function useShipmentFormSet(id?: number) {
     )
       return;
   }, [id, authLoading, currenciesLoading, dbUserId]);
+
+  const submitGenInfo = (data: ShipmentFormValues) => {
+    console.log(data);
+  };
+
   const handleCancel = () => {
     router.push('/shipments');
   };
@@ -46,6 +60,9 @@ export function useShipmentFormSet(id?: number) {
   return {
     handleCancel,
     loading,
+    FormProvider,
+    formMethods,
+    submitGenInfo,
     tS,
   };
 }

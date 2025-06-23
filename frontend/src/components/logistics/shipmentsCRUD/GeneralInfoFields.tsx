@@ -30,6 +30,26 @@ const GeneralInfoFields = ({ tS }: Props) => {
               : ''}
           </p>
         </div>
+        <div className={styles.formGroup}>
+          <label className={styles.required} htmlFor="status">
+            {tS('form.status_label')}
+          </label>
+          <select
+            id="status"
+            className={styles.input}
+            {...register('status', { required: 'Status is required' })}
+          >
+            <option value="">Select status</option>
+            <option value="APPLIED">Applied</option>
+            <option value="DECLARED">Declared</option>
+            <option value="ARRIVED">Arrived</option>
+          </select>
+          <p className={styles.errorText}>
+            {typeof errors.status?.message === 'string'
+              ? errors.status.message
+              : ''}
+          </p>
+        </div>
       </div>
     </>
   );
