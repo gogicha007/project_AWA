@@ -1,6 +1,7 @@
 import styles from './shipment-form.module.css';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
+import DateInput from '@/components/controls/date-input/date-input';
 
 type Props = {
   tS: (key: string) => string;
@@ -8,6 +9,7 @@ type Props = {
 
 const GeneralInfoFields = ({ tS }: Props) => {
   const {
+    control,
     register,
     formState: { errors },
   } = useFormContext();
@@ -49,6 +51,37 @@ const GeneralInfoFields = ({ tS }: Props) => {
               ? errors.status.message
               : ''}
           </p>
+        </div>
+      </div>
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
+          <label htmlFor="declaration_number">
+            {tS('form.declaration_number_label')}
+          </label>
+          <input
+            id="declaration_number"
+            className={styles.input}
+            {...register('declaration_number')}
+            type="text"
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <DateInput
+            label={tS('form.declaration_date_label')}
+            name="declaration_date"
+            control={control}
+            rules={{
+              validate: (value, formValues) => {
+                if (
+                  formValues?.declaration_number &&
+                  (!value || value === '')
+                ) {
+                  return `${tS('errors.declaration_date_required')}`;
+                }
+                return true;
+              },
+            }}
+          />
         </div>
       </div>
     </>

@@ -8,13 +8,41 @@ import Loader from '@/components/feedback/loader/loader';
 
 export const ShipmentFormSet = () => {
   const genInfoFormRef = useRef<HTMLFormElement>(null);
-  const { loading, FormProvider, formMethods, submitGenInfo, tS } =
-    useShipmentFormSet();
+  const {
+    handleCancel,
+    isEditMode,
+    loading,
+    FormProvider,
+    formMethods,
+    submitGenInfo,
+    tB,
+    tS,
+  } = useShipmentFormSet();
 
   if (loading) return <Loader />;
 
   return (
     <div className={styles.formContainer}>
+      <div className={styles.formHeader}>
+        <h2>{tS('title')}</h2>
+        <div className={styles.formActions}>
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
+            {tB('cancel')}
+          </button>
+          <button
+            type="button"
+            // disabled={disableSubmitBtn}
+            className={styles.saveButton}
+            onClick={() => genInfoFormRef.current?.requestSubmit()}
+          >
+            {isEditMode ? tS('actions.edit') : tS('actions.add')}
+          </button>
+        </div>
+      </div>
       <FormProvider {...formMethods}>
         <div className={styles.formSection}>
           <form

@@ -22,12 +22,14 @@ export type ShipmentFormValues = {
 
 export function useShipmentFormSet(id?: number) {
   const router = useRouter();
+  const tB = useTranslations('Buttons');
   const tS = useTranslations('Logistics');
   const { dbUserId, loading: authLoading } = useAuth();
   const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
   const formMethods = useForm<ShipmentFormValues>();
+  const isEditMode = !!id;
 
   const currenciesObj = arrayToIdValueMap(currencies, 'code');
   const vendorsObj = arrayToIdValueMap(vendors, 'alias');
@@ -59,10 +61,12 @@ export function useShipmentFormSet(id?: number) {
 
   return {
     handleCancel,
+    isEditMode,
     loading,
     FormProvider,
     formMethods,
     submitGenInfo,
+    tB,
     tS,
   };
 }
