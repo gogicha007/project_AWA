@@ -28,7 +28,19 @@ export function useShipmentFormSet(id?: number) {
   const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
-  const formMethods = useForm<ShipmentFormValues>();
+  const formMethods = useForm<ShipmentFormValues>({
+    defaultValues: {
+      alias: '',
+      status: undefined,
+      declaration_number: '',
+      declaration_date: undefined,
+      files:[],
+      invoices: [],
+    },
+  });
+  const { watch } = formMethods;
+  const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
+  const [shipmentId, setShipmentId] = useState(id);
   const isEditMode = !!id;
 
   const currenciesObj = arrayToIdValueMap(currencies, 'code');
@@ -39,6 +51,13 @@ export function useShipmentFormSet(id?: number) {
   useEffect(() => {
     setLoading(currenciesLoading || vendorsLoading || authLoading);
   }, [currenciesLoading, vendorsLoading, authLoading]);
+
+  useEffect(() => {
+    const subscription = watch((values) => {
+      setDisableSubmitBtn(!(values.alias && values.status));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   useEffect(() => {
     if (
@@ -53,6 +72,7 @@ export function useShipmentFormSet(id?: number) {
 
   const submitGenInfo = (data: ShipmentFormValues) => {
     console.log(data);
+    setShipmentId(1);
   };
 
   const handleCancel = () => {
@@ -60,11 +80,13 @@ export function useShipmentFormSet(id?: number) {
   };
 
   return {
+    disableSubmitBtn,
     handleCancel,
     isEditMode,
     loading,
     FormProvider,
     formMethods,
+    shipmentId,
     submitGenInfo,
     tB,
     tS,

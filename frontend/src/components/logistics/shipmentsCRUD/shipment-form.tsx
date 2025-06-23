@@ -130,6 +130,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </div>
         </form>
       </div>
+      
       <div className={styles.formSection}>
         <div className={styles.formTab}>
           <ShipmentTabs

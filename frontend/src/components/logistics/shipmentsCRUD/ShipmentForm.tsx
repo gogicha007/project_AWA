@@ -2,13 +2,16 @@
 
 import styles from './shipment-form.module.css';
 import React, { useRef } from 'react';
-import GeneralInfoFields from './GeneralInfoFields';
 import { useShipmentFormSet } from './hooks/useShipmentFormSet';
 import Loader from '@/components/feedback/loader/loader';
+import GeneralInfoFields from './GeneralInfoFields';
+// import ShipmentTabs from './shipment-tabs';
+
 
 export const ShipmentFormSet = () => {
   const genInfoFormRef = useRef<HTMLFormElement>(null);
   const {
+    disableSubmitBtn,
     handleCancel,
     isEditMode,
     loading,
@@ -35,7 +38,7 @@ export const ShipmentFormSet = () => {
           </button>
           <button
             type="button"
-            // disabled={disableSubmitBtn}
+            disabled={disableSubmitBtn}
             className={styles.saveButton}
             onClick={() => genInfoFormRef.current?.requestSubmit()}
           >
@@ -52,6 +55,9 @@ export const ShipmentFormSet = () => {
           >
             <GeneralInfoFields tS={tS} />
           </form>
+        </div>
+        <div className={styles.formSection}>
+
         </div>
       </FormProvider>
     </div>
