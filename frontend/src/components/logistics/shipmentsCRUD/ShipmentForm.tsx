@@ -5,18 +5,21 @@ import React, { useRef } from 'react';
 import { useShipmentFormSet } from './hooks/useShipmentFormSet';
 import Loader from '@/components/feedback/loader/loader';
 import GeneralInfoFields from './GeneralInfoFields';
-// import ShipmentTabs from './shipment-tabs';
-
+import ShipmentTabs from './shipment-tabs';
 
 export const ShipmentFormSet = () => {
   const genInfoFormRef = useRef<HTMLFormElement>(null);
   const {
+    auxData,
     disableSubmitBtn,
+    fileDataArray,
+    setFileDataArray,
     handleCancel,
     isEditMode,
     loading,
     FormProvider,
     formMethods,
+    shipmentId,
     submitGenInfo,
     tB,
     tS,
@@ -57,7 +60,15 @@ export const ShipmentFormSet = () => {
           </form>
         </div>
         <div className={styles.formSection}>
-
+          <ShipmentTabs
+            auxData={auxData}
+            disabled={!!!shipmentId}
+            fileDataArray={fileDataArray}
+            setFileDataArray={setFileDataArray}
+            invoices={[]}
+            tS={tS}
+            tB={tB}
+          />
         </div>
       </FormProvider>
     </div>

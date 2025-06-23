@@ -205,7 +205,8 @@
       "files_label": "Select files",
       "selected_files": "Attached files",
       "create_shipment": "Create shipment",
-      "save_shipment": "Save shipment"
+      "save_shipment": "Save shipment",
+      "file_too_large": "File size must be less than 5 mb"
     },
     "errors": {
       "declaration_date_required": "Declaration date is required if declaration number is entered",

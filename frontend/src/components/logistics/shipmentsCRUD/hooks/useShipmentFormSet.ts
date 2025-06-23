@@ -8,7 +8,8 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import { arrayToIdValueMap } from '@/utils/helper';
-import { FileData } from '@/components/controls/file-uploader/FileUploader';
+// import { FileData } from '@/components/controls/file-uploader/FileUploader';
+import { FileData } from '@/components/controls/file-input/FileInput';
 import { InvoiceDTO } from '@/api/types';
 
 export type ShipmentFormValues = {
@@ -28,13 +29,14 @@ export function useShipmentFormSet(id?: number) {
   const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
+  const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const formMethods = useForm<ShipmentFormValues>({
     defaultValues: {
       alias: '',
       status: undefined,
       declaration_number: '',
       declaration_date: undefined,
-      files:[],
+      files: [],
       invoices: [],
     },
   });
@@ -68,6 +70,7 @@ export function useShipmentFormSet(id?: number) {
       vendorsLoading
     )
       return;
+    setFileDataArray([])
   }, [id, authLoading, currenciesLoading, dbUserId]);
 
   const submitGenInfo = (data: ShipmentFormValues) => {
@@ -80,12 +83,15 @@ export function useShipmentFormSet(id?: number) {
   };
 
   return {
+    auxData: { currencies, vendors },
     disableSubmitBtn,
+    fileDataArray,
     handleCancel,
     isEditMode,
     loading,
     FormProvider,
     formMethods,
+    setFileDataArray,
     shipmentId,
     submitGenInfo,
     tB,

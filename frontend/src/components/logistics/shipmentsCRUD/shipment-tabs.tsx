@@ -1,35 +1,40 @@
 import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
-import FileUploader from '@/components/controls/file-uploader/FileUploader';
+// import FileUploader from '@/components/controls/file-uploader/FileUploader';
 import InvoiceTable from '@/components/purchases/invoices/invoice-table';
 import FreightTable from '@/components/purchases/freights/freight-table';
-import { FileData } from '@/components/controls/file-uploader/FileUploader';
+// import { FileData } from '@/components/controls/file-uploader/FileUploader';
+import { FileData } from '@/components/controls/file-input/FileInput';
 import { CurrencyDTO, InvoiceDTO, VendorDTO } from '@/api/types';
+import FileInput from '@/components/controls/file-input/FileInput';
 
 interface ShipmentTabsProps {
-  currencies: Partial<CurrencyDTO>[];
-  tS: (key: string) => string;
-  tB: (key: string) => string;
+  auxData: {
+    currencies: Partial<CurrencyDTO>[];
+    vendors: Partial<VendorDTO>[];
+  };
+  disabled: boolean;
   invoices: InvoiceDTO[];
   fileDataArray: FileData[];
   setFileDataArray: (files: FileData[]) => void;
-  isEditMode: boolean;
-  originalFiles: FileData[];
-  setIsFilesChanged: (changed: boolean) => void;
-  vendors: Partial<VendorDTO>[];
+  // isEditMode: boolean;
+  // originalFiles: FileData[];
+  // setIsFilesChanged: (changed: boolean) => void;
+  tS: (key: string) => string;
+  tB: (key: string) => string;
 }
 
 export default function ShipmentTabs({
-  currencies,
+  auxData,
+  disabled,
   invoices,
-  tS,
-  tB,
   fileDataArray,
   setFileDataArray,
-  isEditMode,
-  originalFiles,
-  setIsFilesChanged,
-  vendors,
+  // isEditMode,
+  // originalFiles,
+  // setIsFilesChanged,
+  tS,
+  tB,
 }: ShipmentTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -42,6 +47,7 @@ export default function ShipmentTabs({
           <button
             key={tab}
             className={`${styles.tab} ${activeTab === index ? styles.tabActive : ''}`}
+            disabled={disabled}
             onClick={() => setActiveTab(index)}
           >
             {tab}
@@ -50,7 +56,7 @@ export default function ShipmentTabs({
       </div>
 
       <div className={styles.tabPanel}>
-        {activeTab === 0 && (
+        {/* {activeTab === 0 && (
           <FileUploader
             tS={tS}
             fileDataArray={fileDataArray}
@@ -59,12 +65,20 @@ export default function ShipmentTabs({
             originalFiles={originalFiles}
             setIsFilesChanged={setIsFilesChanged}
           />
+        )} */}
+        {activeTab === 0 && (
+          <FileInput
+            disabled={disabled}
+            fileDataArray={fileDataArray}
+            setFileDataArray={setFileDataArray}
+            tS={tS}
+          />
         )}
         {activeTab === 1 && (
           <InvoiceTable
             invoices={invoices}
-            currencies={currencies}
-            vendors={vendors}
+            currencies={auxData.currencies}
+            vendors={auxData.vendors}
             tB={tB}
           />
         )}

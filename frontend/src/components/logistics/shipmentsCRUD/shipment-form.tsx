@@ -23,10 +23,10 @@ export default function ShipmentForm({ id }: { id?: number }) {
     invoiceArray,
     isEditMode,
     loading,
-    originalFiles,
+    // originalFiles,
     register,
     setFileDataArray,
-    setIsFilesChanged,
+    // setIsFilesChanged,
     snackbarOpen,
     snackbarMessage,
     submitHandler,
@@ -130,20 +130,20 @@ export default function ShipmentForm({ id }: { id?: number }) {
           </div>
         </form>
       </div>
-      
+
       <div className={styles.formSection}>
         <div className={styles.formTab}>
           <ShipmentTabs
-            currencies={currencies}
+            auxData={{ currencies, vendors }}
+            disabled={false}
             tS={tS}
             tB={tB}
             fileDataArray={fileDataArray}
             invoices={invoiceArray}
             setFileDataArray={setFileDataArray}
-            isEditMode={isEditMode}
-            originalFiles={originalFiles}
-            setIsFilesChanged={setIsFilesChanged}
-            vendors={vendors}
+            // isEditMode={isEditMode}
+            // originalFiles={originalFiles}
+            // setIsFilesChanged={setIsFilesChanged}
           />
         </div>
       </div>
