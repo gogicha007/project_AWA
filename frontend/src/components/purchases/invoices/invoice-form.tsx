@@ -34,7 +34,7 @@ export default function InvoiceDialog({
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
-  console.log(auxData.currencies);
+  // console.log(auxData.currencies);
   const { control, handleSubmit, register } = useForm<FormValues>({
     defaultValues: {
       invoiceNumber: initialData?.invoiceNumber || '',

@@ -38,7 +38,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
   if (loading) return <Loader />;
 
   return (
-    <>
+    <div className={styles.formContainer}>
       <div className={styles.formHeader}>
         <h2>{tS('title')}</h2>
         <div className={styles.formActions}>
@@ -153,6 +153,6 @@ export default function ShipmentForm({ id }: { id?: number }) {
         onClose={handleSnackbarClose}
         duration={5000}
       />
-    </>
+    </div>
   );
 }
