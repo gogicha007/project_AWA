@@ -197,7 +197,8 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   isArrived: 'isArrived',
   userId: 'userId',
   createdAt: 'createdAt',
-  currencyId: 'currencyId'
+  currencyId: 'currencyId',
+  shipmentId: 'shipmentId'
 };
 
 exports.Prisma.InvoiceItemScalarFieldEnum = {
@@ -209,11 +210,6 @@ exports.Prisma.InvoiceItemScalarFieldEnum = {
   unitId: 'unitId',
   unitPrice: 'unitPrice',
   total: 'total'
-};
-
-exports.Prisma.ShipmentInvoiceScalarFieldEnum = {
-  shipmentId: 'shipmentId',
-  invoiceId: 'invoiceId'
 };
 
 exports.Prisma.FreightScalarFieldEnum = {
@@ -266,7 +262,6 @@ exports.Prisma.ModelName = {
   ShipmentFile: 'ShipmentFile',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
-  ShipmentInvoice: 'ShipmentInvoice',
   Freight: 'Freight',
   FreightInvoice: 'FreightInvoice'
 };

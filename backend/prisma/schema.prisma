@@ -103,17 +103,17 @@ enum ShipmentStatus {
 }
 
 model Shipment {
-  id                 Int               @id @default(autoincrement())
-  alias              String            @unique
+  id                 Int            @id @default(autoincrement())
+  alias              String         @unique
   status             ShipmentStatus
-  declaration_number String?           @map("declaration_number")
-  declaration_date   DateTime?         @map("declaration_date")
-  user               User              @relation(fields: [userId], references: [id])
-  userId             Int               @map("user_id")
-  createdAt          DateTime          @default(now()) @map("created_at")
+  declaration_number String?        @map("declaration_number")
+  declaration_date   DateTime?      @map("declaration_date")
+  user               User           @relation(fields: [userId], references: [id])
+  userId             Int            @map("user_id")
+  createdAt          DateTime       @default(now()) @map("created_at")
   Files              ShipmentFile[]
   Freights           Freight[]
-  Invoices           ShipmentInvoice[]
+  Invoices           Invoice[]
 
   @@map("shipment")
 }
@@ -130,20 +130,21 @@ model ShipmentFile {
 }
 
 model Invoice {
-  id            Int               @id @default(autoincrement())
-  vendor        Vendor            @relation(fields: [vendorId], references: [id])
-  vendorId      Int               @map("vendor_id")
-  invoiceNumber String            @map("invoice_number")
-  invoiceDate   DateTime          @map("invoice_date")
-  totalAmount   Decimal           @map("total_amount")
-  isArrived     Boolean           @default(false) @map("is_arrived")
-  user          User              @relation(fields: [userId], references: [id])
-  userId        Int               @map("user_id")
-  createdAt     DateTime          @default(now()) @map("created_at")
-  currency      Currency          @relation(fields: [currencyId], references: [id])
-  currencyId    Int               @map("currency_id")
+  id            Int              @id @default(autoincrement())
+  vendor        Vendor           @relation(fields: [vendorId], references: [id])
+  vendorId      Int              @map("vendor_id")
+  invoiceNumber String           @map("invoice_number")
+  invoiceDate   DateTime         @map("invoice_date")
+  totalAmount   Decimal          @map("total_amount")
+  isArrived     Boolean          @default(false) @map("is_arrived")
+  user          User             @relation(fields: [userId], references: [id])
+  userId        Int              @map("user_id")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  currency      Currency         @relation(fields: [currencyId], references: [id])
+  currencyId    Int              @map("currency_id")
+  shipment      Shipment         @relation(fields: [shipmentId], references: [id])
+  shipmentId    Int              @map("shipment_id")
   Items         InvoiceItem[]
-  Shipments     ShipmentInvoice[]
   Freights      FreightInvoice[]
 
   @@map("invoice")
@@ -165,15 +166,15 @@ model InvoiceItem {
   @@map("invoice_item")
 }
 
-model ShipmentInvoice {
-  shipment   Shipment @relation(fields: [shipmentId], references: [id])
-  shipmentId Int      @map("shipment_id")
-  invoice    Invoice  @relation(fields: [invoiceId], references: [id])
-  invoiceId  Int      @map("invoice_id")
+// model ShipmentInvoice {
+//   shipment   Shipment @relation(fields: [shipmentId], references: [id])
+//   shipmentId Int      @map("shipment_id")
+//   invoice    Invoice  @relation(fields: [invoiceId], references: [id])
+//   invoiceId  Int      @map("invoice_id")
 
-  @@id([shipmentId, invoiceId])
-  @@map("shipment_invoice")
-}
+//   @@id([shipmentId, invoiceId])
+//   @@map("shipment_invoice")
+// }
 
 model Freight {
   id          Int              @id @default(autoincrement())

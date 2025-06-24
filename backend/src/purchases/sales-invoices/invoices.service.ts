@@ -23,6 +23,7 @@ export class InvoicesService {
       invoiceDate,
       totalAmount,
       currencyId,
+      shipmentId,
       isArrived,
       userId,
     } = createInvoiceDTO;
@@ -35,6 +36,7 @@ export class InvoicesService {
           totalAmount,
           currencyId,
           isArrived,
+          shipmentId,
           userId,
         },
       });

@@ -40,6 +40,11 @@ export class CreateInvoiceDTO {
 
   @ApiProperty()
   @IsInt()
+  @IsOptional()
+  shipmentId: number;
+
+  @ApiProperty()
+  @IsInt()
   @IsNotEmpty()
   userId: number;
 }
