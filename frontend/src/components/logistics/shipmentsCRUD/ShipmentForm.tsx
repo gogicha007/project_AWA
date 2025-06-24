@@ -14,18 +14,18 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
     auxData,
     disableSubmitBtn,
     fileDataArray,
-    setFileDataArray,
     handleCancel,
     handleEditSubmit,
+    handleGenInfoSubmit,
     handleSnackbarClose,
-    // isEditMode,
+    isDirty,
     loading,
     FormProvider,
     formMethods,
+    setFileDataArray,
     shipmentId,
     snackbarOpen,
     snackbarStatus,
-    submitGenInfo,
     tB,
     tS,
   } = useShipmentFormSet(id);
@@ -42,7 +42,7 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
             className={styles.cancelButton}
             onClick={handleCancel}
           >
-            {tB('cancel')}
+            {isDirty ? tB('cancel') : tS('actions.go_to_list')}
           </button>
           <button
             type="button"
@@ -60,7 +60,7 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
             ref={genInfoFormRef}
             className={styles.form}
             onSubmit={formMethods.handleSubmit(
-              !!shipmentId ? handleEditSubmit : submitGenInfo
+              !!shipmentId ? handleEditSubmit : handleGenInfoSubmit
             )}
           >
             <GeneralInfoFields tS={tS} />

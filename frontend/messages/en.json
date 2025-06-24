@@ -224,7 +224,8 @@
       "add": "Create shipment",
       "edit": "Save changes",
       "delete": "Delete",
-      "view": "View"
+      "view": "View",
+      "go_to_list": "Back to list"
     }
   },
   "Warehouse": {
