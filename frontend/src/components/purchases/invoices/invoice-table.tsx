@@ -14,17 +14,18 @@ import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 
 type InvoiceTableProps = {
-  invoices?: InvoiceDTO[];
+  invoiceArray: InvoiceDTO[];
   currencies: Partial<CurrencyDTO>[];
   vendors: Partial<VendorDTO>[];
   onView?: (id: number) => void;
   onEdit?: (id: number) => void;
   onDelete?: (id: number) => void;
   onAdd?: () => void;
+  setInvoiceArray: (invoices: InvoiceDTO[]) => void;
   tB: (key: string) => string;
 };
 
-const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, currencies, vendors, tB }) => {
+const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoiceArray, setInvoiceArray, currencies, vendors, tB }) => {
   const tI = useTranslations('Invoices');
   const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
   const {
@@ -34,9 +35,9 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoices, currencies, vendo
     handleAddToArray,
     handleAdd,
     handleEdit,
-  } = useInvoiceTableLogic(invoices, tI);
+  } = useInvoiceTableLogic(invoiceArray, setInvoiceArray, tI);
   const table = useReactTable({
-    data: invoices ?? [],
+    data: invoiceArray ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

@@ -14,8 +14,9 @@ interface ShipmentTabsProps {
     vendors: Partial<VendorDTO>[];
   };
   disabled: boolean;
-  invoices: InvoiceDTO[];
+  invoiceArray: InvoiceDTO[];
   fileDataArray: FileData[];
+  setInvoiceArray: (invoices: InvoiceDTO[]) => void;
   setFileDataArray: (files: FileData[]) => void;
   // isEditMode: boolean;
   // originalFiles: FileData[];
@@ -27,9 +28,10 @@ interface ShipmentTabsProps {
 export default function ShipmentTabs({
   auxData,
   disabled,
-  invoices,
+  invoiceArray,
   fileDataArray,
   setFileDataArray,
+  setInvoiceArray,
   // isEditMode,
   // originalFiles,
   // setIsFilesChanged,
@@ -76,7 +78,8 @@ export default function ShipmentTabs({
         )}
         {activeTab === 1 && (
           <InvoiceTable
-            invoices={invoices}
+            invoiceArray={invoiceArray}
+            setInvoiceArray={setInvoiceArray}
             currencies={auxData.currencies}
             vendors={auxData.vendors}
             tB={tB}

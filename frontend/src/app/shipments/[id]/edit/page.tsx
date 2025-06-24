@@ -3,7 +3,8 @@
 import styles from '../../page.module.css';
 import React from 'react';
 import { useParams } from 'next/navigation';
-import ShipmentForm from '@/components/logistics/shipmentsCRUD/shipment-form';
+// import ShipmentForm from '@/components/logistics/shipmentsCRUD/shipment-form';
+import { ShipmentFormSet } from '@/components/logistics/shipmentsCRUD/ShipmentForm';
 
 const EditShipment = () => {
   const params = useParams();
@@ -12,7 +13,8 @@ const EditShipment = () => {
   return (
     <section>
       <div className={styles.logistics__main}>
-        <ShipmentForm id={+shipmentId} />
+        {/* <ShipmentForm id={+shipmentId} /> */}
+        <ShipmentFormSet id={+shipmentId}/>
       </div>
     </section>
   );

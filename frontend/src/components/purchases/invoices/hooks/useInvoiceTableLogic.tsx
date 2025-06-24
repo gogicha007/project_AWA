@@ -22,7 +22,8 @@ type UseInvoiceTableOptions = {
 
 export function useInvoiceTableLogic(
   initialInvoices: InvoiceDTO[] = [],
-  tVar: (key: string)=> string,
+  setInvoiceArray: (invoices: InvoiceDTO[]) => void,
+  tVar: (key: string) => string,
   options: UseInvoiceTableOptions = {}
 ) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -38,7 +39,11 @@ export function useInvoiceTableLogic(
   );
 
   const handleAddToArray = (invoice: InvoiceDTO) => {
-    setInvoices((prev) => [...prev, invoice]);
+    setInvoices((prev) => {
+      const updated = [...prev, invoice];
+      setInvoiceArray(updated);
+      return updated;
+    });
   };
 
   const handleAdd = () => {

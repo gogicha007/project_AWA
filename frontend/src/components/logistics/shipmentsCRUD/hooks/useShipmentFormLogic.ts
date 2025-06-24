@@ -226,6 +226,7 @@ export function useShipmentFormLogic(id?: number) {
     originalFiles,
     register,
     setFileDataArray,
+    setInvoiceArray,
     setIsFilesChanged,
     snackbarOpen,
     snackbarStatus,

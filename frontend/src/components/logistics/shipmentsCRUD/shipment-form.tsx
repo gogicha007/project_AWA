@@ -26,6 +26,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
     // originalFiles,
     register,
     setFileDataArray,
+    setInvoiceArray,
     // setIsFilesChanged,
     snackbarOpen,
     snackbarStatus,
@@ -139,8 +140,9 @@ export default function ShipmentForm({ id }: { id?: number }) {
             tS={tS}
             tB={tB}
             fileDataArray={fileDataArray}
-            invoices={invoiceArray}
+            invoiceArray={invoiceArray}
             setFileDataArray={setFileDataArray}
+            setInvoiceArray={setInvoiceArray}
             // isEditMode={isEditMode}
             // originalFiles={originalFiles}
             // setIsFilesChanged={setIsFilesChanged}

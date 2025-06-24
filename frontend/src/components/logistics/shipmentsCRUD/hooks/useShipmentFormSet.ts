@@ -7,7 +7,7 @@ import { useAuth } from '@/context/auth';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
-import { arrayToIdValueMap } from '@/utils/helper';
+// import { arrayToIdValueMap } from '@/utils/helper';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { InvoiceDTO } from '@/api/types';
@@ -15,7 +15,7 @@ import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 
 export type ShipmentFormValues = {
   alias: string;
-  status: 'APPLIED' | 'DECLARED' | 'ARRIVED';
+  status: '' | 'APPLIED' | 'DECLARED' | 'ARRIVED';
   declaration_number?: string;
   declaration_date?: Date;
   files?: Array<FileData>;
@@ -31,20 +31,22 @@ export function useShipmentFormSet(id?: number) {
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+  const [invoiceArray, setInvoiceArray] = useState<InvoiceDTO[]>([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState<{
     message: string;
     success: boolean;
   }>({ message: '', success: false });
+  const defaultValues = {
+    alias: '',
+    status: '' as '' | 'APPLIED' | 'DECLARED' | 'ARRIVED',
+    declaration_number: '',
+    declaration_date: undefined,
+    files: [],
+    invoices: [],
+  };
   const formMethods = useForm<ShipmentFormValues>({
-    defaultValues: {
-      alias: '',
-      status: undefined,
-      declaration_number: '',
-      declaration_date: undefined,
-      files: [],
-      invoices: [],
-    },
+    defaultValues,
   });
   const {
     watch,
@@ -55,9 +57,8 @@ export function useShipmentFormSet(id?: number) {
   const [shipmentId, setShipmentId] = useState(id);
   const isEditMode = !!id;
 
-  const currenciesObj = arrayToIdValueMap(currencies, 'code');
-  const vendorsObj = arrayToIdValueMap(vendors, 'alias');
-  console.log(currenciesObj, vendorsObj);
+  // const currenciesObj = arrayToIdValueMap(currencies, 'code');
+  // const vendorsObj = arrayToIdValueMap(vendors, 'alias');
 
   useEffect(() => {
     setLoading(
@@ -66,7 +67,7 @@ export function useShipmentFormSet(id?: number) {
   }, [currenciesLoading, vendorsLoading, authLoading, isSubmitting]);
 
   useEffect(() => {
-    setDisableSubmitBtn((isDirty && !!shipmentId))
+    setDisableSubmitBtn(!(isDirty && !!shipmentId));
     console.log('is dirty', isDirty, shipmentId);
   }, [isDirty, shipmentId]);
 
@@ -86,8 +87,35 @@ export function useShipmentFormSet(id?: number) {
       vendorsLoading
     )
       return;
-    setFileDataArray([]);
-  }, [id, authLoading, currenciesLoading, dbUserId]);
+
+    setShipmentId(id);
+    setLoading(true);
+    const fetchShipment = async () => {
+      try {
+        const shipment = await shipmentApi.getById(id);
+
+        reset({
+          alias: shipment.alias,
+          status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
+          declaration_number: shipment.declaration_number || '',
+          declaration_date: shipment.declaration_date
+            ? typeof shipment.declaration_date === 'string'
+              ? new Date(shipment.declaration_date)
+              : shipment.declaration_date
+            : undefined,
+          files: shipment.Files,
+          invoices: shipment.Invoices,
+        });
+        setFileDataArray(shipment.Files || []);
+        setInvoiceArray(shipment.Invoices || []);
+      } catch (error) {
+        console.error('Failed to fetch shipment:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchShipment();
+  }, [id, reset, authLoading, vendorsLoading, currenciesLoading, dbUserId]);
 
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
     try {
@@ -149,12 +177,14 @@ export function useShipmentFormSet(id?: number) {
     handleCancel,
     handleEditSubmit,
     handleSnackbarClose,
+    invoiceArray,
     isDirty,
     isEditMode,
     loading,
     FormProvider,
     formMethods,
     setFileDataArray,
+    setInvoiceArray,
     shipmentId,
     snackbarOpen,
     snackbarStatus,

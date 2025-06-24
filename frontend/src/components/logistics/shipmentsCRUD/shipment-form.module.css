@@ -75,6 +75,7 @@
 }
 
 .cancelButton {
+  width: 120px;
   padding: 8px 16px;
   border-radius: 4px;
   border: 1px solid #e5e7eb;
@@ -91,6 +92,7 @@
 }
 
 .saveButton {
+  width: 140px;
   padding: 8px 16px;
   border-radius: 4px;
   border: none;
