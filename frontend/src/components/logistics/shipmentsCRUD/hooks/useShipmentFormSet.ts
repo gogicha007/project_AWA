@@ -91,6 +91,10 @@ export function useShipmentFormSet(id?: number) {
     setSnackbarOpen(!!id);
   };
 
+  const handleEditSubmit = (data: ShipmentFormValues) => {
+    console.log('submit edited', data)
+  }
+
   const handleCancel = () => {
     router.push('/shipments');
   };
@@ -104,6 +108,7 @@ export function useShipmentFormSet(id?: number) {
     disableSubmitBtn,
     fileDataArray,
     handleCancel,
+    handleEditSubmit,
     handleSnackbarClose,
     isEditMode,
     loading,

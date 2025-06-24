@@ -8,7 +8,7 @@ import Snackbar from '@/components/feedback/snackbar/snackbar';
 import GeneralInfoFields from './GeneralInfoFields';
 import ShipmentTabs from './shipment-tabs';
 
-export const ShipmentFormSet = () => {
+export const ShipmentFormSet = ({ id }: { id?: number }) => {
   const genInfoFormRef = useRef<HTMLFormElement>(null);
   const {
     auxData,
@@ -16,6 +16,7 @@ export const ShipmentFormSet = () => {
     fileDataArray,
     setFileDataArray,
     handleCancel,
+    handleEditSubmit,
     handleSnackbarClose,
     // isEditMode,
     loading,
@@ -27,7 +28,7 @@ export const ShipmentFormSet = () => {
     submitGenInfo,
     tB,
     tS,
-  } = useShipmentFormSet();
+  } = useShipmentFormSet(id);
 
   if (loading) return <Loader />;
 
@@ -58,7 +59,9 @@ export const ShipmentFormSet = () => {
           <form
             ref={genInfoFormRef}
             className={styles.form}
-            onSubmit={formMethods.handleSubmit(submitGenInfo)}
+            onSubmit={formMethods.handleSubmit(
+              !!shipmentId ? handleEditSubmit : submitGenInfo
+            )}
           >
             <GeneralInfoFields tS={tS} />
           </form>
