@@ -28,7 +28,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
     setFileDataArray,
     // setIsFilesChanged,
     snackbarOpen,
-    snackbarMessage,
+    snackbarStatus,
     submitHandler,
     tB,
     tS,
@@ -149,7 +149,7 @@ export default function ShipmentForm({ id }: { id?: number }) {
       </div>
 
       <Snackbar
-        message={snackbarMessage}
+        status={snackbarStatus}
         open={snackbarOpen}
         onClose={handleSnackbarClose}
         duration={5000}

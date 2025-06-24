@@ -33,7 +33,10 @@ export function useShipmentFormLogic(id?: number) {
   const [invoiceArray, setInvoiceArray] = useState<InvoiceDTO[]>([]);
   const [isFilesChanged, setIsFilesChanged] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarStatus, setSnackbarStatus] = useState<{
+    message: string;
+    success: boolean;
+  }>({ message: '', success: false });
   const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
   const [enableTabs, setEnableTabs] = useState<boolean>(false);
   const [shipmentId, setShipmentId] = useState(id);
@@ -187,11 +190,13 @@ export function useShipmentFormLogic(id?: number) {
 
       router.push('/shipments');
     } catch (error) {
-      setSnackbarMessage(
-        error instanceof Error
-          ? error.message
-          : 'An error occurred while saving the shipment'
-      );
+      setSnackbarStatus({
+        message:
+          error instanceof Error
+            ? error.message
+            : 'An error occurred while saving the shipment',
+        success: false,
+      });
       setSnackbarOpen(true);
     }
   };
@@ -223,7 +228,7 @@ export function useShipmentFormLogic(id?: number) {
     setFileDataArray,
     setIsFilesChanged,
     snackbarOpen,
-    snackbarMessage,
+    snackbarStatus,
     submitHandler,
     tB,
     tS,

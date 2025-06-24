@@ -4,6 +4,7 @@ import styles from './shipment-form.module.css';
 import React, { useRef } from 'react';
 import { useShipmentFormSet } from './hooks/useShipmentFormSet';
 import Loader from '@/components/feedback/loader/loader';
+import Snackbar from '@/components/feedback/snackbar/snackbar';
 import GeneralInfoFields from './GeneralInfoFields';
 import ShipmentTabs from './shipment-tabs';
 
@@ -15,11 +16,14 @@ export const ShipmentFormSet = () => {
     fileDataArray,
     setFileDataArray,
     handleCancel,
-    isEditMode,
+    handleSnackbarClose,
+    // isEditMode,
     loading,
     FormProvider,
     formMethods,
     shipmentId,
+    snackbarOpen,
+    snackbarStatus,
     submitGenInfo,
     tB,
     tS,
@@ -45,7 +49,7 @@ export const ShipmentFormSet = () => {
             className={styles.saveButton}
             onClick={() => genInfoFormRef.current?.requestSubmit()}
           >
-            {isEditMode ? tS('actions.edit') : tS('actions.add')}
+            {!!shipmentId ? tS('actions.edit') : tS('actions.add')}
           </button>
         </div>
       </div>
@@ -71,6 +75,13 @@ export const ShipmentFormSet = () => {
           />
         </div>
       </FormProvider>
+
+      <Snackbar
+        status={snackbarStatus}
+        open={snackbarOpen}
+        onClose={handleSnackbarClose}
+        duration={5000}
+      />
     </div>
   );
 };

@@ -2,13 +2,21 @@ import React from 'react';
 import styles from './snackbar.module.css';
 
 interface SnackbarProps {
-  message: string;
+  status: {
+    message: string;
+    success: boolean;
+  };
   open: boolean;
   onClose: () => void;
   duration?: number;
 }
 
-const Snackbar: React.FC<SnackbarProps> = ({ message, open, onClose, duration = 4000 }) => {
+const Snackbar: React.FC<SnackbarProps> = ({
+  status,
+  open,
+  onClose,
+  duration = 4000,
+}) => {
   React.useEffect(() => {
     if (!open) return;
     const timer = setTimeout(onClose, duration);
@@ -18,8 +26,11 @@ const Snackbar: React.FC<SnackbarProps> = ({ message, open, onClose, duration = 
   if (!open) return null;
 
   return (
-    <div className={styles.snackbar} onClick={onClose}>
-      {message}
+    <div
+      className={`${styles.snackbar} ${status.success ? styles.success : ''}`}
+      onClick={onClose}
+    >
+      {status.message}
     </div>
   );
 };

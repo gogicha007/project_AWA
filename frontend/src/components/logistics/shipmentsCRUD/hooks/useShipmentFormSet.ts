@@ -30,6 +30,11 @@ export function useShipmentFormSet(id?: number) {
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarStatus, setSnackbarStatus] = useState<{
+    message: string;
+    success: boolean;
+  }>({ message: '', success: false });
   const formMethods = useForm<ShipmentFormValues>({
     defaultValues: {
       alias: '',
@@ -40,19 +45,24 @@ export function useShipmentFormSet(id?: number) {
       invoices: [],
     },
   });
-  const { watch } = formMethods;
+  const {
+    watch,
+    formState: { isSubmitting, isSubmitSuccessful },
+  } = formMethods;
   const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
   const [shipmentId, setShipmentId] = useState(id);
   const isEditMode = !!id;
 
   const currenciesObj = arrayToIdValueMap(currencies, 'code');
   const vendorsObj = arrayToIdValueMap(vendors, 'alias');
-
+  console.log('isSubmitSuccessful', isSubmitSuccessful);
   console.log(currenciesObj, vendorsObj);
 
   useEffect(() => {
-    setLoading(currenciesLoading || vendorsLoading || authLoading);
-  }, [currenciesLoading, vendorsLoading, authLoading]);
+    setLoading(
+      currenciesLoading || vendorsLoading || authLoading || isSubmitting
+    );
+  }, [currenciesLoading, vendorsLoading, authLoading, isSubmitting]);
 
   useEffect(() => {
     const subscription = watch((values) => {
@@ -70,16 +80,23 @@ export function useShipmentFormSet(id?: number) {
       vendorsLoading
     )
       return;
-    setFileDataArray([])
+    setFileDataArray([]);
   }, [id, authLoading, currenciesLoading, dbUserId]);
 
   const submitGenInfo = (data: ShipmentFormValues) => {
     console.log(data);
-    setShipmentId(1);
+    const id = 1;
+    setShipmentId(id);
+    setSnackbarStatus({ message: 'Shipment created', success: true });
+    setSnackbarOpen(!!id);
   };
 
   const handleCancel = () => {
     router.push('/shipments');
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return {
@@ -87,12 +104,15 @@ export function useShipmentFormSet(id?: number) {
     disableSubmitBtn,
     fileDataArray,
     handleCancel,
+    handleSnackbarClose,
     isEditMode,
     loading,
     FormProvider,
     formMethods,
     setFileDataArray,
     shipmentId,
+    snackbarOpen,
+    snackbarStatus,
     submitGenInfo,
     tB,
     tS,
