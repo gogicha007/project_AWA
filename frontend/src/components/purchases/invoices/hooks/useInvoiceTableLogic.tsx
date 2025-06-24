@@ -1,35 +1,47 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { InvoiceDTO } from '@/api/types';
+import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
-import { ColumnDef } from '@tanstack/react-table';
+import { arrayToIdValueMap } from '@/utils/helper';
 
 type UseInvoiceTableOptions = {
   onEditStart?: (invoice: InvoiceDTO) => void;
 };
+type Props = {
+  auxData: {
+    currencies: Partial<CurrencyDTO>[];
+    vendors: Partial<VendorDTO>[];
+  };
+  invoiceArray: InvoiceDTO[];
+  setInvoiceArray: (invoices: InvoiceDTO[]) => void;
+  tVar: (key: string) => string;
+  options: UseInvoiceTableOptions;
+};
 
-// type InvoiceRow = {
-//   id: number;
-//   vendor: string;
-//   vendorId: number;
-//   InvoiceNumber: string;
-//   invoiceDate: Date;
-//   currency: string;
-//   currencyId: number;
-//   totalAmount: number;
-//   isArrived: boolean;
-// };
+type InvoiceRow = {
+  id: number;
+  vendor: string;
+  vendorId: number;
+  invoiceNumber: string;
+  invoiceDate: Date | string | null;
+  currency: string;
+  currencyId: number;
+  totalAmount: number;
+  isArrived: boolean;
+};
 
-export function useInvoiceTableLogic(
-  initialInvoices: InvoiceDTO[] = [],
-  setInvoiceArray: (invoices: InvoiceDTO[]) => void,
-  tVar: (key: string) => string,
-  options: UseInvoiceTableOptions = {}
-) {
+export function useInvoiceTableLogic(props: Props) {
+  const {
+    auxData: { currencies, vendors },
+    invoiceArray,
+    setInvoiceArray,
+    tVar,
+    options,
+  } = props;
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
   const [invoices, setInvoices] = useState<InvoiceDTO[]>(
-    initialInvoices.map((inv) => ({
+    invoiceArray.map((inv) => ({
       ...inv,
       invoiceDate: new Date(inv.invoiceDate),
     }))
@@ -37,7 +49,26 @@ export function useInvoiceTableLogic(
   const [selectedInvoice, setSelectedInvoice] = useState<InvoiceDTO | null>(
     null
   );
+  const currenciesObj = arrayToIdValueMap(currencies, 'code');
+  const vendorsObj = arrayToIdValueMap(vendors, 'alias');
 
+  const data: InvoiceRow[] = useMemo(
+    () =>
+      invoiceArray
+        .map((inv) => ({
+          ...inv,
+          id:
+            typeof inv.id === 'string' ? parseInt(inv.id, 10) : Number(inv.id),
+          currency: currenciesObj[inv.currencyId] ?? '',
+          vendor: vendorsObj[inv.vendorId] ?? '',
+          totalAmount: inv.totalAmount ?? 0,
+          isArrived: inv.isArrived ?? false,
+        }))
+        .sort((a, b) => a.id - b.id),
+    [currencies, vendors]
+  );
+
+  console.log(data);
   const handleAddToArray = (invoice: InvoiceDTO) => {
     setInvoices((prev) => {
       const updated = [...prev, invoice];
@@ -94,18 +125,29 @@ export function useInvoiceTableLogic(
     }
   };
 
-  const columns = useMemo<ColumnDef<InvoiceDTO>[]>(
+  const columns = useMemo(
     () => [
       { header: tVar('table.vendor'), accessorKey: 'vendor' },
       { header: tVar('table.invoice_number'), accessorKey: 'invoiceNumber' },
-      { header: tVar('table.invoice_date'), accessorKey: 'invoiceDate' },
+      {
+        header: tVar('table.invoice_date'),
+        accessorKey: 'invoiceDate',
+        cell: ({ row }: { row: { original: InvoiceRow } }) => {
+          const date = row.original.invoiceDate;
+          if (!date) return '';
+          if (typeof date === 'string')
+            return (date as string).substring(0, 10);
+          if (date instanceof Date) return date.toISOString().substring(0, 10);
+          return String(date);
+        },
+      },
       { header: tVar('table.currency'), accessorKey: 'currency' },
       { header: tVar('table.total_amount'), accessorKey: 'totalAmount' },
       { header: tVar('table.is_arrived'), accessorKey: 'isArrived' },
       {
         id: 'actions',
-        header: '',
-        cell: ({ row }) => (
+        header: tVar('actions.title'),
+        cell: ({ row }: { row: { original: InvoiceRow } }) => (
           <TableRowActions
             id={row.original.id ?? 0}
             onView={handleView}
@@ -121,6 +163,7 @@ export function useInvoiceTableLogic(
   const clearSelectedInvoice = () => setSelectedInvoice(null);
 
   return {
+    data,
     invoices,
     columns,
     selectedInvoice,

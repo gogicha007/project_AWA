@@ -78,6 +78,7 @@ export default function ShipmentTabs({
         )}
         {activeTab === 1 && (
           <InvoiceTable
+            auxData={auxData}
             invoiceArray={invoiceArray}
             setInvoiceArray={setInvoiceArray}
             currencies={auxData.currencies}

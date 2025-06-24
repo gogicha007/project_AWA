@@ -57,9 +57,6 @@ export function useShipmentFormSet(id?: number) {
   const [shipmentId, setShipmentId] = useState(id);
   const isEditMode = !!id;
 
-  // const currenciesObj = arrayToIdValueMap(currencies, 'code');
-  // const vendorsObj = arrayToIdValueMap(vendors, 'alias');
-
   useEffect(() => {
     setLoading(
       currenciesLoading || vendorsLoading || authLoading || isSubmitting

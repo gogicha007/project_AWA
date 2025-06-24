@@ -134,7 +134,7 @@ export default function MaterialNamesClient() {
         </div>
       </div>
       <Snackbar
-        message={errorMessage || ''}
+        status={{ message: errorMessage || '', success: false }}
         open={snackbarOpen}
         onClose={() => setSnackbarOpen(false)}
       />

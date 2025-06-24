@@ -14,6 +14,10 @@ import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 
 type InvoiceTableProps = {
+  auxData: {
+    currencies: Partial<CurrencyDTO>[];
+    vendors: Partial<VendorDTO>[];
+  };
   invoiceArray: InvoiceDTO[];
   currencies: Partial<CurrencyDTO>[];
   vendors: Partial<VendorDTO>[];
@@ -25,19 +29,36 @@ type InvoiceTableProps = {
   tB: (key: string) => string;
 };
 
-const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoiceArray, setInvoiceArray, currencies, vendors, tB }) => {
+const InvoiceTable: React.FC<InvoiceTableProps> = ({
+  auxData,
+  invoiceArray,
+  setInvoiceArray,
+  currencies,
+  vendors,
+  tB,
+}) => {
   const tI = useTranslations('Invoices');
   const [editInvoice, setEditInvoice] = useState<InvoiceDTO | null>(null);
   const {
+    data,
     columns,
     isDialogOpen,
     setIsDialogOpen,
     handleAddToArray,
     handleAdd,
     handleEdit,
-  } = useInvoiceTableLogic(invoiceArray, setInvoiceArray, tI);
+  } = useInvoiceTableLogic({
+    auxData,
+    invoiceArray,
+    setInvoiceArray,
+    tVar: tI,
+    options: {
+      onEditStart: undefined,
+    },
+  });
+
   const table = useReactTable({
-    data: invoiceArray ?? [],
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -96,7 +117,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ invoiceArray, setInvoiceArr
         onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}
         initialData={editInvoice || undefined}
-        auxData={{currencies, vendors}}
+        auxData={{ currencies, vendors }}
         title={editInvoice ? tB('edit') : tB('add')}
         tVar={tI}
       />

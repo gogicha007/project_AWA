@@ -186,6 +186,9 @@
         "is_arrived": "Arrived",
         "vendor_placeholder": "Select vendor..."
       }
+    },
+    "actions": {
+      "title": "Actions"
     }
   },
   "Logistics": {
