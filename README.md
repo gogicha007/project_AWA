@@ -16,9 +16,11 @@
     - if user not cached checks if requested user is in db and updates with firebase credentials.
 
 ## Backend logger
+
 logs every request, response, error to log file. limited in size 1024kb.
 
 ## Tables
+
 ### Material group
 
 - Pipe
@@ -46,3 +48,10 @@ logs every request, response, error to log file. limited in size 1024kb.
 - CI CROSS : fitting
 - CI VALVE : valve
 - CI DISMANTLING JOINT : fitting
+
+## Shipments
+
+### shipments general entry form
+
+- consists of general information section and additional information section as tabs(Files, Invoices, Freights)
+- first create shipment, then will get ability to edit gen. info as well as attach files, enter invoices and freights

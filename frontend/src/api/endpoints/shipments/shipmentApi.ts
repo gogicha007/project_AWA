@@ -31,7 +31,6 @@ export const shipmentApi = {
         shipmentCreateData
       );
       // const newShipmentId = shipmentResponse.data.id;
-
       // await shipmentFileApi.create(shipment.Files ?? [], newShipmentId);
 
       return shipmentResponse.data;

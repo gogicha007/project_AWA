@@ -49,7 +49,7 @@ export function useShipmentFormSet(id?: number) {
   const {
     watch,
     reset,
-    formState: { isDirty, isSubmitting, isSubmitSuccessful },
+    formState: { isDirty, isSubmitting },
   } = formMethods;
   const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
   const [shipmentId, setShipmentId] = useState(id);
@@ -57,7 +57,6 @@ export function useShipmentFormSet(id?: number) {
 
   const currenciesObj = arrayToIdValueMap(currencies, 'code');
   const vendorsObj = arrayToIdValueMap(vendors, 'alias');
-  console.log('isSubmitSuccessful', isSubmitSuccessful);
   console.log(currenciesObj, vendorsObj);
 
   useEffect(() => {
@@ -67,8 +66,9 @@ export function useShipmentFormSet(id?: number) {
   }, [currenciesLoading, vendorsLoading, authLoading, isSubmitting]);
 
   useEffect(() => {
-    console.log('is dirty', isDirty);
-  }, [isDirty]);
+    setDisableSubmitBtn((isDirty && !!shipmentId))
+    console.log('is dirty', isDirty, shipmentId);
+  }, [isDirty, shipmentId]);
 
   useEffect(() => {
     const subscription = watch((values) => {
