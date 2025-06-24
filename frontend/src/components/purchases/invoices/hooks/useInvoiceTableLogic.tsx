@@ -142,7 +142,14 @@ export function useInvoiceTableLogic(props: Props) {
         },
       },
       { header: tVar('table.currency'), accessorKey: 'currency' },
-      { header: tVar('table.total_amount'), accessorKey: 'totalAmount' },
+      {
+        header: tVar('table.total_amount'),
+        accessorKey: 'totalAmount',
+        cell: ({ row }: { row: { original: InvoiceRow } }) => {
+          const value = Number(row.original.totalAmount).toFixed(2);
+          return value;
+        },
+      },
       { header: tVar('table.is_arrived'), accessorKey: 'isArrived' },
       {
         id: 'actions',
