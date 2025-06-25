@@ -63,7 +63,7 @@ const InvoiceFields = ({ auxData, invoiceArray, setInvoiceArray }: Props) => {
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id} className={styles.tableRow}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className={styles.tablecell}>
+                  <td key={cell.id} className={styles.tableCell}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
