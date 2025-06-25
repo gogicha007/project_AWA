@@ -44,9 +44,16 @@ export function useInvoiceTable(props: Props) {
 
   const openItemsDialog = (id: number) => {
     console.log('invoice id', id);
-    console.log(fields)
+    console.log(fields);
   };
-  const handleAddInvoice = (newInvoiceData: InvoiceDTO) => {
+  const handleAddInvoice = (
+    newInvoiceData: InvoiceDTO = {
+      vendorId: 0,
+      invoiceNumber: '',
+      invoiceDate: new Date(),
+      currencyId: 0,
+    }
+  ) => {
     append({ ...newInvoiceData, id: negIdCounter.getId() });
   };
 
@@ -118,6 +125,6 @@ export function useInvoiceTable(props: Props) {
     columns,
     handleAddInvoice,
     handleEditInvoice,
-    handleRemoveInvoice
+    handleRemoveInvoice,
   };
 }
