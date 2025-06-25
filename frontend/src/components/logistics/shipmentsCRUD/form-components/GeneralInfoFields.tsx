@@ -1,4 +1,4 @@
-import styles from './shipment-form.module.css';
+import styles from '../shipment-form.module.css'
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import DateInput from '@/components/controls/date-input/date-input';

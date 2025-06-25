@@ -5,8 +5,8 @@ import React, { useRef } from 'react';
 import { useShipmentFormSet } from './hooks/useShipmentFormSet';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
-import GeneralInfoFields from './GeneralInfoFields';
-import ShipmentTabs from './shipment-tabs';
+import GeneralInfoFields from './form-components/GeneralInfoFields';
+import ShipmentTabs from './form-components/shipment-tabs';
 
 export const ShipmentFormSet = ({ id }: { id?: number }) => {
   const genInfoFormRef = useRef<HTMLFormElement>(null);

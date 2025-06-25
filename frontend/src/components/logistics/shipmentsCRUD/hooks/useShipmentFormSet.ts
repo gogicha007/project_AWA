@@ -7,7 +7,6 @@ import { useAuth } from '@/context/auth';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
-// import { arrayToIdValueMap } from '@/utils/helper';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { InvoiceDTO } from '@/api/types';

@@ -6,7 +6,7 @@ import { useShipmentFormLogic } from './hooks/useShipmentFormLogic';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from '@/components/feedback/loader/loader';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
-import ShipmentTabs from './shipment-tabs';
+import ShipmentTabs from './form-components/shipment-tabs';
 import DateInput from '@/components/controls/date-input/date-input';
 
 export default function ShipmentForm({ id }: { id?: number }) {

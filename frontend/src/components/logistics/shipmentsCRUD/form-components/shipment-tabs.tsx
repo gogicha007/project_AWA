@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
 // import FileUploader from '@/components/controls/file-uploader/FileUploader';
-import InvoiceTable from '@/components/purchases/invoices/invoice-table';
+// import InvoiceTable from '@/components/purchases/invoices/invoice-table';
 import FreightTable from '@/components/purchases/freights/freight-table';
 // import { FileData } from '@/components/controls/file-uploader/FileUploader';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { CurrencyDTO, InvoiceDTO, VendorDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
+import InvoiceFields from './InvoiceFields';
 
 interface ShipmentTabsProps {
   auxData: {
@@ -58,16 +59,6 @@ export default function ShipmentTabs({
       </div>
 
       <div className={styles.tabPanel}>
-        {/* {activeTab === 0 && (
-          <FileUploader
-            tS={tS}
-            fileDataArray={fileDataArray}
-            setFileDataArray={setFileDataArray}
-            isEditMode={isEditMode}
-            originalFiles={originalFiles}
-            setIsFilesChanged={setIsFilesChanged}
-          />
-        )} */}
         {activeTab === 0 && (
           <FileInput
             disabled={disabled}
@@ -77,13 +68,12 @@ export default function ShipmentTabs({
           />
         )}
         {activeTab === 1 && (
-          <InvoiceTable
+          <InvoiceFields
             auxData={auxData}
             invoiceArray={invoiceArray}
             setInvoiceArray={setInvoiceArray}
-            currencies={auxData.currencies}
-            vendors={auxData.vendors}
             tB={tB}
+            tS={tS}
           />
         )}
         {activeTab === 2 && <FreightTable />}
@@ -91,3 +81,22 @@ export default function ShipmentTabs({
     </div>
   );
 }
+
+/* {activeTab === 0 && (
+          <FileUploader
+            tS={tS}
+            fileDataArray={fileDataArray}
+            setFileDataArray={setFileDataArray}
+            isEditMode={isEditMode}
+            originalFiles={originalFiles}
+            setIsFilesChanged={setIsFilesChanged}
+          />
+        )} */
+// <InvoiceTable
+//   auxData={auxData}
+//   invoiceArray={invoiceArray}
+//   setInvoiceArray={setInvoiceArray}
+//   currencies={auxData.currencies}
+//   vendors={auxData.vendors}
+//   tB={tB}
+// />
