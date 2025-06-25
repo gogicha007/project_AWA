@@ -188,7 +188,8 @@
       }
     },
     "actions": {
-      "title": "Items"
+      "title": "Actions",
+      "items": "Items"
     }
   },
   "Logistics": {

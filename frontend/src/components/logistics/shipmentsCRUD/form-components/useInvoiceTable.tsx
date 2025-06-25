@@ -1,8 +1,10 @@
+import styles from './invoice-fields.module.css'
 import { useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { arrayToIdValueMap } from '@/utils/helper';
 import { negIdCounter } from '@/utils/helper';
+import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
 
 type Props = {
   auxData: {
@@ -23,6 +25,7 @@ type InvoiceRow = {
   currency: string;
   currencyId: number;
   totalAmount: number;
+  shipmentId: number;
   isArrived: boolean;
 };
 
@@ -35,7 +38,7 @@ export function useInvoiceTable(props: Props) {
 
   const {
     auxData: { currencies, vendors },
-    invoiceArray,
+    // invoiceArray,
     tVar,
   } = props;
 
@@ -57,7 +60,7 @@ export function useInvoiceTable(props: Props) {
     append({ ...newInvoiceData, id: negIdCounter.getId() });
   };
 
-  const handleEditInvoice = (index: number, updatedInvoiceData: InvoiceDTO) => {
+  const handleEditInvoice = (index: number, updatedInvoiceData?: InvoiceDTO) => {
     update(index, updatedInvoiceData);
   };
 
@@ -65,20 +68,24 @@ export function useInvoiceTable(props: Props) {
     remove(index);
   };
 
+  const handleView = (id: number) => {
+    console.log(id);
+  };
   const data: InvoiceRow[] = useMemo(
     () =>
-      invoiceArray
+      (fields as unknown as InvoiceDTO[])
         .map((inv) => ({
           ...inv,
           id:
             typeof inv.id === 'string' ? parseInt(inv.id, 10) : Number(inv.id),
-          currency: currenciesObj[inv.currencyId] ?? '',
-          vendor: vendorsObj[inv.vendorId] ?? '',
+          currency: currenciesObj[(inv as InvoiceDTO).currencyId] ?? '',
+          vendor: vendorsObj[(inv as InvoiceDTO).vendorId] ?? '',
           totalAmount: inv.totalAmount ?? 0,
           isArrived: inv.isArrived ?? false,
+          shipmentId: inv.shipmentId !== undefined ? inv.shipmentId : 0,
         }))
         .sort((a, b) => a.id - b.id),
-    [currencies, vendors]
+    [fields, currencies, vendors]
   );
 
   const columns = useMemo(
@@ -108,12 +115,24 @@ export function useInvoiceTable(props: Props) {
       },
       { header: tVar('table.is_arrived'), accessorKey: 'isArrived' },
       {
+        id: 'items',
+        header: tVar('actions.items'),
+        cell: ({ row }: { row: { original: InvoiceRow } }) => (
+          <button onClick={() => openItemsDialog(row.original.id)} className={styles.itemButton}>
+            {tVar('actions.items')}
+          </button>
+        ),
+      },
+      {
         id: 'actions',
         header: tVar('actions.title'),
         cell: ({ row }: { row: { original: InvoiceRow } }) => (
-          <button onClick={() => openItemsDialog(row.original.id)}>
-            {tVar('actions.title')}
-          </button>
+          <TableRowActions
+            id={row.original.id ?? 0}
+            onView={handleView}
+            onEdit={handleEditInvoice}
+            onDelete={handleRemoveInvoice}
+          />
         ),
       },
     ],

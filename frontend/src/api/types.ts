@@ -75,6 +75,7 @@ export interface InvoiceDTO {
   isArrived?: boolean;
   userId?: number;
   currencyId: number;
+  shipmentId?: number;
   Items?: Array<InvoiceItemDTO>;
 }
 
