@@ -19,9 +19,6 @@ interface ShipmentTabsProps {
   fileDataArray: FileData[];
   setInvoiceArray: (invoices: InvoiceDTO[]) => void;
   setFileDataArray: (files: FileData[]) => void;
-  // isEditMode: boolean;
-  // originalFiles: FileData[];
-  // setIsFilesChanged: (changed: boolean) => void;
   tS: (key: string) => string;
   tB: (key: string) => string;
 }
@@ -29,13 +26,8 @@ interface ShipmentTabsProps {
 export default function ShipmentTabs({
   auxData,
   disabled,
-  invoiceArray,
   fileDataArray,
   setFileDataArray,
-  setInvoiceArray,
-  // isEditMode,
-  // originalFiles,
-  // setIsFilesChanged,
   tS,
   tB,
 }: ShipmentTabsProps) {
@@ -70,8 +62,6 @@ export default function ShipmentTabs({
         {activeTab === 1 && (
           <InvoiceFields
             auxData={auxData}
-            invoiceArray={invoiceArray}
-            setInvoiceArray={setInvoiceArray}
             tB={tB}
             tS={tS}
           />
@@ -81,22 +71,3 @@ export default function ShipmentTabs({
     </div>
   );
 }
-
-/* {activeTab === 0 && (
-          <FileUploader
-            tS={tS}
-            fileDataArray={fileDataArray}
-            setFileDataArray={setFileDataArray}
-            isEditMode={isEditMode}
-            originalFiles={originalFiles}
-            setIsFilesChanged={setIsFilesChanged}
-          />
-        )} */
-// <InvoiceTable
-//   auxData={auxData}
-//   invoiceArray={invoiceArray}
-//   setInvoiceArray={setInvoiceArray}
-//   currencies={auxData.currencies}
-//   vendors={auxData.vendors}
-//   tB={tB}
-// />
