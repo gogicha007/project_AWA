@@ -5,6 +5,7 @@ import { InvoiceRow } from './useInvoiceTable';
 import { CurrencyDTO, VendorDTO } from '@/api/types';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
 import DateInput from '@/components/controls/date-input/date-input';
+import { arrayToIdValueMap } from '@/utils/helper';
 
 type Props = {
   tVar: (key: string) => string;
@@ -27,6 +28,15 @@ const InvoiceColumns = (props: Props) => {
     handleRemoveInvoice,
   } = props;
   const { control, register } = useFormContext();
+  const currenciesObj = useMemo(
+    () => arrayToIdValueMap(currencies, 'code'),
+    [currencies]
+  );
+
+  const vendorsObj = useMemo(
+    () => arrayToIdValueMap(vendors, 'alias'),
+    [vendors]
+  );
   return useMemo(
     () => [
       {
@@ -41,7 +51,7 @@ const InvoiceColumns = (props: Props) => {
             <option value="">Select</option>
             {vendors.map((v) => (
               <option key={v.id} value={v.id}>
-                {v.alias}
+                {vendorsObj[v.id as number]}
               </option>
             ))}
           </select>
@@ -82,7 +92,7 @@ const InvoiceColumns = (props: Props) => {
             <option value="">Select</option>
             {currencies.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.code}
+                {currenciesObj[c.id as number]}
               </option>
             ))}
           </select>

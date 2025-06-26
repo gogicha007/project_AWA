@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
-import { arrayToIdValueMap } from '@/utils/helper';
 import { negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
 
@@ -17,14 +16,11 @@ type Props = {
 
 export interface InvoiceRow {
   id: number;
-  vendor: string;
   vendorId: number;
   invoiceNumber: string;
   invoiceDate: Date | string | null;
-  currency: string;
   currencyId: number;
   totalAmount: number;
-  shipmentId: number;
   isArrived: boolean;
 }
 
@@ -37,12 +33,8 @@ export function useInvoiceTable(props: Props) {
 
   const {
     auxData: { currencies, vendors },
-    // invoiceArray,
     tVar,
   } = props;
-
-  const currenciesObj = arrayToIdValueMap(currencies, 'code');
-  const vendorsObj = arrayToIdValueMap(vendors, 'alias');
 
   const openItemsDialog = (id: number) => {
     console.log('invoice id', id);
@@ -82,14 +74,10 @@ export function useInvoiceTable(props: Props) {
           ...inv,
           id:
             typeof inv.id === 'string' ? parseInt(inv.id, 10) : Number(inv.id),
-          currency: currenciesObj[(inv as InvoiceDTO).currencyId] ?? '',
-          vendor: vendorsObj[(inv as InvoiceDTO).vendorId] ?? '',
           totalAmount: inv.totalAmount ?? 0,
           isArrived: inv.isArrived ?? false,
-          shipmentId: inv.shipmentId !== undefined ? inv.shipmentId : 0,
-        }))
-        .sort((a, b) => a.id - b.id),
-    [fields, currenciesObj, vendorsObj]
+        })),
+    [fields]
   );
 
   const columns = InvoiceColumns({
@@ -102,8 +90,10 @@ export function useInvoiceTable(props: Props) {
     handleRemoveInvoice,
   });
 
+
   return {
     data,
+    fields,
     columns,
     handleAddInvoice,
     handleEditInvoice,
