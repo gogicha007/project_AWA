@@ -1,31 +1,24 @@
 import { useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
-import { negIdCounter } from '@/utils/helper';
+import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
+import { InvoiceRow } from './invoiceTableColumns';
 
 type Props = {
   auxData: {
     currencies: Partial<CurrencyDTO>[];
     vendors: Partial<VendorDTO>[];
   };
-  invoiceArray: InvoiceDTO[];
-  setInvoiceArray: (invoices: InvoiceDTO[]) => void;
   tVar: (key: string) => string;
 };
-
-export interface InvoiceRow {
-  id: number;
-  vendorId: number;
-  invoiceNumber: string;
-  invoiceDate: Date | string | null;
-  currencyId: number;
-  totalAmount: number;
-  isArrived: boolean;
-}
+type ShipmentFormValues = {
+  invoices: InvoiceRow[];
+  // ...other fields
+};
 
 export function useInvoiceTable(props: Props) {
-  const { control } = useFormContext();
+  const { control } = useFormContext<ShipmentFormValues>();
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'invoices',
@@ -35,6 +28,15 @@ export function useInvoiceTable(props: Props) {
     auxData: { currencies, vendors },
     tVar,
   } = props;
+  const currenciesObj = useMemo(
+    () => arrayToIdValueMap(currencies, 'code'),
+    [currencies]
+  );
+
+  const vendorsObj = useMemo(
+    () => arrayToIdValueMap(vendors, 'alias'),
+    [vendors]
+  );
 
   const openItemsDialog = (id: number) => {
     console.log('invoice id', id);
@@ -49,14 +51,26 @@ export function useInvoiceTable(props: Props) {
       currencyId: 0,
     }
   ) => {
-    append({ ...newInvoiceData, id: negIdCounter.getId() });
+    append({
+      ...newInvoiceData,
+      id: negIdCounter.getId(),
+      totalAmount: 0,
+      isArrived: false,
+    });
   };
 
   const handleEditInvoice = (
     index: number,
     updatedInvoiceData?: InvoiceDTO
   ) => {
-    update(index, updatedInvoiceData);
+    if (updatedInvoiceData) {
+      update(index, {
+        ...updatedInvoiceData,
+        id: fields[index]?.id ?? negIdCounter.getId(),
+        totalAmount: fields[index]?.totalAmount ?? 0,
+        isArrived: fields[index]?.isArrived ?? false,
+      });
+    }
   };
 
   const handleRemoveInvoice = (index: number) => {
@@ -67,32 +81,19 @@ export function useInvoiceTable(props: Props) {
     console.log(id);
   };
 
-  const data: InvoiceRow[] = useMemo(
-    () =>
-      (fields as unknown as InvoiceDTO[])
-        .map((inv) => ({
-          ...inv,
-          id:
-            typeof inv.id === 'string' ? parseInt(inv.id, 10) : Number(inv.id),
-          totalAmount: inv.totalAmount ?? 0,
-          isArrived: inv.isArrived ?? false,
-        })),
-    [fields]
-  );
-
   const columns = InvoiceColumns({
     tVar,
     vendors,
     currencies,
+    vendorsObj,
+    currenciesObj,
     openItemsDialog,
     handleView,
     handleEditInvoice,
     handleRemoveInvoice,
   });
 
-
   return {
-    data,
     fields,
     columns,
     handleAddInvoice,

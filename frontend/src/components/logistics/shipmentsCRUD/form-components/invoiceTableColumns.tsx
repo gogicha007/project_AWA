@@ -1,16 +1,26 @@
 import styles from './invoice-fields.module.css';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { InvoiceRow } from './useInvoiceTable';
 import { CurrencyDTO, VendorDTO } from '@/api/types';
 import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
 import DateInput from '@/components/controls/date-input/date-input';
-import { arrayToIdValueMap } from '@/utils/helper';
+
+export interface InvoiceRow {
+  id: number;
+  vendorId: number;
+  invoiceNumber: string;
+  invoiceDate: Date | string | null;
+  currencyId: number;
+  totalAmount: number;
+  isArrived: boolean;
+}
 
 type Props = {
   tVar: (key: string) => string;
   vendors: Partial<VendorDTO>[];
   currencies: Partial<CurrencyDTO>[];
+  vendorsObj: Record<string, string | undefined>;
+  currenciesObj: Record<string, string | undefined>;
   openItemsDialog: (id: number) => void;
   handleView: (id: number) => void;
   handleEditInvoice: (id: number) => void;
@@ -22,21 +32,15 @@ const InvoiceColumns = (props: Props) => {
     tVar,
     vendors,
     currencies,
+    vendorsObj,
+    currenciesObj,
     openItemsDialog,
     handleView,
     handleEditInvoice,
     handleRemoveInvoice,
   } = props;
   const { control, register } = useFormContext();
-  const currenciesObj = useMemo(
-    () => arrayToIdValueMap(currencies, 'code'),
-    [currencies]
-  );
 
-  const vendorsObj = useMemo(
-    () => arrayToIdValueMap(vendors, 'alias'),
-    [vendors]
-  );
   return useMemo(
     () => [
       {

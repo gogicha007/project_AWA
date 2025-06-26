@@ -5,7 +5,7 @@ import {
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import { CurrencyDTO, InvoiceDTO, VendorDTO } from '@/api/types';
+import { CurrencyDTO, VendorDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
 import { useInvoiceTable } from './useInvoiceTable';
 import AddButton from '@/components/controls/add-button/AddButton';
@@ -15,23 +15,19 @@ type Props = {
     currencies: Partial<CurrencyDTO>[];
     vendors: Partial<VendorDTO>[];
   };
-  invoiceArray: InvoiceDTO[];
-  setInvoiceArray: (invoices: InvoiceDTO[]) => void;
   tB: (key: string) => string;
   tS: (key: string) => string;
 };
 
-const InvoiceFields = ({ auxData, invoiceArray, setInvoiceArray }: Props) => {
+const InvoiceFields = ({ auxData }: Props) => {
   const tI = useTranslations('Invoices');
-  const { data, columns, handleAddInvoice } = useInvoiceTable({
+  const { fields, columns, handleAddInvoice } = useInvoiceTable({
     auxData,
-    invoiceArray,
     tVar: tI,
-    setInvoiceArray,
   });
 
   const table = useReactTable({
-    data,
+    data: fields,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
