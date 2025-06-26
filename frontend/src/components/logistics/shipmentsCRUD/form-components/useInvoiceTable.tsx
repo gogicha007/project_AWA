@@ -58,7 +58,7 @@ export function useInvoiceTable(props: Props) {
     });
   };
 
-  const handleEditInvoice = (
+  const handleResetInvoice = (
     index: number,
     updatedInvoiceData?: InvoiceDTO
   ) => {
@@ -83,7 +83,7 @@ export function useInvoiceTable(props: Props) {
     vendorsObj,
     currenciesObj,
     openItemsDialog,
-    handleEditInvoice,
+    handleResetInvoice,
     handleRemoveInvoice,
   });
 
@@ -91,7 +91,7 @@ export function useInvoiceTable(props: Props) {
     fields,
     columns,
     handleAddInvoice,
-    handleEditInvoice,
+    handleResetInvoice,
     handleRemoveInvoice,
   };
 }

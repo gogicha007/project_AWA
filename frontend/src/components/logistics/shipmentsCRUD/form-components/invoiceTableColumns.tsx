@@ -22,7 +22,7 @@ type Props = {
   vendorsObj: Record<string, string | undefined>;
   currenciesObj: Record<string, string | undefined>;
   openItemsDialog: (id: number) => void;
-  handleEditInvoice: (id: number) => void;
+  handleResetInvoice: (id: number) => void;
   handleRemoveInvoice: (id: number) => void;
 };
 
@@ -34,7 +34,7 @@ const InvoiceColumns = (props: Props) => {
     vendorsObj,
     currenciesObj,
     openItemsDialog,
-    handleEditInvoice,
+    handleResetInvoice,
     handleRemoveInvoice,
   } = props;
   const { control, register } = useFormContext();
@@ -143,7 +143,7 @@ const InvoiceColumns = (props: Props) => {
         cell: ({ row }: { row: { original: InvoiceRow } }) => (
           <InvoiceTableActions
             id={row.original.id ?? 0}
-            onReset={handleEditInvoice}
+            onReset={handleResetInvoice}
             onDelete={handleRemoveInvoice}
           />
         ),
@@ -155,7 +155,7 @@ const InvoiceColumns = (props: Props) => {
       control,
       vendors,
       currencies,
-      handleEditInvoice,
+      handleResetInvoice,
       handleRemoveInvoice,
       openItemsDialog,
     ]
