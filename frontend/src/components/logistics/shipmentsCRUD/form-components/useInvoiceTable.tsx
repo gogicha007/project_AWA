@@ -76,10 +76,6 @@ export function useInvoiceTable(props: Props) {
     remove(index);
   };
 
-  const handleView = (id: number) => {
-    console.log(id);
-  };
-
   const columns = InvoiceColumns({
     tVar,
     vendors,
@@ -87,7 +83,6 @@ export function useInvoiceTable(props: Props) {
     vendorsObj,
     currenciesObj,
     openItemsDialog,
-    handleView,
     handleEditInvoice,
     handleRemoveInvoice,
   });

@@ -2,8 +2,8 @@ import styles from './invoice-fields.module.css';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { CurrencyDTO, VendorDTO } from '@/api/types';
-import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
 import DateInput from '@/components/controls/date-input/date-input';
+import InvoiceTableActions from './InvoiceTableActions';
 
 export interface InvoiceRow {
   id: number;
@@ -22,7 +22,6 @@ type Props = {
   vendorsObj: Record<string, string | undefined>;
   currenciesObj: Record<string, string | undefined>;
   openItemsDialog: (id: number) => void;
-  handleView: (id: number) => void;
   handleEditInvoice: (id: number) => void;
   handleRemoveInvoice: (id: number) => void;
 };
@@ -35,7 +34,6 @@ const InvoiceColumns = (props: Props) => {
     vendorsObj,
     currenciesObj,
     openItemsDialog,
-    handleView,
     handleEditInvoice,
     handleRemoveInvoice,
   } = props;
@@ -143,10 +141,9 @@ const InvoiceColumns = (props: Props) => {
         id: 'actions',
         header: tVar('actions.title'),
         cell: ({ row }: { row: { original: InvoiceRow } }) => (
-          <TableRowActions
+          <InvoiceTableActions
             id={row.original.id ?? 0}
-            onView={handleView}
-            onEdit={handleEditInvoice}
+            onReset={handleEditInvoice}
             onDelete={handleRemoveInvoice}
           />
         ),
@@ -160,7 +157,6 @@ const InvoiceColumns = (props: Props) => {
       currencies,
       handleEditInvoice,
       handleRemoveInvoice,
-      handleView,
       openItemsDialog,
     ]
   );
