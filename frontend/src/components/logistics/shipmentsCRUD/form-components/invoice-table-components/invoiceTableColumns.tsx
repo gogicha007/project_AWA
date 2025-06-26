@@ -144,11 +144,15 @@ const InvoiceColumns = (props: Props) => {
       {
         id: 'actions',
         header: tVar('actions.title'),
-        cell: ({ row }: { row: { original: InvoiceRow } }) => (
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <InvoiceTableActions
             id={row.original.id ?? 0}
             onReset={handleResetInvoice}
             onDelete={handleRemoveInvoice}
+            disableReset={
+              !(!!dirtyFields?.invoices?.[row.index] &&
+              Object.values(dirtyFields.invoices[row.index]).some(Boolean))
+            }
           />
         ),
       },

@@ -14,7 +14,7 @@ type Props = {
 };
 export interface InvoiceFormValues {
   invoices: InvoiceRow[];
-};
+}
 
 export function useInvoiceTable(props: Props) {
   const {
@@ -39,9 +39,8 @@ export function useInvoiceTable(props: Props) {
 
   useEffect(() => {
     console.log(formState.dirtyFields.invoices);
-    const defaultInvoices = control._defaultValues?.invoices ?? [];
-    console.log('default values', defaultInvoices);
-  }, [formState.dirtyFields.invoices]);
+    // console.log('fields', fields)
+  }, [formState.dirtyFields.invoices, fields]);
 
   const openItemsDialog = (id: number) => {
     console.log('invoice id', id);
@@ -64,18 +63,27 @@ export function useInvoiceTable(props: Props) {
     });
   };
 
-  const handleResetInvoice = (
-    index: number,
-    updatedInvoiceData?: InvoiceDTO
-  ) => {
-    if (updatedInvoiceData) {
-      update(index, {
-        ...updatedInvoiceData,
-        id: fields[index]?.id ?? negIdCounter.getId(),
-        totalAmount: fields[index]?.totalAmount ?? 0,
-        isArrived: fields[index]?.isArrived ?? false,
-      });
+  const handleResetInvoice = (id: number) => {
+    console.log('reset index', id);
+
+    const index = fields.findIndex((field) => field.id === id);
+    if (index === -1) {
+      console.log('Cannot find row with ID:', id);
     }
+
+    const defaultInvoices = control._defaultValues?.invoices ?? [];
+    const defaultRow = defaultInvoices[index];
+    console.log('Found row at index:', index, defaultRow);
+
+    update(index, {
+      id: fields[index].id,
+      vendorId: defaultRow?.vendorId ?? 0,
+      invoiceNumber: defaultRow?.invoiceNumber ?? '',
+      invoiceDate: defaultRow?.invoiceDate ?? null,
+      currencyId: defaultRow?.currencyId ?? 0,
+      totalAmount: defaultRow?.totalAmount ?? 0,
+      isArrived: defaultRow?.isArrived ?? false,
+    });
   };
 
   const handleRemoveInvoice = (index: number) => {
@@ -100,6 +108,5 @@ export function useInvoiceTable(props: Props) {
     handleAddInvoice,
     handleResetInvoice,
     handleRemoveInvoice,
-    
   };
 }
