@@ -14,7 +14,6 @@ type Props = {
 };
 type ShipmentFormValues = {
   invoices: InvoiceRow[];
-  // ...other fields
 };
 
 export function useInvoiceTable(props: Props) {
