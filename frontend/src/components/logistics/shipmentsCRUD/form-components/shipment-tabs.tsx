@@ -7,7 +7,7 @@ import FreightTable from '@/components/purchases/freights/freight-table';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { CurrencyDTO, InvoiceDTO, VendorDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
-import InvoiceFields from './InvoiceFields';
+import InvoiceFields from './invoice/InvoiceFields';
 
 interface ShipmentTabsProps {
   auxData: {

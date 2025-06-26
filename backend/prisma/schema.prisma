@@ -166,16 +166,6 @@ model InvoiceItem {
   @@map("invoice_item")
 }
 
-// model ShipmentInvoice {
-//   shipment   Shipment @relation(fields: [shipmentId], references: [id])
-//   shipmentId Int      @map("shipment_id")
-//   invoice    Invoice  @relation(fields: [invoiceId], references: [id])
-//   invoiceId  Int      @map("invoice_id")
-
-//   @@id([shipmentId, invoiceId])
-//   @@map("shipment_invoice")
-// }
-
 model Freight {
   id          Int              @id @default(autoincrement())
   truckNumber String           @map("truck_number")
