@@ -83,3 +83,11 @@
   font-size: 0.9rem;
   transition: border-color 0.2s;
 }
+
+.dirty {
+  border-color: #ec0c0c !important; 
+}
+
+.notDirty {
+  color: red
+}

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
@@ -12,21 +12,21 @@ type Props = {
   };
   tVar: (key: string) => string;
 };
-type ShipmentFormValues = {
+export interface InvoiceFormValues {
   invoices: InvoiceRow[];
 };
 
 export function useInvoiceTable(props: Props) {
-  const { control } = useFormContext<ShipmentFormValues>();
+  const {
+    auxData: { currencies, vendors },
+    tVar,
+  } = props;
+  const { control, formState } = useFormContext<InvoiceFormValues>();
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'invoices',
   });
 
-  const {
-    auxData: { currencies, vendors },
-    tVar,
-  } = props;
   const currenciesObj = useMemo(
     () => arrayToIdValueMap(currencies, 'code'),
     [currencies]
@@ -36,6 +36,12 @@ export function useInvoiceTable(props: Props) {
     () => arrayToIdValueMap(vendors, 'alias'),
     [vendors]
   );
+
+  useEffect(() => {
+    console.log(formState.dirtyFields.invoices);
+    const defaultInvoices = control._defaultValues?.invoices ?? [];
+    console.log('default values', defaultInvoices);
+  }, [formState.dirtyFields.invoices]);
 
   const openItemsDialog = (id: number) => {
     console.log('invoice id', id);
@@ -85,6 +91,7 @@ export function useInvoiceTable(props: Props) {
     openItemsDialog,
     handleResetInvoice,
     handleRemoveInvoice,
+    dirtyFields: formState.dirtyFields,
   });
 
   return {
@@ -93,5 +100,6 @@ export function useInvoiceTable(props: Props) {
     handleAddInvoice,
     handleResetInvoice,
     handleRemoveInvoice,
+    
   };
 }

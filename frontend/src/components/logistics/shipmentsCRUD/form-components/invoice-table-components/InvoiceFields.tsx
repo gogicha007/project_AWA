@@ -15,8 +15,6 @@ type Props = {
     currencies: Partial<CurrencyDTO>[];
     vendors: Partial<VendorDTO>[];
   };
-  tB: (key: string) => string;
-  tS: (key: string) => string;
 };
 
 const InvoiceFields = ({ auxData }: Props) => {
