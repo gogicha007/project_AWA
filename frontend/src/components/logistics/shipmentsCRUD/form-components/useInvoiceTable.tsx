@@ -1,10 +1,9 @@
-import styles from './invoice-fields.module.css'
 import { useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { arrayToIdValueMap } from '@/utils/helper';
 import { negIdCounter } from '@/utils/helper';
-import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
+import InvoiceColumns from './invoiceTableColumns';
 
 type Props = {
   auxData: {
@@ -16,7 +15,7 @@ type Props = {
   tVar: (key: string) => string;
 };
 
-type InvoiceRow = {
+export interface InvoiceRow {
   id: number;
   vendor: string;
   vendorId: number;
@@ -27,7 +26,7 @@ type InvoiceRow = {
   totalAmount: number;
   shipmentId: number;
   isArrived: boolean;
-};
+}
 
 export function useInvoiceTable(props: Props) {
   const { control } = useFormContext();
@@ -49,6 +48,7 @@ export function useInvoiceTable(props: Props) {
     console.log('invoice id', id);
     console.log(fields);
   };
+
   const handleAddInvoice = (
     newInvoiceData: InvoiceDTO = {
       vendorId: 0,
@@ -60,7 +60,10 @@ export function useInvoiceTable(props: Props) {
     append({ ...newInvoiceData, id: negIdCounter.getId() });
   };
 
-  const handleEditInvoice = (index: number, updatedInvoiceData?: InvoiceDTO) => {
+  const handleEditInvoice = (
+    index: number,
+    updatedInvoiceData?: InvoiceDTO
+  ) => {
     update(index, updatedInvoiceData);
   };
 
@@ -71,6 +74,7 @@ export function useInvoiceTable(props: Props) {
   const handleView = (id: number) => {
     console.log(id);
   };
+
   const data: InvoiceRow[] = useMemo(
     () =>
       (fields as unknown as InvoiceDTO[])
@@ -85,59 +89,18 @@ export function useInvoiceTable(props: Props) {
           shipmentId: inv.shipmentId !== undefined ? inv.shipmentId : 0,
         }))
         .sort((a, b) => a.id - b.id),
-    [fields, currencies, vendors]
+    [fields, currenciesObj, vendorsObj]
   );
 
-  const columns = useMemo(
-    () => [
-      { header: tVar('table.vendor'), accessorKey: 'vendor' },
-      { header: tVar('table.invoice_number'), accessorKey: 'invoiceNumber' },
-      {
-        header: tVar('table.invoice_date'),
-        accessorKey: 'invoiceDate',
-        cell: ({ row }: { row: { original: InvoiceRow } }) => {
-          const date = row.original.invoiceDate;
-          if (!date) return '';
-          if (typeof date === 'string')
-            return (date as string).substring(0, 10);
-          if (date instanceof Date) return date.toISOString().substring(0, 10);
-          return String(date);
-        },
-      },
-      { header: tVar('table.currency'), accessorKey: 'currency' },
-      {
-        header: tVar('table.total_amount'),
-        accessorKey: 'totalAmount',
-        cell: ({ row }: { row: { original: InvoiceRow } }) => {
-          const value = Number(row.original.totalAmount).toFixed(2);
-          return value;
-        },
-      },
-      { header: tVar('table.is_arrived'), accessorKey: 'isArrived' },
-      {
-        id: 'items',
-        header: tVar('actions.items'),
-        cell: ({ row }: { row: { original: InvoiceRow } }) => (
-          <button onClick={() => openItemsDialog(row.original.id)} className={styles.itemButton}>
-            {tVar('actions.items')}
-          </button>
-        ),
-      },
-      {
-        id: 'actions',
-        header: tVar('actions.title'),
-        cell: ({ row }: { row: { original: InvoiceRow } }) => (
-          <TableRowActions
-            id={row.original.id ?? 0}
-            onView={handleView}
-            onEdit={handleEditInvoice}
-            onDelete={handleRemoveInvoice}
-          />
-        ),
-      },
-    ],
-    [tVar]
-  );
+  const columns = InvoiceColumns({
+    tVar,
+    vendors,
+    currencies,
+    openItemsDialog,
+    handleView,
+    handleEditInvoice,
+    handleRemoveInvoice,
+  });
 
   return {
     data,

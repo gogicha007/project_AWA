@@ -1,0 +1,155 @@
+import styles from './invoice-fields.module.css';
+import { useMemo } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { InvoiceRow } from './useInvoiceTable';
+import { CurrencyDTO, VendorDTO } from '@/api/types';
+import TableRowActions from '@/components/controls/table-row-actions/TableRowActions';
+import DateInput from '@/components/controls/date-input/date-input';
+
+type Props = {
+  tVar: (key: string) => string;
+  vendors: Partial<VendorDTO>[];
+  currencies: Partial<CurrencyDTO>[];
+  openItemsDialog: (id: number) => void;
+  handleView: (id: number) => void;
+  handleEditInvoice: (id: number) => void;
+  handleRemoveInvoice: (id: number) => void;
+};
+
+const InvoiceColumns = (props: Props) => {
+  const {
+    tVar,
+    vendors,
+    currencies,
+    openItemsDialog,
+    handleView,
+    handleEditInvoice,
+    handleRemoveInvoice,
+  } = props;
+  const { control, register } = useFormContext();
+  return useMemo(
+    () => [
+      {
+        header: tVar('table.vendor'),
+        accessorKey: 'vendorId',
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
+          <select
+            {...register(`invoices.${row.index}.vendorId` as const)}
+            defaultValue={row.original.vendorId}
+            className={styles.input}
+          >
+            <option value="">Select</option>
+            {vendors.map((v) => (
+              <option key={v.id} value={v.id}>
+                {v.alias}
+              </option>
+            ))}
+          </select>
+        ),
+      },
+      {
+        header: tVar('table.invoice_number'),
+        accessorKey: 'invoiceNumber',
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
+          <input
+            {...register(`invoices.${row.index}.invoiceNumber` as const)}
+            defaultValue={row.original.invoiceNumber}
+            className={styles.input}
+          />
+        ),
+      },
+      {
+        header: tVar('table.invoice_date'),
+        accessorKey: 'invoiceDate',
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
+          <DateInput
+            label=""
+            name={`invoices.${row.index}.invoiceDate`}
+            control={control}
+            className={styles.inputDate}
+          />
+        ),
+      },
+      {
+        header: tVar('table.currency'),
+        accessorKey: 'currencyId',
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
+          <select
+            {...register(`invoices.${row.index}.currencyId` as const)}
+            defaultValue={row.original.currencyId}
+            className={styles.input}
+          >
+            <option value="">Select</option>
+            {currencies.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.code}
+              </option>
+            ))}
+          </select>
+        ),
+      },
+      {
+        header: tVar('table.total_amount'),
+        accessorKey: 'totalAmount',
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
+          <input
+            type="number"
+            step="0.01"
+            {...register(`invoices.${row.index}.totalAmount` as const, {
+              valueAsNumber: true,
+            })}
+            className={styles.input}
+          />
+        ),
+      },
+      {
+        header: tVar('table.is_arrived'),
+        accessorKey: 'isArrived',
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
+          <input
+            type="checkbox"
+            {...register(`invoices.${row.index}.isArrived` as const)}
+            defaultChecked={row.original.isArrived}
+          />
+        ),
+      },
+      {
+        id: 'items',
+        header: tVar('actions.items'),
+        cell: ({ row }: { row: { original: InvoiceRow } }) => (
+          <button
+            onClick={() => openItemsDialog(row.original.id)}
+            className={styles.itemButton}
+          >
+            {tVar('actions.items')}
+          </button>
+        ),
+      },
+      {
+        id: 'actions',
+        header: tVar('actions.title'),
+        cell: ({ row }: { row: { original: InvoiceRow } }) => (
+          <TableRowActions
+            id={row.original.id ?? 0}
+            onView={handleView}
+            onEdit={handleEditInvoice}
+            onDelete={handleRemoveInvoice}
+          />
+        ),
+      },
+    ],
+    [
+      tVar,
+      register,
+      control,
+      vendors,
+      currencies,
+      handleEditInvoice,
+      handleRemoveInvoice,
+      handleView,
+      openItemsDialog,
+    ]
+  );
+};
+
+export default InvoiceColumns;
