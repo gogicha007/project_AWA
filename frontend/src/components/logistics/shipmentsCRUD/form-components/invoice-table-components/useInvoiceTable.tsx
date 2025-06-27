@@ -77,7 +77,6 @@ export function useInvoiceTable(props: Props) {
     const defaultRow = defaultInvoices[index];
     console.log('Found row at index:', index, defaultRow);
 
-    // Use resetField to reset each field to its default value and clear dirty state
     resetField(`invoices.${index}.vendorId`, { 
       defaultValue: defaultRow?.vendorId ?? 0 
     });
