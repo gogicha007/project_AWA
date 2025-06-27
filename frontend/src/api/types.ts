@@ -88,7 +88,6 @@ export interface InvoiceItemDTO {
   unitId: number;
   unitPrice: number;
   total?: number;
-  isArrived?: boolean;
 }
 
 export interface FreightDTO {

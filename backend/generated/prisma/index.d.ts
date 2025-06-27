@@ -12747,7 +12747,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date
     totalAmount: Decimal
-    isArrived: boolean
+    isArrived: boolean | null
     userId: number
     createdAt: Date
     currencyId: number
@@ -12879,7 +12879,7 @@ export namespace Prisma {
       invoiceNumber: string
       invoiceDate: Date
       totalAmount: Prisma.Decimal
-      isArrived: boolean
+      isArrived: boolean | null
       userId: number
       createdAt: Date
       currencyId: number
@@ -18109,7 +18109,7 @@ export namespace Prisma {
     invoiceNumber?: StringFilter<"Invoice"> | string
     invoiceDate?: DateTimeFilter<"Invoice"> | Date | string
     totalAmount?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFilter<"Invoice"> | boolean
+    isArrived?: BoolNullableFilter<"Invoice"> | boolean | null
     userId?: IntFilter<"Invoice"> | number
     createdAt?: DateTimeFilter<"Invoice"> | Date | string
     currencyId?: IntFilter<"Invoice"> | number
@@ -18128,7 +18128,7 @@ export namespace Prisma {
     invoiceNumber?: SortOrder
     invoiceDate?: SortOrder
     totalAmount?: SortOrder
-    isArrived?: SortOrder
+    isArrived?: SortOrderInput | SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     currencyId?: SortOrder
@@ -18150,7 +18150,7 @@ export namespace Prisma {
     invoiceNumber?: StringFilter<"Invoice"> | string
     invoiceDate?: DateTimeFilter<"Invoice"> | Date | string
     totalAmount?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFilter<"Invoice"> | boolean
+    isArrived?: BoolNullableFilter<"Invoice"> | boolean | null
     userId?: IntFilter<"Invoice"> | number
     createdAt?: DateTimeFilter<"Invoice"> | Date | string
     currencyId?: IntFilter<"Invoice"> | number
@@ -18169,7 +18169,7 @@ export namespace Prisma {
     invoiceNumber?: SortOrder
     invoiceDate?: SortOrder
     totalAmount?: SortOrder
-    isArrived?: SortOrder
+    isArrived?: SortOrderInput | SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     currencyId?: SortOrder
@@ -18190,7 +18190,7 @@ export namespace Prisma {
     invoiceNumber?: StringWithAggregatesFilter<"Invoice"> | string
     invoiceDate?: DateTimeWithAggregatesFilter<"Invoice"> | Date | string
     totalAmount?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolWithAggregatesFilter<"Invoice"> | boolean
+    isArrived?: BoolNullableWithAggregatesFilter<"Invoice"> | boolean | null
     userId?: IntWithAggregatesFilter<"Invoice"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Invoice"> | Date | string
     currencyId?: IntWithAggregatesFilter<"Invoice"> | number
@@ -18937,7 +18937,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
     user: UserCreateNestedOneWithoutInvoiceInput
@@ -18953,7 +18953,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -18966,7 +18966,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: VendorUpdateOneRequiredWithoutInvoiceNestedInput
     user?: UserUpdateOneRequiredWithoutInvoiceNestedInput
@@ -18982,7 +18982,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -18997,7 +18997,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -19008,7 +19008,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19018,7 +19018,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -19809,9 +19809,9 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type VendorScalarRelationFilter = {
@@ -19907,12 +19907,12 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type InvoiceScalarRelationFilter = {
@@ -20005,6 +20005,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type CurrencyNullableScalarRelationFilter = {
     is?: CurrencyWhereInput | null
     isNot?: CurrencyWhereInput | null
@@ -20095,6 +20100,14 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type FreightScalarRelationFilter = {
@@ -20882,8 +20895,8 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type VendorUpdateOneRequiredWithoutInvoiceNestedInput = {
@@ -21054,6 +21067,10 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type CurrencyUpdateOneWithoutFreightNestedInput = {
@@ -21352,9 +21369,9 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -21373,12 +21390,12 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
@@ -21390,6 +21407,11 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -21435,6 +21457,14 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type VendorCreateWithoutUserInput = {
     alias: string
     name: string
@@ -21468,7 +21498,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
     currency: CurrencyCreateNestedOneWithoutInvoiceInput
@@ -21483,7 +21513,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     currencyId: number
     shipmentId: number
@@ -21623,7 +21653,7 @@ export namespace Prisma {
     invoiceNumber?: StringFilter<"Invoice"> | string
     invoiceDate?: DateTimeFilter<"Invoice"> | Date | string
     totalAmount?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFilter<"Invoice"> | boolean
+    isArrived?: BoolNullableFilter<"Invoice"> | boolean | null
     userId?: IntFilter<"Invoice"> | number
     createdAt?: DateTimeFilter<"Invoice"> | Date | string
     currencyId?: IntFilter<"Invoice"> | number
@@ -21725,7 +21755,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutInvoiceInput
     currency: CurrencyCreateNestedOneWithoutInvoiceInput
@@ -21739,7 +21769,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -21873,7 +21903,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
     user: UserCreateNestedOneWithoutInvoiceInput
@@ -21888,7 +21918,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     shipmentId: number
@@ -22290,7 +22320,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
     user: UserCreateNestedOneWithoutInvoiceInput
@@ -22305,7 +22335,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -22795,7 +22825,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
     user: UserCreateNestedOneWithoutInvoiceInput
@@ -22810,7 +22840,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -22876,7 +22906,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: VendorUpdateOneRequiredWithoutInvoiceNestedInput
     user?: UserUpdateOneRequiredWithoutInvoiceNestedInput
@@ -22891,7 +22921,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -23187,7 +23217,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     vendor: VendorCreateNestedOneWithoutInvoiceInput
     user: UserCreateNestedOneWithoutInvoiceInput
@@ -23202,7 +23232,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -23266,7 +23296,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: VendorUpdateOneRequiredWithoutInvoiceNestedInput
     user?: UserUpdateOneRequiredWithoutInvoiceNestedInput
@@ -23281,7 +23311,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -23304,7 +23334,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     createdAt?: Date | string
     currencyId: number
     shipmentId: number
@@ -23363,7 +23393,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: VendorUpdateOneRequiredWithoutInvoiceNestedInput
     currency?: CurrencyUpdateOneRequiredWithoutInvoiceNestedInput
@@ -23378,7 +23408,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     shipmentId?: IntFieldUpdateOperationsInput | number
@@ -23392,7 +23422,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     shipmentId?: IntFieldUpdateOperationsInput | number
@@ -23472,7 +23502,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -23483,7 +23513,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutInvoiceNestedInput
     currency?: CurrencyUpdateOneRequiredWithoutInvoiceNestedInput
@@ -23497,7 +23527,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -23511,7 +23541,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -23563,7 +23593,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     shipmentId: number
@@ -23585,7 +23615,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: VendorUpdateOneRequiredWithoutInvoiceNestedInput
     user?: UserUpdateOneRequiredWithoutInvoiceNestedInput
@@ -23600,7 +23630,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shipmentId?: IntFieldUpdateOperationsInput | number
@@ -23614,7 +23644,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     shipmentId?: IntFieldUpdateOperationsInput | number
@@ -23779,7 +23809,7 @@ export namespace Prisma {
     invoiceNumber: string
     invoiceDate: Date | string
     totalAmount: Decimal | DecimalJsLike | number | string
-    isArrived?: boolean
+    isArrived?: boolean | null
     userId: number
     createdAt?: Date | string
     currencyId: number
@@ -23846,7 +23876,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendor?: VendorUpdateOneRequiredWithoutInvoiceNestedInput
     user?: UserUpdateOneRequiredWithoutInvoiceNestedInput
@@ -23861,7 +23891,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
@@ -23875,7 +23905,7 @@ export namespace Prisma {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
+    isArrived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number

@@ -24,7 +24,6 @@ export class InvoicesService {
       totalAmount,
       currencyId,
       shipmentId,
-      isArrived,
       userId,
     } = createInvoiceDTO;
     try {
@@ -35,7 +34,6 @@ export class InvoicesService {
           invoiceDate,
           totalAmount,
           currencyId,
-          isArrived,
           shipmentId,
           userId,
         },

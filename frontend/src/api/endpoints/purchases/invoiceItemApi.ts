@@ -32,7 +32,6 @@ export const invoiceItemApi = {
         unitId: invoiceItem.unitId,
         unitPrice: invoiceItem.unitPrice,
         total: invoiceItem.quantity * invoiceItem.unitPrice,
-        isArrived: invoiceItem.isArrived,
         userId: userId,
       };
       const invoiceItemCreateResponse = await apiClient.post(
@@ -60,7 +59,6 @@ export const invoiceItemApi = {
         unitId: invoiceItem.unitId,
         unitPrice: invoiceItem.unitPrice,
         total: invoiceItem.quantity * invoiceItem.unitPrice,
-        isArrived: invoiceItem.isArrived,
         userId: userId,
       };
 

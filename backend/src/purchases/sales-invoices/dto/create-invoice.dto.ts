@@ -5,7 +5,6 @@ import {
   IsOptional,
   IsDateString,
   IsInt,
-  IsBoolean,
 } from 'class-validator';
 
 export class CreateInvoiceDTO {
@@ -28,10 +27,6 @@ export class CreateInvoiceDTO {
   @IsInt()
   @IsOptional()
   totalAmount: number;
-
-  @ApiProperty()
-  @IsBoolean()
-  isArrived: boolean;
 
   @ApiProperty()
   @IsInt()

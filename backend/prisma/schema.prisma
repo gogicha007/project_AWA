@@ -136,7 +136,7 @@ model Invoice {
   invoiceNumber String           @map("invoice_number")
   invoiceDate   DateTime         @map("invoice_date")
   totalAmount   Decimal          @map("total_amount")
-  isArrived     Boolean          @default(false) @map("is_arrived")
+  isArrived     Boolean?          @default(false) @map("is_arrived")
   user          User             @relation(fields: [userId], references: [id])
   userId        Int              @map("user_id")
   createdAt     DateTime         @default(now()) @map("created_at")
