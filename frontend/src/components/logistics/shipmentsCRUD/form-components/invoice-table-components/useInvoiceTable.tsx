@@ -21,7 +21,7 @@ export function useInvoiceTable(props: Props) {
     auxData: { currencies, vendors },
     tVar,
   } = props;
-  const { control, formState, reset, getValues } = useFormContext<InvoiceFormValues>();
+  const { control, formState, resetField } = useFormContext<InvoiceFormValues>();
   const { dirtyFields } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
@@ -77,23 +77,25 @@ export function useInvoiceTable(props: Props) {
     const defaultRow = defaultInvoices[index];
     console.log('Found row at index:', index, defaultRow);
 
-    // Get current form values
-    const currentValues = getValues();
-    
-    // Update the specific row in the current values
-    const updatedInvoices = [...currentValues.invoices];
-    updatedInvoices[index] = {
-      ...updatedInvoices[index],
-      vendorId: defaultRow?.vendorId ?? 0,
-      invoiceNumber: defaultRow?.invoiceNumber ?? '',
-      invoiceDate: defaultRow?.invoiceDate ?? null,
-      currencyId: defaultRow?.currencyId ?? 0,
-      totalAmount: defaultRow?.totalAmount ?? 0,
-      isArrived: defaultRow?.isArrived ?? false,
-    };
-
-    // Reset the entire form with updated values to clear dirty state
-    reset({ invoices: updatedInvoices });
+    // Use resetField to reset each field to its default value and clear dirty state
+    resetField(`invoices.${index}.vendorId`, { 
+      defaultValue: defaultRow?.vendorId ?? 0 
+    });
+    resetField(`invoices.${index}.invoiceNumber`, { 
+      defaultValue: defaultRow?.invoiceNumber ?? '' 
+    });
+    resetField(`invoices.${index}.invoiceDate`, { 
+      defaultValue: defaultRow?.invoiceDate ?? null 
+    });
+    resetField(`invoices.${index}.currencyId`, { 
+      defaultValue: defaultRow?.currencyId ?? 0 
+    });
+    resetField(`invoices.${index}.totalAmount`, { 
+      defaultValue: defaultRow?.totalAmount ?? 0 
+    });
+    resetField(`invoices.${index}.isArrived`, { 
+      defaultValue: defaultRow?.isArrived ?? false 
+    });
     
     console.log(dirtyFields?.invoices);
   };
