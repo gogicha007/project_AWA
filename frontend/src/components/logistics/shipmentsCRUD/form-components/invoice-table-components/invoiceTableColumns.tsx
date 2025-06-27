@@ -150,8 +150,10 @@ const InvoiceColumns = (props: Props) => {
             onReset={handleResetInvoice}
             onDelete={handleRemoveInvoice}
             disableReset={
-              !(!!dirtyFields?.invoices?.[row.index] &&
-              Object.values(dirtyFields.invoices[row.index]).some(Boolean))
+              !(
+                !!dirtyFields?.invoices?.[row.index] &&
+                Object.values(dirtyFields.invoices[row.index]).some(Boolean)
+              )
             }
           />
         ),
@@ -168,6 +170,7 @@ const InvoiceColumns = (props: Props) => {
       handleResetInvoice,
       handleRemoveInvoice,
       openItemsDialog,
+      dirtyFields.invoices,
     ]
   );
 };

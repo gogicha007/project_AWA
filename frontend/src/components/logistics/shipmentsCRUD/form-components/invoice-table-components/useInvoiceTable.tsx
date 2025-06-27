@@ -17,7 +17,7 @@ export interface InvoiceFormValues {
   invoices: InvoiceRow[];
 }
 
-type InvoiceFieldPath = 
+type InvoiceFieldPath =
   | `invoices.${number}.vendorId`
   | `invoices.${number}.invoiceNumber`
   | `invoices.${number}.invoiceDate`
@@ -35,6 +35,7 @@ export function useInvoiceTable(props: Props) {
   const { dirtyFields } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
+    keyName: 'uid',
     name: 'invoices',
   });
 
@@ -48,9 +49,17 @@ export function useInvoiceTable(props: Props) {
     [vendors]
   );
 
-  const openItemsDialog = (id: number) => {
-    console.log('invoice id', id);
-    console.log(fields);
+  const openItemsDialog = (uid: number) => {
+    const index = fields.findIndex((field) => field.id === uid);
+
+    if (index === -1) {
+      console.log('Cannot find row with database ID:', uid);
+      return;
+    }
+    
+    const invoice = fields[index];
+    console.log('Invoice data:', invoice);
+    console.log('Database ID:', invoice.id); // This is the database ID
   };
 
   const handleAddInvoice = (
