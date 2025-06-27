@@ -21,8 +21,9 @@ export function useInvoiceTable(props: Props) {
     auxData: { currencies, vendors },
     tVar,
   } = props;
-  const { control, formState } = useFormContext<InvoiceFormValues>();
-  const { fields, append, remove, update } = useFieldArray({
+  const { control, formState, reset, getValues } = useFormContext<InvoiceFormValues>();
+  const { dirtyFields } = formState;
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'invoices',
   });
@@ -69,21 +70,32 @@ export function useInvoiceTable(props: Props) {
     const index = fields.findIndex((field) => field.id === id);
     if (index === -1) {
       console.log('Cannot find row with ID:', id);
+      return;
     }
 
     const defaultInvoices = control._defaultValues?.invoices ?? [];
     const defaultRow = defaultInvoices[index];
     console.log('Found row at index:', index, defaultRow);
 
-    update(index, {
-      id: fields[index].id,
+    // Get current form values
+    const currentValues = getValues();
+    
+    // Update the specific row in the current values
+    const updatedInvoices = [...currentValues.invoices];
+    updatedInvoices[index] = {
+      ...updatedInvoices[index],
       vendorId: defaultRow?.vendorId ?? 0,
       invoiceNumber: defaultRow?.invoiceNumber ?? '',
       invoiceDate: defaultRow?.invoiceDate ?? null,
       currencyId: defaultRow?.currencyId ?? 0,
       totalAmount: defaultRow?.totalAmount ?? 0,
       isArrived: defaultRow?.isArrived ?? false,
-    });
+    };
+
+    // Reset the entire form with updated values to clear dirty state
+    reset({ invoices: updatedInvoices });
+    
+    console.log(dirtyFields?.invoices);
   };
 
   const handleRemoveInvoice = (index: number) => {
