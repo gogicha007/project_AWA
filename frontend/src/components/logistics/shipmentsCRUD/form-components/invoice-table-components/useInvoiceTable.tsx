@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
@@ -12,16 +12,26 @@ type Props = {
   };
   tVar: (key: string) => string;
 };
+
 export interface InvoiceFormValues {
   invoices: InvoiceRow[];
 }
+
+type InvoiceFieldPath = 
+  | `invoices.${number}.vendorId`
+  | `invoices.${number}.invoiceNumber`
+  | `invoices.${number}.invoiceDate`
+  | `invoices.${number}.currencyId`
+  | `invoices.${number}.totalAmount`
+  | `invoices.${number}.isArrived`;
 
 export function useInvoiceTable(props: Props) {
   const {
     auxData: { currencies, vendors },
     tVar,
   } = props;
-  const { control, formState, resetField } = useFormContext<InvoiceFormValues>();
+  const { control, formState, resetField, reset, getValues } =
+    useFormContext<InvoiceFormValues>();
   const { dirtyFields } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
@@ -38,11 +48,6 @@ export function useInvoiceTable(props: Props) {
     [vendors]
   );
 
-  useEffect(() => {
-    console.log(formState.dirtyFields.invoices);
-    // console.log('fields', fields)
-  }, [formState.dirtyFields.invoices, fields]);
-
   const openItemsDialog = (id: number) => {
     console.log('invoice id', id);
     console.log(fields);
@@ -56,18 +61,30 @@ export function useInvoiceTable(props: Props) {
       currencyId: 0,
     }
   ) => {
-    append({
+    const newInvoice: InvoiceRow = {
       ...newInvoiceData,
       id: negIdCounter.getId(),
       totalAmount: 0,
       isArrived: false,
-    });
+    };
+
+    append(newInvoice, { shouldFocus: false });
+
+    setTimeout(() => {
+      const currentInvoices = getValues('invoices');
+      reset(
+        { invoices: currentInvoices },
+        {
+          keepDirty: false,
+          keepValues: true,
+        }
+      );
+    }, 0);
   };
 
   const handleResetInvoice = (id: number) => {
-    console.log('reset index', id);
-
     const index = fields.findIndex((field) => field.id === id);
+
     if (index === -1) {
       console.log('Cannot find row with ID:', id);
       return;
@@ -75,32 +92,41 @@ export function useInvoiceTable(props: Props) {
 
     const defaultInvoices = control._defaultValues?.invoices ?? [];
     const defaultRow = defaultInvoices[index];
-    console.log('Found row at index:', index, defaultRow);
 
-    resetField(`invoices.${index}.vendorId`, { 
-      defaultValue: defaultRow?.vendorId ?? 0 
-    });
-    resetField(`invoices.${index}.invoiceNumber`, { 
-      defaultValue: defaultRow?.invoiceNumber ?? '' 
-    });
-    resetField(`invoices.${index}.invoiceDate`, { 
-      defaultValue: defaultRow?.invoiceDate ?? null 
-    });
-    resetField(`invoices.${index}.currencyId`, { 
-      defaultValue: defaultRow?.currencyId ?? 0 
-    });
-    resetField(`invoices.${index}.totalAmount`, { 
-      defaultValue: defaultRow?.totalAmount ?? 0 
-    });
-    resetField(`invoices.${index}.isArrived`, { 
-      defaultValue: defaultRow?.isArrived ?? false 
-    });
-    
-    console.log(dirtyFields?.invoices);
+    const rowDirtyFields = dirtyFields.invoices?.[index];
+
+    if (rowDirtyFields) {
+      const keysArray = Object.keys(rowDirtyFields);
+
+      if (keysArray.length > 0) {
+        keysArray.forEach((key) => {
+          resetField(`invoices.${index}.${key}` as InvoiceFieldPath, {
+            defaultValue: defaultRow?.[key as keyof typeof defaultRow],
+          });
+        });
+      }
+    } else {
+      console.log('No dirty fields found for this row');
+    }
   };
 
-  const handleRemoveInvoice = (index: number) => {
-    remove(index);
+  const handleRemoveInvoice = (id: number) => {
+    const index = fields.findIndex((field) => field.id === id);
+
+    if (index !== -1) {
+      remove(index);
+
+      setTimeout(() => {
+        const currentInvoices = getValues('invoices');
+        reset(
+          { invoices: currentInvoices },
+          {
+            keepDirty: false,
+            keepValues: true,
+          }
+        );
+      }, 0);
+    }
   };
 
   const columns = InvoiceColumns({
