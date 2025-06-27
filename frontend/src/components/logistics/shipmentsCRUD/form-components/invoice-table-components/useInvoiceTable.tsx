@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
@@ -22,10 +22,11 @@ type InvoiceFieldPath =
   | `invoices.${number}.invoiceNumber`
   | `invoices.${number}.invoiceDate`
   | `invoices.${number}.currencyId`
-  | `invoices.${number}.totalAmount`
-  | `invoices.${number}.isArrived`;
+  | `invoices.${number}.totalAmount`;
 
 export function useInvoiceTable(props: Props) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentInvoiceId, setCurrentInvoiceId] = useState<number|undefined>();
   const {
     auxData: { currencies, vendors },
     tVar,
@@ -56,10 +57,12 @@ export function useInvoiceTable(props: Props) {
       console.log('Cannot find row with database ID:', uid);
       return;
     }
-    
+
     const invoice = fields[index];
     console.log('Invoice data:', invoice);
     console.log('Database ID:', invoice.id); // This is the database ID
+    setCurrentInvoiceId(invoice.id);
+    setIsDialogOpen(true)
   };
 
   const handleAddInvoice = (
@@ -74,7 +77,6 @@ export function useInvoiceTable(props: Props) {
       ...newInvoiceData,
       id: negIdCounter.getId(),
       totalAmount: 0,
-      isArrived: false,
     };
 
     append(newInvoice, { shouldFocus: false });
@@ -153,6 +155,9 @@ export function useInvoiceTable(props: Props) {
   return {
     fields,
     columns,
+    currentInvoiceId,
+    isDialogOpen,
+    setIsDialogOpen,
     handleAddInvoice,
     handleResetInvoice,
     handleRemoveInvoice,

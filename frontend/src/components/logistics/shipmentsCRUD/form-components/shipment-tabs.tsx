@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
-// import FileUploader from '@/components/controls/file-uploader/FileUploader';
-// import InvoiceTable from '@/components/purchases/invoices/invoice-table';
 import FreightTable from '@/components/purchases/freights/freight-table';
-// import { FileData } from '@/components/controls/file-uploader/FileUploader';
 import { FileData } from '@/components/controls/file-input/FileInput';
-import { CurrencyDTO, InvoiceDTO, VendorDTO } from '@/api/types';
+import {
+  CurrencyDTO,
+  InvoiceDTO,
+  VendorDTO,
+  UnitDTO,
+  MaterialNameDTO,
+} from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
 import InvoiceFields from './invoice-table-components/InvoiceFields';
 
@@ -13,7 +16,10 @@ interface ShipmentTabsProps {
   auxData: {
     currencies: Partial<CurrencyDTO>[];
     vendors: Partial<VendorDTO>[];
+    units: UnitDTO[];
+    materials: MaterialNameDTO[];
   };
+
   disabled: boolean;
   invoiceArray: InvoiceDTO[];
   fileDataArray: FileData[];
@@ -29,7 +35,6 @@ export default function ShipmentTabs({
   fileDataArray,
   setFileDataArray,
   tS,
-  tB,
 }: ShipmentTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -59,13 +64,7 @@ export default function ShipmentTabs({
             tS={tS}
           />
         )}
-        {activeTab === 1 && (
-          <InvoiceFields
-            auxData={auxData}
-            tB={tB}
-            tS={tS}
-          />
-        )}
+        {activeTab === 1 && <InvoiceFields auxData={auxData} />}
         {activeTab === 2 && <FreightTable />}
       </div>
     </div>

@@ -192,6 +192,18 @@
       "items": "Items"
     }
   },
+  "InvoiceItems": {
+    "title": "Invoice Itemd",
+    "table": {
+      "id": "ID",
+      "material": "Material",
+      "description": "Description",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "price": "Price",
+      "total": "Total"
+    }
+  },
   "Logistics": {
     "title": "Shipments",
     "table": {

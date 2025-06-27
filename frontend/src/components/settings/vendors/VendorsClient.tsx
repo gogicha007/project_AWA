@@ -33,9 +33,19 @@ export default function VendorsClient() {
   } = useVendorsLogic(vendors, mutate, tV);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSatus, setSnackbarStatus] = useState<{
+    message: string;
+    success: boolean;
+  }>({ message: '', success: false });
 
   useEffect(() => {
-    if (errorMessage) setSnackbarOpen(true);
+    if (errorMessage) {
+      setSnackbarStatus({
+        message: error instanceof Error ? errorMessage : 'An error occurred',
+        success: false,
+      });
+      setSnackbarOpen(true);
+    }
   }, [errorMessage]);
 
   const table = useReactTable({
@@ -112,7 +122,7 @@ export default function VendorsClient() {
         </div>
       </div>
       <Snackbar
-        message={errorMessage || ''}
+        status={snackbarSatus}
         open={snackbarOpen}
         onClose={() => setSnackbarOpen(false)}
       />

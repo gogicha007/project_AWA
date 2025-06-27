@@ -7,6 +7,8 @@ import { useAuth } from '@/context/auth';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
+import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
+import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { InvoiceDTO } from '@/api/types';
@@ -28,6 +30,9 @@ export function useShipmentFormSet(id?: number) {
   const { dbUserId, loading: authLoading } = useAuth();
   const { currencies, loading: currenciesLoading } = useCurrencyApiHook();
   const { vendors, loading: vendorsLoading } = useVendorsApiHook();
+  const { materialNames: materials, loading: materialsLoading } =
+    useMaterialNames();
+  const { units, loading: unitsLoading } = useUnits();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const [invoiceArray, setInvoiceArray] = useState<InvoiceDTO[]>([]);
@@ -58,9 +63,21 @@ export function useShipmentFormSet(id?: number) {
 
   useEffect(() => {
     setLoading(
-      currenciesLoading || vendorsLoading || authLoading || isSubmitting
+      currenciesLoading ||
+        vendorsLoading ||
+        materialsLoading ||
+        unitsLoading ||
+        authLoading ||
+        isSubmitting
     );
-  }, [currenciesLoading, vendorsLoading, authLoading, isSubmitting]);
+  }, [
+    currenciesLoading,
+    vendorsLoading,
+    materialsLoading,
+    unitsLoading,
+    authLoading,
+    isSubmitting,
+  ]);
 
   useEffect(() => {
     setDisableSubmitBtn(!(isDirty && !!shipmentId));
@@ -167,7 +184,7 @@ export function useShipmentFormSet(id?: number) {
   };
 
   return {
-    auxData: { currencies, vendors },
+    auxData: { currencies, vendors, materials, units },
     disableSubmitBtn,
     fileDataArray,
     handleCancel,

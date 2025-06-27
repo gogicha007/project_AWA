@@ -14,7 +14,6 @@ export interface InvoiceRow {
   invoiceDate: Date | string | null;
   currencyId: number;
   totalAmount: number;
-  isArrived: boolean;
 }
 
 type Props = {
@@ -118,17 +117,7 @@ const InvoiceColumns = (props: Props) => {
           />
         ),
       },
-      {
-        header: tVar('table.is_arrived'),
-        accessorKey: 'isArrived',
-        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
-          <input
-            type="checkbox"
-            {...register(`invoices.${row.index}.isArrived` as const)}
-            defaultChecked={row.original.isArrived}
-          />
-        ),
-      },
+
       {
         id: 'items',
         header: tVar('actions.items'),

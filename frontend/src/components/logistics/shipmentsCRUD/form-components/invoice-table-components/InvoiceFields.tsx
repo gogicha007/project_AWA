@@ -5,21 +5,31 @@ import {
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import { CurrencyDTO, VendorDTO } from '@/api/types';
+import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
 import { useInvoiceTable } from './useInvoiceTable';
 import AddButton from '@/components/controls/add-button/AddButton';
+import InvoiceItemsTable from './invoice-items/InvoiceItemsTable';
 
 type Props = {
   auxData: {
     currencies: Partial<CurrencyDTO>[];
     vendors: Partial<VendorDTO>[];
+    materials: MaterialNameDTO[];
+    units: UnitDTO[];
   };
 };
 
 const InvoiceFields = ({ auxData }: Props) => {
   const tI = useTranslations('Invoices');
-  const { fields, columns, handleAddInvoice } = useInvoiceTable({
+  const {
+    fields,
+    columns,
+    currentInvoiceId,
+    handleAddInvoice,
+    isDialogOpen,
+    setIsDialogOpen,
+  } = useInvoiceTable({
     auxData,
     tVar: tI,
   });
@@ -66,6 +76,12 @@ const InvoiceFields = ({ auxData }: Props) => {
           </tbody>
         </table>
       </div>
+      <InvoiceItemsTable
+        isOpen={isDialogOpen}
+        invoiceId={currentInvoiceId as number}
+        auxData={auxData}
+        onClose={() => setIsDialogOpen(false)}
+      />
     </>
   );
 };

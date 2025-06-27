@@ -72,7 +72,6 @@ export interface InvoiceDTO {
   invoiceNumber: string;
   invoiceDate: Date;
   totalAmount?: number;
-  isArrived?: boolean;
   userId?: number;
   currencyId: number;
   shipmentId?: number;
