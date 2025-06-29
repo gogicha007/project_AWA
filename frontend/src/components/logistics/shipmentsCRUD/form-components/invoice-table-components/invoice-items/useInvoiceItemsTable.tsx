@@ -56,6 +56,7 @@ export function useInvoiceItemsTable(props: Props) {
       unitPrice: newItemData.unitPrice ?? 0,
       total: 0,
     };
+    console.log(fields)
     append(newItem, { shouldFocus: false });
   };
 

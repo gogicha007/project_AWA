@@ -11,7 +11,7 @@ import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { formatToISODateTime } from '@/utils/dateFormat';
-import { InvoiceDTO } from '@/api/types';
+import { InvoiceDTO, InvoiceItemDTO } from '@/api/types';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 
 export type ShipmentFormValues = {
@@ -21,6 +21,7 @@ export type ShipmentFormValues = {
   declaration_date?: Date;
   files?: Array<FileData>;
   invoices?: Array<InvoiceDTO>;
+  invoiceItems?: Array<InvoiceItemDTO>
 };
 
 export function useShipmentFormSet(id?: number) {
@@ -118,6 +119,9 @@ export function useShipmentFormSet(id?: number) {
             : undefined,
           files: shipment.Files,
           invoices: shipment.Invoices,
+          invoiceItems: shipment.Invoices
+            ? shipment.Invoices.flatMap(inv => inv.Items ?? [])
+            : []
         });
         setFileDataArray(shipment.Files || []);
         setInvoiceArray(shipment.Invoices || []);

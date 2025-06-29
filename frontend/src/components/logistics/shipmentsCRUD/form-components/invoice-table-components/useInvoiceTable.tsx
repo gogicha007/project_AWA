@@ -59,8 +59,6 @@ export function useInvoiceTable(props: Props) {
     }
 
     const invoice = fields[index];
-    console.log('Invoice data:', invoice);
-    console.log('Database ID:', invoice.id); // This is the database ID
     setCurrentInvoiceId(invoice.id);
     setIsDialogOpen(true)
   };

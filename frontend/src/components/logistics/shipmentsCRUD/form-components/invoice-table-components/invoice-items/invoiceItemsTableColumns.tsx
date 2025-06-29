@@ -37,7 +37,7 @@ const InvoiceItemColumns = (props: Props) => {
     units,
     unitsObj,
   } = props;
-  const { control, register } = useFormContext();
+  const { register } = useFormContext();
 
   return useMemo(
     () => [
@@ -172,7 +172,6 @@ const InvoiceItemColumns = (props: Props) => {
       },
     ],
     [
-      control,
       dirtyFields.invoiceItems,
       handleRemoveItem,
       materials,
