@@ -149,17 +149,17 @@ const InvoiceColumns = (props: Props) => {
       },
     ],
     [
-      tVar,
-      register,
       control,
-      vendors,
       currencies,
-      vendorsObj,
       currenciesObj,
+      dirtyFields.invoices,
       handleResetInvoice,
       handleRemoveInvoice,
       openItemsDialog,
-      dirtyFields.invoices,
+      register,
+      tVar,
+      vendors,
+      vendorsObj,
     ]
   );
 };

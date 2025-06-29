@@ -44,6 +44,7 @@ export function useInvoiceItemsTable(props: Props) {
       unitId: 0,
       quantity: 0,
       unitPrice: 0,
+      total: 0,
     }
   ) => {
     const newItem: InvoiceItemRow = {
@@ -56,7 +57,6 @@ export function useInvoiceItemsTable(props: Props) {
       unitPrice: newItemData.unitPrice ?? 0,
       total: 0,
     };
-    console.log(fields)
     append(newItem, { shouldFocus: false });
   };
 
@@ -69,13 +69,14 @@ export function useInvoiceItemsTable(props: Props) {
   };
 
   const columns = InvoiceItemColumns({
+    dirtyFields: formState.dirtyFields,
+    handleRemoveItem,
     materials,
     materialsObj,
+    tVar,
     units,
     unitsObj,
-    tVar,
-    handleRemoveItem,
-    dirtyFields: formState.dirtyFields,
   });
+  
   return { columns, fields, handleAddItem, handleRemoveItem };
 }

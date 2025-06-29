@@ -105,7 +105,7 @@ const InvoiceItemColumns = (props: Props) => {
           row: { index: number; original: InvoiceItemRow };
         }) => (
           <select
-            {...register(`invoices.${row.index}.currencyId` as const)}
+            {...register(`invoiceItems.${row.index}.currencyId` as const)}
             defaultValue={row.original.unitId}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.unitId ? styles.dirty : ''}`}
           >
@@ -129,7 +129,7 @@ const InvoiceItemColumns = (props: Props) => {
           <input
             type="number"
             step="0.01"
-            {...register(`invoiceItems.${row.index}.price` as const, {
+            {...register(`invoiceItems.${row.index}.unitPrice` as const, {
               valueAsNumber: true,
             })}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.unitPrice ? styles.dirty : ''}`}
