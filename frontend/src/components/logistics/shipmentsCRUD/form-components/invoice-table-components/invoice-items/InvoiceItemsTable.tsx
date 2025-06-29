@@ -1,6 +1,14 @@
-import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import styles from './invoice-items.module.css';
 import { useEffect, useRef } from 'react';
+import {
+  useReactTable,
+  getCoreRowModel,
+  flexRender,
+} from '@tanstack/react-table';
+import { useTranslations } from 'next-intl';
+import { MaterialNameDTO, UnitDTO } from '@/api/types';
+import { useInvoiceItemsTable } from './useInvoiceItemsTable';
+import AddButton from '@/components/controls/add-button/AddButton';
 
 type Props = {
   isOpen: boolean;
@@ -18,9 +26,13 @@ export default function InvoiceItemsTable({
   auxData,
   onClose,
 }: Props) {
+  const tII = useTranslations('InvoiceItems');
   const dialogRef = useRef<HTMLDialogElement>(null);
-  console.log('invoice items/invoice id', invoiceId);
-  console.log(auxData);
+  const { fields, columns, handleAddItem } = useInvoiceItemsTable({
+    auxData,
+    invoiceId,
+    tVar: tII,
+  });
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -31,7 +43,13 @@ export default function InvoiceItemsTable({
       dialog.close();
     }
   }, [isOpen]);
-  
+
+  const table = useReactTable({
+    data: fields,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
   return (
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialogHeader}>
@@ -39,6 +57,40 @@ export default function InvoiceItemsTable({
         <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
         </button>
+      </div>
+      <div className={styles.tableContainer}>
+        <div className={styles.tableActions}>
+          <AddButton onAdd={handleAddItem} />
+        </div>
+        <table className={styles.table}>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className={styles.tableHeader}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className={styles.tableRow}>
+                {row.getLeftVisibleCells().map((cell) => (
+                  <td key={cell.id} className={styles.tableCell}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </dialog>
   );

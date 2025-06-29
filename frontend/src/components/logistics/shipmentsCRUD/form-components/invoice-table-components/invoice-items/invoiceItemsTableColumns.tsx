@@ -4,6 +4,7 @@ import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { InvoiceItemFormValues } from './useInvoiceItemsTable';
 import { useFormContext } from 'react-hook-form';
 import { useMemo } from 'react';
+import InvoiceTableActions from '../InvoiceTableActions';
 
 export interface InvoiceItemRow {
   id: number;
@@ -19,15 +20,23 @@ export interface InvoiceItemRow {
 type Props = {
   tVar: (key: string) => string;
   units: UnitDTO[];
-  products: MaterialNameDTO[];
+  materials: MaterialNameDTO[];
   unitsObj: Record<string, string | undefined>;
-  productsObj: Record<string, string | undefined>;
+  materialsObj: Record<string, string | undefined>;
   handleRemoveItem: (id: number) => void;
   dirtyFields: FieldNamesMarkedBoolean<InvoiceItemFormValues>;
 };
 
 const InvoiceItemColumns = (props: Props) => {
-  const { tVar, products, productsObj, units, unitsObj, dirtyFields } = props;
+  const {
+    dirtyFields,
+    handleRemoveItem,
+    materials,
+    materialsObj,
+    tVar,
+    units,
+    unitsObj,
+  } = props;
   const { control, register } = useFormContext();
 
   return useMemo(
@@ -46,9 +55,9 @@ const InvoiceItemColumns = (props: Props) => {
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.productId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
-            {products.map((p) => (
+            {materials.map((p) => (
               <option key={p.id} value={p.id}>
-                {productsObj[p.id as number]}
+                {materialsObj[p.id as number]}
               </option>
             ))}
           </select>
@@ -146,16 +155,32 @@ const InvoiceItemColumns = (props: Props) => {
           />
         ),
       },
+      {
+        id: 'actions',
+        header: tVar('actions.title'),
+        cell: ({
+          row,
+        }: {
+          row: { index: number; original: InvoiceItemRow };
+        }) => (
+          <InvoiceTableActions
+            id={row.original.id ?? 0}
+            onDelete={handleRemoveItem}
+            disableReset={true}
+          />
+        ),
+      },
     ],
     [
-      tVar,
-      register,
       control,
-      products,
-      productsObj,
+      dirtyFields.invoiceItems,
+      handleRemoveItem,
+      materials,
+      materialsObj,
+      register,
+      tVar,
       units,
       unitsObj,
-      dirtyFields.invoiceItems,
     ]
   );
 };

@@ -202,6 +202,10 @@
       "unit": "Unit",
       "price": "Price",
       "total": "Total"
+    },
+    "actions": {
+      "title": "Actions",
+      "items": "Items"
     }
   },
   "Logistics": {

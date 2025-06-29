@@ -46,7 +46,7 @@ export default function VendorsClient() {
       });
       setSnackbarOpen(true);
     }
-  }, [errorMessage]);
+  }, [errorMessage, error]);
 
   const table = useReactTable({
     data,
