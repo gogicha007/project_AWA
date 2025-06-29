@@ -44,7 +44,8 @@ export default function InvoiceItemsTable({
     }
   }, [isOpen]);
 
-  const table = useReactTable({
+  console.log('fields', fields)
+  const itemsTable = useReactTable({
     data: fields,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -64,7 +65,7 @@ export default function InvoiceItemsTable({
         </div>
         <table className={styles.table}>
           <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {itemsTable.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id} className={styles.tableHeader}>
@@ -80,9 +81,9 @@ export default function InvoiceItemsTable({
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row) => (
+            {itemsTable.getRowModel().rows.map((row) => (
               <tr key={row.id} className={styles.tableRow}>
-                {row.getLeftVisibleCells().map((cell) => (
+                {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className={styles.tableCell}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>

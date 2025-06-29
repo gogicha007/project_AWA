@@ -12,6 +12,7 @@ type Props = {
   invoiceId: number;
   tVar: (key: string) => string;
 };
+
 export interface InvoiceItemFormValues {
   invoiceItems: InvoiceItemRow[];
 }
@@ -23,7 +24,9 @@ export function useInvoiceItemsTable(props: Props) {
     tVar,
   } = props;
 
-  const { control, formState } = useFormContext<InvoiceItemFormValues>();
+  const { control, formState, register } =
+    useFormContext<InvoiceItemFormValues>();
+
   const { fields, append, remove } = useFieldArray({
     control,
     keyName: 'uid',
@@ -40,7 +43,7 @@ export function useInvoiceItemsTable(props: Props) {
     newItemData: Partial<InvoiceItemRow> = {
       invoiceId: invoiceId,
       productId: 0,
-      description: '',
+      description: 'new',
       unitId: 0,
       quantity: 0,
       unitPrice: 0,
@@ -68,15 +71,32 @@ export function useInvoiceItemsTable(props: Props) {
     }
   };
 
-  const columns = InvoiceItemColumns({
-    dirtyFields: formState.dirtyFields,
-    handleRemoveItem,
-    materials,
-    materialsObj,
-    tVar,
-    units,
-    unitsObj,
-  });
-  
+  const columns = useMemo(
+    () =>
+      InvoiceItemColumns({
+        control,
+        dirtyFields: formState.dirtyFields,
+        handleRemoveItem,
+        materials,
+        materialsObj,
+        register,
+        tVar,
+        units,
+        unitsObj,
+      }),
+    [
+      control,
+      fields.length,
+      formState.dirtyFields,
+      handleRemoveItem,
+      materials,
+      materialsObj,
+      register,
+      tVar,
+      units,
+      unitsObj,
+    ]
+  );
+
   return { columns, fields, handleAddItem, handleRemoveItem };
 }
