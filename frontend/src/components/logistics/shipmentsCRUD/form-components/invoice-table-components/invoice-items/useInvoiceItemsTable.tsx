@@ -24,7 +24,7 @@ export function useInvoiceItemsTable(props: Props) {
     tVar,
   } = props;
 
-  const { control, formState, register } =
+  const { control, formState, register, setValue } =
     useFormContext<InvoiceItemFormValues>();
 
   const { fields, append, remove } = useFieldArray({
@@ -80,6 +80,7 @@ export function useInvoiceItemsTable(props: Props) {
         materials,
         materialsObj,
         register,
+        setValue,
         tVar,
         units,
         unitsObj,

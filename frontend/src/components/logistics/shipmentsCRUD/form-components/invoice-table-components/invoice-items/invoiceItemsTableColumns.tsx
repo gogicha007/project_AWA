@@ -1,12 +1,14 @@
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
-import styles from '../invoice-fields.module.css';
+import styles from './invoice-items.module.css';
 import {
   Control,
   FieldNamesMarkedBoolean,
   UseFormRegister,
+  UseFormSetValue,
 } from 'react-hook-form';
 import { InvoiceItemFormValues } from './useInvoiceItemsTable';
 import InvoiceTableActions from '../InvoiceTableActions';
+import { TotalCell } from './TotalCell';
 
 export interface InvoiceItemRow {
   id: number;
@@ -26,6 +28,7 @@ type Props = {
   materials: MaterialNameDTO[];
   materialsObj: Record<string, string | undefined>;
   register: UseFormRegister<InvoiceItemFormValues>;
+  setValue: UseFormSetValue<InvoiceItemFormValues>;
   tVar: (key: string) => string;
   units: UnitDTO[];
   unitsObj: Record<string, string | undefined>;
@@ -33,14 +36,16 @@ type Props = {
 
 const InvoiceItemColumns = (props: Props) => {
   const {
+    control,
     dirtyFields,
     handleRemoveItem,
     materials,
     materialsObj,
-    tVar,
+    register,
+    setValue,
     units,
     unitsObj,
-    register,
+    tVar,
   } = props;
   return [
     {
@@ -113,6 +118,9 @@ const InvoiceItemColumns = (props: Props) => {
           step="0.01"
           {...register(`invoiceItems.${row.index}.unitPrice` as const, {
             valueAsNumber: true,
+            validate: (value) =>
+              /^\d+(\.\d{1,2})?$/.test(String(value)) ||
+              tVar('validation.max2decimals'),
           })}
           className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.unitPrice ? styles.dirty : ''}`}
         />
@@ -121,17 +129,14 @@ const InvoiceItemColumns = (props: Props) => {
     {
       header: tVar('table.total'),
       accessorKey: 'total',
-      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => (
-        <input
-          type="number"
-          step="0.01"
-          {...register(`invoiceItems.${row.index}.total` as const, {
-            valueAsNumber: true,
-          })}
-          disabled
-          className={styles.input}
-        />
-      ),
+      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
+        <TotalCell
+          row={row}
+          control={control}
+          setValue={setValue}
+          styles={styles}
+        />;
+      },
     },
     {
       id: 'actions',
