@@ -39,28 +39,36 @@ export function useInvoiceItemsTable(props: Props) {
     [materials]
   );
 
-  const handleAddItem = (
-    newItemData: Partial<InvoiceItemRow> = {
+  const handleAddItem = () => {
+    console.log('Adding new item for invoice:', invoiceId);
+    console.log('Current fields before append:', fields);
+    
+    const newItem: InvoiceItemRow = {
+      id: negIdCounter.getId(),
       invoiceId: invoiceId,
       productId: 0,
-      description: 'new',
+      description: '',
       unitId: 0,
       quantity: 0,
       unitPrice: 0,
       total: 0,
-    }
-  ) => {
-    const newItem: InvoiceItemRow = {
-      id: negIdCounter.getId(),
-      invoiceId: newItemData.invoiceId ?? invoiceId,
-      productId: newItemData.productId ?? 0,
-      description: newItemData.description ?? '',
-      unitId: newItemData.unitId ?? 0,
-      quantity: newItemData.quantity ?? 0,
-      unitPrice: newItemData.unitPrice ?? 0,
-      total: 0,
     };
+    console.log('New item to append:', newItem);
+    
     append(newItem, { shouldFocus: false });
+    
+    setTimeout(() => {
+      const newIndex = fields.length; // This will be the index of the newly added item
+      setValue(`invoiceItems.${newIndex}.invoiceId`, invoiceId);
+      setValue(`invoiceItems.${newIndex}.productId`, 0);
+      setValue(`invoiceItems.${newIndex}.description`, '');
+      setValue(`invoiceItems.${newIndex}.unitId`, 0);
+      setValue(`invoiceItems.${newIndex}.quantity`, 0);
+      setValue(`invoiceItems.${newIndex}.unitPrice`, 0);
+      setValue(`invoiceItems.${newIndex}.total`, 0);
+    }, 0);
+    
+    console.log('Fields after append:', fields);
   };
 
   const handleRemoveItem = (id: number) => {

@@ -15,23 +15,25 @@ export function TotalCell({
   setValue: UseFormSetValue<InvoiceItemFormValues>;
   styles: Record<string, string>;
 }) {
+  const fieldIndex = row.original.originalIndex ?? row.index;
+  
   const quantity = useWatch({
     control,
-    name: `invoiceItems.${row.index}.quantity`,
+    name: `invoiceItems.${fieldIndex}.quantity`,
   });
   const unitPrice = useWatch({
     control,
-    name: `invoiceItems.${row.index}.unitPrice`,
+    name: `invoiceItems.${fieldIndex}.unitPrice`,
   });
 
   const total = (Number(quantity) || 0) * (Number(unitPrice) || 0);
 
   useEffect(() => {
-    setValue(`invoiceItems.${row.index}.total`, total, {
+    setValue(`invoiceItems.${fieldIndex}.total`, total, {
       shouldValidate: false,
       shouldDirty: false,
     });
-  }, [total, row.index, setValue]);
+  }, [total, fieldIndex, setValue]);
 
   return (
     <NumericFormat

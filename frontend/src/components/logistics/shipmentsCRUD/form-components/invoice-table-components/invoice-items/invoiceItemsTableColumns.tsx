@@ -19,6 +19,7 @@ export interface InvoiceItemRow {
   unitId: number;
   unitPrice: number;
   total: number;
+  originalIndex?: number; // Add optional originalIndex for form field mapping
 }
 
 type Props = {
@@ -51,80 +52,95 @@ const InvoiceItemColumns = (props: Props) => {
     {
       header: tVar('table.material'),
       accessorKey: 'productId',
-      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => (
-        <select
-          {...register(`invoiceItems.${row.index}.productId` as const)}
-          defaultValue={row.original.productId}
-          className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.productId ? styles.dirty : ''}`}
-        >
-          <option value="">Select</option>
-          {materials.map((p) => (
-            <option key={p.id} value={p.id}>
-              {materialsObj[p.id as number]}
-            </option>
-          ))}
-        </select>
-      ),
+      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
+        const fieldIndex = row.original.originalIndex ?? row.index;
+        return (
+          <select
+            {...register(`invoiceItems.${fieldIndex}.productId` as const)}
+            defaultValue={row.original.productId}
+            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.productId ? styles.dirty : ''}`}
+          >
+            <option value="">Select</option>
+            {materials.map((p) => (
+              <option key={p.id} value={p.id}>
+                {materialsObj[p.id as number]}
+              </option>
+            ))}
+          </select>
+        );
+      },
     },
     {
       header: tVar('table.description'),
       accessorKey: 'description',
-      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => (
-        <input
-          type="text"
-          {...register(`invoiceItems.${row.index}.description` as const)}
-          className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.description ? styles.dirty : ''}`}
-        />
-      ),
+      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
+        const fieldIndex = row.original.originalIndex ?? row.index;
+        return (
+          <input
+            type="text"
+            {...register(`invoiceItems.${fieldIndex}.description` as const)}
+            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.description ? styles.dirty : ''}`}
+          />
+        );
+      },
     },
     {
       header: tVar('table.quantity'),
       accessorKey: 'quantity',
-      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => (
-        <input
-          type="number"
-          step="0.01"
-          {...register(`invoiceItems.${row.index}.quantity` as const, {
-            valueAsNumber: true,
-          })}
-          className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.quantity ? styles.dirty : ''}`}
-        />
-      ),
+      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
+        const fieldIndex = row.original.originalIndex ?? row.index;
+        return (
+          <input
+            type="number"
+            step="0.01"
+            {...register(`invoiceItems.${fieldIndex}.quantity` as const, {
+              valueAsNumber: true,
+            })}
+            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.quantity ? styles.dirty : ''}`}
+          />
+        );
+      },
     },
     {
       header: tVar('table.unit'),
       accessorKey: 'unitId',
-      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => (
-        <select
-          {...register(`invoiceItems.${row.index}.unitId` as const)}
-          defaultValue={row.original.unitId}
-          className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.unitId ? styles.dirty : ''}`}
-        >
-          <option value="">Select</option>
-          {units.map((u) => (
-            <option key={u.id} value={u.id}>
-              {unitsObj[u.id as number]}
-            </option>
-          ))}
-        </select>
-      ),
+      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
+        const fieldIndex = row.original.originalIndex ?? row.index;
+        return (
+          <select
+            {...register(`invoiceItems.${fieldIndex}.unitId` as const)}
+            defaultValue={row.original.unitId}
+            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitId ? styles.dirty : ''}`}
+          >
+            <option value="">Select</option>
+            {units.map((u) => (
+              <option key={u.id} value={u.id}>
+                {unitsObj[u.id as number]}
+              </option>
+            ))}
+          </select>
+        );
+      },
     },
     {
       header: tVar('table.price'),
       accessorKey: 'unitPrice',
-      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => (
-        <input
-          type="number"
-          step="0.01"
-          {...register(`invoiceItems.${row.index}.unitPrice` as const, {
-            valueAsNumber: true,
-            validate: (value) =>
-              /^\d+(\.\d{1,2})?$/.test(String(value)) ||
-              tVar('validation.max2decimals'),
-          })}
-          className={`${styles.input} ${dirtyFields?.invoiceItems?.[row.index]?.unitPrice ? styles.dirty : ''}`}
-        />
-      ),
+      cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
+        const fieldIndex = row.original.originalIndex ?? row.index;
+        return (
+          <input
+            type="number"
+            step="0.01"
+            {...register(`invoiceItems.${fieldIndex}.unitPrice` as const, {
+              valueAsNumber: true,
+              validate: (value) =>
+                /^\d+(\.\d{1,2})?$/.test(String(value)) ||
+                tVar('validation.max2decimals'),
+            })}
+            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitPrice ? styles.dirty : ''}`}
+          />
+        );
+      },
     },
     {
       header: tVar('table.total'),

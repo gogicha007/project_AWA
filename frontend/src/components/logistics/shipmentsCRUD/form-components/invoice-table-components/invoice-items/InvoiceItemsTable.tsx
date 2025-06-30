@@ -50,14 +50,15 @@ export default function InvoiceItemsTable({
     }
   }, [isOpen]);
 
-  console.log('invoice id', invoice.id)
-  const currentInvoiceItems = useMemo(
-    () => fields.filter((item) => item.invoiceId === invoice.id),
-    [fields, invoice.id]
-  );
+  const currentInvoiceItems = useMemo(() => {
+    return fields
+      .map((item, originalIndex) => ({
+        ...item,
+        originalIndex,
+      }))
+      .filter((item) => item.invoiceId === invoice.id);
+  }, [fields, invoice.id]);
 
-  console.log('current invoice items', currentInvoiceItems)
-  console.log('all fields', fields)
   const itemsTable = useReactTable({
     data: currentInvoiceItems,
     columns,
@@ -65,7 +66,7 @@ export default function InvoiceItemsTable({
   });
 
   return (
-    <dialog ref={dialogRef} className={styles.dialog}>
+    <dialog ref={dialogRef} className={styles.dialog} key={invoice.id}>
       <div className={styles.dialogHeader}>
         <ItemsHeader
           control={control}
@@ -80,7 +81,7 @@ export default function InvoiceItemsTable({
         <div className={styles.tableActions}>
           <AddButton onAdd={handleAddItem} />
         </div>
-        <table className={styles.table}>
+        <table className={styles.table} key={`table-${invoice.id}`}>
           <thead>
             {itemsTable.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
