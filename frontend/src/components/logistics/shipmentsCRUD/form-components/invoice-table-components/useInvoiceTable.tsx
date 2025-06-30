@@ -26,9 +26,11 @@ type InvoiceFieldPath =
 
 export function useInvoiceTable(props: Props) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentInvoiceId, setCurrentInvoiceId] = useState<
-    number | undefined
-  >();
+  const [currentInvoice, setCurrentInvoice] = useState<Partial<InvoiceRow>>({
+    id: 0,
+    invoiceNumber: '',
+    invoiceDate: new Date(),
+  });
   const {
     auxData: { currencies, vendors },
     tVar,
@@ -61,7 +63,16 @@ export function useInvoiceTable(props: Props) {
     }
 
     const invoice = fields[index];
-    setCurrentInvoiceId(invoice.id);
+    const formValues = getValues('invoices')[index];
+    
+    // Update currentInvoice state with the latest form values
+    setCurrentInvoice({
+      id: invoice.id,
+      invoiceNumber: formValues.invoiceNumber,
+      invoiceDate: formValues.invoiceDate,
+      totalAmount: formValues.totalAmount,
+    });
+    
     setIsDialogOpen(true);
   };
 
@@ -157,7 +168,7 @@ export function useInvoiceTable(props: Props) {
   return {
     fields,
     columns,
-    currentInvoiceId,
+    currentInvoice,
     isDialogOpen,
     setIsDialogOpen,
     handleAddInvoice,

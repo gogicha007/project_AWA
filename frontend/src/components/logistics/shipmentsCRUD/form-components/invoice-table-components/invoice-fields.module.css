@@ -74,7 +74,8 @@
 }
 
 .input,
-.input[type='number'] {
+.input[type='number'],
+.vendorSelect {
   width: 100%;
   padding: 4px 6px !important;
   border: 1px solid #e5e7eb;
@@ -84,7 +85,7 @@
 }
 
 .input[type='number'] {
-  max-width: 120px
+  max-width: 120px;
 }
 
 .input:focus {
@@ -93,7 +94,7 @@
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
-.input_date {
+.inputDate {
   max-width: 120px;
   padding: 4px 6px !important;
   border: 1px solid #e5e7eb;
@@ -102,18 +103,21 @@
   transition: border-color 0.2s;
 }
 
-.invoice_number {
-  max-width: 220px
+.invoiceNumber {
+  max-width: 220px;
 }
 
+.vendorSelect {
+  min-width: 200px;
+}
 .currency {
-  max-width: 100px
+  max-width: 100px;
 }
 
 .dirty {
-  border-color: #ec0c0c !important; 
+  border-color: #ec0c0c !important;
 }
 
 .notDirty {
-  color: red
+  color: red;
 }

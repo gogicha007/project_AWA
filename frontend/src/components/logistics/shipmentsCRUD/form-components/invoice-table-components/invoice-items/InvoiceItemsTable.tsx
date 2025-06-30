@@ -16,12 +16,16 @@ type Props = {
     materials: MaterialNameDTO[];
     units: UnitDTO[];
   };
-  invoiceId: number;
+  invoice: {
+    id: number;
+    invoiceNumber: string;
+    invoiceDate: Date | string | null;
+  };
   onClose: () => void;
 };
 
 export default function InvoiceItemsTable({
-  invoiceId,
+  invoice,
   isOpen,
   auxData,
   onClose,
@@ -30,7 +34,7 @@ export default function InvoiceItemsTable({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const { fields, columns, handleAddItem } = useInvoiceItemsTable({
     auxData,
-    invoiceId,
+    invoiceId: invoice.id,
     tVar: tII,
   });
 
@@ -44,7 +48,6 @@ export default function InvoiceItemsTable({
     }
   }, [isOpen]);
 
-  console.log('fields', fields)
   const itemsTable = useReactTable({
     data: fields,
     columns,
@@ -54,7 +57,13 @@ export default function InvoiceItemsTable({
   return (
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialogHeader}>
-        <h2>Invoice Id {invoiceId}</h2>
+        <h2>
+          Invoice: {invoice.invoiceNumber} | Date: {
+            invoice.invoiceDate 
+              ? new Date(invoice.invoiceDate).toISOString().split('T')[0]
+              : 'Not set'
+          }
+        </h2>
         <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
         </button>

@@ -25,7 +25,7 @@ const InvoiceFields = ({ auxData }: Props) => {
   const {
     fields,
     columns,
-    currentInvoiceId,
+    currentInvoice,
     handleAddInvoice,
     isDialogOpen,
     setIsDialogOpen,
@@ -78,7 +78,11 @@ const InvoiceFields = ({ auxData }: Props) => {
       </div>
       <InvoiceItemsTable
         isOpen={isDialogOpen}
-        invoiceId={currentInvoiceId as number}
+        invoice={{
+          id: currentInvoice?.id || 0,
+          invoiceNumber: currentInvoice?.invoiceNumber || '',
+          invoiceDate: currentInvoice?.invoiceDate || null,
+        }}
         auxData={auxData}
         onClose={() => setIsDialogOpen(false)}
       />

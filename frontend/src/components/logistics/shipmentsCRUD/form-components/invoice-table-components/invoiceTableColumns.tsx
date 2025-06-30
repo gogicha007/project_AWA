@@ -51,7 +51,7 @@ const InvoiceColumns = (props: Props) => {
           <select
             {...register(`invoices.${row.index}.vendorId` as const)}
             defaultValue={row.original.vendorId}
-            className={`${styles.vendor_select} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
+            className={`${styles.vendorSelect} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
             {vendors.map((v) => (
@@ -69,7 +69,7 @@ const InvoiceColumns = (props: Props) => {
           <input
             {...register(`invoices.${row.index}.invoiceNumber` as const)}
             defaultValue={row.original.invoiceNumber}
-            className={`${styles.invoice_number} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
+            className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
           />
         ),
       },
@@ -81,7 +81,7 @@ const InvoiceColumns = (props: Props) => {
             label=""
             name={`invoices.${row.index}.invoiceDate`}
             control={control}
-            className={`${styles.input_date} ${dirtyFields?.invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
+            className={`${styles.inputDate} ${dirtyFields?.invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
           />
         ),
       },
