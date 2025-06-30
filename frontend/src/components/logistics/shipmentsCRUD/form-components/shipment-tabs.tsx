@@ -2,13 +2,7 @@ import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
 import FreightTable from '@/components/purchases/freights/freight-table';
 import { FileData } from '@/components/controls/file-input/FileInput';
-import {
-  CurrencyDTO,
-  InvoiceDTO,
-  VendorDTO,
-  UnitDTO,
-  MaterialNameDTO,
-} from '@/api/types';
+import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
 import InvoiceFields from './invoice-table-components/InvoiceFields';
 
@@ -21,9 +15,7 @@ interface ShipmentTabsProps {
   };
 
   disabled: boolean;
-  invoiceArray: InvoiceDTO[];
   fileDataArray: FileData[];
-  setInvoiceArray: (invoices: InvoiceDTO[]) => void;
   setFileDataArray: (files: FileData[]) => void;
   tS: (key: string) => string;
   tB: (key: string) => string;

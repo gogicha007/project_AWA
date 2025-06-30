@@ -36,7 +36,6 @@ export function useShipmentFormSet(id?: number) {
   const { units, loading: unitsLoading } = useUnits();
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
-  const [invoiceArray, setInvoiceArray] = useState<InvoiceDTO[]>([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState<{
     message: string;
@@ -124,7 +123,6 @@ export function useShipmentFormSet(id?: number) {
             : []
         });
         setFileDataArray(shipment.Files || []);
-        setInvoiceArray(shipment.Invoices || []);
       } catch (error) {
         console.error('Failed to fetch shipment:', error);
       } finally {
@@ -194,14 +192,12 @@ export function useShipmentFormSet(id?: number) {
     handleCancel,
     handleEditSubmit,
     handleSnackbarClose,
-    invoiceArray,
     isDirty,
     isEditMode,
     loading,
     FormProvider,
     formMethods,
     setFileDataArray,
-    setInvoiceArray,
     shipmentId,
     snackbarOpen,
     snackbarStatus,

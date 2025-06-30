@@ -18,13 +18,13 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
     handleEditSubmit,
     handleGenInfoSubmit,
     handleSnackbarClose,
-    invoiceArray,
+    // invoiceArray,
     isDirty,
     loading,
     FormProvider,
     formMethods,
     setFileDataArray,
-    setInvoiceArray,
+    // setInvoiceArray,
     shipmentId,
     snackbarOpen,
     snackbarStatus,
@@ -74,8 +74,8 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
             disabled={!!!shipmentId}
             fileDataArray={fileDataArray}
             setFileDataArray={setFileDataArray}
-            invoiceArray={invoiceArray}
-            setInvoiceArray={setInvoiceArray}
+            // invoiceArray={invoiceArray}
+            // setInvoiceArray={setInvoiceArray}
             tS={tS}
             tB={tB}
           />

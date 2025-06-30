@@ -39,13 +39,12 @@ export function useInvoiceItemsTable(props: Props) {
     [materials]
   );
 
-  // const invoiceItems = watch('invoiceItems')
+  const totalAmount = useMemo(() => {
+    if (!fields || fields.length === 0) return 0;
+    return fields.reduce((sum, field) => sum + (field.total || 0), 0);
+  }, [fields]);
 
-  // useEffect(()=> {
-  //   if(invoiceItems){
-  //     console.log(invoiceItems)
-  //   }
-  // }, [invoiceItems])
+  console.log(totalAmount);
 
   const handleAddItem = (
     newItemData: Partial<InvoiceItemRow> = {
