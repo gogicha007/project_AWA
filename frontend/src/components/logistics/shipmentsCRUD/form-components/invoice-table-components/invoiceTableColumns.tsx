@@ -6,6 +6,7 @@ import DateInput from '@/components/controls/date-input/date-input';
 import InvoiceTableActions from './InvoiceTableActions';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { InvoiceFormValues } from './useInvoiceTable';
+import { NumericFormat } from 'react-number-format';
 
 export interface InvoiceRow {
   id: number;
@@ -106,16 +107,19 @@ const InvoiceColumns = (props: Props) => {
       {
         header: tVar('table.total_amount'),
         accessorKey: 'totalAmount',
-        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
-          <input
-            type="number"
-            step="0.01"
-            {...register(`invoices.${row.index}.totalAmount` as const, {
-              valueAsNumber: true,
-            })}
-            className={`${styles.input} ${dirtyFields?.invoices?.[row.index]?.totalAmount ? styles.dirty : ''}`}
-          />
-        ),
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => {
+          const totalAmount = watch(`invoices.${row.index}.totalAmount`) || 0;
+          return (
+            <NumericFormat
+              value={totalAmount}
+              displayType="text"
+              thousandSeparator=","
+              decimalScale={2}
+              fixedDecimalScale
+              className={styles.input}
+            />
+          );
+        },
       },
 
       {
@@ -125,7 +129,7 @@ const InvoiceColumns = (props: Props) => {
           const invoiceNumber = watch(`invoices.${row.index}.invoiceNumber`);
           const invoiceDate = watch(`invoices.${row.index}.invoiceDate`);
           const isEnabled = !!(invoiceNumber && invoiceDate);
-          
+
           return (
             <button
               onClick={() => openItemsDialog(row.original.id)}

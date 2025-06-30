@@ -29,6 +29,7 @@ const InvoiceFields = ({ auxData }: Props) => {
     handleAddInvoice,
     isDialogOpen,
     setIsDialogOpen,
+    updateInvoiceTotalAmount,
   } = useInvoiceTable({
     auxData,
     tVar: tI,
@@ -85,7 +86,12 @@ const InvoiceFields = ({ auxData }: Props) => {
           totalAmount: currentInvoice?.totalAmount || 0,
         }}
         auxData={auxData}
-        onClose={() => setIsDialogOpen(false)}
+        onClose={(totalAmount?: number) => {
+          if (typeof totalAmount === 'number' && currentInvoice?.id) {
+            updateInvoiceTotalAmount(currentInvoice.id, totalAmount);
+          }
+          setIsDialogOpen(false);
+        }}
       />
     </>
   );

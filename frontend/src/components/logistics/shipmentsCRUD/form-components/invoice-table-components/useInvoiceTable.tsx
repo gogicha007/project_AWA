@@ -35,7 +35,7 @@ export function useInvoiceTable(props: Props) {
     auxData: { currencies, vendors },
     tVar,
   } = props;
-  const { control, formState, resetField, reset, getValues } =
+  const { control, formState, resetField, reset, getValues, setValue } =
     useFormContext<InvoiceFormValues>();
   const { dirtyFields } = formState;
   const { fields, append, remove } = useFieldArray({
@@ -152,6 +152,13 @@ export function useInvoiceTable(props: Props) {
     }
   };
 
+  const updateInvoiceTotalAmount = (invoiceId: number, totalAmount: number) => {
+    const index = fields.findIndex((field) => field.id === invoiceId);
+    if (index !== -1) {
+      setValue(`invoices.${index}.totalAmount`, totalAmount);
+    }
+  };
+
   const columns = InvoiceColumns({
     tVar,
     vendors,
@@ -173,5 +180,6 @@ export function useInvoiceTable(props: Props) {
     handleAddInvoice,
     handleResetInvoice,
     handleRemoveInvoice,
+    updateInvoiceTotalAmount,
   };
 }

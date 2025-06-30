@@ -23,7 +23,7 @@ type Props = {
     invoiceDate: Date | string | null;
     totalAmount: number;
   };
-  onClose: () => void;
+  onClose: (totalAmount?: number) => void;
 };
 
 export default function InvoiceItemsTable({
@@ -59,11 +59,20 @@ export default function InvoiceItemsTable({
       .filter((item) => item.invoiceId === invoice.id);
   }, [fields, invoice.id]);
 
+  const calculateTotal = () => {
+    return currentInvoiceItems.reduce((sum, item) => sum + (item?.total || 0), 0);
+  };
+
+  const handleClose = () => {
+    const totalAmount = calculateTotal();
+    onClose(totalAmount);
+  };
+
   const itemsTable = useReactTable({
     data: currentInvoiceItems,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getRowId: (row) => String(row.id), // Use database ID for row identification
+    getRowId: (row) => String(row.id),
   });
 
   return (
@@ -74,7 +83,7 @@ export default function InvoiceItemsTable({
           invoice={{ num: invoice.invoiceNumber, date: invoice.invoiceDate }}
           invoiceId={invoice.id}
         />
-        <button type="button" className={styles.closeButton} onClick={onClose}>
+        <button type="button" className={styles.closeButton} onClick={handleClose}>
           ×
         </button>
       </div>
