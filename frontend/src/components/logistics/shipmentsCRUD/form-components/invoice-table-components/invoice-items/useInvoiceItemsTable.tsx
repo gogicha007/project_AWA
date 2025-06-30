@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import InvoiceItemColumns, { InvoiceItemRow } from './invoiceItemsTableColumns';
@@ -63,18 +63,15 @@ export function useInvoiceItemsTable(props: Props) {
     append(newItem, { shouldFocus: false });
   };
 
-  const handleRemoveItem = useCallback(
-    () => (id: number) => {
-      if (confirm(tVar('warnings.delete'))) {
-        const index = fields.findIndex((field) => field.id === id);
+  const handleRemoveItem = (id: number) => {
+    if (confirm(tVar('warnings.delete'))) {
+      const index = fields.findIndex((field) => field.id === id);
 
-        if (index !== -1) {
-          remove(index);
-        }
+      if (index !== -1) {
+        remove(index);
       }
-    },
-    [fields, remove, tVar]
-  );
+    }
+  };
 
   const columns = useMemo(
     () =>

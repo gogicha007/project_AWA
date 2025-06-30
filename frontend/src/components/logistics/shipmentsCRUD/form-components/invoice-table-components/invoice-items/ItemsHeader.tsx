@@ -6,12 +6,14 @@ import { useMemo } from 'react';
 export function ItemsHeader({
   control,
   invoice,
+  invoiceId,
 }: {
   control: Control<InvoiceItemFormValues>;
   invoice: {
     num: string;
     date: Date | string | null;
   };
+  invoiceId: number;
 }) {
   const items = useWatch({
     control,
@@ -20,8 +22,9 @@ export function ItemsHeader({
 
   const totalAmount = useMemo(() => {
     if (!items || items.length === 0) return 0;
-    return items.reduce((sum, item) => sum + (item?.total || 0), 0);
-  }, [items]);
+    const currentInvoiceItems = items.filter(item => item.invoiceId === invoiceId);
+    return currentInvoiceItems.reduce((sum, item) => sum + (item?.total || 0), 0);
+  }, [items, invoiceId]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import styles from './invoice-items.module.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -50,8 +50,16 @@ export default function InvoiceItemsTable({
     }
   }, [isOpen]);
 
+  console.log('invoice id', invoice.id)
+  const currentInvoiceItems = useMemo(
+    () => fields.filter((item) => item.invoiceId === invoice.id),
+    [fields, invoice.id]
+  );
+
+  console.log('current invoice items', currentInvoiceItems)
+  console.log('all fields', fields)
   const itemsTable = useReactTable({
-    data: fields,
+    data: currentInvoiceItems,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -62,6 +70,7 @@ export default function InvoiceItemsTable({
         <ItemsHeader
           control={control}
           invoice={{ num: invoice.invoiceNumber, date: invoice.invoiceDate }}
+          invoiceId={invoice.id}
         />
         <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
