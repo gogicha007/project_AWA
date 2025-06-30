@@ -24,7 +24,7 @@ export function useInvoiceItemsTable(props: Props) {
     tVar,
   } = props;
 
-  const { control, formState, register, setValue } =
+  const { control, formState, register, setValue, getValues } =
     useFormContext<InvoiceItemFormValues>();
 
   const { fields, append, remove } = useFieldArray({
@@ -50,8 +50,6 @@ export function useInvoiceItemsTable(props: Props) {
       unitPrice: 0,
       total: 0,
     };
-    console.log('New item to append:', newItem);
-    
     append(newItem, { shouldFocus: false });
   };
 
@@ -93,5 +91,5 @@ export function useInvoiceItemsTable(props: Props) {
     ]
   );
 
-  return { columns, control, fields, handleAddItem, handleRemoveItem };
+  return { columns, control, fields, getValues, handleAddItem, handleRemoveItem };
 }

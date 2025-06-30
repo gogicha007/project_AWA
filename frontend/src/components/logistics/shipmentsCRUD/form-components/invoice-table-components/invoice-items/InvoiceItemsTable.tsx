@@ -10,9 +10,9 @@ import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import { useInvoiceItemsTable } from './useInvoiceItemsTable';
 import AddButton from '@/components/controls/add-button/AddButton';
 import { ItemsHeader } from './ItemsHeader';
+import { InvoiceItemRow } from './invoiceItemsTableColumns';
 
 type Props = {
-  isOpen: boolean;
   auxData: {
     materials: MaterialNameDTO[];
     units: UnitDTO[];
@@ -23,18 +23,19 @@ type Props = {
     invoiceDate: Date | string | null;
     totalAmount: number;
   };
+  isOpen: boolean;
   onClose: (totalAmount?: number) => void;
 };
 
 export default function InvoiceItemsTable({
+  auxData,
   invoice,
   isOpen,
-  auxData,
   onClose,
 }: Props) {
   const tII = useTranslations('InvoiceItems');
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { columns, control, fields, handleAddItem } = useInvoiceItemsTable({
+  const { columns, control, fields, getValues, handleAddItem } = useInvoiceItemsTable({
     auxData,
     invoiceId: invoice.id,
     tVar: tII,
@@ -60,7 +61,17 @@ export default function InvoiceItemsTable({
   }, [fields, invoice.id]);
 
   const calculateTotal = () => {
-    return currentInvoiceItems.reduce((sum, item) => sum + (item?.total || 0), 0);
+    const formValues = getValues();
+    const invoiceItems = formValues.invoiceItems || [];
+    
+    const currentTotal = invoiceItems
+      .filter((item: InvoiceItemRow) => item.invoiceId === invoice.id)
+      .reduce((sum: number, item: InvoiceItemRow) => {
+        const total = Number(item.total) || 0;
+        return sum + total;
+      }, 0);
+    
+    return currentTotal;
   };
 
   const handleClose = () => {

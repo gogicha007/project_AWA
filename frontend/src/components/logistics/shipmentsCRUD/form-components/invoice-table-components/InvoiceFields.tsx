@@ -23,9 +23,9 @@ type Props = {
 const InvoiceFields = ({ auxData }: Props) => {
   const tI = useTranslations('Invoices');
   const {
-    fields,
     columns,
     currentInvoice,
+    fields,
     handleAddInvoice,
     isDialogOpen,
     setIsDialogOpen,
@@ -78,6 +78,7 @@ const InvoiceFields = ({ auxData }: Props) => {
         </table>
       </div>
       <InvoiceItemsTable
+        auxData={auxData}
         isOpen={isDialogOpen}
         invoice={{
           id: currentInvoice?.id || 0,
@@ -85,7 +86,6 @@ const InvoiceFields = ({ auxData }: Props) => {
           invoiceDate: currentInvoice?.invoiceDate || null,
           totalAmount: currentInvoice?.totalAmount || 0,
         }}
-        auxData={auxData}
         onClose={(totalAmount?: number) => {
           if (typeof totalAmount === 'number' && currentInvoice?.id) {
             updateInvoiceTotalAmount(currentInvoice.id, totalAmount);

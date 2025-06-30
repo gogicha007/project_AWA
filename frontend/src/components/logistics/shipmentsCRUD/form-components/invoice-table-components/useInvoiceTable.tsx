@@ -153,6 +153,7 @@ export function useInvoiceTable(props: Props) {
   };
 
   const updateInvoiceTotalAmount = (invoiceId: number, totalAmount: number) => {
+    console.log('total amount', totalAmount)
     const index = fields.findIndex((field) => field.id === invoiceId);
     if (index !== -1) {
       setValue(`invoices.${index}.totalAmount`, totalAmount);
@@ -172,9 +173,9 @@ export function useInvoiceTable(props: Props) {
   });
 
   return {
-    fields,
     columns,
     currentInvoice,
+    fields,
     isDialogOpen,
     setIsDialogOpen,
     handleAddInvoice,
