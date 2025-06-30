@@ -24,7 +24,7 @@ export function useInvoiceItemsTable(props: Props) {
     tVar,
   } = props;
 
-  const { control, formState, register, setValue, getValues } =
+  const { control, formState, register, setValue, getValues, trigger } =
     useFormContext<InvoiceItemFormValues>();
 
   const { fields, append, remove } = useFieldArray({
@@ -39,7 +39,7 @@ export function useInvoiceItemsTable(props: Props) {
     [materials]
   );
 
-  const handleAddItem = () => {    
+  const handleAddItem = () => {
     const newItem: InvoiceItemRow = {
       id: negIdCounter.getId(),
       invoiceId: invoiceId,
@@ -91,5 +91,13 @@ export function useInvoiceItemsTable(props: Props) {
     ]
   );
 
-  return { columns, control, fields, getValues, handleAddItem, handleRemoveItem };
+  return {
+    columns,
+    control,
+    fields,
+    getValues,
+    handleAddItem,
+    handleRemoveItem,
+    trigger
+  };
 }

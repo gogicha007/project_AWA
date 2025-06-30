@@ -56,7 +56,10 @@ const InvoiceItemColumns = (props: Props) => {
         const fieldIndex = row.original.originalIndex ?? row.index;
         return (
           <select
-            {...register(`invoiceItems.${fieldIndex}.productId` as const)}
+            {...register(`invoiceItems.${fieldIndex}.productId` as const, {
+              required: tVar('validation.required'),
+              validate: (value) => value > 0 || tVar('validatoin.required'),
+            })}
             defaultValue={row.original.productId}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.productId ? styles.dirty : ''}`}
           >
@@ -95,6 +98,8 @@ const InvoiceItemColumns = (props: Props) => {
             step="0.01"
             {...register(`invoiceItems.${fieldIndex}.quantity` as const, {
               valueAsNumber: true,
+              required: tVar('validation.required'),
+              min: { value: 0.01, message: tVar('validation.minValue') },
             })}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.quantity ? styles.dirty : ''}`}
           />
@@ -108,7 +113,10 @@ const InvoiceItemColumns = (props: Props) => {
         const fieldIndex = row.original.originalIndex ?? row.index;
         return (
           <select
-            {...register(`invoiceItems.${fieldIndex}.unitId` as const)}
+            {...register(`invoiceItems.${fieldIndex}.unitId` as const, {
+              required: tVar('validation.required'),
+              validate: (value) => value > 0 || tVar('validation.required'),
+            })}
             defaultValue={row.original.unitId}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitId ? styles.dirty : ''}`}
           >
@@ -133,9 +141,8 @@ const InvoiceItemColumns = (props: Props) => {
             step="0.01"
             {...register(`invoiceItems.${fieldIndex}.unitPrice` as const, {
               valueAsNumber: true,
-              validate: (value) =>
-                /^\d+(\.\d{1,2})?$/.test(String(value)) ||
-                tVar('validation.max2decimals'),
+              required: tVar('validation.required'),
+              min: { value: 0.01, message: tVar('validation.minValue') },
             })}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitPrice ? styles.dirty : ''}`}
           />

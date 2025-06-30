@@ -6,6 +6,7 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import { useTranslations } from 'next-intl';
+import { GiExitDoor } from 'react-icons/gi';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import { useInvoiceItemsTable } from './useInvoiceItemsTable';
 import AddButton from '@/components/controls/add-button/AddButton';
@@ -35,20 +36,19 @@ export default function InvoiceItemsTable({
 }: Props) {
   const tII = useTranslations('InvoiceItems');
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { columns, control, fields, getValues, handleAddItem } = useInvoiceItemsTable({
-    auxData,
-    invoiceId: invoice.id,
-    tVar: tII,
-  });
+  const { columns, control, fields, getValues, handleAddItem, trigger } =
+    useInvoiceItemsTable({
+      auxData,
+      invoiceId: invoice.id,
+      tVar: tII,
+    });
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (isOpen) {
       dialog.showModal();
-    } else {
-      dialog.close();
-    }
+    } else dialog.close();
   }, [isOpen]);
 
   const currentInvoiceItems = useMemo(() => {
@@ -63,18 +63,45 @@ export default function InvoiceItemsTable({
   const calculateTotal = () => {
     const formValues = getValues();
     const invoiceItems = formValues.invoiceItems || [];
-    
+
     const currentTotal = invoiceItems
       .filter((item: InvoiceItemRow) => item.invoiceId === invoice.id)
       .reduce((sum: number, item: InvoiceItemRow) => {
         const total = Number(item.total) || 0;
         return sum + total;
       }, 0);
-    
+
     return currentTotal;
   };
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    const formValues = getValues();
+    const invoiceItems = formValues.invoiceItems || [];
+    const currentItems = invoiceItems.filter(
+      (item: InvoiceItemRow) => item.invoiceId === invoice.id
+    );
+
+    const validationPromises = currentItems.map((_, index) => {
+      const actualIndex = invoiceItems.findIndex(
+        (item: InvoiceItemRow) =>
+          item.invoiceId === invoice.id && item === currentItems[index]
+      );
+      return trigger([
+        `invoiceItems.${actualIndex}.productId`,
+        `invoiceItems.${actualIndex}.quantity`,
+        `invoiceItems.${actualIndex}.unitId`,
+        `invoiceItems.${actualIndex}.unitPrice`,
+      ]);
+    });
+
+    const validationResults = await Promise.all(validationPromises);
+    const isValid = validationResults.every((result) => result);
+
+    if (!isValid) {
+      alert(tII('validation.requiredFields'));
+      return;
+    }
+
     const totalAmount = calculateTotal();
     onClose(totalAmount);
   };
@@ -94,8 +121,12 @@ export default function InvoiceItemsTable({
           invoice={{ num: invoice.invoiceNumber, date: invoice.invoiceDate }}
           invoiceId={invoice.id}
         />
-        <button type="button" className={styles.closeButton} onClick={handleClose}>
-          ×
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={handleClose}
+        >
+          <GiExitDoor />
         </button>
       </div>
       <div className={styles.tableContainer}>
