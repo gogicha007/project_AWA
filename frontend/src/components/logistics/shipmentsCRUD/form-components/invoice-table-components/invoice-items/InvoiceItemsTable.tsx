@@ -63,6 +63,7 @@ export default function InvoiceItemsTable({
     data: currentInvoiceItems,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getRowId: (row) => String(row.id), // Use database ID for row identification
   });
 
   return (

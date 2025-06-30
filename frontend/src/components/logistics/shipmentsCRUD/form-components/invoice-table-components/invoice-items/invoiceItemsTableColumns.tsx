@@ -19,7 +19,7 @@ export interface InvoiceItemRow {
   unitId: number;
   unitPrice: number;
   total: number;
-  originalIndex?: number; // Add optional originalIndex for form field mapping
+  originalIndex?: number;
 }
 
 type Props = {
