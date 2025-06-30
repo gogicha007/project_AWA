@@ -58,6 +58,19 @@
   font-weight: 500;
   font-size: 0.8rem;
   transition: all 0.2s;
+  background-color: #10b981;
+  color: white;
+}
+
+.itemButton:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+.itemButton:disabled {
+  background-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .input,
@@ -70,19 +83,31 @@
   transition: border-color 0.2s;
 }
 
+.input[type='number'] {
+  max-width: 120px
+}
+
 .input:focus {
   outline: none;
   border-color: #10b981;
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
-.inputDate {
-  width: 100%;
+.input_date {
+  max-width: 120px;
   padding: 4px 6px !important;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   font-size: 0.9rem;
   transition: border-color 0.2s;
+}
+
+.invoice_number {
+  max-width: 220px
+}
+
+.currency {
+  max-width: 100px
 }
 
 .dirty {

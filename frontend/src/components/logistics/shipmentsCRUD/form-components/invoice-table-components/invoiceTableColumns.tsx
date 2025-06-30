@@ -40,7 +40,7 @@ const InvoiceColumns = (props: Props) => {
     handleRemoveInvoice,
     dirtyFields,
   } = props;
-  const { control, register } = useFormContext();
+  const { control, register, watch } = useFormContext();
 
   return useMemo(
     () => [
@@ -51,7 +51,7 @@ const InvoiceColumns = (props: Props) => {
           <select
             {...register(`invoices.${row.index}.vendorId` as const)}
             defaultValue={row.original.vendorId}
-            className={`${styles.input} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
+            className={`${styles.vendor_select} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
             {vendors.map((v) => (
@@ -69,7 +69,7 @@ const InvoiceColumns = (props: Props) => {
           <input
             {...register(`invoices.${row.index}.invoiceNumber` as const)}
             defaultValue={row.original.invoiceNumber}
-            className={`${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
+            className={`${styles.invoice_number} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
           />
         ),
       },
@@ -81,7 +81,7 @@ const InvoiceColumns = (props: Props) => {
             label=""
             name={`invoices.${row.index}.invoiceDate`}
             control={control}
-            className={`${styles.inputDate} ${dirtyFields?.invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
+            className={`${styles.input_date} ${dirtyFields?.invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
           />
         ),
       },
@@ -92,7 +92,7 @@ const InvoiceColumns = (props: Props) => {
           <select
             {...register(`invoices.${row.index}.currencyId` as const)}
             defaultValue={row.original.currencyId}
-            className={`${styles.input} ${dirtyFields?.invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
+            className={`${styles.currency} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
             {currencies.map((c) => (
@@ -121,14 +121,21 @@ const InvoiceColumns = (props: Props) => {
       {
         id: 'items',
         header: tVar('actions.items'),
-        cell: ({ row }: { row: { original: InvoiceRow } }) => (
-          <button
-            onClick={() => openItemsDialog(row.original.id)}
-            className={styles.itemButton}
-          >
-            {tVar('actions.items')}
-          </button>
-        ),
+        cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => {
+          const invoiceNumber = watch(`invoices.${row.index}.invoiceNumber`);
+          const invoiceDate = watch(`invoices.${row.index}.invoiceDate`);
+          const isEnabled = !!(invoiceNumber && invoiceDate);
+          
+          return (
+            <button
+              onClick={() => openItemsDialog(row.original.id)}
+              className={styles.itemButton}
+              disabled={!isEnabled}
+            >
+              {tVar('actions.items')}
+            </button>
+          );
+        },
       },
       {
         id: 'actions',
@@ -160,6 +167,7 @@ const InvoiceColumns = (props: Props) => {
       tVar,
       vendors,
       vendorsObj,
+      watch,
     ]
   );
 };
