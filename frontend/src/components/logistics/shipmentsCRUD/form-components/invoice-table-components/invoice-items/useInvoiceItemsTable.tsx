@@ -39,10 +39,7 @@ export function useInvoiceItemsTable(props: Props) {
     [materials]
   );
 
-  const handleAddItem = () => {
-    console.log('Adding new item for invoice:', invoiceId);
-    console.log('Current fields before append:', fields);
-    
+  const handleAddItem = () => {    
     const newItem: InvoiceItemRow = {
       id: negIdCounter.getId(),
       invoiceId: invoiceId,
@@ -56,19 +53,6 @@ export function useInvoiceItemsTable(props: Props) {
     console.log('New item to append:', newItem);
     
     append(newItem, { shouldFocus: false });
-    
-    setTimeout(() => {
-      const newIndex = fields.length;
-      setValue(`invoiceItems.${newIndex}.invoiceId`, invoiceId);
-      setValue(`invoiceItems.${newIndex}.productId`, 0);
-      setValue(`invoiceItems.${newIndex}.description`, '');
-      setValue(`invoiceItems.${newIndex}.unitId`, 0);
-      setValue(`invoiceItems.${newIndex}.quantity`, 0);
-      setValue(`invoiceItems.${newIndex}.unitPrice`, 0);
-      setValue(`invoiceItems.${newIndex}.total`, 0);
-    }, 0);
-    
-    console.log('Fields after append:', fields);
   };
 
   const handleRemoveItem = (id: number) => {
