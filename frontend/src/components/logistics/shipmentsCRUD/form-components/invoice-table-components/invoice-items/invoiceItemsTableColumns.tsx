@@ -130,12 +130,14 @@ const InvoiceItemColumns = (props: Props) => {
       header: tVar('table.total'),
       accessorKey: 'total',
       cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
-        <TotalCell
-          row={row}
-          control={control}
-          setValue={setValue}
-          styles={styles}
-        />;
+        return (
+          <TotalCell
+            row={row}
+            control={control}
+            setValue={setValue}
+            styles={styles}
+          />
+        );
       },
     },
     {
