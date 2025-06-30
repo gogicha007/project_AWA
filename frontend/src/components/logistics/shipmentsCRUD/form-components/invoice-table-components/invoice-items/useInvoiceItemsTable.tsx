@@ -58,7 +58,7 @@ export function useInvoiceItemsTable(props: Props) {
     append(newItem, { shouldFocus: false });
     
     setTimeout(() => {
-      const newIndex = fields.length; // This will be the index of the newly added item
+      const newIndex = fields.length;
       setValue(`invoiceItems.${newIndex}.invoiceId`, invoiceId);
       setValue(`invoiceItems.${newIndex}.productId`, 0);
       setValue(`invoiceItems.${newIndex}.description`, '');
