@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import { useInvoiceItemsTable } from './useInvoiceItemsTable';
 import AddButton from '@/components/controls/add-button/AddButton';
-import { NumericFormat } from 'react-number-format';
+import { ItemsHeader } from './ItemsHeader';
 
 type Props = {
   isOpen: boolean;
@@ -34,7 +34,7 @@ export default function InvoiceItemsTable({
 }: Props) {
   const tII = useTranslations('InvoiceItems');
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { fields, columns, handleAddItem } = useInvoiceItemsTable({
+  const { columns, control, fields, handleAddItem } = useInvoiceItemsTable({
     auxData,
     invoiceId: invoice.id,
     tVar: tII,
@@ -59,20 +59,10 @@ export default function InvoiceItemsTable({
   return (
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialogHeader}>
-        <h2>
-          Invoice: {invoice.invoiceNumber} | Date:{' '}
-          {invoice.invoiceDate
-            ? new Date(invoice.invoiceDate).toISOString().split('T')[0]
-            : 'Not set'}{' '}
-          | Total amount:{' '}
-          <NumericFormat
-            value={invoice.totalAmount}
-            displayType="text"
-            thousandSeparator=","
-            decimalScale={2}
-            fixedDecimalScale
-          />
-        </h2>
+        <ItemsHeader
+          control={control}
+          invoice={{ num: invoice.invoiceNumber, date: invoice.invoiceDate }}
+        />
         <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
         </button>

@@ -108,5 +108,5 @@ export function useInvoiceItemsTable(props: Props) {
     ]
   );
 
-  return { columns, fields, handleAddItem, handleRemoveItem };
+  return { columns, control, fields, handleAddItem, handleRemoveItem };
 }
