@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import InvoiceItemColumns, { InvoiceItemRow } from './invoiceItemsTableColumns';
@@ -39,13 +39,6 @@ export function useInvoiceItemsTable(props: Props) {
     [materials]
   );
 
-  const totalAmount = useMemo(() => {
-    if (!fields || fields.length === 0) return 0;
-    return fields.reduce((sum, field) => sum + (field.total || 0), 0);
-  }, [fields]);
-
-  console.log(totalAmount);
-
   const handleAddItem = (
     newItemData: Partial<InvoiceItemRow> = {
       invoiceId: invoiceId,
@@ -70,15 +63,18 @@ export function useInvoiceItemsTable(props: Props) {
     append(newItem, { shouldFocus: false });
   };
 
-  const handleRemoveItem = (id: number) => {
-    if (confirm(tVar('warnings.delete'))) {
-      const index = fields.findIndex((field) => field.id === id);
+  const handleRemoveItem = useCallback(
+    () => (id: number) => {
+      if (confirm(tVar('warnings.delete'))) {
+        const index = fields.findIndex((field) => field.id === id);
 
-      if (index !== -1) {
-        remove(index);
+        if (index !== -1) {
+          remove(index);
+        }
       }
-    }
-  };
+    },
+    [fields, remove, tVar]
+  );
 
   const columns = useMemo(
     () =>
@@ -96,12 +92,12 @@ export function useInvoiceItemsTable(props: Props) {
       }),
     [
       control,
-      fields.length,
       formState.dirtyFields,
       handleRemoveItem,
       materials,
       materialsObj,
       register,
+      setValue,
       tVar,
       units,
       unitsObj,
