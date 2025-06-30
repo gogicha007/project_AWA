@@ -230,6 +230,30 @@ exports.Prisma.FreightInvoiceScalarFieldEnum = {
   invoiceId: 'invoiceId'
 };
 
+exports.Prisma.VillageScalarFieldEnum = {
+  id: 'id',
+  name_en: 'name_en',
+  name_ge: 'name_ge',
+  municipality: 'municipality',
+  latitude: 'latitude',
+  longitude: 'longitude'
+};
+
+exports.Prisma.MaterialNeedScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  requiredAmount: 'requiredAmount',
+  villageId: 'villageId'
+};
+
+exports.Prisma.PipelineProgressScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  requiredAmount: 'requiredAmount',
+  unitId: 'unitId',
+  villageId: 'villageId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -263,7 +287,10 @@ exports.Prisma.ModelName = {
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
   Freight: 'Freight',
-  FreightInvoice: 'FreightInvoice'
+  FreightInvoice: 'FreightInvoice',
+  Village: 'Village',
+  MaterialNeed: 'MaterialNeed',
+  PipelineProgress: 'PipelineProgress'
 };
 
 /**

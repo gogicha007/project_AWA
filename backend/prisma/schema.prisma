@@ -46,9 +46,10 @@ model Vendor {
 }
 
 model Unit {
-  id          Int           @id @default(autoincrement())
-  unit        String        @unique
-  InvoiceItem InvoiceItem[]
+  id               Int                @id @default(autoincrement())
+  unit             String             @unique
+  InvoiceItem      InvoiceItem[]
+  PipelineProgress PipelineProgress[]
 
   @@map("unit")
 }
@@ -83,15 +84,17 @@ model MaterialType {
 }
 
 model MaterialName {
-  id          Int           @id @default(autoincrement())
-  name        String        @unique
-  dn          String
-  pn          String
-  degree      Int
-  description String
-  type        MaterialType  @relation(fields: [typeId], references: [id])
-  typeId      Int           @map("type_id")
-  InvoiceItem InvoiceItem[]
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  dn               String
+  pn               String
+  degree           Int
+  description      String
+  type             MaterialType       @relation(fields: [typeId], references: [id])
+  typeId           Int                @map("type_id")
+  InvoiceItem      InvoiceItem[]
+  MaterialNeed     MaterialNeed[]
+  PipelineProgress PipelineProgress[]
 
   @@map("material_name")
 }
@@ -136,7 +139,7 @@ model Invoice {
   invoiceNumber String           @map("invoice_number")
   invoiceDate   DateTime         @map("invoice_date")
   totalAmount   Decimal          @map("total_amount")
-  isArrived     Boolean?          @default(false) @map("is_arrived")
+  isArrived     Boolean?         @default(false) @map("is_arrived")
   user          User             @relation(fields: [userId], references: [id])
   userId        Int              @map("user_id")
   createdAt     DateTime         @default(now()) @map("created_at")
@@ -193,4 +196,40 @@ model FreightInvoice {
 
   @@id([freightId, invoiceId])
   @@map("freight_invoice")
+}
+
+model Village {
+  id               Int                @id @default(autoincrement())
+  name_en          String
+  name_ge          String
+  municipality     String
+  latitude         Float
+  longitude        Float
+  PipelineProgress PipelineProgress[]
+  MaterialNeeds    MaterialNeed[]
+
+  @@map("village")
+}
+
+model MaterialNeed {
+  id             Int          @id @default(autoincrement())
+  product        MaterialName @relation(fields: [productId], references: [id])
+  productId      Int          @map("product_id")
+  requiredAmount Decimal
+
+  village   Village @relation(fields: [villageId], references: [id]) // Link to Village
+  villageId Int
+
+  @@map("water_material_need")
+}
+
+model PipelineProgress {
+  id             Int          @id @default(autoincrement())
+  product        MaterialName @relation(fields: [productId], references: [id])
+  productId      Int          @map("product_id")
+  requiredAmount Decimal
+  unit           Unit         @relation(fields: [unitId], references: [id])
+  unitId         Int
+  village        Village      @relation(fields: [villageId], references: [id])
+  villageId      Int
 }

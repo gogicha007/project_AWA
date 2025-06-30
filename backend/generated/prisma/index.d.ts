@@ -78,6 +78,21 @@ export type Freight = $Result.DefaultSelection<Prisma.$FreightPayload>
  * 
  */
 export type FreightInvoice = $Result.DefaultSelection<Prisma.$FreightInvoicePayload>
+/**
+ * Model Village
+ * 
+ */
+export type Village = $Result.DefaultSelection<Prisma.$VillagePayload>
+/**
+ * Model MaterialNeed
+ * 
+ */
+export type MaterialNeed = $Result.DefaultSelection<Prisma.$MaterialNeedPayload>
+/**
+ * Model PipelineProgress
+ * 
+ */
+export type PipelineProgress = $Result.DefaultSelection<Prisma.$PipelineProgressPayload>
 
 /**
  * Enums
@@ -351,6 +366,36 @@ export class PrismaClient<
     * ```
     */
   get freightInvoice(): Prisma.FreightInvoiceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.village`: Exposes CRUD operations for the **Village** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Villages
+    * const villages = await prisma.village.findMany()
+    * ```
+    */
+  get village(): Prisma.VillageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.materialNeed`: Exposes CRUD operations for the **MaterialNeed** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MaterialNeeds
+    * const materialNeeds = await prisma.materialNeed.findMany()
+    * ```
+    */
+  get materialNeed(): Prisma.MaterialNeedDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pipelineProgress`: Exposes CRUD operations for the **PipelineProgress** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PipelineProgresses
+    * const pipelineProgresses = await prisma.pipelineProgress.findMany()
+    * ```
+    */
+  get pipelineProgress(): Prisma.PipelineProgressDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -803,7 +848,10 @@ export namespace Prisma {
     Invoice: 'Invoice',
     InvoiceItem: 'InvoiceItem',
     Freight: 'Freight',
-    FreightInvoice: 'FreightInvoice'
+    FreightInvoice: 'FreightInvoice',
+    Village: 'Village',
+    MaterialNeed: 'MaterialNeed',
+    PipelineProgress: 'PipelineProgress'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -822,7 +870,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vendor" | "unit" | "currency" | "materialGroup" | "materialType" | "materialName" | "shipment" | "shipmentFile" | "invoice" | "invoiceItem" | "freight" | "freightInvoice"
+      modelProps: "user" | "vendor" | "unit" | "currency" | "materialGroup" | "materialType" | "materialName" | "shipment" | "shipmentFile" | "invoice" | "invoiceItem" | "freight" | "freightInvoice" | "village" | "materialNeed" | "pipelineProgress"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1788,6 +1836,228 @@ export namespace Prisma {
           }
         }
       }
+      Village: {
+        payload: Prisma.$VillagePayload<ExtArgs>
+        fields: Prisma.VillageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VillageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VillageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>
+          }
+          findFirst: {
+            args: Prisma.VillageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VillageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>
+          }
+          findMany: {
+            args: Prisma.VillageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>[]
+          }
+          create: {
+            args: Prisma.VillageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>
+          }
+          createMany: {
+            args: Prisma.VillageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VillageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>[]
+          }
+          delete: {
+            args: Prisma.VillageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>
+          }
+          update: {
+            args: Prisma.VillageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>
+          }
+          deleteMany: {
+            args: Prisma.VillageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VillageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VillageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>[]
+          }
+          upsert: {
+            args: Prisma.VillageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VillagePayload>
+          }
+          aggregate: {
+            args: Prisma.VillageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVillage>
+          }
+          groupBy: {
+            args: Prisma.VillageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VillageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VillageCountArgs<ExtArgs>
+            result: $Utils.Optional<VillageCountAggregateOutputType> | number
+          }
+        }
+      }
+      MaterialNeed: {
+        payload: Prisma.$MaterialNeedPayload<ExtArgs>
+        fields: Prisma.MaterialNeedFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MaterialNeedFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MaterialNeedFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>
+          }
+          findFirst: {
+            args: Prisma.MaterialNeedFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MaterialNeedFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>
+          }
+          findMany: {
+            args: Prisma.MaterialNeedFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>[]
+          }
+          create: {
+            args: Prisma.MaterialNeedCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>
+          }
+          createMany: {
+            args: Prisma.MaterialNeedCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MaterialNeedCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>[]
+          }
+          delete: {
+            args: Prisma.MaterialNeedDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>
+          }
+          update: {
+            args: Prisma.MaterialNeedUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>
+          }
+          deleteMany: {
+            args: Prisma.MaterialNeedDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MaterialNeedUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MaterialNeedUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>[]
+          }
+          upsert: {
+            args: Prisma.MaterialNeedUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialNeedPayload>
+          }
+          aggregate: {
+            args: Prisma.MaterialNeedAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMaterialNeed>
+          }
+          groupBy: {
+            args: Prisma.MaterialNeedGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MaterialNeedGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MaterialNeedCountArgs<ExtArgs>
+            result: $Utils.Optional<MaterialNeedCountAggregateOutputType> | number
+          }
+        }
+      }
+      PipelineProgress: {
+        payload: Prisma.$PipelineProgressPayload<ExtArgs>
+        fields: Prisma.PipelineProgressFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PipelineProgressFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PipelineProgressFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>
+          }
+          findFirst: {
+            args: Prisma.PipelineProgressFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PipelineProgressFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>
+          }
+          findMany: {
+            args: Prisma.PipelineProgressFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>[]
+          }
+          create: {
+            args: Prisma.PipelineProgressCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>
+          }
+          createMany: {
+            args: Prisma.PipelineProgressCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PipelineProgressCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>[]
+          }
+          delete: {
+            args: Prisma.PipelineProgressDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>
+          }
+          update: {
+            args: Prisma.PipelineProgressUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>
+          }
+          deleteMany: {
+            args: Prisma.PipelineProgressDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PipelineProgressUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PipelineProgressUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>[]
+          }
+          upsert: {
+            args: Prisma.PipelineProgressUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PipelineProgressPayload>
+          }
+          aggregate: {
+            args: Prisma.PipelineProgressAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePipelineProgress>
+          }
+          groupBy: {
+            args: Prisma.PipelineProgressGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PipelineProgressGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PipelineProgressCountArgs<ExtArgs>
+            result: $Utils.Optional<PipelineProgressCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1885,6 +2155,9 @@ export namespace Prisma {
     invoiceItem?: InvoiceItemOmit
     freight?: FreightOmit
     freightInvoice?: FreightInvoiceOmit
+    village?: VillageOmit
+    materialNeed?: MaterialNeedOmit
+    pipelineProgress?: PipelineProgressOmit
   }
 
   /* Types for Logging */
@@ -2069,10 +2342,12 @@ export namespace Prisma {
 
   export type UnitCountOutputType = {
     InvoiceItem: number
+    PipelineProgress: number
   }
 
   export type UnitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     InvoiceItem?: boolean | UnitCountOutputTypeCountInvoiceItemArgs
+    PipelineProgress?: boolean | UnitCountOutputTypeCountPipelineProgressArgs
   }
 
   // Custom InputTypes
@@ -2091,6 +2366,13 @@ export namespace Prisma {
    */
   export type UnitCountOutputTypeCountInvoiceItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InvoiceItemWhereInput
+  }
+
+  /**
+   * UnitCountOutputType without action
+   */
+  export type UnitCountOutputTypeCountPipelineProgressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PipelineProgressWhereInput
   }
 
 
@@ -2202,10 +2484,14 @@ export namespace Prisma {
 
   export type MaterialNameCountOutputType = {
     InvoiceItem: number
+    MaterialNeed: number
+    PipelineProgress: number
   }
 
   export type MaterialNameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     InvoiceItem?: boolean | MaterialNameCountOutputTypeCountInvoiceItemArgs
+    MaterialNeed?: boolean | MaterialNameCountOutputTypeCountMaterialNeedArgs
+    PipelineProgress?: boolean | MaterialNameCountOutputTypeCountPipelineProgressArgs
   }
 
   // Custom InputTypes
@@ -2224,6 +2510,20 @@ export namespace Prisma {
    */
   export type MaterialNameCountOutputTypeCountInvoiceItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InvoiceItemWhereInput
+  }
+
+  /**
+   * MaterialNameCountOutputType without action
+   */
+  export type MaterialNameCountOutputTypeCountMaterialNeedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialNeedWhereInput
+  }
+
+  /**
+   * MaterialNameCountOutputType without action
+   */
+  export type MaterialNameCountOutputTypeCountPipelineProgressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PipelineProgressWhereInput
   }
 
 
@@ -2344,6 +2644,46 @@ export namespace Prisma {
    */
   export type FreightCountOutputTypeCountInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FreightInvoiceWhereInput
+  }
+
+
+  /**
+   * Count Type VillageCountOutputType
+   */
+
+  export type VillageCountOutputType = {
+    PipelineProgress: number
+    MaterialNeeds: number
+  }
+
+  export type VillageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    PipelineProgress?: boolean | VillageCountOutputTypeCountPipelineProgressArgs
+    MaterialNeeds?: boolean | VillageCountOutputTypeCountMaterialNeedsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VillageCountOutputType without action
+   */
+  export type VillageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VillageCountOutputType
+     */
+    select?: VillageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VillageCountOutputType without action
+   */
+  export type VillageCountOutputTypeCountPipelineProgressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PipelineProgressWhereInput
+  }
+
+  /**
+   * VillageCountOutputType without action
+   */
+  export type VillageCountOutputTypeCountMaterialNeedsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialNeedWhereInput
   }
 
 
@@ -4892,6 +5232,7 @@ export namespace Prisma {
     id?: boolean
     unit?: boolean
     InvoiceItem?: boolean | Unit$InvoiceItemArgs<ExtArgs>
+    PipelineProgress?: boolean | Unit$PipelineProgressArgs<ExtArgs>
     _count?: boolean | UnitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unit"]>
 
@@ -4913,6 +5254,7 @@ export namespace Prisma {
   export type UnitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "unit", ExtArgs["result"]["unit"]>
   export type UnitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     InvoiceItem?: boolean | Unit$InvoiceItemArgs<ExtArgs>
+    PipelineProgress?: boolean | Unit$PipelineProgressArgs<ExtArgs>
     _count?: boolean | UnitCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UnitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4922,6 +5264,7 @@ export namespace Prisma {
     name: "Unit"
     objects: {
       InvoiceItem: Prisma.$InvoiceItemPayload<ExtArgs>[]
+      PipelineProgress: Prisma.$PipelineProgressPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5321,6 +5664,7 @@ export namespace Prisma {
   export interface Prisma__UnitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     InvoiceItem<T extends Unit$InvoiceItemArgs<ExtArgs> = {}>(args?: Subset<T, Unit$InvoiceItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    PipelineProgress<T extends Unit$PipelineProgressArgs<ExtArgs> = {}>(args?: Subset<T, Unit$PipelineProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5761,6 +6105,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvoiceItemScalarFieldEnum | InvoiceItemScalarFieldEnum[]
+  }
+
+  /**
+   * Unit.PipelineProgress
+   */
+  export type Unit$PipelineProgressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    where?: PipelineProgressWhereInput
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    cursor?: PipelineProgressWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PipelineProgressScalarFieldEnum | PipelineProgressScalarFieldEnum[]
   }
 
   /**
@@ -9290,6 +9658,8 @@ export namespace Prisma {
     typeId?: boolean
     type?: boolean | MaterialTypeDefaultArgs<ExtArgs>
     InvoiceItem?: boolean | MaterialName$InvoiceItemArgs<ExtArgs>
+    MaterialNeed?: boolean | MaterialName$MaterialNeedArgs<ExtArgs>
+    PipelineProgress?: boolean | MaterialName$PipelineProgressArgs<ExtArgs>
     _count?: boolean | MaterialNameCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["materialName"]>
 
@@ -9329,6 +9699,8 @@ export namespace Prisma {
   export type MaterialNameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     type?: boolean | MaterialTypeDefaultArgs<ExtArgs>
     InvoiceItem?: boolean | MaterialName$InvoiceItemArgs<ExtArgs>
+    MaterialNeed?: boolean | MaterialName$MaterialNeedArgs<ExtArgs>
+    PipelineProgress?: boolean | MaterialName$PipelineProgressArgs<ExtArgs>
     _count?: boolean | MaterialNameCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MaterialNameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9343,6 +9715,8 @@ export namespace Prisma {
     objects: {
       type: Prisma.$MaterialTypePayload<ExtArgs>
       InvoiceItem: Prisma.$InvoiceItemPayload<ExtArgs>[]
+      MaterialNeed: Prisma.$MaterialNeedPayload<ExtArgs>[]
+      PipelineProgress: Prisma.$PipelineProgressPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9748,6 +10122,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     type<T extends MaterialTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialTypeDefaultArgs<ExtArgs>>): Prisma__MaterialTypeClient<$Result.GetResult<Prisma.$MaterialTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     InvoiceItem<T extends MaterialName$InvoiceItemArgs<ExtArgs> = {}>(args?: Subset<T, MaterialName$InvoiceItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MaterialNeed<T extends MaterialName$MaterialNeedArgs<ExtArgs> = {}>(args?: Subset<T, MaterialName$MaterialNeedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    PipelineProgress<T extends MaterialName$PipelineProgressArgs<ExtArgs> = {}>(args?: Subset<T, MaterialName$PipelineProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10201,6 +10577,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvoiceItemScalarFieldEnum | InvoiceItemScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialName.MaterialNeed
+   */
+  export type MaterialName$MaterialNeedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    where?: MaterialNeedWhereInput
+    orderBy?: MaterialNeedOrderByWithRelationInput | MaterialNeedOrderByWithRelationInput[]
+    cursor?: MaterialNeedWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MaterialNeedScalarFieldEnum | MaterialNeedScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialName.PipelineProgress
+   */
+  export type MaterialName$PipelineProgressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    where?: PipelineProgressWhereInput
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    cursor?: PipelineProgressWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PipelineProgressScalarFieldEnum | PipelineProgressScalarFieldEnum[]
   }
 
   /**
@@ -17260,6 +17684,3382 @@ export namespace Prisma {
 
 
   /**
+   * Model Village
+   */
+
+  export type AggregateVillage = {
+    _count: VillageCountAggregateOutputType | null
+    _avg: VillageAvgAggregateOutputType | null
+    _sum: VillageSumAggregateOutputType | null
+    _min: VillageMinAggregateOutputType | null
+    _max: VillageMaxAggregateOutputType | null
+  }
+
+  export type VillageAvgAggregateOutputType = {
+    id: number | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type VillageSumAggregateOutputType = {
+    id: number | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type VillageMinAggregateOutputType = {
+    id: number | null
+    name_en: string | null
+    name_ge: string | null
+    municipality: string | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type VillageMaxAggregateOutputType = {
+    id: number | null
+    name_en: string | null
+    name_ge: string | null
+    municipality: string | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type VillageCountAggregateOutputType = {
+    id: number
+    name_en: number
+    name_ge: number
+    municipality: number
+    latitude: number
+    longitude: number
+    _all: number
+  }
+
+
+  export type VillageAvgAggregateInputType = {
+    id?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type VillageSumAggregateInputType = {
+    id?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type VillageMinAggregateInputType = {
+    id?: true
+    name_en?: true
+    name_ge?: true
+    municipality?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type VillageMaxAggregateInputType = {
+    id?: true
+    name_en?: true
+    name_ge?: true
+    municipality?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type VillageCountAggregateInputType = {
+    id?: true
+    name_en?: true
+    name_ge?: true
+    municipality?: true
+    latitude?: true
+    longitude?: true
+    _all?: true
+  }
+
+  export type VillageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Village to aggregate.
+     */
+    where?: VillageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Villages to fetch.
+     */
+    orderBy?: VillageOrderByWithRelationInput | VillageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VillageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Villages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Villages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Villages
+    **/
+    _count?: true | VillageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VillageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VillageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VillageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VillageMaxAggregateInputType
+  }
+
+  export type GetVillageAggregateType<T extends VillageAggregateArgs> = {
+        [P in keyof T & keyof AggregateVillage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVillage[P]>
+      : GetScalarType<T[P], AggregateVillage[P]>
+  }
+
+
+
+
+  export type VillageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VillageWhereInput
+    orderBy?: VillageOrderByWithAggregationInput | VillageOrderByWithAggregationInput[]
+    by: VillageScalarFieldEnum[] | VillageScalarFieldEnum
+    having?: VillageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VillageCountAggregateInputType | true
+    _avg?: VillageAvgAggregateInputType
+    _sum?: VillageSumAggregateInputType
+    _min?: VillageMinAggregateInputType
+    _max?: VillageMaxAggregateInputType
+  }
+
+  export type VillageGroupByOutputType = {
+    id: number
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    _count: VillageCountAggregateOutputType | null
+    _avg: VillageAvgAggregateOutputType | null
+    _sum: VillageSumAggregateOutputType | null
+    _min: VillageMinAggregateOutputType | null
+    _max: VillageMaxAggregateOutputType | null
+  }
+
+  type GetVillageGroupByPayload<T extends VillageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VillageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VillageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VillageGroupByOutputType[P]>
+            : GetScalarType<T[P], VillageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VillageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name_en?: boolean
+    name_ge?: boolean
+    municipality?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    PipelineProgress?: boolean | Village$PipelineProgressArgs<ExtArgs>
+    MaterialNeeds?: boolean | Village$MaterialNeedsArgs<ExtArgs>
+    _count?: boolean | VillageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["village"]>
+
+  export type VillageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name_en?: boolean
+    name_ge?: boolean
+    municipality?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["village"]>
+
+  export type VillageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name_en?: boolean
+    name_ge?: boolean
+    municipality?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["village"]>
+
+  export type VillageSelectScalar = {
+    id?: boolean
+    name_en?: boolean
+    name_ge?: boolean
+    municipality?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }
+
+  export type VillageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name_en" | "name_ge" | "municipality" | "latitude" | "longitude", ExtArgs["result"]["village"]>
+  export type VillageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    PipelineProgress?: boolean | Village$PipelineProgressArgs<ExtArgs>
+    MaterialNeeds?: boolean | Village$MaterialNeedsArgs<ExtArgs>
+    _count?: boolean | VillageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type VillageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type VillageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $VillagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Village"
+    objects: {
+      PipelineProgress: Prisma.$PipelineProgressPayload<ExtArgs>[]
+      MaterialNeeds: Prisma.$MaterialNeedPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name_en: string
+      name_ge: string
+      municipality: string
+      latitude: number
+      longitude: number
+    }, ExtArgs["result"]["village"]>
+    composites: {}
+  }
+
+  type VillageGetPayload<S extends boolean | null | undefined | VillageDefaultArgs> = $Result.GetResult<Prisma.$VillagePayload, S>
+
+  type VillageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VillageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VillageCountAggregateInputType | true
+    }
+
+  export interface VillageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Village'], meta: { name: 'Village' } }
+    /**
+     * Find zero or one Village that matches the filter.
+     * @param {VillageFindUniqueArgs} args - Arguments to find a Village
+     * @example
+     * // Get one Village
+     * const village = await prisma.village.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VillageFindUniqueArgs>(args: SelectSubset<T, VillageFindUniqueArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Village that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VillageFindUniqueOrThrowArgs} args - Arguments to find a Village
+     * @example
+     * // Get one Village
+     * const village = await prisma.village.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VillageFindUniqueOrThrowArgs>(args: SelectSubset<T, VillageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Village that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageFindFirstArgs} args - Arguments to find a Village
+     * @example
+     * // Get one Village
+     * const village = await prisma.village.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VillageFindFirstArgs>(args?: SelectSubset<T, VillageFindFirstArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Village that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageFindFirstOrThrowArgs} args - Arguments to find a Village
+     * @example
+     * // Get one Village
+     * const village = await prisma.village.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VillageFindFirstOrThrowArgs>(args?: SelectSubset<T, VillageFindFirstOrThrowArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Villages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Villages
+     * const villages = await prisma.village.findMany()
+     * 
+     * // Get first 10 Villages
+     * const villages = await prisma.village.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const villageWithIdOnly = await prisma.village.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VillageFindManyArgs>(args?: SelectSubset<T, VillageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Village.
+     * @param {VillageCreateArgs} args - Arguments to create a Village.
+     * @example
+     * // Create one Village
+     * const Village = await prisma.village.create({
+     *   data: {
+     *     // ... data to create a Village
+     *   }
+     * })
+     * 
+     */
+    create<T extends VillageCreateArgs>(args: SelectSubset<T, VillageCreateArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Villages.
+     * @param {VillageCreateManyArgs} args - Arguments to create many Villages.
+     * @example
+     * // Create many Villages
+     * const village = await prisma.village.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VillageCreateManyArgs>(args?: SelectSubset<T, VillageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Villages and returns the data saved in the database.
+     * @param {VillageCreateManyAndReturnArgs} args - Arguments to create many Villages.
+     * @example
+     * // Create many Villages
+     * const village = await prisma.village.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Villages and only return the `id`
+     * const villageWithIdOnly = await prisma.village.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VillageCreateManyAndReturnArgs>(args?: SelectSubset<T, VillageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Village.
+     * @param {VillageDeleteArgs} args - Arguments to delete one Village.
+     * @example
+     * // Delete one Village
+     * const Village = await prisma.village.delete({
+     *   where: {
+     *     // ... filter to delete one Village
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VillageDeleteArgs>(args: SelectSubset<T, VillageDeleteArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Village.
+     * @param {VillageUpdateArgs} args - Arguments to update one Village.
+     * @example
+     * // Update one Village
+     * const village = await prisma.village.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VillageUpdateArgs>(args: SelectSubset<T, VillageUpdateArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Villages.
+     * @param {VillageDeleteManyArgs} args - Arguments to filter Villages to delete.
+     * @example
+     * // Delete a few Villages
+     * const { count } = await prisma.village.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VillageDeleteManyArgs>(args?: SelectSubset<T, VillageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Villages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Villages
+     * const village = await prisma.village.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VillageUpdateManyArgs>(args: SelectSubset<T, VillageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Villages and returns the data updated in the database.
+     * @param {VillageUpdateManyAndReturnArgs} args - Arguments to update many Villages.
+     * @example
+     * // Update many Villages
+     * const village = await prisma.village.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Villages and only return the `id`
+     * const villageWithIdOnly = await prisma.village.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VillageUpdateManyAndReturnArgs>(args: SelectSubset<T, VillageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Village.
+     * @param {VillageUpsertArgs} args - Arguments to update or create a Village.
+     * @example
+     * // Update or create a Village
+     * const village = await prisma.village.upsert({
+     *   create: {
+     *     // ... data to create a Village
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Village we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VillageUpsertArgs>(args: SelectSubset<T, VillageUpsertArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Villages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageCountArgs} args - Arguments to filter Villages to count.
+     * @example
+     * // Count the number of Villages
+     * const count = await prisma.village.count({
+     *   where: {
+     *     // ... the filter for the Villages we want to count
+     *   }
+     * })
+    **/
+    count<T extends VillageCountArgs>(
+      args?: Subset<T, VillageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VillageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Village.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VillageAggregateArgs>(args: Subset<T, VillageAggregateArgs>): Prisma.PrismaPromise<GetVillageAggregateType<T>>
+
+    /**
+     * Group by Village.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VillageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VillageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VillageGroupByArgs['orderBy'] }
+        : { orderBy?: VillageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VillageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVillageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Village model
+   */
+  readonly fields: VillageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Village.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VillageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    PipelineProgress<T extends Village$PipelineProgressArgs<ExtArgs> = {}>(args?: Subset<T, Village$PipelineProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MaterialNeeds<T extends Village$MaterialNeedsArgs<ExtArgs> = {}>(args?: Subset<T, Village$MaterialNeedsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Village model
+   */
+  interface VillageFieldRefs {
+    readonly id: FieldRef<"Village", 'Int'>
+    readonly name_en: FieldRef<"Village", 'String'>
+    readonly name_ge: FieldRef<"Village", 'String'>
+    readonly municipality: FieldRef<"Village", 'String'>
+    readonly latitude: FieldRef<"Village", 'Float'>
+    readonly longitude: FieldRef<"Village", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Village findUnique
+   */
+  export type VillageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * Filter, which Village to fetch.
+     */
+    where: VillageWhereUniqueInput
+  }
+
+  /**
+   * Village findUniqueOrThrow
+   */
+  export type VillageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * Filter, which Village to fetch.
+     */
+    where: VillageWhereUniqueInput
+  }
+
+  /**
+   * Village findFirst
+   */
+  export type VillageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * Filter, which Village to fetch.
+     */
+    where?: VillageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Villages to fetch.
+     */
+    orderBy?: VillageOrderByWithRelationInput | VillageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Villages.
+     */
+    cursor?: VillageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Villages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Villages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Villages.
+     */
+    distinct?: VillageScalarFieldEnum | VillageScalarFieldEnum[]
+  }
+
+  /**
+   * Village findFirstOrThrow
+   */
+  export type VillageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * Filter, which Village to fetch.
+     */
+    where?: VillageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Villages to fetch.
+     */
+    orderBy?: VillageOrderByWithRelationInput | VillageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Villages.
+     */
+    cursor?: VillageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Villages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Villages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Villages.
+     */
+    distinct?: VillageScalarFieldEnum | VillageScalarFieldEnum[]
+  }
+
+  /**
+   * Village findMany
+   */
+  export type VillageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * Filter, which Villages to fetch.
+     */
+    where?: VillageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Villages to fetch.
+     */
+    orderBy?: VillageOrderByWithRelationInput | VillageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Villages.
+     */
+    cursor?: VillageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Villages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Villages.
+     */
+    skip?: number
+    distinct?: VillageScalarFieldEnum | VillageScalarFieldEnum[]
+  }
+
+  /**
+   * Village create
+   */
+  export type VillageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Village.
+     */
+    data: XOR<VillageCreateInput, VillageUncheckedCreateInput>
+  }
+
+  /**
+   * Village createMany
+   */
+  export type VillageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Villages.
+     */
+    data: VillageCreateManyInput | VillageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Village createManyAndReturn
+   */
+  export type VillageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * The data used to create many Villages.
+     */
+    data: VillageCreateManyInput | VillageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Village update
+   */
+  export type VillageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Village.
+     */
+    data: XOR<VillageUpdateInput, VillageUncheckedUpdateInput>
+    /**
+     * Choose, which Village to update.
+     */
+    where: VillageWhereUniqueInput
+  }
+
+  /**
+   * Village updateMany
+   */
+  export type VillageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Villages.
+     */
+    data: XOR<VillageUpdateManyMutationInput, VillageUncheckedUpdateManyInput>
+    /**
+     * Filter which Villages to update
+     */
+    where?: VillageWhereInput
+    /**
+     * Limit how many Villages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Village updateManyAndReturn
+   */
+  export type VillageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * The data used to update Villages.
+     */
+    data: XOR<VillageUpdateManyMutationInput, VillageUncheckedUpdateManyInput>
+    /**
+     * Filter which Villages to update
+     */
+    where?: VillageWhereInput
+    /**
+     * Limit how many Villages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Village upsert
+   */
+  export type VillageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Village to update in case it exists.
+     */
+    where: VillageWhereUniqueInput
+    /**
+     * In case the Village found by the `where` argument doesn't exist, create a new Village with this data.
+     */
+    create: XOR<VillageCreateInput, VillageUncheckedCreateInput>
+    /**
+     * In case the Village was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VillageUpdateInput, VillageUncheckedUpdateInput>
+  }
+
+  /**
+   * Village delete
+   */
+  export type VillageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+    /**
+     * Filter which Village to delete.
+     */
+    where: VillageWhereUniqueInput
+  }
+
+  /**
+   * Village deleteMany
+   */
+  export type VillageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Villages to delete
+     */
+    where?: VillageWhereInput
+    /**
+     * Limit how many Villages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Village.PipelineProgress
+   */
+  export type Village$PipelineProgressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    where?: PipelineProgressWhereInput
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    cursor?: PipelineProgressWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PipelineProgressScalarFieldEnum | PipelineProgressScalarFieldEnum[]
+  }
+
+  /**
+   * Village.MaterialNeeds
+   */
+  export type Village$MaterialNeedsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    where?: MaterialNeedWhereInput
+    orderBy?: MaterialNeedOrderByWithRelationInput | MaterialNeedOrderByWithRelationInput[]
+    cursor?: MaterialNeedWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MaterialNeedScalarFieldEnum | MaterialNeedScalarFieldEnum[]
+  }
+
+  /**
+   * Village without action
+   */
+  export type VillageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Village
+     */
+    select?: VillageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Village
+     */
+    omit?: VillageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VillageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MaterialNeed
+   */
+
+  export type AggregateMaterialNeed = {
+    _count: MaterialNeedCountAggregateOutputType | null
+    _avg: MaterialNeedAvgAggregateOutputType | null
+    _sum: MaterialNeedSumAggregateOutputType | null
+    _min: MaterialNeedMinAggregateOutputType | null
+    _max: MaterialNeedMaxAggregateOutputType | null
+  }
+
+  export type MaterialNeedAvgAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    villageId: number | null
+  }
+
+  export type MaterialNeedSumAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    villageId: number | null
+  }
+
+  export type MaterialNeedMinAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    villageId: number | null
+  }
+
+  export type MaterialNeedMaxAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    villageId: number | null
+  }
+
+  export type MaterialNeedCountAggregateOutputType = {
+    id: number
+    productId: number
+    requiredAmount: number
+    villageId: number
+    _all: number
+  }
+
+
+  export type MaterialNeedAvgAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    villageId?: true
+  }
+
+  export type MaterialNeedSumAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    villageId?: true
+  }
+
+  export type MaterialNeedMinAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    villageId?: true
+  }
+
+  export type MaterialNeedMaxAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    villageId?: true
+  }
+
+  export type MaterialNeedCountAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    villageId?: true
+    _all?: true
+  }
+
+  export type MaterialNeedAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MaterialNeed to aggregate.
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialNeeds to fetch.
+     */
+    orderBy?: MaterialNeedOrderByWithRelationInput | MaterialNeedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MaterialNeedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialNeeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialNeeds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MaterialNeeds
+    **/
+    _count?: true | MaterialNeedCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MaterialNeedAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MaterialNeedSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MaterialNeedMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MaterialNeedMaxAggregateInputType
+  }
+
+  export type GetMaterialNeedAggregateType<T extends MaterialNeedAggregateArgs> = {
+        [P in keyof T & keyof AggregateMaterialNeed]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMaterialNeed[P]>
+      : GetScalarType<T[P], AggregateMaterialNeed[P]>
+  }
+
+
+
+
+  export type MaterialNeedGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialNeedWhereInput
+    orderBy?: MaterialNeedOrderByWithAggregationInput | MaterialNeedOrderByWithAggregationInput[]
+    by: MaterialNeedScalarFieldEnum[] | MaterialNeedScalarFieldEnum
+    having?: MaterialNeedScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MaterialNeedCountAggregateInputType | true
+    _avg?: MaterialNeedAvgAggregateInputType
+    _sum?: MaterialNeedSumAggregateInputType
+    _min?: MaterialNeedMinAggregateInputType
+    _max?: MaterialNeedMaxAggregateInputType
+  }
+
+  export type MaterialNeedGroupByOutputType = {
+    id: number
+    productId: number
+    requiredAmount: Decimal
+    villageId: number
+    _count: MaterialNeedCountAggregateOutputType | null
+    _avg: MaterialNeedAvgAggregateOutputType | null
+    _sum: MaterialNeedSumAggregateOutputType | null
+    _min: MaterialNeedMinAggregateOutputType | null
+    _max: MaterialNeedMaxAggregateOutputType | null
+  }
+
+  type GetMaterialNeedGroupByPayload<T extends MaterialNeedGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MaterialNeedGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MaterialNeedGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MaterialNeedGroupByOutputType[P]>
+            : GetScalarType<T[P], MaterialNeedGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MaterialNeedSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    villageId?: boolean
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["materialNeed"]>
+
+  export type MaterialNeedSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    villageId?: boolean
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["materialNeed"]>
+
+  export type MaterialNeedSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    villageId?: boolean
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["materialNeed"]>
+
+  export type MaterialNeedSelectScalar = {
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    villageId?: boolean
+  }
+
+  export type MaterialNeedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "requiredAmount" | "villageId", ExtArgs["result"]["materialNeed"]>
+  export type MaterialNeedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }
+  export type MaterialNeedIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }
+  export type MaterialNeedIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }
+
+  export type $MaterialNeedPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MaterialNeed"
+    objects: {
+      product: Prisma.$MaterialNamePayload<ExtArgs>
+      village: Prisma.$VillagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      productId: number
+      requiredAmount: Prisma.Decimal
+      villageId: number
+    }, ExtArgs["result"]["materialNeed"]>
+    composites: {}
+  }
+
+  type MaterialNeedGetPayload<S extends boolean | null | undefined | MaterialNeedDefaultArgs> = $Result.GetResult<Prisma.$MaterialNeedPayload, S>
+
+  type MaterialNeedCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MaterialNeedFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MaterialNeedCountAggregateInputType | true
+    }
+
+  export interface MaterialNeedDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MaterialNeed'], meta: { name: 'MaterialNeed' } }
+    /**
+     * Find zero or one MaterialNeed that matches the filter.
+     * @param {MaterialNeedFindUniqueArgs} args - Arguments to find a MaterialNeed
+     * @example
+     * // Get one MaterialNeed
+     * const materialNeed = await prisma.materialNeed.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MaterialNeedFindUniqueArgs>(args: SelectSubset<T, MaterialNeedFindUniqueArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MaterialNeed that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MaterialNeedFindUniqueOrThrowArgs} args - Arguments to find a MaterialNeed
+     * @example
+     * // Get one MaterialNeed
+     * const materialNeed = await prisma.materialNeed.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MaterialNeedFindUniqueOrThrowArgs>(args: SelectSubset<T, MaterialNeedFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MaterialNeed that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedFindFirstArgs} args - Arguments to find a MaterialNeed
+     * @example
+     * // Get one MaterialNeed
+     * const materialNeed = await prisma.materialNeed.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MaterialNeedFindFirstArgs>(args?: SelectSubset<T, MaterialNeedFindFirstArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MaterialNeed that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedFindFirstOrThrowArgs} args - Arguments to find a MaterialNeed
+     * @example
+     * // Get one MaterialNeed
+     * const materialNeed = await prisma.materialNeed.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MaterialNeedFindFirstOrThrowArgs>(args?: SelectSubset<T, MaterialNeedFindFirstOrThrowArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MaterialNeeds that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MaterialNeeds
+     * const materialNeeds = await prisma.materialNeed.findMany()
+     * 
+     * // Get first 10 MaterialNeeds
+     * const materialNeeds = await prisma.materialNeed.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const materialNeedWithIdOnly = await prisma.materialNeed.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MaterialNeedFindManyArgs>(args?: SelectSubset<T, MaterialNeedFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MaterialNeed.
+     * @param {MaterialNeedCreateArgs} args - Arguments to create a MaterialNeed.
+     * @example
+     * // Create one MaterialNeed
+     * const MaterialNeed = await prisma.materialNeed.create({
+     *   data: {
+     *     // ... data to create a MaterialNeed
+     *   }
+     * })
+     * 
+     */
+    create<T extends MaterialNeedCreateArgs>(args: SelectSubset<T, MaterialNeedCreateArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MaterialNeeds.
+     * @param {MaterialNeedCreateManyArgs} args - Arguments to create many MaterialNeeds.
+     * @example
+     * // Create many MaterialNeeds
+     * const materialNeed = await prisma.materialNeed.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MaterialNeedCreateManyArgs>(args?: SelectSubset<T, MaterialNeedCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MaterialNeeds and returns the data saved in the database.
+     * @param {MaterialNeedCreateManyAndReturnArgs} args - Arguments to create many MaterialNeeds.
+     * @example
+     * // Create many MaterialNeeds
+     * const materialNeed = await prisma.materialNeed.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MaterialNeeds and only return the `id`
+     * const materialNeedWithIdOnly = await prisma.materialNeed.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MaterialNeedCreateManyAndReturnArgs>(args?: SelectSubset<T, MaterialNeedCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MaterialNeed.
+     * @param {MaterialNeedDeleteArgs} args - Arguments to delete one MaterialNeed.
+     * @example
+     * // Delete one MaterialNeed
+     * const MaterialNeed = await prisma.materialNeed.delete({
+     *   where: {
+     *     // ... filter to delete one MaterialNeed
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MaterialNeedDeleteArgs>(args: SelectSubset<T, MaterialNeedDeleteArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MaterialNeed.
+     * @param {MaterialNeedUpdateArgs} args - Arguments to update one MaterialNeed.
+     * @example
+     * // Update one MaterialNeed
+     * const materialNeed = await prisma.materialNeed.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MaterialNeedUpdateArgs>(args: SelectSubset<T, MaterialNeedUpdateArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MaterialNeeds.
+     * @param {MaterialNeedDeleteManyArgs} args - Arguments to filter MaterialNeeds to delete.
+     * @example
+     * // Delete a few MaterialNeeds
+     * const { count } = await prisma.materialNeed.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MaterialNeedDeleteManyArgs>(args?: SelectSubset<T, MaterialNeedDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MaterialNeeds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MaterialNeeds
+     * const materialNeed = await prisma.materialNeed.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MaterialNeedUpdateManyArgs>(args: SelectSubset<T, MaterialNeedUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MaterialNeeds and returns the data updated in the database.
+     * @param {MaterialNeedUpdateManyAndReturnArgs} args - Arguments to update many MaterialNeeds.
+     * @example
+     * // Update many MaterialNeeds
+     * const materialNeed = await prisma.materialNeed.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MaterialNeeds and only return the `id`
+     * const materialNeedWithIdOnly = await prisma.materialNeed.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MaterialNeedUpdateManyAndReturnArgs>(args: SelectSubset<T, MaterialNeedUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MaterialNeed.
+     * @param {MaterialNeedUpsertArgs} args - Arguments to update or create a MaterialNeed.
+     * @example
+     * // Update or create a MaterialNeed
+     * const materialNeed = await prisma.materialNeed.upsert({
+     *   create: {
+     *     // ... data to create a MaterialNeed
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MaterialNeed we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MaterialNeedUpsertArgs>(args: SelectSubset<T, MaterialNeedUpsertArgs<ExtArgs>>): Prisma__MaterialNeedClient<$Result.GetResult<Prisma.$MaterialNeedPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MaterialNeeds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedCountArgs} args - Arguments to filter MaterialNeeds to count.
+     * @example
+     * // Count the number of MaterialNeeds
+     * const count = await prisma.materialNeed.count({
+     *   where: {
+     *     // ... the filter for the MaterialNeeds we want to count
+     *   }
+     * })
+    **/
+    count<T extends MaterialNeedCountArgs>(
+      args?: Subset<T, MaterialNeedCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MaterialNeedCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MaterialNeed.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MaterialNeedAggregateArgs>(args: Subset<T, MaterialNeedAggregateArgs>): Prisma.PrismaPromise<GetMaterialNeedAggregateType<T>>
+
+    /**
+     * Group by MaterialNeed.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialNeedGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MaterialNeedGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MaterialNeedGroupByArgs['orderBy'] }
+        : { orderBy?: MaterialNeedGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MaterialNeedGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMaterialNeedGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MaterialNeed model
+   */
+  readonly fields: MaterialNeedFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MaterialNeed.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MaterialNeedClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    product<T extends MaterialNameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialNameDefaultArgs<ExtArgs>>): Prisma__MaterialNameClient<$Result.GetResult<Prisma.$MaterialNamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    village<T extends VillageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VillageDefaultArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MaterialNeed model
+   */
+  interface MaterialNeedFieldRefs {
+    readonly id: FieldRef<"MaterialNeed", 'Int'>
+    readonly productId: FieldRef<"MaterialNeed", 'Int'>
+    readonly requiredAmount: FieldRef<"MaterialNeed", 'Decimal'>
+    readonly villageId: FieldRef<"MaterialNeed", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MaterialNeed findUnique
+   */
+  export type MaterialNeedFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialNeed to fetch.
+     */
+    where: MaterialNeedWhereUniqueInput
+  }
+
+  /**
+   * MaterialNeed findUniqueOrThrow
+   */
+  export type MaterialNeedFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialNeed to fetch.
+     */
+    where: MaterialNeedWhereUniqueInput
+  }
+
+  /**
+   * MaterialNeed findFirst
+   */
+  export type MaterialNeedFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialNeed to fetch.
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialNeeds to fetch.
+     */
+    orderBy?: MaterialNeedOrderByWithRelationInput | MaterialNeedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MaterialNeeds.
+     */
+    cursor?: MaterialNeedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialNeeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialNeeds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MaterialNeeds.
+     */
+    distinct?: MaterialNeedScalarFieldEnum | MaterialNeedScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialNeed findFirstOrThrow
+   */
+  export type MaterialNeedFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialNeed to fetch.
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialNeeds to fetch.
+     */
+    orderBy?: MaterialNeedOrderByWithRelationInput | MaterialNeedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MaterialNeeds.
+     */
+    cursor?: MaterialNeedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialNeeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialNeeds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MaterialNeeds.
+     */
+    distinct?: MaterialNeedScalarFieldEnum | MaterialNeedScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialNeed findMany
+   */
+  export type MaterialNeedFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialNeeds to fetch.
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialNeeds to fetch.
+     */
+    orderBy?: MaterialNeedOrderByWithRelationInput | MaterialNeedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MaterialNeeds.
+     */
+    cursor?: MaterialNeedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialNeeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialNeeds.
+     */
+    skip?: number
+    distinct?: MaterialNeedScalarFieldEnum | MaterialNeedScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialNeed create
+   */
+  export type MaterialNeedCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MaterialNeed.
+     */
+    data: XOR<MaterialNeedCreateInput, MaterialNeedUncheckedCreateInput>
+  }
+
+  /**
+   * MaterialNeed createMany
+   */
+  export type MaterialNeedCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MaterialNeeds.
+     */
+    data: MaterialNeedCreateManyInput | MaterialNeedCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MaterialNeed createManyAndReturn
+   */
+  export type MaterialNeedCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * The data used to create many MaterialNeeds.
+     */
+    data: MaterialNeedCreateManyInput | MaterialNeedCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MaterialNeed update
+   */
+  export type MaterialNeedUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MaterialNeed.
+     */
+    data: XOR<MaterialNeedUpdateInput, MaterialNeedUncheckedUpdateInput>
+    /**
+     * Choose, which MaterialNeed to update.
+     */
+    where: MaterialNeedWhereUniqueInput
+  }
+
+  /**
+   * MaterialNeed updateMany
+   */
+  export type MaterialNeedUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MaterialNeeds.
+     */
+    data: XOR<MaterialNeedUpdateManyMutationInput, MaterialNeedUncheckedUpdateManyInput>
+    /**
+     * Filter which MaterialNeeds to update
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * Limit how many MaterialNeeds to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaterialNeed updateManyAndReturn
+   */
+  export type MaterialNeedUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * The data used to update MaterialNeeds.
+     */
+    data: XOR<MaterialNeedUpdateManyMutationInput, MaterialNeedUncheckedUpdateManyInput>
+    /**
+     * Filter which MaterialNeeds to update
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * Limit how many MaterialNeeds to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MaterialNeed upsert
+   */
+  export type MaterialNeedUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MaterialNeed to update in case it exists.
+     */
+    where: MaterialNeedWhereUniqueInput
+    /**
+     * In case the MaterialNeed found by the `where` argument doesn't exist, create a new MaterialNeed with this data.
+     */
+    create: XOR<MaterialNeedCreateInput, MaterialNeedUncheckedCreateInput>
+    /**
+     * In case the MaterialNeed was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MaterialNeedUpdateInput, MaterialNeedUncheckedUpdateInput>
+  }
+
+  /**
+   * MaterialNeed delete
+   */
+  export type MaterialNeedDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+    /**
+     * Filter which MaterialNeed to delete.
+     */
+    where: MaterialNeedWhereUniqueInput
+  }
+
+  /**
+   * MaterialNeed deleteMany
+   */
+  export type MaterialNeedDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MaterialNeeds to delete
+     */
+    where?: MaterialNeedWhereInput
+    /**
+     * Limit how many MaterialNeeds to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaterialNeed without action
+   */
+  export type MaterialNeedDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialNeed
+     */
+    select?: MaterialNeedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialNeed
+     */
+    omit?: MaterialNeedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialNeedInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PipelineProgress
+   */
+
+  export type AggregatePipelineProgress = {
+    _count: PipelineProgressCountAggregateOutputType | null
+    _avg: PipelineProgressAvgAggregateOutputType | null
+    _sum: PipelineProgressSumAggregateOutputType | null
+    _min: PipelineProgressMinAggregateOutputType | null
+    _max: PipelineProgressMaxAggregateOutputType | null
+  }
+
+  export type PipelineProgressAvgAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    unitId: number | null
+    villageId: number | null
+  }
+
+  export type PipelineProgressSumAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    unitId: number | null
+    villageId: number | null
+  }
+
+  export type PipelineProgressMinAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    unitId: number | null
+    villageId: number | null
+  }
+
+  export type PipelineProgressMaxAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    requiredAmount: Decimal | null
+    unitId: number | null
+    villageId: number | null
+  }
+
+  export type PipelineProgressCountAggregateOutputType = {
+    id: number
+    productId: number
+    requiredAmount: number
+    unitId: number
+    villageId: number
+    _all: number
+  }
+
+
+  export type PipelineProgressAvgAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    unitId?: true
+    villageId?: true
+  }
+
+  export type PipelineProgressSumAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    unitId?: true
+    villageId?: true
+  }
+
+  export type PipelineProgressMinAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    unitId?: true
+    villageId?: true
+  }
+
+  export type PipelineProgressMaxAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    unitId?: true
+    villageId?: true
+  }
+
+  export type PipelineProgressCountAggregateInputType = {
+    id?: true
+    productId?: true
+    requiredAmount?: true
+    unitId?: true
+    villageId?: true
+    _all?: true
+  }
+
+  export type PipelineProgressAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PipelineProgress to aggregate.
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PipelineProgresses to fetch.
+     */
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PipelineProgressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PipelineProgresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PipelineProgresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PipelineProgresses
+    **/
+    _count?: true | PipelineProgressCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PipelineProgressAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PipelineProgressSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PipelineProgressMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PipelineProgressMaxAggregateInputType
+  }
+
+  export type GetPipelineProgressAggregateType<T extends PipelineProgressAggregateArgs> = {
+        [P in keyof T & keyof AggregatePipelineProgress]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePipelineProgress[P]>
+      : GetScalarType<T[P], AggregatePipelineProgress[P]>
+  }
+
+
+
+
+  export type PipelineProgressGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PipelineProgressWhereInput
+    orderBy?: PipelineProgressOrderByWithAggregationInput | PipelineProgressOrderByWithAggregationInput[]
+    by: PipelineProgressScalarFieldEnum[] | PipelineProgressScalarFieldEnum
+    having?: PipelineProgressScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PipelineProgressCountAggregateInputType | true
+    _avg?: PipelineProgressAvgAggregateInputType
+    _sum?: PipelineProgressSumAggregateInputType
+    _min?: PipelineProgressMinAggregateInputType
+    _max?: PipelineProgressMaxAggregateInputType
+  }
+
+  export type PipelineProgressGroupByOutputType = {
+    id: number
+    productId: number
+    requiredAmount: Decimal
+    unitId: number
+    villageId: number
+    _count: PipelineProgressCountAggregateOutputType | null
+    _avg: PipelineProgressAvgAggregateOutputType | null
+    _sum: PipelineProgressSumAggregateOutputType | null
+    _min: PipelineProgressMinAggregateOutputType | null
+    _max: PipelineProgressMaxAggregateOutputType | null
+  }
+
+  type GetPipelineProgressGroupByPayload<T extends PipelineProgressGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PipelineProgressGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PipelineProgressGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PipelineProgressGroupByOutputType[P]>
+            : GetScalarType<T[P], PipelineProgressGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PipelineProgressSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    unitId?: boolean
+    villageId?: boolean
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pipelineProgress"]>
+
+  export type PipelineProgressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    unitId?: boolean
+    villageId?: boolean
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pipelineProgress"]>
+
+  export type PipelineProgressSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    unitId?: boolean
+    villageId?: boolean
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pipelineProgress"]>
+
+  export type PipelineProgressSelectScalar = {
+    id?: boolean
+    productId?: boolean
+    requiredAmount?: boolean
+    unitId?: boolean
+    villageId?: boolean
+  }
+
+  export type PipelineProgressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "requiredAmount" | "unitId" | "villageId", ExtArgs["result"]["pipelineProgress"]>
+  export type PipelineProgressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }
+  export type PipelineProgressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }
+  export type PipelineProgressIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | MaterialNameDefaultArgs<ExtArgs>
+    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    village?: boolean | VillageDefaultArgs<ExtArgs>
+  }
+
+  export type $PipelineProgressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PipelineProgress"
+    objects: {
+      product: Prisma.$MaterialNamePayload<ExtArgs>
+      unit: Prisma.$UnitPayload<ExtArgs>
+      village: Prisma.$VillagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      productId: number
+      requiredAmount: Prisma.Decimal
+      unitId: number
+      villageId: number
+    }, ExtArgs["result"]["pipelineProgress"]>
+    composites: {}
+  }
+
+  type PipelineProgressGetPayload<S extends boolean | null | undefined | PipelineProgressDefaultArgs> = $Result.GetResult<Prisma.$PipelineProgressPayload, S>
+
+  type PipelineProgressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PipelineProgressFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PipelineProgressCountAggregateInputType | true
+    }
+
+  export interface PipelineProgressDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PipelineProgress'], meta: { name: 'PipelineProgress' } }
+    /**
+     * Find zero or one PipelineProgress that matches the filter.
+     * @param {PipelineProgressFindUniqueArgs} args - Arguments to find a PipelineProgress
+     * @example
+     * // Get one PipelineProgress
+     * const pipelineProgress = await prisma.pipelineProgress.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PipelineProgressFindUniqueArgs>(args: SelectSubset<T, PipelineProgressFindUniqueArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PipelineProgress that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PipelineProgressFindUniqueOrThrowArgs} args - Arguments to find a PipelineProgress
+     * @example
+     * // Get one PipelineProgress
+     * const pipelineProgress = await prisma.pipelineProgress.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PipelineProgressFindUniqueOrThrowArgs>(args: SelectSubset<T, PipelineProgressFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PipelineProgress that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressFindFirstArgs} args - Arguments to find a PipelineProgress
+     * @example
+     * // Get one PipelineProgress
+     * const pipelineProgress = await prisma.pipelineProgress.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PipelineProgressFindFirstArgs>(args?: SelectSubset<T, PipelineProgressFindFirstArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PipelineProgress that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressFindFirstOrThrowArgs} args - Arguments to find a PipelineProgress
+     * @example
+     * // Get one PipelineProgress
+     * const pipelineProgress = await prisma.pipelineProgress.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PipelineProgressFindFirstOrThrowArgs>(args?: SelectSubset<T, PipelineProgressFindFirstOrThrowArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PipelineProgresses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PipelineProgresses
+     * const pipelineProgresses = await prisma.pipelineProgress.findMany()
+     * 
+     * // Get first 10 PipelineProgresses
+     * const pipelineProgresses = await prisma.pipelineProgress.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pipelineProgressWithIdOnly = await prisma.pipelineProgress.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PipelineProgressFindManyArgs>(args?: SelectSubset<T, PipelineProgressFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PipelineProgress.
+     * @param {PipelineProgressCreateArgs} args - Arguments to create a PipelineProgress.
+     * @example
+     * // Create one PipelineProgress
+     * const PipelineProgress = await prisma.pipelineProgress.create({
+     *   data: {
+     *     // ... data to create a PipelineProgress
+     *   }
+     * })
+     * 
+     */
+    create<T extends PipelineProgressCreateArgs>(args: SelectSubset<T, PipelineProgressCreateArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PipelineProgresses.
+     * @param {PipelineProgressCreateManyArgs} args - Arguments to create many PipelineProgresses.
+     * @example
+     * // Create many PipelineProgresses
+     * const pipelineProgress = await prisma.pipelineProgress.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PipelineProgressCreateManyArgs>(args?: SelectSubset<T, PipelineProgressCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PipelineProgresses and returns the data saved in the database.
+     * @param {PipelineProgressCreateManyAndReturnArgs} args - Arguments to create many PipelineProgresses.
+     * @example
+     * // Create many PipelineProgresses
+     * const pipelineProgress = await prisma.pipelineProgress.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PipelineProgresses and only return the `id`
+     * const pipelineProgressWithIdOnly = await prisma.pipelineProgress.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PipelineProgressCreateManyAndReturnArgs>(args?: SelectSubset<T, PipelineProgressCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PipelineProgress.
+     * @param {PipelineProgressDeleteArgs} args - Arguments to delete one PipelineProgress.
+     * @example
+     * // Delete one PipelineProgress
+     * const PipelineProgress = await prisma.pipelineProgress.delete({
+     *   where: {
+     *     // ... filter to delete one PipelineProgress
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PipelineProgressDeleteArgs>(args: SelectSubset<T, PipelineProgressDeleteArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PipelineProgress.
+     * @param {PipelineProgressUpdateArgs} args - Arguments to update one PipelineProgress.
+     * @example
+     * // Update one PipelineProgress
+     * const pipelineProgress = await prisma.pipelineProgress.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PipelineProgressUpdateArgs>(args: SelectSubset<T, PipelineProgressUpdateArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PipelineProgresses.
+     * @param {PipelineProgressDeleteManyArgs} args - Arguments to filter PipelineProgresses to delete.
+     * @example
+     * // Delete a few PipelineProgresses
+     * const { count } = await prisma.pipelineProgress.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PipelineProgressDeleteManyArgs>(args?: SelectSubset<T, PipelineProgressDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PipelineProgresses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PipelineProgresses
+     * const pipelineProgress = await prisma.pipelineProgress.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PipelineProgressUpdateManyArgs>(args: SelectSubset<T, PipelineProgressUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PipelineProgresses and returns the data updated in the database.
+     * @param {PipelineProgressUpdateManyAndReturnArgs} args - Arguments to update many PipelineProgresses.
+     * @example
+     * // Update many PipelineProgresses
+     * const pipelineProgress = await prisma.pipelineProgress.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PipelineProgresses and only return the `id`
+     * const pipelineProgressWithIdOnly = await prisma.pipelineProgress.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PipelineProgressUpdateManyAndReturnArgs>(args: SelectSubset<T, PipelineProgressUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PipelineProgress.
+     * @param {PipelineProgressUpsertArgs} args - Arguments to update or create a PipelineProgress.
+     * @example
+     * // Update or create a PipelineProgress
+     * const pipelineProgress = await prisma.pipelineProgress.upsert({
+     *   create: {
+     *     // ... data to create a PipelineProgress
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PipelineProgress we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PipelineProgressUpsertArgs>(args: SelectSubset<T, PipelineProgressUpsertArgs<ExtArgs>>): Prisma__PipelineProgressClient<$Result.GetResult<Prisma.$PipelineProgressPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PipelineProgresses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressCountArgs} args - Arguments to filter PipelineProgresses to count.
+     * @example
+     * // Count the number of PipelineProgresses
+     * const count = await prisma.pipelineProgress.count({
+     *   where: {
+     *     // ... the filter for the PipelineProgresses we want to count
+     *   }
+     * })
+    **/
+    count<T extends PipelineProgressCountArgs>(
+      args?: Subset<T, PipelineProgressCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PipelineProgressCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PipelineProgress.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PipelineProgressAggregateArgs>(args: Subset<T, PipelineProgressAggregateArgs>): Prisma.PrismaPromise<GetPipelineProgressAggregateType<T>>
+
+    /**
+     * Group by PipelineProgress.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PipelineProgressGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PipelineProgressGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PipelineProgressGroupByArgs['orderBy'] }
+        : { orderBy?: PipelineProgressGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PipelineProgressGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPipelineProgressGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PipelineProgress model
+   */
+  readonly fields: PipelineProgressFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PipelineProgress.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PipelineProgressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    product<T extends MaterialNameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialNameDefaultArgs<ExtArgs>>): Prisma__MaterialNameClient<$Result.GetResult<Prisma.$MaterialNamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    village<T extends VillageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VillageDefaultArgs<ExtArgs>>): Prisma__VillageClient<$Result.GetResult<Prisma.$VillagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PipelineProgress model
+   */
+  interface PipelineProgressFieldRefs {
+    readonly id: FieldRef<"PipelineProgress", 'Int'>
+    readonly productId: FieldRef<"PipelineProgress", 'Int'>
+    readonly requiredAmount: FieldRef<"PipelineProgress", 'Decimal'>
+    readonly unitId: FieldRef<"PipelineProgress", 'Int'>
+    readonly villageId: FieldRef<"PipelineProgress", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PipelineProgress findUnique
+   */
+  export type PipelineProgressFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * Filter, which PipelineProgress to fetch.
+     */
+    where: PipelineProgressWhereUniqueInput
+  }
+
+  /**
+   * PipelineProgress findUniqueOrThrow
+   */
+  export type PipelineProgressFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * Filter, which PipelineProgress to fetch.
+     */
+    where: PipelineProgressWhereUniqueInput
+  }
+
+  /**
+   * PipelineProgress findFirst
+   */
+  export type PipelineProgressFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * Filter, which PipelineProgress to fetch.
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PipelineProgresses to fetch.
+     */
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PipelineProgresses.
+     */
+    cursor?: PipelineProgressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PipelineProgresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PipelineProgresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PipelineProgresses.
+     */
+    distinct?: PipelineProgressScalarFieldEnum | PipelineProgressScalarFieldEnum[]
+  }
+
+  /**
+   * PipelineProgress findFirstOrThrow
+   */
+  export type PipelineProgressFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * Filter, which PipelineProgress to fetch.
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PipelineProgresses to fetch.
+     */
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PipelineProgresses.
+     */
+    cursor?: PipelineProgressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PipelineProgresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PipelineProgresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PipelineProgresses.
+     */
+    distinct?: PipelineProgressScalarFieldEnum | PipelineProgressScalarFieldEnum[]
+  }
+
+  /**
+   * PipelineProgress findMany
+   */
+  export type PipelineProgressFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * Filter, which PipelineProgresses to fetch.
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PipelineProgresses to fetch.
+     */
+    orderBy?: PipelineProgressOrderByWithRelationInput | PipelineProgressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PipelineProgresses.
+     */
+    cursor?: PipelineProgressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PipelineProgresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PipelineProgresses.
+     */
+    skip?: number
+    distinct?: PipelineProgressScalarFieldEnum | PipelineProgressScalarFieldEnum[]
+  }
+
+  /**
+   * PipelineProgress create
+   */
+  export type PipelineProgressCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PipelineProgress.
+     */
+    data: XOR<PipelineProgressCreateInput, PipelineProgressUncheckedCreateInput>
+  }
+
+  /**
+   * PipelineProgress createMany
+   */
+  export type PipelineProgressCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PipelineProgresses.
+     */
+    data: PipelineProgressCreateManyInput | PipelineProgressCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PipelineProgress createManyAndReturn
+   */
+  export type PipelineProgressCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * The data used to create many PipelineProgresses.
+     */
+    data: PipelineProgressCreateManyInput | PipelineProgressCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PipelineProgress update
+   */
+  export type PipelineProgressUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PipelineProgress.
+     */
+    data: XOR<PipelineProgressUpdateInput, PipelineProgressUncheckedUpdateInput>
+    /**
+     * Choose, which PipelineProgress to update.
+     */
+    where: PipelineProgressWhereUniqueInput
+  }
+
+  /**
+   * PipelineProgress updateMany
+   */
+  export type PipelineProgressUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PipelineProgresses.
+     */
+    data: XOR<PipelineProgressUpdateManyMutationInput, PipelineProgressUncheckedUpdateManyInput>
+    /**
+     * Filter which PipelineProgresses to update
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * Limit how many PipelineProgresses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PipelineProgress updateManyAndReturn
+   */
+  export type PipelineProgressUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * The data used to update PipelineProgresses.
+     */
+    data: XOR<PipelineProgressUpdateManyMutationInput, PipelineProgressUncheckedUpdateManyInput>
+    /**
+     * Filter which PipelineProgresses to update
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * Limit how many PipelineProgresses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PipelineProgress upsert
+   */
+  export type PipelineProgressUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PipelineProgress to update in case it exists.
+     */
+    where: PipelineProgressWhereUniqueInput
+    /**
+     * In case the PipelineProgress found by the `where` argument doesn't exist, create a new PipelineProgress with this data.
+     */
+    create: XOR<PipelineProgressCreateInput, PipelineProgressUncheckedCreateInput>
+    /**
+     * In case the PipelineProgress was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PipelineProgressUpdateInput, PipelineProgressUncheckedUpdateInput>
+  }
+
+  /**
+   * PipelineProgress delete
+   */
+  export type PipelineProgressDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+    /**
+     * Filter which PipelineProgress to delete.
+     */
+    where: PipelineProgressWhereUniqueInput
+  }
+
+  /**
+   * PipelineProgress deleteMany
+   */
+  export type PipelineProgressDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PipelineProgresses to delete
+     */
+    where?: PipelineProgressWhereInput
+    /**
+     * Limit how many PipelineProgresses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PipelineProgress without action
+   */
+  export type PipelineProgressDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PipelineProgress
+     */
+    select?: PipelineProgressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PipelineProgress
+     */
+    omit?: PipelineProgressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PipelineProgressInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17423,6 +21223,39 @@ export namespace Prisma {
   };
 
   export type FreightInvoiceScalarFieldEnum = (typeof FreightInvoiceScalarFieldEnum)[keyof typeof FreightInvoiceScalarFieldEnum]
+
+
+  export const VillageScalarFieldEnum: {
+    id: 'id',
+    name_en: 'name_en',
+    name_ge: 'name_ge',
+    municipality: 'municipality',
+    latitude: 'latitude',
+    longitude: 'longitude'
+  };
+
+  export type VillageScalarFieldEnum = (typeof VillageScalarFieldEnum)[keyof typeof VillageScalarFieldEnum]
+
+
+  export const MaterialNeedScalarFieldEnum: {
+    id: 'id',
+    productId: 'productId',
+    requiredAmount: 'requiredAmount',
+    villageId: 'villageId'
+  };
+
+  export type MaterialNeedScalarFieldEnum = (typeof MaterialNeedScalarFieldEnum)[keyof typeof MaterialNeedScalarFieldEnum]
+
+
+  export const PipelineProgressScalarFieldEnum: {
+    id: 'id',
+    productId: 'productId',
+    requiredAmount: 'requiredAmount',
+    unitId: 'unitId',
+    villageId: 'villageId'
+  };
+
+  export type PipelineProgressScalarFieldEnum = (typeof PipelineProgressScalarFieldEnum)[keyof typeof PipelineProgressScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17715,12 +21548,14 @@ export namespace Prisma {
     id?: IntFilter<"Unit"> | number
     unit?: StringFilter<"Unit"> | string
     InvoiceItem?: InvoiceItemListRelationFilter
+    PipelineProgress?: PipelineProgressListRelationFilter
   }
 
   export type UnitOrderByWithRelationInput = {
     id?: SortOrder
     unit?: SortOrder
     InvoiceItem?: InvoiceItemOrderByRelationAggregateInput
+    PipelineProgress?: PipelineProgressOrderByRelationAggregateInput
   }
 
   export type UnitWhereUniqueInput = Prisma.AtLeast<{
@@ -17730,6 +21565,7 @@ export namespace Prisma {
     OR?: UnitWhereInput[]
     NOT?: UnitWhereInput | UnitWhereInput[]
     InvoiceItem?: InvoiceItemListRelationFilter
+    PipelineProgress?: PipelineProgressListRelationFilter
   }, "id" | "unit">
 
   export type UnitOrderByWithAggregationInput = {
@@ -17910,6 +21746,8 @@ export namespace Prisma {
     typeId?: IntFilter<"MaterialName"> | number
     type?: XOR<MaterialTypeScalarRelationFilter, MaterialTypeWhereInput>
     InvoiceItem?: InvoiceItemListRelationFilter
+    MaterialNeed?: MaterialNeedListRelationFilter
+    PipelineProgress?: PipelineProgressListRelationFilter
   }
 
   export type MaterialNameOrderByWithRelationInput = {
@@ -17922,6 +21760,8 @@ export namespace Prisma {
     typeId?: SortOrder
     type?: MaterialTypeOrderByWithRelationInput
     InvoiceItem?: InvoiceItemOrderByRelationAggregateInput
+    MaterialNeed?: MaterialNeedOrderByRelationAggregateInput
+    PipelineProgress?: PipelineProgressOrderByRelationAggregateInput
   }
 
   export type MaterialNameWhereUniqueInput = Prisma.AtLeast<{
@@ -17937,6 +21777,8 @@ export namespace Prisma {
     typeId?: IntFilter<"MaterialName"> | number
     type?: XOR<MaterialTypeScalarRelationFilter, MaterialTypeWhereInput>
     InvoiceItem?: InvoiceItemListRelationFilter
+    MaterialNeed?: MaterialNeedListRelationFilter
+    PipelineProgress?: PipelineProgressListRelationFilter
   }, "id" | "name">
 
   export type MaterialNameOrderByWithAggregationInput = {
@@ -18412,6 +22254,189 @@ export namespace Prisma {
     invoiceId?: IntWithAggregatesFilter<"FreightInvoice"> | number
   }
 
+  export type VillageWhereInput = {
+    AND?: VillageWhereInput | VillageWhereInput[]
+    OR?: VillageWhereInput[]
+    NOT?: VillageWhereInput | VillageWhereInput[]
+    id?: IntFilter<"Village"> | number
+    name_en?: StringFilter<"Village"> | string
+    name_ge?: StringFilter<"Village"> | string
+    municipality?: StringFilter<"Village"> | string
+    latitude?: FloatFilter<"Village"> | number
+    longitude?: FloatFilter<"Village"> | number
+    PipelineProgress?: PipelineProgressListRelationFilter
+    MaterialNeeds?: MaterialNeedListRelationFilter
+  }
+
+  export type VillageOrderByWithRelationInput = {
+    id?: SortOrder
+    name_en?: SortOrder
+    name_ge?: SortOrder
+    municipality?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    PipelineProgress?: PipelineProgressOrderByRelationAggregateInput
+    MaterialNeeds?: MaterialNeedOrderByRelationAggregateInput
+  }
+
+  export type VillageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: VillageWhereInput | VillageWhereInput[]
+    OR?: VillageWhereInput[]
+    NOT?: VillageWhereInput | VillageWhereInput[]
+    name_en?: StringFilter<"Village"> | string
+    name_ge?: StringFilter<"Village"> | string
+    municipality?: StringFilter<"Village"> | string
+    latitude?: FloatFilter<"Village"> | number
+    longitude?: FloatFilter<"Village"> | number
+    PipelineProgress?: PipelineProgressListRelationFilter
+    MaterialNeeds?: MaterialNeedListRelationFilter
+  }, "id">
+
+  export type VillageOrderByWithAggregationInput = {
+    id?: SortOrder
+    name_en?: SortOrder
+    name_ge?: SortOrder
+    municipality?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    _count?: VillageCountOrderByAggregateInput
+    _avg?: VillageAvgOrderByAggregateInput
+    _max?: VillageMaxOrderByAggregateInput
+    _min?: VillageMinOrderByAggregateInput
+    _sum?: VillageSumOrderByAggregateInput
+  }
+
+  export type VillageScalarWhereWithAggregatesInput = {
+    AND?: VillageScalarWhereWithAggregatesInput | VillageScalarWhereWithAggregatesInput[]
+    OR?: VillageScalarWhereWithAggregatesInput[]
+    NOT?: VillageScalarWhereWithAggregatesInput | VillageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Village"> | number
+    name_en?: StringWithAggregatesFilter<"Village"> | string
+    name_ge?: StringWithAggregatesFilter<"Village"> | string
+    municipality?: StringWithAggregatesFilter<"Village"> | string
+    latitude?: FloatWithAggregatesFilter<"Village"> | number
+    longitude?: FloatWithAggregatesFilter<"Village"> | number
+  }
+
+  export type MaterialNeedWhereInput = {
+    AND?: MaterialNeedWhereInput | MaterialNeedWhereInput[]
+    OR?: MaterialNeedWhereInput[]
+    NOT?: MaterialNeedWhereInput | MaterialNeedWhereInput[]
+    id?: IntFilter<"MaterialNeed"> | number
+    productId?: IntFilter<"MaterialNeed"> | number
+    requiredAmount?: DecimalFilter<"MaterialNeed"> | Decimal | DecimalJsLike | number | string
+    villageId?: IntFilter<"MaterialNeed"> | number
+    product?: XOR<MaterialNameScalarRelationFilter, MaterialNameWhereInput>
+    village?: XOR<VillageScalarRelationFilter, VillageWhereInput>
+  }
+
+  export type MaterialNeedOrderByWithRelationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+    product?: MaterialNameOrderByWithRelationInput
+    village?: VillageOrderByWithRelationInput
+  }
+
+  export type MaterialNeedWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: MaterialNeedWhereInput | MaterialNeedWhereInput[]
+    OR?: MaterialNeedWhereInput[]
+    NOT?: MaterialNeedWhereInput | MaterialNeedWhereInput[]
+    productId?: IntFilter<"MaterialNeed"> | number
+    requiredAmount?: DecimalFilter<"MaterialNeed"> | Decimal | DecimalJsLike | number | string
+    villageId?: IntFilter<"MaterialNeed"> | number
+    product?: XOR<MaterialNameScalarRelationFilter, MaterialNameWhereInput>
+    village?: XOR<VillageScalarRelationFilter, VillageWhereInput>
+  }, "id">
+
+  export type MaterialNeedOrderByWithAggregationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+    _count?: MaterialNeedCountOrderByAggregateInput
+    _avg?: MaterialNeedAvgOrderByAggregateInput
+    _max?: MaterialNeedMaxOrderByAggregateInput
+    _min?: MaterialNeedMinOrderByAggregateInput
+    _sum?: MaterialNeedSumOrderByAggregateInput
+  }
+
+  export type MaterialNeedScalarWhereWithAggregatesInput = {
+    AND?: MaterialNeedScalarWhereWithAggregatesInput | MaterialNeedScalarWhereWithAggregatesInput[]
+    OR?: MaterialNeedScalarWhereWithAggregatesInput[]
+    NOT?: MaterialNeedScalarWhereWithAggregatesInput | MaterialNeedScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MaterialNeed"> | number
+    productId?: IntWithAggregatesFilter<"MaterialNeed"> | number
+    requiredAmount?: DecimalWithAggregatesFilter<"MaterialNeed"> | Decimal | DecimalJsLike | number | string
+    villageId?: IntWithAggregatesFilter<"MaterialNeed"> | number
+  }
+
+  export type PipelineProgressWhereInput = {
+    AND?: PipelineProgressWhereInput | PipelineProgressWhereInput[]
+    OR?: PipelineProgressWhereInput[]
+    NOT?: PipelineProgressWhereInput | PipelineProgressWhereInput[]
+    id?: IntFilter<"PipelineProgress"> | number
+    productId?: IntFilter<"PipelineProgress"> | number
+    requiredAmount?: DecimalFilter<"PipelineProgress"> | Decimal | DecimalJsLike | number | string
+    unitId?: IntFilter<"PipelineProgress"> | number
+    villageId?: IntFilter<"PipelineProgress"> | number
+    product?: XOR<MaterialNameScalarRelationFilter, MaterialNameWhereInput>
+    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
+    village?: XOR<VillageScalarRelationFilter, VillageWhereInput>
+  }
+
+  export type PipelineProgressOrderByWithRelationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+    product?: MaterialNameOrderByWithRelationInput
+    unit?: UnitOrderByWithRelationInput
+    village?: VillageOrderByWithRelationInput
+  }
+
+  export type PipelineProgressWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PipelineProgressWhereInput | PipelineProgressWhereInput[]
+    OR?: PipelineProgressWhereInput[]
+    NOT?: PipelineProgressWhereInput | PipelineProgressWhereInput[]
+    productId?: IntFilter<"PipelineProgress"> | number
+    requiredAmount?: DecimalFilter<"PipelineProgress"> | Decimal | DecimalJsLike | number | string
+    unitId?: IntFilter<"PipelineProgress"> | number
+    villageId?: IntFilter<"PipelineProgress"> | number
+    product?: XOR<MaterialNameScalarRelationFilter, MaterialNameWhereInput>
+    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
+    village?: XOR<VillageScalarRelationFilter, VillageWhereInput>
+  }, "id">
+
+  export type PipelineProgressOrderByWithAggregationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+    _count?: PipelineProgressCountOrderByAggregateInput
+    _avg?: PipelineProgressAvgOrderByAggregateInput
+    _max?: PipelineProgressMaxOrderByAggregateInput
+    _min?: PipelineProgressMinOrderByAggregateInput
+    _sum?: PipelineProgressSumOrderByAggregateInput
+  }
+
+  export type PipelineProgressScalarWhereWithAggregatesInput = {
+    AND?: PipelineProgressScalarWhereWithAggregatesInput | PipelineProgressScalarWhereWithAggregatesInput[]
+    OR?: PipelineProgressScalarWhereWithAggregatesInput[]
+    NOT?: PipelineProgressScalarWhereWithAggregatesInput | PipelineProgressScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PipelineProgress"> | number
+    productId?: IntWithAggregatesFilter<"PipelineProgress"> | number
+    requiredAmount?: DecimalWithAggregatesFilter<"PipelineProgress"> | Decimal | DecimalJsLike | number | string
+    unitId?: IntWithAggregatesFilter<"PipelineProgress"> | number
+    villageId?: IntWithAggregatesFilter<"PipelineProgress"> | number
+  }
+
   export type UserCreateInput = {
     firebaseUid: string
     email: string
@@ -18568,23 +22593,27 @@ export namespace Prisma {
   export type UnitCreateInput = {
     unit: string
     InvoiceItem?: InvoiceItemCreateNestedManyWithoutUnitInput
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateInput = {
     id?: number
     unit: string
     InvoiceItem?: InvoiceItemUncheckedCreateNestedManyWithoutUnitInput
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUpdateInput = {
     unit?: StringFieldUpdateOperationsInput | string
     InvoiceItem?: InvoiceItemUpdateManyWithoutUnitNestedInput
+    PipelineProgress?: PipelineProgressUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     unit?: StringFieldUpdateOperationsInput | string
     InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutUnitNestedInput
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitCreateManyInput = {
@@ -18741,6 +22770,8 @@ export namespace Prisma {
     description: string
     type: MaterialTypeCreateNestedOneWithoutMaterialNameInput
     InvoiceItem?: InvoiceItemCreateNestedManyWithoutProductInput
+    MaterialNeed?: MaterialNeedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutProductInput
   }
 
   export type MaterialNameUncheckedCreateInput = {
@@ -18752,6 +22783,8 @@ export namespace Prisma {
     description: string
     typeId: number
     InvoiceItem?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
+    MaterialNeed?: MaterialNeedUncheckedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type MaterialNameUpdateInput = {
@@ -18762,6 +22795,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     type?: MaterialTypeUpdateOneRequiredWithoutMaterialNameNestedInput
     InvoiceItem?: InvoiceItemUpdateManyWithoutProductNestedInput
+    MaterialNeed?: MaterialNeedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUpdateManyWithoutProductNestedInput
   }
 
   export type MaterialNameUncheckedUpdateInput = {
@@ -18773,6 +22808,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     typeId?: IntFieldUpdateOperationsInput | number
     InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
+    MaterialNeed?: MaterialNeedUncheckedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type MaterialNameCreateManyInput = {
@@ -19219,6 +23256,168 @@ export namespace Prisma {
     invoiceId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type VillageCreateInput = {
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutVillageInput
+    MaterialNeeds?: MaterialNeedCreateNestedManyWithoutVillageInput
+  }
+
+  export type VillageUncheckedCreateInput = {
+    id?: number
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutVillageInput
+    MaterialNeeds?: MaterialNeedUncheckedCreateNestedManyWithoutVillageInput
+  }
+
+  export type VillageUpdateInput = {
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    PipelineProgress?: PipelineProgressUpdateManyWithoutVillageNestedInput
+    MaterialNeeds?: MaterialNeedUpdateManyWithoutVillageNestedInput
+  }
+
+  export type VillageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutVillageNestedInput
+    MaterialNeeds?: MaterialNeedUncheckedUpdateManyWithoutVillageNestedInput
+  }
+
+  export type VillageCreateManyInput = {
+    id?: number
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+  }
+
+  export type VillageUpdateManyMutationInput = {
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type VillageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type MaterialNeedCreateInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    product: MaterialNameCreateNestedOneWithoutMaterialNeedInput
+    village: VillageCreateNestedOneWithoutMaterialNeedsInput
+  }
+
+  export type MaterialNeedUncheckedCreateInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    villageId: number
+  }
+
+  export type MaterialNeedUpdateInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    product?: MaterialNameUpdateOneRequiredWithoutMaterialNeedNestedInput
+    village?: VillageUpdateOneRequiredWithoutMaterialNeedsNestedInput
+  }
+
+  export type MaterialNeedUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MaterialNeedCreateManyInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    villageId: number
+  }
+
+  export type MaterialNeedUpdateManyMutationInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type MaterialNeedUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressCreateInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    product: MaterialNameCreateNestedOneWithoutPipelineProgressInput
+    unit: UnitCreateNestedOneWithoutPipelineProgressInput
+    village: VillageCreateNestedOneWithoutPipelineProgressInput
+  }
+
+  export type PipelineProgressUncheckedCreateInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unitId: number
+    villageId: number
+  }
+
+  export type PipelineProgressUpdateInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    product?: MaterialNameUpdateOneRequiredWithoutPipelineProgressNestedInput
+    unit?: UnitUpdateOneRequiredWithoutPipelineProgressNestedInput
+    village?: VillageUpdateOneRequiredWithoutPipelineProgressNestedInput
+  }
+
+  export type PipelineProgressUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unitId?: IntFieldUpdateOperationsInput | number
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressCreateManyInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unitId: number
+    villageId: number
+  }
+
+  export type PipelineProgressUpdateManyMutationInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type PipelineProgressUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unitId?: IntFieldUpdateOperationsInput | number
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -19471,7 +23670,17 @@ export namespace Prisma {
     none?: InvoiceItemWhereInput
   }
 
+  export type PipelineProgressListRelationFilter = {
+    every?: PipelineProgressWhereInput
+    some?: PipelineProgressWhereInput
+    none?: PipelineProgressWhereInput
+  }
+
   export type InvoiceItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PipelineProgressOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19606,6 +23815,16 @@ export namespace Prisma {
   export type MaterialTypeScalarRelationFilter = {
     is?: MaterialTypeWhereInput
     isNot?: MaterialTypeWhereInput
+  }
+
+  export type MaterialNeedListRelationFilter = {
+    every?: MaterialNeedWhereInput
+    some?: MaterialNeedWhereInput
+    none?: MaterialNeedWhereInput
+  }
+
+  export type MaterialNeedOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type MaterialNameCountOrderByAggregateInput = {
@@ -20145,6 +24364,152 @@ export namespace Prisma {
     invoiceId?: SortOrder
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type VillageCountOrderByAggregateInput = {
+    id?: SortOrder
+    name_en?: SortOrder
+    name_ge?: SortOrder
+    municipality?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type VillageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type VillageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name_en?: SortOrder
+    name_ge?: SortOrder
+    municipality?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type VillageMinOrderByAggregateInput = {
+    id?: SortOrder
+    name_en?: SortOrder
+    name_ge?: SortOrder
+    municipality?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type VillageSumOrderByAggregateInput = {
+    id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type VillageScalarRelationFilter = {
+    is?: VillageWhereInput
+    isNot?: VillageWhereInput
+  }
+
+  export type MaterialNeedCountOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type MaterialNeedAvgOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type MaterialNeedMaxOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type MaterialNeedMinOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type MaterialNeedSumOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type PipelineProgressCountOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type PipelineProgressAvgOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type PipelineProgressMaxOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type PipelineProgressMinOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+  }
+
+  export type PipelineProgressSumOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    requiredAmount?: SortOrder
+    unitId?: SortOrder
+    villageId?: SortOrder
+  }
+
   export type VendorCreateNestedManyWithoutUserInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -20396,11 +24761,25 @@ export namespace Prisma {
     connect?: InvoiceItemWhereUniqueInput | InvoiceItemWhereUniqueInput[]
   }
 
+  export type PipelineProgressCreateNestedManyWithoutUnitInput = {
+    create?: XOR<PipelineProgressCreateWithoutUnitInput, PipelineProgressUncheckedCreateWithoutUnitInput> | PipelineProgressCreateWithoutUnitInput[] | PipelineProgressUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutUnitInput | PipelineProgressCreateOrConnectWithoutUnitInput[]
+    createMany?: PipelineProgressCreateManyUnitInputEnvelope
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+  }
+
   export type InvoiceItemUncheckedCreateNestedManyWithoutUnitInput = {
     create?: XOR<InvoiceItemCreateWithoutUnitInput, InvoiceItemUncheckedCreateWithoutUnitInput> | InvoiceItemCreateWithoutUnitInput[] | InvoiceItemUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: InvoiceItemCreateOrConnectWithoutUnitInput | InvoiceItemCreateOrConnectWithoutUnitInput[]
     createMany?: InvoiceItemCreateManyUnitInputEnvelope
     connect?: InvoiceItemWhereUniqueInput | InvoiceItemWhereUniqueInput[]
+  }
+
+  export type PipelineProgressUncheckedCreateNestedManyWithoutUnitInput = {
+    create?: XOR<PipelineProgressCreateWithoutUnitInput, PipelineProgressUncheckedCreateWithoutUnitInput> | PipelineProgressCreateWithoutUnitInput[] | PipelineProgressUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutUnitInput | PipelineProgressCreateOrConnectWithoutUnitInput[]
+    createMany?: PipelineProgressCreateManyUnitInputEnvelope
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
   }
 
   export type InvoiceItemUpdateManyWithoutUnitNestedInput = {
@@ -20417,6 +24796,20 @@ export namespace Prisma {
     deleteMany?: InvoiceItemScalarWhereInput | InvoiceItemScalarWhereInput[]
   }
 
+  export type PipelineProgressUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<PipelineProgressCreateWithoutUnitInput, PipelineProgressUncheckedCreateWithoutUnitInput> | PipelineProgressCreateWithoutUnitInput[] | PipelineProgressUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutUnitInput | PipelineProgressCreateOrConnectWithoutUnitInput[]
+    upsert?: PipelineProgressUpsertWithWhereUniqueWithoutUnitInput | PipelineProgressUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: PipelineProgressCreateManyUnitInputEnvelope
+    set?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    disconnect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    delete?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    update?: PipelineProgressUpdateWithWhereUniqueWithoutUnitInput | PipelineProgressUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: PipelineProgressUpdateManyWithWhereWithoutUnitInput | PipelineProgressUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
+  }
+
   export type InvoiceItemUncheckedUpdateManyWithoutUnitNestedInput = {
     create?: XOR<InvoiceItemCreateWithoutUnitInput, InvoiceItemUncheckedCreateWithoutUnitInput> | InvoiceItemCreateWithoutUnitInput[] | InvoiceItemUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: InvoiceItemCreateOrConnectWithoutUnitInput | InvoiceItemCreateOrConnectWithoutUnitInput[]
@@ -20429,6 +24822,20 @@ export namespace Prisma {
     update?: InvoiceItemUpdateWithWhereUniqueWithoutUnitInput | InvoiceItemUpdateWithWhereUniqueWithoutUnitInput[]
     updateMany?: InvoiceItemUpdateManyWithWhereWithoutUnitInput | InvoiceItemUpdateManyWithWhereWithoutUnitInput[]
     deleteMany?: InvoiceItemScalarWhereInput | InvoiceItemScalarWhereInput[]
+  }
+
+  export type PipelineProgressUncheckedUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<PipelineProgressCreateWithoutUnitInput, PipelineProgressUncheckedCreateWithoutUnitInput> | PipelineProgressCreateWithoutUnitInput[] | PipelineProgressUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutUnitInput | PipelineProgressCreateOrConnectWithoutUnitInput[]
+    upsert?: PipelineProgressUpsertWithWhereUniqueWithoutUnitInput | PipelineProgressUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: PipelineProgressCreateManyUnitInputEnvelope
+    set?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    disconnect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    delete?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    update?: PipelineProgressUpdateWithWhereUniqueWithoutUnitInput | PipelineProgressUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: PipelineProgressUpdateManyWithWhereWithoutUnitInput | PipelineProgressUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
   }
 
   export type InvoiceCreateNestedManyWithoutCurrencyInput = {
@@ -20626,11 +25033,39 @@ export namespace Prisma {
     connect?: InvoiceItemWhereUniqueInput | InvoiceItemWhereUniqueInput[]
   }
 
+  export type MaterialNeedCreateNestedManyWithoutProductInput = {
+    create?: XOR<MaterialNeedCreateWithoutProductInput, MaterialNeedUncheckedCreateWithoutProductInput> | MaterialNeedCreateWithoutProductInput[] | MaterialNeedUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutProductInput | MaterialNeedCreateOrConnectWithoutProductInput[]
+    createMany?: MaterialNeedCreateManyProductInputEnvelope
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+  }
+
+  export type PipelineProgressCreateNestedManyWithoutProductInput = {
+    create?: XOR<PipelineProgressCreateWithoutProductInput, PipelineProgressUncheckedCreateWithoutProductInput> | PipelineProgressCreateWithoutProductInput[] | PipelineProgressUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutProductInput | PipelineProgressCreateOrConnectWithoutProductInput[]
+    createMany?: PipelineProgressCreateManyProductInputEnvelope
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+  }
+
   export type InvoiceItemUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<InvoiceItemCreateWithoutProductInput, InvoiceItemUncheckedCreateWithoutProductInput> | InvoiceItemCreateWithoutProductInput[] | InvoiceItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: InvoiceItemCreateOrConnectWithoutProductInput | InvoiceItemCreateOrConnectWithoutProductInput[]
     createMany?: InvoiceItemCreateManyProductInputEnvelope
     connect?: InvoiceItemWhereUniqueInput | InvoiceItemWhereUniqueInput[]
+  }
+
+  export type MaterialNeedUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<MaterialNeedCreateWithoutProductInput, MaterialNeedUncheckedCreateWithoutProductInput> | MaterialNeedCreateWithoutProductInput[] | MaterialNeedUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutProductInput | MaterialNeedCreateOrConnectWithoutProductInput[]
+    createMany?: MaterialNeedCreateManyProductInputEnvelope
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+  }
+
+  export type PipelineProgressUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<PipelineProgressCreateWithoutProductInput, PipelineProgressUncheckedCreateWithoutProductInput> | PipelineProgressCreateWithoutProductInput[] | PipelineProgressUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutProductInput | PipelineProgressCreateOrConnectWithoutProductInput[]
+    createMany?: PipelineProgressCreateManyProductInputEnvelope
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
   }
 
   export type MaterialTypeUpdateOneRequiredWithoutMaterialNameNestedInput = {
@@ -20655,6 +25090,34 @@ export namespace Prisma {
     deleteMany?: InvoiceItemScalarWhereInput | InvoiceItemScalarWhereInput[]
   }
 
+  export type MaterialNeedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<MaterialNeedCreateWithoutProductInput, MaterialNeedUncheckedCreateWithoutProductInput> | MaterialNeedCreateWithoutProductInput[] | MaterialNeedUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutProductInput | MaterialNeedCreateOrConnectWithoutProductInput[]
+    upsert?: MaterialNeedUpsertWithWhereUniqueWithoutProductInput | MaterialNeedUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: MaterialNeedCreateManyProductInputEnvelope
+    set?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    disconnect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    delete?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    update?: MaterialNeedUpdateWithWhereUniqueWithoutProductInput | MaterialNeedUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: MaterialNeedUpdateManyWithWhereWithoutProductInput | MaterialNeedUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: MaterialNeedScalarWhereInput | MaterialNeedScalarWhereInput[]
+  }
+
+  export type PipelineProgressUpdateManyWithoutProductNestedInput = {
+    create?: XOR<PipelineProgressCreateWithoutProductInput, PipelineProgressUncheckedCreateWithoutProductInput> | PipelineProgressCreateWithoutProductInput[] | PipelineProgressUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutProductInput | PipelineProgressCreateOrConnectWithoutProductInput[]
+    upsert?: PipelineProgressUpsertWithWhereUniqueWithoutProductInput | PipelineProgressUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: PipelineProgressCreateManyProductInputEnvelope
+    set?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    disconnect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    delete?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    update?: PipelineProgressUpdateWithWhereUniqueWithoutProductInput | PipelineProgressUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: PipelineProgressUpdateManyWithWhereWithoutProductInput | PipelineProgressUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
+  }
+
   export type InvoiceItemUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<InvoiceItemCreateWithoutProductInput, InvoiceItemUncheckedCreateWithoutProductInput> | InvoiceItemCreateWithoutProductInput[] | InvoiceItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: InvoiceItemCreateOrConnectWithoutProductInput | InvoiceItemCreateOrConnectWithoutProductInput[]
@@ -20667,6 +25130,34 @@ export namespace Prisma {
     update?: InvoiceItemUpdateWithWhereUniqueWithoutProductInput | InvoiceItemUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: InvoiceItemUpdateManyWithWhereWithoutProductInput | InvoiceItemUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: InvoiceItemScalarWhereInput | InvoiceItemScalarWhereInput[]
+  }
+
+  export type MaterialNeedUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<MaterialNeedCreateWithoutProductInput, MaterialNeedUncheckedCreateWithoutProductInput> | MaterialNeedCreateWithoutProductInput[] | MaterialNeedUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutProductInput | MaterialNeedCreateOrConnectWithoutProductInput[]
+    upsert?: MaterialNeedUpsertWithWhereUniqueWithoutProductInput | MaterialNeedUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: MaterialNeedCreateManyProductInputEnvelope
+    set?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    disconnect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    delete?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    update?: MaterialNeedUpdateWithWhereUniqueWithoutProductInput | MaterialNeedUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: MaterialNeedUpdateManyWithWhereWithoutProductInput | MaterialNeedUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: MaterialNeedScalarWhereInput | MaterialNeedScalarWhereInput[]
+  }
+
+  export type PipelineProgressUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<PipelineProgressCreateWithoutProductInput, PipelineProgressUncheckedCreateWithoutProductInput> | PipelineProgressCreateWithoutProductInput[] | PipelineProgressUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutProductInput | PipelineProgressCreateOrConnectWithoutProductInput[]
+    upsert?: PipelineProgressUpsertWithWhereUniqueWithoutProductInput | PipelineProgressUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: PipelineProgressCreateManyProductInputEnvelope
+    set?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    disconnect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    delete?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    update?: PipelineProgressUpdateWithWhereUniqueWithoutProductInput | PipelineProgressUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: PipelineProgressUpdateManyWithWhereWithoutProductInput | PipelineProgressUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutShipmentInput = {
@@ -21163,6 +25654,168 @@ export namespace Prisma {
     update?: XOR<XOR<InvoiceUpdateToOneWithWhereWithoutFreightsInput, InvoiceUpdateWithoutFreightsInput>, InvoiceUncheckedUpdateWithoutFreightsInput>
   }
 
+  export type PipelineProgressCreateNestedManyWithoutVillageInput = {
+    create?: XOR<PipelineProgressCreateWithoutVillageInput, PipelineProgressUncheckedCreateWithoutVillageInput> | PipelineProgressCreateWithoutVillageInput[] | PipelineProgressUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutVillageInput | PipelineProgressCreateOrConnectWithoutVillageInput[]
+    createMany?: PipelineProgressCreateManyVillageInputEnvelope
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+  }
+
+  export type MaterialNeedCreateNestedManyWithoutVillageInput = {
+    create?: XOR<MaterialNeedCreateWithoutVillageInput, MaterialNeedUncheckedCreateWithoutVillageInput> | MaterialNeedCreateWithoutVillageInput[] | MaterialNeedUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutVillageInput | MaterialNeedCreateOrConnectWithoutVillageInput[]
+    createMany?: MaterialNeedCreateManyVillageInputEnvelope
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+  }
+
+  export type PipelineProgressUncheckedCreateNestedManyWithoutVillageInput = {
+    create?: XOR<PipelineProgressCreateWithoutVillageInput, PipelineProgressUncheckedCreateWithoutVillageInput> | PipelineProgressCreateWithoutVillageInput[] | PipelineProgressUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutVillageInput | PipelineProgressCreateOrConnectWithoutVillageInput[]
+    createMany?: PipelineProgressCreateManyVillageInputEnvelope
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+  }
+
+  export type MaterialNeedUncheckedCreateNestedManyWithoutVillageInput = {
+    create?: XOR<MaterialNeedCreateWithoutVillageInput, MaterialNeedUncheckedCreateWithoutVillageInput> | MaterialNeedCreateWithoutVillageInput[] | MaterialNeedUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutVillageInput | MaterialNeedCreateOrConnectWithoutVillageInput[]
+    createMany?: MaterialNeedCreateManyVillageInputEnvelope
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type PipelineProgressUpdateManyWithoutVillageNestedInput = {
+    create?: XOR<PipelineProgressCreateWithoutVillageInput, PipelineProgressUncheckedCreateWithoutVillageInput> | PipelineProgressCreateWithoutVillageInput[] | PipelineProgressUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutVillageInput | PipelineProgressCreateOrConnectWithoutVillageInput[]
+    upsert?: PipelineProgressUpsertWithWhereUniqueWithoutVillageInput | PipelineProgressUpsertWithWhereUniqueWithoutVillageInput[]
+    createMany?: PipelineProgressCreateManyVillageInputEnvelope
+    set?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    disconnect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    delete?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    update?: PipelineProgressUpdateWithWhereUniqueWithoutVillageInput | PipelineProgressUpdateWithWhereUniqueWithoutVillageInput[]
+    updateMany?: PipelineProgressUpdateManyWithWhereWithoutVillageInput | PipelineProgressUpdateManyWithWhereWithoutVillageInput[]
+    deleteMany?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
+  }
+
+  export type MaterialNeedUpdateManyWithoutVillageNestedInput = {
+    create?: XOR<MaterialNeedCreateWithoutVillageInput, MaterialNeedUncheckedCreateWithoutVillageInput> | MaterialNeedCreateWithoutVillageInput[] | MaterialNeedUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutVillageInput | MaterialNeedCreateOrConnectWithoutVillageInput[]
+    upsert?: MaterialNeedUpsertWithWhereUniqueWithoutVillageInput | MaterialNeedUpsertWithWhereUniqueWithoutVillageInput[]
+    createMany?: MaterialNeedCreateManyVillageInputEnvelope
+    set?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    disconnect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    delete?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    update?: MaterialNeedUpdateWithWhereUniqueWithoutVillageInput | MaterialNeedUpdateWithWhereUniqueWithoutVillageInput[]
+    updateMany?: MaterialNeedUpdateManyWithWhereWithoutVillageInput | MaterialNeedUpdateManyWithWhereWithoutVillageInput[]
+    deleteMany?: MaterialNeedScalarWhereInput | MaterialNeedScalarWhereInput[]
+  }
+
+  export type PipelineProgressUncheckedUpdateManyWithoutVillageNestedInput = {
+    create?: XOR<PipelineProgressCreateWithoutVillageInput, PipelineProgressUncheckedCreateWithoutVillageInput> | PipelineProgressCreateWithoutVillageInput[] | PipelineProgressUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: PipelineProgressCreateOrConnectWithoutVillageInput | PipelineProgressCreateOrConnectWithoutVillageInput[]
+    upsert?: PipelineProgressUpsertWithWhereUniqueWithoutVillageInput | PipelineProgressUpsertWithWhereUniqueWithoutVillageInput[]
+    createMany?: PipelineProgressCreateManyVillageInputEnvelope
+    set?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    disconnect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    delete?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    connect?: PipelineProgressWhereUniqueInput | PipelineProgressWhereUniqueInput[]
+    update?: PipelineProgressUpdateWithWhereUniqueWithoutVillageInput | PipelineProgressUpdateWithWhereUniqueWithoutVillageInput[]
+    updateMany?: PipelineProgressUpdateManyWithWhereWithoutVillageInput | PipelineProgressUpdateManyWithWhereWithoutVillageInput[]
+    deleteMany?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
+  }
+
+  export type MaterialNeedUncheckedUpdateManyWithoutVillageNestedInput = {
+    create?: XOR<MaterialNeedCreateWithoutVillageInput, MaterialNeedUncheckedCreateWithoutVillageInput> | MaterialNeedCreateWithoutVillageInput[] | MaterialNeedUncheckedCreateWithoutVillageInput[]
+    connectOrCreate?: MaterialNeedCreateOrConnectWithoutVillageInput | MaterialNeedCreateOrConnectWithoutVillageInput[]
+    upsert?: MaterialNeedUpsertWithWhereUniqueWithoutVillageInput | MaterialNeedUpsertWithWhereUniqueWithoutVillageInput[]
+    createMany?: MaterialNeedCreateManyVillageInputEnvelope
+    set?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    disconnect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    delete?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    connect?: MaterialNeedWhereUniqueInput | MaterialNeedWhereUniqueInput[]
+    update?: MaterialNeedUpdateWithWhereUniqueWithoutVillageInput | MaterialNeedUpdateWithWhereUniqueWithoutVillageInput[]
+    updateMany?: MaterialNeedUpdateManyWithWhereWithoutVillageInput | MaterialNeedUpdateManyWithWhereWithoutVillageInput[]
+    deleteMany?: MaterialNeedScalarWhereInput | MaterialNeedScalarWhereInput[]
+  }
+
+  export type MaterialNameCreateNestedOneWithoutMaterialNeedInput = {
+    create?: XOR<MaterialNameCreateWithoutMaterialNeedInput, MaterialNameUncheckedCreateWithoutMaterialNeedInput>
+    connectOrCreate?: MaterialNameCreateOrConnectWithoutMaterialNeedInput
+    connect?: MaterialNameWhereUniqueInput
+  }
+
+  export type VillageCreateNestedOneWithoutMaterialNeedsInput = {
+    create?: XOR<VillageCreateWithoutMaterialNeedsInput, VillageUncheckedCreateWithoutMaterialNeedsInput>
+    connectOrCreate?: VillageCreateOrConnectWithoutMaterialNeedsInput
+    connect?: VillageWhereUniqueInput
+  }
+
+  export type MaterialNameUpdateOneRequiredWithoutMaterialNeedNestedInput = {
+    create?: XOR<MaterialNameCreateWithoutMaterialNeedInput, MaterialNameUncheckedCreateWithoutMaterialNeedInput>
+    connectOrCreate?: MaterialNameCreateOrConnectWithoutMaterialNeedInput
+    upsert?: MaterialNameUpsertWithoutMaterialNeedInput
+    connect?: MaterialNameWhereUniqueInput
+    update?: XOR<XOR<MaterialNameUpdateToOneWithWhereWithoutMaterialNeedInput, MaterialNameUpdateWithoutMaterialNeedInput>, MaterialNameUncheckedUpdateWithoutMaterialNeedInput>
+  }
+
+  export type VillageUpdateOneRequiredWithoutMaterialNeedsNestedInput = {
+    create?: XOR<VillageCreateWithoutMaterialNeedsInput, VillageUncheckedCreateWithoutMaterialNeedsInput>
+    connectOrCreate?: VillageCreateOrConnectWithoutMaterialNeedsInput
+    upsert?: VillageUpsertWithoutMaterialNeedsInput
+    connect?: VillageWhereUniqueInput
+    update?: XOR<XOR<VillageUpdateToOneWithWhereWithoutMaterialNeedsInput, VillageUpdateWithoutMaterialNeedsInput>, VillageUncheckedUpdateWithoutMaterialNeedsInput>
+  }
+
+  export type MaterialNameCreateNestedOneWithoutPipelineProgressInput = {
+    create?: XOR<MaterialNameCreateWithoutPipelineProgressInput, MaterialNameUncheckedCreateWithoutPipelineProgressInput>
+    connectOrCreate?: MaterialNameCreateOrConnectWithoutPipelineProgressInput
+    connect?: MaterialNameWhereUniqueInput
+  }
+
+  export type UnitCreateNestedOneWithoutPipelineProgressInput = {
+    create?: XOR<UnitCreateWithoutPipelineProgressInput, UnitUncheckedCreateWithoutPipelineProgressInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutPipelineProgressInput
+    connect?: UnitWhereUniqueInput
+  }
+
+  export type VillageCreateNestedOneWithoutPipelineProgressInput = {
+    create?: XOR<VillageCreateWithoutPipelineProgressInput, VillageUncheckedCreateWithoutPipelineProgressInput>
+    connectOrCreate?: VillageCreateOrConnectWithoutPipelineProgressInput
+    connect?: VillageWhereUniqueInput
+  }
+
+  export type MaterialNameUpdateOneRequiredWithoutPipelineProgressNestedInput = {
+    create?: XOR<MaterialNameCreateWithoutPipelineProgressInput, MaterialNameUncheckedCreateWithoutPipelineProgressInput>
+    connectOrCreate?: MaterialNameCreateOrConnectWithoutPipelineProgressInput
+    upsert?: MaterialNameUpsertWithoutPipelineProgressInput
+    connect?: MaterialNameWhereUniqueInput
+    update?: XOR<XOR<MaterialNameUpdateToOneWithWhereWithoutPipelineProgressInput, MaterialNameUpdateWithoutPipelineProgressInput>, MaterialNameUncheckedUpdateWithoutPipelineProgressInput>
+  }
+
+  export type UnitUpdateOneRequiredWithoutPipelineProgressNestedInput = {
+    create?: XOR<UnitCreateWithoutPipelineProgressInput, UnitUncheckedCreateWithoutPipelineProgressInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutPipelineProgressInput
+    upsert?: UnitUpsertWithoutPipelineProgressInput
+    connect?: UnitWhereUniqueInput
+    update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutPipelineProgressInput, UnitUpdateWithoutPipelineProgressInput>, UnitUncheckedUpdateWithoutPipelineProgressInput>
+  }
+
+  export type VillageUpdateOneRequiredWithoutPipelineProgressNestedInput = {
+    create?: XOR<VillageCreateWithoutPipelineProgressInput, VillageUncheckedCreateWithoutPipelineProgressInput>
+    connectOrCreate?: VillageCreateOrConnectWithoutPipelineProgressInput
+    upsert?: VillageUpsertWithoutPipelineProgressInput
+    connect?: VillageWhereUniqueInput
+    update?: XOR<XOR<VillageUpdateToOneWithWhereWithoutPipelineProgressInput, VillageUpdateWithoutPipelineProgressInput>, VillageUncheckedUpdateWithoutPipelineProgressInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -21463,6 +26116,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type VendorCreateWithoutUserInput = {
@@ -21869,6 +26538,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PipelineProgressCreateWithoutUnitInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    product: MaterialNameCreateNestedOneWithoutPipelineProgressInput
+    village: VillageCreateNestedOneWithoutPipelineProgressInput
+  }
+
+  export type PipelineProgressUncheckedCreateWithoutUnitInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    villageId: number
+  }
+
+  export type PipelineProgressCreateOrConnectWithoutUnitInput = {
+    where: PipelineProgressWhereUniqueInput
+    create: XOR<PipelineProgressCreateWithoutUnitInput, PipelineProgressUncheckedCreateWithoutUnitInput>
+  }
+
+  export type PipelineProgressCreateManyUnitInputEnvelope = {
+    data: PipelineProgressCreateManyUnitInput | PipelineProgressCreateManyUnitInput[]
+    skipDuplicates?: boolean
+  }
+
   export type InvoiceItemUpsertWithWhereUniqueWithoutUnitInput = {
     where: InvoiceItemWhereUniqueInput
     update: XOR<InvoiceItemUpdateWithoutUnitInput, InvoiceItemUncheckedUpdateWithoutUnitInput>
@@ -21897,6 +26589,33 @@ export namespace Prisma {
     unitId?: IntFilter<"InvoiceItem"> | number
     unitPrice?: DecimalFilter<"InvoiceItem"> | Decimal | DecimalJsLike | number | string
     total?: DecimalFilter<"InvoiceItem"> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type PipelineProgressUpsertWithWhereUniqueWithoutUnitInput = {
+    where: PipelineProgressWhereUniqueInput
+    update: XOR<PipelineProgressUpdateWithoutUnitInput, PipelineProgressUncheckedUpdateWithoutUnitInput>
+    create: XOR<PipelineProgressCreateWithoutUnitInput, PipelineProgressUncheckedCreateWithoutUnitInput>
+  }
+
+  export type PipelineProgressUpdateWithWhereUniqueWithoutUnitInput = {
+    where: PipelineProgressWhereUniqueInput
+    data: XOR<PipelineProgressUpdateWithoutUnitInput, PipelineProgressUncheckedUpdateWithoutUnitInput>
+  }
+
+  export type PipelineProgressUpdateManyWithWhereWithoutUnitInput = {
+    where: PipelineProgressScalarWhereInput
+    data: XOR<PipelineProgressUpdateManyMutationInput, PipelineProgressUncheckedUpdateManyWithoutUnitInput>
+  }
+
+  export type PipelineProgressScalarWhereInput = {
+    AND?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
+    OR?: PipelineProgressScalarWhereInput[]
+    NOT?: PipelineProgressScalarWhereInput | PipelineProgressScalarWhereInput[]
+    id?: IntFilter<"PipelineProgress"> | number
+    productId?: IntFilter<"PipelineProgress"> | number
+    requiredAmount?: DecimalFilter<"PipelineProgress"> | Decimal | DecimalJsLike | number | string
+    unitId?: IntFilter<"PipelineProgress"> | number
+    villageId?: IntFilter<"PipelineProgress"> | number
   }
 
   export type InvoiceCreateWithoutCurrencyInput = {
@@ -22072,6 +26791,8 @@ export namespace Prisma {
     degree: number
     description: string
     InvoiceItem?: InvoiceItemCreateNestedManyWithoutProductInput
+    MaterialNeed?: MaterialNeedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutProductInput
   }
 
   export type MaterialNameUncheckedCreateWithoutTypeInput = {
@@ -22082,6 +26803,8 @@ export namespace Prisma {
     degree: number
     description: string
     InvoiceItem?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
+    MaterialNeed?: MaterialNeedUncheckedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type MaterialNameCreateOrConnectWithoutTypeInput = {
@@ -22190,6 +26913,50 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MaterialNeedCreateWithoutProductInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    village: VillageCreateNestedOneWithoutMaterialNeedsInput
+  }
+
+  export type MaterialNeedUncheckedCreateWithoutProductInput = {
+    id?: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    villageId: number
+  }
+
+  export type MaterialNeedCreateOrConnectWithoutProductInput = {
+    where: MaterialNeedWhereUniqueInput
+    create: XOR<MaterialNeedCreateWithoutProductInput, MaterialNeedUncheckedCreateWithoutProductInput>
+  }
+
+  export type MaterialNeedCreateManyProductInputEnvelope = {
+    data: MaterialNeedCreateManyProductInput | MaterialNeedCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PipelineProgressCreateWithoutProductInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unit: UnitCreateNestedOneWithoutPipelineProgressInput
+    village: VillageCreateNestedOneWithoutPipelineProgressInput
+  }
+
+  export type PipelineProgressUncheckedCreateWithoutProductInput = {
+    id?: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unitId: number
+    villageId: number
+  }
+
+  export type PipelineProgressCreateOrConnectWithoutProductInput = {
+    where: PipelineProgressWhereUniqueInput
+    create: XOR<PipelineProgressCreateWithoutProductInput, PipelineProgressUncheckedCreateWithoutProductInput>
+  }
+
+  export type PipelineProgressCreateManyProductInputEnvelope = {
+    data: PipelineProgressCreateManyProductInput | PipelineProgressCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MaterialTypeUpsertWithoutMaterialNameInput = {
     update: XOR<MaterialTypeUpdateWithoutMaterialNameInput, MaterialTypeUncheckedUpdateWithoutMaterialNameInput>
     create: XOR<MaterialTypeCreateWithoutMaterialNameInput, MaterialTypeUncheckedCreateWithoutMaterialNameInput>
@@ -22226,6 +26993,48 @@ export namespace Prisma {
   export type InvoiceItemUpdateManyWithWhereWithoutProductInput = {
     where: InvoiceItemScalarWhereInput
     data: XOR<InvoiceItemUpdateManyMutationInput, InvoiceItemUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type MaterialNeedUpsertWithWhereUniqueWithoutProductInput = {
+    where: MaterialNeedWhereUniqueInput
+    update: XOR<MaterialNeedUpdateWithoutProductInput, MaterialNeedUncheckedUpdateWithoutProductInput>
+    create: XOR<MaterialNeedCreateWithoutProductInput, MaterialNeedUncheckedCreateWithoutProductInput>
+  }
+
+  export type MaterialNeedUpdateWithWhereUniqueWithoutProductInput = {
+    where: MaterialNeedWhereUniqueInput
+    data: XOR<MaterialNeedUpdateWithoutProductInput, MaterialNeedUncheckedUpdateWithoutProductInput>
+  }
+
+  export type MaterialNeedUpdateManyWithWhereWithoutProductInput = {
+    where: MaterialNeedScalarWhereInput
+    data: XOR<MaterialNeedUpdateManyMutationInput, MaterialNeedUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type MaterialNeedScalarWhereInput = {
+    AND?: MaterialNeedScalarWhereInput | MaterialNeedScalarWhereInput[]
+    OR?: MaterialNeedScalarWhereInput[]
+    NOT?: MaterialNeedScalarWhereInput | MaterialNeedScalarWhereInput[]
+    id?: IntFilter<"MaterialNeed"> | number
+    productId?: IntFilter<"MaterialNeed"> | number
+    requiredAmount?: DecimalFilter<"MaterialNeed"> | Decimal | DecimalJsLike | number | string
+    villageId?: IntFilter<"MaterialNeed"> | number
+  }
+
+  export type PipelineProgressUpsertWithWhereUniqueWithoutProductInput = {
+    where: PipelineProgressWhereUniqueInput
+    update: XOR<PipelineProgressUpdateWithoutProductInput, PipelineProgressUncheckedUpdateWithoutProductInput>
+    create: XOR<PipelineProgressCreateWithoutProductInput, PipelineProgressUncheckedCreateWithoutProductInput>
+  }
+
+  export type PipelineProgressUpdateWithWhereUniqueWithoutProductInput = {
+    where: PipelineProgressWhereUniqueInput
+    data: XOR<PipelineProgressUpdateWithoutProductInput, PipelineProgressUncheckedUpdateWithoutProductInput>
+  }
+
+  export type PipelineProgressUpdateManyWithWhereWithoutProductInput = {
+    where: PipelineProgressScalarWhereInput
+    data: XOR<PipelineProgressUpdateManyMutationInput, PipelineProgressUncheckedUpdateManyWithoutProductInput>
   }
 
   export type UserCreateWithoutShipmentInput = {
@@ -22860,6 +27669,8 @@ export namespace Prisma {
     degree: number
     description: string
     type: MaterialTypeCreateNestedOneWithoutMaterialNameInput
+    MaterialNeed?: MaterialNeedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutProductInput
   }
 
   export type MaterialNameUncheckedCreateWithoutInvoiceItemInput = {
@@ -22870,6 +27681,8 @@ export namespace Prisma {
     degree: number
     description: string
     typeId: number
+    MaterialNeed?: MaterialNeedUncheckedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type MaterialNameCreateOrConnectWithoutInvoiceItemInput = {
@@ -22879,11 +27692,13 @@ export namespace Prisma {
 
   export type UnitCreateWithoutInvoiceItemInput = {
     unit: string
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutInvoiceItemInput = {
     id?: number
     unit: string
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutInvoiceItemInput = {
@@ -22947,6 +27762,8 @@ export namespace Prisma {
     degree?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     type?: MaterialTypeUpdateOneRequiredWithoutMaterialNameNestedInput
+    MaterialNeed?: MaterialNeedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUpdateManyWithoutProductNestedInput
   }
 
   export type MaterialNameUncheckedUpdateWithoutInvoiceItemInput = {
@@ -22957,6 +27774,8 @@ export namespace Prisma {
     degree?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     typeId?: IntFieldUpdateOperationsInput | number
+    MaterialNeed?: MaterialNeedUncheckedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type UnitUpsertWithoutInvoiceItemInput = {
@@ -22972,11 +27791,13 @@ export namespace Prisma {
 
   export type UnitUpdateWithoutInvoiceItemInput = {
     unit?: StringFieldUpdateOperationsInput | string
+    PipelineProgress?: PipelineProgressUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutInvoiceItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     unit?: StringFieldUpdateOperationsInput | string
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type CurrencyCreateWithoutFreightInput = {
@@ -23319,6 +28140,352 @@ export namespace Prisma {
     Items?: InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   }
 
+  export type PipelineProgressCreateWithoutVillageInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    product: MaterialNameCreateNestedOneWithoutPipelineProgressInput
+    unit: UnitCreateNestedOneWithoutPipelineProgressInput
+  }
+
+  export type PipelineProgressUncheckedCreateWithoutVillageInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unitId: number
+  }
+
+  export type PipelineProgressCreateOrConnectWithoutVillageInput = {
+    where: PipelineProgressWhereUniqueInput
+    create: XOR<PipelineProgressCreateWithoutVillageInput, PipelineProgressUncheckedCreateWithoutVillageInput>
+  }
+
+  export type PipelineProgressCreateManyVillageInputEnvelope = {
+    data: PipelineProgressCreateManyVillageInput | PipelineProgressCreateManyVillageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MaterialNeedCreateWithoutVillageInput = {
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    product: MaterialNameCreateNestedOneWithoutMaterialNeedInput
+  }
+
+  export type MaterialNeedUncheckedCreateWithoutVillageInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+  }
+
+  export type MaterialNeedCreateOrConnectWithoutVillageInput = {
+    where: MaterialNeedWhereUniqueInput
+    create: XOR<MaterialNeedCreateWithoutVillageInput, MaterialNeedUncheckedCreateWithoutVillageInput>
+  }
+
+  export type MaterialNeedCreateManyVillageInputEnvelope = {
+    data: MaterialNeedCreateManyVillageInput | MaterialNeedCreateManyVillageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PipelineProgressUpsertWithWhereUniqueWithoutVillageInput = {
+    where: PipelineProgressWhereUniqueInput
+    update: XOR<PipelineProgressUpdateWithoutVillageInput, PipelineProgressUncheckedUpdateWithoutVillageInput>
+    create: XOR<PipelineProgressCreateWithoutVillageInput, PipelineProgressUncheckedCreateWithoutVillageInput>
+  }
+
+  export type PipelineProgressUpdateWithWhereUniqueWithoutVillageInput = {
+    where: PipelineProgressWhereUniqueInput
+    data: XOR<PipelineProgressUpdateWithoutVillageInput, PipelineProgressUncheckedUpdateWithoutVillageInput>
+  }
+
+  export type PipelineProgressUpdateManyWithWhereWithoutVillageInput = {
+    where: PipelineProgressScalarWhereInput
+    data: XOR<PipelineProgressUpdateManyMutationInput, PipelineProgressUncheckedUpdateManyWithoutVillageInput>
+  }
+
+  export type MaterialNeedUpsertWithWhereUniqueWithoutVillageInput = {
+    where: MaterialNeedWhereUniqueInput
+    update: XOR<MaterialNeedUpdateWithoutVillageInput, MaterialNeedUncheckedUpdateWithoutVillageInput>
+    create: XOR<MaterialNeedCreateWithoutVillageInput, MaterialNeedUncheckedCreateWithoutVillageInput>
+  }
+
+  export type MaterialNeedUpdateWithWhereUniqueWithoutVillageInput = {
+    where: MaterialNeedWhereUniqueInput
+    data: XOR<MaterialNeedUpdateWithoutVillageInput, MaterialNeedUncheckedUpdateWithoutVillageInput>
+  }
+
+  export type MaterialNeedUpdateManyWithWhereWithoutVillageInput = {
+    where: MaterialNeedScalarWhereInput
+    data: XOR<MaterialNeedUpdateManyMutationInput, MaterialNeedUncheckedUpdateManyWithoutVillageInput>
+  }
+
+  export type MaterialNameCreateWithoutMaterialNeedInput = {
+    name: string
+    dn: string
+    pn: string
+    degree: number
+    description: string
+    type: MaterialTypeCreateNestedOneWithoutMaterialNameInput
+    InvoiceItem?: InvoiceItemCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutProductInput
+  }
+
+  export type MaterialNameUncheckedCreateWithoutMaterialNeedInput = {
+    id?: number
+    name: string
+    dn: string
+    pn: string
+    degree: number
+    description: string
+    typeId: number
+    InvoiceItem?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type MaterialNameCreateOrConnectWithoutMaterialNeedInput = {
+    where: MaterialNameWhereUniqueInput
+    create: XOR<MaterialNameCreateWithoutMaterialNeedInput, MaterialNameUncheckedCreateWithoutMaterialNeedInput>
+  }
+
+  export type VillageCreateWithoutMaterialNeedsInput = {
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    PipelineProgress?: PipelineProgressCreateNestedManyWithoutVillageInput
+  }
+
+  export type VillageUncheckedCreateWithoutMaterialNeedsInput = {
+    id?: number
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    PipelineProgress?: PipelineProgressUncheckedCreateNestedManyWithoutVillageInput
+  }
+
+  export type VillageCreateOrConnectWithoutMaterialNeedsInput = {
+    where: VillageWhereUniqueInput
+    create: XOR<VillageCreateWithoutMaterialNeedsInput, VillageUncheckedCreateWithoutMaterialNeedsInput>
+  }
+
+  export type MaterialNameUpsertWithoutMaterialNeedInput = {
+    update: XOR<MaterialNameUpdateWithoutMaterialNeedInput, MaterialNameUncheckedUpdateWithoutMaterialNeedInput>
+    create: XOR<MaterialNameCreateWithoutMaterialNeedInput, MaterialNameUncheckedCreateWithoutMaterialNeedInput>
+    where?: MaterialNameWhereInput
+  }
+
+  export type MaterialNameUpdateToOneWithWhereWithoutMaterialNeedInput = {
+    where?: MaterialNameWhereInput
+    data: XOR<MaterialNameUpdateWithoutMaterialNeedInput, MaterialNameUncheckedUpdateWithoutMaterialNeedInput>
+  }
+
+  export type MaterialNameUpdateWithoutMaterialNeedInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    dn?: StringFieldUpdateOperationsInput | string
+    pn?: StringFieldUpdateOperationsInput | string
+    degree?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    type?: MaterialTypeUpdateOneRequiredWithoutMaterialNameNestedInput
+    InvoiceItem?: InvoiceItemUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUpdateManyWithoutProductNestedInput
+  }
+
+  export type MaterialNameUncheckedUpdateWithoutMaterialNeedInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    dn?: StringFieldUpdateOperationsInput | string
+    pn?: StringFieldUpdateOperationsInput | string
+    degree?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    typeId?: IntFieldUpdateOperationsInput | number
+    InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type VillageUpsertWithoutMaterialNeedsInput = {
+    update: XOR<VillageUpdateWithoutMaterialNeedsInput, VillageUncheckedUpdateWithoutMaterialNeedsInput>
+    create: XOR<VillageCreateWithoutMaterialNeedsInput, VillageUncheckedCreateWithoutMaterialNeedsInput>
+    where?: VillageWhereInput
+  }
+
+  export type VillageUpdateToOneWithWhereWithoutMaterialNeedsInput = {
+    where?: VillageWhereInput
+    data: XOR<VillageUpdateWithoutMaterialNeedsInput, VillageUncheckedUpdateWithoutMaterialNeedsInput>
+  }
+
+  export type VillageUpdateWithoutMaterialNeedsInput = {
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    PipelineProgress?: PipelineProgressUpdateManyWithoutVillageNestedInput
+  }
+
+  export type VillageUncheckedUpdateWithoutMaterialNeedsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutVillageNestedInput
+  }
+
+  export type MaterialNameCreateWithoutPipelineProgressInput = {
+    name: string
+    dn: string
+    pn: string
+    degree: number
+    description: string
+    type: MaterialTypeCreateNestedOneWithoutMaterialNameInput
+    InvoiceItem?: InvoiceItemCreateNestedManyWithoutProductInput
+    MaterialNeed?: MaterialNeedCreateNestedManyWithoutProductInput
+  }
+
+  export type MaterialNameUncheckedCreateWithoutPipelineProgressInput = {
+    id?: number
+    name: string
+    dn: string
+    pn: string
+    degree: number
+    description: string
+    typeId: number
+    InvoiceItem?: InvoiceItemUncheckedCreateNestedManyWithoutProductInput
+    MaterialNeed?: MaterialNeedUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type MaterialNameCreateOrConnectWithoutPipelineProgressInput = {
+    where: MaterialNameWhereUniqueInput
+    create: XOR<MaterialNameCreateWithoutPipelineProgressInput, MaterialNameUncheckedCreateWithoutPipelineProgressInput>
+  }
+
+  export type UnitCreateWithoutPipelineProgressInput = {
+    unit: string
+    InvoiceItem?: InvoiceItemCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitUncheckedCreateWithoutPipelineProgressInput = {
+    id?: number
+    unit: string
+    InvoiceItem?: InvoiceItemUncheckedCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitCreateOrConnectWithoutPipelineProgressInput = {
+    where: UnitWhereUniqueInput
+    create: XOR<UnitCreateWithoutPipelineProgressInput, UnitUncheckedCreateWithoutPipelineProgressInput>
+  }
+
+  export type VillageCreateWithoutPipelineProgressInput = {
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    MaterialNeeds?: MaterialNeedCreateNestedManyWithoutVillageInput
+  }
+
+  export type VillageUncheckedCreateWithoutPipelineProgressInput = {
+    id?: number
+    name_en: string
+    name_ge: string
+    municipality: string
+    latitude: number
+    longitude: number
+    MaterialNeeds?: MaterialNeedUncheckedCreateNestedManyWithoutVillageInput
+  }
+
+  export type VillageCreateOrConnectWithoutPipelineProgressInput = {
+    where: VillageWhereUniqueInput
+    create: XOR<VillageCreateWithoutPipelineProgressInput, VillageUncheckedCreateWithoutPipelineProgressInput>
+  }
+
+  export type MaterialNameUpsertWithoutPipelineProgressInput = {
+    update: XOR<MaterialNameUpdateWithoutPipelineProgressInput, MaterialNameUncheckedUpdateWithoutPipelineProgressInput>
+    create: XOR<MaterialNameCreateWithoutPipelineProgressInput, MaterialNameUncheckedCreateWithoutPipelineProgressInput>
+    where?: MaterialNameWhereInput
+  }
+
+  export type MaterialNameUpdateToOneWithWhereWithoutPipelineProgressInput = {
+    where?: MaterialNameWhereInput
+    data: XOR<MaterialNameUpdateWithoutPipelineProgressInput, MaterialNameUncheckedUpdateWithoutPipelineProgressInput>
+  }
+
+  export type MaterialNameUpdateWithoutPipelineProgressInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    dn?: StringFieldUpdateOperationsInput | string
+    pn?: StringFieldUpdateOperationsInput | string
+    degree?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    type?: MaterialTypeUpdateOneRequiredWithoutMaterialNameNestedInput
+    InvoiceItem?: InvoiceItemUpdateManyWithoutProductNestedInput
+    MaterialNeed?: MaterialNeedUpdateManyWithoutProductNestedInput
+  }
+
+  export type MaterialNameUncheckedUpdateWithoutPipelineProgressInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    dn?: StringFieldUpdateOperationsInput | string
+    pn?: StringFieldUpdateOperationsInput | string
+    degree?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    typeId?: IntFieldUpdateOperationsInput | number
+    InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
+    MaterialNeed?: MaterialNeedUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type UnitUpsertWithoutPipelineProgressInput = {
+    update: XOR<UnitUpdateWithoutPipelineProgressInput, UnitUncheckedUpdateWithoutPipelineProgressInput>
+    create: XOR<UnitCreateWithoutPipelineProgressInput, UnitUncheckedCreateWithoutPipelineProgressInput>
+    where?: UnitWhereInput
+  }
+
+  export type UnitUpdateToOneWithWhereWithoutPipelineProgressInput = {
+    where?: UnitWhereInput
+    data: XOR<UnitUpdateWithoutPipelineProgressInput, UnitUncheckedUpdateWithoutPipelineProgressInput>
+  }
+
+  export type UnitUpdateWithoutPipelineProgressInput = {
+    unit?: StringFieldUpdateOperationsInput | string
+    InvoiceItem?: InvoiceItemUpdateManyWithoutUnitNestedInput
+  }
+
+  export type UnitUncheckedUpdateWithoutPipelineProgressInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutUnitNestedInput
+  }
+
+  export type VillageUpsertWithoutPipelineProgressInput = {
+    update: XOR<VillageUpdateWithoutPipelineProgressInput, VillageUncheckedUpdateWithoutPipelineProgressInput>
+    create: XOR<VillageCreateWithoutPipelineProgressInput, VillageUncheckedCreateWithoutPipelineProgressInput>
+    where?: VillageWhereInput
+  }
+
+  export type VillageUpdateToOneWithWhereWithoutPipelineProgressInput = {
+    where?: VillageWhereInput
+    data: XOR<VillageUpdateWithoutPipelineProgressInput, VillageUncheckedUpdateWithoutPipelineProgressInput>
+  }
+
+  export type VillageUpdateWithoutPipelineProgressInput = {
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    MaterialNeeds?: MaterialNeedUpdateManyWithoutVillageNestedInput
+  }
+
+  export type VillageUncheckedUpdateWithoutPipelineProgressInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name_en?: StringFieldUpdateOperationsInput | string
+    name_ge?: StringFieldUpdateOperationsInput | string
+    municipality?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    MaterialNeeds?: MaterialNeedUncheckedUpdateManyWithoutVillageNestedInput
+  }
+
   export type VendorCreateManyUserInput = {
     id?: number
     alias: string
@@ -23558,6 +28725,13 @@ export namespace Prisma {
     total: Decimal | DecimalJsLike | number | string
   }
 
+  export type PipelineProgressCreateManyUnitInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    villageId: number
+  }
+
   export type InvoiceItemUpdateWithoutUnitInput = {
     description?: StringFieldUpdateOperationsInput | string
     quantity?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -23585,6 +28759,26 @@ export namespace Prisma {
     quantity?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type PipelineProgressUpdateWithoutUnitInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    product?: MaterialNameUpdateOneRequiredWithoutPipelineProgressNestedInput
+    village?: VillageUpdateOneRequiredWithoutPipelineProgressNestedInput
+  }
+
+  export type PipelineProgressUncheckedUpdateWithoutUnitInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressUncheckedUpdateManyWithoutUnitInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    villageId?: IntFieldUpdateOperationsInput | number
   }
 
   export type InvoiceCreateManyCurrencyInput = {
@@ -23724,6 +28918,8 @@ export namespace Prisma {
     degree?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     InvoiceItem?: InvoiceItemUpdateManyWithoutProductNestedInput
+    MaterialNeed?: MaterialNeedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUpdateManyWithoutProductNestedInput
   }
 
   export type MaterialNameUncheckedUpdateWithoutTypeInput = {
@@ -23734,6 +28930,8 @@ export namespace Prisma {
     degree?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     InvoiceItem?: InvoiceItemUncheckedUpdateManyWithoutProductNestedInput
+    MaterialNeed?: MaterialNeedUncheckedUpdateManyWithoutProductNestedInput
+    PipelineProgress?: PipelineProgressUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type MaterialNameUncheckedUpdateManyWithoutTypeInput = {
@@ -23753,6 +28951,19 @@ export namespace Prisma {
     unitId: number
     unitPrice: Decimal | DecimalJsLike | number | string
     total: Decimal | DecimalJsLike | number | string
+  }
+
+  export type MaterialNeedCreateManyProductInput = {
+    id?: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    villageId: number
+  }
+
+  export type PipelineProgressCreateManyProductInput = {
+    id?: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unitId: number
+    villageId: number
   }
 
   export type InvoiceItemUpdateWithoutProductInput = {
@@ -23782,6 +28993,43 @@ export namespace Prisma {
     unitId?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type MaterialNeedUpdateWithoutProductInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    village?: VillageUpdateOneRequiredWithoutMaterialNeedsNestedInput
+  }
+
+  export type MaterialNeedUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MaterialNeedUncheckedUpdateManyWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressUpdateWithoutProductInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: UnitUpdateOneRequiredWithoutPipelineProgressNestedInput
+    village?: VillageUpdateOneRequiredWithoutPipelineProgressNestedInput
+  }
+
+  export type PipelineProgressUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unitId?: IntFieldUpdateOperationsInput | number
+    villageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressUncheckedUpdateManyWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unitId?: IntFieldUpdateOperationsInput | number
+    villageId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ShipmentFileCreateManyShipmentInput = {
@@ -23980,6 +29228,56 @@ export namespace Prisma {
 
   export type FreightInvoiceUncheckedUpdateManyWithoutFreightInput = {
     invoiceId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressCreateManyVillageInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+    unitId: number
+  }
+
+  export type MaterialNeedCreateManyVillageInput = {
+    id?: number
+    productId: number
+    requiredAmount: Decimal | DecimalJsLike | number | string
+  }
+
+  export type PipelineProgressUpdateWithoutVillageInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    product?: MaterialNameUpdateOneRequiredWithoutPipelineProgressNestedInput
+    unit?: UnitUpdateOneRequiredWithoutPipelineProgressNestedInput
+  }
+
+  export type PipelineProgressUncheckedUpdateWithoutVillageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unitId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PipelineProgressUncheckedUpdateManyWithoutVillageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unitId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MaterialNeedUpdateWithoutVillageInput = {
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    product?: MaterialNameUpdateOneRequiredWithoutMaterialNeedNestedInput
+  }
+
+  export type MaterialNeedUncheckedUpdateWithoutVillageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type MaterialNeedUncheckedUpdateManyWithoutVillageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    requiredAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
 
