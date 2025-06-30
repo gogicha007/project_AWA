@@ -26,7 +26,9 @@ type InvoiceFieldPath =
 
 export function useInvoiceTable(props: Props) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentInvoiceId, setCurrentInvoiceId] = useState<number|undefined>();
+  const [currentInvoiceId, setCurrentInvoiceId] = useState<
+    number | undefined
+  >();
   const {
     auxData: { currencies, vendors },
     tVar,
@@ -60,7 +62,7 @@ export function useInvoiceTable(props: Props) {
 
     const invoice = fields[index];
     setCurrentInvoiceId(invoice.id);
-    setIsDialogOpen(true)
+    setIsDialogOpen(true);
   };
 
   const handleAddInvoice = (
@@ -120,21 +122,23 @@ export function useInvoiceTable(props: Props) {
   };
 
   const handleRemoveInvoice = (id: number) => {
-    const index = fields.findIndex((field) => field.id === id);
+    if (confirm(tVar('warnings.delete'))) {
+      const index = fields.findIndex((field) => field.id === id);
 
-    if (index !== -1) {
-      remove(index);
+      if (index !== -1) {
+        remove(index);
 
-      setTimeout(() => {
-        const currentInvoices = getValues('invoices');
-        reset(
-          { invoices: currentInvoices },
-          {
-            keepDirty: false,
-            keepValues: true,
-          }
-        );
-      }, 0);
+        setTimeout(() => {
+          const currentInvoices = getValues('invoices');
+          reset(
+            { invoices: currentInvoices },
+            {
+              keepDirty: false,
+              keepValues: true,
+            }
+          );
+        }, 0);
+      }
     }
   };
 

@@ -190,6 +190,9 @@
     "actions": {
       "title": "Actions",
       "items": "Items"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this Group?"
     }
   },
   "InvoiceItems": {
@@ -206,6 +209,9 @@
     "actions": {
       "title": "Actions",
       "items": "Items"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this record?"
     }
   },
   "Logistics": {

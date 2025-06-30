@@ -64,10 +64,12 @@ export function useInvoiceItemsTable(props: Props) {
   };
 
   const handleRemoveItem = (id: number) => {
-    const index = fields.findIndex((field) => field.id === id);
+    if (confirm(tVar('warnings.delete'))) {
+      const index = fields.findIndex((field) => field.id === id);
 
-    if (index !== -1) {
-      remove(index);
+      if (index !== -1) {
+        remove(index);
+      }
     }
   };
 
