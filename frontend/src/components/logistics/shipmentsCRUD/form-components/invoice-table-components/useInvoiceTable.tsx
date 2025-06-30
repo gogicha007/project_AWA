@@ -65,7 +65,6 @@ export function useInvoiceTable(props: Props) {
     const invoice = fields[index];
     const formValues = getValues('invoices')[index];
     
-    // Update currentInvoice state with the latest form values
     setCurrentInvoice({
       id: invoice.id,
       invoiceNumber: formValues.invoiceNumber,

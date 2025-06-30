@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import { useInvoiceItemsTable } from './useInvoiceItemsTable';
 import AddButton from '@/components/controls/add-button/AddButton';
+import { NumericFormat } from 'react-number-format';
 
 type Props = {
   isOpen: boolean;
@@ -20,6 +21,7 @@ type Props = {
     id: number;
     invoiceNumber: string;
     invoiceDate: Date | string | null;
+    totalAmount: number;
   };
   onClose: () => void;
 };
@@ -58,11 +60,18 @@ export default function InvoiceItemsTable({
     <dialog ref={dialogRef} className={styles.dialog}>
       <div className={styles.dialogHeader}>
         <h2>
-          Invoice: {invoice.invoiceNumber} | Date: {
-            invoice.invoiceDate 
-              ? new Date(invoice.invoiceDate).toISOString().split('T')[0]
-              : 'Not set'
-          }
+          Invoice: {invoice.invoiceNumber} | Date:{' '}
+          {invoice.invoiceDate
+            ? new Date(invoice.invoiceDate).toISOString().split('T')[0]
+            : 'Not set'}{' '}
+          | Total amount:{' '}
+          <NumericFormat
+            value={invoice.totalAmount}
+            displayType="text"
+            thousandSeparator=","
+            decimalScale={2}
+            fixedDecimalScale
+          />
         </h2>
         <button type="button" className={styles.closeButton} onClick={onClose}>
           ×

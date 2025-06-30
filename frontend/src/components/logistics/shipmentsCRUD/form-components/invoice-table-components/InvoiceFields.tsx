@@ -82,6 +82,7 @@ const InvoiceFields = ({ auxData }: Props) => {
           id: currentInvoice?.id || 0,
           invoiceNumber: currentInvoice?.invoiceNumber || '',
           invoiceDate: currentInvoice?.invoiceDate || null,
+          totalAmount: currentInvoice?.totalAmount || 0,
         }}
         auxData={auxData}
         onClose={() => setIsDialogOpen(false)}

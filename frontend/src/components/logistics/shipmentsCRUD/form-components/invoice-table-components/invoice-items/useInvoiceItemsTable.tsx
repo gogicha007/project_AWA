@@ -39,6 +39,14 @@ export function useInvoiceItemsTable(props: Props) {
     [materials]
   );
 
+  // const invoiceItems = watch('invoiceItems')
+
+  // useEffect(()=> {
+  //   if(invoiceItems){
+  //     console.log(invoiceItems)
+  //   }
+  // }, [invoiceItems])
+
   const handleAddItem = (
     newItemData: Partial<InvoiceItemRow> = {
       invoiceId: invoiceId,
