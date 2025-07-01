@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl';
 import { useInvoiceTable } from './useInvoiceTable';
 import AddButton from '@/components/controls/add-button/AddButton';
 import InvoiceItemsTable from './invoice-items/InvoiceItemsTable';
-import { SnackbarControls } from '../../types/snackbarTypes';
+import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
 
 type Props = {
   auxData: {

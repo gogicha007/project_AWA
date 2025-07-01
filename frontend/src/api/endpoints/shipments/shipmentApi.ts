@@ -1,7 +1,6 @@
 import { handleApiError } from '@/utils/handleApiError';
 import apiClient from '../../api-client';
 import { ShipmentDTO } from '../../types';
-// import { shipmentFileApi } from './shipmentFileApi';
 
 export const shipmentApi = {
   getAll: async (): Promise<ShipmentDTO[]> => {
@@ -30,8 +29,6 @@ export const shipmentApi = {
         '/shipments',
         shipmentCreateData
       );
-      // const newShipmentId = shipmentResponse.data.id;
-      // await shipmentFileApi.create(shipment.Files ?? [], newShipmentId);
 
       return shipmentResponse.data;
     } catch (error) {

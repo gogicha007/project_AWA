@@ -71,8 +71,8 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
             fileDataArray={fileDataArray}
             setFileDataArray={setFileDataArray}
             snackbarControls={snackbarControls}
-            tS={tS}
             tB={tB}
+            tS={tS}
           />
         </div>
       </FormProvider>

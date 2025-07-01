@@ -21,7 +21,7 @@ export type ShipmentFormValues = {
   declaration_date?: Date;
   files?: Array<FileData>;
   invoices?: Array<InvoiceDTO>;
-  invoiceItems?: Array<InvoiceItemDTO>
+  invoiceItems?: Array<InvoiceItemDTO>;
 };
 
 export function useShipmentFormSet(id?: number) {
@@ -41,6 +41,7 @@ export function useShipmentFormSet(id?: number) {
     message: string;
     success: boolean;
   }>({ message: '', success: false });
+  const [originalShipmentData, setOriginalShipmentData] = useState<ShipmentFormValues | null>(null);
   const defaultValues = {
     alias: '',
     status: '' as '' | 'APPLIED' | 'DECLARED' | 'ARRIVED',
@@ -59,7 +60,6 @@ export function useShipmentFormSet(id?: number) {
   } = formMethods;
   const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
   const [shipmentId, setShipmentId] = useState(id);
-  const isEditMode = !!id;
 
   useEffect(() => {
     setLoading(
@@ -80,15 +80,22 @@ export function useShipmentFormSet(id?: number) {
   ]);
 
   useEffect(() => {
-    setDisableSubmitBtn(!(isDirty && !!shipmentId));
-    console.log('is dirty', isDirty, shipmentId);
-  }, [isDirty, shipmentId]);
+    setDisableSubmitBtn(!isDirty);
+    console.log('is dirty', isDirty);
+  }, [isDirty]);
 
   useEffect(() => {
-    const subscription = watch((values) => {
-      setDisableSubmitBtn(!(values.alias && values.status));
-    });
-    return () => subscription.unsubscribe();
+    let subscription: ReturnType<typeof watch> | undefined;
+    if(!shipmentId) {
+      subscription = watch((values) => {
+        setDisableSubmitBtn(!(values.alias && values.status));
+      });
+    }
+    return () => {
+      if (subscription && typeof subscription.unsubscribe === 'function') {
+        subscription.unsubscribe();
+      }
+    };
   }, [watch]);
 
   useEffect(() => {
@@ -107,7 +114,7 @@ export function useShipmentFormSet(id?: number) {
       try {
         const shipment = await shipmentApi.getById(id);
 
-        reset({
+        const shipmentFormData = {
           alias: shipment.alias,
           status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
           declaration_number: shipment.declaration_number || '',
@@ -119,9 +126,14 @@ export function useShipmentFormSet(id?: number) {
           files: shipment.Files,
           invoices: shipment.Invoices,
           invoiceItems: shipment.Invoices
-            ? shipment.Invoices.flatMap(inv => inv.Items ?? [])
-            : []
-        });
+            ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
+            : [],
+        };
+
+        // Store original data for comparison
+        setOriginalShipmentData(shipmentFormData);
+        
+        reset(shipmentFormData);
         setFileDataArray(shipment.Files || []);
       } catch (error) {
         console.error('Failed to fetch shipment:', error);
@@ -173,8 +185,48 @@ export function useShipmentFormSet(id?: number) {
     }
   };
 
-  const handleEditSubmit = (data: ShipmentFormValues) => {
-    console.log('submit edited', data);
+  const handleEditSubmit = async (data: ShipmentFormValues) => {
+    try {
+      if (!shipmentId || dbUserId === null) {
+        throw new Error('Shipment ID and User ID are required to update shipment');
+      }
+
+      console.log('submit edited', data);
+      console.log('original values', originalShipmentData);
+
+      const formattedDate = formatToISODateTime(data.declaration_date);
+      
+      const updatedShipment = await shipmentApi.update(
+        {
+          id: shipmentId,
+          alias: data.alias,
+          declaration_number: data.declaration_number ?? '',
+          declaration_date: formattedDate as Date,
+          status: data.status,
+          Files: data.files,
+          Invoices: data.invoices,
+        },
+        dbUserId
+      );
+
+      setOriginalShipmentData(data);
+      
+      setSnackbarStatus({ message: 'Shipment updated successfully', success: true });
+      setSnackbarOpen(true);
+      
+      router.push('/shipments');
+      
+      return updatedShipment;
+    } catch (error) {
+      setSnackbarStatus({
+        message:
+          error instanceof Error
+            ? error.message
+            : 'An error occurred while updating the shipment',
+        success: false,
+      });
+      setSnackbarOpen(true);
+    }
   };
 
   const handleCancel = () => {
@@ -195,8 +247,8 @@ export function useShipmentFormSet(id?: number) {
     handleEditSubmit,
     handleGenInfoSubmit,
     isDirty,
-    isEditMode,
     loading,
+    originalShipmentData,
     setFileDataArray,
     shipmentId,
     snackbarControls: {

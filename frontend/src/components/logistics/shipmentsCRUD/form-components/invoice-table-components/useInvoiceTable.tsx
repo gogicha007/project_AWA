@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
+import { InvoiceDTO, CurrencyDTO, VendorDTO, InvoiceItemDTO } from '@/api/types';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
 import { InvoiceRow } from './invoiceTableColumns';
-import { SnackbarControls } from '../../types/snackbarTypes';
+import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
 
 type Props = {
   auxData: {
@@ -17,6 +17,7 @@ type Props = {
 
 export interface InvoiceFormValues {
   invoices: InvoiceRow[];
+  invoiceItems?: Array<InvoiceItemDTO>;
 }
 
 type InvoiceFieldPath =
@@ -100,8 +101,12 @@ export function useInvoiceTable(props: Props) {
 
     setTimeout(() => {
       const currentInvoices = getValues('invoices');
+      const currentInvoiceItems = getValues('invoiceItems');
       reset(
-        { invoices: currentInvoices },
+        { 
+          invoices: currentInvoices,
+          invoiceItems: currentInvoiceItems 
+        },
         {
           keepDirty: false,
           keepValues: true,
@@ -151,12 +156,23 @@ export function useInvoiceTable(props: Props) {
       const index = fields.findIndex((field) => field.id === id);
 
       if (index !== -1) {
+        const currentInvoiceItems = getValues('invoiceItems') || [];
+        const filteredInvoiceItems = (currentInvoiceItems as Array<InvoiceItemDTO>).filter(
+          (item) => item.invoiceId !== id
+        );
+        
+        setValue('invoiceItems', filteredInvoiceItems);
+
         remove(index);
 
         setTimeout(() => {
           const currentInvoices = getValues('invoices');
+          const currentFilteredItems = getValues('invoiceItems');
           reset(
-            { invoices: currentInvoices },
+            { 
+              invoices: currentInvoices,
+              invoiceItems: currentFilteredItems 
+            },
             {
               keepDirty: false,
               keepValues: true,

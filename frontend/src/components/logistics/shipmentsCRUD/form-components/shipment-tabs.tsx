@@ -5,7 +5,7 @@ import { FileData } from '@/components/controls/file-input/FileInput';
 import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
 import InvoiceFields from './invoice-table-components/InvoiceFields';
-import { SnackbarControls } from '../types/snackbarTypes';
+import { SnackbarControls } from '../../../feedback/snackbar/snackbarTypes';
 
 interface ShipmentTabsProps {
   auxData: {
