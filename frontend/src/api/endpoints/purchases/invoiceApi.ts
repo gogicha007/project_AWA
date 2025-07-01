@@ -20,9 +20,9 @@ export const invoiceApi = {
         invoiceNubmer: invoice.invoiceNumber,
         invoiceDate: invoice.invoiceDate,
         totalAmount: invoice.totalAmount,
-        isArrived: invoice.isArrived,
         userId: userId,
         currencyId: invoice.currencyId,
+        shipmentId: invoice.shipmentId,
       };
       const invoiceCreateResponse = await apiClient.post(
         '/invoices',
@@ -42,9 +42,9 @@ export const invoiceApi = {
         invoiceNubmer: invoice.invoiceNumber,
         invoiceDate: invoice.invoiceDate,
         totalAmount: invoice.totalAmount,
-        isArrived: invoice.isArrived,
         userId: userId,
         currencyId: invoice.currencyId,
+        shipmentId: invoice.shipmentId,
       };
 
       const response = await apiClient.patch(
@@ -57,6 +57,16 @@ export const invoiceApi = {
     }
   },
 
+  deleteAllByShipmentId: async (shipmentId: number): Promise<void> => {
+    try {
+      const response = await apiClient.delete(
+        `/invoices/shipment/${shipmentId}`
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
   delete: async (id: number) => {
     try {
       const response = await apiClient.delete(`/invoices/${id}`);

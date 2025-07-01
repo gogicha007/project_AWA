@@ -62,7 +62,6 @@ export function useShipmentFormSet(id?: number) {
     },
   } = formMethods;
 
-  // custom hooks
   const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(
     shipmentId,
     dbUserId,
