@@ -120,7 +120,7 @@ export function useShipmentFormSet(id?: number) {
         subscription.unsubscribe();
       }
     };
-  }, [watch]);
+  }, [watch, shipmentId]);
 
   const handleCancel = () => {
     router.push('/shipments');
