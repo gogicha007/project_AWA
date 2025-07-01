@@ -13,7 +13,9 @@ export const useShipmentData = (
   reset: (data: ShipmentFormValues) => void,
   setFileDataArray: (files: FileData[]) => void,
   setShipmentId: (id: number) => void,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
+  setSnackbarStatus: (status: { message: string; success: boolean }) => void,
+  setSnackbarOpen: (open: boolean) => void
 ) => {
   useEffect(() => {
     if (
@@ -36,7 +38,11 @@ export const useShipmentData = (
         reset(shipmentFormData);
         setFileDataArray(shipment.Files || []);
       } catch (error) {
-        console.error('Failed to fetch shipment:', error);
+        setSnackbarStatus({
+          message: `Failed to fetch shipment: ${error}`,
+          success: false,
+        });
+        setSnackbarOpen(true);
       } finally {
         setLoading(false);
       }

@@ -82,7 +82,9 @@ export function useShipmentFormSet(id?: number) {
     reset,
     setFileDataArray,
     setShipmentId,
-    setLoading
+    setLoading,
+    setSnackbarStatus,
+    setSnackbarOpen
   );
 
   useEffect(() => {

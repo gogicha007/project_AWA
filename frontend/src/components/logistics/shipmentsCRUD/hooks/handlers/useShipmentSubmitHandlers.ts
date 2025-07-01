@@ -16,6 +16,7 @@ export const useShipmentSubmitHandlers = (
   setShipmentId: (id: number) => void
 ) => {
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
+    console.log('gen info submit');
     try {
       if (dbUserId === null) {
         throw new Error('User ID is required to create a shipment');
@@ -70,8 +71,12 @@ export const useShipmentSubmitHandlers = (
 
       const changes = detectFormChanges(data, originalValues, dirtyFields);
 
+      console.log('dirty fields', dirtyFields);
+
       // Update general fields
       if (changes.hasGeneralFieldChanges) {
+        console.log('general fields change detected');
+
         const formattedDate = formatToISODateTime(data.declaration_date);
         await shipmentApi.update(
           {
@@ -86,7 +91,9 @@ export const useShipmentSubmitHandlers = (
       }
 
       // Handle files
-      if (changes.hasFileChanges) {
+      if (changes.hasFileChanges()) {
+        console.log('file change detected');
+
         if (data.files && data.files.length > 0) {
           await shipmentFileApi.update(data.files, shipmentId);
         } else {
@@ -94,14 +101,11 @@ export const useShipmentSubmitHandlers = (
         }
       }
 
-      // Handle invoices
+      // Handle invoices&items
       if (changes.hasInvoiceChanges) {
         console.log('has invoice changed');
-      }
-
-      // Invoice items
-      if (changes.hasInvoiceItemChanges) {
-        console.log('has invoice changed');
+      } else if (changes.hasInvoiceItemChanges) {
+        console.log('has invoice items changed');
       }
 
       setSnackbarStatus({

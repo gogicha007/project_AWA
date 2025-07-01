@@ -1,5 +1,5 @@
 import { ShipmentFormValues } from '../useShipmentFormSet';
-import { ShipmentDTO } from '@/api/types';
+import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
 export const createDefaultValues = (): ShipmentFormValues => ({
@@ -46,7 +46,15 @@ export const detectFormChanges = (
     (item) => dirtyFields[item] === true
   );
 
-  const hasFileChanges = 'files' in dirtyFields;
+  const hasFileChanges = () => {
+    if (!('files' in dirtyFields)) return false;
+    if (Array.isArray(dirtyFields.files) && dirtyFields.files.length > 0) {
+      return dirtyFields.files.some((file) =>
+        Object.values(file).includes(true)
+      );
+    }
+    if ('files' in dirtyFields) return true;
+  };
   const hasInvoiceChanges = 'invoices' in dirtyFields;
   const hasInvoiceItemChanges = 'invoiceItems' in dirtyFields;
 
@@ -56,4 +64,13 @@ export const detectFormChanges = (
     hasInvoiceChanges,
     hasInvoiceItemChanges,
   };
+};
+
+export const handleInvoiceChange = (data: ShipmentFormValues) => {
+  console.log('invoices', data.invoices);
+  const originalInvoiceIds = data.invoices?.map((invoice: InvoiceDTO) => {
+    if (Number(invoice.id) > 0) return invoice.id;
+  });
+  console.log('original invoice ids', originalInvoiceIds);
+  console.log('invoice items', data.invoiceItems);
 };
