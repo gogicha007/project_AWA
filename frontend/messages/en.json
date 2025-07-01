@@ -212,6 +212,11 @@
     },
     "warnings": {
       "delete": "Are you sure you want to delete this record?"
+    },
+    "validation":{
+      "min_value": "min value to be 0.01",
+      "required": "value required",
+      "required_fields": "Fill required fields(Material, Quantiry, Unit, Price) or Remove the record"
     }
   },
   "Logistics": {

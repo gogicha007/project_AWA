@@ -98,7 +98,7 @@ export default function InvoiceItemsTable({
     const isValid = validationResults.every((result) => result);
 
     if (!isValid) {
-      alert(tII('validation.requiredFields'));
+      alert(tII('validation.required_fields'));
       return;
     }
 
