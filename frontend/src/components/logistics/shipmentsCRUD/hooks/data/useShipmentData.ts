@@ -51,5 +51,7 @@ export const useShipmentData = (
     currenciesLoading,
     dbUserId,
     setFileDataArray,
+    setLoading,
+    setShipmentId,
   ]);
 };
