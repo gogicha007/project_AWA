@@ -1,5 +1,5 @@
-import { ShipmentFormValues } from "../useShipmentFormSet";
-import { ShipmentDTO } from "@/api/types";
+import { ShipmentFormValues } from '../useShipmentFormSet';
+import { ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
 export const createDefaultValues = (): ShipmentFormValues => ({
@@ -12,7 +12,9 @@ export const createDefaultValues = (): ShipmentFormValues => ({
   invoiceItems: [],
 });
 
-export const transformShipmentToFormData = (shipment: ShipmentDTO): ShipmentFormValues => ({
+export const transformShipmentToFormData = (
+  shipment: ShipmentDTO
+): ShipmentFormValues => ({
   alias: shipment.alias,
   status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
   declaration_number: shipment.declaration_number || '',
@@ -29,13 +31,13 @@ export const transformShipmentToFormData = (shipment: ShipmentDTO): ShipmentForm
 });
 
 export const detectFormChanges = (
-  data: ShipmentFormValues, 
+  data: ShipmentFormValues,
   originalValues: Partial<ShipmentFormValues>,
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>,
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>
 ) => {
   const generalFields: (keyof ShipmentFormValues)[] = [
     'alias',
-    'declaration_date', 
+    'declaration_date',
     'declaration_number',
     'status',
   ];
