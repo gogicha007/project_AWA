@@ -41,7 +41,6 @@ export function useShipmentFormSet(id?: number) {
     message: string;
     success: boolean;
   }>({ message: '', success: false });
-  const [originalShipmentData, setOriginalShipmentData] = useState<ShipmentFormValues | null>(null);
   const defaultValues = {
     alias: '',
     status: '' as '' | 'APPLIED' | 'DECLARED' | 'ARRIVED',
@@ -49,6 +48,7 @@ export function useShipmentFormSet(id?: number) {
     declaration_date: undefined,
     files: [],
     invoices: [],
+    invoiceItems: [],
   };
   const formMethods = useForm<ShipmentFormValues>({
     defaultValues,
@@ -56,7 +56,12 @@ export function useShipmentFormSet(id?: number) {
   const {
     watch,
     reset,
-    formState: { isDirty, isSubmitting },
+    formState: {
+      isDirty,
+      isSubmitting,
+      defaultValues: originalValues,
+      dirtyFields,
+    },
   } = formMethods;
   const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
   const [shipmentId, setShipmentId] = useState(id);
@@ -86,7 +91,7 @@ export function useShipmentFormSet(id?: number) {
 
   useEffect(() => {
     let subscription: ReturnType<typeof watch> | undefined;
-    if(!shipmentId) {
+    if (!shipmentId) {
       subscription = watch((values) => {
         setDisableSubmitBtn(!(values.alias && values.status));
       });
@@ -130,9 +135,6 @@ export function useShipmentFormSet(id?: number) {
             : [],
         };
 
-        // Store original data for comparison
-        setOriginalShipmentData(shipmentFormData);
-        
         reset(shipmentFormData);
         setFileDataArray(shipment.Files || []);
       } catch (error) {
@@ -188,35 +190,48 @@ export function useShipmentFormSet(id?: number) {
   const handleEditSubmit = async (data: ShipmentFormValues) => {
     try {
       if (!shipmentId || dbUserId === null) {
-        throw new Error('Shipment ID and User ID are required to update shipment');
+        throw new Error(
+          'Shipment ID and User ID are required to update shipment'
+        );
       }
-
+      // const generalFields = [
+      //   'alias',
+      //   'declaration_date',
+      //   'declaration_number',
+      //   'status',
+      // ];
+      // const fileFields = [];
+      // const invoiceFields = [];
+      // const InvoiceItemFields = [];
       console.log('submit edited', data);
-      console.log('original values', originalShipmentData);
+      console.log('original values', originalValues);
+      console.log('dirty fields', dirtyFields);
 
-      const formattedDate = formatToISODateTime(data.declaration_date);
-      
-      const updatedShipment = await shipmentApi.update(
-        {
-          id: shipmentId,
-          alias: data.alias,
-          declaration_number: data.declaration_number ?? '',
-          declaration_date: formattedDate as Date,
-          status: data.status,
-          Files: data.files,
-          Invoices: data.invoices,
-        },
-        dbUserId
-      );
+      // const formattedDate = formatToISODateTime(data.declaration_date);
 
-      setOriginalShipmentData(data);
-      
-      setSnackbarStatus({ message: 'Shipment updated successfully', success: true });
+      // const updatedShipment = await shipmentApi.update(
+      //   {
+      //     id: shipmentId,
+      //     alias: data.alias,
+      //     declaration_number: data.declaration_number ?? '',
+      //     declaration_date: formattedDate as Date,
+      //     status: data.status,
+      //     Files: data.files,
+      //     Invoices: data.invoices,
+      //   },
+      //   dbUserId
+      // );
+
+      setSnackbarStatus({
+        message: 'Shipment updated successfully',
+        success: true,
+      });
       setSnackbarOpen(true);
-      
-      router.push('/shipments');
-      
-      return updatedShipment;
+
+      // router.push('/shipments');
+
+      // return updatedShipment;
+      return;
     } catch (error) {
       setSnackbarStatus({
         message:
@@ -248,7 +263,6 @@ export function useShipmentFormSet(id?: number) {
     handleGenInfoSubmit,
     isDirty,
     loading,
-    originalShipmentData,
     setFileDataArray,
     shipmentId,
     snackbarControls: {
