@@ -85,7 +85,7 @@ export const useShipmentSubmitHandlers = (
         );
       }
 
-      // Update files
+      // Handle files
       if (changes.hasFileChanges) {
         if (data.files && data.files.length > 0) {
           await shipmentFileApi.update(data.files, shipmentId);
@@ -94,7 +94,15 @@ export const useShipmentSubmitHandlers = (
         }
       }
 
-      // TODO: Handle invoices and invoice items
+      // Handle invoices
+      if (changes.hasInvoiceChanges) {
+        console.log('has invoice changed');
+      }
+
+      // Invoice items
+      if (changes.hasInvoiceItemChanges) {
+        console.log('has invoice changed');
+      }
 
       setSnackbarStatus({
         message: 'Shipment updated successfully',
