@@ -171,6 +171,7 @@ export function useShipmentFormSet(id?: number) {
           : undefined,
         files: [],
         invoices: [],
+        invoiceItems: [],
       });
       setShipmentId(createdShipment.id);
       setSnackbarStatus({ message: 'Shipment created', success: true });
@@ -194,33 +195,45 @@ export function useShipmentFormSet(id?: number) {
           'Shipment ID and User ID are required to update shipment'
         );
       }
-      // const generalFields = [
-      //   'alias',
-      //   'declaration_date',
-      //   'declaration_number',
-      //   'status',
-      // ];
+
+      const generalFields: (keyof ShipmentFormValues)[] = [
+        'alias',
+        'declaration_date',
+        'declaration_number',
+        'status',
+      ];
+
+      // check and update general fields
+      const hasGeneralFieldChanges = generalFields.some(
+        (item) => dirtyFields[item] === true
+      );
+
+      if (hasGeneralFieldChanges) {
+        const formattedDate = formatToISODateTime(data.declaration_date);
+        await shipmentApi.update(
+          {
+            id: shipmentId,
+            alias: data.alias,
+            declaration_number: data.declaration_number ?? '',
+            declaration_date: formattedDate as Date,
+            status: data.status,
+          },
+          dbUserId
+        );
+      }
+
+      // check and update files
       // const fileFields = [];
+
+      // check and update invoices
       // const invoiceFields = [];
+
+      // check and update invoice items
       // const InvoiceItemFields = [];
+
       console.log('submit edited', data);
       console.log('original values', originalValues);
       console.log('dirty fields', dirtyFields);
-
-      // const formattedDate = formatToISODateTime(data.declaration_date);
-
-      // const updatedShipment = await shipmentApi.update(
-      //   {
-      //     id: shipmentId,
-      //     alias: data.alias,
-      //     declaration_number: data.declaration_number ?? '',
-      //     declaration_date: formattedDate as Date,
-      //     status: data.status,
-      //     Files: data.files,
-      //     Invoices: data.invoices,
-      //   },
-      //   dbUserId
-      // );
 
       setSnackbarStatus({
         message: 'Shipment updated successfully',
