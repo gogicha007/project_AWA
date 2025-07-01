@@ -1,0 +1,40 @@
+import { useEffect } from "react";
+import { shipmentApi } from "@/api/endpoints/shipments/shipmentApi";
+import { transformShipmentToFormData } from "../utils/shipmentFormUtils";
+import { ShipmentFormValues } from "../useShipmentFormSet";
+import { FileData } from "@/components/controls/file-input/FileInput";
+
+export const useShipmentData = (
+  id: number | undefined,
+  authLoading: boolean,
+  dbUserId: number | null,
+  currenciesLoading: boolean,
+  vendorsLoading: boolean,
+  reset: (data: ShipmentFormValues) => void,
+  setFileDataArray: (files: FileData[]) => void,
+  setShipmentId: (id: number) => void,
+  setLoading: (loading: boolean) => void
+) => {
+  useEffect(() => {
+    if (!id || authLoading || dbUserId === null || currenciesLoading || vendorsLoading) return;
+
+    setShipmentId(id);
+    setLoading(true);
+    
+    const fetchShipment = async () => {
+      try {
+        const shipment = await shipmentApi.getById(id);
+        const shipmentFormData = transformShipmentToFormData(shipment);
+        
+        reset(shipmentFormData);
+        setFileDataArray(shipment.Files || []);
+      } catch (error) {
+        console.error('Failed to fetch shipment:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchShipment();
+  }, [id, reset, authLoading, vendorsLoading, currenciesLoading, dbUserId]);
+};

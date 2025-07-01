@@ -10,9 +10,11 @@ import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { FileData } from '@/components/controls/file-input/FileInput';
-import { formatToISODateTime } from '@/utils/dateFormat';
 import { InvoiceDTO, InvoiceItemDTO } from '@/api/types';
-import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
+
+import { createDefaultValues } from './utils/shipmentFormUtils';
+import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
+import { useShipmentData } from './data/useShipmentData';
 
 export type ShipmentFormValues = {
   alias: string;
@@ -34,6 +36,7 @@ export function useShipmentFormSet(id?: number) {
   const { materialNames: materials, loading: materialsLoading } =
     useMaterialNames();
   const { units, loading: unitsLoading } = useUnits();
+
   const [loading, setLoading] = useState(false);
   const [fileDataArray, setFileDataArray] = useState<FileData[]>([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -41,18 +44,13 @@ export function useShipmentFormSet(id?: number) {
     message: string;
     success: boolean;
   }>({ message: '', success: false });
-  const defaultValues = {
-    alias: '',
-    status: '' as '' | 'APPLIED' | 'DECLARED' | 'ARRIVED',
-    declaration_number: '',
-    declaration_date: undefined,
-    files: [],
-    invoices: [],
-    invoiceItems: [],
-  };
+  const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
+  const [shipmentId, setShipmentId] = useState(id);
+
   const formMethods = useForm<ShipmentFormValues>({
-    defaultValues,
+    defaultValues: createDefaultValues(),
   });
+
   const {
     watch,
     reset,
@@ -63,8 +61,30 @@ export function useShipmentFormSet(id?: number) {
       dirtyFields,
     },
   } = formMethods;
-  const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
-  const [shipmentId, setShipmentId] = useState(id);
+
+  // custom hooks
+  const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(
+    shipmentId,
+    dbUserId,
+    originalValues as Partial<ShipmentFormValues>,
+    dirtyFields,
+    setSnackbarStatus,
+    setSnackbarOpen,
+    reset,
+    setShipmentId
+  );
+
+  useShipmentData(
+    id,
+    authLoading,
+    dbUserId,
+    currenciesLoading,
+    vendorsLoading,
+    reset,
+    setFileDataArray,
+    setShipmentId,
+    setLoading
+  );
 
   useEffect(() => {
     setLoading(
@@ -102,160 +122,6 @@ export function useShipmentFormSet(id?: number) {
       }
     };
   }, [watch]);
-
-  useEffect(() => {
-    if (
-      !id ||
-      authLoading ||
-      dbUserId === null ||
-      currenciesLoading ||
-      vendorsLoading
-    )
-      return;
-
-    setShipmentId(id);
-    setLoading(true);
-    const fetchShipment = async () => {
-      try {
-        const shipment = await shipmentApi.getById(id);
-
-        const shipmentFormData = {
-          alias: shipment.alias,
-          status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
-          declaration_number: shipment.declaration_number || '',
-          declaration_date: shipment.declaration_date
-            ? typeof shipment.declaration_date === 'string'
-              ? new Date(shipment.declaration_date)
-              : shipment.declaration_date
-            : undefined,
-          files: shipment.Files,
-          invoices: shipment.Invoices,
-          invoiceItems: shipment.Invoices
-            ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
-            : [],
-        };
-
-        reset(shipmentFormData);
-        setFileDataArray(shipment.Files || []);
-      } catch (error) {
-        console.error('Failed to fetch shipment:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchShipment();
-  }, [id, reset, authLoading, vendorsLoading, currenciesLoading, dbUserId]);
-
-  const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
-    try {
-      if (dbUserId === null) {
-        throw new Error('User ID is required to create a chipmentF');
-      }
-      const formattedDate = formatToISODateTime(data.declaration_date);
-      const createdShipment = await shipmentApi.create(
-        {
-          ...data,
-          declaration_number: data.declaration_number ?? '',
-          declaration_date: formattedDate as Date,
-        },
-        dbUserId
-      );
-      reset({
-        alias: createdShipment.alias,
-        status: createdShipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
-        declaration_number: createdShipment.declaration_number || '',
-        declaration_date: createdShipment.declaration_date
-          ? typeof createdShipment.declaration_date === 'string'
-            ? new Date(createdShipment.declaration_date)
-            : createdShipment.declaration_date
-          : undefined,
-        files: [],
-        invoices: [],
-        invoiceItems: [],
-      });
-      setShipmentId(createdShipment.id);
-      setSnackbarStatus({ message: 'Shipment created', success: true });
-      setSnackbarOpen(true);
-    } catch (error) {
-      setSnackbarStatus({
-        message:
-          error instanceof Error
-            ? error.message
-            : 'An error occurred while saving the shipment',
-        success: false,
-      });
-      setSnackbarOpen(true);
-    }
-  };
-
-  const handleEditSubmit = async (data: ShipmentFormValues) => {
-    try {
-      if (!shipmentId || dbUserId === null) {
-        throw new Error(
-          'Shipment ID and User ID are required to update shipment'
-        );
-      }
-
-      const generalFields: (keyof ShipmentFormValues)[] = [
-        'alias',
-        'declaration_date',
-        'declaration_number',
-        'status',
-      ];
-
-      // check and update general fields
-      const hasGeneralFieldChanges = generalFields.some(
-        (item) => dirtyFields[item] === true
-      );
-
-      if (hasGeneralFieldChanges) {
-        const formattedDate = formatToISODateTime(data.declaration_date);
-        await shipmentApi.update(
-          {
-            id: shipmentId,
-            alias: data.alias,
-            declaration_number: data.declaration_number ?? '',
-            declaration_date: formattedDate as Date,
-            status: data.status,
-          },
-          dbUserId
-        );
-      }
-
-      // check and update files
-      // const fileFields = [];
-
-      // check and update invoices
-      // const invoiceFields = [];
-
-      // check and update invoice items
-      // const InvoiceItemFields = [];
-
-      console.log('submit edited', data);
-      console.log('original values', originalValues);
-      console.log('dirty fields', dirtyFields);
-
-      setSnackbarStatus({
-        message: 'Shipment updated successfully',
-        success: true,
-      });
-      setSnackbarOpen(true);
-
-      // router.push('/shipments');
-
-      // return updatedShipment;
-      return;
-    } catch (error) {
-      setSnackbarStatus({
-        message:
-          error instanceof Error
-            ? error.message
-            : 'An error occurred while updating the shipment',
-        success: false,
-      });
-      setSnackbarOpen(true);
-    }
-  };
 
   const handleCancel = () => {
     router.push('/shipments');
