@@ -5,6 +5,7 @@ import { FileData } from '@/components/controls/file-input/FileInput';
 import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
 import InvoiceFields from './invoice-table-components/InvoiceFields';
+import { SnackbarControls } from '../types/snackbarTypes';
 
 interface ShipmentTabsProps {
   auxData: {
@@ -13,10 +14,10 @@ interface ShipmentTabsProps {
     units: UnitDTO[];
     materials: MaterialNameDTO[];
   };
-
-  disabled: boolean;
+  disabled: boolean; // disable tabs
   fileDataArray: FileData[];
   setFileDataArray: (files: FileData[]) => void;
+  snackbarControls?: SnackbarControls;
   tS: (key: string) => string;
   tB: (key: string) => string;
 }
@@ -26,6 +27,7 @@ export default function ShipmentTabs({
   disabled,
   fileDataArray,
   setFileDataArray,
+  snackbarControls,
   tS,
 }: ShipmentTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
@@ -56,7 +58,12 @@ export default function ShipmentTabs({
             tS={tS}
           />
         )}
-        {activeTab === 1 && <InvoiceFields auxData={auxData} />}
+        {activeTab === 1 && (
+          <InvoiceFields
+            auxData={auxData}
+            snackbarControls={snackbarControls}
+          />
+        )}
         {activeTab === 2 && <FreightTable />}
       </div>
     </div>

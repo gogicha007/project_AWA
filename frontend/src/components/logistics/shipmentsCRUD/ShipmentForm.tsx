@@ -17,15 +17,13 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
     handleCancel,
     handleEditSubmit,
     handleGenInfoSubmit,
-    handleSnackbarClose,
     isDirty,
     loading,
     FormProvider,
     formMethods,
     setFileDataArray,
     shipmentId,
-    snackbarOpen,
-    snackbarStatus,
+    snackbarControls,
     tB,
     tS,
   } = useShipmentFormSet(id);
@@ -72,6 +70,7 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
             disabled={!!!shipmentId}
             fileDataArray={fileDataArray}
             setFileDataArray={setFileDataArray}
+            snackbarControls={snackbarControls}
             tS={tS}
             tB={tB}
           />
@@ -79,9 +78,9 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
       </FormProvider>
 
       <Snackbar
-        status={snackbarStatus}
-        open={snackbarOpen}
-        onClose={handleSnackbarClose}
+        status={snackbarControls.status}
+        open={snackbarControls.isOpen}
+        onClose={snackbarControls.onClose}
         duration={5000}
       />
     </div>

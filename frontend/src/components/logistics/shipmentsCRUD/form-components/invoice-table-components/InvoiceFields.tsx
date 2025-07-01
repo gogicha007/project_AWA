@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import { useInvoiceTable } from './useInvoiceTable';
 import AddButton from '@/components/controls/add-button/AddButton';
 import InvoiceItemsTable from './invoice-items/InvoiceItemsTable';
+import { SnackbarControls } from '../../types/snackbarTypes';
 
 type Props = {
   auxData: {
@@ -18,9 +19,10 @@ type Props = {
     materials: MaterialNameDTO[];
     units: UnitDTO[];
   };
+  snackbarControls?: SnackbarControls;
 };
 
-const InvoiceFields = ({ auxData }: Props) => {
+const InvoiceFields = ({ auxData, snackbarControls }: Props) => {
   const tI = useTranslations('Invoices');
   const {
     columns,
@@ -32,6 +34,7 @@ const InvoiceFields = ({ auxData }: Props) => {
     updateInvoiceTotalAmount,
   } = useInvoiceTable({
     auxData,
+    snackbarControls,
     tVar: tI,
   });
 

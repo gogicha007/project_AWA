@@ -99,7 +99,7 @@ const InvoiceItemColumns = (props: Props) => {
             {...register(`invoiceItems.${fieldIndex}.quantity` as const, {
               valueAsNumber: true,
               required: tVar('validation.required'),
-              min: { value: 0.01, message: tVar('validation.minValue') },
+              min: { value: 0.01, message: tVar('validation.min_value') },
             })}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.quantity ? styles.dirty : ''}`}
           />
@@ -142,7 +142,7 @@ const InvoiceItemColumns = (props: Props) => {
             {...register(`invoiceItems.${fieldIndex}.unitPrice` as const, {
               valueAsNumber: true,
               required: tVar('validation.required'),
-              min: { value: 0.01, message: tVar('validation.minValue') },
+              min: { value: 0.01, message: tVar('validation.min_value') },
             })}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitPrice ? styles.dirty : ''}`}
           />

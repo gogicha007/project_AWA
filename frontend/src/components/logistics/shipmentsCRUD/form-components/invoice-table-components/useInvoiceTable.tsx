@@ -4,12 +4,14 @@ import { InvoiceDTO, CurrencyDTO, VendorDTO } from '@/api/types';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
 import { InvoiceRow } from './invoiceTableColumns';
+import { SnackbarControls } from '../../types/snackbarTypes';
 
 type Props = {
   auxData: {
     currencies: Partial<CurrencyDTO>[];
     vendors: Partial<VendorDTO>[];
   };
+  snackbarControls?: SnackbarControls;
   tVar: (key: string) => string;
 };
 
@@ -33,6 +35,7 @@ export function useInvoiceTable(props: Props) {
   });
   const {
     auxData: { currencies, vendors },
+    snackbarControls,
     tVar,
   } = props;
   const { control, formState, resetField, reset, getValues, setValue } =
@@ -58,20 +61,24 @@ export function useInvoiceTable(props: Props) {
     const index = fields.findIndex((field) => field.id === uid);
 
     if (index === -1) {
-      console.log('Cannot find row with database ID:', uid);
+      snackbarControls?.setStatus({
+        message: `Cannot find row with database ID: ${uid}`,
+        success: false,
+      });
+      snackbarControls?.setOpen(true);
       return;
     }
 
     const invoice = fields[index];
     const formValues = getValues('invoices')[index];
-    
+
     setCurrentInvoice({
       id: invoice.id,
       invoiceNumber: formValues.invoiceNumber,
       invoiceDate: formValues.invoiceDate,
       totalAmount: formValues.totalAmount,
     });
-    
+
     setIsDialogOpen(true);
   };
 
@@ -107,7 +114,11 @@ export function useInvoiceTable(props: Props) {
     const index = fields.findIndex((field) => field.id === id);
 
     if (index === -1) {
-      console.log('Cannot find row with ID:', id);
+      snackbarControls?.setStatus({
+        message: `Cannot find row with ID: ${id}`,
+        success: false,
+      });
+      snackbarControls?.setOpen(true);
       return;
     }
 
@@ -127,7 +138,11 @@ export function useInvoiceTable(props: Props) {
         });
       }
     } else {
-      console.log('No dirty fields found for this row');
+      snackbarControls?.setStatus({
+        message: 'No dirty fields found for this row',
+        success: false,
+      });
+      snackbarControls?.setOpen(true);
     }
   };
 
@@ -153,7 +168,6 @@ export function useInvoiceTable(props: Props) {
   };
 
   const updateInvoiceTotalAmount = (invoiceId: number, totalAmount: number) => {
-    console.log('total amount', totalAmount)
     const index = fields.findIndex((field) => field.id === invoiceId);
     if (index !== -1) {
       setValue(`invoices.${index}.totalAmount`, totalAmount);
