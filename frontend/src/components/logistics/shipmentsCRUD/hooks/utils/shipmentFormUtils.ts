@@ -55,8 +55,28 @@ export const detectFormChanges = (
     }
     if ('files' in dirtyFields) return true;
   };
-  const hasInvoiceChanges = 'invoices' in dirtyFields;
-  const hasInvoiceItemChanges = 'invoiceItems' in dirtyFields;
+  const hasInvoiceChanges = () => {
+    if (!('invoices' in dirtyFields)) return false;
+    if (
+      Array.isArray(dirtyFields.invoices) &&
+      dirtyFields.invoices.length > 0
+    ) {
+      return dirtyFields.invoices.some((invoice) =>
+        Object.values(invoice).includes(true)
+      );
+    }
+  };
+  const hasInvoiceItemChanges = () => {
+    if (!('invoiceItems' in dirtyFields)) return false;
+    if (
+      Array.isArray(dirtyFields.invoiceItems) &&
+      dirtyFields.invoiceItems.length > 0
+    ) {
+      return dirtyFields.invoiceItems.some((item) =>
+        Object.values(item).includes(true)
+      );
+    }
+  };
 
   return {
     hasGeneralFieldChanges,

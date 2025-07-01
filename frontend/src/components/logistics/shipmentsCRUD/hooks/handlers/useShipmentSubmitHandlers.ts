@@ -102,9 +102,9 @@ export const useShipmentSubmitHandlers = (
       }
 
       // Handle invoices&items
-      if (changes.hasInvoiceChanges) {
+      if (changes.hasInvoiceChanges()) {
         console.log('has invoice changed');
-      } else if (changes.hasInvoiceItemChanges) {
+      } else if (changes.hasInvoiceItemChanges()) {
         console.log('has invoice items changed');
       }
 
