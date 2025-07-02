@@ -106,20 +106,6 @@ export function useInvoiceTable(props: Props) {
     };
 
     append(newInvoice, { shouldFocus: false });
-
-    setTimeout(() => {
-      const currentInvoices = getValues('invoices');
-      const currentInvoiceItems = getValues('invoiceItems');
-      
-      resetField('invoices', {
-        defaultValue: currentInvoices,
-        keepDirty: false,
-      });
-      resetField('invoiceItems', {
-        defaultValue: currentInvoiceItems,
-        keepDirty: false,
-      });
-    }, 0);
   };
 
   const handleResetInvoice = (id: number) => {
