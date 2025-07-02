@@ -59,12 +59,14 @@ const FileInput: React.FC<FileInputProps> = ({
     const updatedFiles = [...fileDataArray, ...filesData];
     setFileDataArray(updatedFiles);
     setValue('files', updatedFiles, { shouldValidate: true, shouldDirty: true});
+
   };
 
   const handleRemoveFile = (index: number) => {
     const restFiles = fileDataArray.filter((_, i) => i !== index);
     setFileDataArray(restFiles);
     setValue('files', restFiles, {shouldDirty: true});
+    setValue('_hasRemovals', true, { shouldDirty: true });
   };
 
   return (

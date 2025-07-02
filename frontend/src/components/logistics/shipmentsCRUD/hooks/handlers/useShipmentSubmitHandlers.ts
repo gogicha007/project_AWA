@@ -2,7 +2,7 @@ import { ShipmentFormValues } from '../useShipmentFormSet';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
-import { detectFormChanges } from '../utils/shipmentFormUtils';
+import { detectFormChanges, handleInvoiceChange } from '../utils/shipmentFormUtils';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
 export const useShipmentSubmitHandlers = (
@@ -44,6 +44,7 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
+          _hasRemovals: false, // Add this
       });
 
       setShipmentId(createdShipment.id as number);
@@ -104,8 +105,10 @@ export const useShipmentSubmitHandlers = (
       // Handle invoices&items
       if (changes.hasInvoiceChanges()) {
         console.log('has invoice changed');
+        handleInvoiceChange(data)
       } else if (changes.hasInvoiceItemChanges()) {
         console.log('has invoice items changed');
+
       }
 
       setSnackbarStatus({

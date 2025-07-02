@@ -10,6 +10,7 @@ export const createDefaultValues = (): ShipmentFormValues => ({
   files: [],
   invoices: [],
   invoiceItems: [],
+  _hasRemovals: false,
 });
 
 export const transformShipmentToFormData = (
@@ -28,6 +29,7 @@ export const transformShipmentToFormData = (
   invoiceItems: shipment.Invoices
     ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
     : [],
+  _hasRemovals: false,
 });
 
 export const detectFormChanges = (
@@ -55,6 +57,7 @@ export const detectFormChanges = (
     }
     if ('files' in dirtyFields) return true;
   };
+
   const hasInvoiceChanges = () => {
     if (!('invoices' in dirtyFields)) return false;
     if (
@@ -65,7 +68,9 @@ export const detectFormChanges = (
         Object.values(invoice).includes(true)
       );
     }
+    if ('invoices' in dirtyFields) return true;
   };
+
   const hasInvoiceItemChanges = () => {
     if (!('invoiceItems' in dirtyFields)) return false;
     if (
@@ -76,6 +81,7 @@ export const detectFormChanges = (
         Object.values(item).includes(true)
       );
     }
+    if ('invoiceItems' in dirtyFields) return true;
   };
 
   return {
@@ -88,9 +94,11 @@ export const detectFormChanges = (
 
 export const handleInvoiceChange = (data: ShipmentFormValues) => {
   console.log('invoices', data.invoices);
-  const originalInvoiceIds = data.invoices?.map((invoice: InvoiceDTO) => {
-    if (Number(invoice.id) > 0) return invoice.id;
-  });
+  // separate original/existing invoices
+  const originalInvoiceIds = data.invoices
+    ?.filter((invoice: InvoiceDTO) => Number(invoice.id) > 0)
+    .map((invoice: InvoiceDTO) => invoice.id);
+
   console.log('original invoice ids', originalInvoiceIds);
   console.log('invoice items', data.invoiceItems);
 };

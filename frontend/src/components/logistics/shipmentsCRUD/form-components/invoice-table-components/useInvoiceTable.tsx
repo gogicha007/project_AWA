@@ -1,10 +1,16 @@
 import { useMemo, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { InvoiceDTO, CurrencyDTO, VendorDTO, InvoiceItemDTO } from '@/api/types';
+import {
+  InvoiceDTO,
+  CurrencyDTO,
+  VendorDTO,
+  InvoiceItemDTO,
+} from '@/api/types';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
 import { InvoiceRow } from './invoiceTableColumns';
 import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
+import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
 
 type Props = {
   auxData: {
@@ -14,11 +20,6 @@ type Props = {
   snackbarControls?: SnackbarControls;
   tVar: (key: string) => string;
 };
-
-export interface InvoiceFormValues {
-  invoices: InvoiceRow[];
-  invoiceItems?: Array<InvoiceItemDTO>;
-}
 
 type InvoiceFieldPath =
   | `invoices.${number}.vendorId`
@@ -40,7 +41,7 @@ export function useInvoiceTable(props: Props) {
     tVar,
   } = props;
   const { control, formState, resetField, reset, getValues, setValue } =
-    useFormContext<InvoiceFormValues>();
+    useFormContext<ShipmentFormValues>();
   const { dirtyFields } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
@@ -71,13 +72,12 @@ export function useInvoiceTable(props: Props) {
     }
 
     const invoice = fields[index];
-    const formValues = getValues('invoices')[index];
 
     setCurrentInvoice({
       id: invoice.id,
-      invoiceNumber: formValues.invoiceNumber,
-      invoiceDate: formValues.invoiceDate,
-      totalAmount: formValues.totalAmount,
+      invoiceNumber: invoice.invoiceNumber,
+      invoiceDate: invoice.invoiceDate,
+      totalAmount: invoice.totalAmount,
     });
 
     setIsDialogOpen(true);
@@ -91,10 +91,18 @@ export function useInvoiceTable(props: Props) {
       currencyId: 0,
     }
   ) => {
-    const newInvoice: InvoiceRow = {
+    const newInvoice: InvoiceDTO = {
       ...newInvoiceData,
       id: negIdCounter.getId(),
-      totalAmount: 0,
+      invoiceDate:
+        newInvoiceData.invoiceDate instanceof Date
+          ? newInvoiceData.invoiceDate
+          : newInvoiceData.invoiceDate
+          ? new Date(newInvoiceData.invoiceDate)
+          : new Date(),
+      vendorId: newInvoiceData.vendorId ?? 0,
+      invoiceNumber: newInvoiceData.invoiceNumber ?? '',
+      currencyId: newInvoiceData.currencyId ?? 0,
     };
 
     append(newInvoice, { shouldFocus: false });
@@ -102,16 +110,15 @@ export function useInvoiceTable(props: Props) {
     setTimeout(() => {
       const currentInvoices = getValues('invoices');
       const currentInvoiceItems = getValues('invoiceItems');
-      reset(
-        { 
-          invoices: currentInvoices,
-          invoiceItems: currentInvoiceItems 
-        },
-        {
-          keepDirty: false,
-          keepValues: true,
-        }
-      );
+      
+      resetField('invoices', {
+        defaultValue: currentInvoices,
+        keepDirty: false,
+      });
+      resetField('invoiceItems', {
+        defaultValue: currentInvoiceItems,
+        keepDirty: false,
+      });
     }, 0);
   };
 
@@ -137,8 +144,12 @@ export function useInvoiceTable(props: Props) {
 
       if (keysArray.length > 0) {
         keysArray.forEach((key) => {
+          const value = defaultRow?.[key as keyof typeof defaultRow];
           resetField(`invoices.${index}.${key}` as InvoiceFieldPath, {
-            defaultValue: defaultRow?.[key as keyof typeof defaultRow],
+            defaultValue:
+              Array.isArray(value)
+                ? undefined
+                : (value as string | number | Date | undefined),
           });
         });
       }
@@ -157,10 +168,10 @@ export function useInvoiceTable(props: Props) {
 
       if (index !== -1) {
         const currentInvoiceItems = getValues('invoiceItems') || [];
-        const filteredInvoiceItems = (currentInvoiceItems as Array<InvoiceItemDTO>).filter(
-          (item) => item.invoiceId !== id
-        );
-        
+        const filteredInvoiceItems = (
+          currentInvoiceItems as Array<InvoiceItemDTO>
+        ).filter((item) => item.invoiceId !== id);
+
         setValue('invoiceItems', filteredInvoiceItems);
 
         remove(index);
@@ -169,15 +180,16 @@ export function useInvoiceTable(props: Props) {
           const currentInvoices = getValues('invoices');
           const currentFilteredItems = getValues('invoiceItems');
           reset(
-            { 
+            {
               invoices: currentInvoices,
-              invoiceItems: currentFilteredItems 
+              invoiceItems: currentFilteredItems,
             },
             {
               keepDirty: false,
               keepValues: true,
             }
           );
+          setValue('_hasRemovals', true, { shouldDirty: true });
         }, 0);
       }
     }

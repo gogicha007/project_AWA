@@ -5,8 +5,8 @@ import { CurrencyDTO, VendorDTO } from '@/api/types';
 import DateInput from '@/components/controls/date-input/date-input';
 import InvoiceTableActions from './InvoiceTableActions';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-import { InvoiceFormValues } from './useInvoiceTable';
 import { NumericFormat } from 'react-number-format';
+import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
 
 export interface InvoiceRow {
   id: number;
@@ -26,7 +26,7 @@ type Props = {
   openItemsDialog: (id: number) => void;
   handleResetInvoice: (id: number) => void;
   handleRemoveInvoice: (id: number) => void;
-  dirtyFields: FieldNamesMarkedBoolean<InvoiceFormValues>;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
 };
 
 const InvoiceColumns = (props: Props) => {

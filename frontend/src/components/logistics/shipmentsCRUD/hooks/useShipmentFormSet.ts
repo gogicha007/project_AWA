@@ -24,6 +24,7 @@ export type ShipmentFormValues = {
   files?: Array<FileData>;
   invoices?: Array<InvoiceDTO>;
   invoiceItems?: Array<InvoiceItemDTO>;
+    _hasRemovals: boolean,
 };
 
 export function useShipmentFormSet(id?: number) {
