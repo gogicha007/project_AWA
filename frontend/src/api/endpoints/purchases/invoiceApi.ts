@@ -13,6 +13,21 @@ export const invoiceApi = {
     return response.data;
   },
 
+  createInvoicesWithItemsBulk: async (
+    invoicesWithItems: InvoiceDTO[]
+  ) => {
+    console.log('invoicesWithItems', invoicesWithItems);
+    try {
+      const createInvoicesResponse = await apiClient.post(
+        '/invoices/bulk',
+        invoicesWithItems
+      );
+      return createInvoicesResponse;
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
+
   create: async (invoice: InvoiceDTO, userId: number): Promise<InvoiceDTO> => {
     try {
       const invoiceCreateData = {

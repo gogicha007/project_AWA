@@ -10,6 +10,7 @@ import {
 import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { UpdateInvoiceDTO } from './dto/update-invoice.dto';
 import { InvoicesService } from './invoices.service';
+import { CreateInvoicesWithItemsDTO } from './dto/create-invoices-with-items.dto';
 
 @Controller('invoices')
 export class InvoicesController {
@@ -20,6 +21,14 @@ export class InvoicesController {
     return this.invoiceService.create(createInvoiceDTO);
   }
 
+  @Post('/bulk')
+  async createBulk(
+    @Body() createInvoicesWithItemsDTO: CreateInvoicesWithItemsDTO,
+  ) {
+    return this.invoiceService.createInvoicesWithItems(
+      createInvoicesWithItemsDTO,
+    );
+  }
   @Get()
   async findAll() {
     return this.invoiceService.findAll();

@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsOptional,
+  IsInt,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateInvoiceItemDTO {
   @ApiProperty()
@@ -18,9 +24,9 @@ export class CreateInvoiceItemDTO {
   description: string;
 
   @ApiProperty()
-  @IsInt()
+  @IsNumber()
   @IsNotEmpty()
-  quantity: string;
+  quantity: number;
 
   @ApiProperty()
   @IsInt()
@@ -28,12 +34,12 @@ export class CreateInvoiceItemDTO {
   unitId: number;
 
   @ApiProperty()
-  @IsInt()
+  @IsNumber()
   @IsNotEmpty()
   unitPrice: number;
 
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   @IsOptional()
   total: number;
 }

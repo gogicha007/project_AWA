@@ -2,7 +2,7 @@ import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
-// import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
+import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
 
 export const createDefaultValues = (): ShipmentFormValues => ({
   alias: '',
@@ -104,8 +104,8 @@ export const originalInvoiceIds = (data: ShipmentFormValues) => {
 
 export const handleInvoiceChange = async (
   data: ShipmentFormValues,
-  // shipmentId: number,
-  // dbUserId: number
+  shipmentId: number,
+  dbUserId: number
 ) => {
   const existingInvoiceIds = originalInvoiceIds(data);
 
@@ -117,31 +117,27 @@ export const handleInvoiceChange = async (
       );
     }
 
-    // remove all invoices with existing ids
-    // if (existingInvoiceIds.length > 0) {
-    //   await invoiceApi.deleteByIds(existingInvoiceIds);
-    // }
+    // remove all invoices with shipmentId
+    if (existingInvoiceIds.length > 0) {
+      await invoiceApi.deleteAllByShipmentId(shipmentId);
+    }
 
     // // recreate all invoices & invoice items with shipmentId
-    // if (data.invoices && data.invoices.length > 0) {
-    //   const invoicesWithoutIds = data.invoices.map((invoice) => ({
-    //     ...invoice,
-    //     id: undefined,
-    //     shipmentId: shipmentId,
-    //   }));
-
-    //   await invoiceApi.createMultiple(invoicesWithoutIds, dbUserId);
-    // }
-
-    // if (data.invoiceItems && data.invoiceItems.length > 0) {
-    //   const itemsWithoutIds = data.invoiceItems.map((item) => ({
-    //     ...item,
-    //     id: undefined,
-    //     shipmentId: shipmentId,
-    //   }));
-
-    //   await invoiceItemApi.createMultiple(itemsWithoutIds, dbUserId);
-    // }
+    if (data.invoices && data.invoices.length > 0) {
+      const invoicesWithItems = data.invoices.map((invoice) => ({
+        vendorId: invoice.vendorId,
+        invoiceNumber: invoice.invoiceNumber,
+        invoiceDate: invoice.invoiceDate,
+        totalAmount: invoice.totalAmount || 0,
+        currencyId: invoice.currencyId,
+        userId: dbUserId,
+        shipmentId: shipmentId,
+        items:
+          data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
+          [],
+      }));
+      await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
+    }
 
     console.log('Invoice changes processed successfully');
     return { success: true, originalInvoiceIds: existingInvoiceIds };
