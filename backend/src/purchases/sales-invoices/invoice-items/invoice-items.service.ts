@@ -104,9 +104,14 @@ export class InvoiceItemsService {
 
   async removeAllByInvoiceId(invoiceId: number) {
     try {
-      return this.dbService.invoiceItem.deleteMany({
+      const result = await this.dbService.invoiceItem.deleteMany({
         where: { invoiceId },
       });
+      return {
+        success: true,
+        deletedCount: result.count,
+        message: `Deleted ${result.count} invoice items for invoice ID: ${invoiceId}`,
+      };
     } catch (error) {
       if (
         error instanceof PrismaClientKnownRequestError &&
@@ -116,6 +121,29 @@ export class InvoiceItemsService {
           `Items with for invoice ID ${invoiceId} not found`,
         );
       }
+    }
+  }
+
+  async removeAllByInvoiceIdsArray(invoiceIds: number[]) {
+    try {
+      const result = await this.dbService.invoiceItem.deleteMany({
+        where: { invoiceId: { in: invoiceIds } },
+      });
+      return {
+        success: true,
+        deletedCount: result.count,
+        message: `Deleted ${result.count} invoice items for invoice IDs: ${invoiceIds.join(', ')}`,
+      };
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException(
+          `Items for invoice IDs ${invoiceIds.join(', ')} not found`,
+        );
+      }
+      throw error;
     }
   }
 }

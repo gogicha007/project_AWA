@@ -15,6 +15,7 @@ apiClient.interceptors.request.use(async (config) => {
       const idToken = await user.getIdToken();
       config.headers.Authorization = `Bearer ${idToken}`;
     }
+    // console.log(config)
     return config;
   } catch (error) {
     console.error('Error getting auth token:', error);

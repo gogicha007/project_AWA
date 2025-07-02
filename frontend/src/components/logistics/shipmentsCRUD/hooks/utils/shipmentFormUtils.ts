@@ -1,6 +1,8 @@
 import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
+import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
+// import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
 
 export const createDefaultValues = (): ShipmentFormValues => ({
   alias: '',
@@ -92,13 +94,59 @@ export const detectFormChanges = (
   };
 };
 
-export const handleInvoiceChange = (data: ShipmentFormValues) => {
-  console.log('invoices', data.invoices);
-  // separate original/existing invoices
-  const originalInvoiceIds = data.invoices
+export const originalInvoiceIds = (data: ShipmentFormValues) => {
+  const idsArray = data.invoices
     ?.filter((invoice: InvoiceDTO) => Number(invoice.id) > 0)
     .map((invoice: InvoiceDTO) => invoice.id);
 
-  console.log('original invoice ids', originalInvoiceIds);
-  console.log('invoice items', data.invoiceItems);
+  return idsArray ?? [];
+};
+
+export const handleInvoiceChange = async (
+  data: ShipmentFormValues,
+  // shipmentId: number,
+  // dbUserId: number
+) => {
+  const existingInvoiceIds = originalInvoiceIds(data);
+
+  try {
+    // remove all invoice items with existing invoice ids
+    if (existingInvoiceIds.length > 0) {
+      await invoiceItemApi.deleteAllByInvoiceIdsArray(
+        existingInvoiceIds as number[]
+      );
+    }
+
+    // remove all invoices with existing ids
+    // if (existingInvoiceIds.length > 0) {
+    //   await invoiceApi.deleteByIds(existingInvoiceIds);
+    // }
+
+    // // recreate all invoices & invoice items with shipmentId
+    // if (data.invoices && data.invoices.length > 0) {
+    //   const invoicesWithoutIds = data.invoices.map((invoice) => ({
+    //     ...invoice,
+    //     id: undefined,
+    //     shipmentId: shipmentId,
+    //   }));
+
+    //   await invoiceApi.createMultiple(invoicesWithoutIds, dbUserId);
+    // }
+
+    // if (data.invoiceItems && data.invoiceItems.length > 0) {
+    //   const itemsWithoutIds = data.invoiceItems.map((item) => ({
+    //     ...item,
+    //     id: undefined,
+    //     shipmentId: shipmentId,
+    //   }));
+
+    //   await invoiceItemApi.createMultiple(itemsWithoutIds, dbUserId);
+    // }
+
+    console.log('Invoice changes processed successfully');
+    return { success: true, originalInvoiceIds: existingInvoiceIds };
+  } catch (error) {
+    console.error('Error handling invoice changes:', error);
+    throw error;
+  }
 };

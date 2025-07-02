@@ -2,7 +2,10 @@ import { ShipmentFormValues } from '../useShipmentFormSet';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
-import { detectFormChanges, handleInvoiceChange } from '../utils/shipmentFormUtils';
+import {
+  detectFormChanges,
+  handleInvoiceChange,
+} from '../utils/shipmentFormUtils';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
 export const useShipmentSubmitHandlers = (
@@ -44,7 +47,7 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
-          _hasRemovals: false, // Add this
+        _hasRemovals: false, // Add this
       });
 
       setShipmentId(createdShipment.id as number);
@@ -71,8 +74,6 @@ export const useShipmentSubmitHandlers = (
       }
 
       const changes = detectFormChanges(data, originalValues, dirtyFields);
-
-      console.log('dirty fields', dirtyFields);
 
       // Update general fields
       if (changes.hasGeneralFieldChanges) {
@@ -103,12 +104,9 @@ export const useShipmentSubmitHandlers = (
       }
 
       // Handle invoices&items
-      if (changes.hasInvoiceChanges()) {
-        console.log('has invoice changed');
-        handleInvoiceChange(data)
-      } else if (changes.hasInvoiceItemChanges()) {
-        console.log('has invoice items changed');
-
+      if (changes.hasInvoiceChanges() || changes.hasInvoiceItemChanges()) {
+        console.log('invoice/invoice items changed');
+        await handleInvoiceChange(data, shipmentId, dbUserId);
       }
 
       setSnackbarStatus({

@@ -83,6 +83,21 @@ export const invoiceItemApi = {
     }
   },
 
+  deleteAllByInvoiceIdsArray: async (invoiceIdsArray: number[]) => {
+    try {
+      const response = await apiClient.delete(
+        '/invoice-items/invoice/items/bulk', {
+          data: {
+            ids: invoiceIdsArray
+          }
+        }
+      );
+      return response.data
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
+
   delete: async (id: number) => {
     try {
       const response = await apiClient.delete(`/invoice-items/${id}`);

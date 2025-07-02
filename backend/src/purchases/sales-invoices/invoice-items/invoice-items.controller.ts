@@ -32,7 +32,12 @@ export class InvoiceItemsController {
   }
 
   @Delete('invoice/:id')
-  removeMany(@Param('id') id: string) {
+  async removeMany(@Param('id') id: string) {
     return this.itemsService.removeAllByInvoiceId(+id);
+  }
+
+  @Delete('invoice/items/bulk')
+  async removeManyFromArray(@Body('ids') ids: number[]) {
+    return this.itemsService.removeAllByInvoiceIdsArray(ids);
   }
 }
