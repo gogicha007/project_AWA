@@ -136,6 +136,7 @@ export const handleInvoiceChange = async (
           data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
           [],
       }));
+      console.log(invoicesWithItems)
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
 

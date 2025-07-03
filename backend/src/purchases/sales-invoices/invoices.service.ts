@@ -70,7 +70,6 @@ export class InvoicesService {
     try {
       return await this.dbService.$transaction(async () => {
         const createdInvoices: Array<InvoiceWithItems> = [];
-
         for (const invoiceData of invoicesData.invoices) {
           const { items, ...invoiceFields } = invoiceData;
 

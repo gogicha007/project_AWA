@@ -53,7 +53,7 @@ export class InvoicesController {
   }
 
   @Delete('shipment/:shipmentId')
-  async removeAllByShipmentId(@Param('shipmentId') shipmentId: string){
-    return this.invoiceService.removeByShipmentId(+shipmentId)
+  async removeAllByShipmentId(@Param('shipmentId') shipmentId: string) {
+    return this.invoiceService.removeByShipmentId(+shipmentId);
   }
 }
