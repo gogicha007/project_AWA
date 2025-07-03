@@ -9,14 +9,14 @@ import {
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
 export const useShipmentSubmitHandlers = (
-  shipmentId: number | undefined,
   dbUserId: number | null,
-  originalValues: Partial<ShipmentFormValues>,
   dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>,
-  setSnackbarStatus: (status: { message: string; success: boolean }) => void,
-  setSnackbarOpen: (open: boolean) => void,
+  originalValues: Partial<ShipmentFormValues>,
   reset: (data: ShipmentFormValues) => void,
-  setShipmentId: (id: number) => void
+  setSnackbarOpen: (open: boolean) => void,
+  setSnackbarStatus: (status: { message: string; success: boolean }) => void,
+  setShipmentId: (id: number) => void,
+  shipmentId: number | undefined,
 ) => {
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
     console.log('gen info submit');

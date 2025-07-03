@@ -187,4 +187,22 @@ export class InvoicesService {
       throw error;
     }
   }
+
+  async removeByShipmentId(shipmentId: number) {
+    try {
+      return this.dbService.invoice.deleteMany({
+        where: { shipmentId },
+      });
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException(
+          `Invoice with shipment ID ${shipmentId} not found`,
+        );
+      }
+      throw error;
+    }
+  }
 }

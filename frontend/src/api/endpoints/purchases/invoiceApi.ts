@@ -82,6 +82,7 @@ export const invoiceApi = {
       handleApiError(error);
     }
   },
+  
   delete: async (id: number) => {
     try {
       const response = await apiClient.delete(`/invoices/${id}`);

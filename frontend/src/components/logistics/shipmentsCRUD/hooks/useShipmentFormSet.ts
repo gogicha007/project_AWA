@@ -64,14 +64,14 @@ export function useShipmentFormSet(id?: number) {
   } = formMethods;
 
   const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(
-    shipmentId,
     dbUserId,
-    originalValues as Partial<ShipmentFormValues>,
     dirtyFields,
-    setSnackbarStatus,
-    setSnackbarOpen,
+    originalValues as Partial<ShipmentFormValues>,
     reset,
-    setShipmentId
+    setSnackbarOpen,
+    setSnackbarStatus,
+    setShipmentId,
+    shipmentId,
   );
 
   useShipmentData(
