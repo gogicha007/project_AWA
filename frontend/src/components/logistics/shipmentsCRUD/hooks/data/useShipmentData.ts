@@ -33,8 +33,9 @@ export const useShipmentData = (
     const fetchShipment = async () => {
       try {
         const shipment = await shipmentApi.getById(id);
+        console.log('shipment', shipment);
         const shipmentFormData = transformShipmentToFormData(shipment);
-
+        console.log('shipment data', shipmentFormData);
         reset(shipmentFormData);
         setFileDataArray(shipment.Files || []);
       } catch (error) {

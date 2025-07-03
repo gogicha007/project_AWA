@@ -70,7 +70,11 @@ export class ShipmentsService {
     const shipment = await this.dbService.shipment.findUnique({
       where: { id },
       include: {
-        Invoices: true,
+        Invoices: {
+          include: {
+            Items: true,
+          },
+        },
         Files: {
           select: {
             id: true,
