@@ -20,7 +20,7 @@ export const invoiceApi = {
     try {
       const createInvoicesResponse = await apiClient.post(
         '/invoices/bulk',
-        invoicesWithItems
+        { invoices: invoicesWithItems } // Wrap the invoices array in a `data` property
       );
       return createInvoicesResponse;
     } catch (error) {

@@ -125,18 +125,17 @@ export const handleInvoiceChange = async (
     // // recreate all invoices & invoice items with shipmentId
     if (data.invoices && data.invoices.length > 0) {
       const invoicesWithItems = data.invoices.map((invoice) => ({
-        vendorId: invoice.vendorId,
+        vendorId: +invoice.vendorId,
         invoiceNumber: invoice.invoiceNumber,
         invoiceDate: invoice.invoiceDate,
         totalAmount: invoice.totalAmount || 0,
-        currencyId: invoice.currencyId,
+        currencyId: +invoice.currencyId,
         userId: dbUserId,
         shipmentId: shipmentId,
         items:
           data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
           [],
       }));
-      console.log(invoicesWithItems)
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
 

@@ -57,6 +57,7 @@ const InvoiceItemColumns = (props: Props) => {
         return (
           <select
             {...register(`invoiceItems.${fieldIndex}.productId` as const, {
+              valueAsNumber: true,
               required: tVar('validation.required'),
               validate: (value) => value > 0 || tVar('validatoin.required'),
             })}
@@ -114,6 +115,7 @@ const InvoiceItemColumns = (props: Props) => {
         return (
           <select
             {...register(`invoiceItems.${fieldIndex}.unitId` as const, {
+              valueAsNumber: true,
               required: tVar('validation.required'),
               validate: (value) => value > 0 || tVar('validation.required'),
             })}

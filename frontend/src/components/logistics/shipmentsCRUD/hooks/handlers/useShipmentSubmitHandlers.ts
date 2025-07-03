@@ -106,6 +106,12 @@ export const useShipmentSubmitHandlers = (
       // Handle invoices&items
       if (changes.hasInvoiceChanges() || changes.hasInvoiceItemChanges()) {
         console.log('invoice/invoice items changed');
+
+        // Ensure invoices are an array
+        if (!Array.isArray(data.invoices)) {
+          throw new Error('Invoices must be an array');
+        }
+
         await handleInvoiceChange(data, shipmentId, dbUserId);
       }
 
