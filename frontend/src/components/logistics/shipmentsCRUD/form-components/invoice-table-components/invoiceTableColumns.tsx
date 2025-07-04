@@ -5,8 +5,9 @@ import { CurrencyDTO, VendorDTO } from '@/api/types';
 import DateInput from '@/components/controls/date-input/date-input';
 import InvoiceTableActions from './InvoiceTableActions';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-import { NumericFormat } from 'react-number-format';
 import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
+import ItemsButton from './ItemsButton';
+import TotalAmountDisplay from './TotalAmountDisplay';
 
 export interface InvoiceRow {
   id: number;
@@ -41,7 +42,7 @@ const InvoiceColumns = (props: Props) => {
     handleRemoveInvoice,
     dirtyFields,
   } = props;
-  const { control, register, watch } = useFormContext();
+  const { control, register } = useFormContext();
 
   return useMemo(
     () => [
@@ -74,6 +75,7 @@ const InvoiceColumns = (props: Props) => {
               required: 'Invoice number is required',
             })}
             className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
+            placeholder="Enter invoice number"
           />
         ),
       },
@@ -113,17 +115,7 @@ const InvoiceColumns = (props: Props) => {
         header: tVar('table.total_amount'),
         accessorKey: 'totalAmount',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => {
-          const totalAmount = watch(`invoices.${row.index}.totalAmount`) || 0;
-          return (
-            <NumericFormat
-              value={totalAmount}
-              displayType="text"
-              thousandSeparator=","
-              decimalScale={2}
-              fixedDecimalScale
-              className={styles.input}
-            />
-          );
+          return <TotalAmountDisplay rowIndex={row.index} />;
         },
       },
 
@@ -131,18 +123,13 @@ const InvoiceColumns = (props: Props) => {
         id: 'items',
         header: tVar('actions.items'),
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => {
-          const invoiceNumber = watch(`invoices.${row.index}.invoiceNumber`);
-          const invoiceDate = watch(`invoices.${row.index}.invoiceDate`);
-          const isEnabled = !!(invoiceNumber && invoiceDate);
-
           return (
-            <button
-              onClick={() => openItemsDialog(row.original.id)}
-              className={styles.itemButton}
-              disabled={!isEnabled}
-            >
-              {tVar('actions.items')}
-            </button>
+            <ItemsButton
+              rowIndex={row.index}
+              invoiceId={row.original.id}
+              onOpenDialog={openItemsDialog}
+              tVar={tVar}
+            />
           );
         },
       },
@@ -176,7 +163,6 @@ const InvoiceColumns = (props: Props) => {
       tVar,
       vendors,
       vendorsObj,
-      watch,
     ]
   );
 };
