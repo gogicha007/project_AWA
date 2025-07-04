@@ -24,7 +24,7 @@ export type ShipmentFormValues = {
   files?: Array<FileData>;
   invoices?: Array<InvoiceDTO>;
   invoiceItems?: Array<InvoiceItemDTO>;
-    _hasRemovals: boolean,
+  _hasRemovals: boolean;
 };
 
 export function useShipmentFormSet(id?: number) {
@@ -71,7 +71,7 @@ export function useShipmentFormSet(id?: number) {
     setSnackbarOpen,
     setSnackbarStatus,
     setShipmentId,
-    shipmentId,
+    shipmentId
   );
 
   useShipmentData(

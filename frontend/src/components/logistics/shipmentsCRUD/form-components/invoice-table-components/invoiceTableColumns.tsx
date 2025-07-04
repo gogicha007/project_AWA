@@ -50,8 +50,10 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'vendorId',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <select
-            {...register(`invoices.${row.index}.vendorId` as const)}
-            defaultValue={row.original.vendorId}
+            {...register(`invoices.${row.index}.vendorId` as const, {
+              valueAsNumber: true,
+              required: 'Vendor is required',
+            })}
             className={`${styles.vendorSelect} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
@@ -68,8 +70,9 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'invoiceNumber',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <input
-            {...register(`invoices.${row.index}.invoiceNumber` as const)}
-            defaultValue={row.original.invoiceNumber}
+            {...register(`invoices.${row.index}.invoiceNumber` as const, {
+              required: 'Invoice number is required',
+            })}
             className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
           />
         ),
@@ -91,8 +94,10 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'currencyId',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <select
-            {...register(`invoices.${row.index}.currencyId` as const)}
-            defaultValue={row.original.currencyId}
+            {...register(`invoices.${row.index}.currencyId` as const, {
+              valueAsNumber: true,
+              required: 'Currency is required',
+            })}
             className={`${styles.currency} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>

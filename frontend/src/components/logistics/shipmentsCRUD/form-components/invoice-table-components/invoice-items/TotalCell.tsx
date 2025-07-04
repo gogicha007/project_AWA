@@ -16,7 +16,7 @@ export function TotalCell({
   styles: Record<string, string>;
 }) {
   const fieldIndex = row.original.originalIndex ?? row.index;
-  
+
   const quantity = useWatch({
     control,
     name: `invoiceItems.${fieldIndex}.quantity`,
@@ -37,7 +37,7 @@ export function TotalCell({
 
   return (
     <NumericFormat
-      value={total}
+      value={+total}
       displayType="input"
       thousandSeparator=","
       decimalScale={2}

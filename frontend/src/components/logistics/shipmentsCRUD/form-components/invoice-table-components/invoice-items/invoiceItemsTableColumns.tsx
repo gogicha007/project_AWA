@@ -61,7 +61,6 @@ const InvoiceItemColumns = (props: Props) => {
               required: tVar('validation.required'),
               validate: (value) => value > 0 || tVar('validatoin.required'),
             })}
-            defaultValue={row.original.productId}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.productId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
@@ -119,7 +118,6 @@ const InvoiceItemColumns = (props: Props) => {
               required: tVar('validation.required'),
               validate: (value) => value > 0 || tVar('validation.required'),
             })}
-            defaultValue={row.original.unitId}
             className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>

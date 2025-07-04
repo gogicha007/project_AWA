@@ -5,6 +5,7 @@ import { formatToISODateTime } from '@/utils/dateFormat';
 import {
   detectFormChanges,
   handleInvoiceChange,
+  transformFormDataForSubmission,
 } from '../utils/shipmentFormUtils';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
@@ -47,7 +48,7 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
-        _hasRemovals: false, // Add this
+        _hasRemovals: false,
       });
 
       setShipmentId(createdShipment.id as number);
@@ -72,21 +73,22 @@ export const useShipmentSubmitHandlers = (
           'Shipment ID and User ID are required to update shipment'
         );
       }
+      console.log('edit/dirty fields',dirtyFields)
 
-      const changes = detectFormChanges(data, originalValues, dirtyFields);
+      // Transform form data to ensure proper data types
+      const transformedData = transformFormDataForSubmission(data);
 
-      // Update general fields
+      const changes = detectFormChanges(transformedData, originalValues, dirtyFields);      // Update general fields
       if (changes.hasGeneralFieldChanges) {
         console.log('general fields change detected');
-
-        const formattedDate = formatToISODateTime(data.declaration_date);
+        const formattedDate = formatToISODateTime(transformedData.declaration_date);
         await shipmentApi.update(
           {
             id: shipmentId,
-            alias: data.alias,
-            declaration_number: data.declaration_number ?? '',
+            alias: transformedData.alias,
+            declaration_number: transformedData.declaration_number ?? '',
             declaration_date: formattedDate as Date,
-            status: data.status,
+            status: transformedData.status,
           },
           dbUserId
         );
@@ -96,8 +98,8 @@ export const useShipmentSubmitHandlers = (
       if (changes.hasFileChanges()) {
         console.log('file change detected');
 
-        if (data.files && data.files.length > 0) {
-          await shipmentFileApi.update(data.files, shipmentId);
+        if (transformedData.files && transformedData.files.length > 0) {
+          await shipmentFileApi.update(transformedData.files, shipmentId);
         } else {
           await shipmentFileApi.deleteAllByShipmentId(shipmentId);
         }
@@ -108,11 +110,11 @@ export const useShipmentSubmitHandlers = (
         console.log('invoice/invoice items changed');
 
         // Ensure invoices are an array
-        if (!Array.isArray(data.invoices)) {
+        if (!Array.isArray(transformedData.invoices)) {
           throw new Error('Invoices must be an array');
         }
 
-        await handleInvoiceChange(data, shipmentId, dbUserId);
+        await handleInvoiceChange(transformedData, shipmentId, dbUserId);
       }
 
       setSnackbarStatus({

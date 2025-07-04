@@ -189,6 +189,20 @@ export class InvoicesService {
 
   async removeByShipmentId(shipmentId: number) {
     try {
+      const invoices = await this.dbService.invoice.findMany({
+        where: { shipmentId },
+        select: { id: true },
+      });
+
+      const invoiceIds = invoices.map((invoice) => invoice.id);
+
+      if (invoiceIds.length > 0) {
+        await this.dbService.invoiceItem.deleteMany({
+          where: { invoiceId: { in: invoiceIds } },
+        });
+      }
+
+      // Then delete the invoices
       return this.dbService.invoice.deleteMany({
         where: { shipmentId },
       });

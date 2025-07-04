@@ -98,8 +98,8 @@ export function useInvoiceTable(props: Props) {
         newInvoiceData.invoiceDate instanceof Date
           ? newInvoiceData.invoiceDate
           : newInvoiceData.invoiceDate
-          ? new Date(newInvoiceData.invoiceDate)
-          : new Date(),
+            ? new Date(newInvoiceData.invoiceDate)
+            : new Date(),
       vendorId: newInvoiceData.vendorId ?? 0,
       invoiceNumber: newInvoiceData.invoiceNumber ?? '',
       currencyId: newInvoiceData.currencyId ?? 0,
@@ -132,10 +132,9 @@ export function useInvoiceTable(props: Props) {
         keysArray.forEach((key) => {
           const value = defaultRow?.[key as keyof typeof defaultRow];
           resetField(`invoices.${index}.${key}` as InvoiceFieldPath, {
-            defaultValue:
-              Array.isArray(value)
-                ? undefined
-                : (value as string | number | Date | undefined),
+            defaultValue: Array.isArray(value)
+              ? undefined
+              : (value as string | number | Date | undefined),
           });
         });
       }

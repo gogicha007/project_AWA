@@ -4,6 +4,24 @@ import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
 import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
 
+const ensureNumber = (value: string | number | undefined | null): number => {
+  if (typeof value === 'number') return value;
+  if (typeof value === 'string') {
+    const parsed = parseFloat(value);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
+};
+
+const ensureInteger = (value: string | number | undefined | null): number => {
+  if (typeof value === 'number') return Math.floor(value);
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
+};
+
 export const createDefaultValues = (): ShipmentFormValues => ({
   alias: '',
   status: '' as '' | 'APPLIED' | 'DECLARED' | 'ARRIVED',
@@ -125,16 +143,22 @@ export const handleInvoiceChange = async (
     // // recreate all invoices & invoice items with shipmentId
     if (data.invoices && data.invoices.length > 0) {
       const invoicesWithItems = data.invoices.map((invoice) => ({
-        vendorId: +invoice.vendorId,
+        vendorId: ensureInteger(invoice.vendorId),
         invoiceNumber: invoice.invoiceNumber,
         invoiceDate: invoice.invoiceDate,
-        totalAmount: invoice.totalAmount || 0,
-        currencyId: +invoice.currencyId,
+        totalAmount: ensureNumber(invoice.totalAmount),
+        currencyId: ensureInteger(invoice.currencyId),
         userId: dbUserId,
         shipmentId: shipmentId,
-        items:
-          data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
-          [],
+        items: (data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) || [])
+          .map((item) => ({
+            ...item,
+            productId: ensureInteger(item.productId),
+            quantity: ensureNumber(item.quantity),
+            unitId: ensureInteger(item.unitId),
+            unitPrice: ensureNumber(item.unitPrice),
+            total: ensureNumber(item.total),
+          })),
       }));
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
@@ -145,4 +169,25 @@ export const handleInvoiceChange = async (
     console.error('Error handling invoice changes:', error);
     throw error;
   }
+};
+
+// Transform form data to ensure all numeric fields are properly typed
+export const transformFormDataForSubmission = (data: ShipmentFormValues): ShipmentFormValues => {
+  return {
+    ...data,
+    invoices: data.invoices?.map((invoice) => ({
+      ...invoice,
+      vendorId: ensureInteger(invoice.vendorId),
+      currencyId: ensureInteger(invoice.currencyId),
+      totalAmount: ensureNumber(invoice.totalAmount),
+    })),
+    invoiceItems: data.invoiceItems?.map((item) => ({
+      ...item,
+      productId: ensureInteger(item.productId),
+      quantity: ensureNumber(item.quantity),
+      unitId: ensureInteger(item.unitId),
+      unitPrice: ensureNumber(item.unitPrice),
+      total: ensureNumber(item.total),
+    })),
+  };
 };
