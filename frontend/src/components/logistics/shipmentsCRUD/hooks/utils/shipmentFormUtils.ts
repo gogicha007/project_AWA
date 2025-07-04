@@ -79,6 +79,7 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceChanges = () => {
+    if (dirtyFields._hasRemovals?.inInvoices) return true;
     if (!('invoices' in dirtyFields)) return false;
     if (
       Array.isArray(dirtyFields.invoices) &&

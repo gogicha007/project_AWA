@@ -7,6 +7,7 @@ import {
   handleInvoiceChange,
   transformFormDataForSubmission,
 } from '../utils/shipmentFormUtils';
+import { useRouter } from 'next/navigation';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 
 export const useShipmentSubmitHandlers = (
@@ -19,6 +20,7 @@ export const useShipmentSubmitHandlers = (
   setShipmentId: (id: number) => void,
   shipmentId: number | undefined
 ) => {
+  const router = useRouter();
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
     console.log('gen info submit');
     try {
@@ -128,6 +130,7 @@ export const useShipmentSubmitHandlers = (
         success: true,
       });
       setSnackbarOpen(true);
+      router.push('/shipments');
     } catch (error) {
       setSnackbarStatus({
         message:

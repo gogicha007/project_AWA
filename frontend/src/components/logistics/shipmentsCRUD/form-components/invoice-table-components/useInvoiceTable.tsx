@@ -174,7 +174,8 @@ export function useInvoiceTable(props: Props) {
               keepValues: true,
             }
           );
-          setValue('_hasRemovals.inInvoices', true, { shouldDirty: true });
+          if (id > 0)
+            setValue('_hasRemovals.inInvoices', true, { shouldDirty: true });
         }, 0);
       }
     }
