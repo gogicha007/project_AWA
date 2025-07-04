@@ -24,7 +24,10 @@ export type ShipmentFormValues = {
   files?: Array<FileData>;
   invoices?: Array<InvoiceDTO>;
   invoiceItems?: Array<InvoiceItemDTO>;
-  _hasRemovals: boolean;
+  _hasRemovals: {
+    inFiles: boolean
+    inInvoices: boolean,
+  };
 };
 
 export function useShipmentFormSet(id?: number) {

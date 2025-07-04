@@ -30,7 +30,7 @@ export const createDefaultValues = (): ShipmentFormValues => ({
   files: [],
   invoices: [],
   invoiceItems: [],
-  _hasRemovals: false,
+  _hasRemovals: { inFiles: false, inInvoices: false },
 });
 
 export const transformShipmentToFormData = (
@@ -49,7 +49,7 @@ export const transformShipmentToFormData = (
   invoiceItems: shipment.Invoices
     ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
     : [],
-  _hasRemovals: false,
+  _hasRemovals: { inFiles: false, inInvoices: false },
 });
 
 export const detectFormChanges = (
@@ -150,15 +150,17 @@ export const handleInvoiceChange = async (
         currencyId: ensureInteger(invoice.currencyId),
         userId: dbUserId,
         shipmentId: shipmentId,
-        items: (data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) || [])
-          .map((item) => ({
-            ...item,
-            productId: ensureInteger(item.productId),
-            quantity: ensureNumber(item.quantity),
-            unitId: ensureInteger(item.unitId),
-            unitPrice: ensureNumber(item.unitPrice),
-            total: ensureNumber(item.total),
-          })),
+        items: (
+          data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
+          []
+        ).map((item) => ({
+          ...item,
+          productId: ensureInteger(item.productId),
+          quantity: ensureNumber(item.quantity),
+          unitId: ensureInteger(item.unitId),
+          unitPrice: ensureNumber(item.unitPrice),
+          total: ensureNumber(item.total),
+        })),
       }));
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
@@ -172,7 +174,9 @@ export const handleInvoiceChange = async (
 };
 
 // Transform form data to ensure all numeric fields are properly typed
-export const transformFormDataForSubmission = (data: ShipmentFormValues): ShipmentFormValues => {
+export const transformFormDataForSubmission = (
+  data: ShipmentFormValues
+): ShipmentFormValues => {
   return {
     ...data,
     invoices: data.invoices?.map((invoice) => ({

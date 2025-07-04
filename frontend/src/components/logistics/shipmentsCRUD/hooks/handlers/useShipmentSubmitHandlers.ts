@@ -17,7 +17,7 @@ export const useShipmentSubmitHandlers = (
   setSnackbarOpen: (open: boolean) => void,
   setSnackbarStatus: (status: { message: string; success: boolean }) => void,
   setShipmentId: (id: number) => void,
-  shipmentId: number | undefined,
+  shipmentId: number | undefined
 ) => {
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
     console.log('gen info submit');
@@ -48,7 +48,7 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
-        _hasRemovals: false,
+        _hasRemovals: { inFiles: false, inInvoices: false },
       });
 
       setShipmentId(createdShipment.id as number);
@@ -73,15 +73,21 @@ export const useShipmentSubmitHandlers = (
           'Shipment ID and User ID are required to update shipment'
         );
       }
-      console.log('edit/dirty fields',dirtyFields)
+      console.log('edit/dirty fields', dirtyFields);
 
       // Transform form data to ensure proper data types
       const transformedData = transformFormDataForSubmission(data);
 
-      const changes = detectFormChanges(transformedData, originalValues, dirtyFields);      // Update general fields
+      const changes = detectFormChanges(
+        transformedData,
+        originalValues,
+        dirtyFields
+      ); // Update general fields
       if (changes.hasGeneralFieldChanges) {
         console.log('general fields change detected');
-        const formattedDate = formatToISODateTime(transformedData.declaration_date);
+        const formattedDate = formatToISODateTime(
+          transformedData.declaration_date
+        );
         await shipmentApi.update(
           {
             id: shipmentId,
