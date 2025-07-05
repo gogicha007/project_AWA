@@ -75,6 +75,7 @@ export const useShipmentSubmitHandlers = (
           'Shipment ID and User ID are required to update shipment'
         );
       }
+      console.log('data', data)
       console.log('edit/dirty fields', dirtyFields);
 
       // Transform form data to ensure proper data types

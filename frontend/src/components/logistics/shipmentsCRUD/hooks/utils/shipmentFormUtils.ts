@@ -3,6 +3,7 @@ import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
 import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
+import { formatToISODateTime } from '@/utils/dateFormat';
 
 const ensureNumber = (value: string | number | undefined | null): number => {
   if (typeof value === 'number') return value;
@@ -146,7 +147,7 @@ export const handleInvoiceChange = async (
       const invoicesWithItems = data.invoices.map((invoice) => ({
         vendorId: ensureInteger(invoice.vendorId),
         invoiceNumber: invoice.invoiceNumber,
-        invoiceDate: invoice.invoiceDate,
+        invoiceDate: formatToISODateTime(invoice.invoiceDate) as Date,
         totalAmount: ensureNumber(invoice.totalAmount),
         currencyId: ensureInteger(invoice.currencyId),
         userId: dbUserId,

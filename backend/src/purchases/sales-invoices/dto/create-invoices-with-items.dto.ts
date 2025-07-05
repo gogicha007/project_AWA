@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsNumber,
   IsString,
+  IsDateString,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -53,8 +54,8 @@ class CreateInvoiceForBulkDTO {
   @IsString()
   invoiceNumber: string;
 
-  @ApiProperty()
-  @IsString()
+  @ApiProperty({ required: true, type: String, format: 'date-time' })
+  @IsDateString()
   invoiceDate: string;
 
   @ApiProperty()
