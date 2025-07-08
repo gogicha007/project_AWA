@@ -48,6 +48,10 @@ class CreateInvoiceItemForBulkDTO {
 class CreateInvoiceForBulkDTO {
   @ApiProperty()
   @IsNumber()
+  id: number;
+
+  @ApiProperty()
+  @IsNumber()
   vendorId: number;
 
   @ApiProperty()

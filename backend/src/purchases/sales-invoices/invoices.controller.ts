@@ -25,10 +25,11 @@ export class InvoicesController {
   async createBulk(
     @Body() createInvoicesWithItemsDTO: CreateInvoicesWithItemsDTO,
   ) {
-    return this.invoiceService.createInvoicesWithItems(
+    return this.invoiceService.upsertInvoicesWithItems(
       createInvoicesWithItemsDTO,
     );
   }
+
   @Get()
   async findAll() {
     return this.invoiceService.findAll();

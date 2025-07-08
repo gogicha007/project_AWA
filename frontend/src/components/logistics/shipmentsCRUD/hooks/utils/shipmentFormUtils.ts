@@ -1,7 +1,7 @@
 import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
+// import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
 import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
 
@@ -131,20 +131,21 @@ export const handleInvoiceChange = async (
 
   try {
     // remove all invoice items with existing invoice ids
-    if (existingInvoiceIds.length > 0) {
-      await invoiceItemApi.deleteAllByInvoiceIdsArray(
-        existingInvoiceIds as number[]
-      );
-    }
+    // if (existingInvoiceIds.length > 0) {
+    //   await invoiceItemApi.deleteAllByInvoiceIdsArray(
+    //     existingInvoiceIds as number[]
+    //   );
+    // }
 
     // remove all invoices with shipmentId
-    if (existingInvoiceIds.length > 0) {
-      await invoiceApi.deleteAllByShipmentId(shipmentId);
-    }
+    // if (existingInvoiceIds.length > 0) {
+    //   await invoiceApi.deleteAllByShipmentId(shipmentId);
+    // }
 
     // // recreate all invoices & invoice items with shipmentId
     if (data.invoices && data.invoices.length > 0) {
       const invoicesWithItems = data.invoices.map((invoice) => ({
+        id: invoice.id,
         vendorId: ensureInteger(invoice.vendorId),
         invoiceNumber: invoice.invoiceNumber,
         invoiceDate: formatToISODateTime(invoice.invoiceDate) as Date,
@@ -157,6 +158,7 @@ export const handleInvoiceChange = async (
           []
         ).map((item) => ({
           ...item,
+          id: item.id,
           productId: ensureInteger(item.productId),
           quantity: ensureNumber(item.quantity),
           unitId: ensureInteger(item.unitId),

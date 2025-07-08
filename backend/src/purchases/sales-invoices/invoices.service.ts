@@ -133,6 +133,75 @@ export class InvoicesService {
       throw new BadRequestException('Failed to create invoices with items');
     }
   }
+
+  async upsertInvoicesWithItems(invoicesData: CreateInvoicesWithItemsDTO) {
+    try {
+      return await this.dbService.$transaction(async () => {
+        const upsertedInvoices: Array<InvoiceWithItems> = [];
+
+        for (const invoiceData of invoicesData.invoices) {
+          const { items, ...invoiceFields } = invoiceData;
+
+          const { id, ...invoiceFieldsWithoutId } = invoiceFields;
+
+          // Upsert invoice
+          const upsertedInvoice = await this.dbService.invoice.upsert({
+            where: { id: id || 0 },
+            create: { ...invoiceFieldsWithoutId },
+            update: { ...invoiceFieldsWithoutId },
+          });
+
+          // Upsert invoice items if any
+          if (items && items.length > 0) {
+            await Promise.all(
+              items.map((item) => {
+                const { id, invoiceId, ...itemFields } = item;
+                return this.dbService.invoiceItem.upsert({
+                  where: { id: id || 0 },
+                  create: { invoiceId: invoiceId, ...itemFields },
+                  update: { invoiceId: invoiceId, ...itemFields },
+                });
+              }),
+            );
+          }
+
+          // const invoiceWithItems = await this.dbService.invoice.findUnique({
+          //   where: { id: upsertedInvoice.id },
+          //   include: { Items: true },
+          // });
+
+          console.log(upsertedInvoice);
+
+          // if (invoiceWithItems) {
+          //   upsertedInvoices.push(invoiceWithItems);
+          // } else {
+          //   throw new NotFoundException(
+          //     `Invoice with ID ${upsertedInvoice.id} not found after upsert`,
+          //   );
+          // }
+        }
+
+        return upsertedInvoices;
+      });
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        throw new NotFoundException('Invoice already exists');
+      }
+
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2009'
+      ) {
+        throw new BadRequestException('Invalid input data');
+      }
+
+      throw new BadRequestException('Failed to upsert invoices with items');
+    }
+  }
+
   async findAll() {
     return this.dbService.invoice.findMany();
   }
