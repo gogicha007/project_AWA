@@ -21,6 +21,7 @@ export const useShipmentSubmitHandlers = (
   shipmentId: number | undefined
 ) => {
   const router = useRouter();
+  
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
     console.log('gen info submit');
     try {
@@ -50,7 +51,7 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
-        _hasRemovals: { inFiles: false, inInvoices: false },
+        _hasRemovals: { inFiles: false, inInvoices: [], inInvoiceItems: [] },
       });
 
       setShipmentId(createdShipment.id as number);
@@ -75,7 +76,7 @@ export const useShipmentSubmitHandlers = (
           'Shipment ID and User ID are required to update shipment'
         );
       }
-      console.log('data', data)
+      console.log('data', data);
       console.log('edit/dirty fields', dirtyFields);
 
       // Transform form data to ensure proper data types

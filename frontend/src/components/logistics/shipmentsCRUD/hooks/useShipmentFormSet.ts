@@ -26,7 +26,8 @@ export type ShipmentFormValues = {
   invoiceItems?: Array<InvoiceItemDTO>;
   _hasRemovals: {
     inFiles: boolean
-    inInvoices: boolean,
+    inInvoices: number[],
+    inInvoiceItems: number[]
   };
 };
 

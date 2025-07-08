@@ -60,6 +60,14 @@ export function useInvoiceItemsTable(props: Props) {
       if (index !== -1) {
         remove(index);
       }
+
+      // if (id > 0) {
+      //   const removedInvoiceItemsArr = getValues('') || [];
+      //   const newRemInvArr = [...removedInvoiceArr, id];
+      //   setValue('_hasRemovals.inInvoices', newRemInvArr, {
+      //     shouldDirty: true,
+      //   });
+      // }
     }
   };
 
@@ -98,6 +106,6 @@ export function useInvoiceItemsTable(props: Props) {
     getValues,
     handleAddItem,
     handleRemoveItem,
-    trigger
+    trigger,
   };
 }
