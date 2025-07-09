@@ -40,4 +40,9 @@ export class InvoiceItemsController {
   async removeManyFromArray(@Body('ids') ids: number[]) {
     return this.itemsService.removeAllByInvoiceIdsArray(ids);
   }
+
+  @Delete('items/bulk')
+  async removeItemsFromArray(@Body('ids') ids: number[]) {
+    return this.itemsService.removeAllItemsFromArray(ids);
+  }
 }

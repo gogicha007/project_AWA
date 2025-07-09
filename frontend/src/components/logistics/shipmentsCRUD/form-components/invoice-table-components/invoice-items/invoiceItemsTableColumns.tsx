@@ -6,9 +6,9 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form';
-import { InvoiceItemFormValues } from './useInvoiceItemsTable';
 import InvoiceTableActions from '../InvoiceTableActions';
 import { TotalCell } from './TotalCell';
+import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 
 export interface InvoiceItemRow {
   id: number;
@@ -23,13 +23,13 @@ export interface InvoiceItemRow {
 }
 
 type Props = {
-  control: Control<InvoiceItemFormValues>;
-  dirtyFields: FieldNamesMarkedBoolean<InvoiceItemFormValues>;
+  control: Control<ShipmentFormValues>;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
   handleRemoveItem: (id: number) => void;
   materials: MaterialNameDTO[];
   materialsObj: Record<string, string | undefined>;
-  register: UseFormRegister<InvoiceItemFormValues>;
-  setValue: UseFormSetValue<InvoiceItemFormValues>;
+  register: UseFormRegister<ShipmentFormValues>;
+  setValue: UseFormSetValue<ShipmentFormValues>;
   tVar: (key: string) => string;
   units: UnitDTO[];
   unitsObj: Record<string, string | undefined>;

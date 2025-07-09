@@ -1,7 +1,7 @@
 import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-// import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
+import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
 import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
 
@@ -95,6 +95,8 @@ export const detectFormChanges = (
 
   const hasInvoiceItemChanges = () => {
     if (!('invoiceItems' in dirtyFields)) return false;
+
+    // invoiceItems property is an array
     if (
       Array.isArray(dirtyFields.invoiceItems) &&
       dirtyFields.invoiceItems.length > 0
@@ -103,6 +105,7 @@ export const detectFormChanges = (
         Object.values(item).includes(true)
       );
     }
+    // invoiceItems property is a boolean
     if ('invoiceItems' in dirtyFields) return true;
   };
 
@@ -130,20 +133,29 @@ export const handleInvoiceChange = async (
   const existingInvoiceIds = originalInvoiceIds(data);
 
   try {
-    // remove all invoice items with existing invoice ids
-    // if (existingInvoiceIds.length > 0) {
-    //   await invoiceItemApi.deleteAllByInvoiceIdsArray(
-    //     existingInvoiceIds as number[]
-    //   );
-    // }
+    // check hasRemovals.inInvoiceItems
+    if (
+      data._hasRemovals.inInvoiceItems &&
+      data._hasRemovals.inInvoiceItems.length > 0
+    ) {
+      await invoiceItemApi.deleteItemsArray(data._hasRemovals.inInvoiceItems);
+    }
 
-    // remove all invoices with shipmentId
-    // if (existingInvoiceIds.length > 0) {
-    //   await invoiceApi.deleteAllByShipmentId(shipmentId);
-    // }
-
-    // // recreate all invoices & invoice items with shipmentId
+    // check hasRemovals.inInvoices
+    if (
+      data._hasRemovals.inInvoices &&
+      data._hasRemovals.inInvoices.length > 0
+    ) {
+      console.log('there are removed invoices');
+    }
+    
     if (data.invoices && data.invoices.length > 0) {
+      // remove all invoices with shipmentId
+      // if (existingInvoiceIds.length > 0) {
+      //   await invoiceApi.deleteAllByShipmentId(shipmentId);
+      // }
+
+      // // recreate all invoices & invoice items with shipmentId
       const invoicesWithItems = data.invoices.map((invoice) => ({
         id: invoice.id,
         vendorId: ensureInteger(invoice.vendorId),

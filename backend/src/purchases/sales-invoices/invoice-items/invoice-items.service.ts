@@ -146,4 +146,27 @@ export class InvoiceItemsService {
       throw error;
     }
   }
+
+  async removeAllItemsFromArray(itemIds: number[]) {
+    try {
+      const result = await this.dbService.invoiceItem.deleteMany({
+        where: { id: { in: itemIds } },
+      });
+      return {
+        success: true,
+        deletedCount: result.count,
+        message: `Deleted ${result.count} invoice items for IDs: ${itemIds.join(', ')}`,
+      };
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException(
+          `Items with IDs ${itemIds.join(', ')} not found`,
+        );
+      }
+      throw error;
+    }
+  }
 }

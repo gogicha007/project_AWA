@@ -136,53 +136,58 @@ export class InvoicesService {
 
   async upsertInvoicesWithItems(invoicesData: CreateInvoicesWithItemsDTO) {
     try {
-      return await this.dbService.$transaction(async () => {
-        const upsertedInvoices: Array<InvoiceWithItems> = [];
+      return await this.dbService.$transaction(
+        async () => {
+          const upsertedInvoices: Array<InvoiceWithItems> = [];
 
-        for (const invoiceData of invoicesData.invoices) {
-          const { items, ...invoiceFields } = invoiceData;
+          for (const invoiceData of invoicesData.invoices) {
+            const { items, ...invoiceFields } = invoiceData;
 
-          const { id, ...invoiceFieldsWithoutId } = invoiceFields;
+            const { id, ...invoiceFieldsWithoutId } = invoiceFields;
 
-          // Upsert invoice
-          const upsertedInvoice = await this.dbService.invoice.upsert({
-            where: { id: id || 0 },
-            create: { ...invoiceFieldsWithoutId },
-            update: { ...invoiceFieldsWithoutId },
-          });
+            // Upsert invoice
+            const upsertedInvoice = await this.dbService.invoice.upsert({
+              where: { id: id || 0 },
+              create: { ...invoiceFieldsWithoutId },
+              update: { ...invoiceFieldsWithoutId },
+              include: { Items: true },
+            });
 
-          // Upsert invoice items if any
-          if (items && items.length > 0) {
-            await Promise.all(
-              items.map((item) => {
-                const { id, invoiceId, ...itemFields } = item;
-                return this.dbService.invoiceItem.upsert({
-                  where: { id: id || 0 },
-                  create: { invoiceId: invoiceId, ...itemFields },
-                  update: { invoiceId: invoiceId, ...itemFields },
+            // Upsert invoice items if any
+            if (items && items.length > 0) {
+              for (const item of items) {
+                const { id: itemId, invoiceId, ...itemFields } = item;
+                await this.dbService.invoiceItem.upsert({
+                  where: { id: itemId || 0 },
+                  create: {
+                    invoiceId: invoiceId || upsertedInvoice.id,
+                    ...itemFields,
+                  },
+                  update: {
+                    invoiceId: invoiceId || upsertedInvoice.id,
+                    ...itemFields,
+                  },
                 });
-              }),
-            );
+              }
+              const refreshedInvoice = await this.dbService.invoice.findUnique({
+                where: { id: upsertedInvoice.id },
+                include: { Items: true },
+              });
+
+              if (refreshedInvoice) {
+                upsertedInvoices.push(refreshedInvoice);
+              }
+            } else {
+              upsertedInvoices.push(upsertedInvoice);
+            }
           }
 
-          // const invoiceWithItems = await this.dbService.invoice.findUnique({
-          //   where: { id: upsertedInvoice.id },
-          //   include: { Items: true },
-          // });
-
-          console.log(upsertedInvoice);
-
-          // if (invoiceWithItems) {
-          //   upsertedInvoices.push(invoiceWithItems);
-          // } else {
-          //   throw new NotFoundException(
-          //     `Invoice with ID ${upsertedInvoice.id} not found after upsert`,
-          //   );
-          // }
-        }
-
-        return upsertedInvoices;
-      });
+          return upsertedInvoices;
+        },
+        {
+          timeout: 10000,
+        },
+      );
     } catch (error) {
       if (
         error instanceof PrismaClientKnownRequestError &&
@@ -196,6 +201,21 @@ export class InvoicesService {
         error.code === 'P2009'
       ) {
         throw new BadRequestException('Invalid input data');
+      }
+
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2003'
+      ) {
+        throw new BadRequestException(
+          'Foreign key constraint failed on the field: {field_name}',
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new BadRequestException(
+          `Failed to upsert invoices with items ${error.code}`,
+        );
       }
 
       throw new BadRequestException('Failed to upsert invoices with items');

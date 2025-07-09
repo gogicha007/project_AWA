@@ -3,6 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import InvoiceItemColumns, { InvoiceItemRow } from './invoiceItemsTableColumns';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
+import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 
 type Props = {
   auxData: {
@@ -25,7 +26,7 @@ export function useInvoiceItemsTable(props: Props) {
   } = props;
 
   const { control, formState, register, setValue, getValues, trigger } =
-    useFormContext<InvoiceItemFormValues>();
+    useFormContext<ShipmentFormValues>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -61,13 +62,14 @@ export function useInvoiceItemsTable(props: Props) {
         remove(index);
       }
 
-      // if (id > 0) {
-      //   const removedInvoiceItemsArr = getValues('') || [];
-      //   const newRemInvArr = [...removedInvoiceArr, id];
-      //   setValue('_hasRemovals.inInvoices', newRemInvArr, {
-      //     shouldDirty: true,
-      //   });
-      // }
+      if (id > 0) {
+        const removedInvoiceItemsArr =
+          getValues('_hasRemovals.inInvoiceItems') || [];
+        const newRemInvArr = [...removedInvoiceItemsArr, id];
+        setValue('_hasRemovals.inInvoiceItems', newRemInvArr, {
+          shouldDirty: true,
+        });
+      }
     }
   };
 

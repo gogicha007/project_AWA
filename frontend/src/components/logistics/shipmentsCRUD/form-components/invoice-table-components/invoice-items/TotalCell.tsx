@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { NumericFormat } from 'react-number-format';
 import { Control, UseFormSetValue, useWatch } from 'react-hook-form';
-import { InvoiceItemFormValues } from './useInvoiceItemsTable';
 import { InvoiceItemRow } from './invoiceItemsTableColumns';
+import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 
 export function TotalCell({
   row,
@@ -11,8 +11,8 @@ export function TotalCell({
   styles,
 }: {
   row: { index: number; original: InvoiceItemRow };
-  control: Control<InvoiceItemFormValues>;
-  setValue: UseFormSetValue<InvoiceItemFormValues>;
+  control: Control<ShipmentFormValues>;
+  setValue: UseFormSetValue<ShipmentFormValues>;
   styles: Record<string, string>;
 }) {
   const fieldIndex = row.original.originalIndex ?? row.index;
