@@ -170,7 +170,7 @@ export function useInvoiceTable(props: Props) {
               invoiceItems: currentFilteredItems,
             },
             {
-              keepDirty: false,
+              keepDirty: true,
               keepValues: true,
             }
           );
