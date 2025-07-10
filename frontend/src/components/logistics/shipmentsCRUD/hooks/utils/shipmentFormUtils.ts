@@ -80,8 +80,8 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceChanges = () => {
-    if (dirtyFields._hasRemovals?.inInvoices) return true;
     if (!('invoices' in dirtyFields)) return false;
+    // in case invoice property of dirtyFields is an array
     if (
       Array.isArray(dirtyFields.invoices) &&
       dirtyFields.invoices.length > 0
@@ -146,16 +146,13 @@ export const handleInvoiceChange = async (
       data._hasRemovals.inInvoices &&
       data._hasRemovals.inInvoices.length > 0
     ) {
+      await invoiceItemApi.deleteAllByInvoiceIdsArray(
+        data._hasRemovals.inInvoices
+      );
       console.log('there are removed invoices');
     }
-    
-    if (data.invoices && data.invoices.length > 0) {
-      // remove all invoices with shipmentId
-      // if (existingInvoiceIds.length > 0) {
-      //   await invoiceApi.deleteAllByShipmentId(shipmentId);
-      // }
 
-      // // recreate all invoices & invoice items with shipmentId
+    if (data.invoices && data.invoices.length > 0) {
       const invoicesWithItems = data.invoices.map((invoice) => ({
         id: invoice.id,
         vendorId: ensureInteger(invoice.vendorId),

@@ -21,7 +21,7 @@ export const useShipmentSubmitHandlers = (
   shipmentId: number | undefined
 ) => {
   const router = useRouter();
-  
+
   const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
     console.log('gen info submit');
     try {

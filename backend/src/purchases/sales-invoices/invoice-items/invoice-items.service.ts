@@ -58,8 +58,12 @@ export class InvoiceItemsService {
     try {
       return this.dbService.invoiceItem.findMany();
     } catch (error) {
-      console.error(error);
-      throw new BadRequestException('Failed to fetch invoice items');
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new NotFoundException(
+          `Failed to fetch invoice items, error code: ${error.code}`,
+        );
+      }
+      throw error;
     }
   }
 

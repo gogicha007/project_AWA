@@ -7,9 +7,16 @@ import { DatabaseService } from 'src/database/database/database.service';
 import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { UpdateInvoiceDTO } from './dto/update-invoice.dto';
 import { InvoiceItemsService } from './invoice-items/invoice-items.service';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientUnknownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientInitializationError,
+  PrismaClientValidationError,
+} from '@prisma/client/runtime/library';
 import { CreateInvoicesWithItemsDTO } from './dto/create-invoices-with-items.dto';
 import { Prisma } from 'generated/prisma';
+import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 type InvoiceWithItems = Prisma.InvoiceGetPayload<{
   include: { Items: true };
@@ -258,7 +265,7 @@ export class InvoicesService {
     }
   }
 
-  async remove(id: number) {
+  async removeOne(id: number) {
     try {
       await this.invoiceItemsService.removeAllByInvoiceId(id);
 
@@ -273,6 +280,45 @@ export class InvoicesService {
         throw new NotFoundException(`Invoice with ID ${id} not found`);
       }
       throw error;
+    }
+  }
+
+  async removeByIdsArray(invoiceIdsArr: number[]) {
+    try {
+      const resultsArr: DeleteOperationResult[] = [];
+      if (invoiceIdsArr.length > 0) {
+        const resultRemoveItems =
+          await this.invoiceItemsService.removeAllByInvoiceIdsArray(
+            invoiceIdsArr,
+          );
+
+        resultsArr.push(resultRemoveItems);
+        const resultRemoveIncoices = await this.dbService.invoice.deleteMany({
+          where: { id: { in: invoiceIdsArr } },
+        });
+        resultsArr.push({
+          success: true,
+          deletedCount: resultRemoveIncoices.count,
+          message: `Deleted ${resultRemoveIncoices.count} invoices`,
+        });
+      }
+      return resultsArr;
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError ||
+        error instanceof PrismaClientUnknownRequestError ||
+        error instanceof PrismaClientRustPanicError ||
+        error instanceof PrismaClientInitializationError ||
+        error instanceof PrismaClientValidationError
+      ) {
+        throw new BadRequestException(
+          `Failed to delete invoices with items ${
+            error instanceof PrismaClientKnownRequestError
+              ? error.code
+              : error.name || 'Unknown error'
+          }`,
+        );
+      }
     }
   }
 

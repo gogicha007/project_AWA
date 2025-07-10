@@ -13,9 +13,7 @@ export const invoiceApi = {
     return response.data;
   },
 
-  createInvoicesWithItemsBulk: async (
-    invoicesWithItems: InvoiceDTO[]
-  ) => {
+  createInvoicesWithItemsBulk: async (invoicesWithItems: InvoiceDTO[]) => {
     console.log('invoicesWithItems', invoicesWithItems);
     try {
       const createInvoicesResponse = await apiClient.post(
@@ -82,7 +80,20 @@ export const invoiceApi = {
       handleApiError(error);
     }
   },
-  
+
+  deleteInvoiceArray: async (invoiceIds: number[]) => {
+    try {
+      const response = await apiClient.delete('/invoices/delete/bulk', {
+        data: {
+          ids: invoiceIds,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
+
   delete: async (id: number) => {
     try {
       const response = await apiClient.delete(`/invoices/${id}`);
