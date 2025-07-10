@@ -82,11 +82,7 @@ export const useShipmentSubmitHandlers = (
       // Transform form data to ensure proper data types
       const transformedData = transformFormDataForSubmission(data);
 
-      const changes = detectFormChanges(
-        transformedData,
-        originalValues,
-        dirtyFields
-      ); // Update general fields
+      const changes = detectFormChanges(dirtyFields); // Update general fields
       if (changes.hasGeneralFieldChanges) {
         console.log('general fields change detected');
         const formattedDate = formatToISODateTime(

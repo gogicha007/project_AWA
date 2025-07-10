@@ -4,24 +4,7 @@ import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
 import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
-
-const ensureNumber = (value: string | number | undefined | null): number => {
-  if (typeof value === 'number') return value;
-  if (typeof value === 'string') {
-    const parsed = parseFloat(value);
-    return isNaN(parsed) ? 0 : parsed;
-  }
-  return 0;
-};
-
-const ensureInteger = (value: string | number | undefined | null): number => {
-  if (typeof value === 'number') return Math.floor(value);
-  if (typeof value === 'string') {
-    const parsed = parseInt(value, 10);
-    return isNaN(parsed) ? 0 : parsed;
-  }
-  return 0;
-};
+import { ensureNumber, ensureInteger } from '@/utils/helper';
 
 export const createDefaultValues = (): ShipmentFormValues => ({
   alias: '',
@@ -54,8 +37,6 @@ export const transformShipmentToFormData = (
 });
 
 export const detectFormChanges = (
-  data: ShipmentFormValues,
-  originalValues: Partial<ShipmentFormValues>,
   dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>
 ) => {
   const generalFields: (keyof ShipmentFormValues)[] = [
@@ -181,7 +162,6 @@ export const handleInvoiceChange = async (
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
 
-    console.log('Invoice changes processed successfully');
     return { success: true, originalInvoiceIds: existingInvoiceIds };
   } catch (error) {
     console.error('Error handling invoice changes:', error);

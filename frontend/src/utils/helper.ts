@@ -1,6 +1,5 @@
 /* takes array of objects {id: value, anyKey: value} 
 and converts to object with id value as key and anyKey value as value*/
-
 export function arrayToIdValueMap<
   T extends { id?: string | number },
   K extends keyof T,
@@ -16,6 +15,7 @@ export function arrayToIdValueMap<
   );
 }
 
+// temporary id generator for CRUD operations, generetes negative numbers
 export const negIdCounter = {
   value: 0,
   getId: function () {
@@ -24,4 +24,22 @@ export const negIdCounter = {
   reset: function () {
     this.value = 0;
   },
+};
+
+export const ensureNumber = (value: string | number | undefined | null): number => {
+  if (typeof value === 'number') return value;
+  if (typeof value === 'string') {
+    const parsed = parseFloat(value);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
+};
+
+export const ensureInteger = (value: string | number | undefined | null): number => {
+  if (typeof value === 'number') return Math.floor(value);
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
 };
