@@ -19,28 +19,28 @@ export interface InvoiceRow {
 }
 
 type Props = {
-  tVar: (key: string) => string;
-  vendors: Partial<VendorDTO>[];
   currencies: Partial<CurrencyDTO>[];
-  vendorsObj: Record<string, string | undefined>;
   currenciesObj: Record<string, string | undefined>;
-  openItemsDialog: (id: number) => void;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
   handleResetInvoice: (id: number) => void;
   handleRemoveInvoice: (id: number) => void;
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
+  openItemsDialog: (id: number) => void;
+  tVar: (key: string) => string;
+  vendors: Partial<VendorDTO>[];
+  vendorsObj: Record<string, string | undefined>;
 };
 
 const InvoiceColumns = (props: Props) => {
   const {
-    tVar,
-    vendors,
     currencies,
-    vendorsObj,
     currenciesObj,
-    openItemsDialog,
+    dirtyFields,
     handleResetInvoice,
     handleRemoveInvoice,
-    dirtyFields,
+    openItemsDialog,
+    tVar,
+    vendors,
+    vendorsObj,
   } = props;
   const { control, register } = useFormContext();
 

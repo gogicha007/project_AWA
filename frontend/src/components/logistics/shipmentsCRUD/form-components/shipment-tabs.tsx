@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
-import FreightTable from '@/components/purchases/freights/freight-table';
+import FreightFields from './freight-table-components/FreightFields';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
@@ -64,7 +64,12 @@ export default function ShipmentTabs({
             snackbarControls={snackbarControls}
           />
         )}
-        {activeTab === 2 && <FreightTable />}
+        {activeTab === 2 && (
+          <FreightFields
+            currencies={auxData.currencies}
+            snackbarControls={snackbarControls}
+          />
+        )}
       </div>
     </div>
   );
