@@ -100,7 +100,7 @@ export const detectFormChanges = (
 
     if (!('invoiceItems' in dirtyFields)) return false;
 
-    // invoiceItems property is an array
+    // in case invoiceItems property is an array
     if (
       Array.isArray(dirtyFields.invoiceItems) &&
       dirtyFields.invoiceItems.length > 0
