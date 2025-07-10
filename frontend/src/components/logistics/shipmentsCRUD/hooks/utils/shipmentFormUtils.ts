@@ -80,6 +80,8 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceChanges = () => {
+    if (dirtyFields?._hasRemovals?.inInvoices) return true;
+
     if (!('invoices' in dirtyFields)) return false;
     // in case invoice property of dirtyFields is an array
     if (
@@ -94,6 +96,8 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceItemChanges = () => {
+    if (dirtyFields?._hasRemovals?.inInvoiceItems) return true;
+
     if (!('invoiceItems' in dirtyFields)) return false;
 
     // invoiceItems property is an array
@@ -108,7 +112,6 @@ export const detectFormChanges = (
     // invoiceItems property is a boolean
     if ('invoiceItems' in dirtyFields) return true;
     // if there are removals in items
-    if ('_hasRemovals.inInvoiceITems' in dirtyFields) return true;
   };
 
   return {
@@ -140,7 +143,6 @@ export const handleInvoiceChange = async (
       data._hasRemovals.inInvoiceItems &&
       data._hasRemovals.inInvoiceItems.length > 0
     ) {
-      console.log('hasRemovals inInvoiceItems');
       await invoiceItemApi.deleteItemsArray(data._hasRemovals.inInvoiceItems);
     }
 
@@ -149,10 +151,7 @@ export const handleInvoiceChange = async (
       data._hasRemovals.inInvoices &&
       data._hasRemovals.inInvoices.length > 0
     ) {
-      console.log('hasRemovals inInvoices');
-      await invoiceItemApi.deleteAllByInvoiceIdsArray(
-        data._hasRemovals.inInvoices
-      );
+      await invoiceApi.deleteInvoiceArray(data._hasRemovals.inInvoices);
       console.log('there are removed invoices');
     }
 

@@ -293,13 +293,14 @@ export class InvoicesService {
           );
 
         resultsArr.push(resultRemoveItems);
-        const resultRemoveIncoices = await this.dbService.invoice.deleteMany({
+
+        const resultRemovedInvoices = await this.dbService.invoice.deleteMany({
           where: { id: { in: invoiceIdsArr } },
         });
         resultsArr.push({
           success: true,
-          deletedCount: resultRemoveIncoices.count,
-          message: `Deleted ${resultRemoveIncoices.count} invoices`,
+          deletedCount: resultRemovedInvoices.count,
+          message: `Deleted ${resultRemovedInvoices.count} invoices`,
         });
       }
       return resultsArr;
