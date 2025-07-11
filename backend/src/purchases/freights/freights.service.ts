@@ -108,4 +108,16 @@ export class FreightsService {
       throw error;
     }
   }
+
+  async removeByShipmentId(shipmentId: number) {
+    const removedFreight = await this.dbService.freight.deleteMany({
+      where: { shipmentId },
+    });
+
+    return {
+      success: true,
+      deletedCount: removedFreight.count,
+      message: `Deleted ${removedFreight.count} freights for shipment ID: ${shipmentId}`,
+    };
+  }
 }

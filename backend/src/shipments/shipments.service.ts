@@ -7,6 +7,8 @@ import { DatabaseService } from 'src/database/database/database.service';
 import { CreateShipmentDTO } from './dto/create-shipment.dto';
 import { UpdateShipmentDTO } from './dto/update-shipment.dto';
 import { ShipmentFilesService } from './files/files.service';
+import { InvoicesService } from 'src/purchases/sales-invoices/invoices.service';
+import { FreightsService } from 'src/purchases/freights/freights.service';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()
@@ -14,6 +16,8 @@ export class ShipmentsService {
   constructor(
     private readonly dbService: DatabaseService,
     private readonly shipmentFilesService: ShipmentFilesService,
+    private readonly InvoicesService: InvoicesService,
+    private readonly FreightsService: FreightsService,
   ) {}
 
   async create(createShipmentDto: CreateShipmentDTO) {
@@ -117,9 +121,18 @@ export class ShipmentsService {
     try {
       await this.shipmentFilesService.removeByShipmentId(id);
 
-      return this.dbService.shipment.delete({
+      await this.InvoicesService.removeByShipmentId(id);
+
+      await this.FreightsService.removeByShipmentId(id);
+
+      const removedShipment = await this.dbService.shipment.delete({
         where: { id },
       });
+
+      return {
+        success: true,
+        message: `Deleted shipment with id: ${removedShipment.id}`,
+      };
     } catch (error) {
       if (
         error instanceof PrismaClientKnownRequestError &&

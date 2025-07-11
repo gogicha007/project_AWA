@@ -339,9 +339,14 @@ export class InvoicesService {
       }
 
       // Then delete the invoices
-      return this.dbService.invoice.deleteMany({
+      const removedInvoices = await this.dbService.invoice.deleteMany({
         where: { shipmentId },
       });
+      return {
+        success: true,
+        deletedCount: removedInvoices.count,
+        message: `Deleted ${removedInvoices.count} invoices for shipment ID: ${shipmentId}`,
+      };
     } catch (error) {
       if (
         error instanceof PrismaClientKnownRequestError &&

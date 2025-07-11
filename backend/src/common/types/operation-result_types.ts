@@ -16,7 +16,7 @@ export interface UpdateOperationResult {
   message: string;
 }
 
-export interface FintOperationResult {
+export interface FindOperationResult {
   success: boolean;
   searchCount?: number;
   message: string;
