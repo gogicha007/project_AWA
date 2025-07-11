@@ -8,6 +8,7 @@ import {
 import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import { useTranslations } from 'next-intl';
 import { useInvoiceTable } from './useInvoiceTable';
+import { InvoiceRow } from './invoiceTableColumns';
 import AddButton from '@/components/controls/add-button/AddButton';
 import InvoiceItemsTable from './invoice-items/InvoiceItemsTable';
 import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
@@ -39,11 +40,12 @@ const InvoiceFields = ({ auxData, snackbarControls }: Props) => {
   });
 
   const table = useReactTable({
-    data: fields,
+    data: fields as InvoiceRow[],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
+  console.log('invoice fields', fields)
   return (
     <>
       <div className={styles.tableContainer}>

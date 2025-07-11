@@ -49,14 +49,14 @@ export const useShipmentData = (
 
     fetchShipment();
   }, [
-    id,
-    reset,
     authLoading,
-    vendorsLoading,
     currenciesLoading,
     dbUserId,
+    id,
+    reset,
     setFileDataArray,
     setLoading,
     setShipmentId,
+    vendorsLoading,
   ]);
 };

@@ -9,6 +9,8 @@ import {
 import InvoiceTableActions from '../InvoiceTableActions';
 import { TotalCell } from './TotalCell';
 import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
+// import { Controller } from 'react-hook-form';
+// import Select from 'react-select';
 
 export interface InvoiceItemRow {
   id: number;
@@ -49,6 +51,18 @@ const InvoiceItemColumns = (props: Props) => {
     tVar,
   } = props;
   return [
+    // { header: tVar('table.material'),
+    //   accessorKey: 'productId',
+    //   cell: ({row}: {row: {index: number; original: InvoiceItemRow}})=>{
+    //     const fieldIndex = row.original.originalIndex ?? row.index;
+    //     return (
+    //       <Controller
+          
+    //         control={control}
+    //       />
+    //     )
+    //   }
+    // },
     {
       header: tVar('table.material'),
       accessorKey: 'productId',
