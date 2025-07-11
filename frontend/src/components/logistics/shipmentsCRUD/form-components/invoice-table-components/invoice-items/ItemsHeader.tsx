@@ -1,5 +1,5 @@
 import { Control, useWatch } from 'react-hook-form';
-import { InvoiceItemFormValues } from './useInvoiceItemsTable';
+import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 import { NumericFormat } from 'react-number-format';
 import { useMemo } from 'react';
 
@@ -8,7 +8,7 @@ export function ItemsHeader({
   invoice,
   invoiceId,
 }: {
-  control: Control<InvoiceItemFormValues>;
+  control: Control<ShipmentFormValues>;
   invoice: {
     num: string;
     date: Date | string | null;

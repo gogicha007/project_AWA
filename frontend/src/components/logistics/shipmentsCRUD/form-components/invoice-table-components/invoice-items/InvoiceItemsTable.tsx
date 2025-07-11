@@ -65,8 +65,8 @@ export default function InvoiceItemsTable({
     const invoiceItems = formValues.invoiceItems || [];
 
     const currentTotal = invoiceItems
-      .filter((item: InvoiceItemRow) => item.invoiceId === invoice.id)
-      .reduce((sum: number, item: InvoiceItemRow) => {
+      .filter((item) => item.invoiceId === invoice.id)
+      .reduce((sum, item) => {
         const total = Number(item.total) || 0;
         return sum + total;
       }, 0);
@@ -78,12 +78,12 @@ export default function InvoiceItemsTable({
     const formValues = getValues();
     const invoiceItems = formValues.invoiceItems || [];
     const currentItems = invoiceItems.filter(
-      (item: InvoiceItemRow) => item.invoiceId === invoice.id
+      (item) => item.invoiceId === invoice.id
     );
 
     const validationPromises = currentItems.map((_, index) => {
       const actualIndex = invoiceItems.findIndex(
-        (item: InvoiceItemRow) =>
+        (item) =>
           item.invoiceId === invoice.id && item === currentItems[index]
       );
       return trigger([
@@ -107,7 +107,7 @@ export default function InvoiceItemsTable({
   };
 
   const itemsTable = useReactTable({
-    data: currentInvoiceItems,
+    data: currentInvoiceItems as InvoiceItemRow[],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getRowId: (row) => String(row.id),
