@@ -73,74 +73,6 @@ export class InvoicesService {
     }
   }
 
-  async createInvoicesWithItems(invoicesData: CreateInvoicesWithItemsDTO) {
-    try {
-      return await this.dbService.$transaction(async () => {
-        const createdInvoices: Array<InvoiceWithItems> = [];
-        for (const invoiceData of invoicesData.invoices) {
-          const { items, ...invoiceFields } = invoiceData;
-
-          // Create invoice
-          const createdInvoice = await this.dbService.invoice.create({
-            data: {
-              ...invoiceFields,
-            },
-          });
-
-          // Create invoice items if any
-          if (items && items.length > 0) {
-            const invoiceItemsData = items.map((item) => ({
-              invoiceId: createdInvoice.id,
-              productId: item.productId,
-              description: item.description,
-              quantity: item.quantity,
-              unitId: item.unitId,
-              unitPrice: item.unitPrice,
-              total: item.total,
-            }));
-
-            await this.dbService.invoiceItem.createMany({
-              data: invoiceItemsData,
-            });
-          }
-
-          // Get the invoice with items
-          const invoiceWithItems = await this.dbService.invoice.findUnique({
-            where: { id: createdInvoice.id },
-            include: { Items: true },
-          });
-
-          if (invoiceWithItems) {
-            createdInvoices.push({ ...invoiceWithItems });
-          } else {
-            throw new NotFoundException(
-              `Created invoice with ID ${createdInvoice.id} not found`,
-            );
-          }
-        }
-
-        return createdInvoices;
-      });
-    } catch (error) {
-      if (
-        error instanceof PrismaClientKnownRequestError &&
-        error.code === 'P2002'
-      )
-        throw new NotFoundException('Invoice already exists');
-
-      if (
-        error instanceof PrismaClientKnownRequestError &&
-        error.code === 'P2009'
-      )
-        throw new BadRequestException('Invalid input data');
-
-      if (error instanceof PrismaClientKnownRequestError)
-        throw new BadRequestException(`Database error: ${error.message}`);
-
-      throw new BadRequestException('Failed to create invoices with items');
-    }
-  }
-
   async upsertInvoicesWithItems(invoicesData: CreateInvoicesWithItemsDTO) {
     try {
       return await this.dbService.$transaction(
@@ -160,21 +92,29 @@ export class InvoicesService {
               include: { Items: true },
             });
 
+            console.log('upserted invoice id', upsertedInvoice.id);
             // Upsert invoice items if any
             if (items && items.length > 0) {
               for (const item of items) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { id: itemId, invoiceId, ...itemFields } = item;
-                await this.dbService.invoiceItem.upsert({
-                  where: { id: itemId || 0 },
-                  create: {
-                    invoiceId: invoiceId || upsertedInvoice.id,
-                    ...itemFields,
-                  },
-                  update: {
-                    invoiceId: invoiceId || upsertedInvoice.id,
-                    ...itemFields,
-                  },
-                });
+
+                if (itemId && itemId > 0) {
+                  await this.dbService.invoiceItem.update({
+                    where: { id: itemId },
+                    data: {
+                      invoiceId: upsertedInvoice.id,
+                      ...itemFields,
+                    },
+                  });
+                } else {
+                  await this.dbService.invoiceItem.create({
+                    data: {
+                      invoiceId: upsertedInvoice.id,
+                      ...itemFields,
+                    },
+                  });
+                }
               }
               const refreshedInvoice = await this.dbService.invoice.findUnique({
                 where: { id: upsertedInvoice.id },
@@ -225,7 +165,9 @@ export class InvoicesService {
         );
       }
 
-      throw new BadRequestException('Failed to upsert invoices with items');
+      throw new BadRequestException(
+        `Failed to upsert invoices with items ${error}`,
+      );
     }
   }
 
