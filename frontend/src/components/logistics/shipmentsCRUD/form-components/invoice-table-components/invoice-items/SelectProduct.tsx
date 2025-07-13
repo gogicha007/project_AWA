@@ -1,4 +1,9 @@
-import { Controller, Control, FieldNamesMarkedBoolean } from 'react-hook-form';
+import {
+  Controller,
+  Control,
+  FieldNamesMarkedBoolean,
+  FieldPath,
+} from 'react-hook-form';
 import Select from 'react-select';
 import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 
@@ -6,6 +11,7 @@ type Props = {
   control: Control<ShipmentFormValues>;
   dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
   fieldIndex: number;
+  name: FieldPath<ShipmentFormValues>;
   options: {
     value: number | undefined;
     label: string;
@@ -16,27 +22,28 @@ type Props = {
   tVar: (key: string) => string;
 };
 
-export function SelectVendor({
+export function SelectProduct({
   control,
   dirtyFields,
   fieldIndex,
+  name,
   options,
   styles,
   tVar,
 }: Props) {
   return (
     <Controller
-      name={`invoiceItems.${fieldIndex}.productId`}
+      name={name}
       control={control}
       rules={{
         required: tVar('validation.required'),
-        validate: (value) => value > 0 || tVar('validation.required'),
+        validate: (value) =>
+          (typeof value === 'number' && value > 0) ||
+          tVar('validation.required'),
       }}
       render={({ field }) => {
-        console.log('field value:', field.value);
         const selectedOption =
           options.find((option) => option.value === field.value) || null;
-        console.log('selected option:', selectedOption);
 
         return (
           <Select<{ value: number | undefined; label: string }>
@@ -50,19 +57,23 @@ export function SelectVendor({
             // isClearable
             isSearchable
             menuPlacement="top"
-            // menuPortalTarget={document.body}
             styles={{
-              menu: (base) => ({
-                ...base,
+              menu: (styles) => ({
+                ...styles,
                 zIndex: 9999,
-                position: 'absolute',
+                // position: 'absolute',
+                backgroundColor: 'white',
+                border: '1px solid #e5e7eb',
+                borderRadius: '6px',
+                boxShadow:
+                  '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
               }),
-              menuList: (base) => ({
-                ...base,
+              menuList: (styles) => ({
+                ...styles,
                 maxHeight: '220px',
               }),
-              control: (base, state) => ({
-                ...base,
+              control: (styles, state) => ({
+                ...styles,
                 minHeight: '32px',
                 height: '32px',
                 width: '250px',
@@ -75,24 +86,24 @@ export function SelectVendor({
                   borderColor: '#10b981',
                 },
               }),
-              valueContainer: (base) => ({
-                ...base,
+              valueContainer: (styles) => ({
+                ...styles,
                 height: '30px',
                 padding: '0 6px',
               }),
-              input: (base) => ({
-                ...base,
+              input: (styles) => ({
+                ...styles,
                 margin: '0px',
               }),
               indicatorSeparator: () => ({
                 display: 'none',
               }),
-              indicatorsContainer: (base) => ({
-                ...base,
+              indicatorsContainer: (styles) => ({
+                ...styles,
                 height: '30px',
               }),
-              option: (base, state) => ({
-                ...base,
+              option: (styles, state) => ({
+                ...styles,
                 backgroundColor: state.isSelected
                   ? '#10b981'
                   : state.isFocused

@@ -9,7 +9,7 @@ import {
 import InvoiceTableActions from '../InvoiceTableActions';
 import { TotalCell } from './TotalCell';
 import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
-import { SelectVendor } from './SelectVendor';
+import { SelectProduct } from './SelectProduct';
 
 export interface InvoiceItemRow {
   id: number;
@@ -42,7 +42,6 @@ const InvoiceItemColumns = (props: Props) => {
     dirtyFields,
     handleRemoveItem,
     materials,
-    // materialsObj,
     register,
     setValue,
     units,
@@ -61,15 +60,26 @@ const InvoiceItemColumns = (props: Props) => {
       accessorKey: 'productId',
       cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
         const fieldIndex = row.original.originalIndex ?? row.index;
+        const name = `invoiceItems.${fieldIndex}.productId` as const;
         return (
-          <SelectVendor
+          <SelectProduct
             control={control}
             dirtyFields={dirtyFields}
             fieldIndex={fieldIndex}
+            name={name}
             options={options}
             styles={styles}
             tVar={tVar}
           />
+          // <SelectMaterial
+          //   dirtyFields={dirtyFields}
+          //   fieldIndex={fieldIndex}
+          //   materials={materials}
+          //   materialsObj={materialsObj}
+          //   register={register}
+          //   styles={styles}
+          //   tVar={tVar}
+          // />
         );
       },
     },
