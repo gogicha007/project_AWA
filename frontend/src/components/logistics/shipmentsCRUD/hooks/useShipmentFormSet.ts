@@ -10,7 +10,7 @@ import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { FileData } from '@/components/controls/file-input/FileInput';
-import { InvoiceDTO, InvoiceItemDTO } from '@/api/types';
+import { FreightDTO, InvoiceDTO, InvoiceItemDTO } from '@/api/types';
 
 import { createDefaultValues } from './utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
@@ -24,10 +24,12 @@ export type ShipmentFormValues = {
   files?: Array<FileData>;
   invoices?: Array<InvoiceDTO>;
   invoiceItems?: Array<InvoiceItemDTO>;
+  freights?: Array<FreightDTO>;
   _hasRemovals: {
-    inFiles: boolean
-    inInvoices: number[],
-    inInvoiceItems: number[]
+    inFiles: boolean;
+    inInvoices: number[];
+    inInvoiceItems: number[];
+    inFreights: number[];
   };
 };
 

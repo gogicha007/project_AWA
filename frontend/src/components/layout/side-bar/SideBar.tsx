@@ -24,14 +24,14 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       label: tS('logistics'),
       href: '/shipments',
     },
-    {
-      label: tS('purchases'),
-      href: '/purchases',
-    },
-    {
-      label: tS('warehouse'),
-      href: '/warehouse',
-    },
+    // {
+    //   label: tS('purchases'),
+    //   href: '/purchases',
+    // },
+    // {
+    //   label: tS('warehouse'),
+    //   href: '/warehouse',
+    // },
     {
       label: tS('settings'),
       submenu: [

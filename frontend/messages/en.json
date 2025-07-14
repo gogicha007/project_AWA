@@ -213,7 +213,7 @@
     "warnings": {
       "delete": "Are you sure you want to delete this record?"
     },
-    "validation":{
+    "validation": {
       "min_value": "min value to be 0.01",
       "required": "value required",
       "required_fields": "Fill required fields(Material, Quantiry, Unit, Price) or Remove the record"
@@ -259,6 +259,26 @@
       "go_to_list": "Back to list"
     }
   },
+  "Freights": {
+    "title": "Freights",
+    "table": {
+      "id": "ID",
+      "truck_number": "Truck number",
+      "forwarder": "Forwarder",
+      "bill_number": "Bill #",
+      "bill_date": "Bill date",
+      "freight_rate": "Freight rate",
+      "currency": "Currency"
+    },
+    "actions": {
+      "title": "Actions",
+      "items": "Items"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this record?"
+    }
+  },
+
   "Warehouse": {
     "title": "Warehouse"
   },

@@ -97,9 +97,7 @@ export interface FreightDTO {
   billDate?: Date;
   freightRate?: number;
   currencyId?: number;
-  shipmentId: number;
-  isArrived: boolean;
-  userId: number;
+  shipmentId?: number;
 }
 
 export interface CurrencyDTO {
