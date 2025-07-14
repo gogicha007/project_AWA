@@ -71,15 +71,6 @@ const InvoiceItemColumns = (props: Props) => {
             styles={styles}
             tVar={tVar}
           />
-          // <SelectMaterial
-          //   dirtyFields={dirtyFields}
-          //   fieldIndex={fieldIndex}
-          //   materials={materials}
-          //   materialsObj={materialsObj}
-          //   register={register}
-          //   styles={styles}
-          //   tVar={tVar}
-          // />
         );
       },
     },

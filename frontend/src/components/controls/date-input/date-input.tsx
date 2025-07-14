@@ -75,31 +75,3 @@ function DateInput<T extends FieldValues>({
 }
 
 export default DateInput;
-
-{
-  /* <div className={styles.formGroup}>
-  <label htmlFor="declaration_date"> {tS('form.declaration_date_label')}</label>
-  <Controller
-    control={control}
-    name="declaration_date"
-    render={({ field }) => (
-      <DatePicker
-        locale={localeMap[localeCode as 'en' | 'ka']}
-        className={styles.input}
-        selected={field.value ? new Date(field.value) : null}
-        onChange={(date: Date | null) => {
-          if (!date) {
-            field.onChange('');
-            return;
-          }
-          const d = new Date(date);
-          d.setHours(12, 0, 0, 0);
-          field.onChange(d.toISOString().split('T')[0]);
-        }}
-        dateFormat="yyyy-MM-dd"
-        placeholderText="yyyy-mm-dd"
-      />
-    )}
-  />
-</div>; */
-}
