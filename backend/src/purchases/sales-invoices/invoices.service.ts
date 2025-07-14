@@ -132,7 +132,8 @@ export class InvoicesService {
           return upsertedInvoices;
         },
         {
-          timeout: 10000,
+          maxWait: 5000,
+          timeout: 20000,
         },
       );
     } catch (error) {
