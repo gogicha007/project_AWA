@@ -58,7 +58,7 @@ export const handleSubmitInvoice = async (
 
     return { success: true, originalInvoiceIds: existingInvoiceIds };
   } catch (error) {
-    console.error('Error handling invoice changes:', error);
+    console.error('Error submitting invoice(s):', error);
     throw error;
   }
 };

@@ -181,7 +181,6 @@ model Freight {
   shipment    Shipment         @relation(fields: [shipmentId], references: [id])
   shipmentId  Int              @map("shipment_id")
   invoices    FreightInvoice[]
-  isArrived   Boolean          @default(false) @map("is_arrived")
   user        User             @relation(fields: [userId], references: [id])
   userId      Int              @map("user_id")
 

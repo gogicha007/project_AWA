@@ -221,7 +221,6 @@ exports.Prisma.FreightScalarFieldEnum = {
   freightRate: 'freightRate',
   currencyId: 'currencyId',
   shipmentId: 'shipmentId',
-  isArrived: 'isArrived',
   userId: 'userId'
 };
 

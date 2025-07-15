@@ -15417,7 +15417,6 @@ export namespace Prisma {
     freightRate: Decimal | null
     currencyId: number | null
     shipmentId: number | null
-    isArrived: boolean | null
     userId: number | null
   }
 
@@ -15430,7 +15429,6 @@ export namespace Prisma {
     freightRate: Decimal | null
     currencyId: number | null
     shipmentId: number | null
-    isArrived: boolean | null
     userId: number | null
   }
 
@@ -15443,7 +15441,6 @@ export namespace Prisma {
     freightRate: number
     currencyId: number
     shipmentId: number
-    isArrived: number
     userId: number
     _all: number
   }
@@ -15474,7 +15471,6 @@ export namespace Prisma {
     freightRate?: true
     currencyId?: true
     shipmentId?: true
-    isArrived?: true
     userId?: true
   }
 
@@ -15487,7 +15483,6 @@ export namespace Prisma {
     freightRate?: true
     currencyId?: true
     shipmentId?: true
-    isArrived?: true
     userId?: true
   }
 
@@ -15500,7 +15495,6 @@ export namespace Prisma {
     freightRate?: true
     currencyId?: true
     shipmentId?: true
-    isArrived?: true
     userId?: true
     _all?: true
   }
@@ -15600,7 +15594,6 @@ export namespace Prisma {
     freightRate: Decimal | null
     currencyId: number | null
     shipmentId: number
-    isArrived: boolean
     userId: number
     _count: FreightCountAggregateOutputType | null
     _avg: FreightAvgAggregateOutputType | null
@@ -15632,7 +15625,6 @@ export namespace Prisma {
     freightRate?: boolean
     currencyId?: boolean
     shipmentId?: boolean
-    isArrived?: boolean
     userId?: boolean
     currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
@@ -15650,7 +15642,6 @@ export namespace Prisma {
     freightRate?: boolean
     currencyId?: boolean
     shipmentId?: boolean
-    isArrived?: boolean
     userId?: boolean
     currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
@@ -15666,7 +15657,6 @@ export namespace Prisma {
     freightRate?: boolean
     currencyId?: boolean
     shipmentId?: boolean
-    isArrived?: boolean
     userId?: boolean
     currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
@@ -15682,11 +15672,10 @@ export namespace Prisma {
     freightRate?: boolean
     currencyId?: boolean
     shipmentId?: boolean
-    isArrived?: boolean
     userId?: boolean
   }
 
-  export type FreightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "truckNumber" | "forwarder" | "billNumber" | "billDate" | "freightRate" | "currencyId" | "shipmentId" | "isArrived" | "userId", ExtArgs["result"]["freight"]>
+  export type FreightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "truckNumber" | "forwarder" | "billNumber" | "billDate" | "freightRate" | "currencyId" | "shipmentId" | "userId", ExtArgs["result"]["freight"]>
   export type FreightInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     currency?: boolean | Freight$currencyArgs<ExtArgs>
     shipment?: boolean | ShipmentDefaultArgs<ExtArgs>
@@ -15722,7 +15711,6 @@ export namespace Prisma {
       freightRate: Prisma.Decimal | null
       currencyId: number | null
       shipmentId: number
-      isArrived: boolean
       userId: number
     }, ExtArgs["result"]["freight"]>
     composites: {}
@@ -16159,7 +16147,6 @@ export namespace Prisma {
     readonly freightRate: FieldRef<"Freight", 'Decimal'>
     readonly currencyId: FieldRef<"Freight", 'Int'>
     readonly shipmentId: FieldRef<"Freight", 'Int'>
-    readonly isArrived: FieldRef<"Freight", 'Boolean'>
     readonly userId: FieldRef<"Freight", 'Int'>
   }
     
@@ -21210,7 +21197,6 @@ export namespace Prisma {
     freightRate: 'freightRate',
     currencyId: 'currencyId',
     shipmentId: 'shipmentId',
-    isArrived: 'isArrived',
     userId: 'userId'
   };
 
@@ -22129,7 +22115,6 @@ export namespace Prisma {
     freightRate?: DecimalNullableFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
     currencyId?: IntNullableFilter<"Freight"> | number | null
     shipmentId?: IntFilter<"Freight"> | number
-    isArrived?: BoolFilter<"Freight"> | boolean
     userId?: IntFilter<"Freight"> | number
     currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
     shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
@@ -22146,7 +22131,6 @@ export namespace Prisma {
     freightRate?: SortOrderInput | SortOrder
     currencyId?: SortOrderInput | SortOrder
     shipmentId?: SortOrder
-    isArrived?: SortOrder
     userId?: SortOrder
     currency?: CurrencyOrderByWithRelationInput
     shipment?: ShipmentOrderByWithRelationInput
@@ -22166,7 +22150,6 @@ export namespace Prisma {
     freightRate?: DecimalNullableFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
     currencyId?: IntNullableFilter<"Freight"> | number | null
     shipmentId?: IntFilter<"Freight"> | number
-    isArrived?: BoolFilter<"Freight"> | boolean
     userId?: IntFilter<"Freight"> | number
     currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
     shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
@@ -22183,7 +22166,6 @@ export namespace Prisma {
     freightRate?: SortOrderInput | SortOrder
     currencyId?: SortOrderInput | SortOrder
     shipmentId?: SortOrder
-    isArrived?: SortOrder
     userId?: SortOrder
     _count?: FreightCountOrderByAggregateInput
     _avg?: FreightAvgOrderByAggregateInput
@@ -22204,7 +22186,6 @@ export namespace Prisma {
     freightRate?: DecimalNullableWithAggregatesFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
     currencyId?: IntNullableWithAggregatesFilter<"Freight"> | number | null
     shipmentId?: IntWithAggregatesFilter<"Freight"> | number
-    isArrived?: BoolWithAggregatesFilter<"Freight"> | boolean
     userId?: IntWithAggregatesFilter<"Freight"> | number
   }
 
@@ -23139,7 +23120,6 @@ export namespace Prisma {
     billNumber?: string | null
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
-    isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
     shipment: ShipmentCreateNestedOneWithoutFreightsInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
@@ -23155,7 +23135,6 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
     shipmentId: number
-    isArrived?: boolean
     userId: number
     invoices?: FreightInvoiceUncheckedCreateNestedManyWithoutFreightInput
   }
@@ -23166,7 +23145,6 @@ export namespace Prisma {
     billNumber?: NullableStringFieldUpdateOperationsInput | string | null
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
     shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
@@ -23182,7 +23160,6 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
     invoices?: FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput
   }
@@ -23196,7 +23173,6 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
     shipmentId: number
-    isArrived?: boolean
     userId: number
   }
 
@@ -23206,7 +23182,6 @@ export namespace Prisma {
     billNumber?: NullableStringFieldUpdateOperationsInput | string | null
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FreightUncheckedUpdateManyInput = {
@@ -23218,7 +23193,6 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -24224,11 +24198,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type CurrencyNullableScalarRelationFilter = {
     is?: CurrencyWhereInput | null
     isNot?: CurrencyWhereInput | null
@@ -24243,7 +24212,6 @@ export namespace Prisma {
     freightRate?: SortOrder
     currencyId?: SortOrder
     shipmentId?: SortOrder
-    isArrived?: SortOrder
     userId?: SortOrder
   }
 
@@ -24264,7 +24232,6 @@ export namespace Prisma {
     freightRate?: SortOrder
     currencyId?: SortOrder
     shipmentId?: SortOrder
-    isArrived?: SortOrder
     userId?: SortOrder
   }
 
@@ -24277,7 +24244,6 @@ export namespace Prisma {
     freightRate?: SortOrder
     currencyId?: SortOrder
     shipmentId?: SortOrder
-    isArrived?: SortOrder
     userId?: SortOrder
   }
 
@@ -24319,14 +24285,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type FreightScalarRelationFilter = {
@@ -25560,10 +25518,6 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type CurrencyUpdateOneWithoutFreightNestedInput = {
     create?: XOR<CurrencyCreateWithoutFreightInput, CurrencyUncheckedCreateWithoutFreightInput>
     connectOrCreate?: CurrencyCreateOrConnectWithoutFreightInput
@@ -26062,11 +26016,6 @@ export namespace Prisma {
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -26108,14 +26057,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -26239,7 +26180,6 @@ export namespace Prisma {
     billNumber?: string | null
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
-    isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
     shipment: ShipmentCreateNestedOneWithoutFreightsInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
@@ -26254,7 +26194,6 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
     shipmentId: number
-    isArrived?: boolean
     invoices?: FreightInvoiceUncheckedCreateNestedManyWithoutFreightInput
   }
 
@@ -26386,7 +26325,6 @@ export namespace Prisma {
     freightRate?: DecimalNullableFilter<"Freight"> | Decimal | DecimalJsLike | number | string | null
     currencyId?: IntNullableFilter<"Freight"> | number | null
     shipmentId?: IntFilter<"Freight"> | number
-    isArrived?: BoolFilter<"Freight"> | boolean
     userId?: IntFilter<"Freight"> | number
   }
 
@@ -26661,7 +26599,6 @@ export namespace Prisma {
     billNumber?: string | null
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
-    isArrived?: boolean
     shipment: ShipmentCreateNestedOneWithoutFreightsInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
@@ -26675,7 +26612,6 @@ export namespace Prisma {
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
     shipmentId: number
-    isArrived?: boolean
     userId: number
     invoices?: FreightInvoiceUncheckedCreateNestedManyWithoutFreightInput
   }
@@ -27096,7 +27032,6 @@ export namespace Prisma {
     billNumber?: string | null
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
-    isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
     invoices?: FreightInvoiceCreateNestedManyWithoutFreightInput
     user: UserCreateNestedOneWithoutFreightInput
@@ -27110,7 +27045,6 @@ export namespace Prisma {
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    isArrived?: boolean
     userId: number
     invoices?: FreightInvoiceUncheckedCreateNestedManyWithoutFreightInput
   }
@@ -28010,7 +27944,6 @@ export namespace Prisma {
     billNumber?: string | null
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
-    isArrived?: boolean
     currency?: CurrencyCreateNestedOneWithoutFreightInput
     shipment: ShipmentCreateNestedOneWithoutFreightsInput
     user: UserCreateNestedOneWithoutFreightInput
@@ -28025,7 +27958,6 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
     shipmentId: number
-    isArrived?: boolean
     userId: number
   }
 
@@ -28083,7 +28015,6 @@ export namespace Prisma {
     billNumber?: NullableStringFieldUpdateOperationsInput | string | null
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
     shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
@@ -28098,7 +28029,6 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -28525,7 +28455,6 @@ export namespace Prisma {
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
     shipmentId: number
-    isArrived?: boolean
   }
 
   export type VendorUpdateWithoutUserInput = {
@@ -28633,7 +28562,6 @@ export namespace Prisma {
     billNumber?: NullableStringFieldUpdateOperationsInput | string | null
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
     shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
@@ -28648,7 +28576,6 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     invoices?: FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput
   }
 
@@ -28661,7 +28588,6 @@ export namespace Prisma {
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvoiceCreateManyVendorInput = {
@@ -28801,7 +28727,6 @@ export namespace Prisma {
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
     shipmentId: number
-    isArrived?: boolean
     userId: number
   }
 
@@ -28850,7 +28775,6 @@ export namespace Prisma {
     billNumber?: NullableStringFieldUpdateOperationsInput | string | null
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     shipment?: ShipmentUpdateOneRequiredWithoutFreightsNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
@@ -28864,7 +28788,6 @@ export namespace Prisma {
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
     invoices?: FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput
   }
@@ -28877,7 +28800,6 @@ export namespace Prisma {
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     shipmentId?: IntFieldUpdateOperationsInput | number
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -29047,7 +28969,6 @@ export namespace Prisma {
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    isArrived?: boolean
     userId: number
   }
 
@@ -29089,7 +29010,6 @@ export namespace Prisma {
     billNumber?: NullableStringFieldUpdateOperationsInput | string | null
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     currency?: CurrencyUpdateOneWithoutFreightNestedInput
     invoices?: FreightInvoiceUpdateManyWithoutFreightNestedInput
     user?: UserUpdateOneRequiredWithoutFreightNestedInput
@@ -29103,7 +29023,6 @@ export namespace Prisma {
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
     invoices?: FreightInvoiceUncheckedUpdateManyWithoutFreightNestedInput
   }
@@ -29116,7 +29035,6 @@ export namespace Prisma {
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     currencyId?: NullableIntFieldUpdateOperationsInput | number | null
-    isArrived?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
   }
 

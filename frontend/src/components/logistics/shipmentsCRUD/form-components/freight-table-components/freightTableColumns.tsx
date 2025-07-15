@@ -7,7 +7,14 @@ import { useFormContext } from 'react-hook-form';
 
 export interface FreightRow {
   id: number;
+  truckNumber: string;
+  forwarder: string;
+  billNumber: string;
+  billDate: Date | string | null;
+  currencyId: number;
+  freightRate: number;
 }
+
 type Props = {
   currencies: Partial<CurrencyDTO>[];
   currenciesObj: Record<string, string | undefined>;
@@ -35,7 +42,7 @@ const FreightColumns = (props: Props) => {
         accessorKey: 'forwarder',
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <input
-            {...register(`freights.${row.index}.billNumber` as const)}
+            {...register(`freights.${row.index}.forwarder` as const)}
             className={`${styles.invoiceNumber} ${styles.input}`}
           />
         ),
@@ -107,7 +114,7 @@ const FreightColumns = (props: Props) => {
         ),
       },
     ],
-    [tVar]
+    [control, register, currencies, currenciesObj, onDelete, tVar]
   );
 };
 
