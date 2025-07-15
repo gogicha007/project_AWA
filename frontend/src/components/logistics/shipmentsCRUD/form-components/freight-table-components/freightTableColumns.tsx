@@ -27,7 +27,6 @@ const FreightColumns = (props: Props) => {
           <input
             {...register(`freights.${row.index}.truckNumber` as const)}
             className={`${styles.invoiceNumber} ${styles.input}`}
-            placeholder="Truck number(s)"
           />
         ),
       },
@@ -48,7 +47,6 @@ const FreightColumns = (props: Props) => {
           <input
             {...register(`freights.${row.index}.billNumber` as const)}
             className={`${styles.invoiceNumber} ${styles.input}`}
-            placeholder="Enter bill number"
           />
         ),
       },
@@ -58,7 +56,7 @@ const FreightColumns = (props: Props) => {
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <DateInput
             label=""
-            name={`freithgs.${row.index}.billDate`}
+            name={`freights.${row.index}.billDate`}
             control={control}
             className={styles.inputDate}
           />

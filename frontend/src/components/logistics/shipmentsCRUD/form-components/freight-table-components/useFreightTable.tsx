@@ -14,7 +14,7 @@ type Props = {
 
 export function useFreightTable(props: Props) {
   const { currencies, tVar } = props;
-  const { control } = useFormContext<ShipmentFormValues>();
+  const { control, getValues, setValue } = useFormContext<ShipmentFormValues>();
   const { fields, append, remove } = useFieldArray({
     control,
     keyName: 'uid',
@@ -49,15 +49,30 @@ export function useFreightTable(props: Props) {
     append(newFreight, { shouldFocus: true });
     console.log(fields);
   };
-  const handleRemoveFreight = (index: number) => {
-    remove(index);
+
+  const handleRemoveFreight = (id: number) => {
+    if (confirm(tVar('warnings.delete'))) {
+      const index = fields.findIndex((field) => field.id === id);
+      if (index !== -1) {
+        remove(id);
+        if (id > 0) {
+          const removedFreightsArr = getValues('_hasRemovals.inFreights') || [];
+          const newRemFreightArr = [...removedFreightsArr, id];
+          setValue('_hasRemovals.inFreights', newRemFreightArr, {
+            shouldDirty: true,
+          });
+        }
+      }
+    }
   };
+
   const columns = FreightColumns({
     currencies,
     currenciesObj,
     onDelete: handleRemoveFreight,
     tVar,
   });
+  
   return {
     columns,
     fields,

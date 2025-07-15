@@ -14,7 +14,12 @@ export const createDefaultValues = (): ShipmentFormValues => ({
   files: [],
   invoices: [],
   invoiceItems: [],
-  _hasRemovals: { inFiles: false, inInvoices: [], inInvoiceItems: [] },
+  _hasRemovals: {
+    inFiles: false,
+    inInvoices: [],
+    inInvoiceItems: [],
+    inFreights: [],
+  },
 });
 
 export const transformShipmentToFormData = (
@@ -33,7 +38,12 @@ export const transformShipmentToFormData = (
   invoiceItems: shipment.Invoices
     ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
     : [],
-  _hasRemovals: { inFiles: false, inInvoices: [], inInvoiceItems: [] },
+  _hasRemovals: {
+    inFiles: false,
+    inInvoices: [],
+    inInvoiceItems: [],
+    inFreights: [],
+  },
 });
 
 export const detectFormChanges = (

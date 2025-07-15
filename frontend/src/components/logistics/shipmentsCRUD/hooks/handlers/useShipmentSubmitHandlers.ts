@@ -51,7 +51,12 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
-        _hasRemovals: { inFiles: false, inInvoices: [], inInvoiceItems: [] },
+        _hasRemovals: {
+          inFiles: false,
+          inInvoices: [],
+          inInvoiceItems: [],
+          inFreights: [],
+        },
       });
 
       setShipmentId(createdShipment.id as number);
