@@ -72,7 +72,7 @@ const FreightColumns = (props: Props) => {
             })}
             className={`${styles.currency} ${styles.input}`}
           >
-            <option value="">Select</option>
+            <option value={0}>Select</option>
             {currencies.map((c) => (
               <option key={c.id} value={c.id}>
                 {currenciesObj[c.id as number]}

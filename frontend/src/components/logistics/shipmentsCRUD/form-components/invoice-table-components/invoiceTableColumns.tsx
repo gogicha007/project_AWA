@@ -57,7 +57,7 @@ const InvoiceColumns = (props: Props) => {
             })}
             className={`${styles.vendorSelect} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
           >
-            <option value="">Select</option>
+            <option value={0}>Select</option>
             {vendors.map((v) => (
               <option key={v.id} value={v.id}>
                 {vendorsObj[v.id as number]}
@@ -102,7 +102,7 @@ const InvoiceColumns = (props: Props) => {
             })}
             className={`${styles.currency} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
           >
-            <option value="">Select</option>
+            <option value={0}>Select</option>
             {currencies.map((c) => (
               <option key={c.id} value={c.id}>
                 {currenciesObj[c.id as number]}

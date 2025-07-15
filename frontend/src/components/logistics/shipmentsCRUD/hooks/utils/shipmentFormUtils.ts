@@ -1,9 +1,6 @@
 import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
-import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
-import { formatToISODateTime } from '@/utils/dateFormat';
 import { ensureNumber, ensureInteger } from '@/utils/helper';
 
 export const createDefaultValues = (): ShipmentFormValues => ({
@@ -87,6 +84,7 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceItemChanges = () => {
+    // if there are removals in items
     if (dirtyFields?._hasRemovals?.inInvoiceItems) return true;
 
     if (!('invoiceItems' in dirtyFields)) return false;
@@ -102,12 +100,27 @@ export const detectFormChanges = (
     }
     // invoiceItems property is a boolean
     if ('invoiceItems' in dirtyFields) return true;
-    // if there are removals in items
+  };
+
+  const hasFreightChanges = () => {
+    if (dirtyFields?._hasRemovals?.inFreights) return true;
+
+    if (!('freights' in dirtyFields)) return false;
+    if (
+      Array.isArray(dirtyFields.freights) &&
+      dirtyFields.freights.length > 0
+    ) {
+      return dirtyFields.freights.some((item) =>
+        Object.values(item).includes(true)
+      );
+    }
+    if ('freights' in dirtyFields) return true;
   };
 
   return {
     hasGeneralFieldChanges,
     hasFileChanges,
+    hasFreightChanges,
     hasInvoiceChanges,
     hasInvoiceItemChanges,
   };
@@ -119,64 +132,6 @@ export const originalInvoiceIds = (data: ShipmentFormValues) => {
     .map((invoice: InvoiceDTO) => invoice.id);
 
   return idsArray ?? [];
-};
-
-export const handleInvoiceChange = async (
-  data: ShipmentFormValues,
-  shipmentId: number,
-  dbUserId: number
-) => {
-  const existingInvoiceIds = originalInvoiceIds(data);
-
-  try {
-    // check hasRemovals.inInvoiceItems
-    if (
-      data._hasRemovals.inInvoiceItems &&
-      data._hasRemovals.inInvoiceItems.length > 0
-    ) {
-      await invoiceItemApi.deleteItemsArray(data._hasRemovals.inInvoiceItems);
-    }
-
-    // check hasRemovals.inInvoices
-    if (
-      data._hasRemovals.inInvoices &&
-      data._hasRemovals.inInvoices.length > 0
-    ) {
-      await invoiceApi.deleteInvoiceArray(data._hasRemovals.inInvoices);
-      console.log('there are removed invoices');
-    }
-
-    if (data.invoices && data.invoices.length > 0) {
-      const invoicesWithItems = data.invoices.map((invoice) => ({
-        id: invoice.id,
-        vendorId: ensureInteger(invoice.vendorId),
-        invoiceNumber: invoice.invoiceNumber,
-        invoiceDate: formatToISODateTime(invoice.invoiceDate) as Date,
-        totalAmount: ensureNumber(invoice.totalAmount),
-        currencyId: ensureInteger(invoice.currencyId),
-        userId: dbUserId,
-        shipmentId: shipmentId,
-        items: (
-          data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
-          []
-        ).map((item) => ({
-          ...item,
-          id: item.id,
-          productId: ensureInteger(item.productId),
-          quantity: ensureNumber(item.quantity),
-          unitId: ensureInteger(item.unitId),
-          unitPrice: ensureNumber(item.unitPrice),
-          total: ensureNumber(item.total),
-        })),
-      }));
-      await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
-    }
-
-    return { success: true, originalInvoiceIds: existingInvoiceIds };
-  } catch (error) {
-    console.error('Error handling invoice changes:', error);
-    throw error;
-  }
 };
 
 // Transform form data to ensure all numeric fields are properly typed

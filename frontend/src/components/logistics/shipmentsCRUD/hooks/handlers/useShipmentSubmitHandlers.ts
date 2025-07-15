@@ -2,9 +2,10 @@ import { ShipmentFormValues } from '../useShipmentFormSet';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
+import { handleSubmitInvoice } from '../utils/submitInvoices';
+import { handleSubmitFreights } from '../utils/submitFreights';
 import {
   detectFormChanges,
-  handleInvoiceChange,
   transformFormDataForSubmission,
 } from '../utils/shipmentFormUtils';
 import { useRouter } from 'next/navigation';
@@ -13,7 +14,6 @@ import { FieldNamesMarkedBoolean } from 'react-hook-form';
 export const useShipmentSubmitHandlers = (
   dbUserId: number | null,
   dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>,
-  originalValues: Partial<ShipmentFormValues>,
   reset: (data: ShipmentFormValues) => void,
   setSnackbarOpen: (open: boolean) => void,
   setSnackbarStatus: (status: { message: string; success: boolean }) => void,
@@ -125,7 +125,12 @@ export const useShipmentSubmitHandlers = (
           throw new Error('Invoices must be an array');
         }
 
-        await handleInvoiceChange(transformedData, shipmentId, dbUserId);
+        await handleSubmitInvoice(transformedData, shipmentId, dbUserId);
+      }
+
+      // Handle freights
+      if (changes.hasFreightChanges()) {
+        handleSubmitFreights(transformedData, shipmentId, dbUserId);
       }
 
       setSnackbarStatus({
