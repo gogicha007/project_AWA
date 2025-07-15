@@ -82,7 +82,8 @@ export const useShipmentSubmitHandlers = (
         );
       }
       console.log('data', data);
-      console.log('edit/dirty fields', dirtyFields);
+      console.log('shipment id', shipmentId)
+      // console.log('edit/dirty fields', dirtyFields);
 
       // Transform form data to ensure proper data types
       const transformedData = transformFormDataForSubmission(data);

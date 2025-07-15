@@ -64,7 +64,6 @@ export function useShipmentFormSet(id?: number) {
     formState: {
       isDirty,
       isSubmitting,
-      defaultValues: originalValues,
       dirtyFields,
     },
   } = formMethods;
@@ -72,7 +71,6 @@ export function useShipmentFormSet(id?: number) {
   const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(
     dbUserId,
     dirtyFields,
-    originalValues as Partial<ShipmentFormValues>,
     reset,
     setSnackbarOpen,
     setSnackbarStatus,

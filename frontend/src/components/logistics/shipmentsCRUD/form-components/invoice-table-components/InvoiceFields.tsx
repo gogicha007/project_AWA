@@ -45,7 +45,6 @@ const InvoiceFields = ({ auxData, snackbarControls }: Props) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  console.log('invoice fields', fields)
   return (
     <>
       <div className={styles.tableContainer}>

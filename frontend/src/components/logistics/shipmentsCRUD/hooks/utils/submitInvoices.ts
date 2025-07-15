@@ -53,6 +53,7 @@ export const handleSubmitInvoice = async (
           total: ensureNumber(item.total),
         })),
       }));
+      console.log('invoices with items', invoicesWithItems, shipmentId)
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
 

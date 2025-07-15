@@ -20,7 +20,6 @@ export class FreightsService {
       billDate,
       freightRate,
       currencyId,
-      isArrived,
       shipmentId,
       userId,
     } = createFreightDTO;
@@ -34,7 +33,6 @@ export class FreightsService {
           billDate: billDate ? new Date(billDate) : null,
           freightRate,
           currencyId,
-          isArrived,
           shipmentId,
           userId,
         },
