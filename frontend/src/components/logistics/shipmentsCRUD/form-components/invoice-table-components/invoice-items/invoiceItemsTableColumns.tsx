@@ -48,12 +48,10 @@ const InvoiceItemColumns = (props: Props) => {
     unitsObj,
     tVar,
   } = props;
-  // console.log('materials', materials);
   const options = materials.map((material) => {
     return { value: material.id, label: material.name };
   });
 
-  console.log('options', options);
   return [
     {
       header: tVar('table.material'),

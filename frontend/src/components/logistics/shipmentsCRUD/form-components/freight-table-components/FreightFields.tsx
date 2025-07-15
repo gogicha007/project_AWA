@@ -5,6 +5,12 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 import { useFreightTable } from './useFreightTable';
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+import { FreightRow } from './freightTableColumns';
 
 type Props = {
   currencies: Partial<CurrencyDTO>[];
@@ -14,10 +20,16 @@ type Props = {
 const FreightFields = ({ currencies, snackbarControls }: Props) => {
   const tF = useTranslations('Freights');
 
-  const { handleAddFreight } = useFreightTable({
+  const { handleAddFreight, fields, columns } = useFreightTable({
     currencies,
     snackbarControls,
     tVar: tF,
+  });
+
+  const table = useReactTable({
+    data: fields as FreightRow[],
+    columns,
+    getCoreRowModel: getCoreRowModel(),
   });
 
   return (
@@ -26,7 +38,35 @@ const FreightFields = ({ currencies, snackbarControls }: Props) => {
         <div className={styles.tableActions}>
           <AddButton onAdd={handleAddFreight} />
         </div>
-        <table className={styles.table}></table>
+        <table className={styles.table}>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className={styles.tableHeader}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className={styles.tableRow}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className={styles.tableCell}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

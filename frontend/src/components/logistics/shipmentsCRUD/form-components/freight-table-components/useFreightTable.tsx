@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { CurrencyDTO, FreightDTO } from '@/api/types';
-import { arrayToIdValueMap } from '@/utils/helper';
+import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import { SnackbarControls } from '@/components/feedback/snackbar/snackbarTypes';
 import FreightColumns from './freightTableColumns';
 import { useFieldArray, useFormContext } from 'react-hook-form';
@@ -26,7 +26,6 @@ export function useFreightTable(props: Props) {
     [currencies]
   );
 
-  console.log(fields);
   const handleAddFreight = (
     newFreightData: FreightDTO = {
       forwarder: '',
@@ -37,14 +36,31 @@ export function useFreightTable(props: Props) {
       truckNumber: '',
     }
   ) => {
-    append(newFreightData);
+    const newFreight: FreightDTO = {
+      ...newFreightData,
+      id: negIdCounter.getId(),
+      billDate:
+        newFreightData.billDate instanceof Date
+          ? newFreightData.billDate
+          : newFreightData.billDate
+            ? new Date(newFreightData.billDate)
+            : new Date(),
+    };
+    append(newFreight, { shouldFocus: true });
+    console.log(fields);
   };
   const handleRemoveFreight = (index: number) => {
     remove(index);
   };
-  const columns = FreightColumns({ currencies, currenciesObj, tVar });
+  const columns = FreightColumns({
+    currencies,
+    currenciesObj,
+    onDelete: handleRemoveFreight,
+    tVar,
+  });
   return {
     columns,
+    fields,
     handleAddFreight,
     handleRemoveFreight,
   };
