@@ -29,7 +29,10 @@ const invoiceSchema = z.object({
   invoiceNumber: z.string().min(1, 'Invoice number is required'),
   invoiceDate: z.date().nullable(),
   currencyId: z.number().min(1, 'Currency is required'),
-  totalAmount: z.number().min(0, 'Total amount must be non-negative').optional(),
+  totalAmount: z
+    .number()
+    .min(0, 'Total amount must be non-negative')
+    .optional(),
   shipmentId: z.number().optional(),
 });
 
@@ -37,11 +40,11 @@ const invoiceSchema = z.object({
 const freightSchema = z.object({
   id: z.number().optional(),
   truckNumber: z.string().min(1, 'Truck number is required'),
-  forwarder: z.string().min(1, 'Forwarder is required'),
-  billNumber: z.string().min(1, 'Bill number is required'),
+  forwarder: z.string().optional(),
+  billNumber: z.string().optional(),
   billDate: z.date().nullable(),
-  currencyId: z.number().min(1, 'Currency is required'),
-  freightRate: z.number().min(0, 'Freight rate must be non-negative'),
+  currencyId: z.number().optional(),
+  freightRate: z.number().optional(),
   shipmentId: z.number().optional(),
 });
 
@@ -54,39 +57,48 @@ const hasRemovalsSchema = z.object({
 });
 
 // Main shipment form schema
-export const shipmentFormSchema = z.object({
-  alias: z.string().min(1, 'Alias is required'),
-  status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED'], {
-    errorMap: () => ({ message: 'Status is required' }),
-  }).refine(val => val !== '', { message: 'Status is required' }),
-  declaration_number: z.string().optional(),
-  declaration_date: z.date().optional(),
-  files: z.array(fileDataSchema).optional(),
-  invoices: z.array(invoiceSchema).optional(),
-  invoiceItems: z.array(invoiceItemSchema).optional(),
-  freights: z.array(freightSchema).optional(),
-  _hasRemovals: hasRemovalsSchema,
-})
-.refine((data) => {
-  // Custom validation: if status is DECLARED, declaration_number should be provided
-  if (data.status === 'DECLARED' && !data.declaration_number?.trim()) {
-    return false;
-  }
-  return true;
-}, {
-  message: 'Declaration number is required when status is DECLARED',
-  path: ['declaration_number'],
-})
-.refine((data) => {
-  // Custom validation: if status is DECLARED, declaration_date should be provided
-  if (data.status === 'DECLARED' && !data.declaration_date) {
-    return false;
-  }
-  return true;
-}, {
-  message: 'Declaration date is required when status is DECLARED',
-  path: ['declaration_date'],
-});
+export const shipmentFormSchema = z
+  .object({
+    alias: z.string().min(1, 'Alias is required'),
+    status: z
+      .enum(['', 'APPLIED', 'DECLARED', 'ARRIVED'], {
+        errorMap: () => ({ message: 'Status is required' }),
+      })
+      .refine((val) => val !== '', { message: 'Status is required' }),
+    declaration_number: z.string().optional(),
+    declaration_date: z.date().optional(),
+    files: z.array(fileDataSchema).optional(),
+    invoices: z.array(invoiceSchema).optional(),
+    invoiceItems: z.array(invoiceItemSchema).optional(),
+    freights: z.array(freightSchema).optional(),
+    _hasRemovals: hasRemovalsSchema,
+  })
+  .refine(
+    (data) => {
+      // Custom validation: if status is DECLARED, declaration_number should be provided
+      if (data.status === 'DECLARED' && !data.declaration_number?.trim()) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'Declaration number is required when status is DECLARED',
+      path: ['declaration_number'],
+    }
+  )
+  .refine(
+    (data) => {
+      // Custom validation: if status is DECLARED, declaration_date should be provided
+      if (data.status === 'DECLARED' && !data.declaration_date) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'Declaration date is required when status is DECLARED',
+      path: ['declaration_date'],
+    }
+  );
 
 // Export the type inferred from the schema for consistency
 export type ShipmentFormSchema = z.infer<typeof shipmentFormSchema>;

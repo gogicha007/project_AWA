@@ -23,13 +23,15 @@ export const handleSubmitFreights = (
         truckNumber: freight.truckNumber,
         forwarder: freight.forwarder,
         billNumber: freight.billNumber,
-        billDate: formatToISODateTime(freight.billDate),
+        billDate: freight.billDate
+          ? formatToISODateTime(freight.billDate)
+          : null,
         currencyId: ensureInteger(freight.currencyId),
         freightRate: ensureNumber(freight.freightRate),
         userId: dbUserId,
         shipmentId: shipmentId,
       }));
-      console.log('freights to submit', freightsToSubmit)
+      console.log('freights to submit', freightsToSubmit);
     }
     return { success: true };
   } catch (error) {

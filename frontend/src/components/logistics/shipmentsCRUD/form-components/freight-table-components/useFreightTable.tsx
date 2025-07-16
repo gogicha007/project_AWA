@@ -4,7 +4,8 @@ import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import { SnackbarControls } from '@/components/feedback/snackbar/snackbarTypes';
 import FreightColumns from './freightTableColumns';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
+// import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
+import { ShipmentFormSchema } from '../../hooks/shipmentSchema';
 
 type Props = {
   currencies: Partial<CurrencyDTO>[];
@@ -14,7 +15,7 @@ type Props = {
 
 export function useFreightTable(props: Props) {
   const { currencies, tVar } = props;
-  const { control, getValues, setValue } = useFormContext<ShipmentFormValues>();
+  const { control, getValues, setValue } = useFormContext<ShipmentFormSchema>();
   const { fields, append, remove } = useFieldArray({
     control,
     keyName: 'uid',

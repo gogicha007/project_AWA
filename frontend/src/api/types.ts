@@ -1,3 +1,6 @@
+import { freightSchema } from '@/components/logistics/shipmentsCRUD/hooks/shipmentSchema';
+import { z } from 'zod';
+
 export interface UserCreateDTO {
   email: string;
   displayName?: string;
@@ -89,16 +92,18 @@ export interface InvoiceItemDTO {
   total?: number;
 }
 
-export interface FreightDTO {
-  id?: number;
-  truckNumber: string;
-  forwarder?: string;
-  billNumber?: string;
-  billDate?: Date;
-  freightRate?: number;
-  currencyId?: number;
-  shipmentId?: number;
-}
+export type FreightDTO = z.infer<typeof freightSchema>
+
+// export interface FreightDTO {
+//   id?: number;
+//   truckNumber: string;
+//   forwarder?: string;
+//   billNumber?: string;
+//   billDate?: Date;
+//   freightRate?: number;
+//   currencyId?: number;
+//   shipmentId?: number;
+// }
 
 export interface CurrencyDTO {
   id?: number;
