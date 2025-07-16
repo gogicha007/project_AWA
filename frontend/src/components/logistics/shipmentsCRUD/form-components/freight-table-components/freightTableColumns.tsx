@@ -1,9 +1,10 @@
 import styles from './freight-fields.module.css';
+import { TiDelete } from 'react-icons/ti';
+import { useMemo } from 'react';
+import { useFormContext, Controller } from 'react-hook-form';
 import { CurrencyDTO } from '@/api/types';
 import DateInput from '@/components/controls/date-input/date-input';
-import { useMemo } from 'react';
-import { TiDelete } from 'react-icons/ti';
-import { useFormContext } from 'react-hook-form';
+import { NumericFormat } from 'react-number-format';
 
 export interface FreightRow {
   id: number;
@@ -92,11 +93,23 @@ const FreightColumns = (props: Props) => {
         header: tVar('table.freight_rate'),
         accessorKey: 'freightRate',
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
-          <input
-            {...register(`freights.${row.index}.freightRate` as const, {
-              valueAsNumber: true,
-            })}
-            className={`${styles.invoiceNumber} ${styles.input}`}
+          <Controller
+            control={control}
+            name={`freights.${row.index}.freightRate`}
+            render={({ field: { name, value, onChange } }) => (
+              <NumericFormat
+                name={name}
+                value={value}
+                onValueChange={(values) => {
+                  onChange(values.floatValue || 0);
+                }}
+                thousandSeparator=","
+                decimalScale={2}
+                fixedDecimalScale
+                allowNegative={false}
+                className={`${styles.invoiceNumber} ${styles.input}`}
+              />
+            )}
           />
         ),
       },
