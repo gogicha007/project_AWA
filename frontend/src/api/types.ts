@@ -1,5 +1,6 @@
 import {
   freightSchema,
+  generalInfoSchema,
   invoiceSchema,
   invoiceItemSchema,
   shipmentFormSchema,
@@ -64,14 +65,15 @@ export interface CurrencyDTO {
 
 export type ShipmentDTO = z.infer<typeof shipmentFormSchema>;
 
-export type ShipmentFileDTO = z.infer<typeof serverFileDataSchema>
+export type GeneralInfoDTO = z.infer<typeof generalInfoSchema>;
+
+export type ShipmentFileDTO = z.infer<typeof serverFileDataSchema>;
 
 export type InvoiceDTO = z.infer<typeof invoiceSchema>;
 
 export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 
 export type FreightDTO = z.infer<typeof freightSchema>;
-
 
 // export interface ShipmentDTO {
 //   id?: number;

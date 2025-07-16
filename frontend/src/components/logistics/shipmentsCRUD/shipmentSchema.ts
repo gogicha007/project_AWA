@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-// Client-side file data schema (for form handling with File objects)
+// Client-side file data schema (for handling File objects)
 const clientFileDataSchema = z.object({
   file: z.instanceof(File),
   preview: z.string().url(),
@@ -10,7 +10,7 @@ const clientFileDataSchema = z.object({
   type: z.string(),
 });
 
-// Server-side file data schema (matches what you save to database)
+// Server-side file data schema (matches database table fields)
 const serverFileDataSchema = z.object({
   id: z.number().optional(),
   fileName: z.string(),
@@ -19,7 +19,6 @@ const serverFileDataSchema = z.object({
   shipmentId: z.number().optional(),
 });
 
-// Use server schema for the form since that's what gets saved
 const fileDataSchema = serverFileDataSchema;
 
 // Invoice item schema
@@ -69,22 +68,33 @@ const hasRemovalsSchema = z.object({
   inFreights: z.array(z.number()),
 });
 
-// Main shipment form schema
-export const shipmentFormSchema = z
-  .object({
-    alias: z.string().min(1, 'Alias is required'),
-    status: z
-      .enum(['', 'APPLIED', 'DECLARED', 'ARRIVED'], {
-        errorMap: () => ({ message: 'Status is required' }),
-      })
-      .refine((val) => val !== '', { message: 'Status is required' }),
-    declaration_number: z.string().optional(),
-    declaration_date: z.date().optional(),
-    files: z.array(fileDataSchema).optional(),
-    invoices: z.array(invoiceSchema).optional(),
-    invoiceItems: z.array(invoiceItemSchema).optional(),
-    freights: z.array(freightSchema).optional(),
-    _hasRemovals: hasRemovalsSchema,
+// Create the base schema without refinements first
+const shipmentFormBaseSchema = z.object({
+  id: z.number().optional(),
+  alias: z.string().min(1, 'Alias is required'),
+  status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
+  declaration_number: z.string().optional(),
+  declaration_date: z.date().optional(),
+  files: z.array(fileDataSchema).optional(),
+  invoices: z.array(invoiceSchema).optional(),
+  invoiceItems: z.array(invoiceItemSchema).optional(),
+  freights: z.array(freightSchema).optional(),
+  _hasRemovals: hasRemovalsSchema,
+});
+
+// General Info Schema from the base schema
+const generalInfoSchema = shipmentFormBaseSchema.omit({
+  files: true,
+  invoices: true,
+  invoiceItems: true,
+  freights: true,
+  _hasRemovals: true,
+});
+
+export const shipmentFormSchema = shipmentFormBaseSchema
+  .refine((val) => val.status !== '', {
+    message: 'Status is required',
+    path: ['status'],
   })
   .refine(
     (data) => {
@@ -101,7 +111,6 @@ export const shipmentFormSchema = z
   )
   .refine(
     (data) => {
-      // Custom validation: if status is DECLARED, declaration_date should be provided
       if (data.status === 'DECLARED' && !data.declaration_date) {
         return false;
       }
@@ -113,16 +122,16 @@ export const shipmentFormSchema = z
     }
   );
 
-// Export the type inferred from the schema for consistency
 export type ShipmentFormSchema = z.infer<typeof shipmentFormSchema>;
 
-// Individual schemas for reuse
 export {
-  fileDataSchema,
+  generalInfoSchema,
   clientFileDataSchema,
-  serverFileDataSchema,
-  invoiceItemSchema,
-  invoiceSchema,
+  fileDataSchema,
   freightSchema,
   hasRemovalsSchema,
+  invoiceItemSchema,
+  invoiceSchema,
+  serverFileDataSchema,
+  shipmentFormBaseSchema,
 };

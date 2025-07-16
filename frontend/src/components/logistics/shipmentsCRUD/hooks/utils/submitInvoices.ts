@@ -1,4 +1,4 @@
-import { ShipmentFormValues } from '../useShipmentFormSet';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 import { originalInvoiceIds } from './shipmentFormUtils';
 import { ensureNumber, ensureInteger } from '@/utils/helper';
 import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
@@ -6,7 +6,7 @@ import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
 
 export const handleSubmitInvoice = async (
-  data: ShipmentFormValues,
+  data: ShipmentFormSchema,
   shipmentId: number,
   dbUserId: number
 ) => {
@@ -35,7 +35,9 @@ export const handleSubmitInvoice = async (
         id: invoice.id,
         vendorId: ensureInteger(invoice.vendorId),
         invoiceNumber: invoice.invoiceNumber,
-        invoiceDate: formatToISODateTime(invoice.invoiceDate) as Date,
+        invoiceDate: formatToISODateTime(
+          invoice.invoiceDate === null ? undefined : invoice.invoiceDate
+        ) as Date,
         totalAmount: ensureNumber(invoice.totalAmount),
         currencyId: ensureInteger(invoice.currencyId),
         userId: dbUserId,
@@ -53,7 +55,7 @@ export const handleSubmitInvoice = async (
           total: ensureNumber(item.total),
         })),
       }));
-      console.log('invoices with items', invoicesWithItems, shipmentId)
+      console.log('invoices with items', invoicesWithItems, shipmentId);
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
 

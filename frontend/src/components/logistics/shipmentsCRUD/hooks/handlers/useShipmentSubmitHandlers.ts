@@ -1,20 +1,22 @@
-import { ShipmentFormValues } from '../useShipmentFormSet';
+// import { ShipmentFormValues } from '../useShipmentFormSet';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { handleSubmitInvoice } from '../utils/submitInvoices';
 import { handleSubmitFreights } from '../utils/submitFreights';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 import {
   detectFormChanges,
   transformFormDataForSubmission,
 } from '../utils/shipmentFormUtils';
 import { useRouter } from 'next/navigation';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
+import { GeneralInfoDTO } from '@/api/types';
 
 export const useShipmentSubmitHandlers = (
   dbUserId: number | null,
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>,
-  reset: (data: ShipmentFormValues) => void,
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>,
+  reset: (data: ShipmentFormSchema) => void,
   setSnackbarOpen: (open: boolean) => void,
   setSnackbarStatus: (status: { message: string; success: boolean }) => void,
   setShipmentId: (id: number) => void,
@@ -22,7 +24,7 @@ export const useShipmentSubmitHandlers = (
 ) => {
   const router = useRouter();
 
-  const handleGenInfoSubmit = async (data: ShipmentFormValues) => {
+  const handleGenInfoSubmit = async (data: ShipmentFormSchema) => {
     console.log('gen info submit');
     try {
       if (dbUserId === null) {
@@ -51,6 +53,7 @@ export const useShipmentSubmitHandlers = (
         files: [],
         invoices: [],
         invoiceItems: [],
+        freights: [],
         _hasRemovals: {
           inFiles: false,
           inInvoices: [],
@@ -74,7 +77,7 @@ export const useShipmentSubmitHandlers = (
     }
   };
 
-  const handleEditSubmit = async (data: ShipmentFormValues) => {
+  const handleEditSubmit = async (data: ShipmentFormSchema) => {
     try {
       if (!shipmentId || dbUserId === null) {
         throw new Error(
@@ -82,28 +85,27 @@ export const useShipmentSubmitHandlers = (
         );
       }
       console.log('data', data);
-      console.log('shipment id', shipmentId)
-      // console.log('edit/dirty fields', dirtyFields);
+      console.log('shipment id', shipmentId);
 
-      // Transform form data to ensure proper data types
       const transformedData = transformFormDataForSubmission(data);
 
-      const changes = detectFormChanges(dirtyFields); // Update general fields
+      const changes = detectFormChanges(dirtyFields);
+
       if (changes.hasGeneralFieldChanges) {
         console.log('general fields change detected');
         const formattedDate = formatToISODateTime(
           transformedData.declaration_date
         );
-        await shipmentApi.update(
-          {
-            id: shipmentId,
-            alias: transformedData.alias,
-            declaration_number: transformedData.declaration_number ?? '',
-            declaration_date: formattedDate as Date,
-            status: transformedData.status,
-          },
-          dbUserId
-        );
+
+        const generalInfoUpdate: GeneralInfoDTO = {
+          id: shipmentId,
+          alias: transformedData.alias,
+          declaration_number: transformedData.declaration_number ?? '',
+          declaration_date: formattedDate as Date,
+          status: transformedData.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
+        };
+        
+        await shipmentApi.update(generalInfoUpdate, dbUserId);
       }
 
       // Handle files

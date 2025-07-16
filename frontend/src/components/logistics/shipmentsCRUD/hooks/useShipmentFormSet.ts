@@ -11,10 +11,12 @@ import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { FileData } from '@/components/controls/file-input/FileInput';
 import { FreightDTO, InvoiceDTO, InvoiceItemDTO } from '@/api/types';
-// import { ShipmentFormSchema } from './shipmentSchema';
+import { shipmentFormBaseSchema, shipmentFormSchema } from '../shipmentSchema';
 import { createDefaultValues } from './utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
 import { useShipmentData } from './data/useShipmentData';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 export type ShipmentFormValues = {
   alias: string;
@@ -54,18 +56,16 @@ export function useShipmentFormSet(id?: number) {
   const [disableSubmitBtn, setDisableSubmitBtn] = useState(true);
   const [shipmentId, setShipmentId] = useState(id);
 
-  const formMethods = useForm<ShipmentFormValues>({
+  const formMethods = useForm<z.infer<typeof shipmentFormBaseSchema>>({
+    resolver: zodResolver(shipmentFormSchema),
+    mode: 'onSubmit',
     defaultValues: createDefaultValues(),
   });
 
   const {
     watch,
     reset,
-    formState: {
-      isDirty,
-      isSubmitting,
-      dirtyFields,
-    },
+    formState: { isDirty, isSubmitting, dirtyFields },
   } = formMethods;
 
   const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(

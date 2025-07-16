@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { transformShipmentToFormData } from '../utils/shipmentFormUtils';
-import { ShipmentFormValues } from '../useShipmentFormSet';
+import { ShipmentFormSchema } from '../../shipmentSchema';
+// import { ShipmentFormValues } from '../useShipmentFormSet';
 import { FileData } from '@/components/controls/file-input/FileInput';
 
 export const useShipmentData = (
@@ -10,7 +11,7 @@ export const useShipmentData = (
   dbUserId: number | null,
   currenciesLoading: boolean,
   vendorsLoading: boolean,
-  reset: (data: ShipmentFormValues) => void,
+  reset: (data: ShipmentFormSchema) => void,
   setFileDataArray: (files: FileData[]) => void,
   setShipmentId: (id: number) => void,
   setLoading: (loading: boolean) => void,
@@ -35,7 +36,7 @@ export const useShipmentData = (
         const shipment = await shipmentApi.getById(id);
         const shipmentFormData = transformShipmentToFormData(shipment);
         reset(shipmentFormData);
-        setFileDataArray(shipment.Files || []);
+        setFileDataArray(shipment.files || []);
       } catch (error) {
         setSnackbarStatus({
           message: `Failed to fetch shipment: ${error}`,

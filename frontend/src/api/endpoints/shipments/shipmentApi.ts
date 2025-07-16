@@ -1,6 +1,6 @@
 import { handleApiError } from '@/utils/handleApiError';
 import apiClient from '../../api-client';
-import { ShipmentDTO } from '../../types';
+import { ShipmentDTO, GeneralInfoDTO } from '../../types';
 
 export const shipmentApi = {
   getAll: async (): Promise<ShipmentDTO[]> => {
@@ -14,9 +14,9 @@ export const shipmentApi = {
   },
 
   create: async (
-    shipment: ShipmentDTO,
+    shipment: GeneralInfoDTO,
     userId: number
-  ): Promise<ShipmentDTO> => {
+  ): Promise<GeneralInfoDTO> => {
     try {
       const shipmentCreateData = {
         alias: shipment.alias,
@@ -37,9 +37,9 @@ export const shipmentApi = {
   },
 
   update: async (
-    shipment: ShipmentDTO,
+    shipment: GeneralInfoDTO,
     userId: number
-  ): Promise<ShipmentDTO> => {
+  ): Promise<GeneralInfoDTO> => {
     try {
       const shipmentUpdateData = {
         alias: shipment.alias,

@@ -2,10 +2,11 @@ import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { ensureNumber, ensureInteger } from '@/utils/helper';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 
-export const createDefaultValues = (): ShipmentFormValues => ({
+export const createDefaultValues = (): ShipmentFormSchema => ({
   alias: '',
-  status: '' as '' | 'APPLIED' | 'DECLARED' | 'ARRIVED',
+  status: '' as ShipmentFormSchema['status'],
   declaration_number: '',
   declaration_date: undefined,
   files: [],
@@ -21,7 +22,7 @@ export const createDefaultValues = (): ShipmentFormValues => ({
 
 export const transformShipmentToFormData = (
   shipment: ShipmentDTO
-): ShipmentFormValues => ({
+): ShipmentFormSchema => ({
   alias: shipment.alias,
   status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
   declaration_number: shipment.declaration_number || '',
@@ -30,10 +31,10 @@ export const transformShipmentToFormData = (
       ? new Date(shipment.declaration_date)
       : shipment.declaration_date
     : undefined,
-  files: shipment.Files,
-  invoices: shipment.Invoices,
-  invoiceItems: shipment.Invoices
-    ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
+  files: shipment.files,
+  invoices: shipment.invoices,
+  invoiceItems: shipment.invoices
+    ? shipment.invoices.flatMap((inv) => inv.Items ?? [])
     : [],
   _hasRemovals: {
     inFiles: false,
@@ -44,9 +45,9 @@ export const transformShipmentToFormData = (
 });
 
 export const detectFormChanges = (
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>
 ) => {
-  const generalFields: (keyof ShipmentFormValues)[] = [
+  const generalFields: (keyof ShipmentFormSchema)[] = [
     'alias',
     'declaration_date',
     'declaration_number',
