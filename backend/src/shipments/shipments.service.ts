@@ -79,6 +79,7 @@ export class ShipmentsService {
             Items: true,
           },
         },
+        Freights: true,
         Files: {
           select: {
             id: true,
