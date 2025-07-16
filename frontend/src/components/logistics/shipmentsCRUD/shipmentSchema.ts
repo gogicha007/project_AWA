@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-// File data schema
-const fileDataSchema = z.object({
+// Client-side file data schema (for form handling with File objects)
+const clientFileDataSchema = z.object({
   file: z.instanceof(File),
   preview: z.string().url(),
   id: z.number().optional(),
@@ -9,6 +9,18 @@ const fileDataSchema = z.object({
   size: z.number(),
   type: z.string(),
 });
+
+// Server-side file data schema (matches what you save to database)
+const serverFileDataSchema = z.object({
+  id: z.number().optional(),
+  fileName: z.string(),
+  fileType: z.string(),
+  fileData: z.string(), // base64 encoded string
+  shipmentId: z.number().optional(),
+});
+
+// Use server schema for the form since that's what gets saved
+const fileDataSchema = serverFileDataSchema;
 
 // Invoice item schema
 const invoiceItemSchema = z.object({
@@ -34,6 +46,7 @@ const invoiceSchema = z.object({
     .min(0, 'Total amount must be non-negative')
     .optional(),
   shipmentId: z.number().optional(),
+  Items: z.array(invoiceItemSchema).optional(),
 });
 
 // Freight schema
@@ -106,6 +119,8 @@ export type ShipmentFormSchema = z.infer<typeof shipmentFormSchema>;
 // Individual schemas for reuse
 export {
   fileDataSchema,
+  clientFileDataSchema,
+  serverFileDataSchema,
   invoiceItemSchema,
   invoiceSchema,
   freightSchema,

@@ -1,4 +1,10 @@
-import { freightSchema } from '@/components/logistics/shipmentsCRUD/hooks/shipmentSchema';
+import {
+  freightSchema,
+  invoiceSchema,
+  invoiceItemSchema,
+  shipmentFormSchema,
+  serverFileDataSchema,
+} from '@/components/logistics/shipmentsCRUD/shipmentSchema';
 import { z } from 'zod';
 
 export interface UserCreateDTO {
@@ -50,49 +56,52 @@ export interface VendorDTO {
   country: string;
 }
 
-export interface ShipmentDTO {
+export interface CurrencyDTO {
   id?: number;
-  alias: string;
-  declaration_number: string;
-  declaration_date: Date | string | null;
-  status: string;
-  Files?: Array<ShipmentFileDTO>;
-  Invoices?: Array<InvoiceDTO>;
-  Freights?: Array<FreightDTO>;
+  code: string;
+  name: string;
 }
 
-export interface ShipmentFileDTO {
-  id?: number;
-  fileName: string;
-  fileType: string;
-  fileData: string;
-  shipmentId?: number;
-}
+export type ShipmentDTO = z.infer<typeof shipmentFormSchema>;
 
-export interface InvoiceDTO {
-  id?: number;
-  vendorId: number;
-  invoiceNumber: string;
-  invoiceDate: Date;
-  totalAmount?: number;
-  userId?: number;
-  currencyId: number;
-  shipmentId?: number;
-  Items?: Array<InvoiceItemDTO>;
-}
+export type ShipmentFileDTO = z.infer<typeof serverFileDataSchema>
 
-export interface InvoiceItemDTO {
-  id?: number;
-  invoiceId: number;
-  productId: number;
-  description: string;
-  quantity: number;
-  unitId: number;
-  unitPrice: number;
-  total?: number;
-}
+export type InvoiceDTO = z.infer<typeof invoiceSchema>;
 
-export type FreightDTO = z.infer<typeof freightSchema>
+export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
+
+export type FreightDTO = z.infer<typeof freightSchema>;
+
+
+// export interface ShipmentDTO {
+//   id?: number;
+//   alias: string;
+//   declaration_number: string;
+//   declaration_date: Date | string | null;
+//   status: string;
+//   Files?: Array<ShipmentFileDTO>;
+//   Invoices?: Array<InvoiceDTO>;
+//   Freights?: Array<FreightDTO>;
+// }
+
+// export interface ShipmentFileDTO {
+//   id?: number;
+//   fileName: string;
+//   fileType: string;
+//   fileData: string;
+//   shipmentId?: number;
+// }
+
+// export interface InvoiceItemDTO {
+//   id?: number;
+//   invoiceId: number;
+//   productId: number;
+//   description: string;
+//   quantity: number;
+//   unitId: number;
+//   unitPrice: number;
+//   total?: number;
+// }
 
 // export interface FreightDTO {
 //   id?: number;
@@ -105,8 +114,14 @@ export type FreightDTO = z.infer<typeof freightSchema>
 //   shipmentId?: number;
 // }
 
-export interface CurrencyDTO {
-  id?: number;
-  code: string;
-  name: string;
-}
+// export interface InvoiceDTO {
+//   id?: number;
+//   vendorId: number;
+//   invoiceNumber: string;
+//   invoiceDate: Date;
+//   totalAmount?: number;
+//   userId?: number;
+//   currencyId: number;
+//   shipmentId?: number;
+//   Items?: Array<InvoiceItemDTO>;
+// }

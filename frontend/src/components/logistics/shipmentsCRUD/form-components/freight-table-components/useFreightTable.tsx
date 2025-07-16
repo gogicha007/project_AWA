@@ -5,7 +5,7 @@ import { SnackbarControls } from '@/components/feedback/snackbar/snackbarTypes';
 import FreightColumns from './freightTableColumns';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 // import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
-import { ShipmentFormSchema } from '../../hooks/shipmentSchema';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 
 type Props = {
   currencies: Partial<CurrencyDTO>[];
