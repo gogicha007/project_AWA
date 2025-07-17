@@ -9,9 +9,9 @@ export const createDefaultValues = (): ShipmentFormSchema => ({
   status: '' as ShipmentFormSchema['status'],
   declaration_number: '',
   declaration_date: undefined,
-  files: [],
-  invoices: [],
-  invoiceItems: [],
+  Files: [],
+  Invoices: [],
+  InvoiceItems: [],
   _hasRemovals: {
     inFiles: false,
     inInvoices: [],
@@ -31,11 +31,12 @@ export const transformShipmentToFormData = (
       ? new Date(shipment.declaration_date)
       : shipment.declaration_date
     : undefined,
-  files: shipment.files,
-  invoices: shipment.invoices,
-  invoiceItems: shipment.invoices
-    ? shipment.invoices.flatMap((inv) => inv.Items ?? [])
+  Files: shipment.Files,
+  Invoices: shipment.Invoices,
+  InvoiceItems: shipment.Invoices
+    ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
     : [],
+  Freights: shipment.Freights,
   _hasRemovals: {
     inFiles: false,
     inInvoices: [],

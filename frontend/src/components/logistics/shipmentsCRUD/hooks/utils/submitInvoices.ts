@@ -30,8 +30,8 @@ export const handleSubmitInvoice = async (
       console.log('there are removed invoices');
     }
 
-    if (data.invoices && data.invoices.length > 0) {
-      const invoicesWithItems = data.invoices.map((invoice) => ({
+    if (data.Invoices && data.Invoices.length > 0) {
+      const invoicesWithItems = data.Invoices.map((invoice) => ({
         id: invoice.id,
         vendorId: ensureInteger(invoice.vendorId),
         invoiceNumber: invoice.invoiceNumber,
@@ -43,7 +43,7 @@ export const handleSubmitInvoice = async (
         userId: dbUserId,
         shipmentId: shipmentId,
         items: (
-          data.invoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
+          data.InvoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
           []
         ).map((item) => ({
           ...item,

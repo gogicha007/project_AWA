@@ -30,6 +30,7 @@ const FileInput: React.FC<FileInputProps> = ({
     formState: { errors },
   } = useFormContext();
 
+  console.log('file data array', fileDataArray)
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) return;
     const newFiles = Array.from(e.target.files);

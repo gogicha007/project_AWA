@@ -75,19 +75,19 @@ const shipmentFormBaseSchema = z.object({
   status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
   declaration_number: z.string().optional(),
   declaration_date: z.date().optional(),
-  files: z.array(fileDataSchema).optional(),
-  invoices: z.array(invoiceSchema).optional(),
-  invoiceItems: z.array(invoiceItemSchema).optional(),
-  freights: z.array(freightSchema).optional(),
+  Files: z.array(fileDataSchema).optional(),
+  Invoices: z.array(invoiceSchema).optional(),
+  InvoiceItems: z.array(invoiceItemSchema).optional(),
+  Freights: z.array(freightSchema).optional(),
   _hasRemovals: hasRemovalsSchema,
 });
 
 // General Info Schema from the base schema
 const generalInfoSchema = shipmentFormBaseSchema.omit({
-  files: true,
-  invoices: true,
-  invoiceItems: true,
-  freights: true,
+  Files: true,
+  Invoices: true,
+  InvoiceItems: true,
+  Freights: true,
   _hasRemovals: true,
 });
 

@@ -34,9 +34,11 @@ export const useShipmentData = (
     const fetchShipment = async () => {
       try {
         const shipment = await shipmentApi.getById(id);
+        console.log('shipment', shipment)
         const shipmentFormData = transformShipmentToFormData(shipment);
+        console.log('shipment form data', shipmentFormData)
         reset(shipmentFormData);
-        setFileDataArray(shipment.files || []);
+        setFileDataArray(shipment.Files || []);
       } catch (error) {
         setSnackbarStatus({
           message: `Failed to fetch shipment: ${error}`,
