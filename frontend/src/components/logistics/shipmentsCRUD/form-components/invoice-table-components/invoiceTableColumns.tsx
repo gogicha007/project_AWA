@@ -51,7 +51,7 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'vendorId',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <select
-            {...register(`invoices.${row.index}.vendorId` as const, {
+            {...register(`Invoices.${row.index}.vendorId` as const, {
               valueAsNumber: true,
               required: 'Vendor is required',
             })}
@@ -71,7 +71,7 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'invoiceNumber',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <input
-            {...register(`invoices.${row.index}.invoiceNumber` as const, {
+            {...register(`Invoices.${row.index}.invoiceNumber` as const, {
               required: 'Invoice number is required',
             })}
             className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.Invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
@@ -85,7 +85,7 @@ const InvoiceColumns = (props: Props) => {
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <DateInput
             label=""
-            name={`invoices.${row.index}.invoiceDate`}
+            name={`Invoices.${row.index}.invoiceDate`}
             control={control}
             className={`${styles.inputDate} ${dirtyFields?.Invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
           />
@@ -96,7 +96,7 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'currencyId',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <select
-            {...register(`invoices.${row.index}.currencyId` as const, {
+            {...register(`Invoices.${row.index}.currencyId` as const, {
               valueAsNumber: true,
               required: 'Currency is required',
             })}

@@ -14,11 +14,11 @@ const ItemsButton = ({
   const { control } = useFormContext();
   const invoiceNumber = useWatch({
     control,
-    name: `invoices.${rowIndex}.invoiceNumber`,
+    name: `Invoices.${rowIndex}.invoiceNumber`,
   });
   const invoiceDate = useWatch({
     control,
-    name: `invoices.${rowIndex}.invoiceDate`,
+    name: `Invoices.${rowIndex}.invoiceDate`,
   });
   
   const isEnabled = !!(invoiceNumber && invoiceDate);
