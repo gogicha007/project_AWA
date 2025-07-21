@@ -98,7 +98,6 @@ const InvoiceItemColumns = (props: Props) => {
             step="0.01"
             {...register(`InvoiceItems.${fieldIndex}.quantity` as const, {
               valueAsNumber: true,
-              required: tVar('validation.required'),
               min: { value: 0.01, message: tVar('validation.min_value') },
             })}
             className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.quantity ? styles.dirty : ''}`}
@@ -115,8 +114,6 @@ const InvoiceItemColumns = (props: Props) => {
           <select
             {...register(`InvoiceItems.${fieldIndex}.unitId` as const, {
               valueAsNumber: true,
-              required: tVar('validation.required'),
-              validate: (value) => value > 0 || tVar('validation.required'),
             })}
             className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.unitId ? styles.dirty : ''}`}
           >

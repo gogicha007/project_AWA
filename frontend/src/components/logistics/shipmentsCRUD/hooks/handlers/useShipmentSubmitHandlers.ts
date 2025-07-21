@@ -114,9 +114,6 @@ export const useShipmentSubmitHandlers = (
 
       if (changes.hasGeneralFieldChanges) {
         console.log('general fields change detected');
-        // const formattedDate = formatToISODateTime(
-        //   transformedData.declaration_date
-        // );
 
         const generalInfoUpdate: GeneralInfoDTO = {
           id: shipmentId,

@@ -53,7 +53,6 @@ const InvoiceColumns = (props: Props) => {
           <select
             {...register(`Invoices.${row.index}.vendorId` as const, {
               valueAsNumber: true,
-              required: 'Vendor is required',
             })}
             className={`${styles.vendorSelect} ${dirtyFields?.Invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
           >
@@ -71,9 +70,7 @@ const InvoiceColumns = (props: Props) => {
         accessorKey: 'invoiceNumber',
         cell: ({ row }: { row: { index: number; original: InvoiceRow } }) => (
           <input
-            {...register(`Invoices.${row.index}.invoiceNumber` as const, {
-              required: 'Invoice number is required',
-            })}
+            {...register(`Invoices.${row.index}.invoiceNumber` as const)}
             className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.Invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
             placeholder="Enter invoice number"
           />
@@ -98,7 +95,6 @@ const InvoiceColumns = (props: Props) => {
           <select
             {...register(`Invoices.${row.index}.currencyId` as const, {
               valueAsNumber: true,
-              required: 'Currency is required',
             })}
             className={`${styles.currency} ${styles.input} ${dirtyFields?.Invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
           >

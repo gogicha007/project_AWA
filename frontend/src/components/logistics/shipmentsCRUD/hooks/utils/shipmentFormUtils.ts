@@ -1,4 +1,4 @@
-import { InvoiceDTO, ShipmentDTO } from '@/api/types';
+import { InvoiceDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { ensureNumber, ensureInteger } from '@/utils/helper';
 import { ShipmentFormSchema } from '../../shipmentSchema';
@@ -20,7 +20,7 @@ export const createDefaultValues = (): ShipmentFormSchema => ({
 });
 
 export const transformShipmentToFormData = (
-  shipment: ShipmentDTO
+  shipment: ShipmentFormSchema
 ): ShipmentFormSchema => ({
   alias: shipment.alias,
   status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
@@ -31,9 +31,26 @@ export const transformShipmentToFormData = (
       : shipment.declaration_date
     : undefined,
   Files: shipment.Files,
-  Invoices: shipment.Invoices,
+  Invoices: shipment.Invoices?.map((inv: InvoiceDTO) => ({
+    ...inv,
+    invoiceDate: inv.invoiceDate
+      ? typeof inv.invoiceDate === 'string'
+        ? new Date(inv.invoiceDate)
+        : inv.invoiceDate
+      : null,
+    totalAmount: inv.totalAmount ? +inv.totalAmount : 0,
+    Items: [],
+  })),
   InvoiceItems: shipment.Invoices
-    ? shipment.Invoices.flatMap((inv: InvoiceDTO) => inv.Items ?? [])
+    ? shipment.Invoices.flatMap(
+        (inv: InvoiceDTO) =>
+          inv.Items?.map((item) => ({
+            ...item,
+            quantity: item.quantity ? +item.quantity : 0,
+            unitPrice: item.unitPrice ? +item.unitPrice : 0,
+            total: item.total ? +item.total : 0,
+          })) ?? []
+      )
     : [],
   Freights: shipment.Freights,
   _hasRemovals: {
@@ -128,9 +145,9 @@ export const detectFormChanges = (
 };
 
 export const originalInvoiceIds = (data: ShipmentFormSchema) => {
-  const idsArray = data.Invoices
-    ?.filter((invoice: InvoiceDTO) => Number(invoice.id) > 0)
-    .map((invoice: InvoiceDTO) => invoice.id);
+  const idsArray = data.Invoices?.filter(
+    (invoice: InvoiceDTO) => Number(invoice.id) > 0
+  ).map((invoice: InvoiceDTO) => invoice.id);
 
   return idsArray ?? [];
 };

@@ -15,7 +15,7 @@ const serverFileDataSchema = z.object({
   id: z.number().optional(),
   fileName: z.string(),
   fileType: z.string(),
-  fileData: z.string(),
+  fileData: z.string().optional(),
   shipmentId: z.number().optional(),
 });
 

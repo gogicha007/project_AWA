@@ -7,7 +7,7 @@ const TotalAmountDisplay = ({ rowIndex }: { rowIndex: number }) => {
   const totalAmount =
     useWatch({
       control,
-      name: `invoices.${rowIndex}.totalAmount`,
+      name: `Invoices.${rowIndex}.totalAmount`,
     }) || 0;
 
   return (

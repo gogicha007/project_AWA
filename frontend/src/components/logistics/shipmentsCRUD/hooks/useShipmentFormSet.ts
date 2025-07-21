@@ -14,7 +14,7 @@ import { shipmentFormBaseSchema } from '../shipmentSchema';
 import { createDefaultValues } from './utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
 import { useShipmentData } from './data/useShipmentData';
-// import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 export function useShipmentFormSet(id?: number) {
@@ -39,7 +39,7 @@ export function useShipmentFormSet(id?: number) {
   const [shipmentId, setShipmentId] = useState(id);
 
   const formMethods = useForm<z.infer<typeof shipmentFormBaseSchema>>({
-    // resolver: zodResolver(shipmentFormBaseSchema),
+    resolver: zodResolver(shipmentFormBaseSchema),
     defaultValues: createDefaultValues(),
   });
 
