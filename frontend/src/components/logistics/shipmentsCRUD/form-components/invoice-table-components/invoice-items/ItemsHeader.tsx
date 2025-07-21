@@ -1,14 +1,14 @@
 import { Control, useWatch } from 'react-hook-form';
-import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 import { NumericFormat } from 'react-number-format';
 import { useMemo } from 'react';
+import { ShipmentFormSchema } from '../../../shipmentSchema';
 
 export function ItemsHeader({
   control,
   invoice,
   invoiceId,
 }: {
-  control: Control<ShipmentFormValues>;
+  control: Control<ShipmentFormSchema>;
   invoice: {
     num: string;
     date: Date | string | null;
@@ -17,7 +17,7 @@ export function ItemsHeader({
 }) {
   const items = useWatch({
     control,
-    name: 'invoiceItems',
+    name: 'InvoiceItems',
   });
 
   const totalAmount = useMemo(() => {

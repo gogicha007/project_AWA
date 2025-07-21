@@ -1,13 +1,13 @@
 import { FieldNamesMarkedBoolean, UseFormRegister } from 'react-hook-form';
-import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 import { MaterialNameDTO } from '@/api/types';
+import { ShipmentFormSchema } from '../../../shipmentSchema';
 
 type Props = {
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>;
   fieldIndex: number;
   materials: MaterialNameDTO[];
   materialsObj: Record<string, string | undefined>;
-  register: UseFormRegister<ShipmentFormValues>;
+  register: UseFormRegister<ShipmentFormSchema>;
   styles: {
     readonly [key: string]: string;
   };
@@ -25,12 +25,12 @@ export function SelectMaterial({
 }: Props) {
   return (
     <select
-      {...register(`invoiceItems.${fieldIndex}.productId` as const, {
+      {...register(`InvoiceItems.${fieldIndex}.productId` as const, {
         valueAsNumber: true,
         required: tVar('validation.required') as unknown as string,
         validate: (value) => value > 0 || tVar('validation.required'),
       })}
-      className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.productId ? styles.dirty : ''}`}
+      className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.productId ? styles.dirty : ''}`}
     >
       <option value="">Select</option>
       {materials.map((p) => (

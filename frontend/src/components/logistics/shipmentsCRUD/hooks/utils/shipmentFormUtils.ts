@@ -1,4 +1,3 @@
-import { ShipmentFormValues } from '../useShipmentFormSet';
 import { InvoiceDTO, ShipmentDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { ensureNumber, ensureInteger } from '@/utils/helper';
@@ -128,8 +127,8 @@ export const detectFormChanges = (
   };
 };
 
-export const originalInvoiceIds = (data: ShipmentFormValues) => {
-  const idsArray = data.invoices
+export const originalInvoiceIds = (data: ShipmentFormSchema) => {
+  const idsArray = data.Invoices
     ?.filter((invoice: InvoiceDTO) => Number(invoice.id) > 0)
     .map((invoice: InvoiceDTO) => invoice.id);
 
@@ -138,17 +137,17 @@ export const originalInvoiceIds = (data: ShipmentFormValues) => {
 
 // Transform form data to ensure all numeric fields are properly typed
 export const transformFormDataForSubmission = (
-  data: ShipmentFormValues
-): ShipmentFormValues => {
+  data: ShipmentFormSchema
+): ShipmentFormSchema => {
   return {
     ...data,
-    invoices: data.invoices?.map((invoice) => ({
+    Invoices: data.Invoices?.map((invoice) => ({
       ...invoice,
       vendorId: ensureInteger(invoice.vendorId),
       currencyId: ensureInteger(invoice.currencyId),
       totalAmount: ensureNumber(invoice.totalAmount),
     })),
-    invoiceItems: data.invoiceItems?.map((item) => ({
+    InvoiceItems: data.InvoiceItems?.map((item) => ({
       ...item,
       productId: ensureInteger(item.productId),
       quantity: ensureNumber(item.quantity),

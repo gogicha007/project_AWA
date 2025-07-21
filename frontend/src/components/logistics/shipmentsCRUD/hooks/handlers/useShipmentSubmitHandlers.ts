@@ -77,6 +77,7 @@ export const useShipmentSubmitHandlers = (
   };
 
   const handleEditSubmit = async (data: ShipmentFormSchema) => {
+    console.log('handle edit submit')
     try {
       if (!shipmentId || dbUserId === null) {
         throw new Error(

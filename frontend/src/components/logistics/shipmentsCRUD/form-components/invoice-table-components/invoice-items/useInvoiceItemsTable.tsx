@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { MaterialNameDTO, UnitDTO } from '@/api/types';
 import InvoiceItemColumns, { InvoiceItemRow } from './invoiceItemsTableColumns';
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
-import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
+import { ShipmentFormSchema } from '../../../shipmentSchema';
 
 type Props = {
   auxData: {
@@ -26,12 +26,12 @@ export function useInvoiceItemsTable(props: Props) {
   } = props;
 
   const { control, formState, register, setValue, getValues, trigger } =
-    useFormContext<ShipmentFormValues>();
+    useFormContext<ShipmentFormSchema>();
 
   const { fields, append, remove } = useFieldArray({
     control,
     keyName: 'uid',
-    name: 'invoiceItems',
+    name: 'InvoiceItems',
   });
 
   const unitsObj = useMemo(() => arrayToIdValueMap(units, 'unit'), [units]);

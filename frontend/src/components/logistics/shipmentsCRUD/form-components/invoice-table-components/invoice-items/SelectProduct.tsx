@@ -5,13 +5,13 @@ import {
   FieldPath,
 } from 'react-hook-form';
 import Select from 'react-select';
-import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
+import { ShipmentFormSchema } from '../../../shipmentSchema';
 
 type Props = {
-  control: Control<ShipmentFormValues>;
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
+  control: Control<ShipmentFormSchema>;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>;
   fieldIndex: number;
-  name: FieldPath<ShipmentFormValues>;
+  name: FieldPath<ShipmentFormSchema>;
   options: {
     value: number | undefined;
     label: string;
@@ -49,7 +49,6 @@ export function SelectProduct({
           <Select<{ value: number | undefined; label: string }>
             options={options}
             onChange={(selectedOption) => {
-              console.log('onChange selectedOption:', selectedOption);
               field.onChange(selectedOption?.value || 0);
             }}
             value={selectedOption}
@@ -117,7 +116,7 @@ export function SelectProduct({
               }),
             }}
             className={
-              dirtyFields?.invoiceItems?.[fieldIndex]?.productId
+              dirtyFields?.InvoiceItems?.[fieldIndex]?.productId
                 ? styles.dirty
                 : ''
             }

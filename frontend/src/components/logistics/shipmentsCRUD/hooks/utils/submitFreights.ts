@@ -1,13 +1,13 @@
 import { ensureInteger, ensureNumber } from '@/utils/helper';
-import { ShipmentFormValues } from '../useShipmentFormSet';
 import { formatToISODateTime } from '@/utils/dateFormat';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 
 export const handleSubmitFreights = (
-  data: ShipmentFormValues,
+  data: ShipmentFormSchema,
   shipmentId: number,
   dbUserId: number
 ) => {
-  console.log('freight data', data.freights);
+  console.log('freight data', data.Freights);
   console.log('ids for freight', shipmentId, dbUserId);
   try {
     if (
@@ -17,8 +17,8 @@ export const handleSubmitFreights = (
       console.log('remove freight ids', data._hasRemovals.inFreights);
     }
 
-    if (data.freights && data.freights.length > 0) {
-      const freightsToSubmit = data.freights.map((freight) => ({
+    if (data.Freights && data.Freights.length > 0) {
+      const freightsToSubmit = data.Freights.map((freight) => ({
         id: freight.id,
         truckNumber: freight.truckNumber,
         forwarder: freight.forwarder,

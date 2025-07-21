@@ -10,7 +10,7 @@ import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
 import { InvoiceRow } from './invoiceTableColumns';
 import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
-import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 
 type Props = {
   auxData: {
@@ -22,11 +22,11 @@ type Props = {
 };
 
 type InvoiceFieldPath =
-  | `invoices.${number}.vendorId`
-  | `invoices.${number}.invoiceNumber`
-  | `invoices.${number}.invoiceDate`
-  | `invoices.${number}.currencyId`
-  | `invoices.${number}.totalAmount`;
+  | `Invoices.${number}.vendorId`
+  | `Invoices.${number}.invoiceNumber`
+  | `Invoices.${number}.invoiceDate`
+  | `Invoices.${number}.currencyId`
+  | `Invoices.${number}.totalAmount`;
 
 export function useInvoiceTable(props: Props) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -41,12 +41,12 @@ export function useInvoiceTable(props: Props) {
     tVar,
   } = props;
   const { control, formState, resetField, reset, getValues, setValue } =
-    useFormContext<ShipmentFormValues>();
+    useFormContext<ShipmentFormSchema>();
   const { dirtyFields } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     keyName: 'uid',
-    name: 'invoices',
+    name: 'Invoices',
   });
 
   const currenciesObj = useMemo(
@@ -120,10 +120,10 @@ export function useInvoiceTable(props: Props) {
       return;
     }
 
-    const defaultInvoices = control._defaultValues?.invoices ?? [];
+    const defaultInvoices = control._defaultValues?.Invoices ?? [];
     const defaultRow = defaultInvoices[index];
 
-    const rowDirtyFields = dirtyFields.invoices?.[index];
+    const rowDirtyFields = dirtyFields.Invoices?.[index];
 
     if (rowDirtyFields) {
       const keysArray = Object.keys(rowDirtyFields);
@@ -131,7 +131,7 @@ export function useInvoiceTable(props: Props) {
       if (keysArray.length > 0) {
         keysArray.forEach((key) => {
           const value = defaultRow?.[key as keyof typeof defaultRow];
-          resetField(`invoices.${index}.${key}` as InvoiceFieldPath, {
+          resetField(`Invoices.${index}.${key}` as InvoiceFieldPath, {
             defaultValue: Array.isArray(value)
               ? undefined
               : (value as string | number | Date | undefined),
@@ -152,22 +152,22 @@ export function useInvoiceTable(props: Props) {
       const index = fields.findIndex((field) => field.id === id);
 
       if (index !== -1) {
-        const currentInvoiceItems = getValues('invoiceItems') || [];
+        const currentInvoiceItems = getValues('InvoiceItems') || [];
         const filteredInvoiceItems = (
           currentInvoiceItems as Array<InvoiceItemDTO>
         ).filter((item) => item.invoiceId !== id);
 
-        setValue('invoiceItems', filteredInvoiceItems);
+        setValue('InvoiceItems', filteredInvoiceItems);
 
         remove(index);
 
         setTimeout(() => {
-          const currentInvoices = getValues('invoices');
-          const currentFilteredItems = getValues('invoiceItems');
+          const currentInvoices = getValues('Invoices');
+          const currentFilteredItems = getValues('InvoiceItems');
           reset(
             {
-              invoices: currentInvoices,
-              invoiceItems: currentFilteredItems,
+              Invoices: currentInvoices,
+              InvoiceItems: currentFilteredItems,
             },
             {
               keepDirty: false,
@@ -190,7 +190,7 @@ export function useInvoiceTable(props: Props) {
   const updateInvoiceTotalAmount = (invoiceId: number, totalAmount: number) => {
     const index = fields.findIndex((field) => field.id === invoiceId);
     if (index !== -1) {
-      setValue(`invoices.${index}.totalAmount`, totalAmount);
+      setValue(`Invoices.${index}.totalAmount`, totalAmount);
     }
   };
 

@@ -8,8 +8,8 @@ import {
 } from 'react-hook-form';
 import InvoiceTableActions from '../InvoiceTableActions';
 import { TotalCell } from './TotalCell';
-import { ShipmentFormValues } from '../../../hooks/useShipmentFormSet';
 import { SelectProduct } from './SelectProduct';
+import { ShipmentFormSchema } from '../../../shipmentSchema';
 
 export interface InvoiceItemRow {
   id: number;
@@ -24,13 +24,13 @@ export interface InvoiceItemRow {
 }
 
 type Props = {
-  control: Control<ShipmentFormValues>;
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
+  control: Control<ShipmentFormSchema>;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>;
   handleRemoveItem: (id: number) => void;
   materials: MaterialNameDTO[];
   materialsObj: Record<string, string | undefined>;
-  register: UseFormRegister<ShipmentFormValues>;
-  setValue: UseFormSetValue<ShipmentFormValues>;
+  register: UseFormRegister<ShipmentFormSchema>;
+  setValue: UseFormSetValue<ShipmentFormSchema>;
   tVar: (key: string) => string;
   units: UnitDTO[];
   unitsObj: Record<string, string | undefined>;
@@ -58,7 +58,7 @@ const InvoiceItemColumns = (props: Props) => {
       accessorKey: 'productId',
       cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
         const fieldIndex = row.original.originalIndex ?? row.index;
-        const name = `invoiceItems.${fieldIndex}.productId` as const;
+        const name = `InvoiceItems.${fieldIndex}.productId` as const;
         return (
           <SelectProduct
             control={control}
@@ -81,8 +81,8 @@ const InvoiceItemColumns = (props: Props) => {
         return (
           <input
             type="text"
-            {...register(`invoiceItems.${fieldIndex}.description` as const)}
-            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.description ? styles.dirty : ''}`}
+            {...register(`InvoiceItems.${fieldIndex}.description` as const)}
+            className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.description ? styles.dirty : ''}`}
           />
         );
       },
@@ -96,12 +96,12 @@ const InvoiceItemColumns = (props: Props) => {
           <input
             type="number"
             step="0.01"
-            {...register(`invoiceItems.${fieldIndex}.quantity` as const, {
+            {...register(`InvoiceItems.${fieldIndex}.quantity` as const, {
               valueAsNumber: true,
               required: tVar('validation.required'),
               min: { value: 0.01, message: tVar('validation.min_value') },
             })}
-            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.quantity ? styles.dirty : ''}`}
+            className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.quantity ? styles.dirty : ''}`}
           />
         );
       },
@@ -113,12 +113,12 @@ const InvoiceItemColumns = (props: Props) => {
         const fieldIndex = row.original.originalIndex ?? row.index;
         return (
           <select
-            {...register(`invoiceItems.${fieldIndex}.unitId` as const, {
+            {...register(`InvoiceItems.${fieldIndex}.unitId` as const, {
               valueAsNumber: true,
               required: tVar('validation.required'),
               validate: (value) => value > 0 || tVar('validation.required'),
             })}
-            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitId ? styles.dirty : ''}`}
+            className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.unitId ? styles.dirty : ''}`}
           >
             <option value="">Select</option>
             {units.map((u) => (
@@ -139,12 +139,12 @@ const InvoiceItemColumns = (props: Props) => {
           <input
             type="number"
             step="0.01"
-            {...register(`invoiceItems.${fieldIndex}.unitPrice` as const, {
+            {...register(`InvoiceItems.${fieldIndex}.unitPrice` as const, {
               valueAsNumber: true,
               required: tVar('validation.required'),
               min: { value: 0.01, message: tVar('validation.min_value') },
             })}
-            className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.unitPrice ? styles.dirty : ''}`}
+            className={`${styles.input} ${dirtyFields?.InvoiceItems?.[fieldIndex]?.unitPrice ? styles.dirty : ''}`}
           />
         );
       },

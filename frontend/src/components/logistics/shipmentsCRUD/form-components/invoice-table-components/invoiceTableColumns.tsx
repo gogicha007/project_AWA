@@ -5,9 +5,9 @@ import { CurrencyDTO, VendorDTO } from '@/api/types';
 import DateInput from '@/components/controls/date-input/date-input';
 import InvoiceTableActions from './InvoiceTableActions';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-import { ShipmentFormValues } from '../../hooks/useShipmentFormSet';
 import ItemsButton from './ItemsButton';
 import TotalAmountDisplay from './TotalAmountDisplay';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 
 export interface InvoiceRow {
   id: number;
@@ -21,7 +21,7 @@ export interface InvoiceRow {
 type Props = {
   currencies: Partial<CurrencyDTO>[];
   currenciesObj: Record<string, string | undefined>;
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormValues>;
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>;
   handleResetInvoice: (id: number) => void;
   handleRemoveInvoice: (id: number) => void;
   openItemsDialog: (id: number) => void;
@@ -55,7 +55,7 @@ const InvoiceColumns = (props: Props) => {
               valueAsNumber: true,
               required: 'Vendor is required',
             })}
-            className={`${styles.vendorSelect} ${dirtyFields?.invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
+            className={`${styles.vendorSelect} ${dirtyFields?.Invoices?.[row.index]?.vendorId ? styles.dirty : ''}`}
           >
             <option value={0}>Select</option>
             {vendors.map((v) => (
@@ -74,7 +74,7 @@ const InvoiceColumns = (props: Props) => {
             {...register(`invoices.${row.index}.invoiceNumber` as const, {
               required: 'Invoice number is required',
             })}
-            className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
+            className={`${styles.invoiceNumber} ${styles.input} ${dirtyFields?.Invoices?.[row.index]?.invoiceNumber ? styles.dirty : ''}`}
             placeholder="Enter invoice number"
           />
         ),
@@ -87,7 +87,7 @@ const InvoiceColumns = (props: Props) => {
             label=""
             name={`invoices.${row.index}.invoiceDate`}
             control={control}
-            className={`${styles.inputDate} ${dirtyFields?.invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
+            className={`${styles.inputDate} ${dirtyFields?.Invoices?.[row.index]?.invoiceDate ? styles.dirty : ''}`}
           />
         ),
       },
@@ -100,7 +100,7 @@ const InvoiceColumns = (props: Props) => {
               valueAsNumber: true,
               required: 'Currency is required',
             })}
-            className={`${styles.currency} ${styles.input} ${dirtyFields?.invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
+            className={`${styles.currency} ${styles.input} ${dirtyFields?.Invoices?.[row.index]?.currencyId ? styles.dirty : ''}`}
           >
             <option value={0}>Select</option>
             {currencies.map((c) => (
@@ -143,8 +143,8 @@ const InvoiceColumns = (props: Props) => {
             onDelete={handleRemoveInvoice}
             disableReset={
               !(
-                !!dirtyFields?.invoices?.[row.index] &&
-                Object.values(dirtyFields.invoices[row.index]).some(Boolean)
+                !!dirtyFields?.Invoices?.[row.index] &&
+                Object.values(dirtyFields.Invoices[row.index]).some(Boolean)
               )
             }
           />
@@ -155,7 +155,7 @@ const InvoiceColumns = (props: Props) => {
       control,
       currencies,
       currenciesObj,
-      dirtyFields.invoices,
+      dirtyFields.Invoices,
       handleResetInvoice,
       handleRemoveInvoice,
       openItemsDialog,
