@@ -43,3 +43,12 @@ export const ensureInteger = (value: string | number | undefined | null): number
   }
   return 0;
 };
+
+export const ensureDate = (value: string | Date | undefined | null): Date | null => {
+  if (value instanceof Date) return value;
+  if (typeof value === 'string' && value.trim() !== '') {
+    const parsed = new Date(value);
+    return isNaN(parsed.getTime()) ? null : parsed;
+  }
+  return null;
+};

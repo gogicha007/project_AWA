@@ -1,6 +1,6 @@
 import { InvoiceDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
-import { ensureNumber, ensureInteger } from '@/utils/helper';
+import { ensureNumber, ensureInteger, ensureDate } from '@/utils/helper';
 import { ShipmentFormSchema } from '../../shipmentSchema';
 
 export const createDefaultValues = (): ShipmentFormSchema => ({
@@ -25,19 +25,11 @@ export const transformShipmentToFormData = (
   alias: shipment.alias,
   status: shipment.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
   declaration_number: shipment.declaration_number || '',
-  declaration_date: shipment.declaration_date
-    ? typeof shipment.declaration_date === 'string'
-      ? new Date(shipment.declaration_date)
-      : shipment.declaration_date
-    : undefined,
+  declaration_date: ensureDate(shipment.declaration_date),
   Files: shipment.Files,
   Invoices: shipment.Invoices?.map((inv: InvoiceDTO) => ({
     ...inv,
-    invoiceDate: inv.invoiceDate
-      ? typeof inv.invoiceDate === 'string'
-        ? new Date(inv.invoiceDate)
-        : inv.invoiceDate
-      : null,
+    invoiceDate: ensureDate(inv.invoiceDate),
     totalAmount: inv.totalAmount ? +inv.totalAmount : 0,
     Items: [],
   })),
@@ -46,9 +38,9 @@ export const transformShipmentToFormData = (
         (inv: InvoiceDTO) =>
           inv.Items?.map((item) => ({
             ...item,
-            quantity: item.quantity ? +item.quantity : 0,
-            unitPrice: item.unitPrice ? +item.unitPrice : 0,
-            total: item.total ? +item.total : 0,
+            quantity: ensureInteger(item.quantity),
+            unitPrice: ensureInteger(item.unitPrice),
+            total: ensureNumber(item.total),
           })) ?? []
       )
     : [],
@@ -158,11 +150,13 @@ export const transformFormDataForSubmission = (
 ): ShipmentFormSchema => {
   return {
     ...data,
+    declaration_date: data.declaration_date,
     Invoices: data.Invoices?.map((invoice) => ({
       ...invoice,
       vendorId: ensureInteger(invoice.vendorId),
       currencyId: ensureInteger(invoice.currencyId),
       totalAmount: ensureNumber(invoice.totalAmount),
+      invoiceDate: invoice.invoiceDate,
     })),
     InvoiceItems: data.InvoiceItems?.map((item) => ({
       ...item,
@@ -171,6 +165,12 @@ export const transformFormDataForSubmission = (
       unitId: ensureInteger(item.unitId),
       unitPrice: ensureNumber(item.unitPrice),
       total: ensureNumber(item.total),
+    })),
+    Freights: data.Freights?.map((freight) => ({
+      ...freight,
+      currencyId: ensureInteger(freight.currencyId),
+      freightRate: ensureNumber(freight.freightRate),
+      billDate: freight.billDate,
     })),
   };
 };
