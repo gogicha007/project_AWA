@@ -10,30 +10,12 @@ import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { FileData } from '@/components/controls/file-input/FileInput';
-// import { FreightDTO, InvoiceDTO, InvoiceItemDTO } from '@/api/types';
 import { shipmentFormBaseSchema } from '../shipmentSchema';
 import { createDefaultValues } from './utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
 import { useShipmentData } from './data/useShipmentData';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-
-// export type ShipmentFormValues = {
-//   alias: string;
-//   status: '' | 'APPLIED' | 'DECLARED' | 'ARRIVED';
-//   declaration_number?: string;
-//   declaration_date?: Date;
-//   files?: Array<FileData>;
-//   invoices?: Array<InvoiceDTO>;
-//   invoiceItems?: Array<InvoiceItemDTO>;
-//   freights?: Array<FreightDTO>;
-//   _hasRemovals: {
-//     inFiles: boolean;
-//     inInvoices: number[];
-//     inInvoiceItems: number[];
-//     inFreights: number[];
-//   };
-// };
 
 export function useShipmentFormSet(id?: number) {
   const router = useRouter();
