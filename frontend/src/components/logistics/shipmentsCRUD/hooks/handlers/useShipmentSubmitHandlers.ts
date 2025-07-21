@@ -1,9 +1,8 @@
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
-// import { formatToISODateTime } from '@/utils/dateFormat';
 import { handleSubmitInvoice } from '../utils/submitInvoices';
 import { handleSubmitFreights } from '../utils/submitFreights';
-import { shipmentFormBaseSchema, shipmentFormSchema } from '../../shipmentSchema';
+import { shipmentFormBaseSchema } from '../../shipmentSchema';
 import {
   detectFormChanges,
   transformFormDataForSubmission,
@@ -33,7 +32,7 @@ export const useShipmentSubmitHandlers = (
         throw new Error('User ID is required to create a shipment');
       }
 
-      const validatedData = shipmentFormSchema.parse(data);
+      const validatedData = shipmentFormBaseSchema.parse(data);
 
       const createdShipment = await shipmentApi.create(
         {
@@ -94,7 +93,7 @@ export const useShipmentSubmitHandlers = (
       // Validate if status is being changed to ensure business rules
       if (dirtyFields.status && data.status !== '') {
         try {
-          shipmentFormSchema.parse(data);
+          shipmentFormBaseSchema.parse(data);
         } catch (error) {
           if (error instanceof z.ZodError) {
             const statusError = error.errors.find(err => err.path.includes('status'));

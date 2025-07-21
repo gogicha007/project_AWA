@@ -33,7 +33,7 @@ export const transformShipmentToFormData = (
   Files: shipment.Files,
   Invoices: shipment.Invoices,
   InvoiceItems: shipment.Invoices
-    ? shipment.Invoices.flatMap((inv) => inv.Items ?? [])
+    ? shipment.Invoices.flatMap((inv: InvoiceDTO) => inv.Items ?? [])
     : [],
   Freights: shipment.Freights,
   _hasRemovals: {

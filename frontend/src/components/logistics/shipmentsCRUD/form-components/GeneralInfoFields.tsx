@@ -23,7 +23,7 @@ const GeneralInfoFields = ({ tS }: Props) => {
           <input
             id="alias"
             className={styles.input}
-            {...register('alias', { required: 'Alias is required' })}
+            {...register('alias')}
             type="text"
           />
           <p className={styles.errorText}>
@@ -39,7 +39,7 @@ const GeneralInfoFields = ({ tS }: Props) => {
           <select
             id="status"
             className={styles.input}
-            {...register('status', { required: 'Status is required' })}
+            {...register('status')}
           >
             <option value="">Select status</option>
             <option value="APPLIED">Applied</option>
@@ -70,17 +70,17 @@ const GeneralInfoFields = ({ tS }: Props) => {
             label={tS('form.declaration_date_label')}
             name="declaration_date"
             control={control}
-            rules={{
-              validate: (value, formValues) => {
-                if (
-                  formValues?.declaration_number &&
-                  (!value || value === '')
-                ) {
-                  return `${tS('errors.declaration_date_required')}`;
-                }
-                return true;
-              },
-            }}
+            // rules={{
+            //   validate: (value, formValues) => {
+            //     if (
+            //       formValues?.declaration_number &&
+            //       (!value || value === '')
+            //     ) {
+            //       return `${tS('errors.declaration_date_required')}`;
+            //     }
+            //     return true;
+            //   },
+            // }}
           />
         </div>
       </div>
