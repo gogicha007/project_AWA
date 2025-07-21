@@ -82,6 +82,14 @@ const shipmentFormBaseSchema = z.object({
   _hasRemovals: hasRemovalsSchema,
 });
 
+// General Info Schema from the base schema
+const generalInfoSchema = shipmentFormBaseSchema.omit({
+  Files: true,
+  Invoices: true,
+  InvoiceItems: true,
+  Freights: true,
+  _hasRemovals: true,
+});
 
 export type ShipmentFormSchema = z.infer<typeof shipmentFormBaseSchema>;
 
@@ -135,6 +143,7 @@ export const filesValidationSchema = z.object({
 
 export {
   clientFileDataSchema,
+  generalInfoSchema,
   fileDataSchema,
   freightSchema,
   hasRemovalsSchema,

@@ -3,7 +3,7 @@ import {
   invoiceSchema,
   invoiceItemSchema,
   serverFileDataSchema,
-  shipmentFormBaseSchema
+  generalInfoSchema
 } from '@/components/logistics/shipmentsCRUD/shipmentSchema';
 import { z } from 'zod';
 
@@ -62,7 +62,7 @@ export interface CurrencyDTO {
   name: string;
 }
 
-export type GeneralInfoDTO = z.infer<typeof shipmentFormBaseSchema>;
+export type GeneralInfoDTO = z.infer<typeof generalInfoSchema>;
 
 export type ShipmentFileDTO = z.infer<typeof serverFileDataSchema>;
 
