@@ -1,9 +1,9 @@
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
-import { formatToISODateTime } from '@/utils/dateFormat';
+// import { formatToISODateTime } from '@/utils/dateFormat';
 import { handleSubmitInvoice } from '../utils/submitInvoices';
 import { handleSubmitFreights } from '../utils/submitFreights';
-import { ShipmentFormSchema } from '../../shipmentSchema';
+import { shipmentFormBaseSchema, shipmentFormSchema } from '../../shipmentSchema';
 import {
   detectFormChanges,
   transformFormDataForSubmission,
@@ -11,11 +11,14 @@ import {
 import { useRouter } from 'next/navigation';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { GeneralInfoDTO } from '@/api/types';
+import { z } from 'zod';
+
+type BaseSchemaType = z.infer<typeof shipmentFormBaseSchema>;
 
 export const useShipmentSubmitHandlers = (
   dbUserId: number | null,
-  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>,
-  reset: (data: ShipmentFormSchema) => void,
+  dirtyFields: FieldNamesMarkedBoolean<BaseSchemaType>,
+  reset: (data: BaseSchemaType) => void,
   setSnackbarOpen: (open: boolean) => void,
   setSnackbarStatus: (status: { message: string; success: boolean }) => void,
   setShipmentId: (id: number) => void,
@@ -23,19 +26,20 @@ export const useShipmentSubmitHandlers = (
 ) => {
   const router = useRouter();
 
-  const handleGenInfoSubmit = async (data: ShipmentFormSchema) => {
+  const handleGenInfoSubmit = async (data: BaseSchemaType) => {
     console.log('gen info submit');
     try {
       if (dbUserId === null) {
         throw new Error('User ID is required to create a shipment');
       }
 
-      const formattedDate = formatToISODateTime(data.declaration_date);
+      const validatedData = shipmentFormSchema.parse(data);
+
       const createdShipment = await shipmentApi.create(
         {
-          ...data,
-          declaration_number: data.declaration_number ?? '',
-          declaration_date: formattedDate as Date,
+          ...validatedData,
+          declaration_number: validatedData.declaration_number ?? '',
+          declaration_date: validatedData.declaration_date as Date,
         },
         dbUserId
       );
@@ -76,7 +80,7 @@ export const useShipmentSubmitHandlers = (
     }
   };
 
-  const handleEditSubmit = async (data: ShipmentFormSchema) => {
+  const handleEditSubmit = async (data: BaseSchemaType) => {
     console.log('handle edit submit')
     try {
       if (!shipmentId || dbUserId === null) {
@@ -87,21 +91,39 @@ export const useShipmentSubmitHandlers = (
       console.log('data', data);
       console.log('shipment id', shipmentId);
 
+      // Validate if status is being changed to ensure business rules
+      if (dirtyFields.status && data.status !== '') {
+        try {
+          shipmentFormSchema.parse(data);
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            const statusError = error.errors.find(err => err.path.includes('status'));
+            const declNumberError = error.errors.find(err => err.path.includes('declaration_number'));
+            const declDateError = error.errors.find(err => err.path.includes('declaration_date'));
+            
+            if (statusError || declNumberError || declDateError) {
+              throw new Error(statusError?.message || declNumberError?.message || declDateError?.message);
+            }
+          }
+          throw error;
+        }
+      }
+
       const transformedData = transformFormDataForSubmission(data);
 
       const changes = detectFormChanges(dirtyFields);
 
       if (changes.hasGeneralFieldChanges) {
         console.log('general fields change detected');
-        const formattedDate = formatToISODateTime(
-          transformedData.declaration_date
-        );
+        // const formattedDate = formatToISODateTime(
+        //   transformedData.declaration_date
+        // );
 
         const generalInfoUpdate: GeneralInfoDTO = {
           id: shipmentId,
           alias: transformedData.alias,
           declaration_number: transformedData.declaration_number ?? '',
-          declaration_date: formattedDate as Date,
+          declaration_date: transformedData.declaration_date as Date,
           status: transformedData.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
         };
         
@@ -112,8 +134,8 @@ export const useShipmentSubmitHandlers = (
       if (changes.hasFileChanges()) {
         console.log('file change detected');
 
-        if (transformedData.files && transformedData.files.length > 0) {
-          await shipmentFileApi.update(transformedData.files, shipmentId);
+        if (transformedData.Files && transformedData.Files.length > 0) {
+          await shipmentFileApi.update(transformedData.Files, shipmentId);
         } else {
           await shipmentFileApi.deleteAllByShipmentId(shipmentId);
         }
@@ -124,7 +146,7 @@ export const useShipmentSubmitHandlers = (
         console.log('invoice/invoice items changed');
 
         // Ensure invoices are an array
-        if (!Array.isArray(transformedData.invoices)) {
+        if (!Array.isArray(transformedData.Invoices)) {
           throw new Error('Invoices must be an array');
         }
 

@@ -55,12 +55,12 @@ function DateInput<T extends FieldValues>({
               selected={field.value ? new Date(field.value) : null}
               onChange={(date: Date | null) => {
                 if (!date) {
-                  field.onChange('');
+                  field.onChange(null);
                   return;
                 }
                 const d = new Date(date);
                 d.setHours(12, 0, 0, 0);
-                field.onChange(d.toISOString().split('T')[0]);
+                field.onChange(d);
               }}
               className={className ?? styles.input}
               dateFormat="yyyy-MM-dd"

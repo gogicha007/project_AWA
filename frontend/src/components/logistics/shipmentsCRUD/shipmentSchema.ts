@@ -15,7 +15,7 @@ const serverFileDataSchema = z.object({
   id: z.number().optional(),
   fileName: z.string(),
   fileType: z.string(),
-  fileData: z.string(), // base64 encoded string
+  fileData: z.string(),
   shipmentId: z.number().optional(),
 });
 
@@ -26,7 +26,7 @@ const invoiceItemSchema = z.object({
   id: z.number().optional(),
   invoiceId: z.number().optional(),
   productId: z.number().min(1, 'Material is required'),
-  description: z.string().min(1, 'Description is required'),
+  description: z.string().optional(),
   quantity: z.number().min(0.01, 'Quantity must be greater than 0'),
   unitId: z.number().min(1, 'Unit is required'),
   unitPrice: z.number().min(0, 'Unit price must be non-negative'),
@@ -71,10 +71,10 @@ const hasRemovalsSchema = z.object({
 // Create the base schema without refinements first
 const shipmentFormBaseSchema = z.object({
   id: z.number().optional(),
-  alias: z.string().min(1, 'Alias is required'),
+  alias: z.string(),
   status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
   declaration_number: z.string().optional(),
-  declaration_date: z.date().optional(),
+  declaration_date: z.date().nullable().optional(),
   Files: z.array(fileDataSchema).optional(),
   Invoices: z.array(invoiceSchema).optional(),
   InvoiceItems: z.array(invoiceItemSchema).optional(),

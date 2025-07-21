@@ -14,7 +14,7 @@ import { shipmentFormBaseSchema } from '../shipmentSchema';
 import { createDefaultValues } from './utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
 import { useShipmentData } from './data/useShipmentData';
-import { zodResolver } from '@hookform/resolvers/zod';
+// import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 export function useShipmentFormSet(id?: number) {
@@ -39,15 +39,14 @@ export function useShipmentFormSet(id?: number) {
   const [shipmentId, setShipmentId] = useState(id);
 
   const formMethods = useForm<z.infer<typeof shipmentFormBaseSchema>>({
-    resolver: zodResolver(shipmentFormBaseSchema),
-    mode: 'onSubmit',
+    // resolver: zodResolver(shipmentFormBaseSchema),
     defaultValues: createDefaultValues(),
   });
 
   const {
     watch,
     reset,
-    formState: { isDirty, isSubmitting, dirtyFields },
+    formState: { isDirty, isSubmitting, dirtyFields, errors },
   } = formMethods;
 
   const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(
@@ -95,7 +94,8 @@ export function useShipmentFormSet(id?: number) {
   useEffect(() => {
     setDisableSubmitBtn(!isDirty);
     console.log('is dirty', isDirty);
-  }, [isDirty]);
+    console.log('form errors', errors);
+  }, [isDirty, errors]);
 
   useEffect(() => {
     let subscription: ReturnType<typeof watch> | undefined;
