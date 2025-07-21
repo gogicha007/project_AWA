@@ -1,4 +1,3 @@
-// import { ShipmentFormValues } from '../useShipmentFormSet';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { formatToISODateTime } from '@/utils/dateFormat';
@@ -50,10 +49,10 @@ export const useShipmentSubmitHandlers = (
             ? new Date(createdShipment.declaration_date)
             : createdShipment.declaration_date
           : undefined,
-        files: [],
-        invoices: [],
-        invoiceItems: [],
-        freights: [],
+        Files: [],
+        Invoices: [],
+        InvoiceItems: [],
+        Freights: [],
         _hasRemovals: {
           inFiles: false,
           inInvoices: [],
