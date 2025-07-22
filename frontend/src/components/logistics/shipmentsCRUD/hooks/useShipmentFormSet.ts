@@ -49,15 +49,17 @@ export function useShipmentFormSet(id?: number) {
     formState: { isDirty, isSubmitting, dirtyFields, errors },
   } = formMethods;
 
-  const { handleGenInfoSubmit, handleEditSubmit } = useShipmentSubmitHandlers(
-    dbUserId,
-    dirtyFields,
-    reset,
-    setSnackbarOpen,
-    setSnackbarStatus,
-    setShipmentId,
-    shipmentId
-  );
+  const { handleGenInfoSubmit, handleEditSubmit, onError } =
+    useShipmentSubmitHandlers(
+      dbUserId,
+      dirtyFields,
+      // errors,
+      reset,
+      setSnackbarOpen,
+      setSnackbarStatus,
+      setShipmentId,
+      shipmentId
+    );
 
   useShipmentData(
     id,
@@ -130,6 +132,7 @@ export function useShipmentFormSet(id?: number) {
     handleGenInfoSubmit,
     isDirty,
     loading,
+    onError,
     setFileDataArray,
     shipmentId,
     snackbarControls: {

@@ -60,9 +60,6 @@ const freightSchema = z
     freightRate: z.number().optional(),
     shipmentId: z.number().optional(),
   })
-  .refine((data) => {
-    if (data.truckNumber === 'string') return true;
-  });
 
 // Removals tracking schema
 const hasRemovalsSchema = z.object({
@@ -87,11 +84,7 @@ const generalInfoSchema = z.object({
 const shipmentFormBaseSchema = generalInfoSchema
   .merge(
     z.object({
-      id: z.number().optional(),
-      alias: z.string(),
-      status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
-      declaration_number: z.string().optional(),
-      declaration_date: z.date().nullable().optional(),
+      // status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
       Files: z.array(fileDataSchema).optional(),
       Invoices: z.array(invoiceSchema).optional(),
       InvoiceItems: z.array(invoiceItemSchema).optional(),

@@ -3,21 +3,23 @@ import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
 import { handleSubmitInvoice } from '../utils/submitInvoices';
 import { handleSubmitFreights } from '../utils/submitFreights';
 import { shipmentFormBaseSchema } from '../../shipmentSchema';
+import { ShipmentFormSchema } from '../../shipmentSchema';
 import {
   detectFormChanges,
   transformFormDataForSubmission,
 } from '../utils/shipmentFormUtils';
 import { useRouter } from 'next/navigation';
-import { FieldNamesMarkedBoolean } from 'react-hook-form';
+import { FieldErrors, FieldNamesMarkedBoolean } from 'react-hook-form';
 import { GeneralInfoDTO } from '@/api/types';
 import { z } from 'zod';
 
-type BaseSchemaType = z.infer<typeof shipmentFormBaseSchema>;
+export type BaseSchemaType = z.infer<typeof shipmentFormBaseSchema>;
 
 export const useShipmentSubmitHandlers = (
   dbUserId: number | null,
-  dirtyFields: FieldNamesMarkedBoolean<BaseSchemaType>,
-  reset: (data: BaseSchemaType) => void,
+  dirtyFields: FieldNamesMarkedBoolean<ShipmentFormSchema>,
+  // errors: FieldErrors<ShipmentFormSchema>,
+  reset: (data: ShipmentFormSchema) => void,
   setSnackbarOpen: (open: boolean) => void,
   setSnackbarStatus: (status: { message: string; success: boolean }) => void,
   setShipmentId: (id: number) => void,
@@ -25,7 +27,7 @@ export const useShipmentSubmitHandlers = (
 ) => {
   const router = useRouter();
 
-  const handleGenInfoSubmit = async (data: BaseSchemaType) => {
+  const handleGenInfoSubmit = async (data: ShipmentFormSchema) => {
     console.log('gen info submit');
     try {
       if (dbUserId === null) {
@@ -185,8 +187,27 @@ export const useShipmentSubmitHandlers = (
     }
   };
 
+  const onError = (errors: FieldErrors) => {
+    // Collect error messages to show in Snackbar
+    const messages = Object.values(errors)
+      .map((err) => {
+        const acc = [];
+        if (Array.isArray(err)) {
+          acc.push(err.map((subArr) => subArr?.message));
+        } else {
+          acc.push(err?.message);
+        }
+        return acc;
+      })
+      .filter(Boolean)
+      .join(', ');
+    console.log('on error', messages);
+    setSnackbarStatus({ message: messages, success: false });
+    setSnackbarOpen(true);
+  };
   return {
     handleGenInfoSubmit,
     handleEditSubmit,
+    onError,
   };
 };

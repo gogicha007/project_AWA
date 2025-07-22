@@ -21,7 +21,7 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
     loading,
     FormProvider,
     formMethods,
-    // onError,
+    onError,
     setFileDataArray,
     shipmentId,
     snackbarControls,
@@ -59,7 +59,8 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
             ref={genInfoFormRef}
             className={styles.form}
             onSubmit={formMethods.handleSubmit(
-              !!shipmentId ? handleEditSubmit : handleGenInfoSubmit
+              !!shipmentId ? handleEditSubmit : handleGenInfoSubmit,
+              onError
             )}
           >
             <GeneralInfoFields tS={tS} />
