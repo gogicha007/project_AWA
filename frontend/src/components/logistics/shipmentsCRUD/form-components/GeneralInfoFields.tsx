@@ -1,4 +1,4 @@
-import styles from '../shipment-form.module.css'
+import styles from '../shipment-form.module.css';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import DateInput from '@/components/controls/date-input/date-input';
@@ -36,11 +36,7 @@ const GeneralInfoFields = ({ tS }: Props) => {
           <label className={styles.required} htmlFor="status">
             {tS('form.status_label')}
           </label>
-          <select
-            id="status"
-            className={styles.input}
-            {...register('status')}
-          >
+          <select id="status" className={styles.input} {...register('status')}>
             <option value="">Select status</option>
             <option value="APPLIED">Applied</option>
             <option value="DECLARED">Declared</option>
@@ -64,23 +60,28 @@ const GeneralInfoFields = ({ tS }: Props) => {
             {...register('declaration_number')}
             type="text"
           />
+          <p className={styles.errorText}>
+            {typeof errors.declaration_number?.message === 'string'
+              ? errors.declaration_number.message
+              : ''}
+          </p>
         </div>
         <div className={styles.formGroup}>
           <DateInput
             label={tS('form.declaration_date_label')}
             name="declaration_date"
             control={control}
-            // rules={{
-            //   validate: (value, formValues) => {
-            //     if (
-            //       formValues?.declaration_number &&
-            //       (!value || value === '')
-            //     ) {
-            //       return `${tS('errors.declaration_date_required')}`;
-            //     }
-            //     return true;
-            //   },
-            // }}
+            rules={{
+              validate: (value, formValues) => {
+                if (
+                  formValues?.declaration_number &&
+                  (!value || value === '')
+                ) {
+                  return `${tS('errors.declaration_date_required')}`;
+                }
+                return true;
+              },
+            }}
           />
         </div>
       </div>

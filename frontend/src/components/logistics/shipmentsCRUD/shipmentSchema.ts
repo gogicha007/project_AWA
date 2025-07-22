@@ -110,7 +110,7 @@ const shipmentFormBaseSchema = generalInfoSchema
       return true;
     },
     {
-      message: 'Declaration number is required when status is DECLARED',
+      message: 'Declaration number is required when status is DECLARED/ARRIVED',
       path: ['declaration_number'],
     }
   )
@@ -122,7 +122,7 @@ const shipmentFormBaseSchema = generalInfoSchema
       return true;
     },
     {
-      message: 'Declaration date is required when status is DECLARED',
+      message: 'Declaration date is required when status is DECLARED/ARRIVED',
       path: ['declaration_date'],
     }
   );
