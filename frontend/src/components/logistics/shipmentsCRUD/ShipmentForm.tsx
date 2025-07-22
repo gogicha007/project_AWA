@@ -21,6 +21,7 @@ export const ShipmentFormSet = ({ id }: { id?: number }) => {
     loading,
     FormProvider,
     formMethods,
+    // onError,
     setFileDataArray,
     shipmentId,
     snackbarControls,

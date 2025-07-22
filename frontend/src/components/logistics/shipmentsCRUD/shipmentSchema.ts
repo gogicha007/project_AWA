@@ -49,16 +49,20 @@ const invoiceSchema = z.object({
 });
 
 // Freight schema
-const freightSchema = z.object({
-  id: z.number().optional(),
-  truckNumber: z.string().min(1, 'Truck number is required'),
-  forwarder: z.string().optional(),
-  billNumber: z.string().optional(),
-  billDate: z.date().nullable(),
-  currencyId: z.number().optional(),
-  freightRate: z.number().optional(),
-  shipmentId: z.number().optional(),
-});
+const freightSchema = z
+  .object({
+    id: z.number().optional(),
+    truckNumber: z.string().min(1, 'Truck number is required'),
+    forwarder: z.string().optional(),
+    billNumber: z.string().optional(),
+    billDate: z.date().nullable(),
+    currencyId: z.number().optional(),
+    freightRate: z.number().optional(),
+    shipmentId: z.number().optional(),
+  })
+  .refine((data) => {
+    if (data.truckNumber === 'string') return true;
+  });
 
 // Removals tracking schema
 const hasRemovalsSchema = z.object({
@@ -68,78 +72,62 @@ const hasRemovalsSchema = z.object({
   inFreights: z.array(z.number()),
 });
 
-// Create the base schema without refinements first
-const shipmentFormBaseSchema = z.object({
+// general info schema
+const generalInfoSchema = z.object({
   id: z.number().optional(),
-  alias: z.string(),
-  status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
+  alias: z.string().min(1, 'Alias is required'),
+  status: z
+    .enum(['', 'APPLIED', 'DECLARED', 'ARRIVED'])
+    .refine((val) => val !== '', { message: 'Status is required' }),
   declaration_number: z.string().optional(),
   declaration_date: z.date().nullable().optional(),
-  Files: z.array(fileDataSchema).optional(),
-  Invoices: z.array(invoiceSchema).optional(),
-  InvoiceItems: z.array(invoiceItemSchema).optional(),
-  Freights: z.array(freightSchema).optional(),
-  _hasRemovals: hasRemovalsSchema,
 });
 
-// General Info Schema from the base schema
-const generalInfoSchema = shipmentFormBaseSchema.omit({
-  Files: true,
-  Invoices: true,
-  InvoiceItems: true,
-  Freights: true,
-  _hasRemovals: true,
-});
+// Base schema
+const shipmentFormBaseSchema = generalInfoSchema
+  .merge(
+    z.object({
+      id: z.number().optional(),
+      alias: z.string(),
+      status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
+      declaration_number: z.string().optional(),
+      declaration_date: z.date().nullable().optional(),
+      Files: z.array(fileDataSchema).optional(),
+      Invoices: z.array(invoiceSchema).optional(),
+      InvoiceItems: z.array(invoiceItemSchema).optional(),
+      Freights: z.array(freightSchema).optional(),
+      _hasRemovals: hasRemovalsSchema,
+    })
+  )
+  .refine(
+    (data) => {
+      if (
+        ['DECLARED', 'ARRIVED'].includes(data.status) &&
+        !data.declaration_number?.trim()
+      ) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'Declaration number is required when status is DECLARED',
+      path: ['declaration_number'],
+    }
+  )
+  .refine(
+    (data) => {
+      if (['DECLARED', 'ARRIVED'].includes(data.status) && !data.declaration_date) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'Declaration date is required when status is DECLARED',
+      path: ['declaration_date'],
+    }
+  );
 
 export type ShipmentFormSchema = z.infer<typeof shipmentFormBaseSchema>;
-
-
-export const generalInfoFieldSchema = z.object({
-  alias: z.string().min(1, 'Alias is required'),
-  status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']).refine(
-    (val) => val !== '',
-    { message: 'Status is required' }
-  ),
-  declaration_number: z.string().optional(),
-  declaration_date: z.date().nullable().optional(),
-}).refine(
-  (data) => {
-    if (data.status === 'DECLARED' && !data.declaration_number?.trim()) {
-      return false;
-    }
-    return true;
-  },
-  {
-    message: 'Declaration number is required when status is DECLARED',
-    path: ['declaration_number'],
-  }
-).refine(
-  (data) => {
-    if (data.status === 'DECLARED' && !data.declaration_date) {
-      return false;
-    }
-    return true;
-  },
-  {
-    message: 'Declaration date is required when status is DECLARED',
-    path: ['declaration_date'],
-  }
-  
-);
-
-// Schema for manual validation (other sections)
-export const invoicesValidationSchema = z.object({
-  Invoices: z.array(invoiceSchema).optional(),
-  InvoiceItems: z.array(invoiceItemSchema).optional(),
-});
-
-export const freightsValidationSchema = z.object({
-  Freights: z.array(freightSchema).optional(),
-});
-
-export const filesValidationSchema = z.object({
-  Files: z.array(fileDataSchema).optional(),
-});
 
 export {
   clientFileDataSchema,

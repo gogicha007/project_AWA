@@ -39,6 +39,9 @@ export const useShipmentSubmitHandlers = (
           ...validatedData,
           declaration_number: validatedData.declaration_number ?? '',
           declaration_date: validatedData.declaration_date as Date,
+          status: (validatedData.status === ''
+            ? 'APPLIED'
+            : validatedData.status) as 'APPLIED' | 'DECLARED' | 'ARRIVED',
         },
         dbUserId
       );
@@ -80,7 +83,7 @@ export const useShipmentSubmitHandlers = (
   };
 
   const handleEditSubmit = async (data: BaseSchemaType) => {
-    console.log('handle edit submit')
+    console.log('handle edit submit');
     try {
       if (!shipmentId || dbUserId === null) {
         throw new Error(
@@ -96,12 +99,22 @@ export const useShipmentSubmitHandlers = (
           shipmentFormBaseSchema.parse(data);
         } catch (error) {
           if (error instanceof z.ZodError) {
-            const statusError = error.errors.find(err => err.path.includes('status'));
-            const declNumberError = error.errors.find(err => err.path.includes('declaration_number'));
-            const declDateError = error.errors.find(err => err.path.includes('declaration_date'));
-            
+            const statusError = error.errors.find((err) =>
+              err.path.includes('status')
+            );
+            const declNumberError = error.errors.find((err) =>
+              err.path.includes('declaration_number')
+            );
+            const declDateError = error.errors.find((err) =>
+              err.path.includes('declaration_date')
+            );
+
             if (statusError || declNumberError || declDateError) {
-              throw new Error(statusError?.message || declNumberError?.message || declDateError?.message);
+              throw new Error(
+                statusError?.message ||
+                  declNumberError?.message ||
+                  declDateError?.message
+              );
             }
           }
           throw error;
@@ -122,7 +135,7 @@ export const useShipmentSubmitHandlers = (
           declaration_date: transformedData.declaration_date as Date,
           status: transformedData.status as 'APPLIED' | 'DECLARED' | 'ARRIVED',
         };
-        
+
         await shipmentApi.update(generalInfoUpdate, dbUserId);
       }
 
