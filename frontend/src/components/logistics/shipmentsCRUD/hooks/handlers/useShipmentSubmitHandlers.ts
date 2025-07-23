@@ -160,7 +160,7 @@ export const useShipmentSubmitHandlers = (
   const onError = (errors: FieldErrors) => {
     // Collect error messages to show in Snackbar
     console.log('onError()', errors);
-    const messages = Object.values(errors)
+    const messagesArr = Object.values(errors)
       .flatMap((err) => {
         const acc = [];
         if (Array.isArray(err)) {
@@ -176,9 +176,8 @@ export const useShipmentSubmitHandlers = (
         }
         return acc;
       })
-      .filter(Boolean)
-      .join(', ');
-    console.log('on error', messages);
+      .filter(Boolean);
+    const messages = [...new Set(messagesArr)].join(', ');
     setSnackbarStatus({ message: messages, success: false });
     setSnackbarOpen(true);
   };
