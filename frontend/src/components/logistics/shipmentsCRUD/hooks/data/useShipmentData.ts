@@ -57,6 +57,8 @@ export const useShipmentData = (
     setFileDataArray,
     setLoading,
     setShipmentId,
+    setSnackbarOpen,
+    setSnackbarStatus,
     vendorsLoading,
   ]);
 };
