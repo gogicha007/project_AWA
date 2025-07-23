@@ -49,17 +49,16 @@ const invoiceSchema = z.object({
 });
 
 // Freight schema
-const freightSchema = z
-  .object({
-    id: z.number().optional(),
-    truckNumber: z.string().min(1, 'Truck number is required'),
-    forwarder: z.string().optional(),
-    billNumber: z.string().optional(),
-    billDate: z.date().nullable(),
-    currencyId: z.number().optional(),
-    freightRate: z.number().optional(),
-    shipmentId: z.number().optional(),
-  })
+const freightSchema = z.object({
+  id: z.number().optional(),
+  truckNumber: z.string().min(1, 'Truck number is required'),
+  forwarder: z.string().optional(),
+  billNumber: z.string().optional(),
+  billDate: z.date().nullable(),
+  currencyId: z.number().optional(),
+  freightRate: z.number().optional(),
+  shipmentId: z.number().optional(),
+});
 
 // Removals tracking schema
 const hasRemovalsSchema = z.object({
@@ -73,9 +72,9 @@ const hasRemovalsSchema = z.object({
 const generalInfoSchema = z.object({
   id: z.number().optional(),
   alias: z.string().min(1, 'Alias is required'),
-  status: z
-    .enum(['', 'APPLIED', 'DECLARED', 'ARRIVED'])
-    .refine((val) => val !== '', { message: 'Status is required' }),
+  status: z.enum(['APPLIED', 'DECLARED', 'ARRIVED'], {
+    required_error: 'Status is required',
+  }),
   declaration_number: z.string().optional(),
   declaration_date: z.date().nullable().optional(),
 });
@@ -84,7 +83,6 @@ const generalInfoSchema = z.object({
 const shipmentFormBaseSchema = generalInfoSchema
   .merge(
     z.object({
-      // status: z.enum(['', 'APPLIED', 'DECLARED', 'ARRIVED']),
       Files: z.array(fileDataSchema).optional(),
       Invoices: z.array(invoiceSchema).optional(),
       InvoiceItems: z.array(invoiceItemSchema).optional(),
@@ -109,7 +107,10 @@ const shipmentFormBaseSchema = generalInfoSchema
   )
   .refine(
     (data) => {
-      if (['DECLARED', 'ARRIVED'].includes(data.status) && !data.declaration_date) {
+      if (
+        ['DECLARED', 'ARRIVED'].includes(data.status) &&
+        !data.declaration_date
+      ) {
         return false;
       }
       return true;
