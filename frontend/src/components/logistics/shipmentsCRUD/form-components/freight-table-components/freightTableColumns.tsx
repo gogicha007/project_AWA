@@ -33,7 +33,7 @@ const FreightColumns = (props: Props) => {
         accessorKey: 'truckNumber',
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <input
-            {...register(`freights.${row.index}.truckNumber` as const)}
+            {...register(`Freights.${row.index}.truckNumber` as const)}
             className={`${styles.invoiceNumber} ${styles.input}`}
           />
         ),
@@ -43,7 +43,7 @@ const FreightColumns = (props: Props) => {
         accessorKey: 'forwarder',
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <input
-            {...register(`freights.${row.index}.forwarder` as const)}
+            {...register(`Freights.${row.index}.forwarder` as const)}
             className={`${styles.invoiceNumber} ${styles.input}`}
           />
         ),
@@ -53,7 +53,7 @@ const FreightColumns = (props: Props) => {
         accessorKey: 'billNumber',
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <input
-            {...register(`freights.${row.index}.billNumber` as const)}
+            {...register(`Freights.${row.index}.billNumber` as const)}
             className={`${styles.invoiceNumber} ${styles.input}`}
           />
         ),
@@ -64,7 +64,7 @@ const FreightColumns = (props: Props) => {
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <DateInput
             label=""
-            name={`freights.${row.index}.billDate`}
+            name={`Freights.${row.index}.billDate`}
             control={control}
             className={styles.inputDate}
           />
@@ -75,7 +75,7 @@ const FreightColumns = (props: Props) => {
         accessorKey: 'currencyId',
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <select
-            {...register(`freights.${row.index}.currencyId` as const, {
+            {...register(`Freights.${row.index}.currencyId` as const, {
               valueAsNumber: true,
             })}
             className={`${styles.currency} ${styles.input}`}
@@ -95,7 +95,7 @@ const FreightColumns = (props: Props) => {
         cell: ({ row }: { row: { index: number; original: FreightRow } }) => (
           <Controller
             control={control}
-            name={`freights.${row.index}.freightRate`}
+            name={`Freights.${row.index}.freightRate`}
             render={({ field: { name, value, onChange } }) => (
               <NumericFormat
                 name={name}

@@ -159,11 +159,18 @@ export const useShipmentSubmitHandlers = (
 
   const onError = (errors: FieldErrors) => {
     // Collect error messages to show in Snackbar
+    console.log('onError()', errors);
     const messages = Object.values(errors)
-      .map((err) => {
+      .flatMap((err) => {
         const acc = [];
         if (Array.isArray(err)) {
-          acc.push(err.map((subArr) => subArr?.message));
+          err.map((el) => {
+            Object.values(el).map((elVal) => {
+              if (elVal && typeof elVal === 'object' && 'message' in elVal) {
+                acc.push((elVal as { message?: string }).message);
+              }
+            });
+          });
         } else {
           acc.push(err?.message);
         }

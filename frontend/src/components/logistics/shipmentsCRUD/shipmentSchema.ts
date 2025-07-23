@@ -51,14 +51,26 @@ const invoiceSchema = z.object({
 // Freight schema
 const freightSchema = z.object({
   id: z.number().optional(),
-  truckNumber: z.string().min(1, 'Truck number is required'),
+  truckNumber: z.string().min(4, 'Truck number is required'),
   forwarder: z.string().optional(),
   billNumber: z.string().optional(),
   billDate: z.date().nullable(),
   currencyId: z.number().optional(),
   freightRate: z.number().optional(),
   shipmentId: z.number().optional(),
-});
+}).refine(
+  (data) => {
+    // If freight rate is provided and greater than 0, currency must be selected
+    if (data.freightRate && data.freightRate > 0 && (!data.currencyId || data.currencyId === 0)) {
+      return false;
+    }
+    return true;
+  },
+  {
+    message: 'Currency is required when freight rate is specified',
+    path: ['currencyId'],
+  }
+);
 
 // Removals tracking schema
 const hasRemovalsSchema = z.object({

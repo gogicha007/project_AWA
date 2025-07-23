@@ -46,14 +46,13 @@ export function useShipmentFormSet(id?: number) {
   const {
     watch,
     reset,
-    formState: { isDirty, isSubmitting, dirtyFields, errors },
+    formState: { isDirty, isSubmitting, dirtyFields },
   } = formMethods;
 
   const { handleGenInfoSubmit, handleEditSubmit, onError } =
     useShipmentSubmitHandlers(
       dbUserId,
       dirtyFields,
-      // errors,
       reset,
       setSnackbarOpen,
       setSnackbarStatus,
@@ -96,8 +95,7 @@ export function useShipmentFormSet(id?: number) {
   useEffect(() => {
     setDisableSubmitBtn(!isDirty);
     console.log('is dirty', isDirty);
-    console.log('form errors', errors);
-  }, [isDirty, errors]);
+  }, [isDirty]);
 
   useEffect(() => {
     let subscription: ReturnType<typeof watch> | undefined;
