@@ -1,0 +1,139 @@
+entity-relationship-diagram
+
+user [icon: user, color: blue] {
+    id string pk
+    firebaseUid string unique
+    email string
+    name string
+    role string
+    createdAt Date
+    updatedAt Date
+}
+
+client [icon: client] {
+    id string pk
+    name string
+    address string
+    vat_no string
+    email string
+    notes string
+}
+
+employee [icon: worker] {
+    id string pk
+    first_name string
+    last_name string
+    birth_date timestamp
+    position string
+    user_id string
+}
+employee.user_id <> user.id
+
+location [icon: worker] {
+    id string pk
+    location_name string
+    altitude string
+    longitude string
+    notes string
+}
+
+material_groups [icon: worker] {
+    id string pipeline
+    name string
+    description string
+}
+
+material_names [icon: worker] {
+    id string pk
+    name string unique
+    dn string
+    pn string
+    degree string
+    description string
+    type_id string
+}
+material_names.type_id <> material_types.id
+
+material_types [icon: worker] {
+    id string
+    type unique string
+    group_id string
+}
+material_types.group_id <> material_groups.id
+
+project [icon: worker] {
+    id string pk
+    project_name string
+    display_name string
+    client_id string
+    manager_id string
+    created_at timestamp
+    updated_at timestamp
+    user_id string
+    progress string
+    notes string
+}
+project.user_id <> user.id
+project.client_id > client.id
+project.manager_id > employee.id
+
+progress [icon: worker] {
+    id string pk
+    project_id string
+    team_id string
+    location_id nullable string
+    task_id nullable string
+    projected_quantity number
+    build_quantity number
+    unit_id string
+    start_date timestamp
+    end_date timestamp
+    notes string
+    status string // planned, in progress, completed
+    created_at timestamp
+    updated_at timestamp
+    user_id string
+}
+progress.user_id <> user.id
+progress.team_id <> team.id
+progress.project_id > project.id
+progress.location_id > location.id
+progress.task_id > task.id
+progress.unit_id > unit.id
+
+task [icon: worker] {
+    id string pk
+    task_name unique string
+    task_type string  // node, reservoir, pipeline, prv, washout, manhole, road
+    drawing_ref string
+}
+
+task_materials [icon: worker] {
+    id string pk
+    task_id string
+    material_id string
+    quantity number
+    unit_id string
+    notes string
+    created_at timestamp
+    user_id string
+}
+task_materials.task_id > task.id
+task_materials.unit_id > unit.id
+
+team [icon: worker] {
+    id string pk
+    team_name unique string
+    company_name string
+    vat_no string
+    address string
+    email string
+    created_at timestamp
+    updated_at timestamp
+    user_id string
+}
+
+unit [icon: worker] {
+    id string pk
+    unit unique string
+}
