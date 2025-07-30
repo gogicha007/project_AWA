@@ -175,28 +175,3 @@ const InvoiceItemColumns = (props: Props) => {
 };
 
 export default InvoiceItemColumns;
-
-// {
-//   header: tVar('table.material'),
-//   accessorKey: 'productId',
-//   cell: ({ row }: { row: { index: number; original: InvoiceItemRow } }) => {
-//     const fieldIndex = row.original.originalIndex ?? row.index;
-//     return (
-//       <select
-//         {...register(`invoiceItems.${fieldIndex}.productId` as const, {
-//           valueAsNumber: true,
-//           required: tVar('validation.required'),
-//           validate: (value) => value > 0 || tVar('validatoin.required'),
-//         })}
-//         className={`${styles.input} ${dirtyFields?.invoiceItems?.[fieldIndex]?.productId ? styles.dirty : ''}`}
-//       >
-//         <option value="">Select</option>
-//         {materials.map((p) => (
-//           <option key={p.id} value={p.id}>
-//             {materialsObj[p.id as number]}
-//           </option>
-//         ))}
-//       </select>
-//     );
-//   },
-// },

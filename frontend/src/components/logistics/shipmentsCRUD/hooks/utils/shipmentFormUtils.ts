@@ -80,51 +80,51 @@ export const detectFormChanges = (
   const hasInvoiceChanges = () => {
     if (dirtyFields?._hasRemovals?.inInvoices) return true;
 
-    if (!('invoices' in dirtyFields)) return false;
+    if (!('Invoices' in dirtyFields)) return false;
     // in case invoice property of dirtyFields is an array
     if (
-      Array.isArray(dirtyFields.invoices) &&
-      dirtyFields.invoices.length > 0
+      Array.isArray(dirtyFields.Invoices) &&
+      dirtyFields.Invoices.length > 0
     ) {
-      return dirtyFields.invoices.some((invoice) =>
+      return dirtyFields.Invoices.some((invoice) =>
         Object.values(invoice).includes(true)
       );
     }
-    if ('invoices' in dirtyFields) return true;
+    // if ('Invoices' in dirtyFields) return true;
   };
 
   const hasInvoiceItemChanges = () => {
     // if there are removals in items
     if (dirtyFields?._hasRemovals?.inInvoiceItems) return true;
 
-    if (!('invoiceItems' in dirtyFields)) return false;
+    if (!('InvoiceItems' in dirtyFields)) return false;
 
     // in case invoiceItems property is an array
     if (
-      Array.isArray(dirtyFields.invoiceItems) &&
-      dirtyFields.invoiceItems.length > 0
+      Array.isArray(dirtyFields.InvoiceItems) &&
+      dirtyFields.InvoiceItems.length > 0
     ) {
-      return dirtyFields.invoiceItems.some((item) =>
+      return dirtyFields.InvoiceItems.some((item) =>
         Object.values(item).includes(true)
       );
     }
     // invoiceItems property is a boolean
-    if ('invoiceItems' in dirtyFields) return true;
+    // if ('InvoiceItems' in dirtyFields) return true;
   };
 
   const hasFreightChanges = () => {
     if (dirtyFields?._hasRemovals?.inFreights) return true;
 
-    if (!('freights' in dirtyFields)) return false;
+    if (!('Freights' in dirtyFields)) return false;
     if (
-      Array.isArray(dirtyFields.freights) &&
-      dirtyFields.freights.length > 0
+      Array.isArray(dirtyFields.Freights) &&
+      dirtyFields.Freights.length > 0
     ) {
-      return dirtyFields.freights.some((item) =>
+      return dirtyFields.Freights.some((item) =>
         Object.values(item).includes(true)
       );
     }
-    if ('freights' in dirtyFields) return true;
+    if ('Freights' in dirtyFields) return true;
   };
 
   return {
