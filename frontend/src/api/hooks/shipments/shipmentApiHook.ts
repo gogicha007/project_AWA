@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { ShipmentDTO } from '../../types';
+import { GeneralInfoDTO } from '../../types';
 import { shipmentApi } from '../../endpoints/shipments/shipmentApi';
 import { useAuth } from '@/context/auth';
 
 export function useShipmentApi() {
-  const [shipments, setShipments] = useState<ShipmentDTO[]>([]);
+  const [shipments, setShipments] = useState<GeneralInfoDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown | null>(null);
   const { currentUser, loading: authLoading } = useAuth();

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useCallback } from 'react';
-import { ShipmentDTO } from '@/api/types';
+import { GeneralInfoDTO } from '@/api/types';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import TableRowActions from '../controls/table-row-actions/TableRowActions';
 import { useRouter } from 'next/navigation';
@@ -15,8 +15,8 @@ type ShipmentRow = {
 };
 
 export function useShipmentsLogic(
-  shipments: ShipmentDTO[],
-  mutate: () => Promise<void | ShipmentDTO[]>,
+  shipments: GeneralInfoDTO[],
+  mutate: () => Promise<void | GeneralInfoDTO[]>,
   tVar: (key: string) => string
 ) {
   const router = useRouter();
@@ -30,6 +30,8 @@ export function useShipmentsLogic(
             typeof shipment.id === 'string'
               ? parseInt(shipment.id, 10)
               : Number(shipment.id),
+          declaration_number: shipment.declaration_number ?? '',
+          declaration_date: shipment.declaration_date ?? null,
         }))
         .sort((a, b) => a.id - b.id),
     [shipments]
@@ -94,7 +96,7 @@ export function useShipmentsLogic(
           if (date instanceof Date) return date.toISOString().substring(0, 10);
           return String(date);
         },
-        enableSorting: false,
+        enableSorting: true,
       },
       {
         accessorKey: 'status',

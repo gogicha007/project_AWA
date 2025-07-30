@@ -34,10 +34,6 @@ export class ShipmentsService {
             : null,
           userId,
         },
-        include: {
-          Invoices: true,
-          Files: false,
-        },
       });
 
       return shipment;

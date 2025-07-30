@@ -72,6 +72,8 @@ export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 
 export type FreightDTO = z.infer<typeof freightSchema>;
 
+
+
 // export interface ShipmentDTO {
 //   id?: number;
 //   alias: string;
