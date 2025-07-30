@@ -78,24 +78,21 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceChanges = () => {
-    if (dirtyFields?._hasRemovals?.inInvoices) return true;
+    if (dirtyFields?._hasRemovals?.inInvoices?.length) return true;
 
     if (!('Invoices' in dirtyFields)) return false;
     // in case invoice property of dirtyFields is an array
-    if (
-      Array.isArray(dirtyFields.Invoices) &&
-      dirtyFields.Invoices.length > 0
-    ) {
+    if (Array.isArray(dirtyFields.Invoices) && dirtyFields.Invoices.length > 0)
       return dirtyFields.Invoices.some((invoice) =>
         Object.values(invoice).includes(true)
       );
-    }
+
     // if ('Invoices' in dirtyFields) return true;
   };
 
   const hasInvoiceItemChanges = () => {
     // if there are removals in items
-    if (dirtyFields?._hasRemovals?.inInvoiceItems) return true;
+    if (dirtyFields?._hasRemovals?.inInvoiceItems?.length) return true;
 
     if (!('InvoiceItems' in dirtyFields)) return false;
 
@@ -103,17 +100,17 @@ export const detectFormChanges = (
     if (
       Array.isArray(dirtyFields.InvoiceItems) &&
       dirtyFields.InvoiceItems.length > 0
-    ) {
+    )
       return dirtyFields.InvoiceItems.some((item) =>
         Object.values(item).includes(true)
       );
-    }
+
     // invoiceItems property is a boolean
     // if ('InvoiceItems' in dirtyFields) return true;
   };
 
   const hasFreightChanges = () => {
-    if (dirtyFields?._hasRemovals?.inFreights) return true;
+    if (dirtyFields?._hasRemovals?.inFreights?.length) return true;
 
     if (!('Freights' in dirtyFields)) return false;
     if (
@@ -124,7 +121,7 @@ export const detectFormChanges = (
         Object.values(item).includes(true)
       );
     }
-    if ('Freights' in dirtyFields) return true;
+    // if ('Freights' in dirtyFields) return true;
   };
 
   return {
