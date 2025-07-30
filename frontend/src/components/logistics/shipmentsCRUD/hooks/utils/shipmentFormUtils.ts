@@ -38,8 +38,8 @@ export const transformShipmentToFormData = (
         (inv: InvoiceDTO) =>
           inv.Items?.map((item) => ({
             ...item,
-            quantity: ensureInteger(item.quantity),
-            unitPrice: ensureInteger(item.unitPrice),
+            quantity: ensureNumber(item.quantity),
+            unitPrice: ensureNumber(item.unitPrice),
             total: ensureNumber(item.total),
           })) ?? []
       )

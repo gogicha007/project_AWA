@@ -62,7 +62,7 @@ export default function InvoiceItemsTable({
 
   const calculateTotal = () => {
     const formValues = getValues();
-    const invoiceItems = formValues.invoiceItems || [];
+    const invoiceItems = formValues.InvoiceItems || [];
 
     const currentTotal = invoiceItems
       .filter((item) => item.invoiceId === invoice.id)
@@ -76,7 +76,7 @@ export default function InvoiceItemsTable({
 
   const handleClose = async () => {
     const formValues = getValues();
-    const invoiceItems = formValues.invoiceItems || [];
+    const invoiceItems = formValues.InvoiceItems || [];
     const currentItems = invoiceItems.filter(
       (item) => item.invoiceId === invoice.id
     );
@@ -87,10 +87,10 @@ export default function InvoiceItemsTable({
           item.invoiceId === invoice.id && item === currentItems[index]
       );
       return trigger([
-        `invoiceItems.${actualIndex}.productId`,
-        `invoiceItems.${actualIndex}.quantity`,
-        `invoiceItems.${actualIndex}.unitId`,
-        `invoiceItems.${actualIndex}.unitPrice`,
+        `InvoiceItems.${actualIndex}.productId`,
+        `InvoiceItems.${actualIndex}.quantity`,
+        `InvoiceItems.${actualIndex}.unitId`,
+        `InvoiceItems.${actualIndex}.unitPrice`,
       ]);
     });
 
