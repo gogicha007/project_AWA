@@ -10,7 +10,7 @@ export const handleSubmitInvoice = async (
   shipmentId: number,
   dbUserId: number
 ) => {
-  const existingInvoiceIds = originalInvoiceIds(data);
+  const existingInvoiceIds = originalInvoiceIds(data); // forgot the reason
 
   try {
     // check hasRemovals.inInvoiceItems
@@ -55,7 +55,6 @@ export const handleSubmitInvoice = async (
           total: ensureNumber(item.total),
         })),
       }));
-      // console.log('invoices with items', invoicesWithItems, shipmentId);
       await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
     }
 

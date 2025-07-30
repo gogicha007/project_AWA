@@ -1,14 +1,17 @@
 import { ensureInteger, ensureNumber } from '@/utils/helper';
 import { formatToISODateTime } from '@/utils/dateFormat';
 import { ShipmentFormSchema } from '../../shipmentSchema';
+import { freightApi } from '@/api/endpoints/purchases/freightApi';
 
-export const handleSubmitFreights = (
+export const handleSubmitFreights = async (
   data: ShipmentFormSchema,
   shipmentId: number,
   dbUserId: number
 ) => {
   console.log('freight data', data.Freights);
   console.log('ids for freight', shipmentId, dbUserId);
+
+
   try {
     if (
       data._hasRemovals.inFreights &&
@@ -32,6 +35,7 @@ export const handleSubmitFreights = (
         shipmentId: shipmentId,
       }));
       console.log('freights to submit', freightsToSubmit);
+      await freightApi.createFreightsInBulk(freightsToSubmit)
     }
     return { success: true };
   } catch (error) {

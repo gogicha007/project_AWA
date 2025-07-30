@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CreateFreightDTO } from './dto/create-freight.dto';
 import { UpdateFreightDTO } from './dto/update-freight.dto';
+import { CreateFreightsBulkDTO } from './dto/create-freight.dto';
 import { FreightsService } from './freights.service';
 
 @Controller('freights')
@@ -18,6 +19,11 @@ export class FreightsController {
   @Post()
   async create(@Body() createFreightDTO: CreateFreightDTO) {
     return this.freightsService.create(createFreightDTO);
+  }
+
+  @Post('/bulk')
+  async createBulk(@Body() createFreightsBulkDTO: CreateFreightsBulkDTO) {
+    return this.freightsService.upsertFreights(createFreightsBulkDTO);
   }
 
   @Get()
@@ -42,4 +48,11 @@ export class FreightsController {
   async remove(@Param('id') id: string) {
     return this.freightsService.remove(+id);
   }
+
+  // @Delete('delete/bulk')
+  // async removeAllByIdsArray(
+  //   @Body() { ids: freightIdsArray }: { ids: Array<number> },
+  // ) {
+  //   return `freight ids`;
+  // }
 }

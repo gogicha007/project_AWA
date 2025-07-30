@@ -4,7 +4,10 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
-import { CreateFreightDTO } from './dto/create-freight.dto';
+import {
+  CreateFreightDTO,
+  CreateFreightsBulkDTO,
+} from './dto/create-freight.dto';
 import { UpdateFreightDTO } from './dto/update-freight.dto';
 import { PrismaClientKnownRequestError } from 'generated/prisma/runtime/library';
 
@@ -32,13 +35,26 @@ export class FreightsService {
           billNumber,
           billDate: billDate ? new Date(billDate) : null,
           freightRate,
-          currencyId,
+          currencyId: currencyId === 0 ? null : currencyId,
           shipmentId,
           userId,
         },
       });
       return createFreight;
     } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2003'
+      ) {
+        const fieldName =
+          typeof error.meta?.field_name === 'string'
+            ? error.meta.field_name
+            : JSON.stringify(error.meta?.field_name) || 'unknown field';
+        throw new BadRequestException(
+          `Foreign key constraint failed on the field: ${fieldName}`,
+        );
+      }
+
       if (
         error instanceof PrismaClientKnownRequestError &&
         error.code === 'P2009'
@@ -52,6 +68,68 @@ export class FreightsService {
     }
   }
 
+  async upsertFreights(freightsData: CreateFreightsBulkDTO) {
+    try {
+      return await this.dbService.$transaction(async () => {
+        const upsertedFreights: Array<
+          Awaited<ReturnType<typeof this.dbService.freight.upsert>>
+        > = [];
+
+        for (const freightData of freightsData.freights) {
+          const { id, currencyId, ...otherFields } = freightData;
+
+          const processedData = {
+            ...otherFields,
+            currencyId: currencyId === 0 ? null : currencyId,
+          };
+
+          const upsertedFreight = await this.dbService.freight.upsert({
+            where: { id: id || 0 },
+            create: { ...processedData },
+            update: { ...processedData },
+          });
+          if (upsertedFreight) upsertedFreights.push(upsertedFreight);
+        }
+
+        return upsertedFreights;
+      });
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        throw new NotFoundException('Freight already exists');
+      }
+
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2009'
+      ) {
+        throw new BadRequestException('Invalid input data');
+      }
+
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === 'P2003'
+      ) {
+        const fieldName =
+          typeof error.meta?.field_name === 'string'
+            ? error.meta.field_name
+            : JSON.stringify(error.meta?.field_name) || 'unknown field';
+        throw new BadRequestException(
+          `Foreign key constraint failed on the field: ${fieldName}`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new BadRequestException(
+          `Failed to upsert freights ${error.code}`,
+        );
+      }
+
+      throw new BadRequestException(`Failed to upsert freights ${error}`);
+    }
+  }
   async findAll() {
     return this.dbService.freight.findMany({
       include: {
@@ -75,9 +153,18 @@ export class FreightsService {
 
   async update(id: number, updateFreightDTO: UpdateFreightDTO) {
     try {
+      const { currencyId, ...otherFields } = updateFreightDTO;
+
+      const processedData = {
+        ...otherFields,
+        ...(currencyId !== undefined && {
+          currencyId: currencyId === 0 ? null : currencyId,
+        }),
+      };
+
       const updateFreight = this.dbService.freight.update({
         where: { id },
-        data: updateFreightDTO,
+        data: processedData,
       });
       return updateFreight;
     } catch (error) {

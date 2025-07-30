@@ -92,7 +92,6 @@ export class InvoicesService {
               include: { Items: true },
             });
 
-            console.log('upserted invoice id', upsertedInvoice.id);
             // Upsert invoice items if any
             if (items && items.length > 0) {
               for (const item of items) {
@@ -155,8 +154,12 @@ export class InvoicesService {
         error instanceof PrismaClientKnownRequestError &&
         error.code === 'P2003'
       ) {
+        const fieldName =
+          typeof error.meta?.field_name === 'string'
+            ? error.meta.field_name
+            : JSON.stringify(error.meta?.field_name) || 'unknown field';
         throw new BadRequestException(
-          'Foreign key constraint failed on the field: {field_name}',
+          `Foreign key constraint failed on the field: ${fieldName}`,
         );
       }
 

@@ -23,7 +23,6 @@ export const freightApi = {
         freightRate: freight.freightRate,
         currencyId: freight.currencyId,
         shipmentId: freight.shipmentId,
-        isArrived: freight.isArrived,
         userId: userId,
       };
       const freightCreateResponse = await apiClient.post(
@@ -31,6 +30,18 @@ export const freightApi = {
         freightCreateData
       );
       return freightCreateResponse.data;
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
+
+  createFreightsInBulk: async (freights: FreightDTO[]) => {
+    try {
+      const createFreightsResponse = await apiClient.post('/freights/bulk', {
+        freights: freights,
+      });
+      console.log('freight api', createFreightsResponse.data);
+      return createFreightsResponse.data;
     } catch (error) {
       handleApiError(error);
     }
@@ -46,7 +57,6 @@ export const freightApi = {
         freightRate: freight.freightRate,
         currencyId: freight.currencyId,
         shipmentId: freight.shipmentId,
-        isArrived: freight.isArrived,
         userId: userId,
       };
       const freightUpdateResponse = await apiClient.post(

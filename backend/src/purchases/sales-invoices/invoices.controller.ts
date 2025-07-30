@@ -57,6 +57,7 @@ export class InvoicesController {
   async removeAllByShipmentId(@Param('shipmentId') shipmentId: string) {
     return this.invoiceService.removeByShipmentId(+shipmentId);
   }
+
   @Delete('delete/bulk')
   async removeAllByIdsArray(
     @Body() { ids: invoiceIdsArray }: { ids: number[] },

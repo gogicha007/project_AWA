@@ -5,10 +5,16 @@ import {
   IsOptional,
   IsDateString,
   IsInt,
-  IsBoolean,
+  IsArray,
+  IsNumber,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateFreightDTO {
+  @ApiProperty()
+  @IsNumber()
+  id: number;
+
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -42,15 +48,18 @@ export class CreateFreightDTO {
   @ApiProperty()
   @IsInt()
   @IsNotEmpty()
-  shipmentId: number;
-
-  @ApiProperty()
-  @IsBoolean()
-  @IsNotEmpty()
-  isArrived: boolean;
+  userId: number;
 
   @ApiProperty()
   @IsInt()
   @IsNotEmpty()
-  userId: number;
+  shipmentId: number;
+}
+
+// DTO for bulk freights
+export class CreateFreightsBulkDTO {
+  @ApiProperty({ type: [CreateFreightDTO] })
+  @IsArray()
+  @Type(() => CreateFreightDTO)
+  freights: CreateFreightDTO[];
 }
