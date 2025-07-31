@@ -53,8 +53,10 @@ export function useFreightTable(props: Props) {
   const handleRemoveFreight = (id: number) => {
     if (confirm(tVar('warnings.delete'))) {
       const index = fields.findIndex((field) => field.id === id);
+
       if (index !== -1) {
-        remove(id);
+        remove(index);
+
         if (id > 0) {
           const removedFreightsArr = getValues('_hasRemovals.inFreights') || [];
           const newRemFreightArr = [...removedFreightsArr, id];
