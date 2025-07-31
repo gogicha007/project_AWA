@@ -34,7 +34,6 @@ export const handleSubmitFreights = async (
         userId: dbUserId,
         shipmentId: shipmentId,
       }));
-      console.log('freights to submit', freightsToSubmit);
       await freightApi.createFreightsInBulk(freightsToSubmit)
     }
     return { success: true };

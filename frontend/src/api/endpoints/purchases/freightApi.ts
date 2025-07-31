@@ -40,7 +40,6 @@ export const freightApi = {
       const createFreightsResponse = await apiClient.post('/freights/bulk', {
         freights: freights,
       });
-      console.log('freight api', createFreightsResponse.data);
       return createFreightsResponse.data;
     } catch (error) {
       handleApiError(error);
