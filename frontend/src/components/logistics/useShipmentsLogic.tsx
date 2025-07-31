@@ -17,7 +17,8 @@ type ShipmentRow = {
 export function useShipmentsLogic(
   shipments: GeneralInfoDTO[],
   mutate: () => Promise<void | GeneralInfoDTO[]>,
-  tVar: (key: string) => string
+  tVar: (key: string) => string,
+  setNavigating: (loading: boolean) => void
 ) {
   const router = useRouter();
 
@@ -38,21 +39,24 @@ export function useShipmentsLogic(
   );
 
   const handleAdd = useCallback(() => {
+    setNavigating(true);
     router.push('/shipments/add');
-  }, [router]);
+  }, [router, setNavigating]);
 
   const handleEdit = useCallback(
     (id: number) => {
+      setNavigating(true);
       router.push(`/shipments/${id}/edit`);
     },
-    [router]
+    [router, setNavigating]
   );
 
   const handleView = useCallback(
     (id: number) => {
+      setNavigating(true);
       router.push(`/shipments/${id}`);
     },
-    [router]
+    [router, setNavigating]
   );
 
   const handleDelete = useCallback(

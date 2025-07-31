@@ -19,11 +19,12 @@ export default function ShipmentsClient() {
   const tS = useTranslations('Logistics');
   const { shipments, loading, error, mutate } = useShipmentApi();
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [navigating, setNavigating] = useState(false);
   const {
     data,
     columns,
     handleAdd,
-  } = useShipmentsLogic(shipments, mutate, tS);
+  } = useShipmentsLogic(shipments, mutate, tS, setNavigating);
 
   const table = useReactTable({
     data,
@@ -36,7 +37,7 @@ export default function ShipmentsClient() {
     onSortingChange: setSorting,
   });
 
-  if (loading) return <Loader />;
+  if (loading || navigating) return <Loader />;
 
   if (error)
     return (
