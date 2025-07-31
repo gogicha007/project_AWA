@@ -15,12 +15,12 @@ import {
   PrismaClientValidationError,
 } from '@prisma/client/runtime/library';
 import { CreateInvoicesWithItemsDTO } from './dto/create-invoices-with-items.dto';
-import { Prisma } from 'generated/prisma';
+import { Invoice } from 'generated/prisma';
 import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
-type InvoiceWithItems = Prisma.InvoiceGetPayload<{
-  include: { Items: true };
-}>;
+// type InvoiceWithItems = Prisma.InvoiceGetPayload<{
+//   include: { Items: true };
+// }>;
 
 @Injectable()
 export class InvoicesService {
@@ -77,7 +77,7 @@ export class InvoicesService {
     try {
       return await this.dbService.$transaction(
         async () => {
-          const upsertedInvoices: Array<InvoiceWithItems> = [];
+          const upsertedInvoices: Array<Invoice> = [];
 
           for (const invoiceData of invoicesData.invoices) {
             const { items, ...invoiceFields } = invoiceData;
@@ -89,7 +89,6 @@ export class InvoicesService {
               where: { id: id || 0 },
               create: { ...invoiceFieldsWithoutId },
               update: { ...invoiceFieldsWithoutId },
-              include: { Items: true },
             });
 
             // Upsert invoice items if any
@@ -115,17 +114,10 @@ export class InvoicesService {
                   });
                 }
               }
-              const refreshedInvoice = await this.dbService.invoice.findUnique({
-                where: { id: upsertedInvoice.id },
-                include: { Items: true },
-              });
-
-              if (refreshedInvoice) {
-                upsertedInvoices.push(refreshedInvoice);
-              }
-            } else {
-              upsertedInvoices.push(upsertedInvoice);
             }
+
+            // Add the upserted invoice to results (it already includes Items from the upsert)
+            upsertedInvoices.push(upsertedInvoice);
           }
 
           return upsertedInvoices;
