@@ -84,9 +84,7 @@ export const invoiceApi = {
   deleteInvoiceArray: async (invoiceIds: number[]) => {
     try {
       const response = await apiClient.delete('/invoices/delete/bulk', {
-        data: {
-          ids: invoiceIds,
-        },
+        data: { ids: invoiceIds },
       });
       return response.data;
     } catch (error) {

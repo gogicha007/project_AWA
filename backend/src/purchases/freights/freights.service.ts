@@ -9,7 +9,14 @@ import {
   CreateFreightsBulkDTO,
 } from './dto/create-freight.dto';
 import { UpdateFreightDTO } from './dto/update-freight.dto';
-import { PrismaClientKnownRequestError } from 'generated/prisma/runtime/library';
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientUnknownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientInitializationError,
+  PrismaClientValidationError,
+} from '@prisma/client/runtime/library';
+import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 @Injectable()
 export class FreightsService {
@@ -204,5 +211,38 @@ export class FreightsService {
       deletedCount: removedFreight.count,
       message: `Deleted ${removedFreight.count} freights for shipment ID: ${shipmentId}`,
     };
+  }
+
+  async removeByIdsArray(freightIdsArr: number[]) {
+    try {
+      const resultsArr: DeleteOperationResult[] = [];
+      if (freightIdsArr.length > 0) {
+        const resultRemovedFreights = await this.dbService.freight.deleteMany({
+          where: { id: { in: freightIdsArr } },
+        });
+        resultsArr.push({
+          success: true,
+          deletedCount: resultRemovedFreights.count,
+          message: `Deleted ${resultRemovedFreights.count} freights`,
+        });
+      }
+      return resultsArr;
+    } catch (error) {
+      if (
+        error instanceof PrismaClientKnownRequestError ||
+        error instanceof PrismaClientUnknownRequestError ||
+        error instanceof PrismaClientRustPanicError ||
+        error instanceof PrismaClientInitializationError ||
+        error instanceof PrismaClientValidationError
+      ) {
+        throw new BadRequestException(
+          `Failed to delete invoices with items ${
+            error instanceof PrismaClientKnownRequestError
+              ? error.code
+              : error.name || 'Unknown error'
+          }`,
+        );
+      }
+    }
   }
 }

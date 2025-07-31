@@ -1,14 +1,14 @@
 import { handleApiError } from '@/utils/handleApiError';
 import apiClient from '../../api-client';
-import { ShipmentDTO, GeneralInfoDTO } from '../../types';
+import { GeneralInfoDTO } from '../../types';
 
 export const shipmentApi = {
-  getAll: async (): Promise<ShipmentDTO[]> => {
+  getAll: async (): Promise<GeneralInfoDTO[]> => {
     const response = await apiClient.get('/shipments');
     return response.data;
   },
 
-  getById: async (id: number): Promise<ShipmentDTO> => {
+  getById: async (id: number): Promise<GeneralInfoDTO> => {
     const response = await apiClient.get(`/shipments/${id}`);
     return response.data;
   },

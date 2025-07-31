@@ -49,10 +49,15 @@ export class FreightsController {
     return this.freightsService.remove(+id);
   }
 
-  // @Delete('delete/bulk')
-  // async removeAllByIdsArray(
-  //   @Body() { ids: freightIdsArray }: { ids: Array<number> },
-  // ) {
-  //   return `freight ids`;
-  // }
+  @Delete('shipment/:shipmentId')
+  async removeAllByShipmentId(@Param('shipmentId') shipmentId: string) {
+    return this.freightsService.removeByShipmentId(+shipmentId)
+  }
+
+  @Delete('delete/bulk')
+  async removeAllByIdsArray(
+    @Body() { ids: freightIdsArray }: { ids: Array<number> },
+  ) {
+    return this.freightsService.removeByIdsArray(freightIdsArray);
+  }
 }

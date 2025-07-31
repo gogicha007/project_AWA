@@ -11,13 +11,13 @@ export const handleSubmitFreights = async (
   console.log('freight data', data.Freights);
   console.log('ids for freight', shipmentId, dbUserId);
 
-
   try {
     if (
       data._hasRemovals.inFreights &&
       data._hasRemovals.inFreights.length > 0
     ) {
       console.log('remove freight ids', data._hasRemovals.inFreights);
+      await freightApi.deleteFreightsArray(data._hasRemovals.inFreights);
     }
 
     if (data.Freights && data.Freights.length > 0) {
@@ -34,7 +34,7 @@ export const handleSubmitFreights = async (
         userId: dbUserId,
         shipmentId: shipmentId,
       }));
-      await freightApi.createFreightsInBulk(freightsToSubmit)
+      await freightApi.createFreightsInBulk(freightsToSubmit);
     }
     return { success: true };
   } catch (error) {

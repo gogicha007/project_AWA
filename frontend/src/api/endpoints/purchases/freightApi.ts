@@ -68,6 +68,28 @@ export const freightApi = {
     }
   },
 
+  deleteAllByShipmentId: async (shipmentId: number): Promise<void> => {
+    try {
+      const response = await apiClient.delete(
+        `/freights/shipment/${shipmentId}`
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
+
+  deleteFreightsArray: async (freightIds: number[]) => {
+    try {
+      const response = await apiClient.delete('/freights/delete/bulk', {
+        data: { ids: freightIds },
+      });
+      return response.data;
+    } catch (error) {
+      handleApiError(error);
+    }
+  },
+
   delete: async (id: number) => {
     try {
       const response = await apiClient.delete(`/freights/${id}`);
