@@ -51,7 +51,7 @@ export class FreightsController {
 
   @Delete('shipment/:shipmentId')
   async removeAllByShipmentId(@Param('shipmentId') shipmentId: string) {
-    return this.freightsService.removeByShipmentId(+shipmentId)
+    return this.freightsService.removeByShipmentId(+shipmentId);
   }
 
   @Delete('delete/bulk')
