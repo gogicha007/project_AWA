@@ -60,9 +60,9 @@ export function useInvoiceTable(props: Props) {
   );
 
   const openItemsDialog = (uid: number) => {
-    const invoices = getValues('Invoices') ?? []
-    const index = invoices?.findIndex((field) => field.id === uid)
-    
+    const invoices = getValues('Invoices') ?? [];
+    const index = invoices?.findIndex((field) => field.id === uid);
+
     if (index === -1) {
       snackbarControls?.setStatus({
         message: `Cannot find row with database ID: ${uid}`,

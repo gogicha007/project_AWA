@@ -1,4 +1,4 @@
-import { InvoiceDTO } from '@/api/types';
+import { FreightDTO, InvoiceDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { ensureNumber, ensureInteger, ensureDate } from '@/utils/helper';
 import { ShipmentFormSchema } from '../../shipmentSchema';
@@ -44,7 +44,11 @@ export const transformShipmentToFormData = (
           })) ?? []
       )
     : [],
-  Freights: shipment.Freights,
+  Freights: shipment.Freights?.map((frt: FreightDTO) => ({
+    ...frt,
+    billDate: ensureDate(frt.billDate),
+    freightRate: ensureNumber(frt.freightRate),
+  })),
   _hasRemovals: {
     inFiles: false,
     inInvoices: [],
@@ -78,7 +82,7 @@ export const detectFormChanges = (
   };
 
   const hasInvoiceChanges = () => {
-    if (dirtyFields?._hasRemovals?.inInvoices?.length) return true;
+    if (dirtyFields?._hasRemovals?.inInvoices) return true;
 
     if (!('Invoices' in dirtyFields)) return false;
     // in case invoice property of dirtyFields is an array
@@ -92,7 +96,7 @@ export const detectFormChanges = (
 
   const hasInvoiceItemChanges = () => {
     // if there are removals in items
-    if (dirtyFields?._hasRemovals?.inInvoiceItems?.length) return true;
+    if (dirtyFields?._hasRemovals?.inInvoiceItems) return true;
 
     if (!('InvoiceItems' in dirtyFields)) return false;
 
@@ -110,7 +114,7 @@ export const detectFormChanges = (
   };
 
   const hasFreightChanges = () => {
-    if (dirtyFields?._hasRemovals?.inFreights?.length) return true;
+    if (dirtyFields?._hasRemovals?.inFreights) return true;
 
     if (!('Freights' in dirtyFields)) return false;
     if (
