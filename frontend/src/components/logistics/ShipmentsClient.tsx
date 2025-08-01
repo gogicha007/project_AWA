@@ -13,13 +13,17 @@ import { useTranslations } from 'next-intl';
 import AddButton from '../controls/add-button/AddButton';
 import { useShipmentsLogic } from './useShipmentsLogic';
 import { useShipmentApi } from '@/api/hooks/shipments/shipmentApiHook';
+import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import Loader from '../feedback/loader/loader';
+import SelectVendor from '../controls/dropdown/SelectVendor';
 
 export default function ShipmentsClient() {
   const tS = useTranslations('Logistics');
   const { shipments, loading, error, mutate } = useShipmentApi();
+  const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [navigating, setNavigating] = useState(false);
+  const [selectedVendor, setSelectedVendor] = useState<number | null>(null);
   const { data, columns, handleAdd } = useShipmentsLogic(
     shipments,
     mutate,
@@ -27,6 +31,7 @@ export default function ShipmentsClient() {
     setNavigating
   );
 
+  console.log(selectedVendor);
   const table = useReactTable({
     data,
     columns,
@@ -38,7 +43,7 @@ export default function ShipmentsClient() {
     onSortingChange: setSorting,
   });
 
-  if (loading || navigating) return <Loader />;
+  if (loading || navigating || vendorsLoading) return <Loader />;
 
   if (error)
     return (
@@ -52,7 +57,7 @@ export default function ShipmentsClient() {
       <h1 className={styles.pageTitle}>{tS('title')}</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
-          <div>filter</div>
+          <SelectVendor data={vendors} setVendor={setSelectedVendor} />
           <AddButton onAdd={handleAdd} />
         </div>
         <div className={styles.tableScrollContainer}>
