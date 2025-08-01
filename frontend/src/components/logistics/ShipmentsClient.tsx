@@ -28,10 +28,14 @@ export default function ShipmentsClient() {
     shipments,
     mutate,
     tS,
-    setNavigating
+    setNavigating,
+    selectedVendor
   );
 
-  console.log(selectedVendor);
+  const vendorOptions = vendors.map((vendor)=> {
+    return {value: vendor.id, label: vendor.alias}
+  })
+
   const table = useReactTable({
     data,
     columns,
@@ -57,7 +61,11 @@ export default function ShipmentsClient() {
       <h1 className={styles.pageTitle}>{tS('title')}</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
-          <SelectVendor data={vendors} setVendor={setSelectedVendor} />
+          <SelectVendor 
+            options={vendorOptions} 
+            setOption={setSelectedVendor} 
+            selectedValue={selectedVendor}
+          />
           <AddButton onAdd={handleAdd} />
         </div>
         <div className={styles.tableScrollContainer}>

@@ -53,7 +53,9 @@
 
 .tableActions {
   display: flex;
-  justify-content: flex-end; /*space-between;
+  padding-left: 5px;
+  paddint-top: 5px;
+  justify-content: space-between ; /*flex-end; 
   /* padding: 5px; */
   margin-bottom: 16px;
 }

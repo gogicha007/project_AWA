@@ -53,14 +53,12 @@ export function SelectProduct({
             }}
             value={selectedOption}
             placeholder="Select material..."
-            // isClearable
             isSearchable
             menuPlacement="top"
             styles={{
               menu: (styles) => ({
                 ...styles,
                 zIndex: 9999,
-                // position: 'absolute',
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',
                 borderRadius: '6px',
