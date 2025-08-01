@@ -20,11 +20,12 @@ export default function ShipmentsClient() {
   const { shipments, loading, error, mutate } = useShipmentApi();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [navigating, setNavigating] = useState(false);
-  const {
-    data,
-    columns,
-    handleAdd,
-  } = useShipmentsLogic(shipments, mutate, tS, setNavigating);
+  const { data, columns, handleAdd } = useShipmentsLogic(
+    shipments,
+    mutate,
+    tS,
+    setNavigating
+  );
 
   const table = useReactTable({
     data,
@@ -51,6 +52,7 @@ export default function ShipmentsClient() {
       <h1 className={styles.pageTitle}>{tS('title')}</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
+          <div>filter</div>
           <AddButton onAdd={handleAdd} />
         </div>
         <div className={styles.tableScrollContainer}>

@@ -62,7 +62,10 @@ export interface CurrencyDTO {
   name: string;
 }
 
-export type GeneralInfoDTO = z.infer<typeof generalInfoSchema>;
+
+export type GeneralInfoDTO = z.infer<typeof generalInfoSchema> & {
+  Invoices?: InvoiceDTO[];
+};
 
 export type ShipmentFileDTO = z.infer<typeof serverFileDataSchema>;
 

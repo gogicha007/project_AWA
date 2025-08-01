@@ -18,25 +18,30 @@ export function useShipmentsLogic(
   shipments: GeneralInfoDTO[],
   mutate: () => Promise<void | GeneralInfoDTO[]>,
   tVar: (key: string) => string,
-  setNavigating: (loading: boolean) => void
+  setNavigating: (loading: boolean) => void,
+  selectedVendor?: number | null
 ) {
   const router = useRouter();
 
-  const data: ShipmentRow[] = useMemo(
-    () =>
-      shipments
-        .map((shipment) => ({
-          ...shipment,
-          id:
-            typeof shipment.id === 'string'
-              ? parseInt(shipment.id, 10)
-              : Number(shipment.id),
-          declaration_number: shipment.declaration_number ?? '',
-          declaration_date: shipment.declaration_date ?? null,
-        }))
-        .sort((a, b) => a.id - b.id),
-    [shipments]
-  );
+  const data: ShipmentRow[] = useMemo(() => {
+    let filtered = shipments;
+    if (selectedVendor) {
+      filtered = shipments.filter((shipment) =>
+        shipment.Invoices?.some((inv) => inv.vendorId === selectedVendor)
+      );
+    }
+    return filtered
+      .map((shipment) => ({
+        ...shipment,
+        id:
+          typeof shipment.id === 'string'
+            ? parseInt(shipment.id, 10)
+            : Number(shipment.id),
+        declaration_number: shipment.declaration_number ?? '',
+        declaration_date: shipment.declaration_date ?? null,
+      }))
+      .sort((a, b) => a.id - b.id);
+  }, [shipments, selectedVendor]);
 
   const handleAdd = useCallback(() => {
     setNavigating(true);
