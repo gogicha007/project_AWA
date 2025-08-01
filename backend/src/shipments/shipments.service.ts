@@ -60,7 +60,11 @@ export class ShipmentsService {
   async findAll() {
     return this.dbService.shipment.findMany({
       include: {
-        Invoices: true,
+        Invoices: {
+          select: {
+            vendorId: true,
+          },
+        },
         Files: false,
       },
     });
