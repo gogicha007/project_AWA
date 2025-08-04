@@ -1,7 +1,7 @@
 entity-relationship-diagram
 
 user [icon: user, color: blue] {
-    id string pk
+    id int pk
     firebaseUid string unique
     email string
     name string
@@ -11,7 +11,7 @@ user [icon: user, color: blue] {
 }
 
 client [icon: client] {
-    id string pk
+    id int pk
     name string
     address string
     vat_no string
@@ -20,17 +20,17 @@ client [icon: client] {
 }
 
 employee [icon: worker] {
-    id string pk
+    id int pk
     first_name string
     last_name string
     birth_date timestamp
     position string
-    user_id string
+    user_id int
 }
 employee.user_id <> user.id
 
 location [icon: worker] {
-    id string pk
+    id int pk
     location_name string
     altitude string
     longitude string
@@ -44,32 +44,32 @@ material_groups [icon: worker] {
 }
 
 material_names [icon: worker] {
-    id string pk
+    id int pk
     name string unique
     dn string
     pn string
     degree string
     description string
-    type_id string
+    type_id int
 }
 material_names.type_id <> material_types.id
 
 material_types [icon: worker] {
     id string
     type unique string
-    group_id string
+    group_id int
 }
 material_types.group_id <> material_groups.id
 
 project [icon: worker] {
-    id string pk
+    id int pk
     project_name string
     display_name string
-    client_id string
-    manager_id string
+    client_id int
+    manager_id int
     created_at timestamp
     updated_at timestamp
-    user_id string
+    user_id int
     progress string
     notes string
 }
@@ -78,51 +78,55 @@ project.client_id > client.id
 project.manager_id > employee.id
 
 progress [icon: worker] {
-    id string pk
-    project_id string
-    team_id string
-    location_id nullable string
+    id int pk
+    project_id int
+    team_id nullable string
     task_id nullable string
-    projected_quantity number
     build_quantity number
-    unit_id string
-    start_date timestamp
-    end_date timestamp
+    start_date nullable timestamp
+    end_date nullable timestamp
     notes string
-    status string // planned, in progress, completed
     created_at timestamp
     updated_at timestamp
-    user_id string
+    user_id int
 }
 progress.user_id <> user.id
 progress.team_id <> team.id
-progress.project_id > project.id
-progress.location_id > location.id
 progress.task_id > task.id
-progress.unit_id > unit.id
 
 task [icon: worker] {
-    id string pk
+    id int pk
     task_name unique string
-    task_type string  // node, reservoir, pipeline, prv, washout, manhole, road
+    task_group string  // node, reservoir, pipeline, prv, washout, manhole, hydrant, road, general
+    projected_quantity number
+    unit_id int
+    location_id nullable string
     drawing_ref string
+    notes string
+    project_id int
+    created_at timestamp
+    updated_at timestamp
+    user_id int
 }
+task.unit_id > unit.id
+task.location_id > location.id
+task.project_id > project.id
 
 task_materials [icon: worker] {
-    id string pk
-    task_id string
-    material_id string
+    id int pk
+    task_id int
+    material_id int
     quantity number
-    unit_id string
+    unit_id int
     notes string
     created_at timestamp
-    user_id string
+    user_id int
 }
 task_materials.task_id > task.id
 task_materials.unit_id > unit.id
 
 team [icon: worker] {
-    id string pk
+    id int pk
     team_name unique string
     company_name string
     vat_no string
@@ -130,10 +134,10 @@ team [icon: worker] {
     email string
     created_at timestamp
     updated_at timestamp
-    user_id string
+    user_id int
 }
 
 unit [icon: worker] {
-    id string pk
+    id int pk
     unit unique string
 }
