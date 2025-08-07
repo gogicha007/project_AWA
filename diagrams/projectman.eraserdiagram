@@ -76,6 +76,7 @@ project [icon: worker] {
     manager_id nullable int
     progress string
     notes string
+    startDate timestamp
     currency_id
     created_at timestamp
     updated_at timestamp
@@ -83,7 +84,7 @@ project [icon: worker] {
 }
 project.user_id <> user.id
 project.client_id > client.id
-project.manager_id > employee.id
+project.manager_id > staff.id
 project.currency_id > currency.id
 
 progress [icon: worker] {

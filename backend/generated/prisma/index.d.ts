@@ -30768,8 +30768,8 @@ export namespace Prisma {
     approvalDate?: Date | string | null
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Progress?: ProgressCreateNestedManyWithoutMilestoneInput
     Currency?: CurrencyCreateNestedOneWithoutMilestoneInput
     user: UserCreateNestedOneWithoutMilestoneInput
@@ -30784,8 +30784,8 @@ export namespace Prisma {
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutMilestoneInput
   }
@@ -30828,8 +30828,8 @@ export namespace Prisma {
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -30864,8 +30864,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProgressInput
     task: TaskCreateNestedOneWithoutProgressInput
     milestone: MilestoneCreateNestedOneWithoutProgressInput
@@ -30882,8 +30882,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -30926,8 +30926,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -35495,8 +35495,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProgressInput
     task: TaskCreateNestedOneWithoutProgressInput
     milestone: MilestoneCreateNestedOneWithoutProgressInput
@@ -35512,8 +35512,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProgressCreateOrConnectWithoutUserInput = {
@@ -35576,8 +35576,8 @@ export namespace Prisma {
     approvalDate?: Date | string | null
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Progress?: ProgressCreateNestedManyWithoutMilestoneInput
     Currency?: CurrencyCreateNestedOneWithoutMilestoneInput
   }
@@ -35591,8 +35591,8 @@ export namespace Prisma {
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Progress?: ProgressUncheckedCreateNestedManyWithoutMilestoneInput
   }
 
@@ -36027,8 +36027,8 @@ export namespace Prisma {
     approvalDate?: Date | string | null
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Progress?: ProgressCreateNestedManyWithoutMilestoneInput
     user: UserCreateNestedOneWithoutMilestoneInput
   }
@@ -36041,8 +36041,8 @@ export namespace Prisma {
     approvalDate?: Date | string | null
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutMilestoneInput
   }
@@ -37381,8 +37381,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProgressInput
     task: TaskCreateNestedOneWithoutProgressInput
     user: UserCreateNestedOneWithoutProgressInput
@@ -37397,8 +37397,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -37645,8 +37645,8 @@ export namespace Prisma {
     approvalDate?: Date | string | null
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     Currency?: CurrencyCreateNestedOneWithoutMilestoneInput
     user: UserCreateNestedOneWithoutMilestoneInput
   }
@@ -37660,8 +37660,8 @@ export namespace Prisma {
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -37972,8 +37972,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     task: TaskCreateNestedOneWithoutProgressInput
     milestone: MilestoneCreateNestedOneWithoutProgressInput
     user: UserCreateNestedOneWithoutProgressInput
@@ -37988,8 +37988,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -38686,8 +38686,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProgressInput
     milestone: MilestoneCreateNestedOneWithoutProgressInput
     user: UserCreateNestedOneWithoutProgressInput
@@ -38702,8 +38702,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -39362,8 +39362,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TaskCreateManyUserInput = {
@@ -39390,8 +39390,8 @@ export namespace Prisma {
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
     currencyId?: number | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type VendorUpdateWithoutUserInput = {
@@ -39820,8 +39820,8 @@ export namespace Prisma {
     approvalDate?: Date | string | null
     status: $Enums.MilestoneStatus
     payment?: Decimal | DecimalJsLike | number | string | null
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -40258,8 +40258,8 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     notes: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -40313,8 +40313,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -40554,8 +40554,8 @@ export namespace Prisma {
     endDate: Date | string
     notes: string
     milestoneId: number
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
