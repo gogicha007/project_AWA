@@ -76,6 +76,7 @@ project [icon: worker] {
     manager_id nullable int
     progress string
     notes string
+    currency_id
     created_at timestamp
     updated_at timestamp
     user_id int
@@ -83,6 +84,7 @@ project [icon: worker] {
 project.user_id <> user.id
 project.client_id > client.id
 project.manager_id > employee.id
+project.currency_id > currency.id
 
 progress [icon: worker] {
     id int pk
@@ -110,7 +112,6 @@ milestone [icon: worker] {
     description string
     status string // pending, approved, rejected
     payment nullable number
-    currency_id
     created_at timestamp
     updated_at timestamp
     user_id int

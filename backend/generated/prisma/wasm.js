@@ -215,7 +215,17 @@ exports.Prisma.MaterialNameScalarFieldEnum = {
 };
 
 exports.Prisma.MilestoneScalarFieldEnum = {
-  id: 'id'
+  id: 'id',
+  project_id: 'project_id',
+  identifier: 'identifier',
+  description: 'description',
+  approvalDate: 'approvalDate',
+  status: 'status',
+  payment: 'payment',
+  currencyId: 'currencyId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.ProgressScalarFieldEnum = {
@@ -241,6 +251,8 @@ exports.Prisma.ProjectScalarFieldEnum = {
   managerId: 'managerId',
   progress: 'progress',
   notes: 'notes',
+  startDate: 'startDate',
+  currencyId: 'currencyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'
@@ -326,6 +338,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.MilestoneStatus = exports.$Enums.MilestoneStatus = {
+  pending: 'pending',
+  approved: 'approved',
+  rejected: 'rejected'
+};
+
 exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
   APPLIED: 'APPLIED',
   DECLARED: 'DECLARED',

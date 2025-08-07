@@ -123,7 +123,16 @@ export type Unit = $Result.DefaultSelection<Prisma.$UnitPayload>
  * Enums
  */
 export namespace $Enums {
-  export const ShipmentStatus: {
+  export const MilestoneStatus: {
+  pending: 'pending',
+  approved: 'approved',
+  rejected: 'rejected'
+};
+
+export type MilestoneStatus = (typeof MilestoneStatus)[keyof typeof MilestoneStatus]
+
+
+export const ShipmentStatus: {
   APPLIED: 'APPLIED',
   DECLARED: 'DECLARED',
   ARRIVED: 'ARRIVED'
@@ -154,6 +163,10 @@ export const TaskStatus: {
 export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
 
 }
+
+export type MilestoneStatus = $Enums.MilestoneStatus
+
+export const MilestoneStatus: typeof $Enums.MilestoneStatus
 
 export type ShipmentStatus = $Enums.ShipmentStatus
 
@@ -2745,6 +2758,7 @@ export namespace Prisma {
     Staff: number
     Progress: number
     Task: number
+    Milestone: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2756,6 +2770,7 @@ export namespace Prisma {
     Staff?: boolean | UserCountOutputTypeCountStaffArgs
     Progress?: boolean | UserCountOutputTypeCountProgressArgs
     Task?: boolean | UserCountOutputTypeCountTaskArgs
+    Milestone?: boolean | UserCountOutputTypeCountMilestoneArgs
   }
 
   // Custom InputTypes
@@ -2825,6 +2840,13 @@ export namespace Prisma {
     where?: TaskWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMilestoneArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MilestoneWhereInput
+  }
+
 
   /**
    * Count Type ClientCountOutputType
@@ -2864,11 +2886,15 @@ export namespace Prisma {
   export type CurrencyCountOutputType = {
     Invoice: number
     Freight: number
+    Milestone: number
+    Project: number
   }
 
   export type CurrencyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Invoice?: boolean | CurrencyCountOutputTypeCountInvoiceArgs
     Freight?: boolean | CurrencyCountOutputTypeCountFreightArgs
+    Milestone?: boolean | CurrencyCountOutputTypeCountMilestoneArgs
+    Project?: boolean | CurrencyCountOutputTypeCountProjectArgs
   }
 
   // Custom InputTypes
@@ -2894,6 +2920,20 @@ export namespace Prisma {
    */
   export type CurrencyCountOutputTypeCountFreightArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FreightWhereInput
+  }
+
+  /**
+   * CurrencyCountOutputType without action
+   */
+  export type CurrencyCountOutputTypeCountMilestoneArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MilestoneWhereInput
+  }
+
+  /**
+   * CurrencyCountOutputType without action
+   */
+  export type CurrencyCountOutputTypeCountProjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
   }
 
 
@@ -3558,6 +3598,7 @@ export namespace Prisma {
     Staff?: boolean | User$StaffArgs<ExtArgs>
     Progress?: boolean | User$ProgressArgs<ExtArgs>
     Task?: boolean | User$TaskArgs<ExtArgs>
+    Milestone?: boolean | User$MilestoneArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3601,6 +3642,7 @@ export namespace Prisma {
     Staff?: boolean | User$StaffArgs<ExtArgs>
     Progress?: boolean | User$ProgressArgs<ExtArgs>
     Task?: boolean | User$TaskArgs<ExtArgs>
+    Milestone?: boolean | User$MilestoneArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3617,6 +3659,7 @@ export namespace Prisma {
       Staff: Prisma.$StaffPayload<ExtArgs>[]
       Progress: Prisma.$ProgressPayload<ExtArgs>[]
       Task: Prisma.$TaskPayload<ExtArgs>[]
+      Milestone: Prisma.$MilestonePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4028,6 +4071,7 @@ export namespace Prisma {
     Staff<T extends User$StaffArgs<ExtArgs> = {}>(args?: Subset<T, User$StaffArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Progress<T extends User$ProgressArgs<ExtArgs> = {}>(args?: Subset<T, User$ProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Task<T extends User$TaskArgs<ExtArgs> = {}>(args?: Subset<T, User$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Milestone<T extends User$MilestoneArgs<ExtArgs> = {}>(args?: Subset<T, User$MilestoneArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4641,6 +4685,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * User.Milestone
+   */
+  export type User$MilestoneArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    where?: MilestoneWhereInput
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    cursor?: MilestoneWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MilestoneScalarFieldEnum | MilestoneScalarFieldEnum[]
   }
 
   /**
@@ -5976,6 +6044,8 @@ export namespace Prisma {
     name?: boolean
     Invoice?: boolean | Currency$InvoiceArgs<ExtArgs>
     Freight?: boolean | Currency$FreightArgs<ExtArgs>
+    Milestone?: boolean | Currency$MilestoneArgs<ExtArgs>
+    Project?: boolean | Currency$ProjectArgs<ExtArgs>
     _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["currency"]>
 
@@ -6001,6 +6071,8 @@ export namespace Prisma {
   export type CurrencyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Invoice?: boolean | Currency$InvoiceArgs<ExtArgs>
     Freight?: boolean | Currency$FreightArgs<ExtArgs>
+    Milestone?: boolean | Currency$MilestoneArgs<ExtArgs>
+    Project?: boolean | Currency$ProjectArgs<ExtArgs>
     _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CurrencyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6011,6 +6083,8 @@ export namespace Prisma {
     objects: {
       Invoice: Prisma.$InvoicePayload<ExtArgs>[]
       Freight: Prisma.$FreightPayload<ExtArgs>[]
+      Milestone: Prisma.$MilestonePayload<ExtArgs>[]
+      Project: Prisma.$ProjectPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6412,6 +6486,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Invoice<T extends Currency$InvoiceArgs<ExtArgs> = {}>(args?: Subset<T, Currency$InvoiceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Freight<T extends Currency$FreightArgs<ExtArgs> = {}>(args?: Subset<T, Currency$FreightArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FreightPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Milestone<T extends Currency$MilestoneArgs<ExtArgs> = {}>(args?: Subset<T, Currency$MilestoneArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Project<T extends Currency$ProjectArgs<ExtArgs> = {}>(args?: Subset<T, Currency$ProjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6877,6 +6953,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FreightScalarFieldEnum | FreightScalarFieldEnum[]
+  }
+
+  /**
+   * Currency.Milestone
+   */
+  export type Currency$MilestoneArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    where?: MilestoneWhereInput
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    cursor?: MilestoneWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MilestoneScalarFieldEnum | MilestoneScalarFieldEnum[]
+  }
+
+  /**
+   * Currency.Project
+   */
+  export type Currency$ProjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
   }
 
   /**
@@ -16106,44 +16230,120 @@ export namespace Prisma {
 
   export type MilestoneAvgAggregateOutputType = {
     id: number | null
+    project_id: number | null
+    payment: Decimal | null
+    currencyId: number | null
+    userId: number | null
   }
 
   export type MilestoneSumAggregateOutputType = {
     id: number | null
+    project_id: number | null
+    payment: Decimal | null
+    currencyId: number | null
+    userId: number | null
   }
 
   export type MilestoneMinAggregateOutputType = {
     id: number | null
+    project_id: number | null
+    identifier: string | null
+    description: string | null
+    approvalDate: Date | null
+    status: $Enums.MilestoneStatus | null
+    payment: Decimal | null
+    currencyId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
   }
 
   export type MilestoneMaxAggregateOutputType = {
     id: number | null
+    project_id: number | null
+    identifier: string | null
+    description: string | null
+    approvalDate: Date | null
+    status: $Enums.MilestoneStatus | null
+    payment: Decimal | null
+    currencyId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
   }
 
   export type MilestoneCountAggregateOutputType = {
     id: number
+    project_id: number
+    identifier: number
+    description: number
+    approvalDate: number
+    status: number
+    payment: number
+    currencyId: number
+    createdAt: number
+    updatedAt: number
+    userId: number
     _all: number
   }
 
 
   export type MilestoneAvgAggregateInputType = {
     id?: true
+    project_id?: true
+    payment?: true
+    currencyId?: true
+    userId?: true
   }
 
   export type MilestoneSumAggregateInputType = {
     id?: true
+    project_id?: true
+    payment?: true
+    currencyId?: true
+    userId?: true
   }
 
   export type MilestoneMinAggregateInputType = {
     id?: true
+    project_id?: true
+    identifier?: true
+    description?: true
+    approvalDate?: true
+    status?: true
+    payment?: true
+    currencyId?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
   }
 
   export type MilestoneMaxAggregateInputType = {
     id?: true
+    project_id?: true
+    identifier?: true
+    description?: true
+    approvalDate?: true
+    status?: true
+    payment?: true
+    currencyId?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
   }
 
   export type MilestoneCountAggregateInputType = {
     id?: true
+    project_id?: true
+    identifier?: true
+    description?: true
+    approvalDate?: true
+    status?: true
+    payment?: true
+    currencyId?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
     _all?: true
   }
 
@@ -16235,6 +16435,16 @@ export namespace Prisma {
 
   export type MilestoneGroupByOutputType = {
     id: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate: Date | null
+    status: $Enums.MilestoneStatus
+    payment: Decimal | null
+    currencyId: number | null
+    createdAt: Date
+    updatedAt: Date
+    userId: number
     _count: MilestoneCountAggregateOutputType | null
     _avg: MilestoneAvgAggregateOutputType | null
     _sum: MilestoneSumAggregateOutputType | null
@@ -16258,37 +16468,103 @@ export namespace Prisma {
 
   export type MilestoneSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    project_id?: boolean
+    identifier?: boolean
+    description?: boolean
+    approvalDate?: boolean
+    status?: boolean
+    payment?: boolean
+    currencyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
     Progress?: boolean | Milestone$ProgressArgs<ExtArgs>
+    Currency?: boolean | Milestone$CurrencyArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | MilestoneCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["milestone"]>
 
   export type MilestoneSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    project_id?: boolean
+    identifier?: boolean
+    description?: boolean
+    approvalDate?: boolean
+    status?: boolean
+    payment?: boolean
+    currencyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    Currency?: boolean | Milestone$CurrencyArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["milestone"]>
 
   export type MilestoneSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    project_id?: boolean
+    identifier?: boolean
+    description?: boolean
+    approvalDate?: boolean
+    status?: boolean
+    payment?: boolean
+    currencyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    Currency?: boolean | Milestone$CurrencyArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["milestone"]>
 
   export type MilestoneSelectScalar = {
     id?: boolean
+    project_id?: boolean
+    identifier?: boolean
+    description?: boolean
+    approvalDate?: boolean
+    status?: boolean
+    payment?: boolean
+    currencyId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
   }
 
-  export type MilestoneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id", ExtArgs["result"]["milestone"]>
+  export type MilestoneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "project_id" | "identifier" | "description" | "approvalDate" | "status" | "payment" | "currencyId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["milestone"]>
   export type MilestoneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Progress?: boolean | Milestone$ProgressArgs<ExtArgs>
+    Currency?: boolean | Milestone$CurrencyArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | MilestoneCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type MilestoneIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type MilestoneIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MilestoneIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Currency?: boolean | Milestone$CurrencyArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MilestoneIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Currency?: boolean | Milestone$CurrencyArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $MilestonePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Milestone"
     objects: {
       Progress: Prisma.$ProgressPayload<ExtArgs>[]
+      Currency: Prisma.$CurrencyPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      project_id: number
+      identifier: string
+      description: string
+      approvalDate: Date | null
+      status: $Enums.MilestoneStatus
+      payment: Prisma.Decimal | null
+      currencyId: number | null
+      createdAt: Date
+      updatedAt: Date
+      userId: number
     }, ExtArgs["result"]["milestone"]>
     composites: {}
   }
@@ -16684,6 +16960,8 @@ export namespace Prisma {
   export interface Prisma__MilestoneClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Progress<T extends Milestone$ProgressArgs<ExtArgs> = {}>(args?: Subset<T, Milestone$ProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Currency<T extends Milestone$CurrencyArgs<ExtArgs> = {}>(args?: Subset<T, Milestone$CurrencyArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16714,6 +16992,16 @@ export namespace Prisma {
    */
   interface MilestoneFieldRefs {
     readonly id: FieldRef<"Milestone", 'Int'>
+    readonly project_id: FieldRef<"Milestone", 'Int'>
+    readonly identifier: FieldRef<"Milestone", 'String'>
+    readonly description: FieldRef<"Milestone", 'String'>
+    readonly approvalDate: FieldRef<"Milestone", 'DateTime'>
+    readonly status: FieldRef<"Milestone", 'MilestoneStatus'>
+    readonly payment: FieldRef<"Milestone", 'Decimal'>
+    readonly currencyId: FieldRef<"Milestone", 'Int'>
+    readonly createdAt: FieldRef<"Milestone", 'DateTime'>
+    readonly updatedAt: FieldRef<"Milestone", 'DateTime'>
+    readonly userId: FieldRef<"Milestone", 'Int'>
   }
     
 
@@ -16932,7 +17220,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Milestone.
      */
-    data?: XOR<MilestoneCreateInput, MilestoneUncheckedCreateInput>
+    data: XOR<MilestoneCreateInput, MilestoneUncheckedCreateInput>
   }
 
   /**
@@ -16963,6 +17251,10 @@ export namespace Prisma {
      */
     data: MilestoneCreateManyInput | MilestoneCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -17033,6 +17325,10 @@ export namespace Prisma {
      * Limit how many Milestones to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -17123,6 +17419,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProgressScalarFieldEnum | ProgressScalarFieldEnum[]
+  }
+
+  /**
+   * Milestone.Currency
+   */
+  export type Milestone$CurrencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    where?: CurrencyWhereInput
   }
 
   /**
@@ -18391,6 +18706,7 @@ export namespace Prisma {
     id: number | null
     clientId: number | null
     managerId: number | null
+    currencyId: number | null
     userId: number | null
   }
 
@@ -18398,6 +18714,7 @@ export namespace Prisma {
     id: number | null
     clientId: number | null
     managerId: number | null
+    currencyId: number | null
     userId: number | null
   }
 
@@ -18409,6 +18726,8 @@ export namespace Prisma {
     managerId: number | null
     progress: string | null
     notes: string | null
+    startDate: Date | null
+    currencyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -18422,6 +18741,8 @@ export namespace Prisma {
     managerId: number | null
     progress: string | null
     notes: string | null
+    startDate: Date | null
+    currencyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -18435,6 +18756,8 @@ export namespace Prisma {
     managerId: number
     progress: number
     notes: number
+    startDate: number
+    currencyId: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -18446,6 +18769,7 @@ export namespace Prisma {
     id?: true
     clientId?: true
     managerId?: true
+    currencyId?: true
     userId?: true
   }
 
@@ -18453,6 +18777,7 @@ export namespace Prisma {
     id?: true
     clientId?: true
     managerId?: true
+    currencyId?: true
     userId?: true
   }
 
@@ -18464,6 +18789,8 @@ export namespace Prisma {
     managerId?: true
     progress?: true
     notes?: true
+    startDate?: true
+    currencyId?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -18477,6 +18804,8 @@ export namespace Prisma {
     managerId?: true
     progress?: true
     notes?: true
+    startDate?: true
+    currencyId?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -18490,6 +18819,8 @@ export namespace Prisma {
     managerId?: true
     progress?: true
     notes?: true
+    startDate?: true
+    currencyId?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -18590,6 +18921,8 @@ export namespace Prisma {
     managerId: number | null
     progress: string
     notes: string
+    startDate: Date
+    currencyId: number
     createdAt: Date
     updatedAt: Date
     userId: number
@@ -18622,10 +18955,13 @@ export namespace Prisma {
     managerId?: boolean
     progress?: boolean
     notes?: boolean
+    startDate?: boolean
+    currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     client?: boolean | Project$clientArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     Progress?: boolean | Project$ProgressArgs<ExtArgs>
     Task?: boolean | Project$TaskArgs<ExtArgs>
@@ -18640,10 +18976,13 @@ export namespace Prisma {
     managerId?: boolean
     progress?: boolean
     notes?: boolean
+    startDate?: boolean
+    currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     client?: boolean | Project$clientArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -18655,10 +18994,13 @@ export namespace Prisma {
     managerId?: boolean
     progress?: boolean
     notes?: boolean
+    startDate?: boolean
+    currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     client?: boolean | Project$clientArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -18670,14 +19012,17 @@ export namespace Prisma {
     managerId?: boolean
     progress?: boolean
     notes?: boolean
+    startDate?: boolean
+    currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "displayName" | "clientId" | "managerId" | "progress" | "notes" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "displayName" | "clientId" | "managerId" | "progress" | "notes" | "startDate" | "currencyId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | Project$clientArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     Progress?: boolean | Project$ProgressArgs<ExtArgs>
     Task?: boolean | Project$TaskArgs<ExtArgs>
@@ -18685,10 +19030,12 @@ export namespace Prisma {
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | Project$clientArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | Project$clientArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
@@ -18696,6 +19043,7 @@ export namespace Prisma {
     name: "Project"
     objects: {
       client: Prisma.$ClientPayload<ExtArgs> | null
+      currency: Prisma.$CurrencyPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
       Progress: Prisma.$ProgressPayload<ExtArgs>[]
       Task: Prisma.$TaskPayload<ExtArgs>[]
@@ -18708,6 +19056,8 @@ export namespace Prisma {
       managerId: number | null
       progress: string
       notes: string
+      startDate: Date
+      currencyId: number
       createdAt: Date
       updatedAt: Date
       userId: number
@@ -19106,6 +19456,7 @@ export namespace Prisma {
   export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     client<T extends Project$clientArgs<ExtArgs> = {}>(args?: Subset<T, Project$clientArgs<ExtArgs>>): Prisma__ClientClient<$Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    currency<T extends CurrencyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CurrencyDefaultArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Progress<T extends Project$ProgressArgs<ExtArgs> = {}>(args?: Subset<T, Project$ProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Task<T extends Project$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Project$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -19145,6 +19496,8 @@ export namespace Prisma {
     readonly managerId: FieldRef<"Project", 'Int'>
     readonly progress: FieldRef<"Project", 'String'>
     readonly notes: FieldRef<"Project", 'String'>
+    readonly startDate: FieldRef<"Project", 'DateTime'>
+    readonly currencyId: FieldRef<"Project", 'Int'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
     readonly userId: FieldRef<"Project", 'Int'>
@@ -27838,7 +28191,17 @@ export namespace Prisma {
 
 
   export const MilestoneScalarFieldEnum: {
-    id: 'id'
+    id: 'id',
+    project_id: 'project_id',
+    identifier: 'identifier',
+    description: 'description',
+    approvalDate: 'approvalDate',
+    status: 'status',
+    payment: 'payment',
+    currencyId: 'currencyId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
   };
 
   export type MilestoneScalarFieldEnum = (typeof MilestoneScalarFieldEnum)[keyof typeof MilestoneScalarFieldEnum]
@@ -27870,6 +28233,8 @@ export namespace Prisma {
     managerId: 'managerId',
     progress: 'progress',
     notes: 'notes',
+    startDate: 'startDate',
+    currencyId: 'currencyId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
@@ -28072,6 +28437,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'MilestoneStatus'
+   */
+  export type EnumMilestoneStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MilestoneStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'MilestoneStatus[]'
+   */
+  export type ListEnumMilestoneStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MilestoneStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'ShipmentStatus'
    */
   export type EnumShipmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ShipmentStatus'>
@@ -28149,6 +28528,7 @@ export namespace Prisma {
     Staff?: StaffListRelationFilter
     Progress?: ProgressListRelationFilter
     Task?: TaskListRelationFilter
+    Milestone?: MilestoneListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -28167,6 +28547,7 @@ export namespace Prisma {
     Staff?: StaffOrderByRelationAggregateInput
     Progress?: ProgressOrderByRelationAggregateInput
     Task?: TaskOrderByRelationAggregateInput
+    Milestone?: MilestoneOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -28188,6 +28569,7 @@ export namespace Prisma {
     Staff?: StaffListRelationFilter
     Progress?: ProgressListRelationFilter
     Task?: TaskListRelationFilter
+    Milestone?: MilestoneListRelationFilter
   }, "id" | "firebaseUid" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -28294,6 +28676,8 @@ export namespace Prisma {
     name?: StringFilter<"Currency"> | string
     Invoice?: InvoiceListRelationFilter
     Freight?: FreightListRelationFilter
+    Milestone?: MilestoneListRelationFilter
+    Project?: ProjectListRelationFilter
   }
 
   export type CurrencyOrderByWithRelationInput = {
@@ -28302,6 +28686,8 @@ export namespace Prisma {
     name?: SortOrder
     Invoice?: InvoiceOrderByRelationAggregateInput
     Freight?: FreightOrderByRelationAggregateInput
+    Milestone?: MilestoneOrderByRelationAggregateInput
+    Project?: ProjectOrderByRelationAggregateInput
   }
 
   export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
@@ -28313,6 +28699,8 @@ export namespace Prisma {
     name?: StringFilter<"Currency"> | string
     Invoice?: InvoiceListRelationFilter
     Freight?: FreightListRelationFilter
+    Milestone?: MilestoneListRelationFilter
+    Project?: ProjectListRelationFilter
   }, "id" | "code">
 
   export type CurrencyOrderByWithAggregationInput = {
@@ -28874,12 +29262,36 @@ export namespace Prisma {
     OR?: MilestoneWhereInput[]
     NOT?: MilestoneWhereInput | MilestoneWhereInput[]
     id?: IntFilter<"Milestone"> | number
+    project_id?: IntFilter<"Milestone"> | number
+    identifier?: StringFilter<"Milestone"> | string
+    description?: StringFilter<"Milestone"> | string
+    approvalDate?: DateTimeNullableFilter<"Milestone"> | Date | string | null
+    status?: EnumMilestoneStatusFilter<"Milestone"> | $Enums.MilestoneStatus
+    payment?: DecimalNullableFilter<"Milestone"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableFilter<"Milestone"> | number | null
+    createdAt?: DateTimeFilter<"Milestone"> | Date | string
+    updatedAt?: DateTimeFilter<"Milestone"> | Date | string
+    userId?: IntFilter<"Milestone"> | number
     Progress?: ProgressListRelationFilter
+    Currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type MilestoneOrderByWithRelationInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    identifier?: SortOrder
+    description?: SortOrder
+    approvalDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    payment?: SortOrderInput | SortOrder
+    currencyId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
     Progress?: ProgressOrderByRelationAggregateInput
+    Currency?: CurrencyOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type MilestoneWhereUniqueInput = Prisma.AtLeast<{
@@ -28887,11 +29299,33 @@ export namespace Prisma {
     AND?: MilestoneWhereInput | MilestoneWhereInput[]
     OR?: MilestoneWhereInput[]
     NOT?: MilestoneWhereInput | MilestoneWhereInput[]
+    project_id?: IntFilter<"Milestone"> | number
+    identifier?: StringFilter<"Milestone"> | string
+    description?: StringFilter<"Milestone"> | string
+    approvalDate?: DateTimeNullableFilter<"Milestone"> | Date | string | null
+    status?: EnumMilestoneStatusFilter<"Milestone"> | $Enums.MilestoneStatus
+    payment?: DecimalNullableFilter<"Milestone"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableFilter<"Milestone"> | number | null
+    createdAt?: DateTimeFilter<"Milestone"> | Date | string
+    updatedAt?: DateTimeFilter<"Milestone"> | Date | string
+    userId?: IntFilter<"Milestone"> | number
     Progress?: ProgressListRelationFilter
+    Currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type MilestoneOrderByWithAggregationInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    identifier?: SortOrder
+    description?: SortOrder
+    approvalDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    payment?: SortOrderInput | SortOrder
+    currencyId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
     _count?: MilestoneCountOrderByAggregateInput
     _avg?: MilestoneAvgOrderByAggregateInput
     _max?: MilestoneMaxOrderByAggregateInput
@@ -28904,6 +29338,16 @@ export namespace Prisma {
     OR?: MilestoneScalarWhereWithAggregatesInput[]
     NOT?: MilestoneScalarWhereWithAggregatesInput | MilestoneScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Milestone"> | number
+    project_id?: IntWithAggregatesFilter<"Milestone"> | number
+    identifier?: StringWithAggregatesFilter<"Milestone"> | string
+    description?: StringWithAggregatesFilter<"Milestone"> | string
+    approvalDate?: DateTimeNullableWithAggregatesFilter<"Milestone"> | Date | string | null
+    status?: EnumMilestoneStatusWithAggregatesFilter<"Milestone"> | $Enums.MilestoneStatus
+    payment?: DecimalNullableWithAggregatesFilter<"Milestone"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableWithAggregatesFilter<"Milestone"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Milestone"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Milestone"> | Date | string
+    userId?: IntWithAggregatesFilter<"Milestone"> | number
   }
 
   export type ProgressWhereInput = {
@@ -29018,10 +29462,13 @@ export namespace Prisma {
     managerId?: IntNullableFilter<"Project"> | number | null
     progress?: StringFilter<"Project"> | string
     notes?: StringFilter<"Project"> | string
+    startDate?: DateTimeFilter<"Project"> | Date | string
+    currencyId?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
     client?: XOR<ClientNullableScalarRelationFilter, ClientWhereInput> | null
+    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Progress?: ProgressListRelationFilter
     Task?: TaskListRelationFilter
@@ -29035,10 +29482,13 @@ export namespace Prisma {
     managerId?: SortOrderInput | SortOrder
     progress?: SortOrder
     notes?: SortOrder
+    startDate?: SortOrder
+    currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     client?: ClientOrderByWithRelationInput
+    currency?: CurrencyOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     Progress?: ProgressOrderByRelationAggregateInput
     Task?: TaskOrderByRelationAggregateInput
@@ -29055,10 +29505,13 @@ export namespace Prisma {
     managerId?: IntNullableFilter<"Project"> | number | null
     progress?: StringFilter<"Project"> | string
     notes?: StringFilter<"Project"> | string
+    startDate?: DateTimeFilter<"Project"> | Date | string
+    currencyId?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
     client?: XOR<ClientNullableScalarRelationFilter, ClientWhereInput> | null
+    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Progress?: ProgressListRelationFilter
     Task?: TaskListRelationFilter
@@ -29072,6 +29525,8 @@ export namespace Prisma {
     managerId?: SortOrderInput | SortOrder
     progress?: SortOrder
     notes?: SortOrder
+    startDate?: SortOrder
+    currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -29093,6 +29548,8 @@ export namespace Prisma {
     managerId?: IntNullableWithAggregatesFilter<"Project"> | number | null
     progress?: StringWithAggregatesFilter<"Project"> | string
     notes?: StringWithAggregatesFilter<"Project"> | string
+    startDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    currencyId?: IntWithAggregatesFilter<"Project"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     userId?: IntWithAggregatesFilter<"Project"> | number
@@ -29595,6 +30052,7 @@ export namespace Prisma {
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -29613,6 +30071,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -29630,6 +30089,7 @@ export namespace Prisma {
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -29648,6 +30108,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -29755,6 +30216,8 @@ export namespace Prisma {
     name: string
     Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
     Freight?: FreightCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateInput = {
@@ -29763,6 +30226,8 @@ export namespace Prisma {
     name: string
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
     Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUpdateInput = {
@@ -29770,6 +30235,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
     Freight?: FreightUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateInput = {
@@ -29778,6 +30245,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
     Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyCreateManyInput = {
@@ -30293,33 +30762,100 @@ export namespace Prisma {
   }
 
   export type MilestoneCreateInput = {
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    createdAt: Date | string
+    updatedAt: Date | string
     Progress?: ProgressCreateNestedManyWithoutMilestoneInput
+    Currency?: CurrencyCreateNestedOneWithoutMilestoneInput
+    user: UserCreateNestedOneWithoutMilestoneInput
   }
 
   export type MilestoneUncheckedCreateInput = {
     id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutMilestoneInput
   }
 
   export type MilestoneUpdateInput = {
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Progress?: ProgressUpdateManyWithoutMilestoneNestedInput
+    Currency?: CurrencyUpdateOneWithoutMilestoneNestedInput
+    user?: UserUpdateOneRequiredWithoutMilestoneNestedInput
   }
 
   export type MilestoneUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
     Progress?: ProgressUncheckedUpdateManyWithoutMilestoneNestedInput
   }
 
   export type MilestoneCreateManyInput = {
     id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    userId: number
   }
 
   export type MilestoneUpdateManyMutationInput = {
-
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MilestoneUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProgressCreateInput = {
@@ -30426,9 +30962,11 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
+    currency: CurrencyCreateNestedOneWithoutProjectInput
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
@@ -30442,6 +30980,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -30455,9 +30995,11 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
+    currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
@@ -30471,6 +31013,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -30486,6 +31030,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -30497,6 +31043,7 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30509,6 +31056,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -31078,6 +31627,12 @@ export namespace Prisma {
     none?: TaskWhereInput
   }
 
+  export type MilestoneListRelationFilter = {
+    every?: MilestoneWhereInput
+    some?: MilestoneWhereInput
+    none?: MilestoneWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -31112,6 +31667,10 @@ export namespace Prisma {
   }
 
   export type TaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MilestoneOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31858,24 +32417,79 @@ export namespace Prisma {
     typeId?: SortOrder
   }
 
+  export type EnumMilestoneStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MilestoneStatus | EnumMilestoneStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMilestoneStatusFilter<$PrismaModel> | $Enums.MilestoneStatus
+  }
+
   export type MilestoneCountOrderByAggregateInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    identifier?: SortOrder
+    description?: SortOrder
+    approvalDate?: SortOrder
+    status?: SortOrder
+    payment?: SortOrder
+    currencyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type MilestoneAvgOrderByAggregateInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    payment?: SortOrder
+    currencyId?: SortOrder
+    userId?: SortOrder
   }
 
   export type MilestoneMaxOrderByAggregateInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    identifier?: SortOrder
+    description?: SortOrder
+    approvalDate?: SortOrder
+    status?: SortOrder
+    payment?: SortOrder
+    currencyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type MilestoneMinOrderByAggregateInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    identifier?: SortOrder
+    description?: SortOrder
+    approvalDate?: SortOrder
+    status?: SortOrder
+    payment?: SortOrder
+    currencyId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type MilestoneSumOrderByAggregateInput = {
     id?: SortOrder
+    project_id?: SortOrder
+    payment?: SortOrder
+    currencyId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type EnumMilestoneStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MilestoneStatus | EnumMilestoneStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMilestoneStatusWithAggregatesFilter<$PrismaModel> | $Enums.MilestoneStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMilestoneStatusFilter<$PrismaModel>
+    _max?: NestedEnumMilestoneStatusFilter<$PrismaModel>
   }
 
   export type ProjectScalarRelationFilter = {
@@ -31971,6 +32585,8 @@ export namespace Prisma {
     managerId?: SortOrder
     progress?: SortOrder
     notes?: SortOrder
+    startDate?: SortOrder
+    currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -31980,6 +32596,7 @@ export namespace Prisma {
     id?: SortOrder
     clientId?: SortOrder
     managerId?: SortOrder
+    currencyId?: SortOrder
     userId?: SortOrder
   }
 
@@ -31991,6 +32608,8 @@ export namespace Prisma {
     managerId?: SortOrder
     progress?: SortOrder
     notes?: SortOrder
+    startDate?: SortOrder
+    currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -32004,6 +32623,8 @@ export namespace Prisma {
     managerId?: SortOrder
     progress?: SortOrder
     notes?: SortOrder
+    startDate?: SortOrder
+    currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -32013,6 +32634,7 @@ export namespace Prisma {
     id?: SortOrder
     clientId?: SortOrder
     managerId?: SortOrder
+    currencyId?: SortOrder
     userId?: SortOrder
   }
 
@@ -32431,6 +33053,13 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type MilestoneCreateNestedManyWithoutUserInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+  }
+
   export type VendorUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -32485,6 +33114,13 @@ export namespace Prisma {
     connectOrCreate?: TaskCreateOrConnectWithoutUserInput | TaskCreateOrConnectWithoutUserInput[]
     createMany?: TaskCreateManyUserInputEnvelope
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type MilestoneUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -32611,6 +33247,20 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type MilestoneUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    upsert?: MilestoneUpsertWithWhereUniqueWithoutUserInput | MilestoneUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    set?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    disconnect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    delete?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    update?: MilestoneUpdateWithWhereUniqueWithoutUserInput | MilestoneUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MilestoneUpdateManyWithWhereWithoutUserInput | MilestoneUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -32731,6 +33381,20 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type MilestoneUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    upsert?: MilestoneUpsertWithWhereUniqueWithoutUserInput | MilestoneUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    set?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    disconnect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    delete?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    update?: MilestoneUpdateWithWhereUniqueWithoutUserInput | MilestoneUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MilestoneUpdateManyWithWhereWithoutUserInput | MilestoneUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+  }
+
   export type ProjectCreateNestedManyWithoutClientInput = {
     create?: XOR<ProjectCreateWithoutClientInput, ProjectUncheckedCreateWithoutClientInput> | ProjectCreateWithoutClientInput[] | ProjectUncheckedCreateWithoutClientInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutClientInput | ProjectCreateOrConnectWithoutClientInput[]
@@ -32787,6 +33451,20 @@ export namespace Prisma {
     connect?: FreightWhereUniqueInput | FreightWhereUniqueInput[]
   }
 
+  export type MilestoneCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<MilestoneCreateWithoutCurrencyInput, MilestoneUncheckedCreateWithoutCurrencyInput> | MilestoneCreateWithoutCurrencyInput[] | MilestoneUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutCurrencyInput | MilestoneCreateOrConnectWithoutCurrencyInput[]
+    createMany?: MilestoneCreateManyCurrencyInputEnvelope
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+  }
+
+  export type ProjectCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<ProjectCreateWithoutCurrencyInput, ProjectUncheckedCreateWithoutCurrencyInput> | ProjectCreateWithoutCurrencyInput[] | ProjectUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCurrencyInput | ProjectCreateOrConnectWithoutCurrencyInput[]
+    createMany?: ProjectCreateManyCurrencyInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
   export type InvoiceUncheckedCreateNestedManyWithoutCurrencyInput = {
     create?: XOR<InvoiceCreateWithoutCurrencyInput, InvoiceUncheckedCreateWithoutCurrencyInput> | InvoiceCreateWithoutCurrencyInput[] | InvoiceUncheckedCreateWithoutCurrencyInput[]
     connectOrCreate?: InvoiceCreateOrConnectWithoutCurrencyInput | InvoiceCreateOrConnectWithoutCurrencyInput[]
@@ -32799,6 +33477,20 @@ export namespace Prisma {
     connectOrCreate?: FreightCreateOrConnectWithoutCurrencyInput | FreightCreateOrConnectWithoutCurrencyInput[]
     createMany?: FreightCreateManyCurrencyInputEnvelope
     connect?: FreightWhereUniqueInput | FreightWhereUniqueInput[]
+  }
+
+  export type MilestoneUncheckedCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<MilestoneCreateWithoutCurrencyInput, MilestoneUncheckedCreateWithoutCurrencyInput> | MilestoneCreateWithoutCurrencyInput[] | MilestoneUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutCurrencyInput | MilestoneCreateOrConnectWithoutCurrencyInput[]
+    createMany?: MilestoneCreateManyCurrencyInputEnvelope
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+  }
+
+  export type ProjectUncheckedCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<ProjectCreateWithoutCurrencyInput, ProjectUncheckedCreateWithoutCurrencyInput> | ProjectCreateWithoutCurrencyInput[] | ProjectUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCurrencyInput | ProjectCreateOrConnectWithoutCurrencyInput[]
+    createMany?: ProjectCreateManyCurrencyInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
   export type InvoiceUpdateManyWithoutCurrencyNestedInput = {
@@ -32829,6 +33521,34 @@ export namespace Prisma {
     deleteMany?: FreightScalarWhereInput | FreightScalarWhereInput[]
   }
 
+  export type MilestoneUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<MilestoneCreateWithoutCurrencyInput, MilestoneUncheckedCreateWithoutCurrencyInput> | MilestoneCreateWithoutCurrencyInput[] | MilestoneUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutCurrencyInput | MilestoneCreateOrConnectWithoutCurrencyInput[]
+    upsert?: MilestoneUpsertWithWhereUniqueWithoutCurrencyInput | MilestoneUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: MilestoneCreateManyCurrencyInputEnvelope
+    set?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    disconnect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    delete?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    update?: MilestoneUpdateWithWhereUniqueWithoutCurrencyInput | MilestoneUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: MilestoneUpdateManyWithWhereWithoutCurrencyInput | MilestoneUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+  }
+
+  export type ProjectUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<ProjectCreateWithoutCurrencyInput, ProjectUncheckedCreateWithoutCurrencyInput> | ProjectCreateWithoutCurrencyInput[] | ProjectUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCurrencyInput | ProjectCreateOrConnectWithoutCurrencyInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutCurrencyInput | ProjectUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: ProjectCreateManyCurrencyInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutCurrencyInput | ProjectUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutCurrencyInput | ProjectUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
   export type InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput = {
     create?: XOR<InvoiceCreateWithoutCurrencyInput, InvoiceUncheckedCreateWithoutCurrencyInput> | InvoiceCreateWithoutCurrencyInput[] | InvoiceUncheckedCreateWithoutCurrencyInput[]
     connectOrCreate?: InvoiceCreateOrConnectWithoutCurrencyInput | InvoiceCreateOrConnectWithoutCurrencyInput[]
@@ -32855,6 +33575,34 @@ export namespace Prisma {
     update?: FreightUpdateWithWhereUniqueWithoutCurrencyInput | FreightUpdateWithWhereUniqueWithoutCurrencyInput[]
     updateMany?: FreightUpdateManyWithWhereWithoutCurrencyInput | FreightUpdateManyWithWhereWithoutCurrencyInput[]
     deleteMany?: FreightScalarWhereInput | FreightScalarWhereInput[]
+  }
+
+  export type MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<MilestoneCreateWithoutCurrencyInput, MilestoneUncheckedCreateWithoutCurrencyInput> | MilestoneCreateWithoutCurrencyInput[] | MilestoneUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutCurrencyInput | MilestoneCreateOrConnectWithoutCurrencyInput[]
+    upsert?: MilestoneUpsertWithWhereUniqueWithoutCurrencyInput | MilestoneUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: MilestoneCreateManyCurrencyInputEnvelope
+    set?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    disconnect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    delete?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    update?: MilestoneUpdateWithWhereUniqueWithoutCurrencyInput | MilestoneUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: MilestoneUpdateManyWithWhereWithoutCurrencyInput | MilestoneUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<ProjectCreateWithoutCurrencyInput, ProjectUncheckedCreateWithoutCurrencyInput> | ProjectCreateWithoutCurrencyInput[] | ProjectUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutCurrencyInput | ProjectCreateOrConnectWithoutCurrencyInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutCurrencyInput | ProjectUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: ProjectCreateManyCurrencyInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutCurrencyInput | ProjectUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutCurrencyInput | ProjectUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
   export type CurrencyCreateNestedOneWithoutFreightInput = {
@@ -33438,11 +34186,27 @@ export namespace Prisma {
     connect?: ProgressWhereUniqueInput | ProgressWhereUniqueInput[]
   }
 
+  export type CurrencyCreateNestedOneWithoutMilestoneInput = {
+    create?: XOR<CurrencyCreateWithoutMilestoneInput, CurrencyUncheckedCreateWithoutMilestoneInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutMilestoneInput
+    connect?: CurrencyWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutMilestoneInput = {
+    create?: XOR<UserCreateWithoutMilestoneInput, UserUncheckedCreateWithoutMilestoneInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMilestoneInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type ProgressUncheckedCreateNestedManyWithoutMilestoneInput = {
     create?: XOR<ProgressCreateWithoutMilestoneInput, ProgressUncheckedCreateWithoutMilestoneInput> | ProgressCreateWithoutMilestoneInput[] | ProgressUncheckedCreateWithoutMilestoneInput[]
     connectOrCreate?: ProgressCreateOrConnectWithoutMilestoneInput | ProgressCreateOrConnectWithoutMilestoneInput[]
     createMany?: ProgressCreateManyMilestoneInputEnvelope
     connect?: ProgressWhereUniqueInput | ProgressWhereUniqueInput[]
+  }
+
+  export type EnumMilestoneStatusFieldUpdateOperationsInput = {
+    set?: $Enums.MilestoneStatus
   }
 
   export type ProgressUpdateManyWithoutMilestoneNestedInput = {
@@ -33457,6 +34221,24 @@ export namespace Prisma {
     update?: ProgressUpdateWithWhereUniqueWithoutMilestoneInput | ProgressUpdateWithWhereUniqueWithoutMilestoneInput[]
     updateMany?: ProgressUpdateManyWithWhereWithoutMilestoneInput | ProgressUpdateManyWithWhereWithoutMilestoneInput[]
     deleteMany?: ProgressScalarWhereInput | ProgressScalarWhereInput[]
+  }
+
+  export type CurrencyUpdateOneWithoutMilestoneNestedInput = {
+    create?: XOR<CurrencyCreateWithoutMilestoneInput, CurrencyUncheckedCreateWithoutMilestoneInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutMilestoneInput
+    upsert?: CurrencyUpsertWithoutMilestoneInput
+    disconnect?: CurrencyWhereInput | boolean
+    delete?: CurrencyWhereInput | boolean
+    connect?: CurrencyWhereUniqueInput
+    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutMilestoneInput, CurrencyUpdateWithoutMilestoneInput>, CurrencyUncheckedUpdateWithoutMilestoneInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutMilestoneNestedInput = {
+    create?: XOR<UserCreateWithoutMilestoneInput, UserUncheckedCreateWithoutMilestoneInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMilestoneInput
+    upsert?: UserUpsertWithoutMilestoneInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMilestoneInput, UserUpdateWithoutMilestoneInput>, UserUncheckedUpdateWithoutMilestoneInput>
   }
 
   export type ProgressUncheckedUpdateManyWithoutMilestoneNestedInput = {
@@ -33535,6 +34317,12 @@ export namespace Prisma {
     connect?: ClientWhereUniqueInput
   }
 
+  export type CurrencyCreateNestedOneWithoutProjectInput = {
+    create?: XOR<CurrencyCreateWithoutProjectInput, CurrencyUncheckedCreateWithoutProjectInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectInput
+    connect?: CurrencyWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutProjectInput = {
     create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
     connectOrCreate?: UserCreateOrConnectWithoutProjectInput
@@ -33577,6 +34365,14 @@ export namespace Prisma {
     delete?: ClientWhereInput | boolean
     connect?: ClientWhereUniqueInput
     update?: XOR<XOR<ClientUpdateToOneWithWhereWithoutProjectInput, ClientUpdateWithoutProjectInput>, ClientUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type CurrencyUpdateOneRequiredWithoutProjectNestedInput = {
+    create?: XOR<CurrencyCreateWithoutProjectInput, CurrencyUncheckedCreateWithoutProjectInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectInput
+    upsert?: CurrencyUpsertWithoutProjectInput
+    connect?: CurrencyWhereUniqueInput
+    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutProjectInput, CurrencyUpdateWithoutProjectInput>, CurrencyUncheckedUpdateWithoutProjectInput>
   }
 
   export type UserUpdateOneRequiredWithoutProjectNestedInput = {
@@ -34406,6 +35202,23 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedEnumMilestoneStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MilestoneStatus | EnumMilestoneStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMilestoneStatusFilter<$PrismaModel> | $Enums.MilestoneStatus
+  }
+
+  export type NestedEnumMilestoneStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MilestoneStatus | EnumMilestoneStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MilestoneStatus[] | ListEnumMilestoneStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMilestoneStatusWithAggregatesFilter<$PrismaModel> | $Enums.MilestoneStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMilestoneStatusFilter<$PrismaModel>
+    _max?: NestedEnumMilestoneStatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumShipmentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.ShipmentStatus | EnumShipmentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ShipmentStatus[] | ListEnumShipmentStatusFieldRefInput<$PrismaModel>
@@ -34612,9 +35425,11 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
+    currency: CurrencyCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
   }
@@ -34627,6 +35442,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
@@ -34749,6 +35566,43 @@ export namespace Prisma {
 
   export type TaskCreateManyUserInputEnvelope = {
     data: TaskCreateManyUserInput | TaskCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MilestoneCreateWithoutUserInput = {
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    Progress?: ProgressCreateNestedManyWithoutMilestoneInput
+    Currency?: CurrencyCreateNestedOneWithoutMilestoneInput
+  }
+
+  export type MilestoneUncheckedCreateWithoutUserInput = {
+    id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    Progress?: ProgressUncheckedCreateNestedManyWithoutMilestoneInput
+  }
+
+  export type MilestoneCreateOrConnectWithoutUserInput = {
+    where: MilestoneWhereUniqueInput
+    create: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput>
+  }
+
+  export type MilestoneCreateManyUserInputEnvelope = {
+    data: MilestoneCreateManyUserInput | MilestoneCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -34900,6 +35754,8 @@ export namespace Prisma {
     managerId?: IntNullableFilter<"Project"> | number | null
     progress?: StringFilter<"Project"> | string
     notes?: StringFilter<"Project"> | string
+    startDate?: DateTimeFilter<"Project"> | Date | string
+    currencyId?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -35004,14 +35860,49 @@ export namespace Prisma {
     userId?: IntFilter<"Task"> | number
   }
 
+  export type MilestoneUpsertWithWhereUniqueWithoutUserInput = {
+    where: MilestoneWhereUniqueInput
+    update: XOR<MilestoneUpdateWithoutUserInput, MilestoneUncheckedUpdateWithoutUserInput>
+    create: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput>
+  }
+
+  export type MilestoneUpdateWithWhereUniqueWithoutUserInput = {
+    where: MilestoneWhereUniqueInput
+    data: XOR<MilestoneUpdateWithoutUserInput, MilestoneUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MilestoneUpdateManyWithWhereWithoutUserInput = {
+    where: MilestoneScalarWhereInput
+    data: XOR<MilestoneUpdateManyMutationInput, MilestoneUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MilestoneScalarWhereInput = {
+    AND?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+    OR?: MilestoneScalarWhereInput[]
+    NOT?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+    id?: IntFilter<"Milestone"> | number
+    project_id?: IntFilter<"Milestone"> | number
+    identifier?: StringFilter<"Milestone"> | string
+    description?: StringFilter<"Milestone"> | string
+    approvalDate?: DateTimeNullableFilter<"Milestone"> | Date | string | null
+    status?: EnumMilestoneStatusFilter<"Milestone"> | $Enums.MilestoneStatus
+    payment?: DecimalNullableFilter<"Milestone"> | Decimal | DecimalJsLike | number | string | null
+    currencyId?: IntNullableFilter<"Milestone"> | number | null
+    createdAt?: DateTimeFilter<"Milestone"> | Date | string
+    updatedAt?: DateTimeFilter<"Milestone"> | Date | string
+    userId?: IntFilter<"Milestone"> | number
+  }
+
   export type ProjectCreateWithoutClientInput = {
     fullName: string
     displayName: string
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    currency: CurrencyCreateNestedOneWithoutProjectInput
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
@@ -35024,6 +35915,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -35127,6 +36020,84 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MilestoneCreateWithoutCurrencyInput = {
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    Progress?: ProgressCreateNestedManyWithoutMilestoneInput
+    user: UserCreateNestedOneWithoutMilestoneInput
+  }
+
+  export type MilestoneUncheckedCreateWithoutCurrencyInput = {
+    id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    userId: number
+    Progress?: ProgressUncheckedCreateNestedManyWithoutMilestoneInput
+  }
+
+  export type MilestoneCreateOrConnectWithoutCurrencyInput = {
+    where: MilestoneWhereUniqueInput
+    create: XOR<MilestoneCreateWithoutCurrencyInput, MilestoneUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type MilestoneCreateManyCurrencyInputEnvelope = {
+    data: MilestoneCreateManyCurrencyInput | MilestoneCreateManyCurrencyInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectCreateWithoutCurrencyInput = {
+    fullName: string
+    displayName: string
+    managerId?: number | null
+    progress: string
+    notes: string
+    startDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client?: ClientCreateNestedOneWithoutProjectInput
+    user: UserCreateNestedOneWithoutProjectInput
+    Progress?: ProgressCreateNestedManyWithoutProjectInput
+    Task?: TaskCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutCurrencyInput = {
+    id?: number
+    fullName: string
+    displayName: string
+    clientId?: number | null
+    managerId?: number | null
+    progress: string
+    notes: string
+    startDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
+    Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutCurrencyInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutCurrencyInput, ProjectUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type ProjectCreateManyCurrencyInputEnvelope = {
+    data: ProjectCreateManyCurrencyInput | ProjectCreateManyCurrencyInput[]
+    skipDuplicates?: boolean
+  }
+
   export type InvoiceUpsertWithWhereUniqueWithoutCurrencyInput = {
     where: InvoiceWhereUniqueInput
     update: XOR<InvoiceUpdateWithoutCurrencyInput, InvoiceUncheckedUpdateWithoutCurrencyInput>
@@ -35159,10 +36130,44 @@ export namespace Prisma {
     data: XOR<FreightUpdateManyMutationInput, FreightUncheckedUpdateManyWithoutCurrencyInput>
   }
 
+  export type MilestoneUpsertWithWhereUniqueWithoutCurrencyInput = {
+    where: MilestoneWhereUniqueInput
+    update: XOR<MilestoneUpdateWithoutCurrencyInput, MilestoneUncheckedUpdateWithoutCurrencyInput>
+    create: XOR<MilestoneCreateWithoutCurrencyInput, MilestoneUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type MilestoneUpdateWithWhereUniqueWithoutCurrencyInput = {
+    where: MilestoneWhereUniqueInput
+    data: XOR<MilestoneUpdateWithoutCurrencyInput, MilestoneUncheckedUpdateWithoutCurrencyInput>
+  }
+
+  export type MilestoneUpdateManyWithWhereWithoutCurrencyInput = {
+    where: MilestoneScalarWhereInput
+    data: XOR<MilestoneUpdateManyMutationInput, MilestoneUncheckedUpdateManyWithoutCurrencyInput>
+  }
+
+  export type ProjectUpsertWithWhereUniqueWithoutCurrencyInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutCurrencyInput, ProjectUncheckedUpdateWithoutCurrencyInput>
+    create: XOR<ProjectCreateWithoutCurrencyInput, ProjectUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type ProjectUpdateWithWhereUniqueWithoutCurrencyInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutCurrencyInput, ProjectUncheckedUpdateWithoutCurrencyInput>
+  }
+
+  export type ProjectUpdateManyWithWhereWithoutCurrencyInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutCurrencyInput>
+  }
+
   export type CurrencyCreateWithoutFreightInput = {
     code: string
     name: string
     Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateWithoutFreightInput = {
@@ -35170,6 +36175,8 @@ export namespace Prisma {
     code: string
     name: string
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyCreateOrConnectWithoutFreightInput = {
@@ -35237,6 +36244,7 @@ export namespace Prisma {
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFreightInput = {
@@ -35254,6 +36262,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFreightInput = {
@@ -35276,6 +36285,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateWithoutFreightInput = {
@@ -35283,6 +36294,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type ShipmentUpsertWithoutFreightsInput = {
@@ -35368,6 +36381,7 @@ export namespace Prisma {
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFreightInput = {
@@ -35385,6 +36399,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type FreightCreateWithoutInvoicesInput = {
@@ -35547,6 +36562,8 @@ export namespace Prisma {
     code: string
     name: string
     Freight?: FreightCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateWithoutInvoiceInput = {
@@ -35554,6 +36571,8 @@ export namespace Prisma {
     code: string
     name: string
     Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyCreateOrConnectWithoutInvoiceInput = {
@@ -35603,6 +36622,7 @@ export namespace Prisma {
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvoiceInput = {
@@ -35620,6 +36640,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvoiceInput = {
@@ -35719,6 +36740,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     Freight?: FreightUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateWithoutInvoiceInput = {
@@ -35726,6 +36749,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type ShipmentUpsertWithoutInvoicesInput = {
@@ -35787,6 +36812,7 @@ export namespace Prisma {
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvoiceInput = {
@@ -35804,6 +36830,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceItemUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -36385,6 +37412,68 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CurrencyCreateWithoutMilestoneInput = {
+    code: string
+    name: string
+    Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
+    Freight?: FreightCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectCreateNestedManyWithoutCurrencyInput
+  }
+
+  export type CurrencyUncheckedCreateWithoutMilestoneInput = {
+    id?: number
+    code: string
+    name: string
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
+    Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
+  }
+
+  export type CurrencyCreateOrConnectWithoutMilestoneInput = {
+    where: CurrencyWhereUniqueInput
+    create: XOR<CurrencyCreateWithoutMilestoneInput, CurrencyUncheckedCreateWithoutMilestoneInput>
+  }
+
+  export type UserCreateWithoutMilestoneInput = {
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
+    Freight?: FreightCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutUserInput
+    Staff?: StaffCreateNestedManyWithoutUserInput
+    Progress?: ProgressCreateNestedManyWithoutUserInput
+    Task?: TaskCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMilestoneInput = {
+    id?: number
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
+    Freight?: FreightUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
+    Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
+    Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMilestoneInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMilestoneInput, UserUncheckedCreateWithoutMilestoneInput>
+  }
+
   export type ProgressUpsertWithWhereUniqueWithoutMilestoneInput = {
     where: ProgressWhereUniqueInput
     update: XOR<ProgressUpdateWithoutMilestoneInput, ProgressUncheckedUpdateWithoutMilestoneInput>
@@ -36401,15 +37490,91 @@ export namespace Prisma {
     data: XOR<ProgressUpdateManyMutationInput, ProgressUncheckedUpdateManyWithoutMilestoneInput>
   }
 
+  export type CurrencyUpsertWithoutMilestoneInput = {
+    update: XOR<CurrencyUpdateWithoutMilestoneInput, CurrencyUncheckedUpdateWithoutMilestoneInput>
+    create: XOR<CurrencyCreateWithoutMilestoneInput, CurrencyUncheckedCreateWithoutMilestoneInput>
+    where?: CurrencyWhereInput
+  }
+
+  export type CurrencyUpdateToOneWithWhereWithoutMilestoneInput = {
+    where?: CurrencyWhereInput
+    data: XOR<CurrencyUpdateWithoutMilestoneInput, CurrencyUncheckedUpdateWithoutMilestoneInput>
+  }
+
+  export type CurrencyUpdateWithoutMilestoneInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
+    Freight?: FreightUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUpdateManyWithoutCurrencyNestedInput
+  }
+
+  export type CurrencyUncheckedUpdateWithoutMilestoneInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
+    Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
+  }
+
+  export type UserUpsertWithoutMilestoneInput = {
+    update: XOR<UserUpdateWithoutMilestoneInput, UserUncheckedUpdateWithoutMilestoneInput>
+    create: XOR<UserCreateWithoutMilestoneInput, UserUncheckedCreateWithoutMilestoneInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMilestoneInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMilestoneInput, UserUncheckedUpdateWithoutMilestoneInput>
+  }
+
+  export type UserUpdateWithoutMilestoneInput = {
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
+    Freight?: FreightUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutUserNestedInput
+    Staff?: StaffUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUpdateManyWithoutUserNestedInput
+    Task?: TaskUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMilestoneInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
+    Freight?: FreightUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type ProjectCreateWithoutProgressInput = {
     fullName: string
     displayName: string
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
+    currency: CurrencyCreateNestedOneWithoutProjectInput
     user: UserCreateNestedOneWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
   }
@@ -36422,6 +37587,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -36472,11 +37639,30 @@ export namespace Prisma {
   }
 
   export type MilestoneCreateWithoutProgressInput = {
-
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    Currency?: CurrencyCreateNestedOneWithoutMilestoneInput
+    user: UserCreateNestedOneWithoutMilestoneInput
   }
 
   export type MilestoneUncheckedCreateWithoutProgressInput = {
     id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    userId: number
   }
 
   export type MilestoneCreateOrConnectWithoutProgressInput = {
@@ -36498,6 +37684,7 @@ export namespace Prisma {
     Project?: ProjectCreateNestedManyWithoutUserInput
     Staff?: StaffCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProgressInput = {
@@ -36515,6 +37702,7 @@ export namespace Prisma {
     Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProgressInput = {
@@ -36539,9 +37727,11 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
+    currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
   }
@@ -36554,6 +37744,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -36616,11 +37808,30 @@ export namespace Prisma {
   }
 
   export type MilestoneUpdateWithoutProgressInput = {
-
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Currency?: CurrencyUpdateOneWithoutMilestoneNestedInput
+    user?: UserUpdateOneRequiredWithoutMilestoneNestedInput
   }
 
   export type MilestoneUncheckedUpdateWithoutProgressInput = {
     id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUpsertWithoutProgressInput = {
@@ -36648,6 +37859,7 @@ export namespace Prisma {
     Project?: ProjectUpdateManyWithoutUserNestedInput
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgressInput = {
@@ -36665,6 +37877,7 @@ export namespace Prisma {
     Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClientCreateWithoutProjectInput = {
@@ -36691,6 +37904,28 @@ export namespace Prisma {
     create: XOR<ClientCreateWithoutProjectInput, ClientUncheckedCreateWithoutProjectInput>
   }
 
+  export type CurrencyCreateWithoutProjectInput = {
+    code: string
+    name: string
+    Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
+    Freight?: FreightCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
+  }
+
+  export type CurrencyUncheckedCreateWithoutProjectInput = {
+    id?: number
+    code: string
+    name: string
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
+    Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
+  }
+
+  export type CurrencyCreateOrConnectWithoutProjectInput = {
+    where: CurrencyWhereUniqueInput
+    create: XOR<CurrencyCreateWithoutProjectInput, CurrencyUncheckedCreateWithoutProjectInput>
+  }
+
   export type UserCreateWithoutProjectInput = {
     firebaseUid: string
     email: string
@@ -36705,6 +37940,7 @@ export namespace Prisma {
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectInput = {
@@ -36722,6 +37958,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectInput = {
@@ -36839,6 +38076,34 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CurrencyUpsertWithoutProjectInput = {
+    update: XOR<CurrencyUpdateWithoutProjectInput, CurrencyUncheckedUpdateWithoutProjectInput>
+    create: XOR<CurrencyCreateWithoutProjectInput, CurrencyUncheckedCreateWithoutProjectInput>
+    where?: CurrencyWhereInput
+  }
+
+  export type CurrencyUpdateToOneWithWhereWithoutProjectInput = {
+    where?: CurrencyWhereInput
+    data: XOR<CurrencyUpdateWithoutProjectInput, CurrencyUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type CurrencyUpdateWithoutProjectInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
+    Freight?: FreightUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
+  }
+
+  export type CurrencyUncheckedUpdateWithoutProjectInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
+    Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
+  }
+
   export type UserUpsertWithoutProjectInput = {
     update: XOR<UserUpdateWithoutProjectInput, UserUncheckedUpdateWithoutProjectInput>
     create: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
@@ -36864,6 +38129,7 @@ export namespace Prisma {
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectInput = {
@@ -36881,6 +38147,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgressUpsertWithWhereUniqueWithoutProjectInput = {
@@ -36929,6 +38196,7 @@ export namespace Prisma {
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutShipmentInput = {
@@ -36946,6 +38214,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutShipmentInput = {
@@ -37071,6 +38340,7 @@ export namespace Prisma {
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutShipmentInput = {
@@ -37088,6 +38358,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ShipmentFileUpsertWithWhereUniqueWithoutShipmentInput = {
@@ -37225,6 +38496,7 @@ export namespace Prisma {
     Project?: ProjectCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStaffInput = {
@@ -37242,6 +38514,7 @@ export namespace Prisma {
     Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStaffInput = {
@@ -37274,6 +38547,7 @@ export namespace Prisma {
     Project?: ProjectUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStaffInput = {
@@ -37291,6 +38565,7 @@ export namespace Prisma {
     Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UnitCreateWithoutTaskInput = {
@@ -37335,9 +38610,11 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
+    currency: CurrencyCreateNestedOneWithoutProjectInput
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
   }
@@ -37350,6 +38627,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -37375,6 +38654,7 @@ export namespace Prisma {
     Project?: ProjectCreateNestedManyWithoutUserInput
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTaskInput = {
@@ -37392,6 +38672,7 @@ export namespace Prisma {
     Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTaskInput = {
@@ -37520,9 +38801,11 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
+    currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
   }
@@ -37535,6 +38818,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -37566,6 +38851,7 @@ export namespace Prisma {
     Project?: ProjectUpdateManyWithoutUserNestedInput
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTaskInput = {
@@ -37583,6 +38869,7 @@ export namespace Prisma {
     Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgressUpsertWithWhereUniqueWithoutTaskInput = {
@@ -37771,6 +39058,7 @@ export namespace Prisma {
     Staff?: StaffCreateNestedManyWithoutUserInput
     Progress?: ProgressCreateNestedManyWithoutUserInput
     Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVendorInput = {
@@ -37788,6 +39076,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
     Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVendorInput = {
@@ -37857,6 +39146,7 @@ export namespace Prisma {
     Staff?: StaffUpdateManyWithoutUserNestedInput
     Progress?: ProgressUpdateManyWithoutUserNestedInput
     Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVendorInput = {
@@ -37874,6 +39164,7 @@ export namespace Prisma {
     Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
     Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceUpsertWithWhereUniqueWithoutVendorInput = {
@@ -38045,6 +39336,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -38086,6 +39379,19 @@ export namespace Prisma {
     projectId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type MilestoneCreateManyUserInput = {
+    id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    currencyId?: number | null
+    createdAt: Date | string
+    updatedAt: Date | string
   }
 
   export type VendorUpdateWithoutUserInput = {
@@ -38227,9 +39533,11 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
+    currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
   }
@@ -38242,6 +39550,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
@@ -38256,6 +39566,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38378,6 +39690,46 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MilestoneUpdateWithoutUserInput = {
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Progress?: ProgressUpdateManyWithoutMilestoneNestedInput
+    Currency?: CurrencyUpdateOneWithoutMilestoneNestedInput
+  }
+
+  export type MilestoneUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Progress?: ProgressUncheckedUpdateManyWithoutMilestoneNestedInput
+  }
+
+  export type MilestoneUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProjectCreateManyClientInput = {
     id?: number
     fullName: string
@@ -38385,6 +39737,8 @@ export namespace Prisma {
     managerId?: number | null
     progress: string
     notes: string
+    startDate: Date | string
+    currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -38396,8 +39750,10 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
@@ -38410,6 +39766,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -38424,6 +39782,8 @@ export namespace Prisma {
     managerId?: NullableIntFieldUpdateOperationsInput | number | null
     progress?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -38449,6 +39809,33 @@ export namespace Prisma {
     billDate?: Date | string | null
     freightRate?: Decimal | DecimalJsLike | number | string | null
     shipmentId: number
+    userId: number
+  }
+
+  export type MilestoneCreateManyCurrencyInput = {
+    id?: number
+    project_id: number
+    identifier: string
+    description: string
+    approvalDate?: Date | string | null
+    status: $Enums.MilestoneStatus
+    payment?: Decimal | DecimalJsLike | number | string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    userId: number
+  }
+
+  export type ProjectCreateManyCurrencyInput = {
+    id?: number
+    fullName: string
+    displayName: string
+    clientId?: number | null
+    managerId?: number | null
+    progress: string
+    notes: string
+    startDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     userId: number
   }
 
@@ -38522,6 +39909,91 @@ export namespace Prisma {
     billDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     freightRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     shipmentId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MilestoneUpdateWithoutCurrencyInput = {
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Progress?: ProgressUpdateManyWithoutMilestoneNestedInput
+    user?: UserUpdateOneRequiredWithoutMilestoneNestedInput
+  }
+
+  export type MilestoneUncheckedUpdateWithoutCurrencyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    Progress?: ProgressUncheckedUpdateManyWithoutMilestoneNestedInput
+  }
+
+  export type MilestoneUncheckedUpdateManyWithoutCurrencyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    project_id?: IntFieldUpdateOperationsInput | number
+    identifier?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumMilestoneStatusFieldUpdateOperationsInput | $Enums.MilestoneStatus
+    payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectUpdateWithoutCurrencyInput = {
+    fullName?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    managerId?: NullableIntFieldUpdateOperationsInput | number | null
+    progress?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneWithoutProjectNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectNestedInput
+    Progress?: ProgressUpdateManyWithoutProjectNestedInput
+    Task?: TaskUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutCurrencyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    fullName?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    clientId?: NullableIntFieldUpdateOperationsInput | number | null
+    managerId?: NullableIntFieldUpdateOperationsInput | number | null
+    progress?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutCurrencyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    fullName?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    clientId?: NullableIntFieldUpdateOperationsInput | number | null
+    managerId?: NullableIntFieldUpdateOperationsInput | number | null
+    progress?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 

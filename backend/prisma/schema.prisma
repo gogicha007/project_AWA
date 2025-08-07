@@ -16,13 +16,13 @@ datasource db {
 }
 
 model User {
-  id          Int        @id @default(autoincrement())
-  firebaseUid String     @unique
-  email       String     @unique
+  id          Int         @id @default(autoincrement())
+  firebaseUid String      @unique
+  email       String      @unique
   name        String?
-  role        String     @default("user")
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  role        String      @default("user")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   Vendor      Vendor[]
   Invoice     Invoice[]
   Shipment    Shipment[]
@@ -31,6 +31,7 @@ model User {
   Staff       Staff[]
   Progress    Progress[]
   Task        Task[]
+  Milestone   Milestone[]
 
   @@map("user")
 }
@@ -44,14 +45,18 @@ model Client {
   notes     String
   createdAt DateTime  @default(now()) @map("created_at")
   Project   Project[]
+
+  @@map("client")
 }
 
 model Currency {
-  id      Int       @id @default(autoincrement())
-  code    String    @unique // e.g., "USD"
-  name    String // e.g., "US Dollar"
-  Invoice Invoice[]
-  Freight Freight[]
+  id        Int         @id @default(autoincrement())
+  code      String      @unique // e.g., "USD"
+  name      String // e.g., "US Dollar"
+  Invoice   Invoice[]
+  Freight   Freight[]
+  Milestone Milestone[]
+  Project   Project[]
 
   @@map("currency")
 }
@@ -164,9 +169,29 @@ model MaterialName {
   @@map("material_name")
 }
 
+enum MilestoneStatus {
+  pending
+  approved
+  rejected
+}
+
 model Milestone {
-  id       Int        @id @default(autoincrement())
-  Progress Progress[]
+  id           Int             @id @default(autoincrement())
+  project_id   Int
+  identifier   String
+  description  String
+  approvalDate DateTime?       @map("approval_date")
+  status       MilestoneStatus
+  payment      Decimal?
+  Progress     Progress[]
+  Currency     Currency?       @relation(fields: [currencyId], references: [id])
+  currencyId   Int?
+  createdAt    DateTime        @map("created_at")
+  updatedAt    DateTime        @map("updated_at")
+  user         User            @relation(fields: [userId], references: [id])
+  userId       Int             @map("user_id")
+
+  @@map("milestone")
 }
 
 model Progress {
@@ -186,6 +211,8 @@ model Progress {
   updatedAt     DateTime  @map("updated_at")
   user          User      @relation(fields: [userId], references: [id])
   userId        Int       @map("user_id")
+
+  @@map("progress")
 }
 
 model Project {
@@ -197,12 +224,17 @@ model Project {
   managerId   Int?       @map("manager_id")
   progress    String
   notes       String
+  startDate   DateTime   @map("start_date")
+  currency    Currency   @relation(fields: [currencyId], references: [id])
+  currencyId  Int
   createdAt   DateTime   @default(now()) @map("created_at")
   updatedAt   DateTime   @default(now()) @map("updated_at")
   user        User       @relation(fields: [userId], references: [id])
   userId      Int        @map("user_id")
   Progress    Progress[]
   Task        Task[]
+
+  @@map("project")
 }
 
 enum ShipmentStatus {
@@ -248,6 +280,8 @@ model Staff {
   position  String
   user      User   @relation(fields: [userId], references: [id])
   userId    Int    @map("user_id")
+
+  @@map("staff")
 }
 
 enum TaskGroup {
@@ -286,6 +320,8 @@ model Task {
   userId            Int            @map("user_id")
   Progress          Progress[]
   TaskMaterial      TaskMaterial[]
+
+  @@map("task")
 }
 
 model TaskMaterial {
@@ -294,7 +330,7 @@ model TaskMaterial {
   taskId     Int          @map("task_id")
   material   MaterialName @relation(fields: [materialId], references: [id])
   materialId Int          @map("material_id")
-  
+
   @@map("task_material")
 }
 
