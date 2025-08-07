@@ -1,12 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable} from '@nestjs/common';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
+import { DatabaseService } from 'src/database/database/database.service';
+import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
 
 @Injectable()
 export class ProjectsService {
+  constructor(private readonly dbService: DatabaseService) {}
+
   create(createProjectDto: CreateProjectDto) {
-    console.log(createProjectDto);
-    return 'This action adds a new project';
+    try {
+      console.log(createProjectDto);
+      return 'This action adds a new project';
+    } catch (error) {
+      handlePrismaErrors(error);
+    }
   }
 
   findAll() {
