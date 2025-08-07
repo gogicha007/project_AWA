@@ -10,8 +10,10 @@ export class ProjectsService {
 
   async create(createProjectDto: CreateProjectDto) {
     try {
-      const createProject = await this.dbService.project.create({data: createProjectDto})
-      return createProject
+      const createProject = await this.dbService.project.create({
+        data: createProjectDto,
+      });
+      return createProject;
     } catch (error) {
       handlePrismaErrors(error, 'create', 'project');
     }
