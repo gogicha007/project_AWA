@@ -127,25 +127,69 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.VendorScalarFieldEnum = {
+exports.Prisma.ClientScalarFieldEnum = {
   id: 'id',
-  alias: 'alias',
   name: 'name',
   address: 'address',
-  country: 'country',
-  userId: 'userId',
+  vatNo: 'vatNo',
+  email: 'email',
+  notes: 'notes',
   createdAt: 'createdAt'
-};
-
-exports.Prisma.UnitScalarFieldEnum = {
-  id: 'id',
-  unit: 'unit'
 };
 
 exports.Prisma.CurrencyScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name'
+};
+
+exports.Prisma.FreightScalarFieldEnum = {
+  id: 'id',
+  truckNumber: 'truckNumber',
+  forwarder: 'forwarder',
+  billNumber: 'billNumber',
+  billDate: 'billDate',
+  freightRate: 'freightRate',
+  currencyId: 'currencyId',
+  shipmentId: 'shipmentId',
+  userId: 'userId'
+};
+
+exports.Prisma.FreightInvoiceScalarFieldEnum = {
+  freightId: 'freightId',
+  invoiceId: 'invoiceId'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  invoiceNumber: 'invoiceNumber',
+  invoiceDate: 'invoiceDate',
+  totalAmount: 'totalAmount',
+  isArrived: 'isArrived',
+  currencyId: 'currencyId',
+  shipmentId: 'shipmentId',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.InvoiceItemScalarFieldEnum = {
+  id: 'id',
+  invoiceId: 'invoiceId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  total: 'total'
+};
+
+exports.Prisma.LocationScalarFieldEnum = {
+  id: 'id',
+  locationName: 'locationName',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  notes: 'notes'
 };
 
 exports.Prisma.MaterialGroupScalarFieldEnum = {
@@ -170,6 +214,38 @@ exports.Prisma.MaterialNameScalarFieldEnum = {
   typeId: 'typeId'
 };
 
+exports.Prisma.MilestoneScalarFieldEnum = {
+  id: 'id'
+};
+
+exports.Prisma.ProgressScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  teamId: 'teamId',
+  taskId: 'taskId',
+  buildQuantity: 'buildQuantity',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  notes: 'notes',
+  milestoneId: 'milestoneId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  displayName: 'displayName',
+  clientId: 'clientId',
+  managerId: 'managerId',
+  progress: 'progress',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
 exports.Prisma.ShipmentScalarFieldEnum = {
   id: 'id',
   alias: 'alias',
@@ -188,69 +264,52 @@ exports.Prisma.ShipmentFileScalarFieldEnum = {
   fileData: 'fileData'
 };
 
-exports.Prisma.InvoiceScalarFieldEnum = {
+exports.Prisma.StaffScalarFieldEnum = {
   id: 'id',
-  vendorId: 'vendorId',
-  invoiceNumber: 'invoiceNumber',
-  invoiceDate: 'invoiceDate',
-  totalAmount: 'totalAmount',
-  isArrived: 'isArrived',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  currencyId: 'currencyId',
-  shipmentId: 'shipmentId'
-};
-
-exports.Prisma.InvoiceItemScalarFieldEnum = {
-  id: 'id',
-  invoiceId: 'invoiceId',
-  productId: 'productId',
-  description: 'description',
-  quantity: 'quantity',
-  unitId: 'unitId',
-  unitPrice: 'unitPrice',
-  total: 'total'
-};
-
-exports.Prisma.FreightScalarFieldEnum = {
-  id: 'id',
-  truckNumber: 'truckNumber',
-  forwarder: 'forwarder',
-  billNumber: 'billNumber',
-  billDate: 'billDate',
-  freightRate: 'freightRate',
-  currencyId: 'currencyId',
-  shipmentId: 'shipmentId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  address: 'address',
+  phone: 'phone',
+  email: 'email',
+  position: 'position',
   userId: 'userId'
 };
 
-exports.Prisma.FreightInvoiceScalarFieldEnum = {
-  freightId: 'freightId',
-  invoiceId: 'invoiceId'
-};
-
-exports.Prisma.VillageScalarFieldEnum = {
+exports.Prisma.TaskScalarFieldEnum = {
   id: 'id',
-  name_en: 'name_en',
-  name_ge: 'name_ge',
-  municipality: 'municipality',
-  latitude: 'latitude',
-  longitude: 'longitude'
-};
-
-exports.Prisma.MaterialNeedScalarFieldEnum = {
-  id: 'id',
-  productId: 'productId',
-  requiredAmount: 'requiredAmount',
-  villageId: 'villageId'
-};
-
-exports.Prisma.PipelineProgressScalarFieldEnum = {
-  id: 'id',
-  productId: 'productId',
-  requiredAmount: 'requiredAmount',
+  taskName: 'taskName',
+  taskGroup: 'taskGroup',
+  status: 'status',
+  projectedQuantity: 'projectedQuantity',
   unitId: 'unitId',
-  villageId: 'villageId'
+  locationId: 'locationId',
+  drawing_ref: 'drawing_ref',
+  notes: 'notes',
+  projectId: 'projectId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.TaskMaterialScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  materialId: 'materialId'
+};
+
+exports.Prisma.VendorScalarFieldEnum = {
+  id: 'id',
+  alias: 'alias',
+  name: 'name',
+  address: 'address',
+  country: 'country',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UnitScalarFieldEnum = {
+  id: 'id',
+  unit: 'unit'
 };
 
 exports.Prisma.SortOrder = {
@@ -273,23 +332,44 @@ exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
   ARRIVED: 'ARRIVED'
 };
 
+exports.TaskGroup = exports.$Enums.TaskGroup = {
+  node: 'node',
+  reservoir: 'reservoir',
+  pipeline: 'pipeline',
+  prv: 'prv',
+  washout: 'washout',
+  hydrant: 'hydrant',
+  road: 'road',
+  general: 'general'
+};
+
+exports.TaskStatus = exports.$Enums.TaskStatus = {
+  in_progress: 'in_progress',
+  complete: 'complete'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  Vendor: 'Vendor',
-  Unit: 'Unit',
+  Client: 'Client',
   Currency: 'Currency',
+  Freight: 'Freight',
+  FreightInvoice: 'FreightInvoice',
+  Invoice: 'Invoice',
+  InvoiceItem: 'InvoiceItem',
+  Location: 'Location',
   MaterialGroup: 'MaterialGroup',
   MaterialType: 'MaterialType',
   MaterialName: 'MaterialName',
+  Milestone: 'Milestone',
+  Progress: 'Progress',
+  Project: 'Project',
   Shipment: 'Shipment',
   ShipmentFile: 'ShipmentFile',
-  Invoice: 'Invoice',
-  InvoiceItem: 'InvoiceItem',
-  Freight: 'Freight',
-  FreightInvoice: 'FreightInvoice',
-  Village: 'Village',
-  MaterialNeed: 'MaterialNeed',
-  PipelineProgress: 'PipelineProgress'
+  Staff: 'Staff',
+  Task: 'Task',
+  TaskMaterial: 'TaskMaterial',
+  Vendor: 'Vendor',
+  Unit: 'Unit'
 };
 
 /**

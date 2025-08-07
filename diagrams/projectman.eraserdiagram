@@ -19,7 +19,13 @@ client [icon: client] {
     notes string
 }
 
-employee [icon: worker] {
+currency [icon: client] {
+    id      Int
+    code    String
+    name    String
+}
+
+staff [icon: worker] {
     id int pk
     first_name string
     last_name string
@@ -27,12 +33,12 @@ employee [icon: worker] {
     position string
     user_id int
 }
-employee.user_id <> user.id
+staff.user_id <> user.id
 
 location [icon: worker] {
     id int pk
     location_name string
-    altitude string
+    latitude string
     longitude string
     notes string
 }
@@ -61,17 +67,18 @@ material_types [icon: worker] {
 }
 material_types.group_id <> material_groups.id
 
+
 project [icon: worker] {
     id int pk
-    project_name string
+    full_name string
     display_name string
     client_id int
-    manager_id int
+    manager_id nullable int
+    progress string
+    notes string
     created_at timestamp
     updated_at timestamp
     user_id int
-    progress string
-    notes string
 }
 project.user_id <> user.id
 project.client_id > client.id
@@ -80,12 +87,13 @@ project.manager_id > employee.id
 progress [icon: worker] {
     id int pk
     project_id int
-    team_id nullable string
-    task_id nullable string
+    team_id nullable int
+    task_id int
     build_quantity number
     start_date nullable timestamp
     end_date nullable timestamp
     notes string
+    milestone_id nullable int // IPC(interim payment certificate) for example
     created_at timestamp
     updated_at timestamp
     user_id int
@@ -93,11 +101,27 @@ progress [icon: worker] {
 progress.user_id <> user.id
 progress.team_id <> team.id
 progress.task_id > task.id
+progress.milestone_id > milestone.id
+
+milestone [icon: worker] {
+    id int pk
+    project_id int
+    identifier string
+    description string
+    status string // pending, approved, rejected
+    payment nullable number
+    currency_id
+    created_at timestamp
+    updated_at timestamp
+    user_id int
+}
+milestone.currency_id > currency.id
 
 task [icon: worker] {
     id int pk
     task_name unique string
     task_group string  // node, reservoir, pipeline, prv, washout, manhole, hydrant, road, general
+    status nullable string // in-progress, complete (use ENUM for db)
     projected_quantity number
     unit_id int
     location_id nullable string
@@ -120,6 +144,7 @@ task_materials [icon: worker] {
     unit_id int
     notes string
     created_at timestamp
+    updated_at timestamp
     user_id int
 }
 task_materials.task_id > task.id

@@ -27,31 +27,23 @@ model User {
   Invoice     Invoice[]
   Shipment    Shipment[]
   Freight     Freight[]
+  Project     Project[]
+  Staff       Staff[]
+  Progress    Progress[]
+  Task        Task[]
 
   @@map("user")
 }
 
-model Vendor {
+model Client {
   id        Int       @id @default(autoincrement())
-  alias     String    @unique
   name      String
   address   String
-  country   String
-  user      User      @relation(fields: [userId], references: [id])
-  userId    Int       @map("user_id")
+  vatNo     String    @map("vat_no")
+  email     String
+  notes     String
   createdAt DateTime  @default(now()) @map("created_at")
-  Invoice   Invoice[]
-
-  @@map("vendor")
-}
-
-model Unit {
-  id               Int                @id @default(autoincrement())
-  unit             String             @unique
-  InvoiceItem      InvoiceItem[]
-  PipelineProgress PipelineProgress[]
-
-  @@map("unit")
+  Project   Project[]
 }
 
 model Currency {
@@ -62,6 +54,80 @@ model Currency {
   Freight Freight[]
 
   @@map("currency")
+}
+
+model Freight {
+  id          Int              @id @default(autoincrement())
+  truckNumber String           @map("truck_number")
+  forwarder   String?
+  billNumber  String?          @map("bill_number")
+  billDate    DateTime?        @map("bill_date")
+  freightRate Decimal?         @map("freight_rate")
+  currency    Currency?        @relation(fields: [currencyId], references: [id])
+  currencyId  Int?             @map("currency_id")
+  shipment    Shipment         @relation(fields: [shipmentId], references: [id])
+  shipmentId  Int              @map("shipment_id")
+  invoices    FreightInvoice[]
+  user        User             @relation(fields: [userId], references: [id])
+  userId      Int              @map("user_id")
+
+  @@map("freight")
+}
+
+model FreightInvoice {
+  freight   Freight @relation(fields: [freightId], references: [id])
+  freightId Int     @map("freight_id")
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId Int     @map("invoice_id")
+
+  @@id([freightId, invoiceId])
+  @@map("freight_invoice")
+}
+
+model Invoice {
+  id            Int              @id @default(autoincrement())
+  vendor        Vendor           @relation(fields: [vendorId], references: [id])
+  vendorId      Int              @map("vendor_id")
+  invoiceNumber String           @map("invoice_number")
+  invoiceDate   DateTime         @map("invoice_date")
+  totalAmount   Decimal          @map("total_amount")
+  isArrived     Boolean?         @default(false) @map("is_arrived")
+  currency      Currency         @relation(fields: [currencyId], references: [id])
+  currencyId    Int              @map("currency_id")
+  shipment      Shipment         @relation(fields: [shipmentId], references: [id])
+  shipmentId    Int              @map("shipment_id")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  user          User             @relation(fields: [userId], references: [id])
+  userId        Int              @map("user_id")
+  Items         InvoiceItem[]
+  Freights      FreightInvoice[]
+
+  @@map("invoice")
+}
+
+model InvoiceItem {
+  id          Int          @id @default(autoincrement())
+  invoice     Invoice      @relation(fields: [invoiceId], references: [id])
+  invoiceId   Int
+  product     MaterialName @relation(fields: [productId], references: [id])
+  productId   Int          @map("product_id")
+  description String
+  quantity    Decimal
+  unit        Unit         @relation(fields: [unitId], references: [id])
+  unitId      Int
+  unitPrice   Decimal      @map("unit_price")
+  total       Decimal      @map("total")
+
+  @@map("invoice_item")
+}
+
+model Location {
+  id           Int    @id @default(autoincrement())
+  locationName String @map("location_name")
+  latitude     Float
+  longitude    Float
+  notes        String
+  Task         Task[]
 }
 
 model MaterialGroup {
@@ -84,19 +150,59 @@ model MaterialType {
 }
 
 model MaterialName {
-  id               Int                @id @default(autoincrement())
-  name             String             @unique
-  dn               String
-  pn               String
-  degree           Int
-  description      String
-  type             MaterialType       @relation(fields: [typeId], references: [id])
-  typeId           Int                @map("type_id")
-  InvoiceItem      InvoiceItem[]
-  MaterialNeed     MaterialNeed[]
-  PipelineProgress PipelineProgress[]
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  dn           String
+  pn           String
+  degree       Int
+  description  String
+  type         MaterialType   @relation(fields: [typeId], references: [id])
+  typeId       Int            @map("type_id")
+  InvoiceItem  InvoiceItem[]
+  TaskMaterial TaskMaterial[]
 
   @@map("material_name")
+}
+
+model Milestone {
+  id       Int        @id @default(autoincrement())
+  Progress Progress[]
+}
+
+model Progress {
+  id            Int       @id @default(autoincrement())
+  project       Project   @relation(fields: [projectId], references: [id])
+  projectId     Int       @map("project_id")
+  teamId        Int?      @map("team_id")
+  task          Task      @relation(fields: [taskId], references: [id])
+  taskId        Int       @map("task_id")
+  buildQuantity Decimal   @map("build_quantity")
+  startDate     DateTime  @map("start_date")
+  endDate       DateTime  @map("end_date")
+  notes         String
+  milestone     Milestone @relation(fields: [milestoneId], references: [id])
+  milestoneId   Int       @map("milestone_idF")
+  createdAt     DateTime  @map("created_at")
+  updatedAt     DateTime  @map("updated_at")
+  user          User      @relation(fields: [userId], references: [id])
+  userId        Int       @map("user_id")
+}
+
+model Project {
+  id          Int        @id @default(autoincrement())
+  fullName    String     @map("full_name")
+  displayName String     @map("display_name")
+  client      Client?    @relation(fields: [clientId], references: [id])
+  clientId    Int?       @map("client_id")
+  managerId   Int?       @map("manager_id")
+  progress    String
+  notes       String
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @default(now()) @map("updated_at")
+  user        User       @relation(fields: [userId], references: [id])
+  userId      Int        @map("user_id")
+  Progress    Progress[]
+  Task        Task[]
 }
 
 enum ShipmentStatus {
@@ -132,103 +238,85 @@ model ShipmentFile {
   @@map("shipment_file")
 }
 
-model Invoice {
-  id            Int              @id @default(autoincrement())
-  vendor        Vendor           @relation(fields: [vendorId], references: [id])
-  vendorId      Int              @map("vendor_id")
-  invoiceNumber String           @map("invoice_number")
-  invoiceDate   DateTime         @map("invoice_date")
-  totalAmount   Decimal          @map("total_amount")
-  isArrived     Boolean?         @default(false) @map("is_arrived")
-  user          User             @relation(fields: [userId], references: [id])
-  userId        Int              @map("user_id")
-  createdAt     DateTime         @default(now()) @map("created_at")
-  currency      Currency         @relation(fields: [currencyId], references: [id])
-  currencyId    Int              @map("currency_id")
-  shipment      Shipment         @relation(fields: [shipmentId], references: [id])
-  shipmentId    Int              @map("shipment_id")
-  Items         InvoiceItem[]
-  Freights      FreightInvoice[]
-
-  @@map("invoice")
+model Staff {
+  id        Int    @id @default(autoincrement())
+  firstName String @map("first_name")
+  lastName  String @map("last_name")
+  address   String
+  phone     String
+  email     String
+  position  String
+  user      User   @relation(fields: [userId], references: [id])
+  userId    Int    @map("user_id")
 }
 
-model InvoiceItem {
-  id          Int          @id @default(autoincrement())
-  invoice     Invoice      @relation(fields: [invoiceId], references: [id])
-  invoiceId   Int
-  product     MaterialName @relation(fields: [productId], references: [id])
-  productId   Int          @map("product_id")
-  description String
-  quantity    Decimal
-  unit        Unit         @relation(fields: [unitId], references: [id])
-  unitId      Int
-  unitPrice   Decimal      @map("unit_price")
-  total       Decimal      @map("total")
-
-  @@map("invoice_item")
+enum TaskGroup {
+  node
+  reservoir
+  pipeline
+  prv
+  washout
+  hydrant
+  road
+  general
 }
 
-model Freight {
-  id          Int              @id @default(autoincrement())
-  truckNumber String           @map("truck_number")
-  forwarder   String?
-  billNumber  String?          @map("bill_number")
-  billDate    DateTime?        @map("bill_date")
-  freightRate Decimal?         @map("freight_rate")
-  currency    Currency?        @relation(fields: [currencyId], references: [id])
-  currencyId  Int?             @map("currency_id")
-  shipment    Shipment         @relation(fields: [shipmentId], references: [id])
-  shipmentId  Int              @map("shipment_id")
-  invoices    FreightInvoice[]
-  user        User             @relation(fields: [userId], references: [id])
-  userId      Int              @map("user_id")
-
-  @@map("freight")
+enum TaskStatus {
+  in_progress
+  complete
 }
 
-model FreightInvoice {
-  freight   Freight @relation(fields: [freightId], references: [id])
-  freightId Int     @map("freight_id")
-  invoice   Invoice @relation(fields: [invoiceId], references: [id])
-  invoiceId Int     @map("invoice_id")
-
-  @@id([freightId, invoiceId])
-  @@map("freight_invoice")
+model Task {
+  id                Int            @id @default(autoincrement())
+  taskName          String         @map("task_name")
+  taskGroup         TaskGroup
+  status            TaskStatus?
+  projectedQuantity Decimal        @map("projected_quantity")
+  unit              Unit           @relation(fields: [unitId], references: [id])
+  unitId            Int            @map("unit_id")
+  location          Location       @relation(fields: [locationId], references: [id])
+  locationId        Int            @map("location_id")
+  drawing_ref       String
+  notes             String
+  project           Project        @relation(fields: [projectId], references: [id])
+  projectId         Int            @map("project_id")
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @default(now()) @map("updated_at")
+  user              User           @relation(fields: [userId], references: [id])
+  userId            Int            @map("user_id")
+  Progress          Progress[]
+  TaskMaterial      TaskMaterial[]
 }
 
-model Village {
-  id               Int                @id @default(autoincrement())
-  name_en          String
-  name_ge          String
-  municipality     String
-  latitude         Float
-  longitude        Float
-  PipelineProgress PipelineProgress[]
-  MaterialNeeds    MaterialNeed[]
+model TaskMaterial {
+  id         Int          @id @default(autoincrement())
+  task       Task         @relation(fields: [taskId], references: [id])
+  taskId     Int          @map("task_id")
+  material   MaterialName @relation(fields: [materialId], references: [id])
+  materialId Int          @map("material_id")
 
-  @@map("village")
+  @@map("task_material")
 }
 
-model MaterialNeed {
-  id             Int          @id @default(autoincrement())
-  product        MaterialName @relation(fields: [productId], references: [id])
-  productId      Int          @map("product_id")
-  requiredAmount Decimal
+model Vendor {
+  id        Int       @id @default(autoincrement())
+  alias     String    @unique
+  name      String
+  address   String
+  country   String
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int       @map("user_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  Invoice   Invoice[]
 
-  village   Village @relation(fields: [villageId], references: [id]) // Link to Village
-  villageId Int
-
-  @@map("water_material_need")
+  @@map("vendor")
 }
 
-model PipelineProgress {
-  id             Int          @id @default(autoincrement())
-  product        MaterialName @relation(fields: [productId], references: [id])
-  productId      Int          @map("product_id")
-  requiredAmount Decimal
-  unit           Unit         @relation(fields: [unitId], references: [id])
-  unitId         Int
-  village        Village      @relation(fields: [villageId], references: [id])
-  villageId      Int
+model Unit {
+  id          Int           @id @default(autoincrement())
+  unit        String        @unique
+  InvoiceItem InvoiceItem[]
+  Task        Task[]
+
+  @@map("unit")
 }
