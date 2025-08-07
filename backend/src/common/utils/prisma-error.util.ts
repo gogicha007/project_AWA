@@ -19,11 +19,12 @@ export function handlePrismaErrors(
       typeof error === 'object' &&
       error.constructor?.name === 'PrismaClientValidationError')
   ) {
-    const errorMessage = error instanceof Error 
-      ? error.message 
-      : typeof error === 'string' 
-        ? error 
-        : JSON.stringify(error);
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : typeof error === 'string'
+          ? error
+          : JSON.stringify(error);
 
     if (errorMessage.includes('Expected ISO-8601 DateTime')) {
       throw new BadRequestException(
