@@ -27,9 +27,17 @@ export class ProjectsService {
     return `This action returns a #${id} project`;
   }
 
-  update(id: number, updateProjectDto: UpdateProjectDto) {
-    console.log(updateProjectDto);
-    return `This action updates a #${id} project`;
+  async update(id: number, updateProjectDto: UpdateProjectDto) {
+    try {
+      const updateProject = await this.dbService.project.update({
+        where: { id },
+        data: updateProjectDto,
+        select: { id: true, fullName: true },
+      });
+      return updateProject;
+    } catch (error) {
+      handlePrismaErrors(error, 'update', 'projects');
+    }
   }
 
   remove(id: number) {
