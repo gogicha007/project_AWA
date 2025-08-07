@@ -1,11 +1,39 @@
 import { BadRequestException } from '@nestjs/common';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from '@prisma/client/runtime/library';
 
 export function handlePrismaErrors(
   error: unknown,
   actionName: string = '',
   entityName: string = '',
 ) {
+  if (
+    error instanceof PrismaClientValidationError ||
+    (error &&
+      typeof error === 'object' &&
+      'name' in error &&
+      error.name === 'PrismaClientValidationError') ||
+    (error &&
+      typeof error === 'object' &&
+      error.constructor?.name === 'PrismaClientValidationError')
+  ) {
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : typeof error === 'string' 
+        ? error 
+        : JSON.stringify(error);
+
+    if (errorMessage.includes('Expected ISO-8601 DateTime')) {
+      throw new BadRequestException(
+        'Invalid date format. Please use ISO-8601 format (e.g., "2025-06-12T12:00:00.000Z")',
+      );
+    }
+
+    throw new BadRequestException(`Validation error: ${errorMessage}`);
+  }
+
   if (
     error instanceof PrismaClientKnownRequestError &&
     error.code === 'P2003'
@@ -25,5 +53,6 @@ export function handlePrismaErrors(
   if (error instanceof PrismaClientKnownRequestError)
     throw new BadRequestException(`Database error: ${error.message}`);
 
+  console.log(error);
   throw new BadRequestException(`Failed to ${actionName} ${entityName}`);
 }

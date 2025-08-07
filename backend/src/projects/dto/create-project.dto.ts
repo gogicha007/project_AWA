@@ -17,14 +17,15 @@ export class CreateProjectDto {
   @IsString()
   displayName: string;
 
-  @ApiProperty()
-  @IsNumber()
-  clientId: number;
-
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsNumber()
-  managerId: number;
+  clientId?: number;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsNumber()
+  managerId?: number;
 
   @ApiProperty()
   @IsString()
