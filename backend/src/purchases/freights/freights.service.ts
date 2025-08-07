@@ -80,40 +80,7 @@ export class FreightsService {
         return upsertedFreights;
       });
     } catch (error) {
-      if (
-        error instanceof PrismaClientKnownRequestError &&
-        error.code === 'P2002'
-      ) {
-        throw new NotFoundException('Freight already exists');
-      }
-
-      if (
-        error instanceof PrismaClientKnownRequestError &&
-        error.code === 'P2009'
-      ) {
-        throw new BadRequestException('Invalid input data');
-      }
-
-      if (
-        error instanceof PrismaClientKnownRequestError &&
-        error.code === 'P2003'
-      ) {
-        const fieldName =
-          typeof error.meta?.field_name === 'string'
-            ? error.meta.field_name
-            : JSON.stringify(error.meta?.field_name) || 'unknown field';
-        throw new BadRequestException(
-          `Foreign key constraint failed on the field: ${fieldName}`,
-        );
-      }
-
-      if (error instanceof PrismaClientKnownRequestError) {
-        throw new BadRequestException(
-          `Failed to upsert freights ${error.code}`,
-        );
-      }
-
-      throw new BadRequestException(`Failed to upsert freights ${error}`);
+      handlePrismaErrors(error, 'upsert', 'freight');
     }
   }
   async findAll() {

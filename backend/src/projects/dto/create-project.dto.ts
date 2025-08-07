@@ -10,10 +10,6 @@ import {
 
 export class CreateProjectDto {
   @ApiProperty()
-  @IsNumber()
-  id: number;
-
-  @ApiProperty()
   @IsString()
   fullName: string;
 
@@ -35,7 +31,7 @@ export class CreateProjectDto {
   progress: string;
 
   @ApiProperty()
-  @IsNumber()
+  @IsString()
   notes: string;
 
   @ApiProperty()

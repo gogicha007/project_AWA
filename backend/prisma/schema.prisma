@@ -133,6 +133,8 @@ model Location {
   longitude    Float
   notes        String
   Task         Task[]
+
+  @@map("location")
 }
 
 model MaterialGroup {

@@ -1,4 +1,4 @@
-import { Injectable} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { DatabaseService } from 'src/database/database/database.service';
@@ -8,12 +8,12 @@ import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
 export class ProjectsService {
   constructor(private readonly dbService: DatabaseService) {}
 
-  create(createProjectDto: CreateProjectDto) {
+  async create(createProjectDto: CreateProjectDto) {
     try {
-      console.log(createProjectDto);
-      return 'This action adds a new project';
+      const createProject = await this.dbService.project.create({data: createProjectDto})
+      return createProject
     } catch (error) {
-      handlePrismaErrors(error);
+      handlePrismaErrors(error, 'create', 'project');
     }
   }
 

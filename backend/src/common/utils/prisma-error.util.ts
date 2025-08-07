@@ -1,7 +1,11 @@
 import { BadRequestException } from '@nestjs/common';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
-export function handlePrismaErrors(error: unknown) {
+export function handlePrismaErrors(
+  error: unknown,
+  actionName: string = '',
+  entityName: string = '',
+) {
   if (
     error instanceof PrismaClientKnownRequestError &&
     error.code === 'P2003'
@@ -21,5 +25,5 @@ export function handlePrismaErrors(error: unknown) {
   if (error instanceof PrismaClientKnownRequestError)
     throw new BadRequestException(`Database error: ${error.message}`);
 
-  throw new BadRequestException('Invalid input data');
+  throw new BadRequestException(`Failed to ${actionName} ${entityName}`);
 }
