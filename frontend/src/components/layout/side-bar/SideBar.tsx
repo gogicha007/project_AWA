@@ -21,13 +21,13 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       href: '/',
     },
     {
+      label: tS('projects'),
+      href: '/projects',
+    },
+    {
       label: tS('logistics'),
       href: '/shipments',
     },
-    // {
-    //   label: tS('purchases'),
-    //   href: '/purchases',
-    // },
     // {
     //   label: tS('warehouse'),
     //   href: '/warehouse',

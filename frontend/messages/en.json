@@ -4,18 +4,6 @@
     "en": "English",
     "label": "Language"
   },
-  "HomePage": {
-    "title": "Home Page"
-  },
-  "HeaderMenu": {
-    "home": "Home"
-  },
-  "LoginPage": {
-    "pageError": "Sign In Page error!"
-  },
-  "RegisterPage": {
-    "pageError": "Sign Up Page error!"
-  },
   "AuthForm": {
     "login": "Sign In",
     "register": "Sign Up",
@@ -23,6 +11,143 @@
     "password": "Password",
     "logout": "Sign Out",
     "error": "An unexpected error occurred."
+  },
+  "Buttons": {
+    "toMain": "Back to main",
+    "tryAgain": "Try again",
+    "cancel": "Cancel",
+    "save": "Save",
+    "add": "Add",
+    "edit": "Edit"
+  },
+  "FileUploader": {
+    "select_files": "Select files",
+    "attached_files": "Attached files"
+  },
+  "Freights": {
+    "title": "Freights",
+    "table": {
+      "id": "ID",
+      "truck_number": "Truck number",
+      "forwarder": "Forwarder",
+      "bill_number": "Bill #",
+      "bill_date": "Bill date",
+      "freight_rate": "Freight rate",
+      "currency": "Currency"
+    },
+    "actions": {
+      "title": "Actions",
+      "items": "Items"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this record?"
+    }
+  },
+  "HeaderMenu": {
+    "home": "Home"
+  },
+  "HomePage": {
+    "title": "Home Page"
+  },
+  "Invoices": {
+    "title": "Invoices",
+    "table": {
+      "id": "ID",
+      "vendor": "Vendor",
+      "invoice_number": "Invoice #",
+      "invoice_date": "Invoice date",
+      "currency": "Currency",
+      "total_amount": "Total amount",
+      "truck_number": "Truck number",
+      "is_arrived": "Arrived",
+      "no_invoices": "No invoices added."
+    },
+    "form": {
+      "label": {
+        "vendor": "Vendor",
+        "invoice_number": "Invoice #",
+        "invoice_date": "Invoice date",
+        "currency": "Currency",
+        "currency_placeholder": "Select currency...",
+        "total_amount": "Total amount",
+        "is_arrived": "Arrived",
+        "vendor_placeholder": "Select vendor..."
+      }
+    },
+    "actions": {
+      "title": "Actions",
+      "items": "Items"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this Group?"
+    }
+  },
+  "InvoiceItems": {
+    "title": "Invoice Itemd",
+    "table": {
+      "id": "ID",
+      "material": "Material",
+      "description": "Description",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "price": "Price",
+      "total": "Total"
+    },
+    "actions": {
+      "title": "Actions",
+      "items": "Items"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this record?"
+    },
+    "validation": {
+      "min_value": "min value to be 0.01",
+      "required": "value required",
+      "required_fields": "Fill required fields(Material, Quantiry, Unit, Price) or Remove the record"
+    }
+  },
+  "LoginPage": {
+    "pageError": "Sign In Page error!"
+  },
+  "Logistics": {
+    "title": "Shipments",
+    "table": {
+      "id": "ID",
+      "alias": "Alias",
+      "declaration_number": "Declaration number",
+      "declaration_date": "Declaration date",
+      "status": "Status"
+    },
+    "form": {
+      "alias_label": "Alias",
+      "declaration_number_label": "Declaration number",
+      "declaration_date_label": "Declaration date",
+      "status_label": "Status",
+      "files_label": "Select files",
+      "selected_files": "Attached files",
+      "create_shipment": "Create shipment",
+      "save_shipment": "Save shipment",
+      "file_too_large": "File size must be less than 5 mb"
+    },
+    "errors": {
+      "declaration_date_required": "Declaration date is required if declaration number is entered",
+      "loading": "Error loading Shipments",
+      "delete": "Error deleting Shipment with id:",
+      "save": "Error saving Shipment:"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this Shipment?"
+    },
+    "edit_form_title": "Edit Shipment",
+    "add_form_title": "Add Shipment",
+    "actions": {
+      "title": "Actions",
+      "add": "Create shipment",
+      "edit": "Save changes",
+      "delete": "Delete",
+      "view": "View",
+      "go_to_list": "Back to list"
+    }
   },
   "MasterData": {
     "material_groups": {
@@ -129,6 +254,29 @@
       "view": "View"
     }
   },
+  "Projects": {
+    "title": "Projects"
+  },
+  "RegisterPage": {
+    "pageError": "Sign Up Page error!"
+  },
+  "SideBar": {
+    "home": "Home",
+    "logistics": "Logistics",
+    "projects": "Projects",
+    "purchases": "Purchases",
+    "warehouse": "Warehouse",
+    "settings": "Settings",
+    "masterData": "Master data",
+    "vendors": "Vendors"
+  },
+  "TableActions": {
+    "title": "Actions",
+    "add": "Add new item",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View"
+  },
   "Vendors": {
     "title": "Vendors",
     "table": {
@@ -162,152 +310,7 @@
       "view": "View"
     }
   },
-  "Invoices": {
-    "title": "Invoices",
-    "table": {
-      "id": "ID",
-      "vendor": "Vendor",
-      "invoice_number": "Invoice #",
-      "invoice_date": "Invoice date",
-      "currency": "Currency",
-      "total_amount": "Total amount",
-      "truck_number": "Truck number",
-      "is_arrived": "Arrived",
-      "no_invoices": "No invoices added."
-    },
-    "form": {
-      "label": {
-        "vendor": "Vendor",
-        "invoice_number": "Invoice #",
-        "invoice_date": "Invoice date",
-        "currency": "Currency",
-        "currency_placeholder": "Select currency...",
-        "total_amount": "Total amount",
-        "is_arrived": "Arrived",
-        "vendor_placeholder": "Select vendor..."
-      }
-    },
-    "actions": {
-      "title": "Actions",
-      "items": "Items"
-    },
-    "warnings": {
-      "delete": "Are you sure you want to delete this Group?"
-    }
-  },
-  "InvoiceItems": {
-    "title": "Invoice Itemd",
-    "table": {
-      "id": "ID",
-      "material": "Material",
-      "description": "Description",
-      "quantity": "Quantity",
-      "unit": "Unit",
-      "price": "Price",
-      "total": "Total"
-    },
-    "actions": {
-      "title": "Actions",
-      "items": "Items"
-    },
-    "warnings": {
-      "delete": "Are you sure you want to delete this record?"
-    },
-    "validation": {
-      "min_value": "min value to be 0.01",
-      "required": "value required",
-      "required_fields": "Fill required fields(Material, Quantiry, Unit, Price) or Remove the record"
-    }
-  },
-  "Logistics": {
-    "title": "Shipments",
-    "table": {
-      "id": "ID",
-      "alias": "Alias",
-      "declaration_number": "Declaration number",
-      "declaration_date": "Declaration date",
-      "status": "Status"
-    },
-    "form": {
-      "alias_label": "Alias",
-      "declaration_number_label": "Declaration number",
-      "declaration_date_label": "Declaration date",
-      "status_label": "Status",
-      "files_label": "Select files",
-      "selected_files": "Attached files",
-      "create_shipment": "Create shipment",
-      "save_shipment": "Save shipment",
-      "file_too_large": "File size must be less than 5 mb"
-    },
-    "errors": {
-      "declaration_date_required": "Declaration date is required if declaration number is entered",
-      "loading": "Error loading Shipments",
-      "delete": "Error deleting Shipment with id:",
-      "save": "Error saving Shipment:"
-    },
-    "warnings": {
-      "delete": "Are you sure you want to delete this Shipment?"
-    },
-    "edit_form_title": "Edit Shipment",
-    "add_form_title": "Add Shipment",
-    "actions": {
-      "title": "Actions",
-      "add": "Create shipment",
-      "edit": "Save changes",
-      "delete": "Delete",
-      "view": "View",
-      "go_to_list": "Back to list"
-    }
-  },
-  "Freights": {
-    "title": "Freights",
-    "table": {
-      "id": "ID",
-      "truck_number": "Truck number",
-      "forwarder": "Forwarder",
-      "bill_number": "Bill #",
-      "bill_date": "Bill date",
-      "freight_rate": "Freight rate",
-      "currency": "Currency"
-    },
-    "actions": {
-      "title": "Actions",
-      "items": "Items"
-    },
-    "warnings": {
-      "delete": "Are you sure you want to delete this record?"
-    }
-  },
-
   "Warehouse": {
     "title": "Warehouse"
-  },
-  "TableActions": {
-    "title": "Actions",
-    "add": "Add new item",
-    "edit": "Edit",
-    "delete": "Delete",
-    "view": "View"
-  },
-  "Buttons": {
-    "toMain": "Back to main",
-    "tryAgain": "Try again",
-    "cancel": "Cancel",
-    "save": "Save",
-    "add": "Add",
-    "edit": "Edit"
-  },
-  "SideBar": {
-    "home": "Home",
-    "logistics": "Logistics",
-    "purchases": "Purchases",
-    "warehouse": "Warehouse",
-    "settings": "Settings",
-    "masterData": "Master data",
-    "vendors": "Vendors"
-  },
-  "FileUploader": {
-    "select_files": "Select files",
-    "attached_files": "Attached files"
   }
 }
