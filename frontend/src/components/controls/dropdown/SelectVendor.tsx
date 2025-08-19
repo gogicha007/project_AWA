@@ -10,6 +10,7 @@ type Props = {
   selectedValue?: number | null;
 };
 const SelectVendor = ({ options, setOption, selectedValue }: Props) => {
+
   const handleSelect = (option: { value: number | undefined; label: string } | null) => {
     if (option === null) {
       setOption(null);
@@ -29,7 +30,7 @@ const SelectVendor = ({ options, setOption, selectedValue }: Props) => {
       onChange={handleSelect}
       placeholder="Select vendor..."
       isClearable={true}
-      menuPlacement="top"
+      menuPlacement="bottom"
       styles={{
         menu: (styles) => ({
           ...styles,

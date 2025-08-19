@@ -17,7 +17,7 @@
 }
 
 input.checkToggleRoundFlat:checked ~ .off {
-  color: var(--secondary-accent);
+  color: #9CA3AF;
 }
 
 input.checkToggleRoundFlat:checked ~ .on {
@@ -27,7 +27,7 @@ input.checkToggleRoundFlat:checked ~ .on {
 .switch > span.on {
   left: 0;
   padding-left: 2px;
-  color: var(--secondary-accent);
+  color: #9CA3AF;
 }
 
 .switch > span.off {
@@ -55,9 +55,9 @@ input.checkToggleRoundFlat:checked ~ .on {
 
 input.checkToggleRoundFlat + label {
   padding: 2px;
-  width: 97px;
+  width: 100px;
   height: 35px;
-  background-color: var(--secondary-accent);
+  background-color: #9CA3AF;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
   -ms-border-radius: 60px;
@@ -77,7 +77,7 @@ input.checkToggleRoundFlat + label:before {
   left: 2px;
   bottom: 2px;
   right: 2px;
-  background-color: var(--secondary-accent);
+  background-color: #9CA3AF;
   -webkit-moz-border-radius: 60px;
   -webkit-ms-border-radius: 60px;
   -webkit-o-border-radius: 60px;
