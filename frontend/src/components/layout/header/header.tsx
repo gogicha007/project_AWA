@@ -1,8 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import styles from './header.module.css'
+
+import styles from './header.module.css';
 import AuthBar from '../../controls/auth-bar/authBar';
 import useScroll from '@/hooks/use-scroll';
+import LocaleSwitcherSelect from '@/components/controls/locale-switcher/LocaleSwitcherSelect';
 
 const Header = () => {
   const scrolled = useScroll(10);
@@ -21,6 +23,13 @@ const Header = () => {
   return (
     <div className={styles.header} ref={headerRef}>
       <h2></h2>
+      <LocaleSwitcherSelect
+        defaultValue="en"
+        items={[
+          { value: 'en', label: 'English' },
+          { value: 'ge', label: 'ქართული' },
+        ]}
+      />
       <AuthBar />
     </div>
   );

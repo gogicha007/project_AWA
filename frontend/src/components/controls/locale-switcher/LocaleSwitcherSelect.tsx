@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './locale-switcher.module.scss';
+import styles from './locale-switcher.module.css';
 import { useTransition, useState } from 'react';
 import { Locale } from '@/i18n/config';
 import { setUserLocale } from '@/utils/locale';
@@ -21,7 +21,7 @@ export default function LocaleSwitcherSelect({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
-    onChange(event.target.checked ? 'de' : 'en');
+    onChange(event.target.checked ? 'ge' : 'en');
   };
 
   function onChange(value: string) {

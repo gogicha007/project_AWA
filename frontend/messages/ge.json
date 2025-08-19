@@ -1,31 +1,316 @@
 {
-    "LocaleSwitcher": {
-        "ge": "ქართული",
-        "en": "English",
-        "label": "ენა"
+  "LocaleSwitcher": {
+    "ge": "ქართული",
+    "en": "English",
+    "label": "ენა"
+  },
+  "AuthForm": {
+    "login": "შესვლა",
+    "register": "რეგისტრაცია",
+    "email": "ელ-ფოსტა",
+    "password": "პაროლი",
+    "logout": "გასვლა",
+    "error": "მოხდა მოულოდნელი შეცდომა."
+  },
+  "Buttons": {
+    "toMain": "მთავარზე დაბრუნება",
+    "tryAgain": "სცადეთ კვლავ",
+    "cancel": "გაუქმება",
+    "save": "შენახვა",
+    "add": "დამატება",
+    "edit": "რედაქტირება"
+  },
+  "FileUploader": {
+    "select_files": "ფაილების არჩევა",
+    "attached_files": "მიმაგრებული ფაილები"
+  },
+  "Freights": {
+    "title": "სატვირთო",
+    "table": {
+      "id": "ID",
+      "truck_number": "სატვირთოს ნომერი",
+      "forwarder": "ექსპედიტორი",
+      "bill_number": "ბილი #",
+      "bill_date": "ბილის თარიღი",
+      "freight_rate": "სატვირთო ტარიფი",
+      "currency": "ვალუტა"
     },
-    "HomePage": {
-        "title": "მთავარი გვერდი"
+    "actions": {
+      "title": "მოქმედებები",
+      "items": "ნივთები"
     },
-    "HeaderMenu": {
-        "home": "მთავარი"
-    },
-    "LoginPage": {
-        "pageError": "შესვლის გვერდის შეცდომა!"
-    },
-    "RegisterPage": {
-        "pageError": "რეგისტრაციის გვერდის შეცდომა!"
-    },
-    "AuthForm": {
-        "login": "შესვლა",
-        "register": "რეგისტრაცია",
-        "email": "ელ-ფოსტა",
-        "password": "პაროლი",
-        "logout": "გასვლა",
-        "error": "მოხდა მოულოდნელი შეცდომა."
-    },
-    "Buttons": {
-        "toMain": "მთავარზე დაბრუნება",
-        "tryAgain": "სცადეთ კვლავ"
+    "warnings": {
+      "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ჩანაწერის წაშლა?"
     }
+  },
+  "HeaderMenu": {
+    "home": "მთავარი"
+  },
+  "HomePage": {
+    "title": "მთავარი გვერდი"
+  },
+  "Invoices": {
+    "title": "ინვოისები",
+    "table": {
+      "id": "ID",
+      "vendor": "მომწოდებელი",
+      "invoice_number": "ინვოისი #",
+      "invoice_date": "ინვოისის თარიღი",
+      "currency": "ვალუტა",
+      "total_amount": "საერთო თანხა",
+      "truck_number": "სატვირთოს ნომერი",
+      "is_arrived": "ჩამოსულია",
+      "no_invoices": "ინვოისები არ არის დამატებული."
+    },
+    "form": {
+      "label": {
+        "vendor": "მომწოდებელი",
+        "invoice_number": "ინვოისი #",
+        "invoice_date": "ინვოისის თარიღი",
+        "currency": "ვალუტა",
+        "currency_placeholder": "აირჩიეთ ვალუტა...",
+        "total_amount": "საერთო თანხა",
+        "is_arrived": "ჩამოსულია",
+        "vendor_placeholder": "აირჩიეთ მომწოდებელი..."
+      }
+    },
+    "actions": {
+      "title": "მოქმედებები",
+      "items": "ნივთები"
+    },
+    "warnings": {
+      "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ჯგუფის წაშლა?"
+    }
+  },
+  "InvoiceItems": {
+    "title": "ინვოისის ნივთები",
+    "table": {
+      "id": "ID",
+      "material": "მასალა",
+      "description": "აღწერა",
+      "quantity": "რაოდენობა",
+      "unit": "ერთეული",
+      "price": "ფასი",
+      "total": "ჯამი"
+    },
+    "actions": {
+      "title": "მოქმედებები",
+      "items": "ნივთები"
+    },
+    "warnings": {
+      "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ჩანაწერის წაშლა?"
+    },
+    "validation": {
+      "min_value": "მინიმალური მნიშვნელობა უნდა იყოს 0.01",
+      "required": "მნიშვნელობა საჭიროა",
+      "required_fields": "შეავსეთ საჭირო ველები (მასალა, რაოდენობა, ერთეული, ფასი) ან წაშალეთ ჩანაწერი"
+    }
+  },
+  "LoginPage": {
+    "pageError": "შესვლის გვერდის შეცდომა!"
+  },
+  "Logistics": {
+    "title": "ტვირთები",
+    "table": {
+      "id": "ID",
+      "alias": "მეტსახელი",
+      "declaration_number": "დეკლარაციის ნომერი",
+      "declaration_date": "დეკლარაციის თარიღი",
+      "status": "სტატუსი"
+    },
+    "form": {
+      "alias_label": "მეტსახელი",
+      "declaration_number_label": "დეკლარაციის ნომერი",
+      "declaration_date_label": "დეკლარაციის თარიღი",
+      "status_label": "სტატუსი",
+      "files_label": "აირჩიეთ ფაილები",
+      "selected_files": "მიმაგრებული ფაილები",
+      "create_shipment": "ტვირთის შექმნა",
+      "save_shipment": "ტვირთის შენახვა",
+      "file_too_large": "ფაილის ზომა უნდა იყოს 5 მბ-ზე ნაკლები"
+    },
+    "errors": {
+      "declaration_date_required": "დეკლარაციის თარიღი საჭიროა, თუ დეკლარაციის ნომერი შეყვანილია",
+      "loading": "ტვირთების ჩატვირთვის შეცდომა",
+      "delete": "ტვირთის წაშლის შეცდომა ID-თ:",
+      "save": "ტვირთის შენახვის შეცდომა:"
+    },
+    "warnings": {
+      "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ტვირთის წაშლა?"
+    },
+    "edit_form_title": "ტვირთის რედაქტირება",
+    "add_form_title": "ტვირთის დამატება",
+    "actions": {
+      "title": "მოქმედებები",
+      "add": "ტვირთის შექმნა",
+      "edit": "ცვლილებების შენახვა",
+      "delete": "წაშლა",
+      "view": "ნახვა",
+      "go_to_list": "სიაზე დაბრუნება"
+    }
+  },
+  "MasterData": {
+    "material_groups": {
+      "title": "მასალის ჯგუფი",
+      "table": {
+        "id": "ID",
+        "name": "სახელი",
+        "description": "აღწერა"
+      },
+      "form": {
+        "name_label": "სახელი",
+        "description_label": "აღწერა"
+      },
+      "errors": {
+        "loading": "მასალის ჯგუფების ჩატვირთვის შეცდომა",
+        "delete": "მასალის ჯგუფის წაშლის შეცდომა ID-თ:",
+        "save": "მასალის ჯგუფის შენახვის შეცდომა:"
+      },
+      "warnings": {
+        "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ჯგუფის წაშლა?"
+      },
+      "edit_form_title": "მასალის ჯგუფის რედაქტირება",
+      "add_form_title": "მასალის ჯგუფის დამატება"
+    },
+    "material_types": {
+      "title": "მასალის ტიპები",
+      "table": {
+        "id": "ID",
+        "name": "ტიპი",
+        "group": "ჯგუფი"
+      },
+      "form": {
+        "type_label": "ტიპი",
+        "group_label": "ჯგუფი",
+        "group_placeholder": "აირჩიეთ მასალის ჯგუფი"
+      },
+      "errors": {
+        "loading": "მასალის ტიპების ჩატვირთვის შეცდომა",
+        "delete": "მასალის ტიპის წაშლის შეცდომა ID-თ:",
+        "save": "მასალის ტიპის შენახვის შეცდომა:"
+      },
+      "warnings": {
+        "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ტიპის წაშლა?"
+      },
+      "edit_form_title": "მასალის ტიპის რედაქტირება",
+      "add_form_title": "მასალის ტიპის დამატება"
+    },
+    "material_names": {
+      "title": "მასალის სახელები",
+      "table": {
+        "id": "ID",
+        "type": "ტიპი",
+        "dn": "DN",
+        "pn": "PN",
+        "degree": "ხარისხი",
+        "name": "სახელი",
+        "description": "აღწერა"
+      },
+      "form": {
+        "name_label": "სახელი",
+        "dn_label": "DN",
+        "pn_label": "PN",
+        "degree_label": "ხარისხი",
+        "description_label": "აღწერა",
+        "type_label": "ტიპი",
+        "type_placeholder": "აირჩიეთ მასალის ტიპი..."
+      },
+      "errors": {
+        "loading": "მასალის სახელების ჩატვირთვის შეცდომა",
+        "delete": "მასალის სახელის წაშლის შეცდომა ID-თ:",
+        "save": "მასალის სახელის შენახვის შეცდომა"
+      },
+      "warnings": {
+        "delete": "დარწმუნებული ხართ, რომ გსურთ ამ სახელის წაშლა?"
+      },
+      "edit_form_title": "მასალის სახელის რედაქტირება",
+      "add_form_title": "მასალის სახელის დამატება"
+    },
+    "units": {
+      "title": "ერთეულები",
+      "table": {
+        "id": "ID",
+        "unit": "ერთეული"
+      },
+      "form": {
+        "unit_label": "ერთეული"
+      },
+      "errors": {
+        "loading": "ერთეულების ჩატვირთვის შეცდომა",
+        "delete": "ერთეულის წაშლის შეცდომა ID-თ:",
+        "save": "ერთეულის შენახვის შეცდომა:"
+      },
+      "warnings": {
+        "delete": "დარწმუნებული ხართ, რომ გსურთ ამ ერთეულის წაშლა?"
+      },
+      "edit_form_title": "ერთეულის რედაქტირება",
+      "add_form_title": "ერთეულის დამატება"
+    },
+    "actions": {
+      "title": "მოქმედებები",
+      "add": "ახალი ნივთის დამატება",
+      "edit": "რედაქტირება",
+      "delete": "წაშლა",
+      "view": "ნახვა"
+    }
+  },
+  "Projects": {
+    "title": "პროექტები"
+  },
+  "RegisterPage": {
+    "pageError": "რეგისტრაციის გვერდის შეცდომა!"
+  },
+  "SideBar": {
+    "home": "მთავარი",
+    "logistics": "ლოგისტიკა",
+    "projects": "პროექტები",
+    "purchases": "შესყიდვები",
+    "warehouse": "საწყობი",
+    "settings": "პარამეტრები",
+    "masterData": "ძირითადი მონაცემები",
+    "vendors": "მომწოდებლები"
+  },
+  "TableActions": {
+    "title": "მოქმედებები",
+    "add": "ახალი ნივთის დამატება",
+    "edit": "რედაქტირება",
+    "delete": "წაშლა",
+    "view": "ნახვა"
+  },
+  "Vendors": {
+    "title": "მომწოდებლები",
+    "table": {
+      "id": "ID",
+      "alias": "მეტსახელი",
+      "name": "სახელი",
+      "address": "მისამართი",
+      "country": "ქვეყანა"
+    },
+    "form": {
+      "alias_label": "მეტსახელი",
+      "name_label": "სახელი",
+      "address_label": "მისამართი",
+      "country_label": "ქვეყანა"
+    },
+    "errors": {
+      "loading": "მომწოდებლების ჩატვირთვის შეცდომა",
+      "delete": "მომწოდებლის წაშლის შეცდომა ID-თ:",
+      "save": "მომწოდებლის შენახვის შეცდომა:"
+    },
+    "warnings": {
+      "delete": "დარწმუნებული ხართ, რომ გსურთ ამ მომწოდებლის წაშლა?"
+    },
+    "edit_form_title": "მომწოდებლის რედაქტირება",
+    "add_form_title": "მომწოდებლის დამატება",
+    "actions": {
+      "title": "მოქმედებები",
+      "add": "ახალი ნივთის დამატება",
+      "edit": "რედაქტირება",
+      "delete": "წაშლა",
+      "view": "ნახვა"
+    }
+  },
+  "Warehouse": {
+    "title": "საწყობი"
+  }
 }
