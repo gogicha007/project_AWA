@@ -9,7 +9,7 @@
   height: auto;
 }
 .header {
-  background-color: var(--primary-accent);
+  /* background-color: var(--primary-accent); */
   transition: background-color 0.3s ease;
   color: #fff;
 }

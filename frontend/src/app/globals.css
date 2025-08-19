@@ -3,7 +3,7 @@
   --foreground: #333333;
   --primary-accent: #007acc;
   --secondary-accent: #ff4081;
-  --border: #0000001a
+  --border: #0000001a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,9 +45,14 @@ header {
 main {
   flex-grow: 1;
   display: flex;
+  background-color: var(--background);
+  border-top-left-radius: 5px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
 }
 section {
   padding: 5px;
