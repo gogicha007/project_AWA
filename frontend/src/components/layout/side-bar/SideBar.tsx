@@ -92,16 +92,7 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
         className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}
       >
         <div className={styles.sidebarHeader}>
-          <Link href="/">
-            <Image
-              src="/logo.svg"
-              alt="logo"
-              className={styles.logo}
-              width={120}
-              height={39}
-              priority
-            />
-          </Link>
+          <h3></h3>
         </div>
         <ul className={styles.sidebar__list}>
           {sideBarItems.map((item, idx) => {
@@ -126,6 +117,18 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
             );
           })}
         </ul>
+        <div className={styles.sidebarFooter}>
+          <Link href="https://github.com/gogicha007" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/visit_logo.svg"
+              alt="logo"
+              className={styles.logo}
+              width={120}
+              height={39}
+              priority
+            />
+          </Link>
+        </div>
       </aside>
     </>
   );

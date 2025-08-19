@@ -26,6 +26,10 @@
   margin-bottom: 20px;
   position: relative;
 }
+.sidebarFooter {
+  margin-top: auto;
+  align-self: center;
+}
 .logo {
   transition: opacity 0.3s ease;
 }
@@ -33,6 +37,7 @@
   opacity: 0;
 }
 .sidebar__list {
+  /* margin-top: 16px; */
   display: flex;
   flex-direction: column;
   gap: 10px;
