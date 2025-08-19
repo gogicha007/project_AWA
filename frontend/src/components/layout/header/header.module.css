@@ -2,18 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 12px 24px;
+  background-color: var(--background-card, #ffffff);
+  border-bottom: 1px solid var(--border, #e2e8f0);
+  transition: all 0.3s ease;
+  color: var(--foreground, #333);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .logo {
   width: 120px;
   height: auto;
 }
-.header {
-  /* background-color: var(--primary-accent); */
-  transition: background-color 0.3s ease;
-  color: #fff;
-}
+
 .header.scrolled {
-  background-color: #f9f9f9 ;
-  color: var(--foreground); 
+  background-color: var(--background-secondary, #f8fafc);
+  color: var(--foreground, #333);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -17,7 +17,7 @@
 }
 
 input.checkToggleRoundFlat:checked ~ .off {
-  color: #9CA3AF;
+  color: var(--gray-400, #94a3b8);
 }
 
 input.checkToggleRoundFlat:checked ~ .on {
@@ -27,7 +27,7 @@ input.checkToggleRoundFlat:checked ~ .on {
 .switch > span.on {
   left: 0;
   padding-left: 2px;
-  color: #9CA3AF;
+  color: var(--gray-400, #94a3b8);
 }
 
 .switch > span.off {
@@ -57,12 +57,17 @@ input.checkToggleRoundFlat + label {
   padding: 2px;
   width: 100px;
   height: 35px;
-  background-color: #9CA3AF;
+  background-color: var(--gray-300, #cbd5e1);
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
   -ms-border-radius: 60px;
   -o-border-radius: 60px;
   border-radius: 60px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+input.checkToggleRoundFlat:checked + label {
+  background-color: var(--primary-500, #6366f1);
 }
 
 input.checkToggleRoundFlat + label:before,
@@ -77,11 +82,16 @@ input.checkToggleRoundFlat + label:before {
   left: 2px;
   bottom: 2px;
   right: 2px;
-  background-color: #9CA3AF;
+  background-color: var(--gray-300, #cbd5e1);
   -webkit-moz-border-radius: 60px;
   -webkit-ms-border-radius: 60px;
   -webkit-o-border-radius: 60px;
   border-radius: 60px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+input.checkToggleRoundFlat:checked + label:before {
+  background-color: var(--primary-500, #6366f1);
 }
 
 input.checkToggleRoundFlat + label:after {

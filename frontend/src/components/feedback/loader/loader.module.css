@@ -7,6 +7,7 @@
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
   }
   
   .loader {
@@ -15,15 +16,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 10px solid #f3f3f3;
+    border: 8px solid var(--gray-200, #e2e8f0);
     border-radius: 50%;
-    border-top: 10px solid #2980b9;
-    border-right: 10px solid #2ecc71;
-    border-bottom: 10px solid #e62020;
-    border-left: 10px solid #f5ba1a;
-    width: 70px;
-    height: 70px;
-    animation: spin 1.5s linear infinite;
+    border-top: 8px solid var(--primary-500, #6366f1);
+    border-right: 8px solid var(--secondary-500, #14b8a6);
+    border-bottom: 8px solid var(--warning-500, #eab308);
+    border-left: 8px solid var(--danger-500, #f87171);
+    width: 80px;
+    height: 80px;
+    animation: spin 1.2s linear infinite;
   }
   
   @keyframes spin {

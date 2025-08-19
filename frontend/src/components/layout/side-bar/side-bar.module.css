@@ -3,15 +3,15 @@
   flex-direction: column;
   padding: 16px;
   gap: 24px;
-  background-color: var(--background);
+  background-color: var(--background-card, var(--background));
   height: 100vh;
   width: 250px;
-  /* border-right: 1px solid var(--border); */
+  border-right: 1px solid var(--border, #e2e8f0);
   position: sticky;
   left: 0;
   top: 0;
   transition: all 0.3s ease;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   overflow: hidden;
 }
 .sidebar.collapsed {
@@ -59,7 +59,7 @@
   position: relative;
 }
 .submenu_toggle:hover {
-  color: var(--primary-color, #0070f3);
+  color: var(--primary-600, #4f46e5);
 }
 .submenu_toggle::after {
   content: '+';
