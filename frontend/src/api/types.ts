@@ -74,3 +74,15 @@ export type InvoiceDTO = z.infer<typeof invoiceSchema>;
 export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 
 export type FreightDTO = z.infer<typeof freightSchema>;
+
+export interface ProjectDTO {
+  id: string;
+  fullName: string;
+  displayName: string;
+  clientId?: number;
+  managerId?: number;
+  startDate: Date;
+  currencyId?: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
