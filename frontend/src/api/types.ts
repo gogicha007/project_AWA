@@ -81,6 +81,8 @@ export interface ProjectDTO {
   displayName: string;
   clientId?: number;
   managerId?: number;
+  progress: string;
+  notes?: string;
   startDate: Date;
   currencyId?: number;
   createdAt: Date;
