@@ -6,9 +6,10 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth';
 import { logout } from '@/utils/firebaseConfig';
 import { useEffect, useState } from 'react';
+import Loader from '@/components/feedback/loader/loader';
 
 const AuthBar = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
   const tA = useTranslations('AuthForm');
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -23,26 +24,25 @@ const AuthBar = () => {
   };
 
   // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return (
-      <div>
-        <div className={styles['auth-bar__login']}>
-          <button className={styles['auth-bar__button']} disabled>
-            Loading...
-          </button>
-        </div>
-      </div>
-    );
-  }
+  if (!mounted) return <Loader />;
+
+  // Then handle auth loading state
+  if (loading) return <Loader />;
 
   return (
     <div>
       {!currentUser && (
         <div className={styles['auth-bar__login']}>
-          <button className={styles['auth-bar__button']} onClick={() => router.push('/auth/sign-up')}>
+          <button
+            className={styles['auth-bar__button']}
+            onClick={() => router.push('/auth/sign-up')}
+          >
             {tA('register')}
           </button>
-          <button className={styles['auth-bar__button']} onClick={() => router.push('/auth/sign-in')}>
+          <button
+            className={styles['auth-bar__button']}
+            onClick={() => router.push('/auth/sign-in')}
+          >
             {tA('login')}
           </button>
         </div>
