@@ -249,7 +249,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   displayName: 'displayName',
   clientId: 'clientId',
   managerId: 'managerId',
-  progress: 'progress',
+  status: 'status',
   notes: 'notes',
   startDate: 'startDate',
   currencyId: 'currencyId',
@@ -342,6 +342,13 @@ exports.MilestoneStatus = exports.$Enums.MilestoneStatus = {
   pending: 'pending',
   approved: 'approved',
   rejected: 'rejected'
+};
+
+exports.ProjectStatus = exports.$Enums.ProjectStatus = {
+  active: 'active',
+  completed: 'completed',
+  inProgress: 'inProgress',
+  onHold: 'onHold'
 };
 
 exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {

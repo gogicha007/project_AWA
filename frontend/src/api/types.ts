@@ -75,13 +75,14 @@ export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 
 export type FreightDTO = z.infer<typeof freightSchema>;
 
+export type ProjectStatus = 'active' | 'completed' | 'inProgress' | 'onHold';
 export interface ProjectDTO {
   id: string;
   fullName: string;
   displayName: string;
   clientId?: number;
   managerId?: number;
-  progress: string;
+  status: ProjectStatus;
   notes?: string;
   startDate: Date;
   currencyId?: number;

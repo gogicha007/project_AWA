@@ -3,10 +3,8 @@
 import React from 'react';
 import { FiCalendar, FiUser, FiExternalLink, FiEdit, FiTrash2 } from 'react-icons/fi';
 
-import { ProjectDTO } from '@/api/types';
+import { ProjectDTO, ProjectStatus } from '@/api/types';
 import styles from './project-card.module.css';
-
-export type ProjectStatus = 'active' | 'completed' | 'inProgress' | 'onHold';
 
 
 interface ProjectCardProps {
@@ -70,8 +68,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <div className={`${styles.card} ${className || ''}`}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>{project.fullName}</h3>
-        <span className={`${styles.cardStatus} ${styles[project.progress]}`}>
-          {getStatusText(project.progress)}
+        <span className={`${styles.cardStatus} ${styles[project.status]}`}>
+          {getStatusText(project.status)}
         </span>
       </div>
 

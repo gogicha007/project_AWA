@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ProjectCard, ProjectCardSkeleton, ProjectsEmptyState, type Project } from '@/components/ui/project-card';
+import { ProjectCard, ProjectCardSkeleton, ProjectsEmptyState } from '@/components/ui/project-card';
 import styles from './page.module.css';
 import { projectApi } from '@/api/endpoints/projects/projectApi';
 import { ProjectDTO } from '@/api/types';
@@ -77,7 +77,7 @@ export default function Projects() {
     // router.push(`/projects/${projectId}`);
   };
 
-  const handleEdit = (project: Project) => {
+  const handleEdit = (project: ProjectDTO) => {
     console.log('Edit project:', project);
     // Open edit modal or navigate to edit page
   };
