@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsDateString,
 } from 'class-validator';
+import { ProjectStatus } from 'generated/prisma';
 
 export class CreateProjectDto {
   @ApiProperty()
@@ -29,7 +30,7 @@ export class CreateProjectDto {
 
   @ApiProperty()
   @IsString()
-  progress: string;
+  status: ProjectStatus;
 
   @ApiProperty()
   @IsString()

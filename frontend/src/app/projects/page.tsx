@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ProjectCard, ProjectCardSkeleton, ProjectsEmptyState } from '@/components/ui/project-card';
+import { ProjectCard, ProjectCardSkeleton, ProjectsEmptyState } from '@/components/projects/project-card';
 import styles from './page.module.css';
 import { projectApi } from '@/api/endpoints/projects/projectApi';
 import { ProjectDTO } from '@/api/types';
@@ -61,6 +61,7 @@ export default function Projects() {
       try {
         const data = await projectApi.getAll();
         setProjects(data);
+        console.log('Projects loaded:', data);
       } catch (error) {
         console.error('Error loading projects:', error);
       } finally {

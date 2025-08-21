@@ -20,11 +20,11 @@ export class ProjectsService {
   }
 
   findAll() {
-    return `This action returns all projects`;
+    return this.dbService.project.findMany({});
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} project`;
+    return this.dbService.project.findUnique({ where: { id } });
   }
 
   async update(id: number, updateProjectDto: UpdateProjectDto) {
