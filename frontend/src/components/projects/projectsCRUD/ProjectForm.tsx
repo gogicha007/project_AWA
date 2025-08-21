@@ -1,16 +1,42 @@
 'use client';
 
 import styles from './page.module.css';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { ProjectDTO } from '@/api/types';
 
-export default function ProjectForm() {
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (project: ProjectDTO) => void;
+  initialData?: ProjectDTO;
+  title: string;
+};
+
+export default function ProjectForm({ isOpen, onClose, title }: Props) {
   const projectFormDialogRef = useRef<HTMLDialogElement>(null);
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
 
+  useEffect(() => {
+    const dialog = projectFormDialogRef.current;
+    if (!dialog) return;
+
+    if (isOpen) {
+      dialog.showModal();
+    } else {
+      dialog.close();
+    }
+  }, [isOpen]);
+
   return (
     <dialog ref={projectFormDialogRef} className={styles.dialog}>
+      <div className={styles.dialogHeader}>
+        <h2>{title}</h2>
+        <button type="button" className={styles.closeButton} onClick={onClose}>
+          ×
+        </button>
+      </div>
       <form className={styles.form}>
         <div>
           <label>{tPj('form.title_label')}</label>
