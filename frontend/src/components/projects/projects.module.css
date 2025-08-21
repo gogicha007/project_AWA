@@ -6,6 +6,7 @@
 
 .pageHeader {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 32px;

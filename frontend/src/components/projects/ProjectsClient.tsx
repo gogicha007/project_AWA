@@ -1,11 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ProjectCard, ProjectCardSkeleton, ProjectsEmptyState } from '@/components/projects/project-card';
-import { useTranslations } from 'next-intl';
 import styles from './projects.module.css';
+import React, { useState, useEffect } from 'react';
+import {
+  ProjectCard,
+  ProjectCardSkeleton,
+  ProjectsEmptyState,
+} from '@/components/projects/project-card';
+import { useTranslations } from 'next-intl';
 import { projectApi } from '@/api/endpoints/projects/projectApi';
 import { ProjectDTO } from '@/api/types';
+import AddButton from '@/components/controls/add-button/AddButton';
 
 export default function ProjectsClient() {
   const [projects, setProjects] = useState<ProjectDTO[]>([]);
@@ -45,7 +50,7 @@ export default function ProjectsClient() {
   const handleDelete = (projectId: string) => {
     console.log('Delete project:', projectId);
     // Remove project from state and call API
-    setProjects(prev => prev.filter(p => p.id !== projectId));
+    setProjects((prev) => prev.filter((p) => p.id !== projectId));
   };
 
   const handleCreateNew = () => {
@@ -58,16 +63,9 @@ export default function ProjectsClient() {
       <div className={styles.pageHeader}>
         <div>
           <h1 className={styles.pageTitle}>{tPj('title')}</h1>
-          <p className={styles.pageDescription}>
-            {tPj('description')}
-          </p>
+          <p className={styles.pageDescription}>{tPj('description')}</p>
         </div>
-        <button 
-          className={`button primary ${styles.createButton}`}
-          onClick={handleCreateNew}
-        >
-          {tPj('actions.create')}
-        </button>
+        <AddButton label={tPj('actions.create')} onAdd={handleCreateNew} />
       </div>
 
       {loading ? (
@@ -79,10 +77,7 @@ export default function ProjectsClient() {
       ) : projects.length === 0 ? (
         <ProjectsEmptyState
           actionButton={
-            <button 
-              className="button primary"
-              onClick={handleCreateNew}
-            >
+            <button className="button primary" onClick={handleCreateNew}>
               {tPj('actions.create')}
             </button>
           }
