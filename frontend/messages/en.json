@@ -20,6 +20,15 @@
     "add": "Add",
     "edit": "Edit"
   },
+  "Common": {
+    "delete": "Delete",
+    "confirm_delete": "Are you sure you want to delete ",
+    "edit": "Edit",
+    "error": "An error occurred",
+    "loading": "Loading...",
+    "no_data": "No data available",
+    "viewDetails": "View Details"
+  },
   "FileUploader": {
     "select_files": "Select files",
     "attached_files": "Attached files"
@@ -255,7 +264,17 @@
     }
   },
   "Projects": {
-    "title": "Projects"
+    "title": "Projects",
+    "description": "Manage and track your projects, monitor progress, and collaborate with your team.",
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "onHold": "On Hold"
+    },
+    "actions": {
+      "create": "Create New Project"
+    }
   },
   "RegisterPage": {
     "pageError": "Sign Up Page error!"

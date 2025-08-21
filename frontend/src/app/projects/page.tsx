@@ -2,58 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { ProjectCard, ProjectCardSkeleton, ProjectsEmptyState } from '@/components/projects/project-card';
+import { useTranslations } from 'next-intl';
 import styles from './page.module.css';
 import { projectApi } from '@/api/endpoints/projects/projectApi';
 import { ProjectDTO } from '@/api/types';
 
-// Mock data - replace with your API call
-// const mockProjects: Project[] = [
-//   {
-//     id: '1',
-//     name: 'Logistics Management System',
-//     description: 'A comprehensive system for managing shipments, vendors, and logistics operations with real-time tracking capabilities.',
-//     status: 'inProgress',
-//     createdAt: '2024-01-15',
-//     updatedAt: '2024-08-15',
-//     owner: 'John Doe',
-//     clientName: 'AWA Corp',
-//     dueDate: '2024-12-31'
-//   },
-//   {
-//     id: '2',
-//     name: 'Inventory Management',
-//     description: 'Advanced inventory tracking with automated reorder points and supplier integration.',
-//     status: 'active',
-//     createdAt: '2024-02-01',
-//     updatedAt: '2024-08-10',
-//     owner: 'Jane Smith',
-//     clientName: 'TechCorp'
-//   },
-//   {
-//     id: '3',
-//     name: 'Customer Portal',
-//     description: 'Self-service portal for customers to track orders, submit requests, and manage their accounts.',
-//     status: 'completed',
-//     createdAt: '2023-11-20',
-//     updatedAt: '2024-03-15',
-//     owner: 'Mike Johnson',
-//     clientName: 'RetailPlus'
-//   },
-//   {
-//     id: '4',
-//     name: 'Mobile App Development',
-//     description: 'Native mobile applications for iOS and Android platforms with offline capabilities.',
-//     status: 'onHold',
-//     createdAt: '2024-03-10',
-//     updatedAt: '2024-07-20',
-//     owner: 'Sarah Wilson',
-//     dueDate: '2025-06-30'
-//   }
-// ];
-
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectDTO[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const tPj = useTranslations('Projects');
+  const tCmn = useTranslations('Common');
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -98,16 +57,16 @@ export default function Projects() {
     <div className={styles.projectsPage}>
       <div className={styles.pageHeader}>
         <div>
-          <h1 className={styles.pageTitle}>Projects</h1>
+          <h1 className={styles.pageTitle}>{tPj('title')}</h1>
           <p className={styles.pageDescription}>
-            Manage and track your projects, monitor progress, and collaborate with your team.
+            {tPj('description')}
           </p>
         </div>
         <button 
           className={`button primary ${styles.createButton}`}
           onClick={handleCreateNew}
         >
-          Create New Project
+          {tPj('actions.create')}
         </button>
       </div>
 
@@ -124,7 +83,7 @@ export default function Projects() {
               className="button primary"
               onClick={handleCreateNew}
             >
-              Create Your First Project
+              {tPj('actions.create')}
             </button>
           }
         />
@@ -134,6 +93,8 @@ export default function Projects() {
             <ProjectCard
               key={project.id}
               project={project}
+              tPj={tPj}
+              tCmn={tCmn}
               onView={handleView}
               onEdit={handleEdit}
               onDelete={handleDelete}

@@ -1,14 +1,21 @@
 'use client';
 
 import React from 'react';
-import { FiCalendar, FiUser, FiExternalLink, FiEdit, FiTrash2 } from 'react-icons/fi';
+import {
+  FiCalendar,
+  FiUser,
+  FiExternalLink,
+  FiEdit,
+  FiTrash2,
+} from 'react-icons/fi';
 
 import { ProjectDTO, ProjectStatus } from '@/api/types';
 import styles from './project-card.module.css';
 
-
 interface ProjectCardProps {
   project: ProjectDTO;
+  tPj: (key: string) => string;
+  tCmn: (key: string) => string;
   onEdit?: (project: ProjectDTO) => void;
   onDelete?: (projectId: string) => void;
   onView?: (projectId: string) => void;
@@ -16,12 +23,15 @@ interface ProjectCardProps {
   className?: string;
 }
 
-const getStatusText = (status: ProjectStatus): string => {
+const getStatusText = (
+  status: ProjectStatus,
+  tPj: (key: string) => string
+): string => {
   const statusMap = {
-    active: 'Active',
-    completed: 'Completed',
-    inProgress: 'In Progress',
-    onHold: 'On Hold'
+    active: tPj('status.active'),
+    completed: tPj('status.completed'),
+    inProgress: tPj('status.inProgress'),
+    onHold: tPj('status.onHold'),
   };
   return statusMap[status];
 };
@@ -30,17 +40,19 @@ const formatDate = (dateString: string): string => {
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 };
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
+  tPj,
+  tCmn,
   onEdit,
   onDelete,
   onView,
   showActions = true,
-  className
+  className,
 }) => {
   const handleView = () => {
     if (onView) {
@@ -59,7 +71,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (onDelete && confirm(`Are you sure you want to delete "${project.fullName}"?`)) {
+    if (onDelete && confirm(`${tCmn('confirm_delete')}${project.fullName}"?`)) {
       onDelete(project.id);
     }
   };
@@ -69,14 +81,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>{project.fullName}</h3>
         <span className={`${styles.cardStatus} ${styles[project.status]}`}>
-          {getStatusText(project.status)}
+          {getStatusText(project.status, tPj)}
         </span>
       </div>
 
       {project.notes && (
-        <p className={styles.cardDescription}>
-          {project.notes}
-        </p>
+        <p className={styles.cardDescription}>{project.notes}</p>
       )}
 
       <div className={styles.cardMeta}>
@@ -105,7 +115,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             onClick={handleView}
           >
             <FiExternalLink size={14} />
-            View Details
+            {tCmn('viewDetails')}
           </button>
           {onEdit && (
             <button
@@ -113,7 +123,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               onClick={handleEdit}
             >
               <FiEdit size={14} />
-              Edit
+              {tCmn('edit')}
             </button>
           )}
           {onDelete && (
@@ -122,7 +132,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               onClick={handleDelete}
             >
               <FiTrash2 size={14} />
-              Delete
+              {tCmn('delete')}
             </button>
           )}
         </div>
@@ -137,7 +147,9 @@ export const ProjectCardSkeleton: React.FC = () => {
     <div className={styles.cardSkeleton}>
       <div className={`${styles.skeletonLine} ${styles.skeletonTitle}`} />
       <div className={`${styles.skeletonLine} ${styles.skeletonText}`} />
-      <div className={`${styles.skeletonLine} ${styles.skeletonText} ${styles.short}`} />
+      <div
+        className={`${styles.skeletonLine} ${styles.skeletonText} ${styles.short}`}
+      />
       <div className={`${styles.skeletonLine} ${styles.skeletonText}`} />
     </div>
   );
@@ -151,9 +163,9 @@ interface EmptyStateProps {
 }
 
 export const ProjectsEmptyState: React.FC<EmptyStateProps> = ({
-  title = "No projects yet",
-  description = "Create your first project to get started with managing your work.",
-  actionButton
+  title = 'No projects yet',
+  description = 'Create your first project to get started with managing your work.',
+  actionButton,
 }) => {
   return (
     <div className={styles.emptyState}>
