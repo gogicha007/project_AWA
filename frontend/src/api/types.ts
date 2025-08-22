@@ -77,7 +77,7 @@ export type FreightDTO = z.infer<typeof freightSchema>;
 
 export type ProjectStatus = 'active' | 'completed' | 'inProgress' | 'onHold';
 export interface ProjectDTO {
-  id: string;
+  id: number;
   fullName: string;
   displayName: string;
   clientId?: number;

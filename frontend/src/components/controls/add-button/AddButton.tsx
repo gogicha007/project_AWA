@@ -3,11 +3,11 @@ import styles from './add-button.module.css';
 import { useTranslations } from 'next-intl';
 
 interface AddButtonProps {
-  label: string
+  label?: string;
   onAdd: () => void;
 }
 
-const AddButton: React.FC<AddButtonProps> = ({ label='', onAdd }) => {
+const AddButton: React.FC<AddButtonProps> = ({ label = '', onAdd }) => {
   const tA = useTranslations('TableActions');
   return (
     <>

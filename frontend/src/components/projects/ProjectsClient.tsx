@@ -8,55 +8,53 @@ import {
   ProjectsEmptyState,
 } from '@/components/projects/project-card';
 import { useTranslations } from 'next-intl';
-import { projectApi } from '@/api/endpoints/projects/projectApi';
-import { ProjectDTO } from '@/api/types';
 import AddButton from '@/components/controls/add-button/AddButton';
+import { useProjectApi } from '@/api/hooks/projects/projectApiHook';
+import { useProjectsLogic } from './useProjectsLogic';
+import Loader from '../feedback/loader/loader';
+import Snackbar from '../feedback/snackbar/snackbar';
+import ProjectForm from './projectsCRUD/ProjectForm';
 
 export default function ProjectsClient() {
-  const [projects, setProjects] = useState<ProjectDTO[]>([]);
-  const [loading, setLoading] = useState(true);
-
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
+  const { projects, loading, error, mutate } = useProjectApi();
+  const {
+    currentProject,
+    errorMessage,
+    handleAdd,
+    handleEdit,
+    handleDelete,
+    handleSave,
+    handleView,
+    isDialogOpen,
+    setIsDialogOpen,
+  } = useProjectsLogic(projects, mutate, tPj);
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarStatus, setSnackbarStatus] = useState<{
+    message: string;
+    success: boolean;
+  }>({ message: '', success: false });
 
   useEffect(() => {
-    const loadProjects = async () => {
-      setLoading(true);
-      try {
-        const data = await projectApi.getAll();
-        setProjects(data);
-        console.log('Projects loaded:', data);
-      } catch (error) {
-        console.error('Error loading projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (errorMessage) {
+      setSnackbarStatus({
+        message: error instanceof Error ? errorMessage : 'An error occurred',
+        success: false,
+      });
+      setSnackbarOpen(true);
+    }
+  }, [errorMessage, error]);
 
-    loadProjects();
-  }, []);
+  if (loading) return <Loader />;
 
-  const handleView = (projectId: string) => {
-    console.log('View project:', projectId);
-    // Navigate to project details page
-    // router.push(`/projects/${projectId}`);
-  };
-
-  const handleEdit = (project: ProjectDTO) => {
-    console.log('Edit project:', project);
-    // Open edit modal or navigate to edit page
-  };
-
-  const handleDelete = (projectId: string) => {
-    console.log('Delete project:', projectId);
-    // Remove project from state and call API
-    setProjects((prev) => prev.filter((p) => p.id !== projectId));
-  };
-
-  const handleCreateNew = () => {
-    console.log('Create new project');
-    // Navigate to create project page or open modal
-  };
+  if (error)
+    return (
+      <div>
+        `${tPj('errors.loading')} : {String(error)}`
+      </div>
+    );
 
   return (
     <div className={styles.projectsPage}>
@@ -65,7 +63,7 @@ export default function ProjectsClient() {
           <h1 className={styles.pageTitle}>{tPj('title')}</h1>
           <p className={styles.pageDescription}>{tPj('description')}</p>
         </div>
-        <AddButton label={tPj('actions.create')} onAdd={handleCreateNew} />
+        <AddButton label={tPj('actions.create')} onAdd={handleAdd} />
       </div>
 
       {loading ? (
@@ -77,7 +75,7 @@ export default function ProjectsClient() {
       ) : projects.length === 0 ? (
         <ProjectsEmptyState
           actionButton={
-            <button className="button primary" onClick={handleCreateNew}>
+            <button className="button primary" onClick={handleAdd}>
               {tPj('actions.create')}
             </button>
           }
@@ -97,6 +95,20 @@ export default function ProjectsClient() {
           ))}
         </div>
       )}
+      <Snackbar
+        status={snackbarStatus}
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+      />
+      <ProjectForm
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        onSave={handleSave}
+        initialData={currentProject}
+        title={
+          currentProject ? tPj('form.edit_title') : tPj('form.create_title')
+        }
+      />
     </div>
   );
 }

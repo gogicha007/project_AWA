@@ -30,16 +30,16 @@ export const projectApi = {
     }
   },
 
-  update: async (id: string, project: ProjectDTO): Promise<ProjectDTO | null> => {
+  update: async (project: ProjectDTO, userId: number): Promise<ProjectDTO | null> => {
     try {
-      const response = await apiClient.put(`/projects/${id}`, project);
+      const response = await apiClient.patch(`/projects/${project.id}`, { ...project, userId });
       return response.data;
     } catch (error) {
       handleApiError(error);
     }
   },
 
-  delete: async (id: string): Promise<void> => {
+  delete: async (id: number): Promise<void> => {
     try {
       await apiClient.delete(`/projects/${id}`);
     } catch (error) {

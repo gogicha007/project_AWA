@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './page.module.css';
+import styles from './project-form.module.css';
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';

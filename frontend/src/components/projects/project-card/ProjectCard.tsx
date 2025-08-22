@@ -16,9 +16,9 @@ interface ProjectCardProps {
   project: ProjectDTO;
   tPj: (key: string) => string;
   tCmn: (key: string) => string;
-  onEdit?: (project: ProjectDTO) => void;
-  onDelete?: (projectId: string) => void;
-  onView?: (projectId: string) => void;
+  onEdit?: (projectId: number) => void;
+  onDelete?: (projectId: number) => void;
+  onView?: (projectId: number) => void;
   showActions?: boolean;
   className?: string;
 }
@@ -65,7 +65,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (onEdit) {
-      onEdit(project);
+      onEdit(project.id);
     }
   };
 
@@ -138,7 +138,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
-// Loading skeleton component
 export const ProjectCardSkeleton: React.FC = () => {
   return (
     <div className={styles.cardSkeleton}>
@@ -152,7 +151,6 @@ export const ProjectCardSkeleton: React.FC = () => {
   );
 };
 
-// Empty state component
 interface EmptyStateProps {
   title?: string;
   description?: string;

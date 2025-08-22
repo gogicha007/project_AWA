@@ -152,17 +152,17 @@ export function useVendorsLogic(
     [handleEdit, handleView, handleDelete, tVar]
   );
   return {
-    data,
     columns,
+    currentVendor,
+    data,
+    errorMessage,
     handleAdd,
     handleEdit,
     handleSave,
     handleDelete,
     isDialogOpen,
-    setIsDialogOpen,
-    currentVendor,
     setCurrentVendor,
-    errorMessage,
+    setIsDialogOpen,
     setErrorMessage,
   };
 }
