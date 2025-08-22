@@ -27,7 +27,8 @@
     "error": "An error occurred",
     "loading": "Loading...",
     "no_data": "No data available",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "save": "Save"
   },
   "FileUploader": {
     "select_files": "Select files",
@@ -271,7 +272,9 @@
       "description_label": "Description",
       "status_label": "Status",
       "start_date_label": "Start Date",
-      "end_date_label": "End Date"
+      "end_date_label": "End Date",
+      "create_title": "Add Project",
+      "edit_title": "Edit Project details"
     },
     "status": {
       "active": "Active",
