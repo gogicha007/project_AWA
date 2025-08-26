@@ -19,6 +19,7 @@ export default function ProjectsClient() {
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
   const { projects, loading, error, mutate } = useProjectApi();
+  const [navigating, setNavigating] = useState(false);
   const {
     currentProject,
     errorMessage,
@@ -29,7 +30,7 @@ export default function ProjectsClient() {
     handleView,
     isDialogOpen,
     setIsDialogOpen,
-  } = useProjectsLogic(projects, mutate, tPj);
+  } = useProjectsLogic(projects, mutate, tPj, setNavigating);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarStatus, setSnackbarStatus] = useState<{
@@ -47,7 +48,7 @@ export default function ProjectsClient() {
     }
   }, [errorMessage, error]);
 
-  if (loading) return <Loader />;
+  if (loading || navigating) return <Loader />;
 
   if (error)
     return (
@@ -61,7 +62,7 @@ export default function ProjectsClient() {
       <div className={styles.pageHeader}>
         <div>
           <h1 className={styles.pageTitle}>{tPj('title')}</h1>
-          <p className={styles.pageDescription}>{tPj('description')}</p>
+          {/* <p className={styles.pageDescription}>{tPj('description')}</p> */}
         </div>
         <AddButton label={tPj('actions.create')} onAdd={handleAdd} />
       </div>

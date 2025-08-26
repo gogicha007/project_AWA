@@ -4,11 +4,13 @@ import { ProjectDTO } from '@/api/types';
 import { useAuth } from '@/context/auth';
 import { useCallback, useMemo, useState } from 'react';
 import { projectApi } from '@/api/endpoints/projects/projectApi';
+import { useRouter } from 'next/navigation';
 
 export function useProjectsLogic(
   projects: ProjectDTO[],
   mutate: () => Promise<void | ProjectDTO[]>,
-  tVar: (key: string) => string
+  tVar: (key: string) => string,
+  setNavigating: (loading: boolean) => void
 ) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState<ProjectDTO | undefined>(
@@ -18,7 +20,7 @@ export function useProjectsLogic(
     undefined
   );
   const { dbUserId } = useAuth();
-
+  const router = useRouter();
   const data: ProjectDTO[] = useMemo(() => projects, [projects]);
 
   const handleAdd = useCallback(() => {
@@ -46,11 +48,14 @@ export function useProjectsLogic(
     [mutate, tVar]
   );
 
-  const handleEdit = useCallback((id: number) => {
-    const project = projects.find((p) => p.id === id);
-    setCurrentProject(project);
-    setIsDialogOpen(true);
-  }, [projects]);
+  const handleEdit = useCallback(
+    (id: number) => {
+      const project = projects.find((p) => p.id === id);
+      setCurrentProject(project);
+      setIsDialogOpen(true);
+    },
+    [projects]
+  );
 
   const handleSave = useCallback(
     async (project: ProjectDTO) => {
@@ -83,9 +88,13 @@ export function useProjectsLogic(
     [mutate, tVar, dbUserId]
   );
 
-  const handleView = useCallback((id: number) => {
-    console.log('View project:', id);
-  }, []);
+  const handleView = useCallback(
+    (id: number) => {
+      setNavigating(true);
+      router.push(`/projects/${id}`);
+    },
+    [router, setNavigating]
+  );
 
   return {
     currentProject,

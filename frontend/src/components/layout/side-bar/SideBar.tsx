@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import ProjectSidebarMenu from '../../projects/ProjectSidebarMenu';
+import { usePathname } from 'next/navigation';
 
 interface IMenuItem {
   label: string;
@@ -11,6 +13,10 @@ interface IMenuItem {
 }
 const SideBar = ({ collapsed }: { collapsed: boolean }) => {
   const tS = useTranslations('SideBar');
+  const pathname = usePathname();
+  const projectDetailsMatch = pathname.match(/^\/projects\/([^/]+)$/);
+  const projectId = projectDetailsMatch ? projectDetailsMatch[1] : null;
+
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
     {}
   );
@@ -37,7 +43,7 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
       submenu: [
         {
           label: tS('masterData'),
-          href: '/settings//master-data',
+          href: '/settings/master-data',
         },
         {
           label: tS('vendors'),
@@ -117,8 +123,13 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
             );
           })}
         </ul>
+        {projectId && <ProjectSidebarMenu projectId={projectId} />}
         <div className={styles.sidebarFooter}>
-          <Link href="https://github.com/gogicha007" target="_blank" rel="noopener noreferrer">
+          <Link
+            href="https://github.com/gogicha007"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               src="/visit_logo.svg"
               alt="logo"
