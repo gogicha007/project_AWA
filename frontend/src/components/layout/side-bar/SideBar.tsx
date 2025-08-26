@@ -14,7 +14,7 @@ interface IMenuItem {
 const SideBar = ({ collapsed }: { collapsed: boolean }) => {
   const tS = useTranslations('SideBar');
   const pathname = usePathname();
-  const projectDetailsMatch = pathname.match(/^\/projects\/([^/]+)$/);
+  const projectDetailsMatch = pathname.match(/^\/projects\/([^/]+)(?:\/|$)/);
   const projectId = projectDetailsMatch ? projectDetailsMatch[1] : null;
 
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
