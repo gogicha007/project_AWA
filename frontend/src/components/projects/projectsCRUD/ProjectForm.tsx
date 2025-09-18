@@ -38,32 +38,39 @@ export default function ProjectForm({ isOpen, onClose, title }: Props) {
         </button>
       </div>
       <form className={styles.form}>
-        <div>
-          <label>{tPj('form.title_label')}</label>
-          <input type="text" name="title" />
+        <div className={styles.outlinedField}>
+          <input type="text" name="full_name" id="full_name" required placeholder=" " />
+          <label htmlFor="full_name">{tPj('form.title_label')}</label>
         </div>
-        <div>
-          <label>{tPj('form.description_label')}</label>
-          <textarea name="description"></textarea>
+        <div className={styles.outlinedField}>
+          <input type="text" name="display_name" id="display_name" required placeholder=" " />
+          <label htmlFor="display_name">{tPj('form.display_name_label')}</label>
         </div>
-        <div>
-          <label>{tPj('form.status_label')}</label>
-          <select name="status">
+        <div className={styles.outlinedField}>
+          <textarea name="description" id="description" required placeholder=" "></textarea>
+          <label htmlFor="description">{tPj('form.description_label')}</label>
+        </div>
+        <div className={styles.outlinedField}>
+          <select name="status" id="status" required defaultValue="active">
+            <option value="" disabled hidden></option>
             <option value="active">{tPj('status.active')}</option>
             <option value="completed">{tPj('status.completed')}</option>
             <option value="inProgress">{tPj('status.inProgress')}</option>
             <option value="onHold">{tPj('status.onHold')}</option>
           </select>
+          <label htmlFor="status">{tPj('form.status_label')}</label>
         </div>
-        <div>
-          <label>{tPj('form.start_date_label')}</label>
-          <input type="date" name="start_date" />
+        <div className={styles.rowFields}>
+          <div className={styles.outlinedField}>
+            <input type="date" name="start_date" id="start_date" required placeholder=" " />
+            <label htmlFor="start_date">{tPj('form.start_date_label')}</label>
+          </div>
+          <div className={styles.outlinedField}>
+            <input type="date" name="end_date" id="end_date" required placeholder=" " />
+            <label htmlFor="end_date">{tPj('form.end_date_label')}</label>
+          </div>
         </div>
-        <div>
-          <label>{tPj('form.end_date_label')}</label>
-          <input type="date" name="end_date" />
-        </div>
-        <button type="submit">{tCmn('save')}</button>
+        <button type="submit" className={styles.saveButton}>{tCmn('save')}</button>
       </form>
     </dialog>
   );

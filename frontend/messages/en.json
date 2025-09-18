@@ -269,6 +269,7 @@
     "description": "Manage and track your projects, monitor progress, and collaborate with your team.",
     "form": {
       "title_label": "Title",
+      "display_name_label": "Display Name",
       "description_label": "Description",
       "status_label": "Status",
       "start_date_label": "Start Date",

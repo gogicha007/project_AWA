@@ -1,3 +1,12 @@
+.rowFields {
+  display: flex;
+  gap: 16px;
+}
+
+.rowFields .outlinedField {
+  flex: 1 1 0;
+  margin: 0;
+}
 .dialog {
     border-radius: 8px;
     border: none;
@@ -56,4 +65,79 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* Outlined field with floating label */
+.outlinedField {
+  position: relative;
+  margin: 16px 0;
+}
+
+.outlinedField input,
+.outlinedField textarea,
+.outlinedField select {
+  width: 100%;
+  padding: 16px 12px 8px 12px;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+  background: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.outlinedField input:focus,
+.outlinedField textarea:focus,
+.outlinedField select:focus {
+  border-color: #1976d2;
+}
+
+.outlinedField label {
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  background: white;
+  color: #757575;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: 0.2s;
+  padding: 0 4px;
+}
+
+.outlinedField input:focus + label,
+.outlinedField input:not(:placeholder-shown):not(:focus) + label,
+.outlinedField input:valid + label,
+.outlinedField textarea:focus + label,
+.outlinedField textarea:not(:placeholder-shown):not(:focus) + label,
+.outlinedField textarea:valid + label,
+.outlinedField select:focus + label,
+.outlinedField select:valid + label {
+  top: -10px;
+  left: 8px;
+  font-size: 0.85rem;
+  color: #1976d2;
+}
+
+.outlinedField select:invalid + label {
+  color: #757575;
+}
+
+.saveButton {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background-color: var(--secondary-500);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.saveButton:hover {
+  background-color: var(--secondary-600);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
