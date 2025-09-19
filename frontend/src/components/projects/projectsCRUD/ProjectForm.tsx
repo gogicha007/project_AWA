@@ -57,7 +57,7 @@ export default function ProjectForm({
     } else {
       dialog.close();
     }
-  }, [isOpen]);
+  }, [isOpen, setFocus]);
 
   return (
     <dialog ref={projectFormDialogRef} className={styles.dialog}>
