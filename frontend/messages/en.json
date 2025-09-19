@@ -273,7 +273,8 @@
       "description_label": "Description",
       "status_label": "Status",
       "start_date_label": "Start Date",
-      "end_date_label": "End Date",
+      "currency_label": "Currency",
+      "currency_placeholder": "Select currency...",
       "create_title": "Add Project",
       "edit_title": "Edit Project details"
     },

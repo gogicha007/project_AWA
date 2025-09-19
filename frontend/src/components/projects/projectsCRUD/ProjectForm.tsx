@@ -4,6 +4,8 @@ import styles from './project-form.module.css';
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
+import { ensureDate } from '@/utils/helper';
+import { useForm } from 'react-hook-form';
 
 type Props = {
   isOpen: boolean;
@@ -13,10 +15,35 @@ type Props = {
   title: string;
 };
 
-export default function ProjectForm({ isOpen, onClose, title }: Props) {
+export default function ProjectForm({
+  isOpen,
+  onClose,
+  title,
+  initialData,
+}: Props) {
   const projectFormDialogRef = useRef<HTMLDialogElement>(null);
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
+  console.log('Initial Data:', initialData);
+  const { register, reset, setFocus } = useForm<ProjectDTO>({
+    defaultValues: {
+      fullName: initialData?.fullName || '',
+      displayName: initialData?.displayName || '',
+      notes: initialData?.notes || '',
+      status: initialData?.status || 'active',
+      startDate: ensureDate(initialData?.startDate) || new Date(),
+    },
+  });
+
+  useEffect(() => {
+    reset({
+      fullName: initialData?.fullName || '',
+      displayName: initialData?.displayName || '',
+      notes: initialData?.notes || '',
+      status: initialData?.status || 'active',
+      startDate: initialData?.startDate || new Date(),
+    });
+  }, [initialData, isOpen, reset]);
 
   useEffect(() => {
     const dialog = projectFormDialogRef.current;
@@ -24,6 +51,9 @@ export default function ProjectForm({ isOpen, onClose, title }: Props) {
 
     if (isOpen) {
       dialog.showModal();
+      setTimeout(() => {
+        setFocus('fullName');
+      });
     } else {
       dialog.close();
     }
@@ -39,38 +69,64 @@ export default function ProjectForm({ isOpen, onClose, title }: Props) {
       </div>
       <form className={styles.form}>
         <div className={styles.outlinedField}>
-          <input type="text" name="full_name" id="full_name" required placeholder=" " />
-          <label htmlFor="full_name">{tPj('form.title_label')}</label>
+          <input
+            {...register('fullName')}
+            type="text"
+            name="fullName"
+            id="fullName"
+            required
+            placeholder=" "
+          />
+          <label htmlFor="fullName">{tPj('form.title_label')}</label>
         </div>
         <div className={styles.outlinedField}>
-          <input type="text" name="display_name" id="display_name" required placeholder=" " />
-          <label htmlFor="display_name">{tPj('form.display_name_label')}</label>
+          <input
+            {...register('displayName')}
+            type="text"
+            name="displayName"
+            id="displayName"
+            required
+            placeholder=" "
+          />
+          <label htmlFor="displayName">{tPj('form.display_name_label')}</label>
         </div>
         <div className={styles.outlinedField}>
-          <textarea name="description" id="description" required placeholder=" "></textarea>
-          <label htmlFor="description">{tPj('form.description_label')}</label>
+          <textarea
+            {...register('notes')}
+            name="notes"
+            id="notes"
+            required
+            placeholder=" "
+          ></textarea>
+          <label htmlFor="notes">{tPj('form.description_label')}</label>
         </div>
-        <div className={styles.outlinedField}>
-          <select name="status" id="status" required defaultValue="active">
-            <option value="" disabled hidden></option>
-            <option value="active">{tPj('status.active')}</option>
-            <option value="completed">{tPj('status.completed')}</option>
-            <option value="inProgress">{tPj('status.inProgress')}</option>
-            <option value="onHold">{tPj('status.onHold')}</option>
-          </select>
-          <label htmlFor="status">{tPj('form.status_label')}</label>
-        </div>
+
         <div className={styles.rowFields}>
           <div className={styles.outlinedField}>
-            <input type="date" name="start_date" id="start_date" required placeholder=" " />
-            <label htmlFor="start_date">{tPj('form.start_date_label')}</label>
+            <input
+              {...register('startDate')}
+              type="date"
+              name="startDate"
+              id="startDate"
+              required
+              placeholder=" "
+            />
+            <label htmlFor="startDate">{tPj('form.start_date_label')}</label>
           </div>
           <div className={styles.outlinedField}>
-            <input type="date" name="end_date" id="end_date" required placeholder=" " />
-            <label htmlFor="end_date">{tPj('form.end_date_label')}</label>
+            <select name="status" id="status" required defaultValue="active">
+              <option value="" disabled hidden></option>
+              <option value="active">{tPj('status.active')}</option>
+              <option value="completed">{tPj('status.completed')}</option>
+              <option value="inProgress">{tPj('status.inProgress')}</option>
+              <option value="onHold">{tPj('status.onHold')}</option>
+            </select>
+            <label htmlFor="status">{tPj('form.status_label')}</label>
           </div>
         </div>
-        <button type="submit" className={styles.saveButton}>{tCmn('save')}</button>
+        <button type="submit" className={styles.saveButton}>
+          {tCmn('save')}
+        </button>
       </form>
     </dialog>
   );
