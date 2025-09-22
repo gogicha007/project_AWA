@@ -5,10 +5,12 @@ import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
 import { ensureDate } from '@/utils/helper';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import projectSchema  from './projectSchema';
+import projectSchema from './projectSchema';
+// import DateInput from '@/components/controls/date-input/date-input';
 import { z } from 'zod';
+import DateInputOutlined from '@/components/controls/date-input/date-input-outlined';
 
 type Props = {
   isOpen: boolean;
@@ -20,7 +22,7 @@ type Props = {
 
 export default function ProjectForm({
   isOpen,
-  onSave,
+  // onSave,
   onClose,
   title,
   initialData,
@@ -28,7 +30,9 @@ export default function ProjectForm({
   const projectFormDialogRef = useRef<HTMLDialogElement>(null);
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
-  const { control, handleSubmit, register, reset, setFocus } = useForm<z.infer<typeof projectSchema>>({
+  const { control, handleSubmit, register, reset, setFocus } = useForm<
+    z.infer<typeof projectSchema>
+  >({
     resolver: zodResolver(projectSchema),
     defaultValues: {
       fullName: initialData?.fullName || '',
@@ -63,6 +67,11 @@ export default function ProjectForm({
     }
   }, [isOpen, setFocus]);
 
+  const saveData = (data: z.infer<typeof projectSchema>) => {
+    console.log('Saving data...', data);
+    // onSave(data as ProjectDTO); // Uncomment to enable saving
+  };
+
   return (
     <dialog ref={projectFormDialogRef} className={styles.dialog}>
       <div className={styles.dialogHeader}>
@@ -71,7 +80,7 @@ export default function ProjectForm({
           ×
         </button>
       </div>
-      <form onSubmit={handleSubmit(onSave)} className={styles.form}>
+      <form onSubmit={handleSubmit(saveData)} className={styles.form}>
         <div className={styles.outlinedField}>
           <input
             {...register('fullName')}
@@ -105,7 +114,7 @@ export default function ProjectForm({
         </div>
 
         <div className={styles.rowFields}>
-          <div className={styles.outlinedField}>
+          {/* <div className={styles.outlinedField}>
             <Controller
               name="startDate"
               control={control}
@@ -125,10 +134,23 @@ export default function ProjectForm({
               )}
             />
             <label htmlFor="startDate">{tPj('form.start_date_label')}</label>
-          </div>
-
+          </div> */}
+          <DateInputOutlined
+            label={tPj('form.start_date_label')}
+            value={
+              initialData?.startDate ? new Date(initialData.startDate) : null
+            }
+            name="startDate"
+            control={control}
+            className={styles.outlinedField}
+          />
           <div className={styles.outlinedField}>
-            <select name="status" id="status" required defaultValue="active">
+            <select
+              {...register('status')}
+              id="status"
+              required
+              defaultValue="active"
+            >
               <option value="" disabled hidden></option>
               <option value="active">{tPj('status.active')}</option>
               <option value="completed">{tPj('status.completed')}</option>

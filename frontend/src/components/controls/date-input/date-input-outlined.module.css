@@ -1,0 +1,48 @@
+.outlined-date-field {
+  position: relative;
+  margin: 1.5rem 0 1rem 0;
+}
+.outlined-date-input {
+  width: 100%;
+  padding: 1.2rem 0.75rem 0.5rem 0.75rem;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  outline: none;
+}
+.outlined-date-label {
+  position: absolute;
+  left: 0.75rem;
+  top: 1.2rem;
+  color: #888;
+  background: white;
+  transition: 0.2s;
+  pointer-events: none;
+}
+.outlined-date-field.focused .outlined-date-label,
+.outlined-date-field .outlined-date-input:not(:placeholder-shown) + .outlined-date-label {
+  top: -0.6rem;
+  left: 0.5rem;
+  font-size: 0.85rem;
+  color: #1976d2;
+  background: white;
+  padding: 0 0.25rem;
+}
+.outlined-date-fieldset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border: 2px solid #1976d2;
+  border-radius: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+.outlined-date-fieldset legend {
+  width: auto;
+  padding: 0 0.5rem;
+  font-size: 0.85rem;
+  color: #1976d2;
+}

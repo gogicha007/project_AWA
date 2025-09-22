@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './date-input.module.css';
+import React, { useState } from 'react';
+import styles from './date-input-outlined.module.css';
 
 import {
   Control,
@@ -8,17 +8,18 @@ import {
   Path,
   RegisterOptions,
 } from 'react-hook-form';
-import { useLocale } from 'next-intl';
-import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
 import DatePicker, { DatePickerProps } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+import { enUS as enUSLocale, ka as kaLocale } from 'date-fns/locale';
+import { useLocale } from 'next-intl';
 
 const localeMap = {
   en: enUSLocale,
   ka: kaLocale,
 };
 
-interface DateInputProps<T extends FieldValues> {
+interface DateInputOutlinedProps<T extends FieldValues> {
   label: string;
   name: Path<T>;
   control: Control<T>;
@@ -27,22 +28,34 @@ interface DateInputProps<T extends FieldValues> {
   maxDate?: Date;
   locale?: DatePickerProps['locale'];
   rules?: RegisterOptions<T, Path<T>>;
-  className?: string
+  className?: string;
+
+  value: Date | null;
+  required?: boolean;
+  id?: string;
+  disabled?: boolean;
 }
 
-function DateInput<T extends FieldValues>({
+function DateInputOutlined<T extends FieldValues>({
   label,
   name,
   control,
   placeholder,
   rules,
-  className
-}: DateInputProps<T>) {
+  // className,
+  value,
+  // onChange,
+  // required = false,
+  // id,
+  // disabled = false,
+}: DateInputOutlinedProps<T>) {
+  const [focused, setFocused] = useState(false);
   const localeCode = useLocale();
-  
+
   return (
-    <>
-      <label htmlFor={name}>{label}</label>
+    <div
+      className={`${styles['outlined-date-field']}${focused || value ? ' focused' : ''}`}
+    >
       <Controller
         control={control}
         name={name}
@@ -63,16 +76,26 @@ function DateInput<T extends FieldValues>({
                 d.setHours(12, 0, 0, 0);
                 field.onChange(d);
               }}
-              className={className ?? styles.input}
+              className={styles['outlined-input']}
               dateFormat="yyyy-MM-dd"
               autoComplete="off"
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
             />
-            {rules && <p className={styles.errorText}>{fieldState.error?.message}</p>}
+             {rules && <p className={styles.errorText}>{fieldState.error?.message}</p>}
           </>
         )}
       />
-    </>
+      <label className={styles['outlined-date-label']} htmlFor={name}>
+        {label}
+      </label>
+      <fieldset className={styles['outlined-date-fieldset']}>
+        <legend>
+          <span>{label}</span>
+        </legend>
+      </fieldset>
+    </div>
   );
 }
 
-export default DateInput;
+export default DateInputOutlined;

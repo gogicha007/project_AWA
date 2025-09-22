@@ -9,7 +9,7 @@ const projectSchema = z.object({
     managerId: z.string().uuid().nullable(),
     status: z.enum(PROJECT_STATUSES),
     notes: z.string().max(500).nullable(),
-    startDate: z.date(),
+    startDate: z.date().nullable(),
     // currencyId: z.string().uuid(),
     // createdAt: z.date(),
     // updatedAt: z.date(),
