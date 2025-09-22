@@ -6,6 +6,9 @@ import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
 import { ensureDate } from '@/utils/helper';
 import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import projectSchema  from './projectSchema';
+import { z } from 'zod';
 
 type Props = {
   isOpen: boolean;
@@ -25,7 +28,8 @@ export default function ProjectForm({
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
   console.log('Initial Data:', initialData);
-  const { control, register, reset, setFocus } = useForm<ProjectDTO>({
+  const { control, register, reset, setFocus } = useForm<z.infer<typeof projectSchema>>({
+    resolver: zodResolver(projectSchema),
     defaultValues: {
       fullName: initialData?.fullName || '',
       displayName: initialData?.displayName || '',
@@ -67,7 +71,7 @@ export default function ProjectForm({
           ×
         </button>
       </div>
-  <form className={styles.form}>
+      <form className={styles.form}>
         <div className={styles.outlinedField}>
           <input
             {...register('fullName')}
@@ -116,7 +120,7 @@ export default function ProjectForm({
                       ? new Date(field.value).toISOString().substring(0, 10)
                       : ''
                   }
-                  onChange={e => field.onChange(e.target.value)}
+                  onChange={(e) => field.onChange(e.target.value)}
                 />
               )}
             />

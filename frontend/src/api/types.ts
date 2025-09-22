@@ -5,6 +5,7 @@ import {
   serverFileDataSchema,
   generalInfoSchema
 } from '@/components/logistics/shipmentsCRUD/shipmentSchema';
+import projectFormSchema from '@/components/projects/projectsCRUD/projectSchema';
 import { z } from 'zod';
 
 export interface UserCreateDTO {
@@ -76,16 +77,5 @@ export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 export type FreightDTO = z.infer<typeof freightSchema>;
 
 export type ProjectStatus = 'active' | 'completed' | 'inProgress' | 'onHold';
-export interface ProjectDTO {
-  id: number;
-  fullName: string;
-  displayName: string;
-  clientId?: number;
-  managerId?: number;
-  notes?: string;
-  status: ProjectStatus;
-  startDate: Date;
-  currencyId?: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
+
+export type ProjectDTO = z.infer<typeof projectFormSchema>;

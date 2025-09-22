@@ -9,7 +9,7 @@ import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
 import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
-import { FileData } from '@/components/controls/file-input/FileInput';
+import { ShipmentFileDTO as FileData } from '@/api/types';
 import { shipmentFormBaseSchema } from '../shipmentSchema';
 import { createDefaultValues } from './utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';

@@ -57,7 +57,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   const handleView = () => {
     if (onView) {
-      onView(project.id);
+      onView(project.id as number);
     }
   };
 
@@ -65,7 +65,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (onEdit) {
-      onEdit(project.id);
+      onEdit(project.id as number);
     }
   };
 
@@ -73,7 +73,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (onDelete && confirm(`${tCmn('confirm_delete')}${project.fullName}"?`)) {
-      onDelete(project.id);
+      onDelete(project.id as number);
     }
   };
 
