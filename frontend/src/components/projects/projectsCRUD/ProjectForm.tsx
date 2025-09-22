@@ -5,7 +5,8 @@ import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
 import { ensureDate } from '@/utils/helper';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import DateInput from '@/components/controls/date-input/date-input';
 
 type Props = {
   isOpen: boolean;
@@ -25,7 +26,7 @@ export default function ProjectForm({
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
   console.log('Initial Data:', initialData);
-  const { register, reset, setFocus } = useForm<ProjectDTO>({
+  const { control, register, reset, setFocus } = useForm<ProjectDTO>({
     defaultValues: {
       fullName: initialData?.fullName || '',
       displayName: initialData?.displayName || '',
@@ -67,7 +68,7 @@ export default function ProjectForm({
           ×
         </button>
       </div>
-      <form className={styles.form}>
+  <form className={styles.form}>
         <div className={styles.outlinedField}>
           <input
             {...register('fullName')}
@@ -103,16 +104,27 @@ export default function ProjectForm({
 
         <div className={styles.rowFields}>
           <div className={styles.outlinedField}>
-            <input
-              {...register('startDate')}
-              type="date"
+            <Controller
               name="startDate"
-              id="startDate"
-              required
-              placeholder=" "
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="date"
+                  id="startDate"
+                  required
+                  value={
+                    field.value
+                      ? new Date(field.value).toISOString().substring(0, 10)
+                      : ''
+                  }
+                  onChange={e => field.onChange(e.target.value)}
+                />
+              )}
             />
             <label htmlFor="startDate">{tPj('form.start_date_label')}</label>
           </div>
+
           <div className={styles.outlinedField}>
             <select name="status" id="status" required defaultValue="active">
               <option value="" disabled hidden></option>
