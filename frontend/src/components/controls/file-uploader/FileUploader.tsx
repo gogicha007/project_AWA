@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import styles from './file-uploader.module.css';
 import convertToBase64 from '@/utils/file-utils';
+import { ShipmentFileDTO as FileData } from '@/api/types';
 
-export type FileData = {
-  fileName: string;
-  fileType: string;
-  fileData: string;
-};
 
 interface FileUploaderProps {
   tS: (key: string) => string;

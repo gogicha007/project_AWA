@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { transformShipmentToFormData } from '../utils/shipmentFormUtils';
 import { ShipmentFormSchema } from '../../shipmentSchema';
-import { FileData } from '@/components/controls/file-input/FileInput';
+import { ShipmentFileDTO as FileData } from '@/api/types';
 
 export const useShipmentData = (
   id: number | undefined,
@@ -32,7 +32,7 @@ export const useShipmentData = (
 
     const fetchShipment = async () => {
       try {
-        const shipment = await shipmentApi.getById(id);
+        const shipment = await shipmentApi.getById(id) as ShipmentFormSchema;
         const shipmentFormData = transformShipmentToFormData(shipment);
         reset(shipmentFormData);
         setFileDataArray(shipment.Files || []);

@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
 import { ensureDate } from '@/utils/helper';
 import { useForm, Controller } from 'react-hook-form';
-import DateInput from '@/components/controls/date-input/date-input';
 
 type Props = {
   isOpen: boolean;
@@ -96,7 +95,6 @@ export default function ProjectForm({
             {...register('notes')}
             name="notes"
             id="notes"
-            required
             placeholder=" "
           ></textarea>
           <label htmlFor="notes">{tPj('form.description_label')}</label>
