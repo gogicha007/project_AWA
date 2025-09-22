@@ -76,6 +76,7 @@ export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 
 export type FreightDTO = z.infer<typeof freightSchema>;
 
-export type ProjectStatus = 'active' | 'completed' | 'inProgress' | 'onHold';
+// import { ProjectStatus } from '@/constants/projectStatus';
 
+// export type ProjectStatus = ProjectStatus;
 export type ProjectDTO = z.infer<typeof projectFormSchema>;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { PROJECT_STATUSES } from '@/constants/projectStatus';
 
 const projectSchema = z.object({
     id: z.number().optional(),
@@ -6,7 +7,7 @@ const projectSchema = z.object({
     displayName: z.string().min(2).max(100),
     clientId: z.string().uuid().nullable(),
     managerId: z.string().uuid().nullable(),
-    status: z.enum(['active', 'completed', 'onHold', 'inProgress']),
+    status: z.enum(PROJECT_STATUSES),
     notes: z.string().max(500).nullable(),
     startDate: z.date(),
     // currencyId: z.string().uuid(),

@@ -9,7 +9,9 @@ import {
   FiTrash2,
 } from 'react-icons/fi';
 
-import { ProjectDTO, ProjectStatus } from '@/api/types';
+import { ProjectDTO } from '@/api/types';
+import { PROJECT_STATUSES } from '@/constants/projectStatus';
+
 import styles from './project-card.module.css';
 
 interface ProjectCardProps {
@@ -24,7 +26,7 @@ interface ProjectCardProps {
 }
 
 const getStatusText = (
-  status: ProjectStatus,
+  status: typeof PROJECT_STATUSES[number],
   tPj: (key: string) => string
 ): string => {
   const statusMap = {
