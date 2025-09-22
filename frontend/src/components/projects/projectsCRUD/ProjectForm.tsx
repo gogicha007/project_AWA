@@ -20,6 +20,7 @@ type Props = {
 
 export default function ProjectForm({
   isOpen,
+  onSave,
   onClose,
   title,
   initialData,
@@ -27,8 +28,7 @@ export default function ProjectForm({
   const projectFormDialogRef = useRef<HTMLDialogElement>(null);
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
-  console.log('Initial Data:', initialData);
-  const { control, register, reset, setFocus } = useForm<z.infer<typeof projectSchema>>({
+  const { control, handleSubmit, register, reset, setFocus } = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
       fullName: initialData?.fullName || '',
@@ -71,7 +71,7 @@ export default function ProjectForm({
           ×
         </button>
       </div>
-      <form className={styles.form}>
+      <form onSubmit={handleSubmit(onSave)} className={styles.form}>
         <div className={styles.outlinedField}>
           <input
             {...register('fullName')}

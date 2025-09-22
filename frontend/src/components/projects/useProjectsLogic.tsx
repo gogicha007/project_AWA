@@ -59,6 +59,7 @@ export function useProjectsLogic(
 
   const handleSave = useCallback(
     async (project: ProjectDTO) => {
+      console.log('Project saved', project);
       try {
         if (project.id) {
           if (dbUserId === null) {
