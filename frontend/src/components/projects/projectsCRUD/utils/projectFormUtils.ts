@@ -1,13 +1,15 @@
 import { ProjectFormSchema } from "../projectSchema";
+import { ProjectDTO } from "@/api/types";
+import { ensureDate } from "@/utils/helper";
 
-export const defaultProjectFormValues = (): ProjectFormSchema => ({
-    fullName: '',
-    displayName: '',
-    clientId: null,
-    managerId: null,
-    status: '' as ProjectFormSchema['status'],
-    notes: null,
-    startDate: new Date(),
-    //   currencyId: '',
-    userId: '' as ProjectFormSchema['userId']
+export const defaultProjectFormValues = (data?: ProjectDTO): ProjectFormSchema => ({
+    fullName: data?.fullName || '',
+    displayName: data?.displayName || '',
+    clientId: data?.clientId || null,
+    managerId: data?.managerId || null,
+    status: data?.status || 'active',
+    notes: data?.notes || null,
+    startDate: ensureDate(data?.startDate) || new Date(),
+    // currencyId: '',
+    // userId: '' as ProjectFormSchema['userId']
 });

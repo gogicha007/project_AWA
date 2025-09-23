@@ -4,11 +4,16 @@ import styles from './project-form.module.css';
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
-import { ensureDate } from '@/utils/helper';
-import { useForm, Controller } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import projectSchema from './projectSchema';
 import { z } from 'zod';
+import ProjectDialogHeader from './form-components/dialog-header';
+import ProjectDateComponent from './form-components/date-component';
+import ProjectTextComponent from './form-components/text-component';
+import ProjectTextAreaComponent from './form-components/textarea-component';
+import ProjectErrorMessage from './form-components/error-message';
+import { defaultProjectFormValues } from './utils/projectFormUtils';
 
 type Props = {
   isOpen: boolean;
@@ -37,24 +42,12 @@ export default function ProjectForm({
     formState: { errors },
   } = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
-    defaultValues: {
-      fullName: initialData?.fullName || '',
-      displayName: initialData?.displayName || '',
-      notes: initialData?.notes || '',
-      status: initialData?.status || 'active',
-      startDate: ensureDate(initialData?.startDate) || new Date(),
-    },
+    defaultValues: defaultProjectFormValues(initialData),
   });
 
   useEffect(() => {
-    reset({
-      fullName: initialData?.fullName || '',
-      displayName: initialData?.displayName || '',
-      notes: initialData?.notes || '',
-      status: initialData?.status || 'active',
-      startDate: ensureDate(initialData?.startDate) || new Date(),
-    });
-  }, [initialData, isOpen, reset]);
+    reset(defaultProjectFormValues(initialData));
+  }, [initialData, reset]);
 
   useEffect(() => {
     const dialog = projectFormDialogRef.current;
@@ -75,145 +68,69 @@ export default function ProjectForm({
     // onSave(data as ProjectDTO); // Uncomment to enable saving
   };
 
-  return (
-    <dialog ref={projectFormDialogRef} className={styles.dialog}>
-      <div>
-        <div className={styles.dialogHeader}>
-          <h2>{title}</h2>
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={onClose}
-          >
-            ×
-          </button>
-        </div>
-        <form
-          onSubmit={handleSubmit(saveData)}
-          className={styles.form}
-        >
-          <div className={styles.formGroup}>
-            <div className={styles.outlinedField}>
-              <input
-                {...register('fullName')}
-                type="text"
-                name="fullName"
-                id="fullName"
-                required
-                placeholder=" "
-              />
-              <label htmlFor="fullName">{tPj('form.title_label')}</label>
-            </div>
-            <p className={styles.errorMessage}>
-              {typeof errors.fullName?.message === 'string' &&
-                errors.fullName.message}
-            </p>
-          </div>
-          <div className={styles.formGroup}>
-            <div className={styles.outlinedField}>
-              <input
-                {...register('displayName')}
-                type="text"
-                name="displayName"
-                id="displayName"
-                required
-                placeholder=" "
-              />
-              <label htmlFor="displayName">
-                {tPj('form.display_name_label')}
-              </label>
-            </div>
-            <p className={styles.errorMessage}>
-              {typeof errors.displayName?.message === 'string' &&
-                errors.displayName.message}
-            </p>
-          </div>
-          <div className={styles.formGroup}>
-            <div className={styles.outlinedField}>
-              <textarea
-                {...register('notes')}
-                name="notes"
-                id="notes"
-                placeholder=" "
-              ></textarea>
-              <label htmlFor="notes">{tPj('form.description_label')}</label>
-            </div>
-          </div>
+  const onError = (errors: FieldErrors<z.infer<typeof projectSchema>>) => {
+    console.log('Form errors:', errors);
+  };
 
-          <div className={styles.rowFields}>
-            <div className={styles.formGroup}>
-              <div className={styles.outlinedField}>
-                <Controller
-                  name="startDate"
-                  control={control}
-                  render={({ field }) => (
-                    <input
-                      // {...field}
-                      type="date"
-                      id="startDate"
-                      required
-                      value={
-                        field.value instanceof Date &&
-                        !isNaN(field.value.getTime())
-                          ? field.value.toISOString().substring(0, 10)
-                          : ''
-                      }
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        const value = e.target.value;
-                        if (!value) {
-                          field.onChange(null);
-                          return;
-                        }
-                        const d = new Date(value);
-                        d.setHours(12, 0, 0, 0);
-                        field.onChange(d);
-                      }}
-                      onBlur={field.onBlur}
-                      name={field.name}
-                      ref={field.ref}
-                    />
-                  )}
-                />
-                <label htmlFor="startDate">
-                  {tPj('form.start_date_label')}
-                </label>
-              </div>
-              <p className={styles.errorMessage}>
-                {typeof errors.startDate?.message === 'string' &&
-                  errors.startDate.message}
-              </p>
-            </div>
-            <div className={styles.formGroup}>
-              <div className={styles.outlinedField}>
-                <select
-                  {...register('status')}
-                  id="status"
-                  required
-                  defaultValue="active"
-                >
-                  <option value="" disabled hidden></option>
-                  <option value="active">{tPj('status.active')}</option>
-                  <option value="completed">{tPj('status.completed')}</option>
-                  <option value="inProgress">{tPj('status.inProgress')}</option>
-                  <option value="onHold">{tPj('status.onHold')}</option>
-                </select>
-                <label htmlFor="status">{tPj('form.status_label')}</label>
-              </div>
-              <p className={styles.errorMessage}>
-                {typeof errors.status?.message === 'string' &&
-                  errors.status.message}
-              </p>
-            </div>
+  return (
+    <dialog
+      ref={projectFormDialogRef}
+      className={styles.dialog}
+      onClose={onClose}
+    >
+      <ProjectDialogHeader title={title} onClose={onClose} />
+      <form onSubmit={handleSubmit(saveData, onError)} className={styles.form}>
+        <div className={styles.formGroup}>
+          <ProjectTextComponent
+            register={register}
+            name="fullName"
+            label={tPj('form.title_label')}
+          />
+          <ProjectErrorMessage error={errors.fullName} />
+        </div>
+        <div className={styles.formGroup}>
+          <ProjectTextComponent
+            register={register}
+            name="displayName"
+            label={tPj('form.display_name_label')}
+          />
+          <ProjectErrorMessage error={errors.displayName} />
+        </div>
+        <div className={styles.formGroup}>
+          <ProjectTextAreaComponent
+            register={register}
+            name="notes"
+            label={tPj('form.description_label')}
+          />
+          <ProjectErrorMessage error={errors.notes} />
+        </div>
+        <div className={styles.rowFields}>
+          <div className={styles.formGroup}>
+            <ProjectDateComponent
+              control={control}
+              name="startDate"
+              label={tPj('form.start_date_label')}
+            />
+            <ProjectErrorMessage error={errors.startDate} />
           </div>
-          <button
-            type="submit"
-            className={styles.saveButton}
-            // onClick={() => console.log('Clicked')}
-          >
-            {tCmn('save')}
-          </button>
-        </form>
-      </div>
+          <div className={styles.formGroup}>
+            <div className={styles.outlinedField}>
+              <select {...register('status')} id="status" defaultValue="active">
+                <option value="" disabled hidden></option>
+                <option value="active">{tPj('status.active')}</option>
+                <option value="completed">{tPj('status.completed')}</option>
+                <option value="inProgress">{tPj('status.inProgress')}</option>
+                <option value="onHold">{tPj('status.onHold')}</option>
+              </select>
+              <label htmlFor="status">{tPj('form.status_label')}</label>
+            </div>
+            <ProjectErrorMessage error={errors.status} />
+          </div>
+        </div>
+        <button type="submit" className={styles.saveButton}>
+          {tCmn('save')}
+        </button>
+      </form>
     </dialog>
   );
 }

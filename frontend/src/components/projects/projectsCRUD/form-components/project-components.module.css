@@ -13,28 +13,6 @@
   color: #4b5563;
 }
 
-.dialog {
-  border-radius: 8px;
-  border: none;
-  padding: 0;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 1px 3px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 500px;
-  background-color: white;
-
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-}
-
-.dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .dialogHeader {
   display: flex;
   justify-content: space-between;
@@ -45,26 +23,16 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
-
-.dialogHeader h2 {
+.errorMessage {
+  color: #b91c1c;
+  font-size: 0.8rem;
   margin: 0;
-  color: #374151;
-  font-size: 1.25rem;
-  font-weight: 600;
+  height: 1.1em;
+  max-width: 300px;
+  word-break: break-all;
+  white-space: normal;
 }
 
-.form {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.formGroup {
-  margin-bottom: 16px;
-}
-
-/* Outlined field with floating label */
 .outlinedField {
   position: relative;
   /* margin: 16px 0; */
@@ -117,36 +85,4 @@
 
 .outlinedField select:invalid + label {
   color: #757575;
-}
-
-.rowFields {
-  display: flex;
-  gap: 16px;
-}
-
-.rowFields .outlinedField {
-  flex: 1 1 0;
-  margin: 0;
-}
-
-.saveButton {
-  margin-top: 20px;
-  padding: 10px 16px;
-  background-color: var(--secondary-500);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    background-color 0.2s,
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-
-.saveButton:hover {
-  background-color: var(--secondary-600);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
