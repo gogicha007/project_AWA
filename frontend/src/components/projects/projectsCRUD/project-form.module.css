@@ -1,27 +1,35 @@
-.rowFields {
-  display: flex;
-  gap: 16px;
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  color: #9ca3af;
+  transition: color 0.2s;
 }
 
-.rowFields .outlinedField {
-  flex: 1 1 0;
+.closeButton:hover {
+  color: #4b5563;
+}
+
+.dialog {
+  border-radius: 8px;
+  border: none;
+  padding: 0;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin: 0;
 }
-.dialog {
-    border-radius: 8px;
-    border: none;
-    padding: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 500px;
-    background-color: white;
-    
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-  }
 
 .dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
@@ -45,19 +53,14 @@
   font-weight: 600;
 }
 
-.closeButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  line-height: 1;
-  padding: 0;
-  color: #9ca3af;
-  transition: color 0.2s;
-}
-
-.closeButton:hover {
-  color: #4b5563;
+.errorMessage {
+  color: #b91c1c;
+  font-size: 0.8rem;
+  margin: 0;
+  height: 1.1em;
+  max-width: 300px;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .form {
@@ -67,10 +70,14 @@
   gap: 10px;
 }
 
+.formGroup {
+  margin-bottom: 16px;
+}
+
 /* Outlined field with floating label */
 .outlinedField {
   position: relative;
-  margin: 16px 0;
+  /* margin: 16px 0; */
 }
 
 .outlinedField input,
@@ -109,8 +116,7 @@
 .outlinedField input:not(:placeholder-shown):not(:focus) + label,
 .outlinedField input:valid + label,
 .outlinedField textarea:focus + label,
-.outlinedField textarea:not(:placeholder-shown):not(:focus) + label,
-.outlinedField textarea:valid + label,
+.outlinedField textarea:not(:focus):not(:empty) + label,
 .outlinedField select:focus + label,
 .outlinedField select:valid + label {
   top: -10px;
@@ -123,6 +129,16 @@
   color: #757575;
 }
 
+.rowFields {
+  display: flex;
+  gap: 16px;
+}
+
+.rowFields .outlinedField {
+  flex: 1 1 0;
+  margin: 0;
+}
+
 .saveButton {
   margin-top: 20px;
   padding: 10px 16px;
@@ -133,7 +149,10 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .saveButton:hover {

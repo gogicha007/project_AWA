@@ -86,9 +86,6 @@ function DateInputOutlined<T extends FieldValues>({
           </>
         )}
       />
-      <label className={styles['outlined-date-label']} htmlFor={name}>
-        {label}
-      </label>
       <fieldset className={styles['outlined-date-fieldset']}>
         <legend>
           <span>{label}</span>
