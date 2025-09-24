@@ -14,7 +14,7 @@ const projectSchema = z.object({
     currencyId: z.number().min(1, 'Currency is required'),
     // createdAt: z.date(),
     // updatedAt: z.date(),
-    userId: z.string().uuid().optional(),
+    // userId: z.string().optional(),
 });
 
 export type ProjectFormSchema = z.infer<typeof projectSchema>;

@@ -59,14 +59,6 @@ export default function ProjectsClient() {
 
   return (
     <div className={styles.projectsPage}>
-      <div className={styles.pageHeader}>
-        <div>
-          <h1 className={styles.pageTitle}>{tPj('title')}</h1>
-          {/* <p className={styles.pageDescription}>{tPj('description')}</p> */}
-        </div>
-        <AddButton label={tPj('actions.create')} onAdd={handleAdd} />
-      </div>
-
       {loading ? (
         <div className={styles.cardsGrid}>
           {Array.from({ length: 6 }).map((_, index) => (
@@ -82,19 +74,27 @@ export default function ProjectsClient() {
           }
         />
       ) : (
-        <div className={styles.cardsGrid}>
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              tPj={tPj}
-              tCmn={tCmn}
-              onView={handleView}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-            />
-          ))}
-        </div>
+        <>
+          <div className={styles.pageHeader}>
+            <div>
+              <h1 className={styles.pageTitle}>{tPj('title')}</h1>
+            </div>
+            <AddButton label={tPj('actions.create')} onAdd={handleAdd} />
+          </div>
+          <div className={styles.cardsGrid}>
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                tPj={tPj}
+                tCmn={tCmn}
+                onView={handleView}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
+        </>
       )}
       <Snackbar
         status={snackbarStatus}
