@@ -41,6 +41,10 @@ export class CreateProjectDto {
   startDate: string;
 
   @ApiProperty()
+  @IsDateString()
+  endDate: string;
+
+  @ApiProperty()
   @IsNumber()
   currencyId: number;
 

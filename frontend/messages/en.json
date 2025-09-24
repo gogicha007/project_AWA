@@ -273,6 +273,7 @@
       "description_label": "Description",
       "status_label": "Status",
       "start_date_label": "Start Date",
+      "end_date_label": "End Date",
       "currency_label": "Currency",
       "currency_placeholder": "Select currency...",
       "create_title": "Add Project",
@@ -286,6 +287,11 @@
     },
     "actions": {
       "create": "Create New Project"
+    },
+    "errors": {
+      "loading": "Error loading Projects",
+      "delete": "Error deleting Project with id:",
+      "save": "Error saving Project:"
     }
   },
   "RegisterPage": {

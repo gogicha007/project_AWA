@@ -234,6 +234,7 @@ model Project {
   status      ProjectStatus
   notes       String
   startDate   DateTime      @map("start_date")
+  endDate     DateTime      @map("end_date")
   currency    Currency      @relation(fields: [currencyId], references: [id])
   currencyId  Int
   createdAt   DateTime      @default(now()) @map("created_at")

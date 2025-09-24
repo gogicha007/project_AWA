@@ -18741,6 +18741,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus | null
     notes: string | null
     startDate: Date | null
+    endDate: Date | null
     currencyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -18756,6 +18757,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus | null
     notes: string | null
     startDate: Date | null
+    endDate: Date | null
     currencyId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -18771,6 +18773,7 @@ export namespace Prisma {
     status: number
     notes: number
     startDate: number
+    endDate: number
     currencyId: number
     createdAt: number
     updatedAt: number
@@ -18804,6 +18807,7 @@ export namespace Prisma {
     status?: true
     notes?: true
     startDate?: true
+    endDate?: true
     currencyId?: true
     createdAt?: true
     updatedAt?: true
@@ -18819,6 +18823,7 @@ export namespace Prisma {
     status?: true
     notes?: true
     startDate?: true
+    endDate?: true
     currencyId?: true
     createdAt?: true
     updatedAt?: true
@@ -18834,6 +18839,7 @@ export namespace Prisma {
     status?: true
     notes?: true
     startDate?: true
+    endDate?: true
     currencyId?: true
     createdAt?: true
     updatedAt?: true
@@ -18936,6 +18942,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date
+    endDate: Date
     currencyId: number
     createdAt: Date
     updatedAt: Date
@@ -18970,6 +18977,7 @@ export namespace Prisma {
     status?: boolean
     notes?: boolean
     startDate?: boolean
+    endDate?: boolean
     currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -18991,6 +18999,7 @@ export namespace Prisma {
     status?: boolean
     notes?: boolean
     startDate?: boolean
+    endDate?: boolean
     currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19009,6 +19018,7 @@ export namespace Prisma {
     status?: boolean
     notes?: boolean
     startDate?: boolean
+    endDate?: boolean
     currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19027,13 +19037,14 @@ export namespace Prisma {
     status?: boolean
     notes?: boolean
     startDate?: boolean
+    endDate?: boolean
     currencyId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "displayName" | "clientId" | "managerId" | "status" | "notes" | "startDate" | "currencyId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "displayName" | "clientId" | "managerId" | "status" | "notes" | "startDate" | "endDate" | "currencyId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | Project$clientArgs<ExtArgs>
     currency?: boolean | CurrencyDefaultArgs<ExtArgs>
@@ -19071,6 +19082,7 @@ export namespace Prisma {
       status: $Enums.ProjectStatus
       notes: string
       startDate: Date
+      endDate: Date
       currencyId: number
       createdAt: Date
       updatedAt: Date
@@ -19511,6 +19523,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Project", 'ProjectStatus'>
     readonly notes: FieldRef<"Project", 'String'>
     readonly startDate: FieldRef<"Project", 'DateTime'>
+    readonly endDate: FieldRef<"Project", 'DateTime'>
     readonly currencyId: FieldRef<"Project", 'Int'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
@@ -28248,6 +28261,7 @@ export namespace Prisma {
     status: 'status',
     notes: 'notes',
     startDate: 'startDate',
+    endDate: 'endDate',
     currencyId: 'currencyId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -29491,6 +29505,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
     notes?: StringFilter<"Project"> | string
     startDate?: DateTimeFilter<"Project"> | Date | string
+    endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -29511,6 +29526,7 @@ export namespace Prisma {
     status?: SortOrder
     notes?: SortOrder
     startDate?: SortOrder
+    endDate?: SortOrder
     currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29534,6 +29550,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
     notes?: StringFilter<"Project"> | string
     startDate?: DateTimeFilter<"Project"> | Date | string
+    endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -29554,6 +29571,7 @@ export namespace Prisma {
     status?: SortOrder
     notes?: SortOrder
     startDate?: SortOrder
+    endDate?: SortOrder
     currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29577,6 +29595,7 @@ export namespace Prisma {
     status?: EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
     notes?: StringWithAggregatesFilter<"Project"> | string
     startDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     currencyId?: IntWithAggregatesFilter<"Project"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -30991,6 +31010,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -31009,6 +31029,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31024,6 +31045,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -31042,6 +31064,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31059,6 +31082,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31072,6 +31096,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31085,6 +31110,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32621,6 +32647,7 @@ export namespace Prisma {
     status?: SortOrder
     notes?: SortOrder
     startDate?: SortOrder
+    endDate?: SortOrder
     currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32644,6 +32671,7 @@ export namespace Prisma {
     status?: SortOrder
     notes?: SortOrder
     startDate?: SortOrder
+    endDate?: SortOrder
     currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32659,6 +32687,7 @@ export namespace Prisma {
     status?: SortOrder
     notes?: SortOrder
     startDate?: SortOrder
+    endDate?: SortOrder
     currencyId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -35492,6 +35521,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -35509,6 +35539,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -35821,6 +35852,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
     notes?: StringFilter<"Project"> | string
     startDate?: DateTimeFilter<"Project"> | Date | string
+    endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
@@ -35966,6 +35998,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     currency: CurrencyCreateNestedOneWithoutProjectInput
@@ -35982,6 +36015,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36130,6 +36164,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -36147,6 +36182,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -37637,6 +37673,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -37654,6 +37691,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37794,6 +37832,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -37811,6 +37850,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38677,6 +38717,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -38694,6 +38735,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38868,6 +38910,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -38885,6 +38928,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39403,6 +39447,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39600,6 +39645,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -39617,6 +39663,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39633,6 +39680,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39804,6 +39852,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     currencyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39817,6 +39866,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
@@ -39833,6 +39883,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39849,6 +39900,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39900,6 +39952,7 @@ export namespace Prisma {
     status: $Enums.ProjectStatus
     notes: string
     startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -40025,6 +40078,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -40042,6 +40096,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -40058,6 +40113,7 @@ export namespace Prisma {
     status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number

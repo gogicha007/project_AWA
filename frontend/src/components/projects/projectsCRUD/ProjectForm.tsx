@@ -26,7 +26,7 @@ type Props = {
 
 export default function ProjectForm({
   isOpen,
-  // onSave,
+  onSave,
   onClose,
   title,
   initialData,
@@ -64,11 +64,6 @@ export default function ProjectForm({
     }
   }, [isOpen, setFocus]);
 
-  const saveData = (data: z.infer<typeof projectSchema>) => {
-    console.log('Saving data...', data);
-    // onSave(data as ProjectDTO); // Uncomment to enable saving
-  };
-
   const onError = (errors: FieldErrors<z.infer<typeof projectSchema>>) => {
     console.log('Form errors:', errors);
   };
@@ -82,7 +77,7 @@ export default function ProjectForm({
       <ProjectDialogHeader title={title} onClose={onClose} />
       <form
         key={isOpen ? 'open' : 'closed'}
-        onSubmit={handleSubmit(saveData, onError)}
+        onSubmit={handleSubmit(onSave, onError)}
         className={styles.form}
       >
         <div className={styles.formGroup}>
@@ -118,6 +113,16 @@ export default function ProjectForm({
             />
             <ProjectErrorMessage error={errors.startDate} />
           </div>
+          <div className={styles.formGroup}>
+            <ProjectDateComponent
+              control={control}
+              name="endDate"
+              label={tPj('form.end_date_label')}
+            />
+            <ProjectErrorMessage error={errors.endDate} />
+          </div>
+        </div>
+        <div className={styles.rowFields}>
           <div className={styles.formGroup}>
             <ProjectSelectComponent
               register={register}

@@ -3,6 +3,7 @@ import { ProjectDTO } from "@/api/types";
 import { ensureDate } from "@/utils/helper";
 
 export const defaultProjectFormValues = (data?: ProjectDTO): ProjectFormSchema => ({
+    id: data?.id || undefined,
     fullName: data?.fullName || '',
     displayName: data?.displayName || '',
     clientId: data?.clientId || null,
@@ -10,6 +11,6 @@ export const defaultProjectFormValues = (data?: ProjectDTO): ProjectFormSchema =
     status: data?.status || 'active',
     notes: data?.notes || '',
     startDate: ensureDate(data?.startDate) || new Date(),
-    // currencyId: '',
-    // userId: '' as ProjectFormSchema['userId']
+    currencyId: data?.currencyId || 1,
+    userId: data?.userId || '' as ProjectFormSchema['userId']
 });

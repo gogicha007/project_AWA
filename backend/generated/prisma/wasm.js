@@ -252,6 +252,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   status: 'status',
   notes: 'notes',
   startDate: 'startDate',
+  endDate: 'endDate',
   currencyId: 'currencyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
