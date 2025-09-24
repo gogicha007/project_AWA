@@ -6,15 +6,15 @@ import { useTranslations } from 'next-intl';
 import { ProjectDTO } from '@/api/types';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import projectSchema from './projectSchema';
 import { z } from 'zod';
+import projectSchema from './projectSchema';
 import ProjectDialogHeader from './form-components/dialog-header';
 import ProjectDateComponent from './form-components/date-component';
 import ProjectTextComponent from './form-components/text-component';
 import ProjectTextAreaComponent from './form-components/textarea-component';
 import ProjectErrorMessage from './form-components/error-message';
-import { defaultProjectFormValues } from './utils/projectFormUtils';
 import ProjectSelectComponent from './form-components/select-component';
+import { defaultProjectFormValues } from './utils/projectFormUtils';
 
 type Props = {
   isOpen: boolean;
@@ -47,8 +47,8 @@ export default function ProjectForm({
   });
 
   useEffect(() => {
-    reset(defaultProjectFormValues(initialData));
-  }, [initialData, reset]);
+    if (isOpen) reset(defaultProjectFormValues(initialData));
+  }, [initialData, isOpen, reset]);
 
   useEffect(() => {
     const dialog = projectFormDialogRef.current;
@@ -80,7 +80,11 @@ export default function ProjectForm({
       onClose={onClose}
     >
       <ProjectDialogHeader title={title} onClose={onClose} />
-      <form onSubmit={handleSubmit(saveData, onError)} className={styles.form}>
+      <form
+        key={isOpen ? 'open' : 'closed'}
+        onSubmit={handleSubmit(saveData, onError)}
+        className={styles.form}
+      >
         <div className={styles.formGroup}>
           <ProjectTextComponent
             register={register}
