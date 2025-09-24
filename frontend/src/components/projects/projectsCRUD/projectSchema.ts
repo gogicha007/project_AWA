@@ -10,7 +10,7 @@ const projectSchema = z.object({
     status: z.enum(PROJECT_STATUSES),
     notes: z.string().max(500).nullable(),
     startDate: z.date().nullable(),
-    endDate: z.date().nullable().optional(),
+    endDate: z.date().nullable(),
     currencyId: z.number().min(1, 'Currency is required'),
     // createdAt: z.date(),
     // updatedAt: z.date(),

@@ -10,6 +10,7 @@ import {
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 import { useProjectApi } from '@/api/hooks/projects/projectApiHook';
+import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useProjectsLogic } from './useProjectsLogic';
 import Loader from '../feedback/loader/loader';
 import Snackbar from '../feedback/snackbar/snackbar';
@@ -19,6 +20,7 @@ export default function ProjectsClient() {
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
   const { projects, loading, error, mutate } = useProjectApi();
+  const { currencies, loading: loadingCurrencies } = useCurrencyApiHook();
   const [navigating, setNavigating] = useState(false);
   const {
     currentProject,
@@ -48,7 +50,7 @@ export default function ProjectsClient() {
     }
   }, [errorMessage, error]);
 
-  if (loading || navigating) return <Loader />;
+  if (loading || loadingCurrencies || navigating) return <Loader />;
 
   if (error)
     return (
@@ -102,6 +104,7 @@ export default function ProjectsClient() {
         onClose={() => setSnackbarOpen(false)}
       />
       <ProjectForm
+        currencies={currencies}
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onSave={handleSave}

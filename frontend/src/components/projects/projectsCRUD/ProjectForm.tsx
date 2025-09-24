@@ -3,7 +3,7 @@
 import styles from './project-form.module.css';
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { ProjectDTO } from '@/api/types';
+import { ProjectDTO, CurrencyDTO } from '@/api/types';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -17,6 +17,7 @@ import ProjectSelectComponent from './form-components/select-component';
 import { defaultProjectFormValues } from './utils/projectFormUtils';
 
 type Props = {
+  currencies: CurrencyDTO[];
   isOpen: boolean;
   onClose: () => void;
   onSave: (project: ProjectDTO) => void;
@@ -25,6 +26,7 @@ type Props = {
 };
 
 export default function ProjectForm({
+  currencies,
   isOpen,
   onSave,
   onClose,
@@ -131,6 +133,16 @@ export default function ProjectForm({
               tVar={tPj}
             />
             <ProjectErrorMessage error={errors.status} />
+          </div>
+          <div className={styles.formGroup}>
+            <select className={styles.select} name="currencyId" id="">
+              {currencies.map((currency) => (
+                <option key={currency.id} value={currency.id}>
+                  {currency.code}
+                </option>
+              ))}
+            </select>
+            <ProjectErrorMessage error={errors.currencyId} />
           </div>
         </div>
         <button type="submit" className={styles.saveButton}>
