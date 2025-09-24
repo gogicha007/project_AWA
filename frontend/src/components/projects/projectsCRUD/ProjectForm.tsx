@@ -14,6 +14,7 @@ import ProjectTextComponent from './form-components/text-component';
 import ProjectTextAreaComponent from './form-components/textarea-component';
 import ProjectErrorMessage from './form-components/error-message';
 import { defaultProjectFormValues } from './utils/projectFormUtils';
+import ProjectSelectComponent from './form-components/select-component';
 
 type Props = {
   isOpen: boolean;
@@ -114,16 +115,12 @@ export default function ProjectForm({
             <ProjectErrorMessage error={errors.startDate} />
           </div>
           <div className={styles.formGroup}>
-            <div className={styles.outlinedField}>
-              <select {...register('status')} id="status" defaultValue="active">
-                <option value="" disabled hidden></option>
-                <option value="active">{tPj('status.active')}</option>
-                <option value="completed">{tPj('status.completed')}</option>
-                <option value="inProgress">{tPj('status.inProgress')}</option>
-                <option value="onHold">{tPj('status.onHold')}</option>
-              </select>
-              <label htmlFor="status">{tPj('form.status_label')}</label>
-            </div>
+            <ProjectSelectComponent
+              register={register}
+              name="status"
+              label={tPj('form.status_label')}
+              tVar={tPj}
+            />
             <ProjectErrorMessage error={errors.status} />
           </div>
         </div>

@@ -1,18 +1,3 @@
-.closeButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  line-height: 1;
-  padding: 0;
-  color: #9ca3af;
-  transition: color 0.2s;
-}
-
-.closeButton:hover {
-  color: #4b5563;
-}
-
 .dialog {
   border-radius: 8px;
   border: none;
@@ -21,7 +6,7 @@
     0 4px 6px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
   background-color: white;
 
   position: fixed;
@@ -35,24 +20,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.dialogHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #f9fafb;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.dialogHeader h2 {
-  margin: 0;
-  color: #374151;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
 .form {
   padding: 20px;
   display: flex;
@@ -62,61 +29,6 @@
 
 .formGroup {
   margin-bottom: 16px;
-}
-
-/* Outlined field with floating label */
-.outlinedField {
-  position: relative;
-  /* margin: 16px 0; */
-}
-
-.outlinedField input,
-.outlinedField textarea,
-.outlinedField select {
-  width: 100%;
-  padding: 16px 12px 8px 12px;
-  border: 1.5px solid #bdbdbd;
-  border-radius: 4px;
-  outline: none;
-  font-size: 1rem;
-  background: none;
-  transition: border-color 0.2s;
-  resize: none;
-}
-
-.outlinedField input:focus,
-.outlinedField textarea:focus,
-.outlinedField select:focus {
-  border-color: #1976d2;
-}
-
-.outlinedField label {
-  position: absolute;
-  left: 12px;
-  top: 16px;
-  background: white;
-  color: #757575;
-  font-size: 1rem;
-  pointer-events: none;
-  transition: 0.2s;
-  padding: 0 4px;
-}
-
-.outlinedField input:focus + label,
-.outlinedField input:not(:placeholder-shown):not(:focus) + label,
-.outlinedField input:valid + label,
-.outlinedField textarea:focus + label,
-.outlinedField textarea:not(:focus):not(:empty) + label,
-.outlinedField select:focus + label,
-.outlinedField select:valid + label {
-  top: -10px;
-  left: 8px;
-  font-size: 0.85rem;
-  color: #1976d2;
-}
-
-.outlinedField select:invalid + label {
-  color: #757575;
 }
 
 .rowFields {

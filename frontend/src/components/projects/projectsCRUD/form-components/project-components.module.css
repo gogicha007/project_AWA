@@ -23,6 +23,14 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
+
+.dialogHeader h2 {
+  margin: 0;
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 .errorMessage {
   color: #b91c1c;
   font-size: 0.8rem;
@@ -32,10 +40,10 @@
   word-break: break-all;
   white-space: normal;
 }
-
 .outlinedField {
   position: relative;
-  /* margin: 16px 0; */
+  flex: 1 1 0;
+  margin: 0;
 }
 
 .outlinedField input,
