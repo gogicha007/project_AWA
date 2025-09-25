@@ -11,6 +11,8 @@ export const defaultProjectFormValues = (data?: ProjectDTO): ProjectFormSchema =
     status: data?.status || 'active',
     notes: data?.notes || '',
     startDate: ensureDate(data?.startDate) || new Date(),
+    endDate: ensureDate(data?.endDate) || null,
     currencyId: data?.currencyId || 1,
-    userId: data?.userId || '' as ProjectFormSchema['userId']
+    // userId: data?.userId || '' as ProjectFormSchema['userId']
 });
+

@@ -15,6 +15,7 @@ import ProjectTextAreaComponent from './form-components/textarea-component';
 import ProjectErrorMessage from './form-components/error-message';
 import ProjectSelectComponent from './form-components/select-component';
 import { defaultProjectFormValues } from './utils/projectFormUtils';
+import { PROJECT_STATUSES } from '@/constants/projectStatus';
 
 type Props = {
   currencies: CurrencyDTO[];
@@ -47,6 +48,13 @@ export default function ProjectForm({
     resolver: zodResolver(projectSchema),
     defaultValues: defaultProjectFormValues(initialData),
   });
+
+  const statusOptions = () => {
+    return PROJECT_STATUSES.map((status) => ({
+      value: status,
+      label: tPj(`status.${status}`),
+    }));
+  };
 
   useEffect(() => {
     if (isOpen) reset(defaultProjectFormValues(initialData));
@@ -127,21 +135,23 @@ export default function ProjectForm({
         <div className={styles.rowFields}>
           <div className={styles.formGroup}>
             <ProjectSelectComponent
+              options={statusOptions()}
               register={register}
               name="status"
               label={tPj('form.status_label')}
-              tVar={tPj}
             />
             <ProjectErrorMessage error={errors.status} />
           </div>
           <div className={styles.formGroup}>
-            <select className={styles.select} name="currencyId" id="">
-              {currencies.map((currency) => (
-                <option key={currency.id} value={currency.id}>
-                  {currency.code}
-                </option>
-              ))}
-            </select>
+            <ProjectSelectComponent
+              options={currencies.map((currency) => ({
+                value: (currency.id as number).toString(),
+                label: currency.code,
+              }))}
+              register={register}
+              name="currencyId"
+              label={tPj('form.currency_label')}
+              />
             <ProjectErrorMessage error={errors.currencyId} />
           </div>
         </div>

@@ -1,20 +1,19 @@
 import React from 'react';
 import styles from './project-components.module.css';
 
-import { PROJECT_STATUSES } from '@/constants/projectStatus';
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 type SelectComponentProps<T extends FieldValues> = {
+  options: { value: string; label: string }[];
   register: UseFormRegister<T>;
   name: Path<T>;
   label: string;
-  tVar: (key: string) => string;
 };
 const ProjectSelectComponent = <T extends FieldValues>({
+  options,
   register,
   name,
   label,
-  tVar,
 }: SelectComponentProps<T>) => {
   return (
     <div className={styles.outlinedField}>
@@ -22,9 +21,9 @@ const ProjectSelectComponent = <T extends FieldValues>({
         <option value="" disabled hidden>
           {label}
         </option>
-        {PROJECT_STATUSES.map((option) => (
-          <option key={option} value={option}>
-            {tVar(`status.${option}`)}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>
