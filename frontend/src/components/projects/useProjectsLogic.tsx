@@ -30,18 +30,16 @@ export function useProjectsLogic(
 
   const handleDelete = useCallback(
     async (id: number) => {
-      if (confirm(tVar('warnings.delete'))) {
-        try {
-          await projectApi.delete(+id);
-          setErrorMessage(undefined);
-        } catch (error) {
-          setErrorMessage(
-            typeof error === 'string'
-              ? `${tVar('errors.delete')} ${id}. ${error}`
-              : `${tVar('errors.delete')} ${id}`
-          );
-          console.error(`${tVar('errors.delete')} ${id}`, error);
-        }
+      try {
+        await projectApi.delete(+id);
+        setErrorMessage(undefined);
+      } catch (error) {
+        setErrorMessage(
+          typeof error === 'string'
+            ? `${tVar('errors.delete')} ${id}. ${error}`
+            : `${tVar('errors.delete')} ${id}`
+        );
+        console.error(`${tVar('errors.delete')} ${id}`, error);
       }
       await mutate();
     },

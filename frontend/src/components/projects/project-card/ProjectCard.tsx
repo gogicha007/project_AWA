@@ -74,7 +74,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (onDelete && confirm(`${tCmn('confirm_delete')}${project.fullName}"?`)) {
+    if (onDelete && confirm(`${tCmn('confirm_delete')} "${project.fullName}"?`)) {
       onDelete(project.id as number);
     }
   };

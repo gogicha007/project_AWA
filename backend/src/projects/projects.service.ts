@@ -40,7 +40,12 @@ export class ProjectsService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} project`;
+  async remove(id: number) {
+    try {
+      const removedProject = await this.dbService.project.delete({ where: { id } });
+      return {success: true, message: `Project with id ${removedProject.id} deleted.`};
+    } catch (error) {
+      handlePrismaErrors(error, 'delete', 'projects');
+    }
   }
 }

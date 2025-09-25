@@ -292,6 +292,10 @@
       "loading": "Error loading Projects",
       "delete": "Error deleting Project with id:",
       "save": "Error saving Project:"
+    },
+
+    "warnings": {
+      "delete": "Are you sure you want to delete this Project?"
     }
   },
   "RegisterPage": {
