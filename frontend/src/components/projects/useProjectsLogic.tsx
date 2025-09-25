@@ -59,9 +59,9 @@ export function useProjectsLogic(
 
   const handleSave = useCallback(
     async (project: ProjectDTO) => {
-      console.log(`Project saved ${JSON.stringify(project)}, dbUserId: ${dbUserId}`);
       try {
         if (project.id) {
+          console.log('Updating project:', project);
           if (dbUserId === null) {
             throw new Error('User ID is required to update a project.');
           }
@@ -71,7 +71,7 @@ export function useProjectsLogic(
           if (dbUserId === null) {
             throw new Error('User ID is required to create a project.');
           }
-          await projectApi.create(project);
+          await projectApi.create(project, dbUserId);
         }
         await mutate();
         setCurrentProject(undefined);

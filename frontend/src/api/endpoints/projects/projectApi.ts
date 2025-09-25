@@ -21,9 +21,10 @@ export const projectApi = {
     }
   },
 
-  create: async (project: ProjectDTO): Promise<ProjectDTO> => {
+  create: async (project: ProjectDTO, userId: number): Promise<ProjectDTO> => {
     try {
-      const response = await apiClient.post("/projects", project);
+      const projectData = { ...project, userId };
+      const response = await apiClient.post("/projects", projectData);
       return response.data;
     } catch (error) {
       handleApiError(error);
@@ -32,7 +33,8 @@ export const projectApi = {
 
   update: async (project: ProjectDTO, userId: number): Promise<ProjectDTO | null> => {
     try {
-      const response = await apiClient.patch(`/projects/${project.id}`, { ...project, userId });
+      const { id, ...projectWithoutId } = project;
+      const response = await apiClient.patch(`/projects/${id}`, { ...projectWithoutId, userId });
       return response.data;
     } catch (error) {
       handleApiError(error);
