@@ -5,7 +5,7 @@ import {
   serverFileDataSchema,
   generalInfoSchema
 } from '@/components/logistics/shipmentsCRUD/shipmentSchema';
-import projectFormSchema from '@/components/projects/projectsCRUD/projectSchema';
+import projectFormSchema from '@/components/projects/projects-list/projectsCRUD/projectSchema';
 import { z } from 'zod';
 
 export interface UserCreateDTO {

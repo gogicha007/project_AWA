@@ -42,8 +42,13 @@ export class ProjectsService {
 
   async remove(id: number) {
     try {
-      const removedProject = await this.dbService.project.delete({ where: { id } });
-      return {success: true, message: `Project with id ${removedProject.id} deleted.`};
+      const removedProject = await this.dbService.project.delete({
+        where: { id },
+      });
+      return {
+        success: true,
+        message: `Project with id ${removedProject.id} deleted.`,
+      };
     } catch (error) {
       handlePrismaErrors(error, 'delete', 'projects');
     }

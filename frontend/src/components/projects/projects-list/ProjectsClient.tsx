@@ -6,14 +6,14 @@ import {
   ProjectCard,
   ProjectCardSkeleton,
   ProjectsEmptyState,
-} from '@/components/projects/project-card';
+} from '@/components/projects/projects-list/project-card';
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 import { useProjectApi } from '@/api/hooks/projects/projectApiHook';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useProjectsLogic } from './useProjectsLogic';
-import Loader from '../feedback/loader/loader';
-import Snackbar from '../feedback/snackbar/snackbar';
+import Loader from '../../feedback/loader/loader';
+import Snackbar from '../../feedback/snackbar/snackbar';
 import ProjectForm from './projectsCRUD/ProjectForm';
 
 export default function ProjectsClient() {
