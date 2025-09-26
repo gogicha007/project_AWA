@@ -9,7 +9,7 @@ import {
 } from '@/components/projects/projects-list/project-card';
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
-import { useProjectApi } from '@/api/hooks/projects/projectApiHook';
+import { useProjectsListApi } from '@/api/hooks/projects/projectsListApiHook';
 import { useCurrencyApiHook } from '@/api/hooks/settings/useCurrencyApiHook';
 import { useProjectsLogic } from './useProjectsLogic';
 import Loader from '../../feedback/loader/loader';
@@ -19,7 +19,7 @@ import ProjectForm from './projectsCRUD/ProjectForm';
 export default function ProjectsClient() {
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
-  const { projects, loading, error, mutate } = useProjectApi();
+  const { projects, loading, error, mutate } = useProjectsListApi();
   const { currencies, loading: loadingCurrencies } = useCurrencyApiHook();
   const [navigating, setNavigating] = useState(false);
   const {

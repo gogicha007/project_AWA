@@ -298,6 +298,27 @@
       "delete": "Are you sure you want to delete this Project?"
     }
   },
+  "ProjectDetails": {
+    "overview": "Overview",
+    "tasks": "Tasks",
+    "team": "Team",
+    "files": "Files",
+    "settings": "Settings",
+    "not_found": "Project not found",
+    "errors": {
+      "loading": "Error loading project details"
+    },
+    "labels": {
+      "project_id": "Project ID",
+      "title": "Title",
+      "display_name": "Display Name",
+      "description": "Description",
+      "status": "Status",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "currency": "Project Currency"
+    }
+  },
   "RegisterPage": {
     "pageError": "Sign Up Page error!"
   },

@@ -12,7 +12,7 @@ export const projectApi = {
     }
   },
 
-  getById: async (id: string): Promise<ProjectDTO | null> => {
+  getById: async (id: number): Promise<ProjectDTO | null> => {
     try {
       const response = await apiClient.get(`/projects/${id}`);
       return response.data;
