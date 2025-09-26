@@ -10,7 +10,7 @@ const ProjectPage = () => {
   const { id } = useParams();
   return (
     <section>
-      <div className={styles.project__details}>
+      <div className={styles.project__main}>
         <BackButton />
         <ProjectDetails id={Number(id)} />
       </div>
