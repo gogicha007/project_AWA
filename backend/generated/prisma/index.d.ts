@@ -84,6 +84,11 @@ export type Progress = $Result.DefaultSelection<Prisma.$ProgressPayload>
  */
 export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
 /**
+ * Model ProjectLocation
+ * 
+ */
+export type ProjectLocation = $Result.DefaultSelection<Prisma.$ProjectLocationPayload>
+/**
  * Model Shipment
  * 
  */
@@ -458,6 +463,16 @@ export class PrismaClient<
     * ```
     */
   get project(): Prisma.ProjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectLocation`: Exposes CRUD operations for the **ProjectLocation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectLocations
+    * const projectLocations = await prisma.projectLocation.findMany()
+    * ```
+    */
+  get projectLocation(): Prisma.ProjectLocationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.shipment`: Exposes CRUD operations for the **Shipment** model.
@@ -982,6 +997,7 @@ export namespace Prisma {
     Milestone: 'Milestone',
     Progress: 'Progress',
     Project: 'Project',
+    ProjectLocation: 'ProjectLocation',
     Shipment: 'Shipment',
     ShipmentFile: 'ShipmentFile',
     Staff: 'Staff',
@@ -1007,7 +1023,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "client" | "currency" | "freight" | "freightInvoice" | "invoice" | "invoiceItem" | "location" | "materialGroup" | "materialType" | "materialName" | "milestone" | "progress" | "project" | "shipment" | "shipmentFile" | "staff" | "task" | "taskMaterial" | "vendor" | "unit"
+      modelProps: "user" | "client" | "currency" | "freight" | "freightInvoice" | "invoice" | "invoiceItem" | "location" | "materialGroup" | "materialType" | "materialName" | "milestone" | "progress" | "project" | "projectLocation" | "shipment" | "shipmentFile" | "staff" | "task" | "taskMaterial" | "vendor" | "unit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2047,6 +2063,80 @@ export namespace Prisma {
           }
         }
       }
+      ProjectLocation: {
+        payload: Prisma.$ProjectLocationPayload<ExtArgs>
+        fields: Prisma.ProjectLocationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectLocationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectLocationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectLocationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectLocationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectLocationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectLocationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectLocationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectLocationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectLocationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>
+          }
+          update: {
+            args: Prisma.ProjectLocationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectLocationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectLocationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectLocationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectLocationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLocationPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectLocationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectLocation>
+          }
+          groupBy: {
+            args: Prisma.ProjectLocationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectLocationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectLocationCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectLocationCountAggregateOutputType> | number
+          }
+        }
+      }
       Shipment: {
         payload: Prisma.$ShipmentPayload<ExtArgs>
         fields: Prisma.ShipmentFieldRefs
@@ -2663,6 +2753,7 @@ export namespace Prisma {
     milestone?: MilestoneOmit
     progress?: ProgressOmit
     project?: ProjectOmit
+    projectLocation?: ProjectLocationOmit
     shipment?: ShipmentOmit
     shipmentFile?: ShipmentFileOmit
     staff?: StaffOmit
@@ -3028,10 +3119,12 @@ export namespace Prisma {
 
   export type LocationCountOutputType = {
     Task: number
+    ProjectLocation: number
   }
 
   export type LocationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Task?: boolean | LocationCountOutputTypeCountTaskArgs
+    ProjectLocation?: boolean | LocationCountOutputTypeCountProjectLocationArgs
   }
 
   // Custom InputTypes
@@ -3050,6 +3143,13 @@ export namespace Prisma {
    */
   export type LocationCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
+  }
+
+  /**
+   * LocationCountOutputType without action
+   */
+  export type LocationCountOutputTypeCountProjectLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectLocationWhereInput
   }
 
 
@@ -3193,11 +3293,13 @@ export namespace Prisma {
   export type ProjectCountOutputType = {
     Progress: number
     Task: number
+    ProjectLocation: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Progress?: boolean | ProjectCountOutputTypeCountProgressArgs
     Task?: boolean | ProjectCountOutputTypeCountTaskArgs
+    ProjectLocation?: boolean | ProjectCountOutputTypeCountProjectLocationArgs
   }
 
   // Custom InputTypes
@@ -3223,6 +3325,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountProjectLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectLocationWhereInput
   }
 
 
@@ -11963,6 +12072,7 @@ export namespace Prisma {
     longitude?: boolean
     notes?: boolean
     Task?: boolean | Location$TaskArgs<ExtArgs>
+    ProjectLocation?: boolean | Location$ProjectLocationArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["location"]>
 
@@ -11993,6 +12103,7 @@ export namespace Prisma {
   export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationName" | "latitude" | "longitude" | "notes", ExtArgs["result"]["location"]>
   export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Task?: boolean | Location$TaskArgs<ExtArgs>
+    ProjectLocation?: boolean | Location$ProjectLocationArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -12002,6 +12113,7 @@ export namespace Prisma {
     name: "Location"
     objects: {
       Task: Prisma.$TaskPayload<ExtArgs>[]
+      ProjectLocation: Prisma.$ProjectLocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -12404,6 +12516,7 @@ export namespace Prisma {
   export interface Prisma__LocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Task<T extends Location$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Location$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ProjectLocation<T extends Location$ProjectLocationArgs<ExtArgs> = {}>(args?: Subset<T, Location$ProjectLocationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12847,6 +12960,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Location.ProjectLocation
+   */
+  export type Location$ProjectLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    where?: ProjectLocationWhereInput
+    orderBy?: ProjectLocationOrderByWithRelationInput | ProjectLocationOrderByWithRelationInput[]
+    cursor?: ProjectLocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectLocationScalarFieldEnum | ProjectLocationScalarFieldEnum[]
   }
 
   /**
@@ -18987,6 +19124,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     Progress?: boolean | Project$ProgressArgs<ExtArgs>
     Task?: boolean | Project$TaskArgs<ExtArgs>
+    ProjectLocation?: boolean | Project$ProjectLocationArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -19051,6 +19189,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     Progress?: boolean | Project$ProgressArgs<ExtArgs>
     Task?: boolean | Project$TaskArgs<ExtArgs>
+    ProjectLocation?: boolean | Project$ProjectLocationArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19072,6 +19211,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       Progress: Prisma.$ProgressPayload<ExtArgs>[]
       Task: Prisma.$TaskPayload<ExtArgs>[]
+      ProjectLocation: Prisma.$ProjectLocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -19486,6 +19626,7 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Progress<T extends Project$ProgressArgs<ExtArgs> = {}>(args?: Subset<T, Project$ProgressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Task<T extends Project$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Project$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ProjectLocation<T extends Project$ProjectLocationArgs<ExtArgs> = {}>(args?: Subset<T, Project$ProjectLocationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19991,6 +20132,30 @@ export namespace Prisma {
   }
 
   /**
+   * Project.ProjectLocation
+   */
+  export type Project$ProjectLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    where?: ProjectLocationWhereInput
+    orderBy?: ProjectLocationOrderByWithRelationInput | ProjectLocationOrderByWithRelationInput[]
+    cursor?: ProjectLocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectLocationScalarFieldEnum | ProjectLocationScalarFieldEnum[]
+  }
+
+  /**
    * Project without action
    */
   export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20006,6 +20171,1071 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProjectInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectLocation
+   */
+
+  export type AggregateProjectLocation = {
+    _count: ProjectLocationCountAggregateOutputType | null
+    _avg: ProjectLocationAvgAggregateOutputType | null
+    _sum: ProjectLocationSumAggregateOutputType | null
+    _min: ProjectLocationMinAggregateOutputType | null
+    _max: ProjectLocationMaxAggregateOutputType | null
+  }
+
+  export type ProjectLocationAvgAggregateOutputType = {
+    projectId: number | null
+    locationId: number | null
+  }
+
+  export type ProjectLocationSumAggregateOutputType = {
+    projectId: number | null
+    locationId: number | null
+  }
+
+  export type ProjectLocationMinAggregateOutputType = {
+    projectId: number | null
+    locationId: number | null
+  }
+
+  export type ProjectLocationMaxAggregateOutputType = {
+    projectId: number | null
+    locationId: number | null
+  }
+
+  export type ProjectLocationCountAggregateOutputType = {
+    projectId: number
+    locationId: number
+    _all: number
+  }
+
+
+  export type ProjectLocationAvgAggregateInputType = {
+    projectId?: true
+    locationId?: true
+  }
+
+  export type ProjectLocationSumAggregateInputType = {
+    projectId?: true
+    locationId?: true
+  }
+
+  export type ProjectLocationMinAggregateInputType = {
+    projectId?: true
+    locationId?: true
+  }
+
+  export type ProjectLocationMaxAggregateInputType = {
+    projectId?: true
+    locationId?: true
+  }
+
+  export type ProjectLocationCountAggregateInputType = {
+    projectId?: true
+    locationId?: true
+    _all?: true
+  }
+
+  export type ProjectLocationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectLocation to aggregate.
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLocations to fetch.
+     */
+    orderBy?: ProjectLocationOrderByWithRelationInput | ProjectLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectLocations
+    **/
+    _count?: true | ProjectLocationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectLocationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectLocationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectLocationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectLocationMaxAggregateInputType
+  }
+
+  export type GetProjectLocationAggregateType<T extends ProjectLocationAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectLocation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectLocation[P]>
+      : GetScalarType<T[P], AggregateProjectLocation[P]>
+  }
+
+
+
+
+  export type ProjectLocationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectLocationWhereInput
+    orderBy?: ProjectLocationOrderByWithAggregationInput | ProjectLocationOrderByWithAggregationInput[]
+    by: ProjectLocationScalarFieldEnum[] | ProjectLocationScalarFieldEnum
+    having?: ProjectLocationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectLocationCountAggregateInputType | true
+    _avg?: ProjectLocationAvgAggregateInputType
+    _sum?: ProjectLocationSumAggregateInputType
+    _min?: ProjectLocationMinAggregateInputType
+    _max?: ProjectLocationMaxAggregateInputType
+  }
+
+  export type ProjectLocationGroupByOutputType = {
+    projectId: number
+    locationId: number
+    _count: ProjectLocationCountAggregateOutputType | null
+    _avg: ProjectLocationAvgAggregateOutputType | null
+    _sum: ProjectLocationSumAggregateOutputType | null
+    _min: ProjectLocationMinAggregateOutputType | null
+    _max: ProjectLocationMaxAggregateOutputType | null
+  }
+
+  type GetProjectLocationGroupByPayload<T extends ProjectLocationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectLocationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectLocationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectLocationGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectLocationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectLocationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    projectId?: boolean
+    locationId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    location?: boolean | LocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectLocation"]>
+
+  export type ProjectLocationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    projectId?: boolean
+    locationId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    location?: boolean | LocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectLocation"]>
+
+  export type ProjectLocationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    projectId?: boolean
+    locationId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    location?: boolean | LocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectLocation"]>
+
+  export type ProjectLocationSelectScalar = {
+    projectId?: boolean
+    locationId?: boolean
+  }
+
+  export type ProjectLocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"projectId" | "locationId", ExtArgs["result"]["projectLocation"]>
+  export type ProjectLocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    location?: boolean | LocationDefaultArgs<ExtArgs>
+  }
+  export type ProjectLocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    location?: boolean | LocationDefaultArgs<ExtArgs>
+  }
+  export type ProjectLocationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    location?: boolean | LocationDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectLocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectLocation"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+      location: Prisma.$LocationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      projectId: number
+      locationId: number
+    }, ExtArgs["result"]["projectLocation"]>
+    composites: {}
+  }
+
+  type ProjectLocationGetPayload<S extends boolean | null | undefined | ProjectLocationDefaultArgs> = $Result.GetResult<Prisma.$ProjectLocationPayload, S>
+
+  type ProjectLocationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectLocationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectLocationCountAggregateInputType | true
+    }
+
+  export interface ProjectLocationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectLocation'], meta: { name: 'ProjectLocation' } }
+    /**
+     * Find zero or one ProjectLocation that matches the filter.
+     * @param {ProjectLocationFindUniqueArgs} args - Arguments to find a ProjectLocation
+     * @example
+     * // Get one ProjectLocation
+     * const projectLocation = await prisma.projectLocation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectLocationFindUniqueArgs>(args: SelectSubset<T, ProjectLocationFindUniqueArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectLocation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectLocationFindUniqueOrThrowArgs} args - Arguments to find a ProjectLocation
+     * @example
+     * // Get one ProjectLocation
+     * const projectLocation = await prisma.projectLocation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectLocationFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectLocationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectLocation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationFindFirstArgs} args - Arguments to find a ProjectLocation
+     * @example
+     * // Get one ProjectLocation
+     * const projectLocation = await prisma.projectLocation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectLocationFindFirstArgs>(args?: SelectSubset<T, ProjectLocationFindFirstArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectLocation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationFindFirstOrThrowArgs} args - Arguments to find a ProjectLocation
+     * @example
+     * // Get one ProjectLocation
+     * const projectLocation = await prisma.projectLocation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectLocationFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectLocationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectLocations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectLocations
+     * const projectLocations = await prisma.projectLocation.findMany()
+     * 
+     * // Get first 10 ProjectLocations
+     * const projectLocations = await prisma.projectLocation.findMany({ take: 10 })
+     * 
+     * // Only select the `projectId`
+     * const projectLocationWithProjectIdOnly = await prisma.projectLocation.findMany({ select: { projectId: true } })
+     * 
+     */
+    findMany<T extends ProjectLocationFindManyArgs>(args?: SelectSubset<T, ProjectLocationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectLocation.
+     * @param {ProjectLocationCreateArgs} args - Arguments to create a ProjectLocation.
+     * @example
+     * // Create one ProjectLocation
+     * const ProjectLocation = await prisma.projectLocation.create({
+     *   data: {
+     *     // ... data to create a ProjectLocation
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectLocationCreateArgs>(args: SelectSubset<T, ProjectLocationCreateArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectLocations.
+     * @param {ProjectLocationCreateManyArgs} args - Arguments to create many ProjectLocations.
+     * @example
+     * // Create many ProjectLocations
+     * const projectLocation = await prisma.projectLocation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectLocationCreateManyArgs>(args?: SelectSubset<T, ProjectLocationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectLocations and returns the data saved in the database.
+     * @param {ProjectLocationCreateManyAndReturnArgs} args - Arguments to create many ProjectLocations.
+     * @example
+     * // Create many ProjectLocations
+     * const projectLocation = await prisma.projectLocation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectLocations and only return the `projectId`
+     * const projectLocationWithProjectIdOnly = await prisma.projectLocation.createManyAndReturn({
+     *   select: { projectId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectLocationCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectLocationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectLocation.
+     * @param {ProjectLocationDeleteArgs} args - Arguments to delete one ProjectLocation.
+     * @example
+     * // Delete one ProjectLocation
+     * const ProjectLocation = await prisma.projectLocation.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectLocation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectLocationDeleteArgs>(args: SelectSubset<T, ProjectLocationDeleteArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectLocation.
+     * @param {ProjectLocationUpdateArgs} args - Arguments to update one ProjectLocation.
+     * @example
+     * // Update one ProjectLocation
+     * const projectLocation = await prisma.projectLocation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectLocationUpdateArgs>(args: SelectSubset<T, ProjectLocationUpdateArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectLocations.
+     * @param {ProjectLocationDeleteManyArgs} args - Arguments to filter ProjectLocations to delete.
+     * @example
+     * // Delete a few ProjectLocations
+     * const { count } = await prisma.projectLocation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectLocationDeleteManyArgs>(args?: SelectSubset<T, ProjectLocationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectLocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectLocations
+     * const projectLocation = await prisma.projectLocation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectLocationUpdateManyArgs>(args: SelectSubset<T, ProjectLocationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectLocations and returns the data updated in the database.
+     * @param {ProjectLocationUpdateManyAndReturnArgs} args - Arguments to update many ProjectLocations.
+     * @example
+     * // Update many ProjectLocations
+     * const projectLocation = await prisma.projectLocation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectLocations and only return the `projectId`
+     * const projectLocationWithProjectIdOnly = await prisma.projectLocation.updateManyAndReturn({
+     *   select: { projectId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectLocationUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectLocationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectLocation.
+     * @param {ProjectLocationUpsertArgs} args - Arguments to update or create a ProjectLocation.
+     * @example
+     * // Update or create a ProjectLocation
+     * const projectLocation = await prisma.projectLocation.upsert({
+     *   create: {
+     *     // ... data to create a ProjectLocation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectLocation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectLocationUpsertArgs>(args: SelectSubset<T, ProjectLocationUpsertArgs<ExtArgs>>): Prisma__ProjectLocationClient<$Result.GetResult<Prisma.$ProjectLocationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectLocations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationCountArgs} args - Arguments to filter ProjectLocations to count.
+     * @example
+     * // Count the number of ProjectLocations
+     * const count = await prisma.projectLocation.count({
+     *   where: {
+     *     // ... the filter for the ProjectLocations we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectLocationCountArgs>(
+      args?: Subset<T, ProjectLocationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectLocationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectLocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectLocationAggregateArgs>(args: Subset<T, ProjectLocationAggregateArgs>): Prisma.PrismaPromise<GetProjectLocationAggregateType<T>>
+
+    /**
+     * Group by ProjectLocation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLocationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectLocationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectLocationGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectLocationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectLocationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectLocationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectLocation model
+   */
+  readonly fields: ProjectLocationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectLocation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectLocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectLocation model
+   */
+  interface ProjectLocationFieldRefs {
+    readonly projectId: FieldRef<"ProjectLocation", 'Int'>
+    readonly locationId: FieldRef<"ProjectLocation", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectLocation findUnique
+   */
+  export type ProjectLocationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLocation to fetch.
+     */
+    where: ProjectLocationWhereUniqueInput
+  }
+
+  /**
+   * ProjectLocation findUniqueOrThrow
+   */
+  export type ProjectLocationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLocation to fetch.
+     */
+    where: ProjectLocationWhereUniqueInput
+  }
+
+  /**
+   * ProjectLocation findFirst
+   */
+  export type ProjectLocationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLocation to fetch.
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLocations to fetch.
+     */
+    orderBy?: ProjectLocationOrderByWithRelationInput | ProjectLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectLocations.
+     */
+    cursor?: ProjectLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectLocations.
+     */
+    distinct?: ProjectLocationScalarFieldEnum | ProjectLocationScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectLocation findFirstOrThrow
+   */
+  export type ProjectLocationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLocation to fetch.
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLocations to fetch.
+     */
+    orderBy?: ProjectLocationOrderByWithRelationInput | ProjectLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectLocations.
+     */
+    cursor?: ProjectLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLocations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectLocations.
+     */
+    distinct?: ProjectLocationScalarFieldEnum | ProjectLocationScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectLocation findMany
+   */
+  export type ProjectLocationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLocations to fetch.
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLocations to fetch.
+     */
+    orderBy?: ProjectLocationOrderByWithRelationInput | ProjectLocationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectLocations.
+     */
+    cursor?: ProjectLocationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLocations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLocations.
+     */
+    skip?: number
+    distinct?: ProjectLocationScalarFieldEnum | ProjectLocationScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectLocation create
+   */
+  export type ProjectLocationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectLocation.
+     */
+    data: XOR<ProjectLocationCreateInput, ProjectLocationUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectLocation createMany
+   */
+  export type ProjectLocationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectLocations.
+     */
+    data: ProjectLocationCreateManyInput | ProjectLocationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectLocation createManyAndReturn
+   */
+  export type ProjectLocationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectLocations.
+     */
+    data: ProjectLocationCreateManyInput | ProjectLocationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectLocation update
+   */
+  export type ProjectLocationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectLocation.
+     */
+    data: XOR<ProjectLocationUpdateInput, ProjectLocationUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectLocation to update.
+     */
+    where: ProjectLocationWhereUniqueInput
+  }
+
+  /**
+   * ProjectLocation updateMany
+   */
+  export type ProjectLocationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectLocations.
+     */
+    data: XOR<ProjectLocationUpdateManyMutationInput, ProjectLocationUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectLocations to update
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * Limit how many ProjectLocations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectLocation updateManyAndReturn
+   */
+  export type ProjectLocationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectLocations.
+     */
+    data: XOR<ProjectLocationUpdateManyMutationInput, ProjectLocationUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectLocations to update
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * Limit how many ProjectLocations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectLocation upsert
+   */
+  export type ProjectLocationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectLocation to update in case it exists.
+     */
+    where: ProjectLocationWhereUniqueInput
+    /**
+     * In case the ProjectLocation found by the `where` argument doesn't exist, create a new ProjectLocation with this data.
+     */
+    create: XOR<ProjectLocationCreateInput, ProjectLocationUncheckedCreateInput>
+    /**
+     * In case the ProjectLocation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectLocationUpdateInput, ProjectLocationUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectLocation delete
+   */
+  export type ProjectLocationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectLocation to delete.
+     */
+    where: ProjectLocationWhereUniqueInput
+  }
+
+  /**
+   * ProjectLocation deleteMany
+   */
+  export type ProjectLocationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectLocations to delete
+     */
+    where?: ProjectLocationWhereInput
+    /**
+     * Limit how many ProjectLocations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectLocation without action
+   */
+  export type ProjectLocationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLocation
+     */
+    select?: ProjectLocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLocation
+     */
+    omit?: ProjectLocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLocationInclude<ExtArgs> | null
   }
 
 
@@ -28271,6 +29501,14 @@ export namespace Prisma {
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
+  export const ProjectLocationScalarFieldEnum: {
+    projectId: 'projectId',
+    locationId: 'locationId'
+  };
+
+  export type ProjectLocationScalarFieldEnum = (typeof ProjectLocationScalarFieldEnum)[keyof typeof ProjectLocationScalarFieldEnum]
+
+
   export const ShipmentScalarFieldEnum: {
     id: 'id',
     alias: 'alias',
@@ -29082,6 +30320,7 @@ export namespace Prisma {
     longitude?: FloatFilter<"Location"> | number
     notes?: StringFilter<"Location"> | string
     Task?: TaskListRelationFilter
+    ProjectLocation?: ProjectLocationListRelationFilter
   }
 
   export type LocationOrderByWithRelationInput = {
@@ -29091,6 +30330,7 @@ export namespace Prisma {
     longitude?: SortOrder
     notes?: SortOrder
     Task?: TaskOrderByRelationAggregateInput
+    ProjectLocation?: ProjectLocationOrderByRelationAggregateInput
   }
 
   export type LocationWhereUniqueInput = Prisma.AtLeast<{
@@ -29103,6 +30343,7 @@ export namespace Prisma {
     longitude?: FloatFilter<"Location"> | number
     notes?: StringFilter<"Location"> | string
     Task?: TaskListRelationFilter
+    ProjectLocation?: ProjectLocationListRelationFilter
   }, "id">
 
   export type LocationOrderByWithAggregationInput = {
@@ -29515,6 +30756,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Progress?: ProgressListRelationFilter
     Task?: TaskListRelationFilter
+    ProjectLocation?: ProjectLocationListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -29536,6 +30778,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     Progress?: ProgressOrderByRelationAggregateInput
     Task?: TaskOrderByRelationAggregateInput
+    ProjectLocation?: ProjectLocationOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -29560,6 +30803,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Progress?: ProgressListRelationFilter
     Task?: TaskListRelationFilter
+    ProjectLocation?: ProjectLocationListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -29600,6 +30844,52 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     userId?: IntWithAggregatesFilter<"Project"> | number
+  }
+
+  export type ProjectLocationWhereInput = {
+    AND?: ProjectLocationWhereInput | ProjectLocationWhereInput[]
+    OR?: ProjectLocationWhereInput[]
+    NOT?: ProjectLocationWhereInput | ProjectLocationWhereInput[]
+    projectId?: IntFilter<"ProjectLocation"> | number
+    locationId?: IntFilter<"ProjectLocation"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+  }
+
+  export type ProjectLocationOrderByWithRelationInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    location?: LocationOrderByWithRelationInput
+  }
+
+  export type ProjectLocationWhereUniqueInput = Prisma.AtLeast<{
+    projectId_locationId?: ProjectLocationProjectIdLocationIdCompoundUniqueInput
+    AND?: ProjectLocationWhereInput | ProjectLocationWhereInput[]
+    OR?: ProjectLocationWhereInput[]
+    NOT?: ProjectLocationWhereInput | ProjectLocationWhereInput[]
+    projectId?: IntFilter<"ProjectLocation"> | number
+    locationId?: IntFilter<"ProjectLocation"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+  }, "projectId_locationId">
+
+  export type ProjectLocationOrderByWithAggregationInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+    _count?: ProjectLocationCountOrderByAggregateInput
+    _avg?: ProjectLocationAvgOrderByAggregateInput
+    _max?: ProjectLocationMaxOrderByAggregateInput
+    _min?: ProjectLocationMinOrderByAggregateInput
+    _sum?: ProjectLocationSumOrderByAggregateInput
+  }
+
+  export type ProjectLocationScalarWhereWithAggregatesInput = {
+    AND?: ProjectLocationScalarWhereWithAggregatesInput | ProjectLocationScalarWhereWithAggregatesInput[]
+    OR?: ProjectLocationScalarWhereWithAggregatesInput[]
+    NOT?: ProjectLocationScalarWhereWithAggregatesInput | ProjectLocationScalarWhereWithAggregatesInput[]
+    projectId?: IntWithAggregatesFilter<"ProjectLocation"> | number
+    locationId?: IntWithAggregatesFilter<"ProjectLocation"> | number
   }
 
   export type ShipmentWhereInput = {
@@ -30598,6 +31888,7 @@ export namespace Prisma {
     longitude: number
     notes: string
     Task?: TaskCreateNestedManyWithoutLocationInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutLocationInput
   }
 
   export type LocationUncheckedCreateInput = {
@@ -30607,6 +31898,7 @@ export namespace Prisma {
     longitude: number
     notes: string
     Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutLocationInput
   }
 
   export type LocationUpdateInput = {
@@ -30615,6 +31907,7 @@ export namespace Prisma {
     longitude?: FloatFieldUpdateOperationsInput | number
     notes?: StringFieldUpdateOperationsInput | string
     Task?: TaskUpdateManyWithoutLocationNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutLocationNestedInput
   }
 
   export type LocationUncheckedUpdateInput = {
@@ -30624,6 +31917,7 @@ export namespace Prisma {
     longitude?: FloatFieldUpdateOperationsInput | number
     notes?: StringFieldUpdateOperationsInput | string
     Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type LocationCreateManyInput = {
@@ -31018,6 +32312,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -31036,6 +32331,7 @@ export namespace Prisma {
     userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
     Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -31053,6 +32349,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -31071,6 +32368,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
     Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -31115,6 +32413,40 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLocationCreateInput = {
+    project: ProjectCreateNestedOneWithoutProjectLocationInput
+    location: LocationCreateNestedOneWithoutProjectLocationInput
+  }
+
+  export type ProjectLocationUncheckedCreateInput = {
+    projectId: number
+    locationId: number
+  }
+
+  export type ProjectLocationUpdateInput = {
+    project?: ProjectUpdateOneRequiredWithoutProjectLocationNestedInput
+    location?: LocationUpdateOneRequiredWithoutProjectLocationNestedInput
+  }
+
+  export type ProjectLocationUncheckedUpdateInput = {
+    projectId?: IntFieldUpdateOperationsInput | number
+    locationId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLocationCreateManyInput = {
+    projectId: number
+    locationId: number
+  }
+
+  export type ProjectLocationUpdateManyMutationInput = {
+
+  }
+
+  export type ProjectLocationUncheckedUpdateManyInput = {
+    projectId?: IntFieldUpdateOperationsInput | number
+    locationId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ShipmentCreateInput = {
@@ -32283,6 +33615,16 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type ProjectLocationListRelationFilter = {
+    every?: ProjectLocationWhereInput
+    some?: ProjectLocationWhereInput
+    none?: ProjectLocationWhereInput
+  }
+
+  export type ProjectLocationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type LocationCountOrderByAggregateInput = {
     id?: SortOrder
     locationName?: SortOrder
@@ -32712,6 +34054,41 @@ export namespace Prisma {
     _max?: NestedEnumProjectStatusFilter<$PrismaModel>
   }
 
+  export type LocationScalarRelationFilter = {
+    is?: LocationWhereInput
+    isNot?: LocationWhereInput
+  }
+
+  export type ProjectLocationProjectIdLocationIdCompoundUniqueInput = {
+    projectId: number
+    locationId: number
+  }
+
+  export type ProjectLocationCountOrderByAggregateInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+  }
+
+  export type ProjectLocationAvgOrderByAggregateInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+  }
+
+  export type ProjectLocationMaxOrderByAggregateInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+  }
+
+  export type ProjectLocationMinOrderByAggregateInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+  }
+
+  export type ProjectLocationSumOrderByAggregateInput = {
+    projectId?: SortOrder
+    locationId?: SortOrder
+  }
+
   export type EnumShipmentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.ShipmentStatus | EnumShipmentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ShipmentStatus[] | ListEnumShipmentStatusFieldRefInput<$PrismaModel>
@@ -32885,11 +34262,6 @@ export namespace Prisma {
     in?: $Enums.TaskStatus[] | ListEnumTaskStatusFieldRefInput<$PrismaModel> | null
     notIn?: $Enums.TaskStatus[] | ListEnumTaskStatusFieldRefInput<$PrismaModel> | null
     not?: NestedEnumTaskStatusNullableFilter<$PrismaModel> | $Enums.TaskStatus | null
-  }
-
-  export type LocationScalarRelationFilter = {
-    is?: LocationWhereInput
-    isNot?: LocationWhereInput
   }
 
   export type TaskCountOrderByAggregateInput = {
@@ -34014,11 +35386,25 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type ProjectLocationCreateNestedManyWithoutLocationInput = {
+    create?: XOR<ProjectLocationCreateWithoutLocationInput, ProjectLocationUncheckedCreateWithoutLocationInput> | ProjectLocationCreateWithoutLocationInput[] | ProjectLocationUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutLocationInput | ProjectLocationCreateOrConnectWithoutLocationInput[]
+    createMany?: ProjectLocationCreateManyLocationInputEnvelope
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+  }
+
   export type TaskUncheckedCreateNestedManyWithoutLocationInput = {
     create?: XOR<TaskCreateWithoutLocationInput, TaskUncheckedCreateWithoutLocationInput> | TaskCreateWithoutLocationInput[] | TaskUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutLocationInput | TaskCreateOrConnectWithoutLocationInput[]
     createMany?: TaskCreateManyLocationInputEnvelope
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type ProjectLocationUncheckedCreateNestedManyWithoutLocationInput = {
+    create?: XOR<ProjectLocationCreateWithoutLocationInput, ProjectLocationUncheckedCreateWithoutLocationInput> | ProjectLocationCreateWithoutLocationInput[] | ProjectLocationUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutLocationInput | ProjectLocationCreateOrConnectWithoutLocationInput[]
+    createMany?: ProjectLocationCreateManyLocationInputEnvelope
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -34043,6 +35429,20 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type ProjectLocationUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<ProjectLocationCreateWithoutLocationInput, ProjectLocationUncheckedCreateWithoutLocationInput> | ProjectLocationCreateWithoutLocationInput[] | ProjectLocationUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutLocationInput | ProjectLocationCreateOrConnectWithoutLocationInput[]
+    upsert?: ProjectLocationUpsertWithWhereUniqueWithoutLocationInput | ProjectLocationUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: ProjectLocationCreateManyLocationInputEnvelope
+    set?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    disconnect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    delete?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    update?: ProjectLocationUpdateWithWhereUniqueWithoutLocationInput | ProjectLocationUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: ProjectLocationUpdateManyWithWhereWithoutLocationInput | ProjectLocationUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: ProjectLocationScalarWhereInput | ProjectLocationScalarWhereInput[]
+  }
+
   export type TaskUncheckedUpdateManyWithoutLocationNestedInput = {
     create?: XOR<TaskCreateWithoutLocationInput, TaskUncheckedCreateWithoutLocationInput> | TaskCreateWithoutLocationInput[] | TaskUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutLocationInput | TaskCreateOrConnectWithoutLocationInput[]
@@ -34055,6 +35455,20 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutLocationInput | TaskUpdateWithWhereUniqueWithoutLocationInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutLocationInput | TaskUpdateManyWithWhereWithoutLocationInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type ProjectLocationUncheckedUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<ProjectLocationCreateWithoutLocationInput, ProjectLocationUncheckedCreateWithoutLocationInput> | ProjectLocationCreateWithoutLocationInput[] | ProjectLocationUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutLocationInput | ProjectLocationCreateOrConnectWithoutLocationInput[]
+    upsert?: ProjectLocationUpsertWithWhereUniqueWithoutLocationInput | ProjectLocationUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: ProjectLocationCreateManyLocationInputEnvelope
+    set?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    disconnect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    delete?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    update?: ProjectLocationUpdateWithWhereUniqueWithoutLocationInput | ProjectLocationUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: ProjectLocationUpdateManyWithWhereWithoutLocationInput | ProjectLocationUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: ProjectLocationScalarWhereInput | ProjectLocationScalarWhereInput[]
   }
 
   export type MaterialTypeCreateNestedManyWithoutGroupInput = {
@@ -34417,6 +35831,13 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type ProjectLocationCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectLocationCreateWithoutProjectInput, ProjectLocationUncheckedCreateWithoutProjectInput> | ProjectLocationCreateWithoutProjectInput[] | ProjectLocationUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutProjectInput | ProjectLocationCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectLocationCreateManyProjectInputEnvelope
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+  }
+
   export type ProgressUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<ProgressCreateWithoutProjectInput, ProgressUncheckedCreateWithoutProjectInput> | ProgressCreateWithoutProjectInput[] | ProgressUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: ProgressCreateOrConnectWithoutProjectInput | ProgressCreateOrConnectWithoutProjectInput[]
@@ -34429,6 +35850,13 @@ export namespace Prisma {
     connectOrCreate?: TaskCreateOrConnectWithoutProjectInput | TaskCreateOrConnectWithoutProjectInput[]
     createMany?: TaskCreateManyProjectInputEnvelope
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type ProjectLocationUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectLocationCreateWithoutProjectInput, ProjectLocationUncheckedCreateWithoutProjectInput> | ProjectLocationCreateWithoutProjectInput[] | ProjectLocationUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutProjectInput | ProjectLocationCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectLocationCreateManyProjectInputEnvelope
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
   }
 
   export type EnumProjectStatusFieldUpdateOperationsInput = {
@@ -34489,6 +35917,20 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type ProjectLocationUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectLocationCreateWithoutProjectInput, ProjectLocationUncheckedCreateWithoutProjectInput> | ProjectLocationCreateWithoutProjectInput[] | ProjectLocationUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutProjectInput | ProjectLocationCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectLocationUpsertWithWhereUniqueWithoutProjectInput | ProjectLocationUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectLocationCreateManyProjectInputEnvelope
+    set?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    disconnect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    delete?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    update?: ProjectLocationUpdateWithWhereUniqueWithoutProjectInput | ProjectLocationUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectLocationUpdateManyWithWhereWithoutProjectInput | ProjectLocationUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectLocationScalarWhereInput | ProjectLocationScalarWhereInput[]
+  }
+
   export type ProgressUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<ProgressCreateWithoutProjectInput, ProgressUncheckedCreateWithoutProjectInput> | ProgressCreateWithoutProjectInput[] | ProgressUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: ProgressCreateOrConnectWithoutProjectInput | ProgressCreateOrConnectWithoutProjectInput[]
@@ -34515,6 +35957,48 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutProjectInput | TaskUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutProjectInput | TaskUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectLocationCreateWithoutProjectInput, ProjectLocationUncheckedCreateWithoutProjectInput> | ProjectLocationCreateWithoutProjectInput[] | ProjectLocationUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLocationCreateOrConnectWithoutProjectInput | ProjectLocationCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectLocationUpsertWithWhereUniqueWithoutProjectInput | ProjectLocationUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectLocationCreateManyProjectInputEnvelope
+    set?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    disconnect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    delete?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    connect?: ProjectLocationWhereUniqueInput | ProjectLocationWhereUniqueInput[]
+    update?: ProjectLocationUpdateWithWhereUniqueWithoutProjectInput | ProjectLocationUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectLocationUpdateManyWithWhereWithoutProjectInput | ProjectLocationUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectLocationScalarWhereInput | ProjectLocationScalarWhereInput[]
+  }
+
+  export type ProjectCreateNestedOneWithoutProjectLocationInput = {
+    create?: XOR<ProjectCreateWithoutProjectLocationInput, ProjectUncheckedCreateWithoutProjectLocationInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutProjectLocationInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type LocationCreateNestedOneWithoutProjectLocationInput = {
+    create?: XOR<LocationCreateWithoutProjectLocationInput, LocationUncheckedCreateWithoutProjectLocationInput>
+    connectOrCreate?: LocationCreateOrConnectWithoutProjectLocationInput
+    connect?: LocationWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutProjectLocationNestedInput = {
+    create?: XOR<ProjectCreateWithoutProjectLocationInput, ProjectUncheckedCreateWithoutProjectLocationInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutProjectLocationInput
+    upsert?: ProjectUpsertWithoutProjectLocationInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutProjectLocationInput, ProjectUpdateWithoutProjectLocationInput>, ProjectUncheckedUpdateWithoutProjectLocationInput>
+  }
+
+  export type LocationUpdateOneRequiredWithoutProjectLocationNestedInput = {
+    create?: XOR<LocationCreateWithoutProjectLocationInput, LocationUncheckedCreateWithoutProjectLocationInput>
+    connectOrCreate?: LocationCreateOrConnectWithoutProjectLocationInput
+    upsert?: LocationUpsertWithoutProjectLocationInput
+    connect?: LocationWhereUniqueInput
+    update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutProjectLocationInput, LocationUpdateWithoutProjectLocationInput>, LocationUncheckedUpdateWithoutProjectLocationInput>
   }
 
   export type UserCreateNestedOneWithoutShipmentInput = {
@@ -35528,6 +37012,7 @@ export namespace Prisma {
     currency: CurrencyCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutUserInput = {
@@ -35545,6 +37030,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
     Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutUserInput = {
@@ -36005,6 +37491,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutClientInput = {
@@ -36022,6 +37509,7 @@ export namespace Prisma {
     userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
     Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutClientInput = {
@@ -36171,6 +37659,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutCurrencyInput = {
@@ -36188,6 +37677,7 @@ export namespace Prisma {
     userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
     Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutCurrencyInput = {
@@ -37190,6 +38680,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProjectLocationCreateWithoutLocationInput = {
+    project: ProjectCreateNestedOneWithoutProjectLocationInput
+  }
+
+  export type ProjectLocationUncheckedCreateWithoutLocationInput = {
+    projectId: number
+  }
+
+  export type ProjectLocationCreateOrConnectWithoutLocationInput = {
+    where: ProjectLocationWhereUniqueInput
+    create: XOR<ProjectLocationCreateWithoutLocationInput, ProjectLocationUncheckedCreateWithoutLocationInput>
+  }
+
+  export type ProjectLocationCreateManyLocationInputEnvelope = {
+    data: ProjectLocationCreateManyLocationInput | ProjectLocationCreateManyLocationInput[]
+    skipDuplicates?: boolean
+  }
+
   export type TaskUpsertWithWhereUniqueWithoutLocationInput = {
     where: TaskWhereUniqueInput
     update: XOR<TaskUpdateWithoutLocationInput, TaskUncheckedUpdateWithoutLocationInput>
@@ -37204,6 +38712,30 @@ export namespace Prisma {
   export type TaskUpdateManyWithWhereWithoutLocationInput = {
     where: TaskScalarWhereInput
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type ProjectLocationUpsertWithWhereUniqueWithoutLocationInput = {
+    where: ProjectLocationWhereUniqueInput
+    update: XOR<ProjectLocationUpdateWithoutLocationInput, ProjectLocationUncheckedUpdateWithoutLocationInput>
+    create: XOR<ProjectLocationCreateWithoutLocationInput, ProjectLocationUncheckedCreateWithoutLocationInput>
+  }
+
+  export type ProjectLocationUpdateWithWhereUniqueWithoutLocationInput = {
+    where: ProjectLocationWhereUniqueInput
+    data: XOR<ProjectLocationUpdateWithoutLocationInput, ProjectLocationUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type ProjectLocationUpdateManyWithWhereWithoutLocationInput = {
+    where: ProjectLocationScalarWhereInput
+    data: XOR<ProjectLocationUpdateManyMutationInput, ProjectLocationUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type ProjectLocationScalarWhereInput = {
+    AND?: ProjectLocationScalarWhereInput | ProjectLocationScalarWhereInput[]
+    OR?: ProjectLocationScalarWhereInput[]
+    NOT?: ProjectLocationScalarWhereInput | ProjectLocationScalarWhereInput[]
+    projectId?: IntFilter<"ProjectLocation"> | number
+    locationId?: IntFilter<"ProjectLocation"> | number
   }
 
   export type MaterialTypeCreateWithoutGroupInput = {
@@ -37680,6 +39212,7 @@ export namespace Prisma {
     currency: CurrencyCreateNestedOneWithoutProjectInput
     user: UserCreateNestedOneWithoutProjectInput
     Task?: TaskCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutProgressInput = {
@@ -37697,6 +39230,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutProgressInput = {
@@ -37839,6 +39373,7 @@ export namespace Prisma {
     currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutProgressInput = {
@@ -37856,6 +39391,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type TaskUpsertWithoutProgressInput = {
@@ -38152,6 +39688,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProjectLocationCreateWithoutProjectInput = {
+    location: LocationCreateNestedOneWithoutProjectLocationInput
+  }
+
+  export type ProjectLocationUncheckedCreateWithoutProjectInput = {
+    locationId: number
+  }
+
+  export type ProjectLocationCreateOrConnectWithoutProjectInput = {
+    where: ProjectLocationWhereUniqueInput
+    create: XOR<ProjectLocationCreateWithoutProjectInput, ProjectLocationUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectLocationCreateManyProjectInputEnvelope = {
+    data: ProjectLocationCreateManyProjectInput | ProjectLocationCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ClientUpsertWithoutProjectInput = {
     update: XOR<ClientUpdateWithoutProjectInput, ClientUncheckedUpdateWithoutProjectInput>
     create: XOR<ClientCreateWithoutProjectInput, ClientUncheckedCreateWithoutProjectInput>
@@ -38286,6 +39840,158 @@ export namespace Prisma {
   export type TaskUpdateManyWithWhereWithoutProjectInput = {
     where: TaskScalarWhereInput
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectLocationUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectLocationWhereUniqueInput
+    update: XOR<ProjectLocationUpdateWithoutProjectInput, ProjectLocationUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectLocationCreateWithoutProjectInput, ProjectLocationUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectLocationUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectLocationWhereUniqueInput
+    data: XOR<ProjectLocationUpdateWithoutProjectInput, ProjectLocationUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectLocationUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectLocationScalarWhereInput
+    data: XOR<ProjectLocationUpdateManyMutationInput, ProjectLocationUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectCreateWithoutProjectLocationInput = {
+    fullName: string
+    displayName: string
+    managerId?: number | null
+    status: $Enums.ProjectStatus
+    notes: string
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client?: ClientCreateNestedOneWithoutProjectInput
+    currency: CurrencyCreateNestedOneWithoutProjectInput
+    user: UserCreateNestedOneWithoutProjectInput
+    Progress?: ProgressCreateNestedManyWithoutProjectInput
+    Task?: TaskCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutProjectLocationInput = {
+    id?: number
+    fullName: string
+    displayName: string
+    clientId?: number | null
+    managerId?: number | null
+    status: $Enums.ProjectStatus
+    notes: string
+    startDate: Date | string
+    endDate: Date | string
+    currencyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
+    Task?: TaskUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutProjectLocationInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutProjectLocationInput, ProjectUncheckedCreateWithoutProjectLocationInput>
+  }
+
+  export type LocationCreateWithoutProjectLocationInput = {
+    locationName: string
+    latitude: number
+    longitude: number
+    notes: string
+    Task?: TaskCreateNestedManyWithoutLocationInput
+  }
+
+  export type LocationUncheckedCreateWithoutProjectLocationInput = {
+    id?: number
+    locationName: string
+    latitude: number
+    longitude: number
+    notes: string
+    Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type LocationCreateOrConnectWithoutProjectLocationInput = {
+    where: LocationWhereUniqueInput
+    create: XOR<LocationCreateWithoutProjectLocationInput, LocationUncheckedCreateWithoutProjectLocationInput>
+  }
+
+  export type ProjectUpsertWithoutProjectLocationInput = {
+    update: XOR<ProjectUpdateWithoutProjectLocationInput, ProjectUncheckedUpdateWithoutProjectLocationInput>
+    create: XOR<ProjectCreateWithoutProjectLocationInput, ProjectUncheckedCreateWithoutProjectLocationInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutProjectLocationInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutProjectLocationInput, ProjectUncheckedUpdateWithoutProjectLocationInput>
+  }
+
+  export type ProjectUpdateWithoutProjectLocationInput = {
+    fullName?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    managerId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneWithoutProjectNestedInput
+    currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectNestedInput
+    Progress?: ProgressUpdateManyWithoutProjectNestedInput
+    Task?: TaskUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutProjectLocationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    fullName?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    clientId?: NullableIntFieldUpdateOperationsInput | number | null
+    managerId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    notes?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type LocationUpsertWithoutProjectLocationInput = {
+    update: XOR<LocationUpdateWithoutProjectLocationInput, LocationUncheckedUpdateWithoutProjectLocationInput>
+    create: XOR<LocationCreateWithoutProjectLocationInput, LocationUncheckedCreateWithoutProjectLocationInput>
+    where?: LocationWhereInput
+  }
+
+  export type LocationUpdateToOneWithWhereWithoutProjectLocationInput = {
+    where?: LocationWhereInput
+    data: XOR<LocationUpdateWithoutProjectLocationInput, LocationUncheckedUpdateWithoutProjectLocationInput>
+  }
+
+  export type LocationUpdateWithoutProjectLocationInput = {
+    locationName?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    Task?: TaskUpdateManyWithoutLocationNestedInput
+  }
+
+  export type LocationUncheckedUpdateWithoutProjectLocationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    locationName?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    notes?: StringFieldUpdateOperationsInput | string
+    Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type UserCreateWithoutShipmentInput = {
@@ -38695,6 +40401,7 @@ export namespace Prisma {
     latitude: number
     longitude: number
     notes: string
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutLocationInput
   }
 
   export type LocationUncheckedCreateWithoutTaskInput = {
@@ -38703,6 +40410,7 @@ export namespace Prisma {
     latitude: number
     longitude: number
     notes: string
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutLocationInput
   }
 
   export type LocationCreateOrConnectWithoutTaskInput = {
@@ -38724,6 +40432,7 @@ export namespace Prisma {
     currency: CurrencyCreateNestedOneWithoutProjectInput
     user: UserCreateNestedOneWithoutProjectInput
     Progress?: ProgressCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutTaskInput = {
@@ -38741,6 +40450,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
+    ProjectLocation?: ProjectLocationUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutTaskInput = {
@@ -38882,6 +40592,7 @@ export namespace Prisma {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     notes?: StringFieldUpdateOperationsInput | string
+    ProjectLocation?: ProjectLocationUpdateManyWithoutLocationNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutTaskInput = {
@@ -38890,6 +40601,7 @@ export namespace Prisma {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     notes?: StringFieldUpdateOperationsInput | string
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type ProjectUpsertWithoutTaskInput = {
@@ -38917,6 +40629,7 @@ export namespace Prisma {
     currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTaskInput = {
@@ -38934,6 +40647,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutTaskInput = {
@@ -39652,6 +41366,7 @@ export namespace Prisma {
     currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutUserInput = {
@@ -39669,6 +41384,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
     Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutUserInput = {
@@ -39873,6 +41589,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -39890,6 +41607,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
     Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -40085,6 +41803,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutProjectNestedInput
     Progress?: ProgressUpdateManyWithoutProjectNestedInput
     Task?: TaskUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutCurrencyInput = {
@@ -40102,6 +41821,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
     Task?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutCurrencyInput = {
@@ -40205,6 +41925,10 @@ export namespace Prisma {
     userId: number
   }
 
+  export type ProjectLocationCreateManyLocationInput = {
+    projectId: number
+  }
+
   export type TaskUpdateWithoutLocationInput = {
     taskName?: StringFieldUpdateOperationsInput | string
     taskGroup?: EnumTaskGroupFieldUpdateOperationsInput | $Enums.TaskGroup
@@ -40251,6 +41975,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLocationUpdateWithoutLocationInput = {
+    project?: ProjectUpdateOneRequiredWithoutProjectLocationNestedInput
+  }
+
+  export type ProjectLocationUncheckedUpdateWithoutLocationInput = {
+    projectId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLocationUncheckedUpdateManyWithoutLocationInput = {
+    projectId?: IntFieldUpdateOperationsInput | number
   }
 
   export type MaterialTypeCreateManyGroupInput = {
@@ -40455,6 +42191,10 @@ export namespace Prisma {
     userId: number
   }
 
+  export type ProjectLocationCreateManyProjectInput = {
+    locationId: number
+  }
+
   export type ProgressUpdateWithoutProjectInput = {
     teamId?: NullableIntFieldUpdateOperationsInput | number | null
     buildQuantity?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -40542,6 +42282,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLocationUpdateWithoutProjectInput = {
+    location?: LocationUpdateOneRequiredWithoutProjectLocationNestedInput
+  }
+
+  export type ProjectLocationUncheckedUpdateWithoutProjectInput = {
+    locationId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLocationUncheckedUpdateManyWithoutProjectInput = {
+    locationId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ShipmentFileCreateManyShipmentInput = {

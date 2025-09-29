@@ -1,7 +1,8 @@
-export const ProjectLocations = () => {
+
+export const ProjectLocations = ({id}: {id: number}) => {
   return (
-    <div className="flex flex-col gap-4 p-6 ">
-      <h2>Project Locations component</h2>
+    <div className="max-w-1400px flex flex-col gap-4 p-24">
+      <h2>Project Locations component {id}</h2>
     </div>
   );
 };

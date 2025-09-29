@@ -259,6 +259,11 @@ exports.Prisma.ProjectScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ProjectLocationScalarFieldEnum = {
+  projectId: 'projectId',
+  locationId: 'locationId'
+};
+
 exports.Prisma.ShipmentScalarFieldEnum = {
   id: 'id',
   alias: 'alias',
@@ -389,6 +394,7 @@ exports.Prisma.ModelName = {
   Milestone: 'Milestone',
   Progress: 'Progress',
   Project: 'Project',
+  ProjectLocation: 'ProjectLocation',
   Shipment: 'Shipment',
   ShipmentFile: 'ShipmentFile',
   Staff: 'Staff',

@@ -127,12 +127,13 @@ model InvoiceItem {
 }
 
 model Location {
-  id           Int    @id @default(autoincrement())
-  locationName String @map("location_name")
-  latitude     Float
-  longitude    Float
-  notes        String
-  Task         Task[]
+  id              Int               @id @default(autoincrement())
+  locationName    String            @map("location_name")
+  latitude        Float
+  longitude       Float
+  notes           String
+  Task            Task[]
+  ProjectLocation ProjectLocation[]
 
   @@map("location")
 }
@@ -225,26 +226,37 @@ enum ProjectStatus {
 }
 
 model Project {
-  id          Int           @id @default(autoincrement())
-  fullName    String        @map("full_name")
-  displayName String        @map("display_name")
-  client      Client?       @relation(fields: [clientId], references: [id])
-  clientId    Int?          @map("client_id")
-  managerId   Int?          @map("manager_id")
-  status      ProjectStatus
-  notes       String
-  startDate   DateTime      @map("start_date")
-  endDate     DateTime      @map("end_date")
-  currency    Currency      @relation(fields: [currencyId], references: [id])
-  currencyId  Int
-  createdAt   DateTime      @default(now()) @map("created_at")
-  updatedAt   DateTime      @updatedAt
-  user        User          @relation(fields: [userId], references: [id])
-  userId      Int           @map("user_id")
-  Progress    Progress[]
-  Task        Task[]
+  id              Int               @id @default(autoincrement())
+  fullName        String            @map("full_name")
+  displayName     String            @map("display_name")
+  client          Client?           @relation(fields: [clientId], references: [id])
+  clientId        Int?              @map("client_id")
+  managerId       Int?              @map("manager_id")
+  status          ProjectStatus
+  notes           String
+  startDate       DateTime          @map("start_date")
+  endDate         DateTime          @map("end_date")
+  currency        Currency          @relation(fields: [currencyId], references: [id])
+  currencyId      Int
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt
+  user            User              @relation(fields: [userId], references: [id])
+  userId          Int               @map("user_id")
+  Progress        Progress[]
+  Task            Task[]
+  ProjectLocation ProjectLocation[]
 
   @@map("project")
+}
+
+model ProjectLocation {
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  Int      @map("project_id")
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int      @map("location_id")
+
+  @@id([projectId, locationId])
+  @@map("project_location")
 }
 
 enum ShipmentStatus {
