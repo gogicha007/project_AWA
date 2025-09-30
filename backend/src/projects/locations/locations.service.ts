@@ -2,34 +2,65 @@ import { Injectable } from '@nestjs/common';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
 import { DatabaseService } from 'src/database/database/database.service';
+import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
 
 @Injectable()
 export class LocationsService {
   constructor(private readonly dbService: DatabaseService) {}
+
   async create(createLocationDto: CreateLocationDto) {
-    const location = await this.dbService.location.create({
-      data: createLocationDto,
-    });
-    return location;
+    try {
+      const location = await this.dbService.location.create({
+        data: createLocationDto,
+      });
+      return { success: true, message: 'Location created successfully', location };
+
+    } catch (error) {
+      handlePrismaErrors(error);
+    }
   }
 
-  findAll() {
-    return `This action returns all locations`;
+  async findAll() {
+    try {
+      const locations = await this.dbService.location.findMany();
+      return { success: true, locations };
+    } catch (error) {
+      handlePrismaErrors(error);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} location`;
+  async findOne(id: number) {
+    try {
+      const location = await this.dbService.location.findUnique({
+        where: { id },
+      });
+      return { success: true, location };
+    } catch (error) {
+      handlePrismaErrors(error);
+    }
   }
+
 
   async update(id: number, updateLocationDto: UpdateLocationDto) {
-    const location = await this.dbService.location.update({
-      where: { id },
-      data: updateLocationDto,
-    });
-    return location;
+    try {
+      const location = await this.dbService.location.update({
+        where: { id },
+        data: updateLocationDto,
+      });
+      return { success: true, message: 'Location updated successfully', location };
+    } catch (error) {
+      handlePrismaErrors(error);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} location`;
+  async remove(id: number) {
+    try {
+      await this.dbService.location.delete({
+        where: { id },
+      });
+      return { success: true, message: `Location with id ${id} removed successfully` };
+    } catch (error) {
+      handlePrismaErrors(error);
+    }
   }
 }
