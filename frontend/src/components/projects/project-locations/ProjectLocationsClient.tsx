@@ -1,0 +1,44 @@
+'use client';
+
+import React from 'react';
+import { useTranslations } from 'next-intl';
+import { LocationsCard } from './locations-card/LocationsCard';
+
+const locations = [
+  {
+    id: 1,
+    locationName: 'Location 1',
+    progress: 75,
+  },
+  {
+    id: 2,
+    locationName: 'Location 2',
+    progress: 50,
+  },
+  {
+    id: 3,
+    locationName: 'Location 3',
+    progress: 25,
+  },
+  {
+    id: 4,
+    locationName: 'Location 4',
+    progress: 15,
+  },
+];
+
+export const ProjectLocations = ({ id }: { id: number }) => {
+  const tPjLoc = useTranslations('ProjectLocations');
+  return (
+    <div className="max-w-1400px flex flex-col gap-4 p-24">
+      <h2>
+        {tPjLoc('title')} {id}
+      </h2>
+      <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
+        {locations.map((loc) => (
+          <LocationsCard key={loc.id} data={loc} tVar={tPjLoc}/>
+        ))}
+      </div>
+    </div>
+  );
+};

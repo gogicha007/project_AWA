@@ -319,6 +319,12 @@
       "currency": "Project Currency"
     }
   },
+  "ProjectLocations": {
+    "title": "Project Locations",
+    "card": {
+      "progress_title": "Overall Progress"
+    }
+  },
   "RegisterPage": {
     "pageError": "Sign Up Page error!"
   },

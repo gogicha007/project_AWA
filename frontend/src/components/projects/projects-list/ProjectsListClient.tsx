@@ -16,7 +16,7 @@ import Loader from '../../feedback/loader/loader';
 import Snackbar from '../../feedback/snackbar/snackbar';
 import ProjectForm from './projectsCRUD/ProjectForm';
 
-export default function ProjectsClient() {
+export default function ProjectsListClient() {
   const tPj = useTranslations('Projects');
   const tCmn = useTranslations('Common');
   const { projects, loading, error, mutate } = useProjectsListApi();
