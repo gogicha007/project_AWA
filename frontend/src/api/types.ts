@@ -64,6 +64,7 @@ export interface CurrencyDTO {
 }
 
 
+// shipments section types
 export type GeneralInfoDTO = z.infer<typeof generalInfoSchema> & {
   Invoices?: InvoiceDTO[];
 };
@@ -76,7 +77,14 @@ export type InvoiceItemDTO = z.infer<typeof invoiceItemSchema>;
 
 export type FreightDTO = z.infer<typeof freightSchema>;
 
-// import { ProjectStatus } from '@/constants/projectStatus';
 
-// export type ProjectStatus = ProjectStatus;
+// project section types
 export type ProjectDTO = z.infer<typeof projectFormSchema>;
+
+export interface LocationDTO {
+  id?: number;
+  locationName: string;
+  latitude?: number;
+  longitude?: number;
+  notes?: string;
+}

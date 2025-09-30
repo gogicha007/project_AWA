@@ -13,8 +13,11 @@ export class LocationsService {
       const location = await this.dbService.location.create({
         data: createLocationDto,
       });
-      return { success: true, message: 'Location created successfully', location };
-
+      return {
+        success: true,
+        message: 'Location created successfully',
+        data: location,
+      };
     } catch (error) {
       handlePrismaErrors(error);
     }
@@ -23,7 +26,7 @@ export class LocationsService {
   async findAll() {
     try {
       const locations = await this.dbService.location.findMany();
-      return { success: true, locations };
+      return { success: true, data: locations };
     } catch (error) {
       handlePrismaErrors(error);
     }
@@ -34,12 +37,11 @@ export class LocationsService {
       const location = await this.dbService.location.findUnique({
         where: { id },
       });
-      return { success: true, location };
+      return { success: true, data: location };
     } catch (error) {
       handlePrismaErrors(error);
     }
   }
-
 
   async update(id: number, updateLocationDto: UpdateLocationDto) {
     try {
@@ -47,7 +49,11 @@ export class LocationsService {
         where: { id },
         data: updateLocationDto,
       });
-      return { success: true, message: 'Location updated successfully', location };
+      return {
+        success: true,
+        message: 'Location updated successfully',
+        data: location,
+      };
     } catch (error) {
       handlePrismaErrors(error);
     }
@@ -58,7 +64,10 @@ export class LocationsService {
       await this.dbService.location.delete({
         where: { id },
       });
-      return { success: true, message: `Location with id ${id} removed successfully` };
+      return {
+        success: true,
+        message: `Location with id ${id} removed successfully`,
+      };
     } catch (error) {
       handlePrismaErrors(error);
     }

@@ -13,14 +13,14 @@ function hasMessageProperty(
 ): obj is { message: string | string[] } {
   return Boolean(
     Object.prototype.hasOwnProperty.call(obj, 'message') &&
-    (typeof (obj as { message?: unknown }).message === 'string' ||
-      Array.isArray((obj as { message?: unknown }).message)),
+      (typeof (obj as { message?: unknown }).message === 'string' ||
+        Array.isArray((obj as { message?: unknown }).message)),
   );
 }
 
 @Catch()
 export class CustomExceptionFilter implements ExceptionFilter {
-  constructor(private readonly loggingService: LoggingService) { }
+  constructor(private readonly loggingService: LoggingService) {}
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -53,8 +53,8 @@ export class CustomExceptionFilter implements ExceptionFilter {
     }
 
     this.loggingService.error(
-      `Error: ${errorMessage} - Request: ${request.method} ${request.url}`, 
-      exception instanceof Error ? exception.stack : String(exception)
+      `Error: ${errorMessage} - Request: ${request.method} ${request.url}`,
+      exception instanceof Error ? exception.stack : String(exception),
     );
 
     response.status(status).json({
