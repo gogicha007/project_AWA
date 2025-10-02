@@ -26,10 +26,11 @@ export const LocationsCard: React.FC<LocationsCardProps> = ({ data, tVar }) => {
 
   return (
     <div
-      className="flex h-full flex-col gap-4 rounded-xl border p-6 shadow-sm transition-all duration-200 ease-in-out"
+      className="flex h-full flex-col gap-4 rounded-xl border shadow-sm transition-all duration-200 ease-in-out"
       style={{
         backgroundColor: 'var(--background-card, #ffffff)',
         borderColor: 'var(--border, #e2e8f0)',
+        padding: '1.5rem',
       }}
     >
       <h3>{data?.locationName || 'Unknown Location'}</h3>

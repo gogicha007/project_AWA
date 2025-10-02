@@ -323,6 +323,9 @@
     "title": "Project Locations",
     "card": {
       "progress_title": "Overall Progress"
+    },
+    "actions": {
+      "create": "Add location"
     }
   },
   "RegisterPage": {

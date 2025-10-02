@@ -1,0 +1,97 @@
+model Freight {
+  id          Int              @id @default(autoincrement())
+  truckNumber String           @map("truck_number")
+  forwarder   String?
+  billNumber  String?          @map("bill_number")
+  billDate    DateTime?        @map("bill_date")
+  freightRate Decimal?         @map("freight_rate")
+  currency    Currency?        @relation(fields: [currencyId], references: [id])
+  currencyId  Int?             @map("currency_id")
+  shipment    Shipment         @relation(fields: [shipmentId], references: [id])
+  shipmentId  Int              @map("shipment_id")
+  invoices    FreightInvoice[]
+  user        User             @relation(fields: [userId], references: [id])
+  userId      Int              @map("user_id")
+
+  @@map("freight")
+}
+
+model FreightInvoice {
+  freight   Freight @relation(fields: [freightId], references: [id])
+  freightId Int     @map("freight_id")
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId Int     @map("invoice_id")
+
+  @@id([freightId, invoiceId])
+  @@map("freight_invoice")
+}
+
+model Invoice {
+  id            Int              @id @default(autoincrement())
+  vendor        Vendor           @relation(fields: [vendorId], references: [id])
+  vendorId      Int              @map("vendor_id")
+  invoiceNumber String           @map("invoice_number")
+  invoiceDate   DateTime         @map("invoice_date")
+  totalAmount   Decimal          @map("total_amount")
+  isArrived     Boolean?         @default(false) @map("is_arrived")
+  currency      Currency         @relation(fields: [currencyId], references: [id])
+  currencyId    Int              @map("currency_id")
+  shipment      Shipment         @relation(fields: [shipmentId], references: [id])
+  shipmentId    Int              @map("shipment_id")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  user          User             @relation(fields: [userId], references: [id])
+  userId        Int              @map("user_id")
+  Items         InvoiceItem[]
+  Freights      FreightInvoice[]
+
+  @@map("invoice")
+}
+
+model InvoiceItem {
+  id          Int          @id @default(autoincrement())
+  invoice     Invoice      @relation(fields: [invoiceId], references: [id])
+  invoiceId   Int
+  product     MaterialName @relation(fields: [productId], references: [id])
+  productId   Int          @map("product_id")
+  description String
+  quantity    Decimal
+  unit        Unit         @relation(fields: [unitId], references: [id])
+  unitId      Int
+  unitPrice   Decimal      @map("unit_price")
+  total       Decimal      @map("total")
+
+  @@map("invoice_item")
+}
+
+enum ShipmentStatus {
+  APPLIED
+  DECLARED
+  ARRIVED
+}
+
+model Shipment {
+  id                 Int            @id @default(autoincrement())
+  alias              String         @unique
+  status             ShipmentStatus
+  declaration_number String?        @map("declaration_number")
+  declaration_date   DateTime?      @map("declaration_date")
+  user               User           @relation(fields: [userId], references: [id])
+  userId             Int            @map("user_id")
+  createdAt          DateTime       @default(now()) @map("created_at")
+  Files              ShipmentFile[]
+  Freights           Freight[]
+  Invoices           Invoice[]
+
+  @@map("shipment")
+}
+
+model ShipmentFile {
+  id         Int      @id @default(autoincrement())
+  shipment   Shipment @relation(fields: [shipmentId], references: [id])
+  shipmentId Int      @map("shipment_id")
+  fileName   String   @map("file_name")
+  fileType   String?  @map("file_type")
+  fileData   Bytes?   @map("file_data")
+
+  @@map("shipment_file")
+}

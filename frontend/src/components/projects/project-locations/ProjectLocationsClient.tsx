@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { LocationsCard } from './locations-card/LocationsCard';
+import AddButton from '@/components/controls/add-button/AddButton';
 
 const locations = [
   {
@@ -31,12 +32,18 @@ export const ProjectLocations = ({ id }: { id: number }) => {
   const tPjLoc = useTranslations('ProjectLocations');
   return (
     <div className="max-w-1400px flex flex-col gap-4 p-24">
-      <h2>
-        {tPjLoc('title')} {id}
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2>
+          {tPjLoc('title')} {id}
+        </h2>
+        <AddButton
+          label={tPjLoc('actions.create')}
+          onAdd={() => alert('Add location clicked')}
+        />
+      </div>
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
         {locations.map((loc) => (
-          <LocationsCard key={loc.id} data={loc} tVar={tPjLoc}/>
+          <LocationsCard key={loc.id} data={loc} tVar={tPjLoc} />
         ))}
       </div>
     </div>
