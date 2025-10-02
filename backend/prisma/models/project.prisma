@@ -1,0 +1,176 @@
+model Client {
+  id        Int       @id @default(autoincrement())
+  name      String
+  address   String
+  vatNo     String    @map("vat_no")
+  email     String
+  notes     String
+  createdAt DateTime  @default(now()) @map("created_at")
+  Project   Project[]
+
+  @@map("client")
+}
+
+model Location {
+  id              Int               @id @default(autoincrement())
+  locationName    String            @map("location_name")
+  latitude        Float
+  longitude       Float
+  notes           String
+  Task            Task[]
+  ProjectLocation ProjectLocation[]
+
+  @@map("location")
+}
+
+enum MilestoneStatus {
+  pending
+  approved
+  rejected
+}
+
+model Milestone {
+  id           Int             @id @default(autoincrement())
+  project_id   Int
+  identifier   String
+  description  String
+  approvalDate DateTime?       @map("approval_date")
+  status       MilestoneStatus
+  payment      Decimal?
+  Progress     Progress[]
+  Currency     Currency?       @relation(fields: [currencyId], references: [id])
+  currencyId   Int?
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  user         User            @relation(fields: [userId], references: [id])
+  userId       Int             @map("user_id")
+
+  @@map("milestone")
+}
+
+model Progress {
+  id            Int       @id @default(autoincrement())
+  project       Project   @relation(fields: [projectId], references: [id])
+  projectId     Int       @map("project_id")
+  teamId        Int?      @map("team_id")
+  task          Task      @relation(fields: [taskId], references: [id])
+  taskId        Int       @map("task_id")
+  buildQuantity Decimal   @map("build_quantity")
+  startDate     DateTime  @map("start_date")
+  endDate       DateTime  @map("end_date")
+  notes         String
+  milestone     Milestone @relation(fields: [milestoneId], references: [id])
+  milestoneId   Int       @map("milestone_idF")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  user          User      @relation(fields: [userId], references: [id])
+  userId        Int       @map("user_id")
+
+  @@map("progress")
+}
+
+enum ProjectStatus {
+  active
+  completed
+  inProgress
+  onHold
+}
+
+model Project {
+  id              Int               @id @default(autoincrement())
+  fullName        String            @map("full_name")
+  displayName     String            @map("display_name")
+  client          Client?           @relation(fields: [clientId], references: [id])
+  clientId        Int?              @map("client_id")
+  managerId       Int?              @map("manager_id")
+  status          ProjectStatus
+  notes           String
+  startDate       DateTime          @map("start_date")
+  endDate         DateTime          @map("end_date")
+  currency        Currency          @relation(fields: [currencyId], references: [id])
+  currencyId      Int
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt
+  user            User              @relation(fields: [userId], references: [id])
+  userId          Int               @map("user_id")
+  Progress        Progress[]
+  Task            Task[]
+  ProjectLocation ProjectLocation[]
+
+  @@map("project")
+}
+
+model ProjectLocation {
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  Int      @map("project_id")
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int      @map("location_id")
+
+  @@id([projectId, locationId])
+  @@map("project_location")
+}
+
+model Staff {
+  id        Int    @id @default(autoincrement())
+  firstName String @map("first_name")
+  lastName  String @map("last_name")
+  address   String
+  phone     String
+  email     String
+  position  String
+  user      User   @relation(fields: [userId], references: [id])
+  userId    Int    @map("user_id")
+
+  @@map("staff")
+}
+
+enum TaskGroup {
+  node
+  reservoir
+  pipeline
+  prv
+  washout
+  hydrant
+  road
+  general
+}
+
+enum TaskStatus {
+  in_progress
+  complete
+}
+
+model Task {
+  id                Int            @id @default(autoincrement())
+  taskName          String         @map("task_name")
+  taskGroup         TaskGroup
+  status            TaskStatus?
+  projectedQuantity Decimal        @map("projected_quantity")
+  unit              Unit           @relation(fields: [unitId], references: [id])
+  unitId            Int            @map("unit_id")
+  location          Location       @relation(fields: [locationId], references: [id])
+  locationId        Int            @map("location_id")
+  drawing_ref       String
+  notes             String
+  project           Project        @relation(fields: [projectId], references: [id])
+  projectId         Int            @map("project_id")
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @updatedAt @map("updated_at")
+  user              User           @relation(fields: [userId], references: [id])
+  userId            Int            @map("user_id")
+  Progress          Progress[]
+  TaskMaterial      TaskMaterial[]
+
+  @@map("task")
+}
+
+model TaskMaterial {
+  id         Int          @id @default(autoincrement())
+  task       Task         @relation(fields: [taskId], references: [id])
+  taskId     Int          @map("task_id")
+  material   MaterialName @relation(fields: [materialId], references: [id])
+  materialId Int          @map("material_id")
+
+  @@map("task_material")
+}
+
