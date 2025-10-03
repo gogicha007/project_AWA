@@ -125,12 +125,14 @@ exports.Prisma.BoqItemsScalarFieldEnum = {
   sectionId: 'sectionId',
   item_number: 'item_number',
   description: 'description',
+  materialId: 'materialId',
   unitId: 'unitId',
   quantity: 'quantity',
   unitPrice: 'unitPrice',
   totalPrice: 'totalPrice',
   parentItemId: 'parentItemId',
   level: 'level',
+  itemType: 'itemType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'
@@ -146,81 +148,12 @@ exports.Prisma.ClientScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.CurrencyScalarFieldEnum = {
-  id: 'id',
-  code: 'code',
-  name: 'name'
-};
-
-exports.Prisma.FreightScalarFieldEnum = {
-  id: 'id',
-  truckNumber: 'truckNumber',
-  forwarder: 'forwarder',
-  billNumber: 'billNumber',
-  billDate: 'billDate',
-  freightRate: 'freightRate',
-  currencyId: 'currencyId',
-  shipmentId: 'shipmentId',
-  userId: 'userId'
-};
-
-exports.Prisma.FreightInvoiceScalarFieldEnum = {
-  freightId: 'freightId',
-  invoiceId: 'invoiceId'
-};
-
-exports.Prisma.InvoiceScalarFieldEnum = {
-  id: 'id',
-  vendorId: 'vendorId',
-  invoiceNumber: 'invoiceNumber',
-  invoiceDate: 'invoiceDate',
-  totalAmount: 'totalAmount',
-  isArrived: 'isArrived',
-  currencyId: 'currencyId',
-  shipmentId: 'shipmentId',
-  createdAt: 'createdAt',
-  userId: 'userId'
-};
-
-exports.Prisma.InvoiceItemScalarFieldEnum = {
-  id: 'id',
-  invoiceId: 'invoiceId',
-  productId: 'productId',
-  description: 'description',
-  quantity: 'quantity',
-  unitId: 'unitId',
-  unitPrice: 'unitPrice',
-  total: 'total'
-};
-
 exports.Prisma.LocationScalarFieldEnum = {
   id: 'id',
   locationName: 'locationName',
   latitude: 'latitude',
   longitude: 'longitude',
   notes: 'notes'
-};
-
-exports.Prisma.MaterialGroupScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description'
-};
-
-exports.Prisma.MaterialTypeScalarFieldEnum = {
-  id: 'id',
-  type: 'type',
-  groupId: 'groupId'
-};
-
-exports.Prisma.MaterialNameScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  dn: 'dn',
-  pn: 'pn',
-  degree: 'degree',
-  description: 'description',
-  typeId: 'typeId'
 };
 
 exports.Prisma.MilestoneScalarFieldEnum = {
@@ -268,6 +201,17 @@ exports.Prisma.ProjectScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ProjectBoqConfigScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  numberingSystem: 'numberingSystem',
+  currencyCode: 'currencyCode',
+  decimalPlaces: 'decimalPlaces',
+  sectionTypes: 'sectionTypes',
+  customFields: 'customFields',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.ProjectLocationScalarFieldEnum = {
   projectId: 'projectId',
   locationId: 'locationId'
@@ -280,37 +224,10 @@ exports.Prisma.ProjectSectionScalarFieldEnum = {
   section_name: 'section_name',
   section_type: 'section_type',
   locationId: 'locationId',
+  currencyId: 'currencyId',
+  totalAmount: 'totalAmount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
-};
-
-exports.Prisma.ShipmentScalarFieldEnum = {
-  id: 'id',
-  alias: 'alias',
-  status: 'status',
-  declaration_number: 'declaration_number',
-  declaration_date: 'declaration_date',
-  userId: 'userId',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.ShipmentFileScalarFieldEnum = {
-  id: 'id',
-  shipmentId: 'shipmentId',
-  fileName: 'fileName',
-  fileType: 'fileType',
-  fileData: 'fileData'
-};
-
-exports.Prisma.StaffScalarFieldEnum = {
-  id: 'id',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  address: 'address',
-  phone: 'phone',
-  email: 'email',
-  position: 'position',
   userId: 'userId'
 };
 
@@ -334,6 +251,105 @@ exports.Prisma.TaskMaterialScalarFieldEnum = {
   id: 'id',
   taskId: 'taskId',
   materialId: 'materialId'
+};
+
+exports.Prisma.FreightScalarFieldEnum = {
+  id: 'id',
+  truckNumber: 'truckNumber',
+  forwarder: 'forwarder',
+  billNumber: 'billNumber',
+  billDate: 'billDate',
+  freightRate: 'freightRate',
+  currencyId: 'currencyId',
+  shipmentId: 'shipmentId',
+  userId: 'userId'
+};
+
+exports.Prisma.FreightInvoiceScalarFieldEnum = {
+  freightId: 'freightId',
+  invoiceId: 'invoiceId'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  invoiceNumber: 'invoiceNumber',
+  invoiceDate: 'invoiceDate',
+  totalAmount: 'totalAmount',
+  isArrived: 'isArrived',
+  currencyId: 'currencyId',
+  shipmentId: 'shipmentId',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.InvoiceItemScalarFieldEnum = {
+  id: 'id',
+  invoiceId: 'invoiceId',
+  productId: 'productId',
+  description: 'description',
+  quantity: 'quantity',
+  unitId: 'unitId',
+  unitPrice: 'unitPrice',
+  total: 'total'
+};
+
+exports.Prisma.ShipmentScalarFieldEnum = {
+  id: 'id',
+  alias: 'alias',
+  status: 'status',
+  declaration_number: 'declaration_number',
+  declaration_date: 'declaration_date',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ShipmentFileScalarFieldEnum = {
+  id: 'id',
+  shipmentId: 'shipmentId',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileData: 'fileData'
+};
+
+exports.Prisma.CurrencyScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  symbol: 'symbol'
+};
+
+exports.Prisma.MaterialGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.MaterialTypeScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  groupId: 'groupId'
+};
+
+exports.Prisma.MaterialNameScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  dn: 'dn',
+  pn: 'pn',
+  degree: 'degree',
+  description: 'description',
+  typeId: 'typeId'
+};
+
+exports.Prisma.StaffScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  address: 'address',
+  phone: 'phone',
+  email: 'email',
+  position: 'position',
+  userId: 'userId'
 };
 
 exports.Prisma.VendorScalarFieldEnum = {
@@ -366,6 +382,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -374,6 +395,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.MilestoneStatus = exports.$Enums.MilestoneStatus = {
   pending: 'pending',
@@ -386,12 +413,6 @@ exports.ProjectStatus = exports.$Enums.ProjectStatus = {
   completed: 'completed',
   inProgress: 'inProgress',
   onHold: 'onHold'
-};
-
-exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
-  APPLIED: 'APPLIED',
-  DECLARED: 'DECLARED',
-  ARRIVED: 'ARRIVED'
 };
 
 exports.TaskGroup = exports.$Enums.TaskGroup = {
@@ -410,28 +431,35 @@ exports.TaskStatus = exports.$Enums.TaskStatus = {
   complete: 'complete'
 };
 
+exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
+  APPLIED: 'APPLIED',
+  DECLARED: 'DECLARED',
+  ARRIVED: 'ARRIVED'
+};
+
 exports.Prisma.ModelName = {
   boqItems: 'boqItems',
   Client: 'Client',
-  Currency: 'Currency',
+  Location: 'Location',
+  Milestone: 'Milestone',
+  Progress: 'Progress',
+  Project: 'Project',
+  projectBoqConfig: 'projectBoqConfig',
+  ProjectLocation: 'ProjectLocation',
+  ProjectSection: 'ProjectSection',
+  Task: 'Task',
+  TaskMaterial: 'TaskMaterial',
   Freight: 'Freight',
   FreightInvoice: 'FreightInvoice',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
-  Location: 'Location',
+  Shipment: 'Shipment',
+  ShipmentFile: 'ShipmentFile',
+  Currency: 'Currency',
   MaterialGroup: 'MaterialGroup',
   MaterialType: 'MaterialType',
   MaterialName: 'MaterialName',
-  Milestone: 'Milestone',
-  Progress: 'Progress',
-  Project: 'Project',
-  ProjectLocation: 'ProjectLocation',
-  ProjectSection: 'ProjectSection',
-  Shipment: 'Shipment',
-  ShipmentFile: 'ShipmentFile',
   Staff: 'Staff',
-  Task: 'Task',
-  TaskMaterial: 'TaskMaterial',
   Vendor: 'Vendor',
   Unit: 'Unit',
   User: 'User'

@@ -15,12 +15,17 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// ========================================
+// PROJECT MANAGEMENT
+// ========================================
 model boqItems {
   id           Int            @id @default(autoincrement())
   sectionId    Int            @map("section_id")
   section      ProjectSection @relation(fields: [sectionId], references: [id])
   item_number  String         @map("item_number") @db.VarChar(20) // e.g., "1.1", "2.3"
   description  String
+  material     MaterialName   @relation(fields: [materialId], references: [id])
+  materialId   Int            @map("material_id")
   unit         Unit           @relation(fields: [unitId], references: [id])
   unitId       Int            @map("unit_id")
   quantity     Decimal?       @db.Decimal(12, 4)
@@ -29,7 +34,8 @@ model boqItems {
   parentItemId Int?           @map("parent_item_id")
   parentItem   boqItems?      @relation("Itemhierarchy", fields: [parentItemId], references: [id])
   childItems   boqItems[]     @relation("Itemhierarchy")
-  level        Int?           @default(0)
+  level        Int?           @default(0) // e.g., 0 for main items, 1 for sub-items
+  itemType     String         @map("item_type") // e.g. 'material', 'labor', 'equipment', 'other'
   createdAt    DateTime       @default(now()) @map("created_at")
   updatedAt    DateTime       @updatedAt @map("updated_at")
   user         User           @relation(fields: [userId], references: [id])
@@ -51,18 +57,196 @@ model Client {
   @@map("client")
 }
 
-model Currency {
-  id        Int         @id @default(autoincrement())
-  code      String      @unique // e.g., "USD"
-  name      String // e.g., "US Dollar"
-  Invoice   Invoice[]
-  Freight   Freight[]
-  Milestone Milestone[]
-  Project   Project[]
+model Location {
+  id              Int               @id @default(autoincrement())
+  locationName    String            @map("location_name")
+  latitude        Float
+  longitude       Float
+  notes           String
+  Task            Task[]
+  ProjectLocation ProjectLocation[]
+  ProjectSection  ProjectSection[]
 
-  @@map("currency")
+  @@map("location")
 }
 
+enum MilestoneStatus {
+  pending
+  approved
+  rejected
+}
+
+model Milestone {
+  id           Int             @id @default(autoincrement())
+  project_id   Int
+  identifier   String
+  description  String
+  approvalDate DateTime?       @map("approval_date")
+  status       MilestoneStatus
+  payment      Decimal?
+  Progress     Progress[]
+  Currency     Currency?       @relation(fields: [currencyId], references: [id])
+  currencyId   Int?
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  user         User            @relation(fields: [userId], references: [id])
+  userId       Int             @map("user_id")
+
+  @@map("milestone")
+}
+
+model Progress {
+  id            Int       @id @default(autoincrement())
+  project       Project   @relation(fields: [projectId], references: [id])
+  projectId     Int       @map("project_id")
+  teamId        Int?      @map("team_id")
+  task          Task      @relation(fields: [taskId], references: [id])
+  taskId        Int       @map("task_id")
+  buildQuantity Decimal   @map("build_quantity")
+  startDate     DateTime  @map("start_date")
+  endDate       DateTime  @map("end_date")
+  notes         String
+  milestone     Milestone @relation(fields: [milestoneId], references: [id])
+  milestoneId   Int       @map("milestone_idF")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  user          User      @relation(fields: [userId], references: [id])
+  userId        Int       @map("user_id")
+
+  @@map("progress")
+}
+
+enum ProjectStatus {
+  active
+  completed
+  inProgress
+  onHold
+}
+
+model Project {
+  id               Int                @id @default(autoincrement())
+  fullName         String             @map("full_name")
+  displayName      String             @map("display_name")
+  client           Client?            @relation(fields: [clientId], references: [id])
+  clientId         Int?               @map("client_id")
+  managerId        Int?               @map("manager_id")
+  status           ProjectStatus
+  notes            String
+  startDate        DateTime           @map("start_date")
+  endDate          DateTime           @map("end_date")
+  currency         Currency           @relation(fields: [currencyId], references: [id])
+  currencyId       Int
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt
+  user             User               @relation(fields: [userId], references: [id])
+  userId           Int                @map("user_id")
+  Progress         Progress[]
+  Task             Task[]
+  ProjectLocation  ProjectLocation[]
+  ProjectSection   ProjectSection[]
+  projectBoqConfig projectBoqConfig[]
+
+  @@map("project")
+}
+
+model projectBoqConfig {
+  id              Int      @id @default(autoincrement())
+  project         Project  @relation(fields: [projectId], references: [id])
+  projectId       Int      @map("project_id")
+  numberingSystem String   @default("hierarchical") @map("numbering_system") @db.VarChar(50) // e.g. 'hierarchical', 'sequential', 'alphanumeric'
+  currencyCode    String   @map("currency_code") @db.VarChar(3)
+  decimalPlaces   Int?     @default(2) @map("decimal_places")
+  sectionTypes    Json?    @map("section_types") // Store allowed section types as 'water_supply', 'sanitation', etc. 
+  customFields    Json?    @map("custom_fields") // Project-specific additional fields
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@map("project_boq_config")
+}
+
+model ProjectLocation {
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  Int      @map("project_id")
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int      @map("location_id")
+
+  @@id([projectId, locationId])
+  @@map("project_location")
+}
+
+model ProjectSection {
+  id           Int        @id @default(autoincrement())
+  projectId    Int
+  project      Project    @relation(fields: [projectId], references: [id])
+  section_code String     @map("section_code") // sheet names 'WS01', 'WW01', 'WSSP', etc.
+  section_name String     @map("section_name")
+  section_type String     @map("section_type") // list item from summary 'water_supply', 'sanitation', 'spare_parts', 'dayworks', 'provisional'
+  location     Location?  @relation(fields: [locationId], references: [id])
+  locationId   Int?       @map("location_id")
+  currency     Currency   @relation(fields: [currencyId], references: [id])
+  currencyId   Int        @map("currency_id")
+  totalAmount  Decimal?   @map("total_amount") @db.Decimal(15, 2)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int        @map("user_id")
+  boqItems     boqItems[]
+
+  @@map("project_sections")
+}
+
+enum TaskGroup {
+  node
+  reservoir
+  pipeline
+  prv
+  washout
+  hydrant
+  road
+  general
+}
+
+enum TaskStatus {
+  in_progress
+  complete
+}
+
+model Task {
+  id                Int            @id @default(autoincrement())
+  taskName          String         @map("task_name")
+  taskGroup         TaskGroup
+  status            TaskStatus?
+  projectedQuantity Decimal        @map("projected_quantity")
+  unit              Unit           @relation(fields: [unitId], references: [id])
+  unitId            Int            @map("unit_id")
+  location          Location       @relation(fields: [locationId], references: [id])
+  locationId        Int            @map("location_id")
+  drawing_ref       String
+  notes             String
+  project           Project        @relation(fields: [projectId], references: [id])
+  projectId         Int            @map("project_id")
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @updatedAt @map("updated_at")
+  user              User           @relation(fields: [userId], references: [id])
+  userId            Int            @map("user_id")
+  Progress          Progress[]
+  TaskMaterial      TaskMaterial[]
+
+  @@map("task")
+}
+
+model TaskMaterial {
+  id         Int          @id @default(autoincrement())
+  task       Task         @relation(fields: [taskId], references: [id])
+  taskId     Int          @map("task_id")
+  material   MaterialName @relation(fields: [materialId], references: [id])
+  materialId Int          @map("material_id")
+
+  @@map("task_material")
+}
+
+// ========================================
+// SHIPMENT MANAGEMENT
+// ========================================
 model Freight {
   id          Int              @id @default(autoincrement())
   truckNumber String           @map("truck_number")
@@ -128,159 +312,6 @@ model InvoiceItem {
   @@map("invoice_item")
 }
 
-model Location {
-  id              Int               @id @default(autoincrement())
-  locationName    String            @map("location_name")
-  latitude        Float
-  longitude       Float
-  notes           String
-  Task            Task[]
-  ProjectLocation ProjectLocation[]
-  ProjectSection  ProjectSection[]
-
-  @@map("location")
-}
-
-model MaterialGroup {
-  id           Int            @id @default(autoincrement())
-  name         String         @unique
-  description  String
-  MaterialType MaterialType[]
-
-  @@map("material_group")
-}
-
-model MaterialType {
-  id           Int            @id @default(autoincrement())
-  type         String         @unique
-  group        MaterialGroup  @relation(fields: [groupId], references: [id])
-  groupId      Int            @map("group_id")
-  MaterialName MaterialName[]
-
-  @@map("material_type")
-}
-
-model MaterialName {
-  id           Int            @id @default(autoincrement())
-  name         String         @unique
-  dn           String
-  pn           String
-  degree       Int
-  description  String
-  type         MaterialType   @relation(fields: [typeId], references: [id])
-  typeId       Int            @map("type_id")
-  InvoiceItem  InvoiceItem[]
-  TaskMaterial TaskMaterial[]
-
-  @@map("material_name")
-}
-
-enum MilestoneStatus {
-  pending
-  approved
-  rejected
-}
-
-model Milestone {
-  id           Int             @id @default(autoincrement())
-  project_id   Int
-  identifier   String
-  description  String
-  approvalDate DateTime?       @map("approval_date")
-  status       MilestoneStatus
-  payment      Decimal?
-  Progress     Progress[]
-  Currency     Currency?       @relation(fields: [currencyId], references: [id])
-  currencyId   Int?
-  createdAt    DateTime        @default(now()) @map("created_at")
-  updatedAt    DateTime        @updatedAt @map("updated_at")
-  user         User            @relation(fields: [userId], references: [id])
-  userId       Int             @map("user_id")
-
-  @@map("milestone")
-}
-
-model Progress {
-  id            Int       @id @default(autoincrement())
-  project       Project   @relation(fields: [projectId], references: [id])
-  projectId     Int       @map("project_id")
-  teamId        Int?      @map("team_id")
-  task          Task      @relation(fields: [taskId], references: [id])
-  taskId        Int       @map("task_id")
-  buildQuantity Decimal   @map("build_quantity")
-  startDate     DateTime  @map("start_date")
-  endDate       DateTime  @map("end_date")
-  notes         String
-  milestone     Milestone @relation(fields: [milestoneId], references: [id])
-  milestoneId   Int       @map("milestone_idF")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @updatedAt @map("updated_at")
-  user          User      @relation(fields: [userId], references: [id])
-  userId        Int       @map("user_id")
-
-  @@map("progress")
-}
-
-enum ProjectStatus {
-  active
-  completed
-  inProgress
-  onHold
-}
-
-model Project {
-  id              Int               @id @default(autoincrement())
-  fullName        String            @map("full_name")
-  displayName     String            @map("display_name")
-  client          Client?           @relation(fields: [clientId], references: [id])
-  clientId        Int?              @map("client_id")
-  managerId       Int?              @map("manager_id")
-  status          ProjectStatus
-  notes           String
-  startDate       DateTime          @map("start_date")
-  endDate         DateTime          @map("end_date")
-  currency        Currency          @relation(fields: [currencyId], references: [id])
-  currencyId      Int
-  createdAt       DateTime          @default(now()) @map("created_at")
-  updatedAt       DateTime          @updatedAt
-  user            User              @relation(fields: [userId], references: [id])
-  userId          Int               @map("user_id")
-  Progress        Progress[]
-  Task            Task[]
-  ProjectLocation ProjectLocation[]
-  ProjectSection  ProjectSection[]
-
-  @@map("project")
-}
-
-model ProjectLocation {
-  project    Project  @relation(fields: [projectId], references: [id])
-  projectId  Int      @map("project_id")
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId Int      @map("location_id")
-
-  @@id([projectId, locationId])
-  @@map("project_location")
-}
-
-model ProjectSection {
-  id           Int        @id @default(autoincrement())
-  projectId    Int
-  project      Project    @relation(fields: [projectId], references: [id])
-  section_code String     @map("section_code")
-  section_name String     @map("section_name")
-  section_type String     @map("seciton_type")
-  location     Location   @relation(fields: [locationId], references: [id])
-  locationId   Int        @map("location_id")
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  user         User       @relation(fields: [userId], references: [id])
-  userId       Int        @map("user_id")
-  boqItems     boqItems[]
-
-  @@map("project_sections")
-}
-
 enum ShipmentStatus {
   APPLIED
   DECLARED
@@ -314,6 +345,58 @@ model ShipmentFile {
   @@map("shipment_file")
 }
 
+// ========================================
+// SETTINGS
+// ========================================
+model Currency {
+  id             Int              @id @default(autoincrement())
+  code           String           @unique // e.g., "USD"
+  name           String? // e.g., "United States Dollar"
+  symbol         String? // e.g., "$"
+  Invoice        Invoice[]
+  Freight        Freight[]
+  Milestone      Milestone[]
+  Project        Project[]
+  ProjectSection ProjectSection[]
+
+  @@map("currency")
+}
+
+model MaterialGroup {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique // e.g. 'Pipes', 'Fittings', 'valves', 'other'
+  description  String
+  MaterialType MaterialType[]
+
+  @@map("material_group")
+}
+
+model MaterialType {
+  id           Int            @id @default(autoincrement())
+  type         String         @unique // e.g. PE100 PIPE, PE100 BEND, CI CROSS, other
+  group        MaterialGroup  @relation(fields: [groupId], references: [id])
+  groupId      Int            @map("group_id")
+  MaterialName MaterialName[]
+
+  @@map("material_type")
+}
+
+model MaterialName {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  dn           String
+  pn           String
+  degree       Int
+  description  String
+  type         MaterialType   @relation(fields: [typeId], references: [id])
+  typeId       Int            @map("type_id")
+  InvoiceItem  InvoiceItem[]
+  TaskMaterial TaskMaterial[]
+  boqItems     boqItems[]
+
+  @@map("material_name")
+}
+
 model Staff {
   id        Int    @id @default(autoincrement())
   firstName String @map("first_name")
@@ -326,56 +409,6 @@ model Staff {
   userId    Int    @map("user_id")
 
   @@map("staff")
-}
-
-enum TaskGroup {
-  node
-  reservoir
-  pipeline
-  prv
-  washout
-  hydrant
-  road
-  general
-}
-
-enum TaskStatus {
-  in_progress
-  complete
-}
-
-model Task {
-  id                Int            @id @default(autoincrement())
-  taskName          String         @map("task_name")
-  taskGroup         TaskGroup
-  status            TaskStatus?
-  projectedQuantity Decimal        @map("projected_quantity")
-  unit              Unit           @relation(fields: [unitId], references: [id])
-  unitId            Int            @map("unit_id")
-  location          Location       @relation(fields: [locationId], references: [id])
-  locationId        Int            @map("location_id")
-  drawing_ref       String
-  notes             String
-  project           Project        @relation(fields: [projectId], references: [id])
-  projectId         Int            @map("project_id")
-  createdAt         DateTime       @default(now()) @map("created_at")
-  updatedAt         DateTime       @updatedAt @map("updated_at")
-  user              User           @relation(fields: [userId], references: [id])
-  userId            Int            @map("user_id")
-  Progress          Progress[]
-  TaskMaterial      TaskMaterial[]
-
-  @@map("task")
-}
-
-model TaskMaterial {
-  id         Int          @id @default(autoincrement())
-  task       Task         @relation(fields: [taskId], references: [id])
-  taskId     Int          @map("task_id")
-  material   MaterialName @relation(fields: [materialId], references: [id])
-  materialId Int          @map("material_id")
-
-  @@map("task_material")
 }
 
 model Vendor {
@@ -402,6 +435,9 @@ model Unit {
   @@map("unit")
 }
 
+// ========================================
+// USER MANAGEMENT
+// ========================================
 model User {
   id             Int              @id @default(autoincrement())
   firebaseUid    String           @unique
