@@ -34,8 +34,12 @@ const ProjectSidebarMenu: React.FC<ProjectSidebarMenuProps> = ({ projectId }) =>
 
   const projectNav = [
     { label: 'Overview', href: `/projects/${projectId}` },
+    { label: 'BoQ', href: `/projects/${projectId}/boq` },
     { label: 'Locations', href: `/projects/${projectId}/locations` },
     { label: 'Tasks', href: `/projects/${projectId}/tasks` },
+    { label: 'Team', href: `/projects/${projectId}/team` },
+    { label: 'Files', href: `/projects/${projectId}/files` },
+    { label: 'Settings', href: `/projects/${projectId}/settings` },
   ];
 
   return (
