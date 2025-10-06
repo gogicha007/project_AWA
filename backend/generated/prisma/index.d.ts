@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model BoqBreakdown
+ * 
+ */
+export type BoqBreakdown = $Result.DefaultSelection<Prisma.$BoqBreakdownPayload>
+/**
  * Model boqItems
  * 
  */
@@ -58,6 +63,11 @@ export type ProjectLocation = $Result.DefaultSelection<Prisma.$ProjectLocationPa
  * 
  */
 export type ProjectSection = $Result.DefaultSelection<Prisma.$ProjectSectionPayload>
+/**
+ * Model ProjectSectionBreakdown
+ * 
+ */
+export type ProjectSectionBreakdown = $Result.DefaultSelection<Prisma.$ProjectSectionBreakdownPayload>
 /**
  * Model Task
  * 
@@ -221,8 +231,8 @@ export const ShipmentStatus: typeof $Enums.ShipmentStatus
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more BoqItems
- * const boqItems = await prisma.boqItems.findMany()
+ * // Fetch zero or more BoqBreakdowns
+ * const boqBreakdowns = await prisma.boqBreakdown.findMany()
  * ```
  *
  *
@@ -242,8 +252,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more BoqItems
-   * const boqItems = await prisma.boqItems.findMany()
+   * // Fetch zero or more BoqBreakdowns
+   * const boqBreakdowns = await prisma.boqBreakdown.findMany()
    * ```
    *
    *
@@ -333,6 +343,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.boqBreakdown`: Exposes CRUD operations for the **BoqBreakdown** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BoqBreakdowns
+    * const boqBreakdowns = await prisma.boqBreakdown.findMany()
+    * ```
+    */
+  get boqBreakdown(): Prisma.BoqBreakdownDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.boqItems`: Exposes CRUD operations for the **boqItems** model.
     * Example usage:
     * ```ts
@@ -421,6 +441,16 @@ export class PrismaClient<
     * ```
     */
   get projectSection(): Prisma.ProjectSectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectSectionBreakdown`: Exposes CRUD operations for the **ProjectSectionBreakdown** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectSectionBreakdowns
+    * const projectSectionBreakdowns = await prisma.projectSectionBreakdown.findMany()
+    * ```
+    */
+  get projectSectionBreakdown(): Prisma.ProjectSectionBreakdownDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.task`: Exposes CRUD operations for the **Task** model.
@@ -1021,6 +1051,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    BoqBreakdown: 'BoqBreakdown',
     boqItems: 'boqItems',
     Client: 'Client',
     Location: 'Location',
@@ -1030,6 +1061,7 @@ export namespace Prisma {
     projectBoqConfig: 'projectBoqConfig',
     ProjectLocation: 'ProjectLocation',
     ProjectSection: 'ProjectSection',
+    ProjectSectionBreakdown: 'ProjectSectionBreakdown',
     Task: 'Task',
     TaskMaterial: 'TaskMaterial',
     Freight: 'Freight',
@@ -1064,10 +1096,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "boqItems" | "client" | "location" | "milestone" | "progress" | "project" | "projectBoqConfig" | "projectLocation" | "projectSection" | "task" | "taskMaterial" | "freight" | "freightInvoice" | "invoice" | "invoiceItem" | "shipment" | "shipmentFile" | "currency" | "materialGroup" | "materialType" | "materialName" | "staff" | "vendor" | "unit" | "user"
+      modelProps: "boqBreakdown" | "boqItems" | "client" | "location" | "milestone" | "progress" | "project" | "projectBoqConfig" | "projectLocation" | "projectSection" | "projectSectionBreakdown" | "task" | "taskMaterial" | "freight" | "freightInvoice" | "invoice" | "invoiceItem" | "shipment" | "shipmentFile" | "currency" | "materialGroup" | "materialType" | "materialName" | "staff" | "vendor" | "unit" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      BoqBreakdown: {
+        payload: Prisma.$BoqBreakdownPayload<ExtArgs>
+        fields: Prisma.BoqBreakdownFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BoqBreakdownFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BoqBreakdownFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>
+          }
+          findFirst: {
+            args: Prisma.BoqBreakdownFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BoqBreakdownFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>
+          }
+          findMany: {
+            args: Prisma.BoqBreakdownFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>[]
+          }
+          create: {
+            args: Prisma.BoqBreakdownCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>
+          }
+          createMany: {
+            args: Prisma.BoqBreakdownCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BoqBreakdownCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>[]
+          }
+          delete: {
+            args: Prisma.BoqBreakdownDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>
+          }
+          update: {
+            args: Prisma.BoqBreakdownUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>
+          }
+          deleteMany: {
+            args: Prisma.BoqBreakdownDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BoqBreakdownUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BoqBreakdownUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>[]
+          }
+          upsert: {
+            args: Prisma.BoqBreakdownUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BoqBreakdownPayload>
+          }
+          aggregate: {
+            args: Prisma.BoqBreakdownAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBoqBreakdown>
+          }
+          groupBy: {
+            args: Prisma.BoqBreakdownGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BoqBreakdownGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BoqBreakdownCountArgs<ExtArgs>
+            result: $Utils.Optional<BoqBreakdownCountAggregateOutputType> | number
+          }
+        }
+      }
       boqItems: {
         payload: Prisma.$boqItemsPayload<ExtArgs>
         fields: Prisma.boqItemsFieldRefs
@@ -1731,6 +1837,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ProjectSectionCountArgs<ExtArgs>
             result: $Utils.Optional<ProjectSectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectSectionBreakdown: {
+        payload: Prisma.$ProjectSectionBreakdownPayload<ExtArgs>
+        fields: Prisma.ProjectSectionBreakdownFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectSectionBreakdownFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectSectionBreakdownFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectSectionBreakdownFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectSectionBreakdownFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectSectionBreakdownFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectSectionBreakdownCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectSectionBreakdownCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectSectionBreakdownCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectSectionBreakdownDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>
+          }
+          update: {
+            args: Prisma.ProjectSectionBreakdownUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectSectionBreakdownDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectSectionBreakdownUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectSectionBreakdownUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectSectionBreakdownUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectSectionBreakdownPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectSectionBreakdownAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectSectionBreakdown>
+          }
+          groupBy: {
+            args: Prisma.ProjectSectionBreakdownGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectSectionBreakdownGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectSectionBreakdownCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectSectionBreakdownCountAggregateOutputType> | number
           }
         }
       }
@@ -3014,6 +3194,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    boqBreakdown?: BoqBreakdownOmit
     boqItems?: boqItemsOmit
     client?: ClientOmit
     location?: LocationOmit
@@ -3023,6 +3204,7 @@ export namespace Prisma {
     projectBoqConfig?: projectBoqConfigOmit
     projectLocation?: ProjectLocationOmit
     projectSection?: ProjectSectionOmit
+    projectSectionBreakdown?: ProjectSectionBreakdownOmit
     task?: TaskOmit
     taskMaterial?: TaskMaterialOmit
     freight?: FreightOmit
@@ -3112,6 +3294,46 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type BoqBreakdownCountOutputType
+   */
+
+  export type BoqBreakdownCountOutputType = {
+    boqItems: number
+    sections: number
+  }
+
+  export type BoqBreakdownCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    boqItems?: boolean | BoqBreakdownCountOutputTypeCountBoqItemsArgs
+    sections?: boolean | BoqBreakdownCountOutputTypeCountSectionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BoqBreakdownCountOutputType without action
+   */
+  export type BoqBreakdownCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdownCountOutputType
+     */
+    select?: BoqBreakdownCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BoqBreakdownCountOutputType without action
+   */
+  export type BoqBreakdownCountOutputTypeCountBoqItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: boqItemsWhereInput
+  }
+
+  /**
+   * BoqBreakdownCountOutputType without action
+   */
+  export type BoqBreakdownCountOutputTypeCountSectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectSectionBreakdownWhereInput
+  }
 
 
   /**
@@ -3329,10 +3551,12 @@ export namespace Prisma {
 
   export type ProjectSectionCountOutputType = {
     boqItems: number
+    breakdowns: number
   }
 
   export type ProjectSectionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     boqItems?: boolean | ProjectSectionCountOutputTypeCountBoqItemsArgs
+    breakdowns?: boolean | ProjectSectionCountOutputTypeCountBreakdownsArgs
   }
 
   // Custom InputTypes
@@ -3351,6 +3575,13 @@ export namespace Prisma {
    */
   export type ProjectSectionCountOutputTypeCountBoqItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: boqItemsWhereInput
+  }
+
+  /**
+   * ProjectSectionCountOutputType without action
+   */
+  export type ProjectSectionCountOutputTypeCountBreakdownsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectSectionBreakdownWhereInput
   }
 
 
@@ -3788,6 +4019,7 @@ export namespace Prisma {
     Milestone: number
     ProjectSection: number
     boqItems: number
+    BoqBreakdown: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3802,6 +4034,7 @@ export namespace Prisma {
     Milestone?: boolean | UserCountOutputTypeCountMilestoneArgs
     ProjectSection?: boolean | UserCountOutputTypeCountProjectSectionArgs
     boqItems?: boolean | UserCountOutputTypeCountBoqItemsArgs
+    BoqBreakdown?: boolean | UserCountOutputTypeCountBoqBreakdownArgs
   }
 
   // Custom InputTypes
@@ -3892,10 +4125,1197 @@ export namespace Prisma {
     where?: boqItemsWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBoqBreakdownArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BoqBreakdownWhereInput
+  }
+
 
   /**
    * Models
    */
+
+  /**
+   * Model BoqBreakdown
+   */
+
+  export type AggregateBoqBreakdown = {
+    _count: BoqBreakdownCountAggregateOutputType | null
+    _avg: BoqBreakdownAvgAggregateOutputType | null
+    _sum: BoqBreakdownSumAggregateOutputType | null
+    _min: BoqBreakdownMinAggregateOutputType | null
+    _max: BoqBreakdownMaxAggregateOutputType | null
+  }
+
+  export type BoqBreakdownAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type BoqBreakdownSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type BoqBreakdownMinAggregateOutputType = {
+    id: number | null
+    code: string | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
+  }
+
+  export type BoqBreakdownMaxAggregateOutputType = {
+    id: number | null
+    code: string | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: number | null
+  }
+
+  export type BoqBreakdownCountAggregateOutputType = {
+    id: number
+    code: number
+    name: number
+    description: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type BoqBreakdownAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type BoqBreakdownSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type BoqBreakdownMinAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type BoqBreakdownMaxAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type BoqBreakdownCountAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type BoqBreakdownAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BoqBreakdown to aggregate.
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BoqBreakdowns to fetch.
+     */
+    orderBy?: BoqBreakdownOrderByWithRelationInput | BoqBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BoqBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BoqBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BoqBreakdowns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BoqBreakdowns
+    **/
+    _count?: true | BoqBreakdownCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BoqBreakdownAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BoqBreakdownSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BoqBreakdownMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BoqBreakdownMaxAggregateInputType
+  }
+
+  export type GetBoqBreakdownAggregateType<T extends BoqBreakdownAggregateArgs> = {
+        [P in keyof T & keyof AggregateBoqBreakdown]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBoqBreakdown[P]>
+      : GetScalarType<T[P], AggregateBoqBreakdown[P]>
+  }
+
+
+
+
+  export type BoqBreakdownGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BoqBreakdownWhereInput
+    orderBy?: BoqBreakdownOrderByWithAggregationInput | BoqBreakdownOrderByWithAggregationInput[]
+    by: BoqBreakdownScalarFieldEnum[] | BoqBreakdownScalarFieldEnum
+    having?: BoqBreakdownScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BoqBreakdownCountAggregateInputType | true
+    _avg?: BoqBreakdownAvgAggregateInputType
+    _sum?: BoqBreakdownSumAggregateInputType
+    _min?: BoqBreakdownMinAggregateInputType
+    _max?: BoqBreakdownMaxAggregateInputType
+  }
+
+  export type BoqBreakdownGroupByOutputType = {
+    id: number
+    code: string
+    name: string
+    description: string | null
+    createdAt: Date
+    updatedAt: Date
+    userId: number
+    _count: BoqBreakdownCountAggregateOutputType | null
+    _avg: BoqBreakdownAvgAggregateOutputType | null
+    _sum: BoqBreakdownSumAggregateOutputType | null
+    _min: BoqBreakdownMinAggregateOutputType | null
+    _max: BoqBreakdownMaxAggregateOutputType | null
+  }
+
+  type GetBoqBreakdownGroupByPayload<T extends BoqBreakdownGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BoqBreakdownGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BoqBreakdownGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BoqBreakdownGroupByOutputType[P]>
+            : GetScalarType<T[P], BoqBreakdownGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BoqBreakdownSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    boqItems?: boolean | BoqBreakdown$boqItemsArgs<ExtArgs>
+    sections?: boolean | BoqBreakdown$sectionsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | BoqBreakdownCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["boqBreakdown"]>
+
+  export type BoqBreakdownSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["boqBreakdown"]>
+
+  export type BoqBreakdownSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["boqBreakdown"]>
+
+  export type BoqBreakdownSelectScalar = {
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type BoqBreakdownOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "description" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["boqBreakdown"]>
+  export type BoqBreakdownInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    boqItems?: boolean | BoqBreakdown$boqItemsArgs<ExtArgs>
+    sections?: boolean | BoqBreakdown$sectionsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | BoqBreakdownCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BoqBreakdownIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BoqBreakdownIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $BoqBreakdownPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BoqBreakdown"
+    objects: {
+      boqItems: Prisma.$boqItemsPayload<ExtArgs>[]
+      sections: Prisma.$ProjectSectionBreakdownPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      code: string
+      name: string
+      description: string | null
+      createdAt: Date
+      updatedAt: Date
+      userId: number
+    }, ExtArgs["result"]["boqBreakdown"]>
+    composites: {}
+  }
+
+  type BoqBreakdownGetPayload<S extends boolean | null | undefined | BoqBreakdownDefaultArgs> = $Result.GetResult<Prisma.$BoqBreakdownPayload, S>
+
+  type BoqBreakdownCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BoqBreakdownFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BoqBreakdownCountAggregateInputType | true
+    }
+
+  export interface BoqBreakdownDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BoqBreakdown'], meta: { name: 'BoqBreakdown' } }
+    /**
+     * Find zero or one BoqBreakdown that matches the filter.
+     * @param {BoqBreakdownFindUniqueArgs} args - Arguments to find a BoqBreakdown
+     * @example
+     * // Get one BoqBreakdown
+     * const boqBreakdown = await prisma.boqBreakdown.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BoqBreakdownFindUniqueArgs>(args: SelectSubset<T, BoqBreakdownFindUniqueArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BoqBreakdown that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BoqBreakdownFindUniqueOrThrowArgs} args - Arguments to find a BoqBreakdown
+     * @example
+     * // Get one BoqBreakdown
+     * const boqBreakdown = await prisma.boqBreakdown.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BoqBreakdownFindUniqueOrThrowArgs>(args: SelectSubset<T, BoqBreakdownFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BoqBreakdown that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownFindFirstArgs} args - Arguments to find a BoqBreakdown
+     * @example
+     * // Get one BoqBreakdown
+     * const boqBreakdown = await prisma.boqBreakdown.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BoqBreakdownFindFirstArgs>(args?: SelectSubset<T, BoqBreakdownFindFirstArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BoqBreakdown that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownFindFirstOrThrowArgs} args - Arguments to find a BoqBreakdown
+     * @example
+     * // Get one BoqBreakdown
+     * const boqBreakdown = await prisma.boqBreakdown.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BoqBreakdownFindFirstOrThrowArgs>(args?: SelectSubset<T, BoqBreakdownFindFirstOrThrowArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BoqBreakdowns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BoqBreakdowns
+     * const boqBreakdowns = await prisma.boqBreakdown.findMany()
+     * 
+     * // Get first 10 BoqBreakdowns
+     * const boqBreakdowns = await prisma.boqBreakdown.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const boqBreakdownWithIdOnly = await prisma.boqBreakdown.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BoqBreakdownFindManyArgs>(args?: SelectSubset<T, BoqBreakdownFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BoqBreakdown.
+     * @param {BoqBreakdownCreateArgs} args - Arguments to create a BoqBreakdown.
+     * @example
+     * // Create one BoqBreakdown
+     * const BoqBreakdown = await prisma.boqBreakdown.create({
+     *   data: {
+     *     // ... data to create a BoqBreakdown
+     *   }
+     * })
+     * 
+     */
+    create<T extends BoqBreakdownCreateArgs>(args: SelectSubset<T, BoqBreakdownCreateArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BoqBreakdowns.
+     * @param {BoqBreakdownCreateManyArgs} args - Arguments to create many BoqBreakdowns.
+     * @example
+     * // Create many BoqBreakdowns
+     * const boqBreakdown = await prisma.boqBreakdown.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BoqBreakdownCreateManyArgs>(args?: SelectSubset<T, BoqBreakdownCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BoqBreakdowns and returns the data saved in the database.
+     * @param {BoqBreakdownCreateManyAndReturnArgs} args - Arguments to create many BoqBreakdowns.
+     * @example
+     * // Create many BoqBreakdowns
+     * const boqBreakdown = await prisma.boqBreakdown.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BoqBreakdowns and only return the `id`
+     * const boqBreakdownWithIdOnly = await prisma.boqBreakdown.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BoqBreakdownCreateManyAndReturnArgs>(args?: SelectSubset<T, BoqBreakdownCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BoqBreakdown.
+     * @param {BoqBreakdownDeleteArgs} args - Arguments to delete one BoqBreakdown.
+     * @example
+     * // Delete one BoqBreakdown
+     * const BoqBreakdown = await prisma.boqBreakdown.delete({
+     *   where: {
+     *     // ... filter to delete one BoqBreakdown
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BoqBreakdownDeleteArgs>(args: SelectSubset<T, BoqBreakdownDeleteArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BoqBreakdown.
+     * @param {BoqBreakdownUpdateArgs} args - Arguments to update one BoqBreakdown.
+     * @example
+     * // Update one BoqBreakdown
+     * const boqBreakdown = await prisma.boqBreakdown.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BoqBreakdownUpdateArgs>(args: SelectSubset<T, BoqBreakdownUpdateArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BoqBreakdowns.
+     * @param {BoqBreakdownDeleteManyArgs} args - Arguments to filter BoqBreakdowns to delete.
+     * @example
+     * // Delete a few BoqBreakdowns
+     * const { count } = await prisma.boqBreakdown.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BoqBreakdownDeleteManyArgs>(args?: SelectSubset<T, BoqBreakdownDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BoqBreakdowns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BoqBreakdowns
+     * const boqBreakdown = await prisma.boqBreakdown.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BoqBreakdownUpdateManyArgs>(args: SelectSubset<T, BoqBreakdownUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BoqBreakdowns and returns the data updated in the database.
+     * @param {BoqBreakdownUpdateManyAndReturnArgs} args - Arguments to update many BoqBreakdowns.
+     * @example
+     * // Update many BoqBreakdowns
+     * const boqBreakdown = await prisma.boqBreakdown.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BoqBreakdowns and only return the `id`
+     * const boqBreakdownWithIdOnly = await prisma.boqBreakdown.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BoqBreakdownUpdateManyAndReturnArgs>(args: SelectSubset<T, BoqBreakdownUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BoqBreakdown.
+     * @param {BoqBreakdownUpsertArgs} args - Arguments to update or create a BoqBreakdown.
+     * @example
+     * // Update or create a BoqBreakdown
+     * const boqBreakdown = await prisma.boqBreakdown.upsert({
+     *   create: {
+     *     // ... data to create a BoqBreakdown
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BoqBreakdown we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BoqBreakdownUpsertArgs>(args: SelectSubset<T, BoqBreakdownUpsertArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BoqBreakdowns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownCountArgs} args - Arguments to filter BoqBreakdowns to count.
+     * @example
+     * // Count the number of BoqBreakdowns
+     * const count = await prisma.boqBreakdown.count({
+     *   where: {
+     *     // ... the filter for the BoqBreakdowns we want to count
+     *   }
+     * })
+    **/
+    count<T extends BoqBreakdownCountArgs>(
+      args?: Subset<T, BoqBreakdownCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BoqBreakdownCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BoqBreakdown.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BoqBreakdownAggregateArgs>(args: Subset<T, BoqBreakdownAggregateArgs>): Prisma.PrismaPromise<GetBoqBreakdownAggregateType<T>>
+
+    /**
+     * Group by BoqBreakdown.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BoqBreakdownGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BoqBreakdownGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BoqBreakdownGroupByArgs['orderBy'] }
+        : { orderBy?: BoqBreakdownGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BoqBreakdownGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBoqBreakdownGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BoqBreakdown model
+   */
+  readonly fields: BoqBreakdownFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BoqBreakdown.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BoqBreakdownClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    boqItems<T extends BoqBreakdown$boqItemsArgs<ExtArgs> = {}>(args?: Subset<T, BoqBreakdown$boqItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$boqItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sections<T extends BoqBreakdown$sectionsArgs<ExtArgs> = {}>(args?: Subset<T, BoqBreakdown$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BoqBreakdown model
+   */
+  interface BoqBreakdownFieldRefs {
+    readonly id: FieldRef<"BoqBreakdown", 'Int'>
+    readonly code: FieldRef<"BoqBreakdown", 'String'>
+    readonly name: FieldRef<"BoqBreakdown", 'String'>
+    readonly description: FieldRef<"BoqBreakdown", 'String'>
+    readonly createdAt: FieldRef<"BoqBreakdown", 'DateTime'>
+    readonly updatedAt: FieldRef<"BoqBreakdown", 'DateTime'>
+    readonly userId: FieldRef<"BoqBreakdown", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BoqBreakdown findUnique
+   */
+  export type BoqBreakdownFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which BoqBreakdown to fetch.
+     */
+    where: BoqBreakdownWhereUniqueInput
+  }
+
+  /**
+   * BoqBreakdown findUniqueOrThrow
+   */
+  export type BoqBreakdownFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which BoqBreakdown to fetch.
+     */
+    where: BoqBreakdownWhereUniqueInput
+  }
+
+  /**
+   * BoqBreakdown findFirst
+   */
+  export type BoqBreakdownFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which BoqBreakdown to fetch.
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BoqBreakdowns to fetch.
+     */
+    orderBy?: BoqBreakdownOrderByWithRelationInput | BoqBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BoqBreakdowns.
+     */
+    cursor?: BoqBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BoqBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BoqBreakdowns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BoqBreakdowns.
+     */
+    distinct?: BoqBreakdownScalarFieldEnum | BoqBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * BoqBreakdown findFirstOrThrow
+   */
+  export type BoqBreakdownFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which BoqBreakdown to fetch.
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BoqBreakdowns to fetch.
+     */
+    orderBy?: BoqBreakdownOrderByWithRelationInput | BoqBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BoqBreakdowns.
+     */
+    cursor?: BoqBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BoqBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BoqBreakdowns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BoqBreakdowns.
+     */
+    distinct?: BoqBreakdownScalarFieldEnum | BoqBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * BoqBreakdown findMany
+   */
+  export type BoqBreakdownFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which BoqBreakdowns to fetch.
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BoqBreakdowns to fetch.
+     */
+    orderBy?: BoqBreakdownOrderByWithRelationInput | BoqBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BoqBreakdowns.
+     */
+    cursor?: BoqBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BoqBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BoqBreakdowns.
+     */
+    skip?: number
+    distinct?: BoqBreakdownScalarFieldEnum | BoqBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * BoqBreakdown create
+   */
+  export type BoqBreakdownCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BoqBreakdown.
+     */
+    data: XOR<BoqBreakdownCreateInput, BoqBreakdownUncheckedCreateInput>
+  }
+
+  /**
+   * BoqBreakdown createMany
+   */
+  export type BoqBreakdownCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BoqBreakdowns.
+     */
+    data: BoqBreakdownCreateManyInput | BoqBreakdownCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BoqBreakdown createManyAndReturn
+   */
+  export type BoqBreakdownCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * The data used to create many BoqBreakdowns.
+     */
+    data: BoqBreakdownCreateManyInput | BoqBreakdownCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BoqBreakdown update
+   */
+  export type BoqBreakdownUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BoqBreakdown.
+     */
+    data: XOR<BoqBreakdownUpdateInput, BoqBreakdownUncheckedUpdateInput>
+    /**
+     * Choose, which BoqBreakdown to update.
+     */
+    where: BoqBreakdownWhereUniqueInput
+  }
+
+  /**
+   * BoqBreakdown updateMany
+   */
+  export type BoqBreakdownUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BoqBreakdowns.
+     */
+    data: XOR<BoqBreakdownUpdateManyMutationInput, BoqBreakdownUncheckedUpdateManyInput>
+    /**
+     * Filter which BoqBreakdowns to update
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * Limit how many BoqBreakdowns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BoqBreakdown updateManyAndReturn
+   */
+  export type BoqBreakdownUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * The data used to update BoqBreakdowns.
+     */
+    data: XOR<BoqBreakdownUpdateManyMutationInput, BoqBreakdownUncheckedUpdateManyInput>
+    /**
+     * Filter which BoqBreakdowns to update
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * Limit how many BoqBreakdowns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BoqBreakdown upsert
+   */
+  export type BoqBreakdownUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BoqBreakdown to update in case it exists.
+     */
+    where: BoqBreakdownWhereUniqueInput
+    /**
+     * In case the BoqBreakdown found by the `where` argument doesn't exist, create a new BoqBreakdown with this data.
+     */
+    create: XOR<BoqBreakdownCreateInput, BoqBreakdownUncheckedCreateInput>
+    /**
+     * In case the BoqBreakdown was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BoqBreakdownUpdateInput, BoqBreakdownUncheckedUpdateInput>
+  }
+
+  /**
+   * BoqBreakdown delete
+   */
+  export type BoqBreakdownDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter which BoqBreakdown to delete.
+     */
+    where: BoqBreakdownWhereUniqueInput
+  }
+
+  /**
+   * BoqBreakdown deleteMany
+   */
+  export type BoqBreakdownDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BoqBreakdowns to delete
+     */
+    where?: BoqBreakdownWhereInput
+    /**
+     * Limit how many BoqBreakdowns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BoqBreakdown.boqItems
+   */
+  export type BoqBreakdown$boqItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the boqItems
+     */
+    select?: boqItemsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the boqItems
+     */
+    omit?: boqItemsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: boqItemsInclude<ExtArgs> | null
+    where?: boqItemsWhereInput
+    orderBy?: boqItemsOrderByWithRelationInput | boqItemsOrderByWithRelationInput[]
+    cursor?: boqItemsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BoqItemsScalarFieldEnum | BoqItemsScalarFieldEnum[]
+  }
+
+  /**
+   * BoqBreakdown.sections
+   */
+  export type BoqBreakdown$sectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    where?: ProjectSectionBreakdownWhereInput
+    orderBy?: ProjectSectionBreakdownOrderByWithRelationInput | ProjectSectionBreakdownOrderByWithRelationInput[]
+    cursor?: ProjectSectionBreakdownWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectSectionBreakdownScalarFieldEnum | ProjectSectionBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * BoqBreakdown without action
+   */
+  export type BoqBreakdownDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model boqItems
@@ -3912,6 +5332,7 @@ export namespace Prisma {
   export type BoqItemsAvgAggregateOutputType = {
     id: number | null
     sectionId: number | null
+    breakdownId: number | null
     materialId: number | null
     unitId: number | null
     quantity: Decimal | null
@@ -3925,6 +5346,7 @@ export namespace Prisma {
   export type BoqItemsSumAggregateOutputType = {
     id: number | null
     sectionId: number | null
+    breakdownId: number | null
     materialId: number | null
     unitId: number | null
     quantity: Decimal | null
@@ -3938,7 +5360,8 @@ export namespace Prisma {
   export type BoqItemsMinAggregateOutputType = {
     id: number | null
     sectionId: number | null
-    item_number: string | null
+    breakdownId: number | null
+    itemNumber: string | null
     description: string | null
     materialId: number | null
     unitId: number | null
@@ -3956,7 +5379,8 @@ export namespace Prisma {
   export type BoqItemsMaxAggregateOutputType = {
     id: number | null
     sectionId: number | null
-    item_number: string | null
+    breakdownId: number | null
+    itemNumber: string | null
     description: string | null
     materialId: number | null
     unitId: number | null
@@ -3974,7 +5398,8 @@ export namespace Prisma {
   export type BoqItemsCountAggregateOutputType = {
     id: number
     sectionId: number
-    item_number: number
+    breakdownId: number
+    itemNumber: number
     description: number
     materialId: number
     unitId: number
@@ -3994,6 +5419,7 @@ export namespace Prisma {
   export type BoqItemsAvgAggregateInputType = {
     id?: true
     sectionId?: true
+    breakdownId?: true
     materialId?: true
     unitId?: true
     quantity?: true
@@ -4007,6 +5433,7 @@ export namespace Prisma {
   export type BoqItemsSumAggregateInputType = {
     id?: true
     sectionId?: true
+    breakdownId?: true
     materialId?: true
     unitId?: true
     quantity?: true
@@ -4020,7 +5447,8 @@ export namespace Prisma {
   export type BoqItemsMinAggregateInputType = {
     id?: true
     sectionId?: true
-    item_number?: true
+    breakdownId?: true
+    itemNumber?: true
     description?: true
     materialId?: true
     unitId?: true
@@ -4038,7 +5466,8 @@ export namespace Prisma {
   export type BoqItemsMaxAggregateInputType = {
     id?: true
     sectionId?: true
-    item_number?: true
+    breakdownId?: true
+    itemNumber?: true
     description?: true
     materialId?: true
     unitId?: true
@@ -4056,7 +5485,8 @@ export namespace Prisma {
   export type BoqItemsCountAggregateInputType = {
     id?: true
     sectionId?: true
-    item_number?: true
+    breakdownId?: true
+    itemNumber?: true
     description?: true
     materialId?: true
     unitId?: true
@@ -4161,16 +5591,17 @@ export namespace Prisma {
   export type BoqItemsGroupByOutputType = {
     id: number
     sectionId: number
-    item_number: string
+    breakdownId: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId: number | null
     quantity: Decimal | null
     unitPrice: Decimal | null
     totalPrice: Decimal | null
     parentItemId: number | null
     level: number | null
-    itemType: string
+    itemType: string | null
     createdAt: Date
     updatedAt: Date
     userId: number
@@ -4198,7 +5629,8 @@ export namespace Prisma {
   export type boqItemsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sectionId?: boolean
-    item_number?: boolean
+    breakdownId?: boolean
+    itemNumber?: boolean
     description?: boolean
     materialId?: boolean
     unitId?: boolean
@@ -4211,9 +5643,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    section?: boolean | boqItems$sectionArgs<ExtArgs>
+    breakdown?: boolean | boqItems$breakdownArgs<ExtArgs>
     material?: boolean | MaterialNameDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    unit?: boolean | boqItems$unitArgs<ExtArgs>
     parentItem?: boolean | boqItems$parentItemArgs<ExtArgs>
     childItems?: boolean | boqItems$childItemsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -4223,7 +5656,8 @@ export namespace Prisma {
   export type boqItemsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sectionId?: boolean
-    item_number?: boolean
+    breakdownId?: boolean
+    itemNumber?: boolean
     description?: boolean
     materialId?: boolean
     unitId?: boolean
@@ -4236,9 +5670,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    section?: boolean | boqItems$sectionArgs<ExtArgs>
+    breakdown?: boolean | boqItems$breakdownArgs<ExtArgs>
     material?: boolean | MaterialNameDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    unit?: boolean | boqItems$unitArgs<ExtArgs>
     parentItem?: boolean | boqItems$parentItemArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["boqItems"]>
@@ -4246,7 +5681,8 @@ export namespace Prisma {
   export type boqItemsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sectionId?: boolean
-    item_number?: boolean
+    breakdownId?: boolean
+    itemNumber?: boolean
     description?: boolean
     materialId?: boolean
     unitId?: boolean
@@ -4259,9 +5695,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    section?: boolean | boqItems$sectionArgs<ExtArgs>
+    breakdown?: boolean | boqItems$breakdownArgs<ExtArgs>
     material?: boolean | MaterialNameDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    unit?: boolean | boqItems$unitArgs<ExtArgs>
     parentItem?: boolean | boqItems$parentItemArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["boqItems"]>
@@ -4269,7 +5706,8 @@ export namespace Prisma {
   export type boqItemsSelectScalar = {
     id?: boolean
     sectionId?: boolean
-    item_number?: boolean
+    breakdownId?: boolean
+    itemNumber?: boolean
     description?: boolean
     materialId?: boolean
     unitId?: boolean
@@ -4284,27 +5722,30 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type boqItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sectionId" | "item_number" | "description" | "materialId" | "unitId" | "quantity" | "unitPrice" | "totalPrice" | "parentItemId" | "level" | "itemType" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["boqItems"]>
+  export type boqItemsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sectionId" | "breakdownId" | "itemNumber" | "description" | "materialId" | "unitId" | "quantity" | "unitPrice" | "totalPrice" | "parentItemId" | "level" | "itemType" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["boqItems"]>
   export type boqItemsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    section?: boolean | boqItems$sectionArgs<ExtArgs>
+    breakdown?: boolean | boqItems$breakdownArgs<ExtArgs>
     material?: boolean | MaterialNameDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    unit?: boolean | boqItems$unitArgs<ExtArgs>
     parentItem?: boolean | boqItems$parentItemArgs<ExtArgs>
     childItems?: boolean | boqItems$childItemsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | BoqItemsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type boqItemsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    section?: boolean | boqItems$sectionArgs<ExtArgs>
+    breakdown?: boolean | boqItems$breakdownArgs<ExtArgs>
     material?: boolean | MaterialNameDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    unit?: boolean | boqItems$unitArgs<ExtArgs>
     parentItem?: boolean | boqItems$parentItemArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type boqItemsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    section?: boolean | boqItems$sectionArgs<ExtArgs>
+    breakdown?: boolean | boqItems$breakdownArgs<ExtArgs>
     material?: boolean | MaterialNameDefaultArgs<ExtArgs>
-    unit?: boolean | UnitDefaultArgs<ExtArgs>
+    unit?: boolean | boqItems$unitArgs<ExtArgs>
     parentItem?: boolean | boqItems$parentItemArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -4312,9 +5753,10 @@ export namespace Prisma {
   export type $boqItemsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "boqItems"
     objects: {
-      section: Prisma.$ProjectSectionPayload<ExtArgs>
+      section: Prisma.$ProjectSectionPayload<ExtArgs> | null
+      breakdown: Prisma.$BoqBreakdownPayload<ExtArgs> | null
       material: Prisma.$MaterialNamePayload<ExtArgs>
-      unit: Prisma.$UnitPayload<ExtArgs>
+      unit: Prisma.$UnitPayload<ExtArgs> | null
       parentItem: Prisma.$boqItemsPayload<ExtArgs> | null
       childItems: Prisma.$boqItemsPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
@@ -4322,16 +5764,17 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       sectionId: number
-      item_number: string
+      breakdownId: number | null
+      itemNumber: string
       description: string
       materialId: number
-      unitId: number
+      unitId: number | null
       quantity: Prisma.Decimal | null
       unitPrice: Prisma.Decimal | null
       totalPrice: Prisma.Decimal | null
       parentItemId: number | null
       level: number | null
-      itemType: string
+      itemType: string | null
       createdAt: Date
       updatedAt: Date
       userId: number
@@ -4729,9 +6172,10 @@ export namespace Prisma {
    */
   export interface Prisma__boqItemsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    section<T extends ProjectSectionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSectionDefaultArgs<ExtArgs>>): Prisma__ProjectSectionClient<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    section<T extends boqItems$sectionArgs<ExtArgs> = {}>(args?: Subset<T, boqItems$sectionArgs<ExtArgs>>): Prisma__ProjectSectionClient<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    breakdown<T extends boqItems$breakdownArgs<ExtArgs> = {}>(args?: Subset<T, boqItems$breakdownArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     material<T extends MaterialNameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialNameDefaultArgs<ExtArgs>>): Prisma__MaterialNameClient<$Result.GetResult<Prisma.$MaterialNamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    unit<T extends boqItems$unitArgs<ExtArgs> = {}>(args?: Subset<T, boqItems$unitArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     parentItem<T extends boqItems$parentItemArgs<ExtArgs> = {}>(args?: Subset<T, boqItems$parentItemArgs<ExtArgs>>): Prisma__boqItemsClient<$Result.GetResult<Prisma.$boqItemsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     childItems<T extends boqItems$childItemsArgs<ExtArgs> = {}>(args?: Subset<T, boqItems$childItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$boqItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -4766,7 +6210,8 @@ export namespace Prisma {
   interface boqItemsFieldRefs {
     readonly id: FieldRef<"boqItems", 'Int'>
     readonly sectionId: FieldRef<"boqItems", 'Int'>
-    readonly item_number: FieldRef<"boqItems", 'String'>
+    readonly breakdownId: FieldRef<"boqItems", 'Int'>
+    readonly itemNumber: FieldRef<"boqItems", 'String'>
     readonly description: FieldRef<"boqItems", 'String'>
     readonly materialId: FieldRef<"boqItems", 'Int'>
     readonly unitId: FieldRef<"boqItems", 'Int'>
@@ -5172,6 +6617,63 @@ export namespace Prisma {
      * Limit how many boqItems to delete.
      */
     limit?: number
+  }
+
+  /**
+   * boqItems.section
+   */
+  export type boqItems$sectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSection
+     */
+    select?: ProjectSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSection
+     */
+    omit?: ProjectSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionInclude<ExtArgs> | null
+    where?: ProjectSectionWhereInput
+  }
+
+  /**
+   * boqItems.breakdown
+   */
+  export type boqItems$breakdownArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    where?: BoqBreakdownWhereInput
+  }
+
+  /**
+   * boqItems.unit
+   */
+  export type boqItems$unitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unit
+     */
+    select?: UnitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unit
+     */
+    omit?: UnitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnitInclude<ExtArgs> | null
+    where?: UnitWhereInput
   }
 
   /**
@@ -10047,6 +11549,7 @@ export namespace Prisma {
     startDate: Date | null
     endDate: Date | null
     currencyId: number | null
+    boqStructureType: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -10063,6 +11566,7 @@ export namespace Prisma {
     startDate: Date | null
     endDate: Date | null
     currencyId: number | null
+    boqStructureType: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -10079,6 +11583,7 @@ export namespace Prisma {
     startDate: number
     endDate: number
     currencyId: number
+    boqStructureType: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -10113,6 +11618,7 @@ export namespace Prisma {
     startDate?: true
     endDate?: true
     currencyId?: true
+    boqStructureType?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -10129,6 +11635,7 @@ export namespace Prisma {
     startDate?: true
     endDate?: true
     currencyId?: true
+    boqStructureType?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -10145,6 +11652,7 @@ export namespace Prisma {
     startDate?: true
     endDate?: true
     currencyId?: true
+    boqStructureType?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -10248,6 +11756,7 @@ export namespace Prisma {
     startDate: Date
     endDate: Date
     currencyId: number
+    boqStructureType: string | null
     createdAt: Date
     updatedAt: Date
     userId: number
@@ -10283,6 +11792,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     currencyId?: boolean
+    boqStructureType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -10308,6 +11818,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     currencyId?: boolean
+    boqStructureType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -10327,6 +11838,7 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     currencyId?: boolean
+    boqStructureType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -10346,12 +11858,13 @@ export namespace Prisma {
     startDate?: boolean
     endDate?: boolean
     currencyId?: boolean
+    boqStructureType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "displayName" | "clientId" | "managerId" | "status" | "notes" | "startDate" | "endDate" | "currencyId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "displayName" | "clientId" | "managerId" | "status" | "notes" | "startDate" | "endDate" | "currencyId" | "boqStructureType" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | Project$clientArgs<ExtArgs>
     currency?: boolean | CurrencyDefaultArgs<ExtArgs>
@@ -10397,6 +11910,7 @@ export namespace Prisma {
       startDate: Date
       endDate: Date
       currencyId: number
+      boqStructureType: string | null
       createdAt: Date
       updatedAt: Date
       userId: number
@@ -10841,6 +12355,7 @@ export namespace Prisma {
     readonly startDate: FieldRef<"Project", 'DateTime'>
     readonly endDate: FieldRef<"Project", 'DateTime'>
     readonly currencyId: FieldRef<"Project", 'Int'>
+    readonly boqStructureType: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
     readonly userId: FieldRef<"Project", 'Int'>
@@ -13608,19 +15123,19 @@ export namespace Prisma {
   export type ProjectSectionAvgAggregateOutputType = {
     id: number | null
     projectId: number | null
-    locationId: number | null
-    currencyId: number | null
     totalAmount: Decimal | null
+    locationId: number | null
     userId: number | null
+    currencyId: number | null
   }
 
   export type ProjectSectionSumAggregateOutputType = {
     id: number | null
     projectId: number | null
-    locationId: number | null
-    currencyId: number | null
     totalAmount: Decimal | null
+    locationId: number | null
     userId: number | null
+    currencyId: number | null
   }
 
   export type ProjectSectionMinAggregateOutputType = {
@@ -13629,12 +15144,12 @@ export namespace Prisma {
     section_code: string | null
     section_name: string | null
     section_type: string | null
-    locationId: number | null
-    currencyId: number | null
     totalAmount: Decimal | null
+    locationId: number | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
+    currencyId: number | null
   }
 
   export type ProjectSectionMaxAggregateOutputType = {
@@ -13643,12 +15158,12 @@ export namespace Prisma {
     section_code: string | null
     section_name: string | null
     section_type: string | null
-    locationId: number | null
-    currencyId: number | null
     totalAmount: Decimal | null
+    locationId: number | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
+    currencyId: number | null
   }
 
   export type ProjectSectionCountAggregateOutputType = {
@@ -13657,12 +15172,12 @@ export namespace Prisma {
     section_code: number
     section_name: number
     section_type: number
-    locationId: number
-    currencyId: number
     totalAmount: number
+    locationId: number
     createdAt: number
     updatedAt: number
     userId: number
+    currencyId: number
     _all: number
   }
 
@@ -13670,19 +15185,19 @@ export namespace Prisma {
   export type ProjectSectionAvgAggregateInputType = {
     id?: true
     projectId?: true
-    locationId?: true
-    currencyId?: true
     totalAmount?: true
+    locationId?: true
     userId?: true
+    currencyId?: true
   }
 
   export type ProjectSectionSumAggregateInputType = {
     id?: true
     projectId?: true
-    locationId?: true
-    currencyId?: true
     totalAmount?: true
+    locationId?: true
     userId?: true
+    currencyId?: true
   }
 
   export type ProjectSectionMinAggregateInputType = {
@@ -13691,12 +15206,12 @@ export namespace Prisma {
     section_code?: true
     section_name?: true
     section_type?: true
-    locationId?: true
-    currencyId?: true
     totalAmount?: true
+    locationId?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
+    currencyId?: true
   }
 
   export type ProjectSectionMaxAggregateInputType = {
@@ -13705,12 +15220,12 @@ export namespace Prisma {
     section_code?: true
     section_name?: true
     section_type?: true
-    locationId?: true
-    currencyId?: true
     totalAmount?: true
+    locationId?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
+    currencyId?: true
   }
 
   export type ProjectSectionCountAggregateInputType = {
@@ -13719,12 +15234,12 @@ export namespace Prisma {
     section_code?: true
     section_name?: true
     section_type?: true
-    locationId?: true
-    currencyId?: true
     totalAmount?: true
+    locationId?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
+    currencyId?: true
     _all?: true
   }
 
@@ -13820,12 +15335,12 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId: number | null
-    currencyId: number
     totalAmount: Decimal | null
+    locationId: number | null
     createdAt: Date
     updatedAt: Date
     userId: number
+    currencyId: number | null
     _count: ProjectSectionCountAggregateOutputType | null
     _avg: ProjectSectionAvgAggregateOutputType | null
     _sum: ProjectSectionSumAggregateOutputType | null
@@ -13853,17 +15368,18 @@ export namespace Prisma {
     section_code?: boolean
     section_name?: boolean
     section_type?: boolean
-    locationId?: boolean
-    currencyId?: boolean
     totalAmount?: boolean
+    locationId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    currencyId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     boqItems?: boolean | ProjectSection$boqItemsArgs<ExtArgs>
+    breakdowns?: boolean | ProjectSection$breakdownsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
     _count?: boolean | ProjectSectionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["projectSection"]>
 
@@ -13873,16 +15389,16 @@ export namespace Prisma {
     section_code?: boolean
     section_name?: boolean
     section_type?: boolean
-    locationId?: boolean
-    currencyId?: boolean
     totalAmount?: boolean
+    locationId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    currencyId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }, ExtArgs["result"]["projectSection"]>
 
   export type ProjectSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13891,16 +15407,16 @@ export namespace Prisma {
     section_code?: boolean
     section_name?: boolean
     section_type?: boolean
-    locationId?: boolean
-    currencyId?: boolean
     totalAmount?: boolean
+    locationId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    currencyId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }, ExtArgs["result"]["projectSection"]>
 
   export type ProjectSectionSelectScalar = {
@@ -13909,34 +15425,35 @@ export namespace Prisma {
     section_code?: boolean
     section_name?: boolean
     section_type?: boolean
-    locationId?: boolean
-    currencyId?: boolean
     totalAmount?: boolean
+    locationId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    currencyId?: boolean
   }
 
-  export type ProjectSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "section_code" | "section_name" | "section_type" | "locationId" | "currencyId" | "totalAmount" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["projectSection"]>
+  export type ProjectSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "section_code" | "section_name" | "section_type" | "totalAmount" | "locationId" | "createdAt" | "updatedAt" | "userId" | "currencyId", ExtArgs["result"]["projectSection"]>
   export type ProjectSectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     boqItems?: boolean | ProjectSection$boqItemsArgs<ExtArgs>
+    breakdowns?: boolean | ProjectSection$breakdownsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
     _count?: boolean | ProjectSectionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectSectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }
   export type ProjectSectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
-    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }
 
   export type $ProjectSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13944,9 +15461,10 @@ export namespace Prisma {
     objects: {
       project: Prisma.$ProjectPayload<ExtArgs>
       location: Prisma.$LocationPayload<ExtArgs> | null
-      currency: Prisma.$CurrencyPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
       boqItems: Prisma.$boqItemsPayload<ExtArgs>[]
+      breakdowns: Prisma.$ProjectSectionBreakdownPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
+      Currency: Prisma.$CurrencyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -13954,12 +15472,12 @@ export namespace Prisma {
       section_code: string
       section_name: string
       section_type: string
-      locationId: number | null
-      currencyId: number
       totalAmount: Prisma.Decimal | null
+      locationId: number | null
       createdAt: Date
       updatedAt: Date
       userId: number
+      currencyId: number | null
     }, ExtArgs["result"]["projectSection"]>
     composites: {}
   }
@@ -14356,9 +15874,10 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     location<T extends ProjectSection$locationArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    currency<T extends CurrencyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CurrencyDefaultArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     boqItems<T extends ProjectSection$boqItemsArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$boqItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$boqItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    breakdowns<T extends ProjectSection$breakdownsArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$breakdownsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Currency<T extends ProjectSection$CurrencyArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$CurrencyArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14393,12 +15912,12 @@ export namespace Prisma {
     readonly section_code: FieldRef<"ProjectSection", 'String'>
     readonly section_name: FieldRef<"ProjectSection", 'String'>
     readonly section_type: FieldRef<"ProjectSection", 'String'>
-    readonly locationId: FieldRef<"ProjectSection", 'Int'>
-    readonly currencyId: FieldRef<"ProjectSection", 'Int'>
     readonly totalAmount: FieldRef<"ProjectSection", 'Decimal'>
+    readonly locationId: FieldRef<"ProjectSection", 'Int'>
     readonly createdAt: FieldRef<"ProjectSection", 'DateTime'>
     readonly updatedAt: FieldRef<"ProjectSection", 'DateTime'>
     readonly userId: FieldRef<"ProjectSection", 'Int'>
+    readonly currencyId: FieldRef<"ProjectSection", 'Int'>
   }
     
 
@@ -14838,6 +16357,49 @@ export namespace Prisma {
   }
 
   /**
+   * ProjectSection.breakdowns
+   */
+  export type ProjectSection$breakdownsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    where?: ProjectSectionBreakdownWhereInput
+    orderBy?: ProjectSectionBreakdownOrderByWithRelationInput | ProjectSectionBreakdownOrderByWithRelationInput[]
+    cursor?: ProjectSectionBreakdownWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectSectionBreakdownScalarFieldEnum | ProjectSectionBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectSection.Currency
+   */
+  export type ProjectSection$CurrencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Currency
+     */
+    omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    where?: CurrencyWhereInput
+  }
+
+  /**
    * ProjectSection without action
    */
   export type ProjectSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14853,6 +16415,1088 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProjectSectionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectSectionBreakdown
+   */
+
+  export type AggregateProjectSectionBreakdown = {
+    _count: ProjectSectionBreakdownCountAggregateOutputType | null
+    _avg: ProjectSectionBreakdownAvgAggregateOutputType | null
+    _sum: ProjectSectionBreakdownSumAggregateOutputType | null
+    _min: ProjectSectionBreakdownMinAggregateOutputType | null
+    _max: ProjectSectionBreakdownMaxAggregateOutputType | null
+  }
+
+  export type ProjectSectionBreakdownAvgAggregateOutputType = {
+    id: number | null
+    sectionId: number | null
+    breakdownId: number | null
+  }
+
+  export type ProjectSectionBreakdownSumAggregateOutputType = {
+    id: number | null
+    sectionId: number | null
+    breakdownId: number | null
+  }
+
+  export type ProjectSectionBreakdownMinAggregateOutputType = {
+    id: number | null
+    sectionId: number | null
+    breakdownId: number | null
+  }
+
+  export type ProjectSectionBreakdownMaxAggregateOutputType = {
+    id: number | null
+    sectionId: number | null
+    breakdownId: number | null
+  }
+
+  export type ProjectSectionBreakdownCountAggregateOutputType = {
+    id: number
+    sectionId: number
+    breakdownId: number
+    _all: number
+  }
+
+
+  export type ProjectSectionBreakdownAvgAggregateInputType = {
+    id?: true
+    sectionId?: true
+    breakdownId?: true
+  }
+
+  export type ProjectSectionBreakdownSumAggregateInputType = {
+    id?: true
+    sectionId?: true
+    breakdownId?: true
+  }
+
+  export type ProjectSectionBreakdownMinAggregateInputType = {
+    id?: true
+    sectionId?: true
+    breakdownId?: true
+  }
+
+  export type ProjectSectionBreakdownMaxAggregateInputType = {
+    id?: true
+    sectionId?: true
+    breakdownId?: true
+  }
+
+  export type ProjectSectionBreakdownCountAggregateInputType = {
+    id?: true
+    sectionId?: true
+    breakdownId?: true
+    _all?: true
+  }
+
+  export type ProjectSectionBreakdownAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectSectionBreakdown to aggregate.
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectSectionBreakdowns to fetch.
+     */
+    orderBy?: ProjectSectionBreakdownOrderByWithRelationInput | ProjectSectionBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectSectionBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectSectionBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectSectionBreakdowns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectSectionBreakdowns
+    **/
+    _count?: true | ProjectSectionBreakdownCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectSectionBreakdownAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectSectionBreakdownSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectSectionBreakdownMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectSectionBreakdownMaxAggregateInputType
+  }
+
+  export type GetProjectSectionBreakdownAggregateType<T extends ProjectSectionBreakdownAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectSectionBreakdown]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectSectionBreakdown[P]>
+      : GetScalarType<T[P], AggregateProjectSectionBreakdown[P]>
+  }
+
+
+
+
+  export type ProjectSectionBreakdownGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectSectionBreakdownWhereInput
+    orderBy?: ProjectSectionBreakdownOrderByWithAggregationInput | ProjectSectionBreakdownOrderByWithAggregationInput[]
+    by: ProjectSectionBreakdownScalarFieldEnum[] | ProjectSectionBreakdownScalarFieldEnum
+    having?: ProjectSectionBreakdownScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectSectionBreakdownCountAggregateInputType | true
+    _avg?: ProjectSectionBreakdownAvgAggregateInputType
+    _sum?: ProjectSectionBreakdownSumAggregateInputType
+    _min?: ProjectSectionBreakdownMinAggregateInputType
+    _max?: ProjectSectionBreakdownMaxAggregateInputType
+  }
+
+  export type ProjectSectionBreakdownGroupByOutputType = {
+    id: number
+    sectionId: number
+    breakdownId: number
+    _count: ProjectSectionBreakdownCountAggregateOutputType | null
+    _avg: ProjectSectionBreakdownAvgAggregateOutputType | null
+    _sum: ProjectSectionBreakdownSumAggregateOutputType | null
+    _min: ProjectSectionBreakdownMinAggregateOutputType | null
+    _max: ProjectSectionBreakdownMaxAggregateOutputType | null
+  }
+
+  type GetProjectSectionBreakdownGroupByPayload<T extends ProjectSectionBreakdownGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectSectionBreakdownGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectSectionBreakdownGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectSectionBreakdownGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectSectionBreakdownGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectSectionBreakdownSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sectionId?: boolean
+    breakdownId?: boolean
+    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    breakdown?: boolean | BoqBreakdownDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectSectionBreakdown"]>
+
+  export type ProjectSectionBreakdownSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sectionId?: boolean
+    breakdownId?: boolean
+    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    breakdown?: boolean | BoqBreakdownDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectSectionBreakdown"]>
+
+  export type ProjectSectionBreakdownSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sectionId?: boolean
+    breakdownId?: boolean
+    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    breakdown?: boolean | BoqBreakdownDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectSectionBreakdown"]>
+
+  export type ProjectSectionBreakdownSelectScalar = {
+    id?: boolean
+    sectionId?: boolean
+    breakdownId?: boolean
+  }
+
+  export type ProjectSectionBreakdownOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sectionId" | "breakdownId", ExtArgs["result"]["projectSectionBreakdown"]>
+  export type ProjectSectionBreakdownInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    breakdown?: boolean | BoqBreakdownDefaultArgs<ExtArgs>
+  }
+  export type ProjectSectionBreakdownIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    breakdown?: boolean | BoqBreakdownDefaultArgs<ExtArgs>
+  }
+  export type ProjectSectionBreakdownIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    section?: boolean | ProjectSectionDefaultArgs<ExtArgs>
+    breakdown?: boolean | BoqBreakdownDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectSectionBreakdownPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectSectionBreakdown"
+    objects: {
+      section: Prisma.$ProjectSectionPayload<ExtArgs>
+      breakdown: Prisma.$BoqBreakdownPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      sectionId: number
+      breakdownId: number
+    }, ExtArgs["result"]["projectSectionBreakdown"]>
+    composites: {}
+  }
+
+  type ProjectSectionBreakdownGetPayload<S extends boolean | null | undefined | ProjectSectionBreakdownDefaultArgs> = $Result.GetResult<Prisma.$ProjectSectionBreakdownPayload, S>
+
+  type ProjectSectionBreakdownCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectSectionBreakdownFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectSectionBreakdownCountAggregateInputType | true
+    }
+
+  export interface ProjectSectionBreakdownDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectSectionBreakdown'], meta: { name: 'ProjectSectionBreakdown' } }
+    /**
+     * Find zero or one ProjectSectionBreakdown that matches the filter.
+     * @param {ProjectSectionBreakdownFindUniqueArgs} args - Arguments to find a ProjectSectionBreakdown
+     * @example
+     * // Get one ProjectSectionBreakdown
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectSectionBreakdownFindUniqueArgs>(args: SelectSubset<T, ProjectSectionBreakdownFindUniqueArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectSectionBreakdown that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectSectionBreakdownFindUniqueOrThrowArgs} args - Arguments to find a ProjectSectionBreakdown
+     * @example
+     * // Get one ProjectSectionBreakdown
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectSectionBreakdownFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectSectionBreakdownFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectSectionBreakdown that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownFindFirstArgs} args - Arguments to find a ProjectSectionBreakdown
+     * @example
+     * // Get one ProjectSectionBreakdown
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectSectionBreakdownFindFirstArgs>(args?: SelectSubset<T, ProjectSectionBreakdownFindFirstArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectSectionBreakdown that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownFindFirstOrThrowArgs} args - Arguments to find a ProjectSectionBreakdown
+     * @example
+     * // Get one ProjectSectionBreakdown
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectSectionBreakdownFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectSectionBreakdownFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectSectionBreakdowns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectSectionBreakdowns
+     * const projectSectionBreakdowns = await prisma.projectSectionBreakdown.findMany()
+     * 
+     * // Get first 10 ProjectSectionBreakdowns
+     * const projectSectionBreakdowns = await prisma.projectSectionBreakdown.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectSectionBreakdownWithIdOnly = await prisma.projectSectionBreakdown.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectSectionBreakdownFindManyArgs>(args?: SelectSubset<T, ProjectSectionBreakdownFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectSectionBreakdown.
+     * @param {ProjectSectionBreakdownCreateArgs} args - Arguments to create a ProjectSectionBreakdown.
+     * @example
+     * // Create one ProjectSectionBreakdown
+     * const ProjectSectionBreakdown = await prisma.projectSectionBreakdown.create({
+     *   data: {
+     *     // ... data to create a ProjectSectionBreakdown
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectSectionBreakdownCreateArgs>(args: SelectSubset<T, ProjectSectionBreakdownCreateArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectSectionBreakdowns.
+     * @param {ProjectSectionBreakdownCreateManyArgs} args - Arguments to create many ProjectSectionBreakdowns.
+     * @example
+     * // Create many ProjectSectionBreakdowns
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectSectionBreakdownCreateManyArgs>(args?: SelectSubset<T, ProjectSectionBreakdownCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectSectionBreakdowns and returns the data saved in the database.
+     * @param {ProjectSectionBreakdownCreateManyAndReturnArgs} args - Arguments to create many ProjectSectionBreakdowns.
+     * @example
+     * // Create many ProjectSectionBreakdowns
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectSectionBreakdowns and only return the `id`
+     * const projectSectionBreakdownWithIdOnly = await prisma.projectSectionBreakdown.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectSectionBreakdownCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectSectionBreakdownCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectSectionBreakdown.
+     * @param {ProjectSectionBreakdownDeleteArgs} args - Arguments to delete one ProjectSectionBreakdown.
+     * @example
+     * // Delete one ProjectSectionBreakdown
+     * const ProjectSectionBreakdown = await prisma.projectSectionBreakdown.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectSectionBreakdown
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectSectionBreakdownDeleteArgs>(args: SelectSubset<T, ProjectSectionBreakdownDeleteArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectSectionBreakdown.
+     * @param {ProjectSectionBreakdownUpdateArgs} args - Arguments to update one ProjectSectionBreakdown.
+     * @example
+     * // Update one ProjectSectionBreakdown
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectSectionBreakdownUpdateArgs>(args: SelectSubset<T, ProjectSectionBreakdownUpdateArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectSectionBreakdowns.
+     * @param {ProjectSectionBreakdownDeleteManyArgs} args - Arguments to filter ProjectSectionBreakdowns to delete.
+     * @example
+     * // Delete a few ProjectSectionBreakdowns
+     * const { count } = await prisma.projectSectionBreakdown.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectSectionBreakdownDeleteManyArgs>(args?: SelectSubset<T, ProjectSectionBreakdownDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectSectionBreakdowns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectSectionBreakdowns
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectSectionBreakdownUpdateManyArgs>(args: SelectSubset<T, ProjectSectionBreakdownUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectSectionBreakdowns and returns the data updated in the database.
+     * @param {ProjectSectionBreakdownUpdateManyAndReturnArgs} args - Arguments to update many ProjectSectionBreakdowns.
+     * @example
+     * // Update many ProjectSectionBreakdowns
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectSectionBreakdowns and only return the `id`
+     * const projectSectionBreakdownWithIdOnly = await prisma.projectSectionBreakdown.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectSectionBreakdownUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectSectionBreakdownUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectSectionBreakdown.
+     * @param {ProjectSectionBreakdownUpsertArgs} args - Arguments to update or create a ProjectSectionBreakdown.
+     * @example
+     * // Update or create a ProjectSectionBreakdown
+     * const projectSectionBreakdown = await prisma.projectSectionBreakdown.upsert({
+     *   create: {
+     *     // ... data to create a ProjectSectionBreakdown
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectSectionBreakdown we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectSectionBreakdownUpsertArgs>(args: SelectSubset<T, ProjectSectionBreakdownUpsertArgs<ExtArgs>>): Prisma__ProjectSectionBreakdownClient<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectSectionBreakdowns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownCountArgs} args - Arguments to filter ProjectSectionBreakdowns to count.
+     * @example
+     * // Count the number of ProjectSectionBreakdowns
+     * const count = await prisma.projectSectionBreakdown.count({
+     *   where: {
+     *     // ... the filter for the ProjectSectionBreakdowns we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectSectionBreakdownCountArgs>(
+      args?: Subset<T, ProjectSectionBreakdownCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectSectionBreakdownCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectSectionBreakdown.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectSectionBreakdownAggregateArgs>(args: Subset<T, ProjectSectionBreakdownAggregateArgs>): Prisma.PrismaPromise<GetProjectSectionBreakdownAggregateType<T>>
+
+    /**
+     * Group by ProjectSectionBreakdown.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectSectionBreakdownGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectSectionBreakdownGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectSectionBreakdownGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectSectionBreakdownGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectSectionBreakdownGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectSectionBreakdownGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectSectionBreakdown model
+   */
+  readonly fields: ProjectSectionBreakdownFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectSectionBreakdown.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectSectionBreakdownClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    section<T extends ProjectSectionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSectionDefaultArgs<ExtArgs>>): Prisma__ProjectSectionClient<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    breakdown<T extends BoqBreakdownDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BoqBreakdownDefaultArgs<ExtArgs>>): Prisma__BoqBreakdownClient<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectSectionBreakdown model
+   */
+  interface ProjectSectionBreakdownFieldRefs {
+    readonly id: FieldRef<"ProjectSectionBreakdown", 'Int'>
+    readonly sectionId: FieldRef<"ProjectSectionBreakdown", 'Int'>
+    readonly breakdownId: FieldRef<"ProjectSectionBreakdown", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectSectionBreakdown findUnique
+   */
+  export type ProjectSectionBreakdownFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectSectionBreakdown to fetch.
+     */
+    where: ProjectSectionBreakdownWhereUniqueInput
+  }
+
+  /**
+   * ProjectSectionBreakdown findUniqueOrThrow
+   */
+  export type ProjectSectionBreakdownFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectSectionBreakdown to fetch.
+     */
+    where: ProjectSectionBreakdownWhereUniqueInput
+  }
+
+  /**
+   * ProjectSectionBreakdown findFirst
+   */
+  export type ProjectSectionBreakdownFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectSectionBreakdown to fetch.
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectSectionBreakdowns to fetch.
+     */
+    orderBy?: ProjectSectionBreakdownOrderByWithRelationInput | ProjectSectionBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectSectionBreakdowns.
+     */
+    cursor?: ProjectSectionBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectSectionBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectSectionBreakdowns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectSectionBreakdowns.
+     */
+    distinct?: ProjectSectionBreakdownScalarFieldEnum | ProjectSectionBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectSectionBreakdown findFirstOrThrow
+   */
+  export type ProjectSectionBreakdownFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectSectionBreakdown to fetch.
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectSectionBreakdowns to fetch.
+     */
+    orderBy?: ProjectSectionBreakdownOrderByWithRelationInput | ProjectSectionBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectSectionBreakdowns.
+     */
+    cursor?: ProjectSectionBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectSectionBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectSectionBreakdowns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectSectionBreakdowns.
+     */
+    distinct?: ProjectSectionBreakdownScalarFieldEnum | ProjectSectionBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectSectionBreakdown findMany
+   */
+  export type ProjectSectionBreakdownFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectSectionBreakdowns to fetch.
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectSectionBreakdowns to fetch.
+     */
+    orderBy?: ProjectSectionBreakdownOrderByWithRelationInput | ProjectSectionBreakdownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectSectionBreakdowns.
+     */
+    cursor?: ProjectSectionBreakdownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectSectionBreakdowns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectSectionBreakdowns.
+     */
+    skip?: number
+    distinct?: ProjectSectionBreakdownScalarFieldEnum | ProjectSectionBreakdownScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectSectionBreakdown create
+   */
+  export type ProjectSectionBreakdownCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectSectionBreakdown.
+     */
+    data: XOR<ProjectSectionBreakdownCreateInput, ProjectSectionBreakdownUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectSectionBreakdown createMany
+   */
+  export type ProjectSectionBreakdownCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectSectionBreakdowns.
+     */
+    data: ProjectSectionBreakdownCreateManyInput | ProjectSectionBreakdownCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectSectionBreakdown createManyAndReturn
+   */
+  export type ProjectSectionBreakdownCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectSectionBreakdowns.
+     */
+    data: ProjectSectionBreakdownCreateManyInput | ProjectSectionBreakdownCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectSectionBreakdown update
+   */
+  export type ProjectSectionBreakdownUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectSectionBreakdown.
+     */
+    data: XOR<ProjectSectionBreakdownUpdateInput, ProjectSectionBreakdownUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectSectionBreakdown to update.
+     */
+    where: ProjectSectionBreakdownWhereUniqueInput
+  }
+
+  /**
+   * ProjectSectionBreakdown updateMany
+   */
+  export type ProjectSectionBreakdownUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectSectionBreakdowns.
+     */
+    data: XOR<ProjectSectionBreakdownUpdateManyMutationInput, ProjectSectionBreakdownUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectSectionBreakdowns to update
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * Limit how many ProjectSectionBreakdowns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectSectionBreakdown updateManyAndReturn
+   */
+  export type ProjectSectionBreakdownUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectSectionBreakdowns.
+     */
+    data: XOR<ProjectSectionBreakdownUpdateManyMutationInput, ProjectSectionBreakdownUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectSectionBreakdowns to update
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * Limit how many ProjectSectionBreakdowns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectSectionBreakdown upsert
+   */
+  export type ProjectSectionBreakdownUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectSectionBreakdown to update in case it exists.
+     */
+    where: ProjectSectionBreakdownWhereUniqueInput
+    /**
+     * In case the ProjectSectionBreakdown found by the `where` argument doesn't exist, create a new ProjectSectionBreakdown with this data.
+     */
+    create: XOR<ProjectSectionBreakdownCreateInput, ProjectSectionBreakdownUncheckedCreateInput>
+    /**
+     * In case the ProjectSectionBreakdown was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectSectionBreakdownUpdateInput, ProjectSectionBreakdownUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectSectionBreakdown delete
+   */
+  export type ProjectSectionBreakdownDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectSectionBreakdown to delete.
+     */
+    where: ProjectSectionBreakdownWhereUniqueInput
+  }
+
+  /**
+   * ProjectSectionBreakdown deleteMany
+   */
+  export type ProjectSectionBreakdownDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectSectionBreakdowns to delete
+     */
+    where?: ProjectSectionBreakdownWhereInput
+    /**
+     * Limit how many ProjectSectionBreakdowns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectSectionBreakdown without action
+   */
+  export type ProjectSectionBreakdownDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectSectionBreakdown
+     */
+    select?: ProjectSectionBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectSectionBreakdown
+     */
+    omit?: ProjectSectionBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectSectionBreakdownInclude<ExtArgs> | null
   }
 
 
@@ -32486,6 +35130,7 @@ export namespace Prisma {
     Milestone?: boolean | User$MilestoneArgs<ExtArgs>
     ProjectSection?: boolean | User$ProjectSectionArgs<ExtArgs>
     boqItems?: boolean | User$boqItemsArgs<ExtArgs>
+    BoqBreakdown?: boolean | User$BoqBreakdownArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -32532,6 +35177,7 @@ export namespace Prisma {
     Milestone?: boolean | User$MilestoneArgs<ExtArgs>
     ProjectSection?: boolean | User$ProjectSectionArgs<ExtArgs>
     boqItems?: boolean | User$boqItemsArgs<ExtArgs>
+    BoqBreakdown?: boolean | User$BoqBreakdownArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -32551,6 +35197,7 @@ export namespace Prisma {
       Milestone: Prisma.$MilestonePayload<ExtArgs>[]
       ProjectSection: Prisma.$ProjectSectionPayload<ExtArgs>[]
       boqItems: Prisma.$boqItemsPayload<ExtArgs>[]
+      BoqBreakdown: Prisma.$BoqBreakdownPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -32965,6 +35612,7 @@ export namespace Prisma {
     Milestone<T extends User$MilestoneArgs<ExtArgs> = {}>(args?: Subset<T, User$MilestoneArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ProjectSection<T extends User$ProjectSectionArgs<ExtArgs> = {}>(args?: Subset<T, User$ProjectSectionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     boqItems<T extends User$boqItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$boqItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$boqItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    BoqBreakdown<T extends User$BoqBreakdownArgs<ExtArgs> = {}>(args?: Subset<T, User$BoqBreakdownArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -33653,6 +36301,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.BoqBreakdown
+   */
+  export type User$BoqBreakdownArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BoqBreakdown
+     */
+    select?: BoqBreakdownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BoqBreakdown
+     */
+    omit?: BoqBreakdownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoqBreakdownInclude<ExtArgs> | null
+    where?: BoqBreakdownWhereInput
+    orderBy?: BoqBreakdownOrderByWithRelationInput | BoqBreakdownOrderByWithRelationInput[]
+    cursor?: BoqBreakdownWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BoqBreakdownScalarFieldEnum | BoqBreakdownScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -33685,10 +36357,24 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const BoqBreakdownScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    name: 'name',
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+  };
+
+  export type BoqBreakdownScalarFieldEnum = (typeof BoqBreakdownScalarFieldEnum)[keyof typeof BoqBreakdownScalarFieldEnum]
+
+
   export const BoqItemsScalarFieldEnum: {
     id: 'id',
     sectionId: 'sectionId',
-    item_number: 'item_number',
+    breakdownId: 'breakdownId',
+    itemNumber: 'itemNumber',
     description: 'description',
     materialId: 'materialId',
     unitId: 'unitId',
@@ -33776,6 +36462,7 @@ export namespace Prisma {
     startDate: 'startDate',
     endDate: 'endDate',
     currencyId: 'currencyId',
+    boqStructureType: 'boqStructureType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
@@ -33812,15 +36499,24 @@ export namespace Prisma {
     section_code: 'section_code',
     section_name: 'section_name',
     section_type: 'section_type',
-    locationId: 'locationId',
-    currencyId: 'currencyId',
     totalAmount: 'totalAmount',
+    locationId: 'locationId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    userId: 'userId'
+    userId: 'userId',
+    currencyId: 'currencyId'
   };
 
   export type ProjectSectionScalarFieldEnum = (typeof ProjectSectionScalarFieldEnum)[keyof typeof ProjectSectionScalarFieldEnum]
+
+
+  export const ProjectSectionBreakdownScalarFieldEnum: {
+    id: 'id',
+    sectionId: 'sectionId',
+    breakdownId: 'breakdownId'
+  };
+
+  export type ProjectSectionBreakdownScalarFieldEnum = (typeof ProjectSectionBreakdownScalarFieldEnum)[keyof typeof ProjectSectionBreakdownScalarFieldEnum]
 
 
   export const TaskScalarFieldEnum: {
@@ -34092,20 +36788,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Decimal'
-   */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-  /**
-   * Reference to a field of type 'Decimal[]'
-   */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -34116,6 +36798,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -34241,28 +36937,103 @@ export namespace Prisma {
    */
 
 
+  export type BoqBreakdownWhereInput = {
+    AND?: BoqBreakdownWhereInput | BoqBreakdownWhereInput[]
+    OR?: BoqBreakdownWhereInput[]
+    NOT?: BoqBreakdownWhereInput | BoqBreakdownWhereInput[]
+    id?: IntFilter<"BoqBreakdown"> | number
+    code?: StringFilter<"BoqBreakdown"> | string
+    name?: StringFilter<"BoqBreakdown"> | string
+    description?: StringNullableFilter<"BoqBreakdown"> | string | null
+    createdAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
+    updatedAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
+    userId?: IntFilter<"BoqBreakdown"> | number
+    boqItems?: BoqItemsListRelationFilter
+    sections?: ProjectSectionBreakdownListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type BoqBreakdownOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    boqItems?: boqItemsOrderByRelationAggregateInput
+    sections?: ProjectSectionBreakdownOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type BoqBreakdownWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    code?: string
+    AND?: BoqBreakdownWhereInput | BoqBreakdownWhereInput[]
+    OR?: BoqBreakdownWhereInput[]
+    NOT?: BoqBreakdownWhereInput | BoqBreakdownWhereInput[]
+    name?: StringFilter<"BoqBreakdown"> | string
+    description?: StringNullableFilter<"BoqBreakdown"> | string | null
+    createdAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
+    updatedAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
+    userId?: IntFilter<"BoqBreakdown"> | number
+    boqItems?: BoqItemsListRelationFilter
+    sections?: ProjectSectionBreakdownListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "code">
+
+  export type BoqBreakdownOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    _count?: BoqBreakdownCountOrderByAggregateInput
+    _avg?: BoqBreakdownAvgOrderByAggregateInput
+    _max?: BoqBreakdownMaxOrderByAggregateInput
+    _min?: BoqBreakdownMinOrderByAggregateInput
+    _sum?: BoqBreakdownSumOrderByAggregateInput
+  }
+
+  export type BoqBreakdownScalarWhereWithAggregatesInput = {
+    AND?: BoqBreakdownScalarWhereWithAggregatesInput | BoqBreakdownScalarWhereWithAggregatesInput[]
+    OR?: BoqBreakdownScalarWhereWithAggregatesInput[]
+    NOT?: BoqBreakdownScalarWhereWithAggregatesInput | BoqBreakdownScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BoqBreakdown"> | number
+    code?: StringWithAggregatesFilter<"BoqBreakdown"> | string
+    name?: StringWithAggregatesFilter<"BoqBreakdown"> | string
+    description?: StringNullableWithAggregatesFilter<"BoqBreakdown"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BoqBreakdown"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BoqBreakdown"> | Date | string
+    userId?: IntWithAggregatesFilter<"BoqBreakdown"> | number
+  }
+
   export type boqItemsWhereInput = {
     AND?: boqItemsWhereInput | boqItemsWhereInput[]
     OR?: boqItemsWhereInput[]
     NOT?: boqItemsWhereInput | boqItemsWhereInput[]
     id?: IntFilter<"boqItems"> | number
     sectionId?: IntFilter<"boqItems"> | number
-    item_number?: StringFilter<"boqItems"> | string
+    breakdownId?: IntNullableFilter<"boqItems"> | number | null
+    itemNumber?: StringFilter<"boqItems"> | string
     description?: StringFilter<"boqItems"> | string
     materialId?: IntFilter<"boqItems"> | number
-    unitId?: IntFilter<"boqItems"> | number
+    unitId?: IntNullableFilter<"boqItems"> | number | null
     quantity?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     unitPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     totalPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     parentItemId?: IntNullableFilter<"boqItems"> | number | null
     level?: IntNullableFilter<"boqItems"> | number | null
-    itemType?: StringFilter<"boqItems"> | string
+    itemType?: StringNullableFilter<"boqItems"> | string | null
     createdAt?: DateTimeFilter<"boqItems"> | Date | string
     updatedAt?: DateTimeFilter<"boqItems"> | Date | string
     userId?: IntFilter<"boqItems"> | number
-    section?: XOR<ProjectSectionScalarRelationFilter, ProjectSectionWhereInput>
+    section?: XOR<ProjectSectionNullableScalarRelationFilter, ProjectSectionWhereInput> | null
+    breakdown?: XOR<BoqBreakdownNullableScalarRelationFilter, BoqBreakdownWhereInput> | null
     material?: XOR<MaterialNameScalarRelationFilter, MaterialNameWhereInput>
-    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
+    unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
     parentItem?: XOR<BoqItemsNullableScalarRelationFilter, boqItemsWhereInput> | null
     childItems?: BoqItemsListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -34271,20 +37042,22 @@ export namespace Prisma {
   export type boqItemsOrderByWithRelationInput = {
     id?: SortOrder
     sectionId?: SortOrder
-    item_number?: SortOrder
+    breakdownId?: SortOrderInput | SortOrder
+    itemNumber?: SortOrder
     description?: SortOrder
     materialId?: SortOrder
-    unitId?: SortOrder
+    unitId?: SortOrderInput | SortOrder
     quantity?: SortOrderInput | SortOrder
     unitPrice?: SortOrderInput | SortOrder
     totalPrice?: SortOrderInput | SortOrder
     parentItemId?: SortOrderInput | SortOrder
     level?: SortOrderInput | SortOrder
-    itemType?: SortOrder
+    itemType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
     section?: ProjectSectionOrderByWithRelationInput
+    breakdown?: BoqBreakdownOrderByWithRelationInput
     material?: MaterialNameOrderByWithRelationInput
     unit?: UnitOrderByWithRelationInput
     parentItem?: boqItemsOrderByWithRelationInput
@@ -34298,22 +37071,24 @@ export namespace Prisma {
     OR?: boqItemsWhereInput[]
     NOT?: boqItemsWhereInput | boqItemsWhereInput[]
     sectionId?: IntFilter<"boqItems"> | number
-    item_number?: StringFilter<"boqItems"> | string
+    breakdownId?: IntNullableFilter<"boqItems"> | number | null
+    itemNumber?: StringFilter<"boqItems"> | string
     description?: StringFilter<"boqItems"> | string
     materialId?: IntFilter<"boqItems"> | number
-    unitId?: IntFilter<"boqItems"> | number
+    unitId?: IntNullableFilter<"boqItems"> | number | null
     quantity?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     unitPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     totalPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     parentItemId?: IntNullableFilter<"boqItems"> | number | null
     level?: IntNullableFilter<"boqItems"> | number | null
-    itemType?: StringFilter<"boqItems"> | string
+    itemType?: StringNullableFilter<"boqItems"> | string | null
     createdAt?: DateTimeFilter<"boqItems"> | Date | string
     updatedAt?: DateTimeFilter<"boqItems"> | Date | string
     userId?: IntFilter<"boqItems"> | number
-    section?: XOR<ProjectSectionScalarRelationFilter, ProjectSectionWhereInput>
+    section?: XOR<ProjectSectionNullableScalarRelationFilter, ProjectSectionWhereInput> | null
+    breakdown?: XOR<BoqBreakdownNullableScalarRelationFilter, BoqBreakdownWhereInput> | null
     material?: XOR<MaterialNameScalarRelationFilter, MaterialNameWhereInput>
-    unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
+    unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
     parentItem?: XOR<BoqItemsNullableScalarRelationFilter, boqItemsWhereInput> | null
     childItems?: BoqItemsListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -34322,16 +37097,17 @@ export namespace Prisma {
   export type boqItemsOrderByWithAggregationInput = {
     id?: SortOrder
     sectionId?: SortOrder
-    item_number?: SortOrder
+    breakdownId?: SortOrderInput | SortOrder
+    itemNumber?: SortOrder
     description?: SortOrder
     materialId?: SortOrder
-    unitId?: SortOrder
+    unitId?: SortOrderInput | SortOrder
     quantity?: SortOrderInput | SortOrder
     unitPrice?: SortOrderInput | SortOrder
     totalPrice?: SortOrderInput | SortOrder
     parentItemId?: SortOrderInput | SortOrder
     level?: SortOrderInput | SortOrder
-    itemType?: SortOrder
+    itemType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -34348,16 +37124,17 @@ export namespace Prisma {
     NOT?: boqItemsScalarWhereWithAggregatesInput | boqItemsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"boqItems"> | number
     sectionId?: IntWithAggregatesFilter<"boqItems"> | number
-    item_number?: StringWithAggregatesFilter<"boqItems"> | string
+    breakdownId?: IntNullableWithAggregatesFilter<"boqItems"> | number | null
+    itemNumber?: StringWithAggregatesFilter<"boqItems"> | string
     description?: StringWithAggregatesFilter<"boqItems"> | string
     materialId?: IntWithAggregatesFilter<"boqItems"> | number
-    unitId?: IntWithAggregatesFilter<"boqItems"> | number
+    unitId?: IntNullableWithAggregatesFilter<"boqItems"> | number | null
     quantity?: DecimalNullableWithAggregatesFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     unitPrice?: DecimalNullableWithAggregatesFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     totalPrice?: DecimalNullableWithAggregatesFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
     parentItemId?: IntNullableWithAggregatesFilter<"boqItems"> | number | null
     level?: IntNullableWithAggregatesFilter<"boqItems"> | number | null
-    itemType?: StringWithAggregatesFilter<"boqItems"> | string
+    itemType?: StringNullableWithAggregatesFilter<"boqItems"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"boqItems"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"boqItems"> | Date | string
     userId?: IntWithAggregatesFilter<"boqItems"> | number
@@ -34701,6 +37478,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Project"> | Date | string
     endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
+    boqStructureType?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -34725,6 +37503,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     currencyId?: SortOrder
+    boqStructureType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -34752,6 +37531,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Project"> | Date | string
     endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
+    boqStructureType?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -34776,6 +37556,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     currencyId?: SortOrder
+    boqStructureType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -34800,6 +37581,7 @@ export namespace Prisma {
     startDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     endDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     currencyId?: IntWithAggregatesFilter<"Project"> | number
+    boqStructureType?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     userId?: IntWithAggregatesFilter<"Project"> | number
@@ -34932,17 +37714,18 @@ export namespace Prisma {
     section_code?: StringFilter<"ProjectSection"> | string
     section_name?: StringFilter<"ProjectSection"> | string
     section_type?: StringFilter<"ProjectSection"> | string
-    locationId?: IntNullableFilter<"ProjectSection"> | number | null
-    currencyId?: IntFilter<"ProjectSection"> | number
     totalAmount?: DecimalNullableFilter<"ProjectSection"> | Decimal | DecimalJsLike | number | string | null
+    locationId?: IntNullableFilter<"ProjectSection"> | number | null
     createdAt?: DateTimeFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectSection"> | Date | string
     userId?: IntFilter<"ProjectSection"> | number
+    currencyId?: IntNullableFilter<"ProjectSection"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
-    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     boqItems?: BoqItemsListRelationFilter
+    breakdowns?: ProjectSectionBreakdownListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    Currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
   }
 
   export type ProjectSectionOrderByWithRelationInput = {
@@ -34951,17 +37734,18 @@ export namespace Prisma {
     section_code?: SortOrder
     section_name?: SortOrder
     section_type?: SortOrder
-    locationId?: SortOrderInput | SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrderInput | SortOrder
+    locationId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrderInput | SortOrder
     project?: ProjectOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
-    currency?: CurrencyOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
     boqItems?: boqItemsOrderByRelationAggregateInput
+    breakdowns?: ProjectSectionBreakdownOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
+    Currency?: CurrencyOrderByWithRelationInput
   }
 
   export type ProjectSectionWhereUniqueInput = Prisma.AtLeast<{
@@ -34973,17 +37757,18 @@ export namespace Prisma {
     section_code?: StringFilter<"ProjectSection"> | string
     section_name?: StringFilter<"ProjectSection"> | string
     section_type?: StringFilter<"ProjectSection"> | string
-    locationId?: IntNullableFilter<"ProjectSection"> | number | null
-    currencyId?: IntFilter<"ProjectSection"> | number
     totalAmount?: DecimalNullableFilter<"ProjectSection"> | Decimal | DecimalJsLike | number | string | null
+    locationId?: IntNullableFilter<"ProjectSection"> | number | null
     createdAt?: DateTimeFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectSection"> | Date | string
     userId?: IntFilter<"ProjectSection"> | number
+    currencyId?: IntNullableFilter<"ProjectSection"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
-    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     boqItems?: BoqItemsListRelationFilter
+    breakdowns?: ProjectSectionBreakdownListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    Currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
   }, "id">
 
   export type ProjectSectionOrderByWithAggregationInput = {
@@ -34992,12 +37777,12 @@ export namespace Prisma {
     section_code?: SortOrder
     section_name?: SortOrder
     section_type?: SortOrder
-    locationId?: SortOrderInput | SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrderInput | SortOrder
+    locationId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrderInput | SortOrder
     _count?: ProjectSectionCountOrderByAggregateInput
     _avg?: ProjectSectionAvgOrderByAggregateInput
     _max?: ProjectSectionMaxOrderByAggregateInput
@@ -35014,12 +37799,63 @@ export namespace Prisma {
     section_code?: StringWithAggregatesFilter<"ProjectSection"> | string
     section_name?: StringWithAggregatesFilter<"ProjectSection"> | string
     section_type?: StringWithAggregatesFilter<"ProjectSection"> | string
-    locationId?: IntNullableWithAggregatesFilter<"ProjectSection"> | number | null
-    currencyId?: IntWithAggregatesFilter<"ProjectSection"> | number
     totalAmount?: DecimalNullableWithAggregatesFilter<"ProjectSection"> | Decimal | DecimalJsLike | number | string | null
+    locationId?: IntNullableWithAggregatesFilter<"ProjectSection"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProjectSection"> | Date | string
     userId?: IntWithAggregatesFilter<"ProjectSection"> | number
+    currencyId?: IntNullableWithAggregatesFilter<"ProjectSection"> | number | null
+  }
+
+  export type ProjectSectionBreakdownWhereInput = {
+    AND?: ProjectSectionBreakdownWhereInput | ProjectSectionBreakdownWhereInput[]
+    OR?: ProjectSectionBreakdownWhereInput[]
+    NOT?: ProjectSectionBreakdownWhereInput | ProjectSectionBreakdownWhereInput[]
+    id?: IntFilter<"ProjectSectionBreakdown"> | number
+    sectionId?: IntFilter<"ProjectSectionBreakdown"> | number
+    breakdownId?: IntFilter<"ProjectSectionBreakdown"> | number
+    section?: XOR<ProjectSectionScalarRelationFilter, ProjectSectionWhereInput>
+    breakdown?: XOR<BoqBreakdownScalarRelationFilter, BoqBreakdownWhereInput>
+  }
+
+  export type ProjectSectionBreakdownOrderByWithRelationInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    section?: ProjectSectionOrderByWithRelationInput
+    breakdown?: BoqBreakdownOrderByWithRelationInput
+  }
+
+  export type ProjectSectionBreakdownWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    sectionId_breakdownId?: ProjectSectionBreakdownSectionIdBreakdownIdCompoundUniqueInput
+    AND?: ProjectSectionBreakdownWhereInput | ProjectSectionBreakdownWhereInput[]
+    OR?: ProjectSectionBreakdownWhereInput[]
+    NOT?: ProjectSectionBreakdownWhereInput | ProjectSectionBreakdownWhereInput[]
+    sectionId?: IntFilter<"ProjectSectionBreakdown"> | number
+    breakdownId?: IntFilter<"ProjectSectionBreakdown"> | number
+    section?: XOR<ProjectSectionScalarRelationFilter, ProjectSectionWhereInput>
+    breakdown?: XOR<BoqBreakdownScalarRelationFilter, BoqBreakdownWhereInput>
+  }, "id" | "sectionId_breakdownId">
+
+  export type ProjectSectionBreakdownOrderByWithAggregationInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    _count?: ProjectSectionBreakdownCountOrderByAggregateInput
+    _avg?: ProjectSectionBreakdownAvgOrderByAggregateInput
+    _max?: ProjectSectionBreakdownMaxOrderByAggregateInput
+    _min?: ProjectSectionBreakdownMinOrderByAggregateInput
+    _sum?: ProjectSectionBreakdownSumOrderByAggregateInput
+  }
+
+  export type ProjectSectionBreakdownScalarWhereWithAggregatesInput = {
+    AND?: ProjectSectionBreakdownScalarWhereWithAggregatesInput | ProjectSectionBreakdownScalarWhereWithAggregatesInput[]
+    OR?: ProjectSectionBreakdownScalarWhereWithAggregatesInput[]
+    NOT?: ProjectSectionBreakdownScalarWhereWithAggregatesInput | ProjectSectionBreakdownScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProjectSectionBreakdown"> | number
+    sectionId?: IntWithAggregatesFilter<"ProjectSectionBreakdown"> | number
+    breakdownId?: IntWithAggregatesFilter<"ProjectSectionBreakdown"> | number
   }
 
   export type TaskWhereInput = {
@@ -36073,6 +38909,7 @@ export namespace Prisma {
     Milestone?: MilestoneListRelationFilter
     ProjectSection?: ProjectSectionListRelationFilter
     boqItems?: BoqItemsListRelationFilter
+    BoqBreakdown?: BoqBreakdownListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -36094,6 +38931,7 @@ export namespace Prisma {
     Milestone?: MilestoneOrderByRelationAggregateInput
     ProjectSection?: ProjectSectionOrderByRelationAggregateInput
     boqItems?: boqItemsOrderByRelationAggregateInput
+    BoqBreakdown?: BoqBreakdownOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -36118,6 +38956,7 @@ export namespace Prisma {
     Milestone?: MilestoneListRelationFilter
     ProjectSection?: ProjectSectionListRelationFilter
     boqItems?: BoqItemsListRelationFilter
+    BoqBreakdown?: BoqBreakdownListRelationFilter
   }, "id" | "firebaseUid" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -36148,19 +38987,94 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type BoqBreakdownCreateInput = {
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    boqItems?: boqItemsCreateNestedManyWithoutBreakdownInput
+    sections?: ProjectSectionBreakdownCreateNestedManyWithoutBreakdownInput
+    user: UserCreateNestedOneWithoutBoqBreakdownInput
+  }
+
+  export type BoqBreakdownUncheckedCreateInput = {
+    id?: number
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    boqItems?: boqItemsUncheckedCreateNestedManyWithoutBreakdownInput
+    sections?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutBreakdownInput
+  }
+
+  export type BoqBreakdownUpdateInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqItems?: boqItemsUpdateManyWithoutBreakdownNestedInput
+    sections?: ProjectSectionBreakdownUpdateManyWithoutBreakdownNestedInput
+    user?: UserUpdateOneRequiredWithoutBoqBreakdownNestedInput
+  }
+
+  export type BoqBreakdownUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    boqItems?: boqItemsUncheckedUpdateManyWithoutBreakdownNestedInput
+    sections?: ProjectSectionBreakdownUncheckedUpdateManyWithoutBreakdownNestedInput
+  }
+
+  export type BoqBreakdownCreateManyInput = {
+    id?: number
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+  }
+
+  export type BoqBreakdownUpdateManyMutationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BoqBreakdownUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type boqItemsCreateInput = {
-    item_number: string
+    itemNumber: string
     description: string
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    section: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
     material: MaterialNameCreateNestedOneWithoutBoqItemsInput
-    unit: UnitCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
     parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
     childItems?: boqItemsCreateNestedManyWithoutParentItemInput
     user: UserCreateNestedOneWithoutBoqItemsInput
@@ -36169,16 +39083,17 @@ export namespace Prisma {
   export type boqItemsUncheckedCreateInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -36186,18 +39101,19 @@ export namespace Prisma {
   }
 
   export type boqItemsUpdateInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    section?: ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
     material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
     parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
     childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
     user?: UserUpdateOneRequiredWithoutBoqItemsNestedInput
@@ -36206,16 +39122,17 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -36225,29 +39142,30 @@ export namespace Prisma {
   export type boqItemsCreateManyInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
   }
 
   export type boqItemsUpdateManyMutationInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -36255,16 +39173,17 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -36609,6 +39528,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -36632,6 +39552,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -36650,6 +39571,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -36673,6 +39595,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -36694,6 +39617,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -36707,6 +39631,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -36722,6 +39647,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -36843,9 +39769,10 @@ export namespace Prisma {
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProjectSectionInput
     location?: LocationCreateNestedOneWithoutProjectSectionInput
-    currency: CurrencyCreateNestedOneWithoutProjectSectionInput
-    user: UserCreateNestedOneWithoutProjectSectionInput
     boqItems?: boqItemsCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
+    user: UserCreateNestedOneWithoutProjectSectionInput
+    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateInput = {
@@ -36854,13 +39781,14 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
   export type ProjectSectionUpdateInput = {
@@ -36872,9 +39800,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
-    currency?: CurrencyUpdateOneRequiredWithoutProjectSectionNestedInput
-    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
     boqItems?: boqItemsUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
+    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateInput = {
@@ -36883,13 +39812,14 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: boqItemsUncheckedUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
 
   export type ProjectSectionCreateManyInput = {
@@ -36898,12 +39828,12 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
   }
 
   export type ProjectSectionUpdateManyMutationInput = {
@@ -36921,12 +39851,50 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ProjectSectionBreakdownCreateInput = {
+    section: ProjectSectionCreateNestedOneWithoutBreakdownsInput
+    breakdown: BoqBreakdownCreateNestedOneWithoutSectionsInput
+  }
+
+  export type ProjectSectionBreakdownUncheckedCreateInput = {
+    id?: number
+    sectionId: number
+    breakdownId: number
+  }
+
+  export type ProjectSectionBreakdownUpdateInput = {
+    section?: ProjectSectionUpdateOneRequiredWithoutBreakdownsNestedInput
+    breakdown?: BoqBreakdownUpdateOneRequiredWithoutSectionsNestedInput
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sectionId?: IntFieldUpdateOperationsInput | number
+    breakdownId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectSectionBreakdownCreateManyInput = {
+    id?: number
+    sectionId: number
+    breakdownId: number
+  }
+
+  export type ProjectSectionBreakdownUpdateManyMutationInput = {
+
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sectionId?: IntFieldUpdateOperationsInput | number
+    breakdownId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TaskCreateInput = {
@@ -37923,6 +40891,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -37944,6 +40913,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -37964,6 +40934,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -37985,6 +40956,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -38042,26 +41014,19 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -38075,30 +41040,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type ProjectSectionScalarRelationFilter = {
-    is?: ProjectSectionWhereInput
-    isNot?: ProjectSectionWhereInput
-  }
-
-  export type MaterialNameScalarRelationFilter = {
-    is?: MaterialNameWhereInput
-    isNot?: MaterialNameWhereInput
-  }
-
-  export type UnitScalarRelationFilter = {
-    is?: UnitWhereInput
-    isNot?: UnitWhereInput
-  }
-
-  export type BoqItemsNullableScalarRelationFilter = {
-    is?: boqItemsWhereInput | null
-    isNot?: boqItemsWhereInput | null
-  }
-
   export type BoqItemsListRelationFilter = {
     every?: boqItemsWhereInput
     some?: boqItemsWhereInput
     none?: boqItemsWhereInput
+  }
+
+  export type ProjectSectionBreakdownListRelationFilter = {
+    every?: ProjectSectionBreakdownWhereInput
+    some?: ProjectSectionBreakdownWhereInput
+    none?: ProjectSectionBreakdownWhereInput
   }
 
   export type UserScalarRelationFilter = {
@@ -38115,83 +41066,47 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type boqItemsCountOrderByAggregateInput = {
+  export type ProjectSectionBreakdownOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BoqBreakdownCountOrderByAggregateInput = {
     id?: SortOrder
-    sectionId?: SortOrder
-    item_number?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
     description?: SortOrder
-    materialId?: SortOrder
-    unitId?: SortOrder
-    quantity?: SortOrder
-    unitPrice?: SortOrder
-    totalPrice?: SortOrder
-    parentItemId?: SortOrder
-    level?: SortOrder
-    itemType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type boqItemsAvgOrderByAggregateInput = {
+  export type BoqBreakdownAvgOrderByAggregateInput = {
     id?: SortOrder
-    sectionId?: SortOrder
-    materialId?: SortOrder
-    unitId?: SortOrder
-    quantity?: SortOrder
-    unitPrice?: SortOrder
-    totalPrice?: SortOrder
-    parentItemId?: SortOrder
-    level?: SortOrder
     userId?: SortOrder
   }
 
-  export type boqItemsMaxOrderByAggregateInput = {
+  export type BoqBreakdownMaxOrderByAggregateInput = {
     id?: SortOrder
-    sectionId?: SortOrder
-    item_number?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
     description?: SortOrder
-    materialId?: SortOrder
-    unitId?: SortOrder
-    quantity?: SortOrder
-    unitPrice?: SortOrder
-    totalPrice?: SortOrder
-    parentItemId?: SortOrder
-    level?: SortOrder
-    itemType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type boqItemsMinOrderByAggregateInput = {
+  export type BoqBreakdownMinOrderByAggregateInput = {
     id?: SortOrder
-    sectionId?: SortOrder
-    item_number?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
     description?: SortOrder
-    materialId?: SortOrder
-    unitId?: SortOrder
-    quantity?: SortOrder
-    unitPrice?: SortOrder
-    totalPrice?: SortOrder
-    parentItemId?: SortOrder
-    level?: SortOrder
-    itemType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type boqItemsSumOrderByAggregateInput = {
+  export type BoqBreakdownSumOrderByAggregateInput = {
     id?: SortOrder
-    sectionId?: SortOrder
-    materialId?: SortOrder
-    unitId?: SortOrder
-    quantity?: SortOrder
-    unitPrice?: SortOrder
-    totalPrice?: SortOrder
-    parentItemId?: SortOrder
-    level?: SortOrder
     userId?: SortOrder
   }
 
@@ -38229,7 +41144,50 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
     notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -38237,12 +41195,117 @@ export namespace Prisma {
     lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type ProjectSectionNullableScalarRelationFilter = {
+    is?: ProjectSectionWhereInput | null
+    isNot?: ProjectSectionWhereInput | null
+  }
+
+  export type BoqBreakdownNullableScalarRelationFilter = {
+    is?: BoqBreakdownWhereInput | null
+    isNot?: BoqBreakdownWhereInput | null
+  }
+
+  export type MaterialNameScalarRelationFilter = {
+    is?: MaterialNameWhereInput
+    isNot?: MaterialNameWhereInput
+  }
+
+  export type UnitNullableScalarRelationFilter = {
+    is?: UnitWhereInput | null
+    isNot?: UnitWhereInput | null
+  }
+
+  export type BoqItemsNullableScalarRelationFilter = {
+    is?: boqItemsWhereInput | null
+    isNot?: boqItemsWhereInput | null
+  }
+
+  export type boqItemsCountOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    itemNumber?: SortOrder
+    description?: SortOrder
+    materialId?: SortOrder
+    unitId?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    totalPrice?: SortOrder
+    parentItemId?: SortOrder
+    level?: SortOrder
+    itemType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type boqItemsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    materialId?: SortOrder
+    unitId?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    totalPrice?: SortOrder
+    parentItemId?: SortOrder
+    level?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type boqItemsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    itemNumber?: SortOrder
+    description?: SortOrder
+    materialId?: SortOrder
+    unitId?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    totalPrice?: SortOrder
+    parentItemId?: SortOrder
+    level?: SortOrder
+    itemType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type boqItemsMinOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    itemNumber?: SortOrder
+    description?: SortOrder
+    materialId?: SortOrder
+    unitId?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    totalPrice?: SortOrder
+    parentItemId?: SortOrder
+    level?: SortOrder
+    itemType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type boqItemsSumOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+    materialId?: SortOrder
+    unitId?: SortOrder
+    quantity?: SortOrder
+    unitPrice?: SortOrder
+    totalPrice?: SortOrder
+    parentItemId?: SortOrder
+    level?: SortOrder
+    userId?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -38261,18 +41324,20 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type ProjectListRelationFilter = {
@@ -38676,6 +41741,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     currencyId?: SortOrder
+    boqStructureType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -38700,6 +41766,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     currencyId?: SortOrder
+    boqStructureType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -38716,6 +41783,7 @@ export namespace Prisma {
     startDate?: SortOrder
     endDate?: SortOrder
     currencyId?: SortOrder
+    boqStructureType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -38875,21 +41943,21 @@ export namespace Prisma {
     section_code?: SortOrder
     section_name?: SortOrder
     section_type?: SortOrder
-    locationId?: SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrder
+    locationId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrder
   }
 
   export type ProjectSectionAvgOrderByAggregateInput = {
     id?: SortOrder
     projectId?: SortOrder
-    locationId?: SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrder
+    locationId?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrder
   }
 
   export type ProjectSectionMaxOrderByAggregateInput = {
@@ -38898,12 +41966,12 @@ export namespace Prisma {
     section_code?: SortOrder
     section_name?: SortOrder
     section_type?: SortOrder
-    locationId?: SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrder
+    locationId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrder
   }
 
   export type ProjectSectionMinOrderByAggregateInput = {
@@ -38912,21 +41980,66 @@ export namespace Prisma {
     section_code?: SortOrder
     section_name?: SortOrder
     section_type?: SortOrder
-    locationId?: SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrder
+    locationId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrder
   }
 
   export type ProjectSectionSumOrderByAggregateInput = {
     id?: SortOrder
     projectId?: SortOrder
-    locationId?: SortOrder
-    currencyId?: SortOrder
     totalAmount?: SortOrder
+    locationId?: SortOrder
     userId?: SortOrder
+    currencyId?: SortOrder
+  }
+
+  export type ProjectSectionScalarRelationFilter = {
+    is?: ProjectSectionWhereInput
+    isNot?: ProjectSectionWhereInput
+  }
+
+  export type BoqBreakdownScalarRelationFilter = {
+    is?: BoqBreakdownWhereInput
+    isNot?: BoqBreakdownWhereInput
+  }
+
+  export type ProjectSectionBreakdownSectionIdBreakdownIdCompoundUniqueInput = {
+    sectionId: number
+    breakdownId: number
+  }
+
+  export type ProjectSectionBreakdownCountOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+  }
+
+  export type ProjectSectionBreakdownAvgOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+  }
+
+  export type ProjectSectionBreakdownMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+  }
+
+  export type ProjectSectionBreakdownMinOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
+  }
+
+  export type ProjectSectionBreakdownSumOrderByAggregateInput = {
+    id?: SortOrder
+    sectionId?: SortOrder
+    breakdownId?: SortOrder
   }
 
   export type EnumTaskGroupFilter<$PrismaModel = never> = {
@@ -38941,6 +42054,11 @@ export namespace Prisma {
     in?: $Enums.TaskStatus[] | ListEnumTaskStatusFieldRefInput<$PrismaModel> | null
     notIn?: $Enums.TaskStatus[] | ListEnumTaskStatusFieldRefInput<$PrismaModel> | null
     not?: NestedEnumTaskStatusNullableFilter<$PrismaModel> | $Enums.TaskStatus | null
+  }
+
+  export type UnitScalarRelationFilter = {
+    is?: UnitWhereInput
+    isNot?: UnitWhereInput
   }
 
   export type TaskMaterialListRelationFilter = {
@@ -39069,21 +42187,6 @@ export namespace Prisma {
     materialId?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type ShipmentScalarRelationFilter = {
     is?: ShipmentWhereInput
     isNot?: ShipmentWhereInput
@@ -39149,24 +42252,6 @@ export namespace Prisma {
     currencyId?: SortOrder
     shipmentId?: SortOrder
     userId?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type FreightScalarRelationFilter = {
@@ -39774,6 +42859,12 @@ export namespace Prisma {
     none?: StaffWhereInput
   }
 
+  export type BoqBreakdownListRelationFilter = {
+    every?: BoqBreakdownWhereInput
+    some?: BoqBreakdownWhereInput
+    none?: BoqBreakdownWhereInput
+  }
+
   export type VendorOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -39783,6 +42874,10 @@ export namespace Prisma {
   }
 
   export type StaffOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BoqBreakdownOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -39824,10 +42919,134 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type boqItemsCreateNestedManyWithoutBreakdownInput = {
+    create?: XOR<boqItemsCreateWithoutBreakdownInput, boqItemsUncheckedCreateWithoutBreakdownInput> | boqItemsCreateWithoutBreakdownInput[] | boqItemsUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: boqItemsCreateOrConnectWithoutBreakdownInput | boqItemsCreateOrConnectWithoutBreakdownInput[]
+    createMany?: boqItemsCreateManyBreakdownInputEnvelope
+    connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+  }
+
+  export type ProjectSectionBreakdownCreateNestedManyWithoutBreakdownInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput> | ProjectSectionBreakdownCreateWithoutBreakdownInput[] | ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput | ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput[]
+    createMany?: ProjectSectionBreakdownCreateManyBreakdownInputEnvelope
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutBoqBreakdownInput = {
+    create?: XOR<UserCreateWithoutBoqBreakdownInput, UserUncheckedCreateWithoutBoqBreakdownInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBoqBreakdownInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type boqItemsUncheckedCreateNestedManyWithoutBreakdownInput = {
+    create?: XOR<boqItemsCreateWithoutBreakdownInput, boqItemsUncheckedCreateWithoutBreakdownInput> | boqItemsCreateWithoutBreakdownInput[] | boqItemsUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: boqItemsCreateOrConnectWithoutBreakdownInput | boqItemsCreateOrConnectWithoutBreakdownInput[]
+    createMany?: boqItemsCreateManyBreakdownInputEnvelope
+    connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+  }
+
+  export type ProjectSectionBreakdownUncheckedCreateNestedManyWithoutBreakdownInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput> | ProjectSectionBreakdownCreateWithoutBreakdownInput[] | ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput | ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput[]
+    createMany?: ProjectSectionBreakdownCreateManyBreakdownInputEnvelope
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type boqItemsUpdateManyWithoutBreakdownNestedInput = {
+    create?: XOR<boqItemsCreateWithoutBreakdownInput, boqItemsUncheckedCreateWithoutBreakdownInput> | boqItemsCreateWithoutBreakdownInput[] | boqItemsUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: boqItemsCreateOrConnectWithoutBreakdownInput | boqItemsCreateOrConnectWithoutBreakdownInput[]
+    upsert?: boqItemsUpsertWithWhereUniqueWithoutBreakdownInput | boqItemsUpsertWithWhereUniqueWithoutBreakdownInput[]
+    createMany?: boqItemsCreateManyBreakdownInputEnvelope
+    set?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    disconnect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    delete?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    update?: boqItemsUpdateWithWhereUniqueWithoutBreakdownInput | boqItemsUpdateWithWhereUniqueWithoutBreakdownInput[]
+    updateMany?: boqItemsUpdateManyWithWhereWithoutBreakdownInput | boqItemsUpdateManyWithWhereWithoutBreakdownInput[]
+    deleteMany?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
+  }
+
+  export type ProjectSectionBreakdownUpdateManyWithoutBreakdownNestedInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput> | ProjectSectionBreakdownCreateWithoutBreakdownInput[] | ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput | ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput[]
+    upsert?: ProjectSectionBreakdownUpsertWithWhereUniqueWithoutBreakdownInput | ProjectSectionBreakdownUpsertWithWhereUniqueWithoutBreakdownInput[]
+    createMany?: ProjectSectionBreakdownCreateManyBreakdownInputEnvelope
+    set?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    disconnect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    delete?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    update?: ProjectSectionBreakdownUpdateWithWhereUniqueWithoutBreakdownInput | ProjectSectionBreakdownUpdateWithWhereUniqueWithoutBreakdownInput[]
+    updateMany?: ProjectSectionBreakdownUpdateManyWithWhereWithoutBreakdownInput | ProjectSectionBreakdownUpdateManyWithWhereWithoutBreakdownInput[]
+    deleteMany?: ProjectSectionBreakdownScalarWhereInput | ProjectSectionBreakdownScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutBoqBreakdownNestedInput = {
+    create?: XOR<UserCreateWithoutBoqBreakdownInput, UserUncheckedCreateWithoutBoqBreakdownInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBoqBreakdownInput
+    upsert?: UserUpsertWithoutBoqBreakdownInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBoqBreakdownInput, UserUpdateWithoutBoqBreakdownInput>, UserUncheckedUpdateWithoutBoqBreakdownInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type boqItemsUncheckedUpdateManyWithoutBreakdownNestedInput = {
+    create?: XOR<boqItemsCreateWithoutBreakdownInput, boqItemsUncheckedCreateWithoutBreakdownInput> | boqItemsCreateWithoutBreakdownInput[] | boqItemsUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: boqItemsCreateOrConnectWithoutBreakdownInput | boqItemsCreateOrConnectWithoutBreakdownInput[]
+    upsert?: boqItemsUpsertWithWhereUniqueWithoutBreakdownInput | boqItemsUpsertWithWhereUniqueWithoutBreakdownInput[]
+    createMany?: boqItemsCreateManyBreakdownInputEnvelope
+    set?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    disconnect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    delete?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+    update?: boqItemsUpdateWithWhereUniqueWithoutBreakdownInput | boqItemsUpdateWithWhereUniqueWithoutBreakdownInput[]
+    updateMany?: boqItemsUpdateManyWithWhereWithoutBreakdownInput | boqItemsUpdateManyWithWhereWithoutBreakdownInput[]
+    deleteMany?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateManyWithoutBreakdownNestedInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput> | ProjectSectionBreakdownCreateWithoutBreakdownInput[] | ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput | ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput[]
+    upsert?: ProjectSectionBreakdownUpsertWithWhereUniqueWithoutBreakdownInput | ProjectSectionBreakdownUpsertWithWhereUniqueWithoutBreakdownInput[]
+    createMany?: ProjectSectionBreakdownCreateManyBreakdownInputEnvelope
+    set?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    disconnect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    delete?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    update?: ProjectSectionBreakdownUpdateWithWhereUniqueWithoutBreakdownInput | ProjectSectionBreakdownUpdateWithWhereUniqueWithoutBreakdownInput[]
+    updateMany?: ProjectSectionBreakdownUpdateManyWithWhereWithoutBreakdownInput | ProjectSectionBreakdownUpdateManyWithWhereWithoutBreakdownInput[]
+    deleteMany?: ProjectSectionBreakdownScalarWhereInput | ProjectSectionBreakdownScalarWhereInput[]
+  }
+
   export type ProjectSectionCreateNestedOneWithoutBoqItemsInput = {
     create?: XOR<ProjectSectionCreateWithoutBoqItemsInput, ProjectSectionUncheckedCreateWithoutBoqItemsInput>
     connectOrCreate?: ProjectSectionCreateOrConnectWithoutBoqItemsInput
     connect?: ProjectSectionWhereUniqueInput
+  }
+
+  export type BoqBreakdownCreateNestedOneWithoutBoqItemsInput = {
+    create?: XOR<BoqBreakdownCreateWithoutBoqItemsInput, BoqBreakdownUncheckedCreateWithoutBoqItemsInput>
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutBoqItemsInput
+    connect?: BoqBreakdownWhereUniqueInput
   }
 
   export type MaterialNameCreateNestedOneWithoutBoqItemsInput = {
@@ -39868,10 +43087,6 @@ export namespace Prisma {
     connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
   export type NullableDecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string | null
     increment?: Decimal | DecimalJsLike | number | string
@@ -39888,16 +43103,24 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput = {
+  export type ProjectSectionUpdateOneWithoutBoqItemsNestedInput = {
     create?: XOR<ProjectSectionCreateWithoutBoqItemsInput, ProjectSectionUncheckedCreateWithoutBoqItemsInput>
     connectOrCreate?: ProjectSectionCreateOrConnectWithoutBoqItemsInput
     upsert?: ProjectSectionUpsertWithoutBoqItemsInput
+    disconnect?: ProjectSectionWhereInput | boolean
+    delete?: ProjectSectionWhereInput | boolean
     connect?: ProjectSectionWhereUniqueInput
     update?: XOR<XOR<ProjectSectionUpdateToOneWithWhereWithoutBoqItemsInput, ProjectSectionUpdateWithoutBoqItemsInput>, ProjectSectionUncheckedUpdateWithoutBoqItemsInput>
+  }
+
+  export type BoqBreakdownUpdateOneWithoutBoqItemsNestedInput = {
+    create?: XOR<BoqBreakdownCreateWithoutBoqItemsInput, BoqBreakdownUncheckedCreateWithoutBoqItemsInput>
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutBoqItemsInput
+    upsert?: BoqBreakdownUpsertWithoutBoqItemsInput
+    disconnect?: BoqBreakdownWhereInput | boolean
+    delete?: BoqBreakdownWhereInput | boolean
+    connect?: BoqBreakdownWhereUniqueInput
+    update?: XOR<XOR<BoqBreakdownUpdateToOneWithWhereWithoutBoqItemsInput, BoqBreakdownUpdateWithoutBoqItemsInput>, BoqBreakdownUncheckedUpdateWithoutBoqItemsInput>
   }
 
   export type MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput = {
@@ -39908,10 +43131,12 @@ export namespace Prisma {
     update?: XOR<XOR<MaterialNameUpdateToOneWithWhereWithoutBoqItemsInput, MaterialNameUpdateWithoutBoqItemsInput>, MaterialNameUncheckedUpdateWithoutBoqItemsInput>
   }
 
-  export type UnitUpdateOneRequiredWithoutBoqItemsNestedInput = {
+  export type UnitUpdateOneWithoutBoqItemsNestedInput = {
     create?: XOR<UnitCreateWithoutBoqItemsInput, UnitUncheckedCreateWithoutBoqItemsInput>
     connectOrCreate?: UnitCreateOrConnectWithoutBoqItemsInput
     upsert?: UnitUpsertWithoutBoqItemsInput
+    disconnect?: UnitWhereInput | boolean
+    delete?: UnitWhereInput | boolean
     connect?: UnitWhereUniqueInput
     update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutBoqItemsInput, UnitUpdateWithoutBoqItemsInput>, UnitUncheckedUpdateWithoutBoqItemsInput>
   }
@@ -39946,14 +43171,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutBoqItemsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBoqItemsInput, UserUpdateWithoutBoqItemsInput>, UserUncheckedUpdateWithoutBoqItemsInput>
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type boqItemsUncheckedUpdateManyWithoutParentItemNestedInput = {
@@ -40602,10 +43819,18 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput
   }
 
-  export type CurrencyCreateNestedOneWithoutProjectSectionInput = {
-    create?: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
-    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectSectionInput
-    connect?: CurrencyWhereUniqueInput
+  export type boqItemsCreateNestedManyWithoutSectionInput = {
+    create?: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput> | boqItemsCreateWithoutSectionInput[] | boqItemsUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: boqItemsCreateOrConnectWithoutSectionInput | boqItemsCreateOrConnectWithoutSectionInput[]
+    createMany?: boqItemsCreateManySectionInputEnvelope
+    connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+  }
+
+  export type ProjectSectionBreakdownCreateNestedManyWithoutSectionInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutSectionInput, ProjectSectionBreakdownUncheckedCreateWithoutSectionInput> | ProjectSectionBreakdownCreateWithoutSectionInput[] | ProjectSectionBreakdownUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutSectionInput | ProjectSectionBreakdownCreateOrConnectWithoutSectionInput[]
+    createMany?: ProjectSectionBreakdownCreateManySectionInputEnvelope
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
   }
 
   export type UserCreateNestedOneWithoutProjectSectionInput = {
@@ -40614,11 +43839,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type boqItemsCreateNestedManyWithoutSectionInput = {
-    create?: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput> | boqItemsCreateWithoutSectionInput[] | boqItemsUncheckedCreateWithoutSectionInput[]
-    connectOrCreate?: boqItemsCreateOrConnectWithoutSectionInput | boqItemsCreateOrConnectWithoutSectionInput[]
-    createMany?: boqItemsCreateManySectionInputEnvelope
-    connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+  export type CurrencyCreateNestedOneWithoutProjectSectionInput = {
+    create?: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectSectionInput
+    connect?: CurrencyWhereUniqueInput
   }
 
   export type boqItemsUncheckedCreateNestedManyWithoutSectionInput = {
@@ -40626,6 +43850,13 @@ export namespace Prisma {
     connectOrCreate?: boqItemsCreateOrConnectWithoutSectionInput | boqItemsCreateOrConnectWithoutSectionInput[]
     createMany?: boqItemsCreateManySectionInputEnvelope
     connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+  }
+
+  export type ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutSectionInput, ProjectSectionBreakdownUncheckedCreateWithoutSectionInput> | ProjectSectionBreakdownCreateWithoutSectionInput[] | ProjectSectionBreakdownUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutSectionInput | ProjectSectionBreakdownCreateOrConnectWithoutSectionInput[]
+    createMany?: ProjectSectionBreakdownCreateManySectionInputEnvelope
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
   }
 
   export type ProjectUpdateOneRequiredWithoutProjectSectionNestedInput = {
@@ -40646,22 +43877,6 @@ export namespace Prisma {
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutProjectSectionInput, LocationUpdateWithoutProjectSectionInput>, LocationUncheckedUpdateWithoutProjectSectionInput>
   }
 
-  export type CurrencyUpdateOneRequiredWithoutProjectSectionNestedInput = {
-    create?: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
-    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectSectionInput
-    upsert?: CurrencyUpsertWithoutProjectSectionInput
-    connect?: CurrencyWhereUniqueInput
-    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutProjectSectionInput, CurrencyUpdateWithoutProjectSectionInput>, CurrencyUncheckedUpdateWithoutProjectSectionInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutProjectSectionNestedInput = {
-    create?: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProjectSectionInput
-    upsert?: UserUpsertWithoutProjectSectionInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectSectionInput, UserUpdateWithoutProjectSectionInput>, UserUncheckedUpdateWithoutProjectSectionInput>
-  }
-
   export type boqItemsUpdateManyWithoutSectionNestedInput = {
     create?: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput> | boqItemsCreateWithoutSectionInput[] | boqItemsUncheckedCreateWithoutSectionInput[]
     connectOrCreate?: boqItemsCreateOrConnectWithoutSectionInput | boqItemsCreateOrConnectWithoutSectionInput[]
@@ -40676,6 +43891,38 @@ export namespace Prisma {
     deleteMany?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
   }
 
+  export type ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutSectionInput, ProjectSectionBreakdownUncheckedCreateWithoutSectionInput> | ProjectSectionBreakdownCreateWithoutSectionInput[] | ProjectSectionBreakdownUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutSectionInput | ProjectSectionBreakdownCreateOrConnectWithoutSectionInput[]
+    upsert?: ProjectSectionBreakdownUpsertWithWhereUniqueWithoutSectionInput | ProjectSectionBreakdownUpsertWithWhereUniqueWithoutSectionInput[]
+    createMany?: ProjectSectionBreakdownCreateManySectionInputEnvelope
+    set?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    disconnect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    delete?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    update?: ProjectSectionBreakdownUpdateWithWhereUniqueWithoutSectionInput | ProjectSectionBreakdownUpdateWithWhereUniqueWithoutSectionInput[]
+    updateMany?: ProjectSectionBreakdownUpdateManyWithWhereWithoutSectionInput | ProjectSectionBreakdownUpdateManyWithWhereWithoutSectionInput[]
+    deleteMany?: ProjectSectionBreakdownScalarWhereInput | ProjectSectionBreakdownScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutProjectSectionNestedInput = {
+    create?: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectSectionInput
+    upsert?: UserUpsertWithoutProjectSectionInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectSectionInput, UserUpdateWithoutProjectSectionInput>, UserUncheckedUpdateWithoutProjectSectionInput>
+  }
+
+  export type CurrencyUpdateOneWithoutProjectSectionNestedInput = {
+    create?: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectSectionInput
+    upsert?: CurrencyUpsertWithoutProjectSectionInput
+    disconnect?: CurrencyWhereInput | boolean
+    delete?: CurrencyWhereInput | boolean
+    connect?: CurrencyWhereUniqueInput
+    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutProjectSectionInput, CurrencyUpdateWithoutProjectSectionInput>, CurrencyUncheckedUpdateWithoutProjectSectionInput>
+  }
+
   export type boqItemsUncheckedUpdateManyWithoutSectionNestedInput = {
     create?: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput> | boqItemsCreateWithoutSectionInput[] | boqItemsUncheckedCreateWithoutSectionInput[]
     connectOrCreate?: boqItemsCreateOrConnectWithoutSectionInput | boqItemsCreateOrConnectWithoutSectionInput[]
@@ -40688,6 +43935,48 @@ export namespace Prisma {
     update?: boqItemsUpdateWithWhereUniqueWithoutSectionInput | boqItemsUpdateWithWhereUniqueWithoutSectionInput[]
     updateMany?: boqItemsUpdateManyWithWhereWithoutSectionInput | boqItemsUpdateManyWithWhereWithoutSectionInput[]
     deleteMany?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput = {
+    create?: XOR<ProjectSectionBreakdownCreateWithoutSectionInput, ProjectSectionBreakdownUncheckedCreateWithoutSectionInput> | ProjectSectionBreakdownCreateWithoutSectionInput[] | ProjectSectionBreakdownUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ProjectSectionBreakdownCreateOrConnectWithoutSectionInput | ProjectSectionBreakdownCreateOrConnectWithoutSectionInput[]
+    upsert?: ProjectSectionBreakdownUpsertWithWhereUniqueWithoutSectionInput | ProjectSectionBreakdownUpsertWithWhereUniqueWithoutSectionInput[]
+    createMany?: ProjectSectionBreakdownCreateManySectionInputEnvelope
+    set?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    disconnect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    delete?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    connect?: ProjectSectionBreakdownWhereUniqueInput | ProjectSectionBreakdownWhereUniqueInput[]
+    update?: ProjectSectionBreakdownUpdateWithWhereUniqueWithoutSectionInput | ProjectSectionBreakdownUpdateWithWhereUniqueWithoutSectionInput[]
+    updateMany?: ProjectSectionBreakdownUpdateManyWithWhereWithoutSectionInput | ProjectSectionBreakdownUpdateManyWithWhereWithoutSectionInput[]
+    deleteMany?: ProjectSectionBreakdownScalarWhereInput | ProjectSectionBreakdownScalarWhereInput[]
+  }
+
+  export type ProjectSectionCreateNestedOneWithoutBreakdownsInput = {
+    create?: XOR<ProjectSectionCreateWithoutBreakdownsInput, ProjectSectionUncheckedCreateWithoutBreakdownsInput>
+    connectOrCreate?: ProjectSectionCreateOrConnectWithoutBreakdownsInput
+    connect?: ProjectSectionWhereUniqueInput
+  }
+
+  export type BoqBreakdownCreateNestedOneWithoutSectionsInput = {
+    create?: XOR<BoqBreakdownCreateWithoutSectionsInput, BoqBreakdownUncheckedCreateWithoutSectionsInput>
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutSectionsInput
+    connect?: BoqBreakdownWhereUniqueInput
+  }
+
+  export type ProjectSectionUpdateOneRequiredWithoutBreakdownsNestedInput = {
+    create?: XOR<ProjectSectionCreateWithoutBreakdownsInput, ProjectSectionUncheckedCreateWithoutBreakdownsInput>
+    connectOrCreate?: ProjectSectionCreateOrConnectWithoutBreakdownsInput
+    upsert?: ProjectSectionUpsertWithoutBreakdownsInput
+    connect?: ProjectSectionWhereUniqueInput
+    update?: XOR<XOR<ProjectSectionUpdateToOneWithWhereWithoutBreakdownsInput, ProjectSectionUpdateWithoutBreakdownsInput>, ProjectSectionUncheckedUpdateWithoutBreakdownsInput>
+  }
+
+  export type BoqBreakdownUpdateOneRequiredWithoutSectionsNestedInput = {
+    create?: XOR<BoqBreakdownCreateWithoutSectionsInput, BoqBreakdownUncheckedCreateWithoutSectionsInput>
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutSectionsInput
+    upsert?: BoqBreakdownUpsertWithoutSectionsInput
+    connect?: BoqBreakdownWhereUniqueInput
+    update?: XOR<XOR<BoqBreakdownUpdateToOneWithWhereWithoutSectionsInput, BoqBreakdownUpdateWithoutSectionsInput>, BoqBreakdownUncheckedUpdateWithoutSectionsInput>
   }
 
   export type UnitCreateNestedOneWithoutTaskInput = {
@@ -40896,10 +44185,6 @@ export namespace Prisma {
     connectOrCreate?: FreightInvoiceCreateOrConnectWithoutFreightInput | FreightInvoiceCreateOrConnectWithoutFreightInput[]
     createMany?: FreightInvoiceCreateManyFreightInputEnvelope
     connect?: FreightInvoiceWhereUniqueInput | FreightInvoiceWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type CurrencyUpdateOneWithoutFreightNestedInput = {
@@ -42053,6 +45338,13 @@ export namespace Prisma {
     connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
   }
 
+  export type BoqBreakdownCreateNestedManyWithoutUserInput = {
+    create?: XOR<BoqBreakdownCreateWithoutUserInput, BoqBreakdownUncheckedCreateWithoutUserInput> | BoqBreakdownCreateWithoutUserInput[] | BoqBreakdownUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutUserInput | BoqBreakdownCreateOrConnectWithoutUserInput[]
+    createMany?: BoqBreakdownCreateManyUserInputEnvelope
+    connect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+  }
+
   export type VendorUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -42128,6 +45420,13 @@ export namespace Prisma {
     connectOrCreate?: boqItemsCreateOrConnectWithoutUserInput | boqItemsCreateOrConnectWithoutUserInput[]
     createMany?: boqItemsCreateManyUserInputEnvelope
     connect?: boqItemsWhereUniqueInput | boqItemsWhereUniqueInput[]
+  }
+
+  export type BoqBreakdownUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<BoqBreakdownCreateWithoutUserInput, BoqBreakdownUncheckedCreateWithoutUserInput> | BoqBreakdownCreateWithoutUserInput[] | BoqBreakdownUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutUserInput | BoqBreakdownCreateOrConnectWithoutUserInput[]
+    createMany?: BoqBreakdownCreateManyUserInputEnvelope
+    connect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
   }
 
   export type VendorUpdateManyWithoutUserNestedInput = {
@@ -42284,6 +45583,20 @@ export namespace Prisma {
     deleteMany?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
   }
 
+  export type BoqBreakdownUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BoqBreakdownCreateWithoutUserInput, BoqBreakdownUncheckedCreateWithoutUserInput> | BoqBreakdownCreateWithoutUserInput[] | BoqBreakdownUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutUserInput | BoqBreakdownCreateOrConnectWithoutUserInput[]
+    upsert?: BoqBreakdownUpsertWithWhereUniqueWithoutUserInput | BoqBreakdownUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BoqBreakdownCreateManyUserInputEnvelope
+    set?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    disconnect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    delete?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    connect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    update?: BoqBreakdownUpdateWithWhereUniqueWithoutUserInput | BoqBreakdownUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BoqBreakdownUpdateManyWithWhereWithoutUserInput | BoqBreakdownUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BoqBreakdownScalarWhereInput | BoqBreakdownScalarWhereInput[]
+  }
+
   export type VendorUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -42438,6 +45751,20 @@ export namespace Prisma {
     deleteMany?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
   }
 
+  export type BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BoqBreakdownCreateWithoutUserInput, BoqBreakdownUncheckedCreateWithoutUserInput> | BoqBreakdownCreateWithoutUserInput[] | BoqBreakdownUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BoqBreakdownCreateOrConnectWithoutUserInput | BoqBreakdownCreateOrConnectWithoutUserInput[]
+    upsert?: BoqBreakdownUpsertWithWhereUniqueWithoutUserInput | BoqBreakdownUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BoqBreakdownCreateManyUserInputEnvelope
+    set?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    disconnect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    delete?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    connect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+    update?: BoqBreakdownUpdateWithWhereUniqueWithoutUserInput | BoqBreakdownUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BoqBreakdownUpdateManyWithWhereWithoutUserInput | BoqBreakdownUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BoqBreakdownScalarWhereInput | BoqBreakdownScalarWhereInput[]
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -42463,26 +45790,18 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -42540,7 +45859,49 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
     notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -42548,12 +45909,7 @@ export namespace Prisma {
     lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -42583,18 +45939,20 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -42756,37 +46114,6 @@ export namespace Prisma {
     _max?: NestedEnumTaskStatusNullableFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type NestedBoolNullableFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
@@ -42834,6 +46161,233 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type boqItemsCreateWithoutBreakdownInput = {
+    itemNumber: string
+    description: string
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    unitPrice?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    level?: number | null
+    itemType?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    material: MaterialNameCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
+    parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
+    childItems?: boqItemsCreateNestedManyWithoutParentItemInput
+    user: UserCreateNestedOneWithoutBoqItemsInput
+  }
+
+  export type boqItemsUncheckedCreateWithoutBreakdownInput = {
+    id?: number
+    sectionId: number
+    itemNumber: string
+    description: string
+    materialId: number
+    unitId?: number | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    unitPrice?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    parentItemId?: number | null
+    level?: number | null
+    itemType?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    childItems?: boqItemsUncheckedCreateNestedManyWithoutParentItemInput
+  }
+
+  export type boqItemsCreateOrConnectWithoutBreakdownInput = {
+    where: boqItemsWhereUniqueInput
+    create: XOR<boqItemsCreateWithoutBreakdownInput, boqItemsUncheckedCreateWithoutBreakdownInput>
+  }
+
+  export type boqItemsCreateManyBreakdownInputEnvelope = {
+    data: boqItemsCreateManyBreakdownInput | boqItemsCreateManyBreakdownInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectSectionBreakdownCreateWithoutBreakdownInput = {
+    section: ProjectSectionCreateNestedOneWithoutBreakdownsInput
+  }
+
+  export type ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput = {
+    id?: number
+    sectionId: number
+  }
+
+  export type ProjectSectionBreakdownCreateOrConnectWithoutBreakdownInput = {
+    where: ProjectSectionBreakdownWhereUniqueInput
+    create: XOR<ProjectSectionBreakdownCreateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput>
+  }
+
+  export type ProjectSectionBreakdownCreateManyBreakdownInputEnvelope = {
+    data: ProjectSectionBreakdownCreateManyBreakdownInput | ProjectSectionBreakdownCreateManyBreakdownInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutBoqBreakdownInput = {
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
+    Freight?: FreightCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutUserInput
+    Staff?: StaffCreateNestedManyWithoutUserInput
+    Progress?: ProgressCreateNestedManyWithoutUserInput
+    Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
+    ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
+    boqItems?: boqItemsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBoqBreakdownInput = {
+    id?: number
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
+    Freight?: FreightUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
+    Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
+    Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
+    boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBoqBreakdownInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBoqBreakdownInput, UserUncheckedCreateWithoutBoqBreakdownInput>
+  }
+
+  export type boqItemsUpsertWithWhereUniqueWithoutBreakdownInput = {
+    where: boqItemsWhereUniqueInput
+    update: XOR<boqItemsUpdateWithoutBreakdownInput, boqItemsUncheckedUpdateWithoutBreakdownInput>
+    create: XOR<boqItemsCreateWithoutBreakdownInput, boqItemsUncheckedCreateWithoutBreakdownInput>
+  }
+
+  export type boqItemsUpdateWithWhereUniqueWithoutBreakdownInput = {
+    where: boqItemsWhereUniqueInput
+    data: XOR<boqItemsUpdateWithoutBreakdownInput, boqItemsUncheckedUpdateWithoutBreakdownInput>
+  }
+
+  export type boqItemsUpdateManyWithWhereWithoutBreakdownInput = {
+    where: boqItemsScalarWhereInput
+    data: XOR<boqItemsUpdateManyMutationInput, boqItemsUncheckedUpdateManyWithoutBreakdownInput>
+  }
+
+  export type boqItemsScalarWhereInput = {
+    AND?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
+    OR?: boqItemsScalarWhereInput[]
+    NOT?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
+    id?: IntFilter<"boqItems"> | number
+    sectionId?: IntFilter<"boqItems"> | number
+    breakdownId?: IntNullableFilter<"boqItems"> | number | null
+    itemNumber?: StringFilter<"boqItems"> | string
+    description?: StringFilter<"boqItems"> | string
+    materialId?: IntFilter<"boqItems"> | number
+    unitId?: IntNullableFilter<"boqItems"> | number | null
+    quantity?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
+    unitPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
+    parentItemId?: IntNullableFilter<"boqItems"> | number | null
+    level?: IntNullableFilter<"boqItems"> | number | null
+    itemType?: StringNullableFilter<"boqItems"> | string | null
+    createdAt?: DateTimeFilter<"boqItems"> | Date | string
+    updatedAt?: DateTimeFilter<"boqItems"> | Date | string
+    userId?: IntFilter<"boqItems"> | number
+  }
+
+  export type ProjectSectionBreakdownUpsertWithWhereUniqueWithoutBreakdownInput = {
+    where: ProjectSectionBreakdownWhereUniqueInput
+    update: XOR<ProjectSectionBreakdownUpdateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedUpdateWithoutBreakdownInput>
+    create: XOR<ProjectSectionBreakdownCreateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedCreateWithoutBreakdownInput>
+  }
+
+  export type ProjectSectionBreakdownUpdateWithWhereUniqueWithoutBreakdownInput = {
+    where: ProjectSectionBreakdownWhereUniqueInput
+    data: XOR<ProjectSectionBreakdownUpdateWithoutBreakdownInput, ProjectSectionBreakdownUncheckedUpdateWithoutBreakdownInput>
+  }
+
+  export type ProjectSectionBreakdownUpdateManyWithWhereWithoutBreakdownInput = {
+    where: ProjectSectionBreakdownScalarWhereInput
+    data: XOR<ProjectSectionBreakdownUpdateManyMutationInput, ProjectSectionBreakdownUncheckedUpdateManyWithoutBreakdownInput>
+  }
+
+  export type ProjectSectionBreakdownScalarWhereInput = {
+    AND?: ProjectSectionBreakdownScalarWhereInput | ProjectSectionBreakdownScalarWhereInput[]
+    OR?: ProjectSectionBreakdownScalarWhereInput[]
+    NOT?: ProjectSectionBreakdownScalarWhereInput | ProjectSectionBreakdownScalarWhereInput[]
+    id?: IntFilter<"ProjectSectionBreakdown"> | number
+    sectionId?: IntFilter<"ProjectSectionBreakdown"> | number
+    breakdownId?: IntFilter<"ProjectSectionBreakdown"> | number
+  }
+
+  export type UserUpsertWithoutBoqBreakdownInput = {
+    update: XOR<UserUpdateWithoutBoqBreakdownInput, UserUncheckedUpdateWithoutBoqBreakdownInput>
+    create: XOR<UserCreateWithoutBoqBreakdownInput, UserUncheckedCreateWithoutBoqBreakdownInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBoqBreakdownInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBoqBreakdownInput, UserUncheckedUpdateWithoutBoqBreakdownInput>
+  }
+
+  export type UserUpdateWithoutBoqBreakdownInput = {
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
+    Freight?: FreightUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutUserNestedInput
+    Staff?: StaffUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUpdateManyWithoutUserNestedInput
+    Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
+    ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
+    boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBoqBreakdownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
+    Freight?: FreightUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
+    boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type ProjectSectionCreateWithoutBoqItemsInput = {
     section_code: string
     section_name: string
@@ -42843,8 +46397,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProjectSectionInput
     location?: LocationCreateNestedOneWithoutProjectSectionInput
-    currency: CurrencyCreateNestedOneWithoutProjectSectionInput
+    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
     user: UserCreateNestedOneWithoutProjectSectionInput
+    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutBoqItemsInput = {
@@ -42853,17 +46408,44 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
+    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
   export type ProjectSectionCreateOrConnectWithoutBoqItemsInput = {
     where: ProjectSectionWhereUniqueInput
     create: XOR<ProjectSectionCreateWithoutBoqItemsInput, ProjectSectionUncheckedCreateWithoutBoqItemsInput>
+  }
+
+  export type BoqBreakdownCreateWithoutBoqItemsInput = {
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sections?: ProjectSectionBreakdownCreateNestedManyWithoutBreakdownInput
+    user: UserCreateNestedOneWithoutBoqBreakdownInput
+  }
+
+  export type BoqBreakdownUncheckedCreateWithoutBoqItemsInput = {
+    id?: number
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    sections?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutBreakdownInput
+  }
+
+  export type BoqBreakdownCreateOrConnectWithoutBoqItemsInput = {
+    where: BoqBreakdownWhereUniqueInput
+    create: XOR<BoqBreakdownCreateWithoutBoqItemsInput, BoqBreakdownUncheckedCreateWithoutBoqItemsInput>
   }
 
   export type MaterialNameCreateWithoutBoqItemsInput = {
@@ -42913,18 +46495,19 @@ export namespace Prisma {
   }
 
   export type boqItemsCreateWithoutChildItemsInput = {
-    item_number: string
+    itemNumber: string
     description: string
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    section: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
     material: MaterialNameCreateNestedOneWithoutBoqItemsInput
-    unit: UnitCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
     parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
     user: UserCreateNestedOneWithoutBoqItemsInput
   }
@@ -42932,16 +46515,17 @@ export namespace Prisma {
   export type boqItemsUncheckedCreateWithoutChildItemsInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -42953,18 +46537,19 @@ export namespace Prisma {
   }
 
   export type boqItemsCreateWithoutParentItemInput = {
-    item_number: string
+    itemNumber: string
     description: string
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    section: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
     material: MaterialNameCreateNestedOneWithoutBoqItemsInput
-    unit: UnitCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
     childItems?: boqItemsCreateNestedManyWithoutParentItemInput
     user: UserCreateNestedOneWithoutBoqItemsInput
   }
@@ -42972,15 +46557,16 @@ export namespace Prisma {
   export type boqItemsUncheckedCreateWithoutParentItemInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -43014,6 +46600,7 @@ export namespace Prisma {
     Task?: TaskCreateNestedManyWithoutUserInput
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBoqItemsInput = {
@@ -43034,6 +46621,7 @@ export namespace Prisma {
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBoqItemsInput = {
@@ -43061,8 +46649,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
-    currency?: CurrencyUpdateOneRequiredWithoutProjectSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
     user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
+    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutBoqItemsInput = {
@@ -43071,12 +46660,45 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
+  }
+
+  export type BoqBreakdownUpsertWithoutBoqItemsInput = {
+    update: XOR<BoqBreakdownUpdateWithoutBoqItemsInput, BoqBreakdownUncheckedUpdateWithoutBoqItemsInput>
+    create: XOR<BoqBreakdownCreateWithoutBoqItemsInput, BoqBreakdownUncheckedCreateWithoutBoqItemsInput>
+    where?: BoqBreakdownWhereInput
+  }
+
+  export type BoqBreakdownUpdateToOneWithWhereWithoutBoqItemsInput = {
+    where?: BoqBreakdownWhereInput
+    data: XOR<BoqBreakdownUpdateWithoutBoqItemsInput, BoqBreakdownUncheckedUpdateWithoutBoqItemsInput>
+  }
+
+  export type BoqBreakdownUpdateWithoutBoqItemsInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sections?: ProjectSectionBreakdownUpdateManyWithoutBreakdownNestedInput
+    user?: UserUpdateOneRequiredWithoutBoqBreakdownNestedInput
+  }
+
+  export type BoqBreakdownUncheckedUpdateWithoutBoqItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    sections?: ProjectSectionBreakdownUncheckedUpdateManyWithoutBreakdownNestedInput
   }
 
   export type MaterialNameUpsertWithoutBoqItemsInput = {
@@ -43149,18 +46771,19 @@ export namespace Prisma {
   }
 
   export type boqItemsUpdateWithoutChildItemsInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    section?: ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
     material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
     parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
     user?: UserUpdateOneRequiredWithoutBoqItemsNestedInput
   }
@@ -43168,16 +46791,17 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateWithoutChildItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -43197,27 +46821,6 @@ export namespace Prisma {
   export type boqItemsUpdateManyWithWhereWithoutParentItemInput = {
     where: boqItemsScalarWhereInput
     data: XOR<boqItemsUpdateManyMutationInput, boqItemsUncheckedUpdateManyWithoutParentItemInput>
-  }
-
-  export type boqItemsScalarWhereInput = {
-    AND?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
-    OR?: boqItemsScalarWhereInput[]
-    NOT?: boqItemsScalarWhereInput | boqItemsScalarWhereInput[]
-    id?: IntFilter<"boqItems"> | number
-    sectionId?: IntFilter<"boqItems"> | number
-    item_number?: StringFilter<"boqItems"> | string
-    description?: StringFilter<"boqItems"> | string
-    materialId?: IntFilter<"boqItems"> | number
-    unitId?: IntFilter<"boqItems"> | number
-    quantity?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
-    unitPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
-    totalPrice?: DecimalNullableFilter<"boqItems"> | Decimal | DecimalJsLike | number | string | null
-    parentItemId?: IntNullableFilter<"boqItems"> | number | null
-    level?: IntNullableFilter<"boqItems"> | number | null
-    itemType?: StringFilter<"boqItems"> | string
-    createdAt?: DateTimeFilter<"boqItems"> | Date | string
-    updatedAt?: DateTimeFilter<"boqItems"> | Date | string
-    userId?: IntFilter<"boqItems"> | number
   }
 
   export type UserUpsertWithoutBoqItemsInput = {
@@ -43248,6 +46851,7 @@ export namespace Prisma {
     Task?: TaskUpdateManyWithoutUserNestedInput
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBoqItemsInput = {
@@ -43268,6 +46872,7 @@ export namespace Prisma {
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutClientInput = {
@@ -43278,6 +46883,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     currency: CurrencyCreateNestedOneWithoutProjectInput
@@ -43299,6 +46905,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -43349,6 +46956,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Project"> | Date | string
     endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
+    boqStructureType?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -43423,9 +47031,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProjectSectionInput
-    currency: CurrencyCreateNestedOneWithoutProjectSectionInput
-    user: UserCreateNestedOneWithoutProjectSectionInput
     boqItems?: boqItemsCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
+    user: UserCreateNestedOneWithoutProjectSectionInput
+    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutLocationInput = {
@@ -43434,12 +47043,13 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
   export type ProjectSectionCreateOrConnectWithoutLocationInput = {
@@ -43536,12 +47146,12 @@ export namespace Prisma {
     section_code?: StringFilter<"ProjectSection"> | string
     section_name?: StringFilter<"ProjectSection"> | string
     section_type?: StringFilter<"ProjectSection"> | string
-    locationId?: IntNullableFilter<"ProjectSection"> | number | null
-    currencyId?: IntFilter<"ProjectSection"> | number
     totalAmount?: DecimalNullableFilter<"ProjectSection"> | Decimal | DecimalJsLike | number | string | null
+    locationId?: IntNullableFilter<"ProjectSection"> | number | null
     createdAt?: DateTimeFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectSection"> | Date | string
     userId?: IntFilter<"ProjectSection"> | number
+    currencyId?: IntNullableFilter<"ProjectSection"> | number | null
   }
 
   export type ProgressCreateWithoutMilestoneInput = {
@@ -43624,6 +47234,7 @@ export namespace Prisma {
     Task?: TaskCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMilestoneInput = {
@@ -43644,6 +47255,7 @@ export namespace Prisma {
     Task?: TaskUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMilestoneInput = {
@@ -43745,6 +47357,7 @@ export namespace Prisma {
     Task?: TaskUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMilestoneInput = {
@@ -43765,6 +47378,7 @@ export namespace Prisma {
     Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutProgressInput = {
@@ -43775,6 +47389,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -43797,6 +47412,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -43898,6 +47514,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProgressInput = {
@@ -43918,6 +47535,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProgressInput = {
@@ -43944,6 +47562,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -43966,6 +47585,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -44085,6 +47705,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgressInput = {
@@ -44105,6 +47726,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClientCreateWithoutProjectInput = {
@@ -44174,6 +47796,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectInput = {
@@ -44194,6 +47817,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectInput = {
@@ -44307,9 +47931,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     location?: LocationCreateNestedOneWithoutProjectSectionInput
-    currency: CurrencyCreateNestedOneWithoutProjectSectionInput
-    user: UserCreateNestedOneWithoutProjectSectionInput
     boqItems?: boqItemsCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
+    user: UserCreateNestedOneWithoutProjectSectionInput
+    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutProjectInput = {
@@ -44317,13 +47942,14 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
   export type ProjectSectionCreateOrConnectWithoutProjectInput = {
@@ -44455,6 +48081,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectInput = {
@@ -44475,6 +48102,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgressUpsertWithWhereUniqueWithoutProjectInput = {
@@ -44579,6 +48207,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -44601,6 +48230,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -44634,6 +48264,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -44656,6 +48287,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -44673,6 +48305,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -44695,6 +48328,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -44752,6 +48386,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -44774,6 +48409,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -44821,6 +48457,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -44843,6 +48480,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -44881,6 +48519,118 @@ export namespace Prisma {
     create: XOR<LocationCreateWithoutProjectSectionInput, LocationUncheckedCreateWithoutProjectSectionInput>
   }
 
+  export type boqItemsCreateWithoutSectionInput = {
+    itemNumber: string
+    description: string
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    unitPrice?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    level?: number | null
+    itemType?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
+    material: MaterialNameCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
+    parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
+    childItems?: boqItemsCreateNestedManyWithoutParentItemInput
+    user: UserCreateNestedOneWithoutBoqItemsInput
+  }
+
+  export type boqItemsUncheckedCreateWithoutSectionInput = {
+    id?: number
+    breakdownId?: number | null
+    itemNumber: string
+    description: string
+    materialId: number
+    unitId?: number | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    unitPrice?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    parentItemId?: number | null
+    level?: number | null
+    itemType?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    childItems?: boqItemsUncheckedCreateNestedManyWithoutParentItemInput
+  }
+
+  export type boqItemsCreateOrConnectWithoutSectionInput = {
+    where: boqItemsWhereUniqueInput
+    create: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput>
+  }
+
+  export type boqItemsCreateManySectionInputEnvelope = {
+    data: boqItemsCreateManySectionInput | boqItemsCreateManySectionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectSectionBreakdownCreateWithoutSectionInput = {
+    breakdown: BoqBreakdownCreateNestedOneWithoutSectionsInput
+  }
+
+  export type ProjectSectionBreakdownUncheckedCreateWithoutSectionInput = {
+    id?: number
+    breakdownId: number
+  }
+
+  export type ProjectSectionBreakdownCreateOrConnectWithoutSectionInput = {
+    where: ProjectSectionBreakdownWhereUniqueInput
+    create: XOR<ProjectSectionBreakdownCreateWithoutSectionInput, ProjectSectionBreakdownUncheckedCreateWithoutSectionInput>
+  }
+
+  export type ProjectSectionBreakdownCreateManySectionInputEnvelope = {
+    data: ProjectSectionBreakdownCreateManySectionInput | ProjectSectionBreakdownCreateManySectionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutProjectSectionInput = {
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
+    Freight?: FreightCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutUserInput
+    Staff?: StaffCreateNestedManyWithoutUserInput
+    Progress?: ProgressCreateNestedManyWithoutUserInput
+    Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
+    boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProjectSectionInput = {
+    id?: number
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
+    Freight?: FreightUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
+    Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
+    Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProjectSectionInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
+  }
+
   export type CurrencyCreateWithoutProjectSectionInput = {
     code: string
     name?: string | null
@@ -44907,95 +48657,6 @@ export namespace Prisma {
     create: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
   }
 
-  export type UserCreateWithoutProjectSectionInput = {
-    firebaseUid: string
-    email: string
-    name?: string | null
-    role?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Vendor?: VendorCreateNestedManyWithoutUserInput
-    Invoice?: InvoiceCreateNestedManyWithoutUserInput
-    Shipment?: ShipmentCreateNestedManyWithoutUserInput
-    Freight?: FreightCreateNestedManyWithoutUserInput
-    Project?: ProjectCreateNestedManyWithoutUserInput
-    Staff?: StaffCreateNestedManyWithoutUserInput
-    Progress?: ProgressCreateNestedManyWithoutUserInput
-    Task?: TaskCreateNestedManyWithoutUserInput
-    Milestone?: MilestoneCreateNestedManyWithoutUserInput
-    boqItems?: boqItemsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutProjectSectionInput = {
-    id?: number
-    firebaseUid: string
-    email: string
-    name?: string | null
-    role?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
-    Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
-    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
-    Freight?: FreightUncheckedCreateNestedManyWithoutUserInput
-    Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
-    Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
-    Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
-    Task?: TaskUncheckedCreateNestedManyWithoutUserInput
-    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
-    boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutProjectSectionInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
-  }
-
-  export type boqItemsCreateWithoutSectionInput = {
-    item_number: string
-    description: string
-    quantity?: Decimal | DecimalJsLike | number | string | null
-    unitPrice?: Decimal | DecimalJsLike | number | string | null
-    totalPrice?: Decimal | DecimalJsLike | number | string | null
-    level?: number | null
-    itemType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    material: MaterialNameCreateNestedOneWithoutBoqItemsInput
-    unit: UnitCreateNestedOneWithoutBoqItemsInput
-    parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
-    childItems?: boqItemsCreateNestedManyWithoutParentItemInput
-    user: UserCreateNestedOneWithoutBoqItemsInput
-  }
-
-  export type boqItemsUncheckedCreateWithoutSectionInput = {
-    id?: number
-    item_number: string
-    description: string
-    materialId: number
-    unitId: number
-    quantity?: Decimal | DecimalJsLike | number | string | null
-    unitPrice?: Decimal | DecimalJsLike | number | string | null
-    totalPrice?: Decimal | DecimalJsLike | number | string | null
-    parentItemId?: number | null
-    level?: number | null
-    itemType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: number
-    childItems?: boqItemsUncheckedCreateNestedManyWithoutParentItemInput
-  }
-
-  export type boqItemsCreateOrConnectWithoutSectionInput = {
-    where: boqItemsWhereUniqueInput
-    create: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput>
-  }
-
-  export type boqItemsCreateManySectionInputEnvelope = {
-    data: boqItemsCreateManySectionInput | boqItemsCreateManySectionInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ProjectUpsertWithoutProjectSectionInput = {
     update: XOR<ProjectUpdateWithoutProjectSectionInput, ProjectUncheckedUpdateWithoutProjectSectionInput>
     create: XOR<ProjectCreateWithoutProjectSectionInput, ProjectUncheckedCreateWithoutProjectSectionInput>
@@ -45015,6 +48676,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -45037,6 +48699,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -45076,6 +48739,90 @@ export namespace Prisma {
     ProjectLocation?: ProjectLocationUncheckedUpdateManyWithoutLocationNestedInput
   }
 
+  export type boqItemsUpsertWithWhereUniqueWithoutSectionInput = {
+    where: boqItemsWhereUniqueInput
+    update: XOR<boqItemsUpdateWithoutSectionInput, boqItemsUncheckedUpdateWithoutSectionInput>
+    create: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput>
+  }
+
+  export type boqItemsUpdateWithWhereUniqueWithoutSectionInput = {
+    where: boqItemsWhereUniqueInput
+    data: XOR<boqItemsUpdateWithoutSectionInput, boqItemsUncheckedUpdateWithoutSectionInput>
+  }
+
+  export type boqItemsUpdateManyWithWhereWithoutSectionInput = {
+    where: boqItemsScalarWhereInput
+    data: XOR<boqItemsUpdateManyMutationInput, boqItemsUncheckedUpdateManyWithoutSectionInput>
+  }
+
+  export type ProjectSectionBreakdownUpsertWithWhereUniqueWithoutSectionInput = {
+    where: ProjectSectionBreakdownWhereUniqueInput
+    update: XOR<ProjectSectionBreakdownUpdateWithoutSectionInput, ProjectSectionBreakdownUncheckedUpdateWithoutSectionInput>
+    create: XOR<ProjectSectionBreakdownCreateWithoutSectionInput, ProjectSectionBreakdownUncheckedCreateWithoutSectionInput>
+  }
+
+  export type ProjectSectionBreakdownUpdateWithWhereUniqueWithoutSectionInput = {
+    where: ProjectSectionBreakdownWhereUniqueInput
+    data: XOR<ProjectSectionBreakdownUpdateWithoutSectionInput, ProjectSectionBreakdownUncheckedUpdateWithoutSectionInput>
+  }
+
+  export type ProjectSectionBreakdownUpdateManyWithWhereWithoutSectionInput = {
+    where: ProjectSectionBreakdownScalarWhereInput
+    data: XOR<ProjectSectionBreakdownUpdateManyMutationInput, ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionInput>
+  }
+
+  export type UserUpsertWithoutProjectSectionInput = {
+    update: XOR<UserUpdateWithoutProjectSectionInput, UserUncheckedUpdateWithoutProjectSectionInput>
+    create: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProjectSectionInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProjectSectionInput, UserUncheckedUpdateWithoutProjectSectionInput>
+  }
+
+  export type UserUpdateWithoutProjectSectionInput = {
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
+    Freight?: FreightUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutUserNestedInput
+    Staff?: StaffUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUpdateManyWithoutUserNestedInput
+    Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
+    boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProjectSectionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
+    Freight?: FreightUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type CurrencyUpsertWithoutProjectSectionInput = {
     update: XOR<CurrencyUpdateWithoutProjectSectionInput, CurrencyUncheckedUpdateWithoutProjectSectionInput>
     create: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
@@ -45108,70 +48855,136 @@ export namespace Prisma {
     Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
-  export type UserUpsertWithoutProjectSectionInput = {
-    update: XOR<UserUpdateWithoutProjectSectionInput, UserUncheckedUpdateWithoutProjectSectionInput>
-    create: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
-    where?: UserWhereInput
+  export type ProjectSectionCreateWithoutBreakdownsInput = {
+    section_code: string
+    section_name: string
+    section_type: string
+    totalAmount?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutProjectSectionInput
+    location?: LocationCreateNestedOneWithoutProjectSectionInput
+    boqItems?: boqItemsCreateNestedManyWithoutSectionInput
+    user: UserCreateNestedOneWithoutProjectSectionInput
+    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutProjectSectionInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutProjectSectionInput, UserUncheckedUpdateWithoutProjectSectionInput>
+  export type ProjectSectionUncheckedCreateWithoutBreakdownsInput = {
+    id?: number
+    projectId: number
+    section_code: string
+    section_name: string
+    section_type: string
+    totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    currencyId?: number | null
+    boqItems?: boqItemsUncheckedCreateNestedManyWithoutSectionInput
   }
 
-  export type UserUpdateWithoutProjectSectionInput = {
-    firebaseUid?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+  export type ProjectSectionCreateOrConnectWithoutBreakdownsInput = {
+    where: ProjectSectionWhereUniqueInput
+    create: XOR<ProjectSectionCreateWithoutBreakdownsInput, ProjectSectionUncheckedCreateWithoutBreakdownsInput>
+  }
+
+  export type BoqBreakdownCreateWithoutSectionsInput = {
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    boqItems?: boqItemsCreateNestedManyWithoutBreakdownInput
+    user: UserCreateNestedOneWithoutBoqBreakdownInput
+  }
+
+  export type BoqBreakdownUncheckedCreateWithoutSectionsInput = {
+    id?: number
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    boqItems?: boqItemsUncheckedCreateNestedManyWithoutBreakdownInput
+  }
+
+  export type BoqBreakdownCreateOrConnectWithoutSectionsInput = {
+    where: BoqBreakdownWhereUniqueInput
+    create: XOR<BoqBreakdownCreateWithoutSectionsInput, BoqBreakdownUncheckedCreateWithoutSectionsInput>
+  }
+
+  export type ProjectSectionUpsertWithoutBreakdownsInput = {
+    update: XOR<ProjectSectionUpdateWithoutBreakdownsInput, ProjectSectionUncheckedUpdateWithoutBreakdownsInput>
+    create: XOR<ProjectSectionCreateWithoutBreakdownsInput, ProjectSectionUncheckedCreateWithoutBreakdownsInput>
+    where?: ProjectSectionWhereInput
+  }
+
+  export type ProjectSectionUpdateToOneWithWhereWithoutBreakdownsInput = {
+    where?: ProjectSectionWhereInput
+    data: XOR<ProjectSectionUpdateWithoutBreakdownsInput, ProjectSectionUncheckedUpdateWithoutBreakdownsInput>
+  }
+
+  export type ProjectSectionUpdateWithoutBreakdownsInput = {
+    section_code?: StringFieldUpdateOperationsInput | string
+    section_name?: StringFieldUpdateOperationsInput | string
+    section_type?: StringFieldUpdateOperationsInput | string
+    totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Vendor?: VendorUpdateManyWithoutUserNestedInput
-    Invoice?: InvoiceUpdateManyWithoutUserNestedInput
-    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
-    Freight?: FreightUpdateManyWithoutUserNestedInput
-    Project?: ProjectUpdateManyWithoutUserNestedInput
-    Staff?: StaffUpdateManyWithoutUserNestedInput
-    Progress?: ProgressUpdateManyWithoutUserNestedInput
-    Task?: TaskUpdateManyWithoutUserNestedInput
-    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
-    boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
+    location?: LocationUpdateOneWithoutProjectSectionNestedInput
+    boqItems?: boqItemsUpdateManyWithoutSectionNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
+    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutProjectSectionInput = {
+  export type ProjectSectionUncheckedUpdateWithoutBreakdownsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    firebaseUid?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
+    projectId?: IntFieldUpdateOperationsInput | number
+    section_code?: StringFieldUpdateOperationsInput | string
+    section_name?: StringFieldUpdateOperationsInput | string
+    section_type?: StringFieldUpdateOperationsInput | string
+    totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
-    Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
-    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
-    Freight?: FreightUncheckedUpdateManyWithoutUserNestedInput
-    Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
-    Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
-    Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
-    Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
-    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
-    boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
+    boqItems?: boqItemsUncheckedUpdateManyWithoutSectionNestedInput
   }
 
-  export type boqItemsUpsertWithWhereUniqueWithoutSectionInput = {
-    where: boqItemsWhereUniqueInput
-    update: XOR<boqItemsUpdateWithoutSectionInput, boqItemsUncheckedUpdateWithoutSectionInput>
-    create: XOR<boqItemsCreateWithoutSectionInput, boqItemsUncheckedCreateWithoutSectionInput>
+  export type BoqBreakdownUpsertWithoutSectionsInput = {
+    update: XOR<BoqBreakdownUpdateWithoutSectionsInput, BoqBreakdownUncheckedUpdateWithoutSectionsInput>
+    create: XOR<BoqBreakdownCreateWithoutSectionsInput, BoqBreakdownUncheckedCreateWithoutSectionsInput>
+    where?: BoqBreakdownWhereInput
   }
 
-  export type boqItemsUpdateWithWhereUniqueWithoutSectionInput = {
-    where: boqItemsWhereUniqueInput
-    data: XOR<boqItemsUpdateWithoutSectionInput, boqItemsUncheckedUpdateWithoutSectionInput>
+  export type BoqBreakdownUpdateToOneWithWhereWithoutSectionsInput = {
+    where?: BoqBreakdownWhereInput
+    data: XOR<BoqBreakdownUpdateWithoutSectionsInput, BoqBreakdownUncheckedUpdateWithoutSectionsInput>
   }
 
-  export type boqItemsUpdateManyWithWhereWithoutSectionInput = {
-    where: boqItemsScalarWhereInput
-    data: XOR<boqItemsUpdateManyMutationInput, boqItemsUncheckedUpdateManyWithoutSectionInput>
+  export type BoqBreakdownUpdateWithoutSectionsInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqItems?: boqItemsUpdateManyWithoutBreakdownNestedInput
+    user?: UserUpdateOneRequiredWithoutBoqBreakdownNestedInput
+  }
+
+  export type BoqBreakdownUncheckedUpdateWithoutSectionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    boqItems?: boqItemsUncheckedUpdateManyWithoutBreakdownNestedInput
   }
 
   export type UnitCreateWithoutTaskInput = {
@@ -45224,6 +49037,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -45246,6 +49060,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -45277,6 +49092,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTaskInput = {
@@ -45297,6 +49113,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTaskInput = {
@@ -45433,6 +49250,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -45455,6 +49273,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -45492,6 +49311,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTaskInput = {
@@ -45512,6 +49332,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgressUpsertWithWhereUniqueWithoutTaskInput = {
@@ -45788,6 +49609,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFreightInput = {
@@ -45808,6 +49630,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFreightInput = {
@@ -45933,6 +49756,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFreightInput = {
@@ -45953,6 +49777,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type FreightCreateWithoutInvoicesInput = {
@@ -46182,6 +50007,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvoiceInput = {
@@ -46202,6 +50028,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvoiceInput = {
@@ -46380,6 +50207,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvoiceInput = {
@@ -46400,6 +50228,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceItemUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -46639,6 +50468,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutShipmentInput = {
@@ -46659,6 +50489,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutShipmentInput = {
@@ -46787,6 +50618,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutShipmentInput = {
@@ -46807,6 +50639,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ShipmentFileUpsertWithWhereUniqueWithoutShipmentInput = {
@@ -47076,6 +50909,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -47097,6 +50931,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -47126,8 +50961,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProjectSectionInput
     location?: LocationCreateNestedOneWithoutProjectSectionInput
-    user: UserCreateNestedOneWithoutProjectSectionInput
     boqItems?: boqItemsCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
+    user: UserCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutCurrencyInput = {
@@ -47136,12 +50972,13 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
   export type ProjectSectionCreateOrConnectWithoutCurrencyInput = {
@@ -47462,17 +51299,18 @@ export namespace Prisma {
   }
 
   export type boqItemsCreateWithoutMaterialInput = {
-    item_number: string
+    itemNumber: string
     description: string
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    section: ProjectSectionCreateNestedOneWithoutBoqItemsInput
-    unit: UnitCreateNestedOneWithoutBoqItemsInput
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
     parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
     childItems?: boqItemsCreateNestedManyWithoutParentItemInput
     user: UserCreateNestedOneWithoutBoqItemsInput
@@ -47481,15 +51319,16 @@ export namespace Prisma {
   export type boqItemsUncheckedCreateWithoutMaterialInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -47593,6 +51432,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStaffInput = {
@@ -47613,6 +51453,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStaffInput = {
@@ -47648,6 +51489,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStaffInput = {
@@ -47668,6 +51510,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutVendorInput = {
@@ -47687,6 +51530,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: boqItemsCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVendorInput = {
@@ -47707,6 +51551,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVendorInput = {
@@ -47779,6 +51624,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVendorInput = {
@@ -47799,6 +51645,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: boqItemsUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceUpsertWithWhereUniqueWithoutVendorInput = {
@@ -47890,16 +51737,17 @@ export namespace Prisma {
   }
 
   export type boqItemsCreateWithoutUnitInput = {
-    item_number: string
+    itemNumber: string
     description: string
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    section: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
     material: MaterialNameCreateNestedOneWithoutBoqItemsInput
     parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
     childItems?: boqItemsCreateNestedManyWithoutParentItemInput
@@ -47909,7 +51757,8 @@ export namespace Prisma {
   export type boqItemsUncheckedCreateWithoutUnitInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
     quantity?: Decimal | DecimalJsLike | number | string | null
@@ -47917,7 +51766,7 @@ export namespace Prisma {
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -48122,6 +51971,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -48144,6 +51994,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
@@ -48318,8 +52169,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutProjectSectionInput
     location?: LocationCreateNestedOneWithoutProjectSectionInput
-    currency: CurrencyCreateNestedOneWithoutProjectSectionInput
     boqItems?: boqItemsCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
+    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutUserInput = {
@@ -48328,12 +52180,13 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    currencyId?: number | null
     boqItems?: boqItemsUncheckedCreateNestedManyWithoutSectionInput
+    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
   export type ProjectSectionCreateOrConnectWithoutUserInput = {
@@ -48347,18 +52200,19 @@ export namespace Prisma {
   }
 
   export type boqItemsCreateWithoutUserInput = {
-    item_number: string
+    itemNumber: string
     description: string
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    section: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    section?: ProjectSectionCreateNestedOneWithoutBoqItemsInput
+    breakdown?: BoqBreakdownCreateNestedOneWithoutBoqItemsInput
     material: MaterialNameCreateNestedOneWithoutBoqItemsInput
-    unit: UnitCreateNestedOneWithoutBoqItemsInput
+    unit?: UnitCreateNestedOneWithoutBoqItemsInput
     parentItem?: boqItemsCreateNestedOneWithoutChildItemsInput
     childItems?: boqItemsCreateNestedManyWithoutParentItemInput
   }
@@ -48366,16 +52220,17 @@ export namespace Prisma {
   export type boqItemsUncheckedCreateWithoutUserInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     childItems?: boqItemsUncheckedCreateNestedManyWithoutParentItemInput
@@ -48388,6 +52243,37 @@ export namespace Prisma {
 
   export type boqItemsCreateManyUserInputEnvelope = {
     data: boqItemsCreateManyUserInput | boqItemsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BoqBreakdownCreateWithoutUserInput = {
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    boqItems?: boqItemsCreateNestedManyWithoutBreakdownInput
+    sections?: ProjectSectionBreakdownCreateNestedManyWithoutBreakdownInput
+  }
+
+  export type BoqBreakdownUncheckedCreateWithoutUserInput = {
+    id?: number
+    code: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    boqItems?: boqItemsUncheckedCreateNestedManyWithoutBreakdownInput
+    sections?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutBreakdownInput
+  }
+
+  export type BoqBreakdownCreateOrConnectWithoutUserInput = {
+    where: BoqBreakdownWhereUniqueInput
+    create: XOR<BoqBreakdownCreateWithoutUserInput, BoqBreakdownUncheckedCreateWithoutUserInput>
+  }
+
+  export type BoqBreakdownCreateManyUserInputEnvelope = {
+    data: BoqBreakdownCreateManyUserInput | BoqBreakdownCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -48607,36 +52493,159 @@ export namespace Prisma {
     data: XOR<boqItemsUpdateManyMutationInput, boqItemsUncheckedUpdateManyWithoutUserInput>
   }
 
+  export type BoqBreakdownUpsertWithWhereUniqueWithoutUserInput = {
+    where: BoqBreakdownWhereUniqueInput
+    update: XOR<BoqBreakdownUpdateWithoutUserInput, BoqBreakdownUncheckedUpdateWithoutUserInput>
+    create: XOR<BoqBreakdownCreateWithoutUserInput, BoqBreakdownUncheckedCreateWithoutUserInput>
+  }
+
+  export type BoqBreakdownUpdateWithWhereUniqueWithoutUserInput = {
+    where: BoqBreakdownWhereUniqueInput
+    data: XOR<BoqBreakdownUpdateWithoutUserInput, BoqBreakdownUncheckedUpdateWithoutUserInput>
+  }
+
+  export type BoqBreakdownUpdateManyWithWhereWithoutUserInput = {
+    where: BoqBreakdownScalarWhereInput
+    data: XOR<BoqBreakdownUpdateManyMutationInput, BoqBreakdownUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type BoqBreakdownScalarWhereInput = {
+    AND?: BoqBreakdownScalarWhereInput | BoqBreakdownScalarWhereInput[]
+    OR?: BoqBreakdownScalarWhereInput[]
+    NOT?: BoqBreakdownScalarWhereInput | BoqBreakdownScalarWhereInput[]
+    id?: IntFilter<"BoqBreakdown"> | number
+    code?: StringFilter<"BoqBreakdown"> | string
+    name?: StringFilter<"BoqBreakdown"> | string
+    description?: StringNullableFilter<"BoqBreakdown"> | string | null
+    createdAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
+    updatedAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
+    userId?: IntFilter<"BoqBreakdown"> | number
+  }
+
+  export type boqItemsCreateManyBreakdownInput = {
+    id?: number
+    sectionId: number
+    itemNumber: string
+    description: string
+    materialId: number
+    unitId?: number | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    unitPrice?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    parentItemId?: number | null
+    level?: number | null
+    itemType?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+  }
+
+  export type ProjectSectionBreakdownCreateManyBreakdownInput = {
+    id?: number
+    sectionId: number
+  }
+
+  export type boqItemsUpdateWithoutBreakdownInput = {
+    itemNumber?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    level?: NullableIntFieldUpdateOperationsInput | number | null
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
+    parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
+    childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
+    user?: UserUpdateOneRequiredWithoutBoqItemsNestedInput
+  }
+
+  export type boqItemsUncheckedUpdateWithoutBreakdownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sectionId?: IntFieldUpdateOperationsInput | number
+    itemNumber?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    materialId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: NullableIntFieldUpdateOperationsInput | number | null
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    childItems?: boqItemsUncheckedUpdateManyWithoutParentItemNestedInput
+  }
+
+  export type boqItemsUncheckedUpdateManyWithoutBreakdownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sectionId?: IntFieldUpdateOperationsInput | number
+    itemNumber?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    materialId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: NullableIntFieldUpdateOperationsInput | number | null
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectSectionBreakdownUpdateWithoutBreakdownInput = {
+    section?: ProjectSectionUpdateOneRequiredWithoutBreakdownsNestedInput
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateWithoutBreakdownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sectionId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateManyWithoutBreakdownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sectionId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type boqItemsCreateManyParentItemInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
   }
 
   export type boqItemsUpdateWithoutParentItemInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    section?: ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
     material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
     childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
     user?: UserUpdateOneRequiredWithoutBoqItemsNestedInput
   }
@@ -48644,15 +52653,16 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateWithoutParentItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -48662,15 +52672,16 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateManyWithoutParentItemInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -48686,6 +52697,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -48699,6 +52711,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
@@ -48720,6 +52733,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -48740,6 +52754,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -48770,11 +52785,11 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
   }
 
   export type TaskUpdateWithoutLocationInput = {
@@ -48845,9 +52860,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
-    currency?: CurrencyUpdateOneRequiredWithoutProjectSectionNestedInput
-    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
     boqItems?: boqItemsUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
+    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutLocationInput = {
@@ -48856,12 +52872,13 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: boqItemsUncheckedUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateManyWithoutLocationInput = {
@@ -48870,11 +52887,11 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ProgressCreateManyMilestoneInput = {
@@ -48970,12 +52987,12 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    currencyId?: number | null
   }
 
   export type projectBoqConfigCreateManyProjectInput = {
@@ -49097,9 +53114,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
-    currency?: CurrencyUpdateOneRequiredWithoutProjectSectionNestedInput
-    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
     boqItems?: boqItemsUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
+    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutProjectInput = {
@@ -49107,13 +53125,14 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: boqItemsUncheckedUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateManyWithoutProjectInput = {
@@ -49121,12 +53140,12 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type projectBoqConfigUpdateWithoutProjectInput = {
@@ -49160,33 +53179,40 @@ export namespace Prisma {
 
   export type boqItemsCreateManySectionInput = {
     id?: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
   }
 
+  export type ProjectSectionBreakdownCreateManySectionInput = {
+    id?: number
+    breakdownId: number
+  }
+
   export type boqItemsUpdateWithoutSectionInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
     material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
     parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
     childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
     user?: UserUpdateOneRequiredWithoutBoqItemsNestedInput
@@ -49194,16 +53220,17 @@ export namespace Prisma {
 
   export type boqItemsUncheckedUpdateWithoutSectionInput = {
     id?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -49212,19 +53239,34 @@ export namespace Prisma {
 
   export type boqItemsUncheckedUpdateManyWithoutSectionInput = {
     id?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectSectionBreakdownUpdateWithoutSectionInput = {
+    breakdown?: BoqBreakdownUpdateOneRequiredWithoutSectionsNestedInput
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateWithoutSectionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    breakdownId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    breakdownId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProgressCreateManyTaskInput = {
@@ -49541,6 +53583,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -49552,8 +53595,8 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -49680,6 +53723,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -49701,6 +53745,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -49721,6 +53766,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -49735,8 +53781,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
-    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
     boqItems?: boqItemsUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
+    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutCurrencyInput = {
@@ -49745,12 +53792,13 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     boqItems?: boqItemsUncheckedUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateManyWithoutCurrencyInput = {
@@ -49759,8 +53807,8 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -49846,15 +53894,16 @@ export namespace Prisma {
   export type boqItemsCreateManyMaterialInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -49904,17 +53953,18 @@ export namespace Prisma {
   }
 
   export type boqItemsUpdateWithoutMaterialInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    section?: ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutBoqItemsNestedInput
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
     parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
     childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
     user?: UserUpdateOneRequiredWithoutBoqItemsNestedInput
@@ -49923,15 +53973,16 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -49941,15 +53992,16 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateManyWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -50034,7 +54086,8 @@ export namespace Prisma {
   export type boqItemsCreateManyUnitInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
     quantity?: Decimal | DecimalJsLike | number | string | null
@@ -50042,7 +54095,7 @@ export namespace Prisma {
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -50126,16 +54179,17 @@ export namespace Prisma {
   }
 
   export type boqItemsUpdateWithoutUnitInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    section?: ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
     material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
     parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
     childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
@@ -50145,7 +54199,8 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateWithoutUnitInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -50153,7 +54208,7 @@ export namespace Prisma {
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -50163,7 +54218,8 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateManyWithoutUnitInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -50171,7 +54227,7 @@ export namespace Prisma {
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -50229,6 +54285,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
+    boqStructureType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -50291,26 +54348,36 @@ export namespace Prisma {
     section_code: string
     section_name: string
     section_type: string
-    locationId?: number | null
-    currencyId: number
     totalAmount?: Decimal | DecimalJsLike | number | string | null
+    locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    currencyId?: number | null
   }
 
   export type boqItemsCreateManyUserInput = {
     id?: number
     sectionId: number
-    item_number: string
+    breakdownId?: number | null
+    itemNumber: string
     description: string
     materialId: number
-    unitId: number
+    unitId?: number | null
     quantity?: Decimal | DecimalJsLike | number | string | null
     unitPrice?: Decimal | DecimalJsLike | number | string | null
     totalPrice?: Decimal | DecimalJsLike | number | string | null
     parentItemId?: number | null
     level?: number | null
-    itemType: string
+    itemType?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BoqBreakdownCreateManyUserInput = {
+    id?: number
+    code: string
+    name: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -50456,6 +54523,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -50478,6 +54546,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
@@ -50498,6 +54567,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
+    boqStructureType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -50669,8 +54739,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
-    currency?: CurrencyUpdateOneRequiredWithoutProjectSectionNestedInput
     boqItems?: boqItemsUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
+    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutUserInput = {
@@ -50679,12 +54750,13 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: boqItemsUncheckedUpdateManyWithoutSectionNestedInput
+    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateManyWithoutUserInput = {
@@ -50693,26 +54765,27 @@ export namespace Prisma {
     section_code?: StringFieldUpdateOperationsInput | string
     section_name?: StringFieldUpdateOperationsInput | string
     section_type?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    currencyId?: IntFieldUpdateOperationsInput | number
     totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type boqItemsUpdateWithoutUserInput = {
-    item_number?: StringFieldUpdateOperationsInput | string
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    section?: ProjectSectionUpdateOneRequiredWithoutBoqItemsNestedInput
+    section?: ProjectSectionUpdateOneWithoutBoqItemsNestedInput
+    breakdown?: BoqBreakdownUpdateOneWithoutBoqItemsNestedInput
     material?: MaterialNameUpdateOneRequiredWithoutBoqItemsNestedInput
-    unit?: UnitUpdateOneRequiredWithoutBoqItemsNestedInput
+    unit?: UnitUpdateOneWithoutBoqItemsNestedInput
     parentItem?: boqItemsUpdateOneWithoutChildItemsNestedInput
     childItems?: boqItemsUpdateManyWithoutParentItemNestedInput
   }
@@ -50720,16 +54793,17 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     childItems?: boqItemsUncheckedUpdateManyWithoutParentItemNestedInput
@@ -50738,16 +54812,47 @@ export namespace Prisma {
   export type boqItemsUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     sectionId?: IntFieldUpdateOperationsInput | number
-    item_number?: StringFieldUpdateOperationsInput | string
+    breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
+    itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: IntFieldUpdateOperationsInput | number
-    unitId?: IntFieldUpdateOperationsInput | number
+    unitId?: NullableIntFieldUpdateOperationsInput | number | null
     quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     unitPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     parentItemId?: NullableIntFieldUpdateOperationsInput | number | null
     level?: NullableIntFieldUpdateOperationsInput | number | null
-    itemType?: StringFieldUpdateOperationsInput | string
+    itemType?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BoqBreakdownUpdateWithoutUserInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqItems?: boqItemsUpdateManyWithoutBreakdownNestedInput
+    sections?: ProjectSectionBreakdownUpdateManyWithoutBreakdownNestedInput
+  }
+
+  export type BoqBreakdownUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    boqItems?: boqItemsUncheckedUpdateManyWithoutBreakdownNestedInput
+    sections?: ProjectSectionBreakdownUncheckedUpdateManyWithoutBreakdownNestedInput
+  }
+
+  export type BoqBreakdownUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -120,10 +120,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.BoqBreakdownScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
 exports.Prisma.BoqItemsScalarFieldEnum = {
   id: 'id',
   sectionId: 'sectionId',
-  item_number: 'item_number',
+  breakdownId: 'breakdownId',
+  itemNumber: 'itemNumber',
   description: 'description',
   materialId: 'materialId',
   unitId: 'unitId',
@@ -196,6 +207,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   currencyId: 'currencyId',
+  boqStructureType: 'boqStructureType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'
@@ -223,12 +235,18 @@ exports.Prisma.ProjectSectionScalarFieldEnum = {
   section_code: 'section_code',
   section_name: 'section_name',
   section_type: 'section_type',
-  locationId: 'locationId',
-  currencyId: 'currencyId',
   totalAmount: 'totalAmount',
+  locationId: 'locationId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  currencyId: 'currencyId'
+};
+
+exports.Prisma.ProjectSectionBreakdownScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  breakdownId: 'breakdownId'
 };
 
 exports.Prisma.TaskScalarFieldEnum = {
@@ -438,6 +456,7 @@ exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
 };
 
 exports.Prisma.ModelName = {
+  BoqBreakdown: 'BoqBreakdown',
   boqItems: 'boqItems',
   Client: 'Client',
   Location: 'Location',
@@ -447,6 +466,7 @@ exports.Prisma.ModelName = {
   projectBoqConfig: 'projectBoqConfig',
   ProjectLocation: 'ProjectLocation',
   ProjectSection: 'ProjectSection',
+  ProjectSectionBreakdown: 'ProjectSectionBreakdown',
   Task: 'Task',
   TaskMaterial: 'TaskMaterial',
   Freight: 'Freight',

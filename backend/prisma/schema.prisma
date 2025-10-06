@@ -18,28 +18,43 @@ datasource db {
 // ========================================
 // PROJECT MANAGEMENT
 // ========================================
+model BoqBreakdown {
+  id          Int                       @id @default(autoincrement())
+  code        String                    @unique
+  name        String
+  description String?
+  boqItems    boqItems[]
+  sections    ProjectSectionBreakdown[]
+  createdAt   DateTime                  @default(now()) @map("created_at")
+  updatedAt   DateTime                  @updatedAt @map("updated_at")
+  user        User                      @relation(fields: [userId], references: [id])
+  userId      Int                       @map("user_id")
+}
+
 model boqItems {
-  id           Int            @id @default(autoincrement())
-  sectionId    Int            @map("section_id")
-  section      ProjectSection @relation(fields: [sectionId], references: [id])
-  item_number  String         @map("item_number") @db.VarChar(20) // e.g., "1.1", "2.3"
+  id           Int             @id @default(autoincrement())
+  sectionId    Int             @map("section_id")
+  section      ProjectSection? @relation(fields: [sectionId], references: [id])
+  breakdownId  Int?            @map("breakdown_id")
+  breakdown    BoqBreakdown?   @relation(fields: [breakdownId], references: [id])
+  itemNumber   String          @map("item_number") @db.VarChar(20) // e.g., "1.1", "2.3"
   description  String
-  material     MaterialName   @relation(fields: [materialId], references: [id])
-  materialId   Int            @map("material_id")
-  unit         Unit           @relation(fields: [unitId], references: [id])
-  unitId       Int            @map("unit_id")
-  quantity     Decimal?       @db.Decimal(12, 4)
-  unitPrice    Decimal?       @map("unit_price") @db.Decimal(12, 2)
-  totalPrice   Decimal?       @map("total_price") @db.Decimal(15, 2)
-  parentItemId Int?           @map("parent_item_id")
-  parentItem   boqItems?      @relation("Itemhierarchy", fields: [parentItemId], references: [id])
-  childItems   boqItems[]     @relation("Itemhierarchy")
-  level        Int?           @default(0) // e.g., 0 for main items, 1 for sub-items
-  itemType     String         @map("item_type") // e.g. 'material', 'labor', 'equipment', 'other'
-  createdAt    DateTime       @default(now()) @map("created_at")
-  updatedAt    DateTime       @updatedAt @map("updated_at")
-  user         User           @relation(fields: [userId], references: [id])
-  userId       Int            @map("user_id")
+  materialId   Int             @map("material_id")
+  material     MaterialName    @relation(fields: [materialId], references: [id])
+  unitId       Int?            @map("unit_id")
+  unit         Unit?           @relation(fields: [unitId], references: [id])
+  quantity     Decimal?        @db.Decimal(12, 4)
+  unitPrice    Decimal?        @map("unit_price") @db.Decimal(12, 2)
+  totalPrice   Decimal?        @map("total_price") @db.Decimal(15, 2)
+  parentItemId Int?            @map("parent_item_id")
+  parentItem   boqItems?       @relation("Itemhierarchy", fields: [parentItemId], references: [id])
+  childItems   boqItems[]      @relation("Itemhierarchy")
+  level        Int?            @default(0) // e.g., 0 for main items, 1 for sub-items
+  itemType     String?         @map("item_type") // e.g. 'material', 'labor', 'equipment', 'other'
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  userId       Int             @map("user_id")
+  user         User            @relation(fields: [userId], references: [id])
 
   @@map("boq_items")
 }
@@ -136,6 +151,7 @@ model Project {
   endDate          DateTime           @map("end_date")
   currency         Currency           @relation(fields: [currencyId], references: [id])
   currencyId       Int
+  boqStructureType String?            @map("boq_structure_type") // e.g. 'hierarchical', 'sequential', 'alphanumeric'
   createdAt        DateTime           @default(now()) @map("created_at")
   updatedAt        DateTime           @updatedAt
   user             User               @relation(fields: [userId], references: [id])
@@ -174,24 +190,36 @@ model ProjectLocation {
 }
 
 model ProjectSection {
-  id           Int        @id @default(autoincrement())
+  id           Int                       @id @default(autoincrement())
   projectId    Int
-  project      Project    @relation(fields: [projectId], references: [id])
-  section_code String     @map("section_code") // sheet names 'WS01', 'WW01', 'WSSP', etc.
-  section_name String     @map("section_name")
-  section_type String     @map("section_type") // list item from summary 'water_supply', 'sanitation', 'spare_parts', 'dayworks', 'provisional'
-  location     Location?  @relation(fields: [locationId], references: [id])
-  locationId   Int?       @map("location_id")
-  currency     Currency   @relation(fields: [currencyId], references: [id])
-  currencyId   Int        @map("currency_id")
-  totalAmount  Decimal?   @map("total_amount") @db.Decimal(15, 2)
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  user         User       @relation(fields: [userId], references: [id])
-  userId       Int        @map("user_id")
+  project      Project                   @relation(fields: [projectId], references: [id])
+  section_code String                    @map("section_code") // sheet names 'WS01', 'WW01', 'WSSP', etc.
+  section_name String                    @map("section_name")
+  section_type String                    @map("section_type") // list item from summary 'water_supply', 'sanitation', 'spare_parts', 'dayworks', 'provisional'
+  totalAmount  Decimal?                  @map("total_amount") @db.Decimal(15, 2)
+  locationId   Int?                      @map("location_id")
+  location     Location?                 @relation(fields: [locationId], references: [id])
   boqItems     boqItems[]
+  breakdowns   ProjectSectionBreakdown[]
+  createdAt    DateTime                  @default(now())
+  updatedAt    DateTime                  @updatedAt
+  user         User                      @relation(fields: [userId], references: [id])
+  userId       Int                       @map("user_id")
+  Currency     Currency?                 @relation(fields: [currencyId], references: [id])
+  currencyId   Int?
 
   @@map("project_sections")
+}
+
+model ProjectSectionBreakdown {
+  id          Int            @id @default(autoincrement())
+  section     ProjectSection @relation(fields: [sectionId], references: [id])
+  sectionId   Int            @map("section_id")
+  breakdown   BoqBreakdown   @relation(fields: [breakdownId], references: [id])
+  breakdownId Int            @map("breakdown_id")
+
+  @@unique([sectionId, breakdownId])
+  @@map("project_section_breakdown")
 }
 
 enum TaskGroup {
@@ -457,6 +485,7 @@ model User {
   Milestone      Milestone[]
   ProjectSection ProjectSection[]
   boqItems       boqItems[]
+  BoqBreakdown   BoqBreakdown[]
 
   @@map("user")
 }
