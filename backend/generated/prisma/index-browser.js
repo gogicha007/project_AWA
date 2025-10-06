@@ -130,7 +130,7 @@ exports.Prisma.BoqBreakdownScalarFieldEnum = {
   userId: 'userId'
 };
 
-exports.Prisma.BoqItemsScalarFieldEnum = {
+exports.Prisma.BoqItemScalarFieldEnum = {
   id: 'id',
   sectionId: 'sectionId',
   breakdownId: 'breakdownId',
@@ -224,17 +224,12 @@ exports.Prisma.ProjectBoqConfigScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.ProjectLocationScalarFieldEnum = {
-  projectId: 'projectId',
-  locationId: 'locationId'
-};
-
 exports.Prisma.ProjectSectionScalarFieldEnum = {
   id: 'id',
   projectId: 'projectId',
-  section_code: 'section_code',
-  section_name: 'section_name',
-  section_type: 'section_type',
+  sectionCode: 'sectionCode',
+  sectionName: 'sectionName',
+  sectionType: 'sectionType',
   totalAmount: 'totalAmount',
   locationId: 'locationId',
   createdAt: 'createdAt',
@@ -457,14 +452,13 @@ exports.ShipmentStatus = exports.$Enums.ShipmentStatus = {
 
 exports.Prisma.ModelName = {
   BoqBreakdown: 'BoqBreakdown',
-  boqItems: 'boqItems',
+  BoqItem: 'BoqItem',
   Client: 'Client',
   Location: 'Location',
   Milestone: 'Milestone',
   Progress: 'Progress',
   Project: 'Project',
-  projectBoqConfig: 'projectBoqConfig',
-  ProjectLocation: 'ProjectLocation',
+  ProjectBoqConfig: 'ProjectBoqConfig',
   ProjectSection: 'ProjectSection',
   ProjectSectionBreakdown: 'ProjectSectionBreakdown',
   Task: 'Task',

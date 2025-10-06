@@ -1,5 +1,3 @@
-entity-relationship-diagram
-
 user [icon: user, color: blue] {
     id int pk
     firebaseUid string unique
@@ -74,10 +72,12 @@ project [icon: worker] {
     display_name string
     client_id int
     manager_id nullable int
-    progress string
+    status string
     notes string
-    startDate timestamp
-    currency_id
+    start_date timestamp
+    end_date timestamp
+    currency_id id
+    boqStructureType string
     created_at timestamp
     updated_at timestamp
     user_id int
@@ -86,6 +86,76 @@ project.user_id <> user.id
 project.client_id > client.id
 project.manager_id > staff.id
 project.currency_id > currency.id
+
+project_section [icon: worker] {
+  id int pk
+  project_id int
+  section_code string
+  section_name string
+  section_type string
+  total_amount decimal
+  location_id int
+  created_at timestamp
+  updated_at timestamp
+  user_id int
+}
+project_section.project_id <> project.id
+project_section.location_id <> location.id
+
+project_section_breakdown {
+  id int
+  section_id int
+  breakdown_id int
+}
+project_section_breakdown.section_id - project_section.id
+project_section_breakdown.breakdown_id - boq_breakdown.id
+
+project_boq_config {
+  id int
+  project_id int
+  numbering_system string
+  currency_code string
+  decimal_places int
+  section_types json
+  custom_fields json
+  created_at timestamp
+  updated_at timestamp
+  user_id int
+}
+project_boq_config.project_id > project.id
+
+boq_breakdown {
+  id int
+  code string
+  name string
+  description string
+  created_at timestamp
+  updated_at timestamp
+  user_id int  
+}
+
+boq_item {
+  id int
+  section_id int
+  breakdown_id int
+  item_number int
+  description string
+  material_id int
+  unit_id int
+  quantity decimal
+  unit_price decimal
+  total_price decimal
+  parent_item_id int
+  level int
+  item_type string
+  created_at timestamp
+  updated_at timestamp
+  user_id int
+}
+boq_item.id <> project_section.id
+boq_breakdown.id <> boq_item.breackdown_id
+boq_item.material_id <> material_names.id
+boq_item.parent_item_id > boq_item.id
 
 progress [icon: worker] {
     id int pk
