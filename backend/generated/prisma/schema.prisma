@@ -35,7 +35,7 @@ model BoqBreakdown {
 
 model BoqItem {
   id           Int             @id @default(autoincrement())
-  sectionId    Int             @map("section_id")
+  sectionId    Int?            @map("section_id")
   section      ProjectSection? @relation(fields: [sectionId], references: [id])
   breakdownId  Int?            @map("breakdown_id")
   breakdown    BoqBreakdown?   @relation(fields: [breakdownId], references: [id])
@@ -139,6 +139,12 @@ enum ProjectStatus {
   onHold
 }
 
+enum boqStructureType {
+  hierarchical
+  sequential
+  alphanumeric
+}
+
 model Project {
   id               Int                @id @default(autoincrement())
   fullName         String             @map("full_name")
@@ -152,7 +158,7 @@ model Project {
   endDate          DateTime           @map("end_date")
   currency         Currency           @relation(fields: [currencyId], references: [id])
   currencyId       Int
-  boqStructureType String             @default("hierarchical") @map("boq_structure_type") // e.g. 'hierarchical', 'sequential', 'alphanumeric'
+  boqStructureType boqStructureType   @default(hierarchical) @map("boq_structure_type") // e.g. 'hierarchical', 'sequential', 'alphanumeric'
   createdAt        DateTime           @default(now()) @map("created_at")
   updatedAt        DateTime           @updatedAt
   user             User               @relation(fields: [userId], references: [id])

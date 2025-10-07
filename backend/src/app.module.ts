@@ -25,6 +25,7 @@ import { ProjectsModule } from './projects/list/projects.module';
 import { ProgressModule } from './progress/progress.module';
 import { TasksModule } from './projects/tasks/tasks.module';
 import { LocationsModule } from './projects/locations/locations.module';
+import { BoqModule } from './projects/boq/boq.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { LocationsModule } from './projects/locations/locations.module';
     ProgressModule,
     TasksModule,
     LocationsModule,
+    BoqModule,
   ],
   controllers: [AppController],
   providers: [

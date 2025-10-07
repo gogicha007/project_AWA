@@ -428,6 +428,12 @@ exports.ProjectStatus = exports.$Enums.ProjectStatus = {
   onHold: 'onHold'
 };
 
+exports.boqStructureType = exports.$Enums.boqStructureType = {
+  hierarchical: 'hierarchical',
+  sequential: 'sequential',
+  alphanumeric: 'alphanumeric'
+};
+
 exports.TaskGroup = exports.$Enums.TaskGroup = {
   node: 'node',
   reservoir: 'reservoir',

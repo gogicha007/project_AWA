@@ -167,6 +167,15 @@ export const ProjectStatus: {
 export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
 
 
+export const boqStructureType: {
+  hierarchical: 'hierarchical',
+  sequential: 'sequential',
+  alphanumeric: 'alphanumeric'
+};
+
+export type boqStructureType = (typeof boqStructureType)[keyof typeof boqStructureType]
+
+
 export const TaskGroup: {
   node: 'node',
   reservoir: 'reservoir',
@@ -206,6 +215,10 @@ export const MilestoneStatus: typeof $Enums.MilestoneStatus
 export type ProjectStatus = $Enums.ProjectStatus
 
 export const ProjectStatus: typeof $Enums.ProjectStatus
+
+export type boqStructureType = $Enums.boqStructureType
+
+export const boqStructureType: typeof $Enums.boqStructureType
 
 export type TaskGroup = $Enums.TaskGroup
 
@@ -5481,7 +5494,7 @@ export namespace Prisma {
 
   export type BoqItemGroupByOutputType = {
     id: number
-    sectionId: number
+    sectionId: number | null
     breakdownId: number | null
     itemNumber: string
     description: string
@@ -5654,7 +5667,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      sectionId: number
+      sectionId: number | null
       breakdownId: number | null
       itemNumber: string
       description: string
@@ -11431,7 +11444,7 @@ export namespace Prisma {
     startDate: Date | null
     endDate: Date | null
     currencyId: number | null
-    boqStructureType: string | null
+    boqStructureType: $Enums.boqStructureType | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -11448,7 +11461,7 @@ export namespace Prisma {
     startDate: Date | null
     endDate: Date | null
     currencyId: number | null
-    boqStructureType: string | null
+    boqStructureType: $Enums.boqStructureType | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -11638,7 +11651,7 @@ export namespace Prisma {
     startDate: Date
     endDate: Date
     currencyId: number
-    boqStructureType: string
+    boqStructureType: $Enums.boqStructureType
     createdAt: Date
     updatedAt: Date
     userId: number
@@ -11789,7 +11802,7 @@ export namespace Prisma {
       startDate: Date
       endDate: Date
       currencyId: number
-      boqStructureType: string
+      boqStructureType: $Enums.boqStructureType
       createdAt: Date
       updatedAt: Date
       userId: number
@@ -12233,7 +12246,7 @@ export namespace Prisma {
     readonly startDate: FieldRef<"Project", 'DateTime'>
     readonly endDate: FieldRef<"Project", 'DateTime'>
     readonly currencyId: FieldRef<"Project", 'Int'>
-    readonly boqStructureType: FieldRef<"Project", 'String'>
+    readonly boqStructureType: FieldRef<"Project", 'boqStructureType'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
     readonly userId: FieldRef<"Project", 'Int'>
@@ -35639,6 +35652,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'boqStructureType'
+   */
+  export type EnumboqStructureTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'boqStructureType'>
+    
+
+
+  /**
+   * Reference to a field of type 'boqStructureType[]'
+   */
+  export type ListEnumboqStructureTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'boqStructureType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -35796,7 +35823,7 @@ export namespace Prisma {
     OR?: BoqItemWhereInput[]
     NOT?: BoqItemWhereInput | BoqItemWhereInput[]
     id?: IntFilter<"BoqItem"> | number
-    sectionId?: IntFilter<"BoqItem"> | number
+    sectionId?: IntNullableFilter<"BoqItem"> | number | null
     breakdownId?: IntNullableFilter<"BoqItem"> | number | null
     itemNumber?: StringFilter<"BoqItem"> | string
     description?: StringFilter<"BoqItem"> | string
@@ -35822,7 +35849,7 @@ export namespace Prisma {
 
   export type BoqItemOrderByWithRelationInput = {
     id?: SortOrder
-    sectionId?: SortOrder
+    sectionId?: SortOrderInput | SortOrder
     breakdownId?: SortOrderInput | SortOrder
     itemNumber?: SortOrder
     description?: SortOrder
@@ -35851,7 +35878,7 @@ export namespace Prisma {
     AND?: BoqItemWhereInput | BoqItemWhereInput[]
     OR?: BoqItemWhereInput[]
     NOT?: BoqItemWhereInput | BoqItemWhereInput[]
-    sectionId?: IntFilter<"BoqItem"> | number
+    sectionId?: IntNullableFilter<"BoqItem"> | number | null
     breakdownId?: IntNullableFilter<"BoqItem"> | number | null
     itemNumber?: StringFilter<"BoqItem"> | string
     description?: StringFilter<"BoqItem"> | string
@@ -35877,7 +35904,7 @@ export namespace Prisma {
 
   export type BoqItemOrderByWithAggregationInput = {
     id?: SortOrder
-    sectionId?: SortOrder
+    sectionId?: SortOrderInput | SortOrder
     breakdownId?: SortOrderInput | SortOrder
     itemNumber?: SortOrder
     description?: SortOrder
@@ -35904,7 +35931,7 @@ export namespace Prisma {
     OR?: BoqItemScalarWhereWithAggregatesInput[]
     NOT?: BoqItemScalarWhereWithAggregatesInput | BoqItemScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"BoqItem"> | number
-    sectionId?: IntWithAggregatesFilter<"BoqItem"> | number
+    sectionId?: IntNullableWithAggregatesFilter<"BoqItem"> | number | null
     breakdownId?: IntNullableWithAggregatesFilter<"BoqItem"> | number | null
     itemNumber?: StringWithAggregatesFilter<"BoqItem"> | string
     description?: StringWithAggregatesFilter<"BoqItem"> | string
@@ -36256,7 +36283,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Project"> | Date | string
     endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
-    boqStructureType?: StringFilter<"Project"> | string
+    boqStructureType?: EnumboqStructureTypeFilter<"Project"> | $Enums.boqStructureType
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -36307,7 +36334,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Project"> | Date | string
     endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
-    boqStructureType?: StringFilter<"Project"> | string
+    boqStructureType?: EnumboqStructureTypeFilter<"Project"> | $Enums.boqStructureType
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -36356,7 +36383,7 @@ export namespace Prisma {
     startDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     endDate?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     currencyId?: IntWithAggregatesFilter<"Project"> | number
-    boqStructureType?: StringWithAggregatesFilter<"Project"> | string
+    boqStructureType?: EnumboqStructureTypeWithAggregatesFilter<"Project"> | $Enums.boqStructureType
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     userId?: IntWithAggregatesFilter<"Project"> | number
@@ -37811,7 +37838,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -37850,7 +37877,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -37870,7 +37897,7 @@ export namespace Prisma {
 
   export type BoqItemCreateManyInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -37901,7 +37928,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -38253,7 +38280,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -38276,7 +38303,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -38294,7 +38321,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -38317,7 +38344,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -38338,7 +38365,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -38352,7 +38379,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38368,7 +38395,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -40387,6 +40414,13 @@ export namespace Prisma {
     not?: NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
   }
 
+  export type EnumboqStructureTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.boqStructureType | EnumboqStructureTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumboqStructureTypeFilter<$PrismaModel> | $Enums.boqStructureType
+  }
+
   export type ClientNullableScalarRelationFilter = {
     is?: ClientWhereInput | null
     isNot?: ClientWhereInput | null
@@ -40482,6 +40516,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProjectStatusFilter<$PrismaModel>
     _max?: NestedEnumProjectStatusFilter<$PrismaModel>
+  }
+
+  export type EnumboqStructureTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.boqStructureType | EnumboqStructureTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumboqStructureTypeWithAggregatesFilter<$PrismaModel> | $Enums.boqStructureType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumboqStructureTypeFilter<$PrismaModel>
+    _max?: NestedEnumboqStructureTypeFilter<$PrismaModel>
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -42195,6 +42239,10 @@ export namespace Prisma {
 
   export type EnumProjectStatusFieldUpdateOperationsInput = {
     set?: $Enums.ProjectStatus
+  }
+
+  export type EnumboqStructureTypeFieldUpdateOperationsInput = {
+    set?: $Enums.boqStructureType
   }
 
   export type ClientUpdateOneWithoutProjectNestedInput = {
@@ -44589,6 +44637,13 @@ export namespace Prisma {
     not?: NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
   }
 
+  export type NestedEnumboqStructureTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.boqStructureType | EnumboqStructureTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumboqStructureTypeFilter<$PrismaModel> | $Enums.boqStructureType
+  }
+
   export type NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ProjectStatus | EnumProjectStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
@@ -44597,6 +44652,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProjectStatusFilter<$PrismaModel>
     _max?: NestedEnumProjectStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumboqStructureTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.boqStructureType | EnumboqStructureTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.boqStructureType[] | ListEnumboqStructureTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumboqStructureTypeWithAggregatesFilter<$PrismaModel> | $Enums.boqStructureType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumboqStructureTypeFilter<$PrismaModel>
+    _max?: NestedEnumboqStructureTypeFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -44723,7 +44788,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateWithoutBreakdownInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     itemNumber: string
     description: string
     materialId?: number | null
@@ -44836,7 +44901,7 @@ export namespace Prisma {
     OR?: BoqItemScalarWhereInput[]
     NOT?: BoqItemScalarWhereInput | BoqItemScalarWhereInput[]
     id?: IntFilter<"BoqItem"> | number
-    sectionId?: IntFilter<"BoqItem"> | number
+    sectionId?: IntNullableFilter<"BoqItem"> | number | null
     breakdownId?: IntNullableFilter<"BoqItem"> | number | null
     itemNumber?: StringFilter<"BoqItem"> | string
     description?: StringFilter<"BoqItem"> | string
@@ -45056,7 +45121,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateWithoutChildItemsInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -45098,7 +45163,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateWithoutParentItemInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -45332,7 +45397,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateWithoutChildItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -45425,7 +45490,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     currency: CurrencyCreateNestedOneWithoutProjectInput
@@ -45446,7 +45511,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -45496,7 +45561,7 @@ export namespace Prisma {
     startDate?: DateTimeFilter<"Project"> | Date | string
     endDate?: DateTimeFilter<"Project"> | Date | string
     currencyId?: IntFilter<"Project"> | number
-    boqStructureType?: StringFilter<"Project"> | string
+    boqStructureType?: EnumboqStructureTypeFilter<"Project"> | $Enums.boqStructureType
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: IntFilter<"Project"> | number
@@ -45887,7 +45952,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -45909,7 +45974,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -46058,7 +46123,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -46080,7 +46145,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -46667,7 +46732,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -46689,7 +46754,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -46722,7 +46787,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -46744,7 +46809,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -46761,7 +46826,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -46783,7 +46848,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -46976,7 +47041,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -46998,7 +47063,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -47331,7 +47396,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -47353,7 +47418,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -47540,7 +47605,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -47562,7 +47627,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -49197,7 +49262,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -49218,7 +49283,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -49604,7 +49669,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateWithoutMaterialInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -50042,7 +50107,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateWithoutUnitInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -50257,7 +50322,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     client?: ClientCreateNestedOneWithoutProjectInput
@@ -50279,7 +50344,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     Progress?: ProgressUncheckedCreateNestedManyWithoutProjectInput
@@ -50503,7 +50568,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedCreateWithoutUserInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -50808,7 +50873,7 @@ export namespace Prisma {
 
   export type BoqItemCreateManyBreakdownInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     itemNumber: string
     description: string
     materialId?: number | null
@@ -50849,7 +50914,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateWithoutBreakdownInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -50868,7 +50933,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateManyWithoutBreakdownInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     materialId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -50900,7 +50965,7 @@ export namespace Prisma {
 
   export type BoqItemCreateManyParentItemInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -50936,7 +51001,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateWithoutParentItemInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -50955,7 +51020,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateManyWithoutParentItemInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -50981,7 +51046,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -50995,7 +51060,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     currency?: CurrencyUpdateOneRequiredWithoutProjectNestedInput
@@ -51016,7 +51081,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -51036,7 +51101,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -51833,7 +51898,7 @@ export namespace Prisma {
     notes: string
     startDate: Date | string
     endDate: Date | string
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -51973,7 +52038,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -51994,7 +52059,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -52014,7 +52079,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -52141,7 +52206,7 @@ export namespace Prisma {
 
   export type BoqItemCreateManyMaterialInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -52220,7 +52285,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -52239,7 +52304,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateManyWithoutMaterialInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -52333,7 +52398,7 @@ export namespace Prisma {
 
   export type BoqItemCreateManyUnitInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -52446,7 +52511,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateWithoutUnitInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -52465,7 +52530,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateManyWithoutUnitInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -52533,7 +52598,7 @@ export namespace Prisma {
     startDate: Date | string
     endDate: Date | string
     currencyId: number
-    boqStructureType?: string
+    boqStructureType?: $Enums.boqStructureType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -52605,7 +52670,7 @@ export namespace Prisma {
 
   export type BoqItemCreateManyUserInput = {
     id?: number
-    sectionId: number
+    sectionId?: number | null
     breakdownId?: number | null
     itemNumber: string
     description: string
@@ -52771,7 +52836,7 @@ export namespace Prisma {
     notes?: StringFieldUpdateOperationsInput | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutProjectNestedInput
@@ -52793,7 +52858,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Progress?: ProgressUncheckedUpdateManyWithoutProjectNestedInput
@@ -52813,7 +52878,7 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     currencyId?: IntFieldUpdateOperationsInput | number
-    boqStructureType?: StringFieldUpdateOperationsInput | string
+    boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -53038,7 +53103,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -53057,7 +53122,7 @@ export namespace Prisma {
 
   export type BoqItemUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    sectionId?: IntFieldUpdateOperationsInput | number
+    sectionId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdownId?: NullableIntFieldUpdateOperationsInput | number | null
     itemNumber?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string

@@ -33,7 +33,7 @@ export default function VendorsClient() {
   } = useVendorsLogic(vendors, mutate, tV);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarSatus, setSnackbarStatus] = useState<{
+  const [snackbarStatus, setSnackbarStatus] = useState<{
     message: string;
     success: boolean;
   }>({ message: '', success: false });
@@ -122,7 +122,7 @@ export default function VendorsClient() {
         </div>
       </div>
       <Snackbar
-        status={snackbarSatus}
+        status={snackbarStatus}
         open={snackbarOpen}
         onClose={() => setSnackbarOpen(false)}
       />
