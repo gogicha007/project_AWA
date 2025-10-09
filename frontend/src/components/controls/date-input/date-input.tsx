@@ -27,7 +27,7 @@ interface DateInputProps<T extends FieldValues> {
   maxDate?: Date;
   locale?: DatePickerProps['locale'];
   rules?: RegisterOptions<T, Path<T>>;
-  className?: string
+  className?: string;
 }
 
 function DateInput<T extends FieldValues>({
@@ -36,10 +36,10 @@ function DateInput<T extends FieldValues>({
   control,
   placeholder,
   rules,
-  className
+  className,
 }: DateInputProps<T>) {
   const localeCode = useLocale();
-  
+
   return (
     <>
       <label htmlFor={name}>{label}</label>
@@ -63,11 +63,13 @@ function DateInput<T extends FieldValues>({
                 d.setHours(12, 0, 0, 0);
                 field.onChange(d);
               }}
-              className={className ?? styles.input}
+              className={className ?? ''}
               dateFormat="yyyy-MM-dd"
               autoComplete="off"
             />
-            {rules && <p className={styles.errorText}>{fieldState.error?.message}</p>}
+            {rules && (
+              <p className={styles.errorText}>{fieldState.error?.message}</p>
+            )}
           </>
         )}
       />

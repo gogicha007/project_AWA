@@ -22,7 +22,6 @@ const GeneralInfoFields = ({ tS }: Props) => {
           </label>
           <input
             id="alias"
-            className={styles.input}
             {...register('alias')}
             type="text"
           />
@@ -36,7 +35,7 @@ const GeneralInfoFields = ({ tS }: Props) => {
           <label className={styles.required} htmlFor="status">
             {tS('form.status_label')}
           </label>
-          <select id="status" className={styles.input} {...register('status')}>
+          <select id="status"  {...register('status')}>
             <option value="">Select status</option>
             <option value="APPLIED">Applied</option>
             <option value="DECLARED">Declared</option>
@@ -56,7 +55,6 @@ const GeneralInfoFields = ({ tS }: Props) => {
           </label>
           <input
             id="declaration_number"
-            className={styles.input}
             {...register('declaration_number')}
             type="text"
           />
