@@ -66,7 +66,7 @@ export default function FileUploader({
       if (response.status !== 200) throw new Error('Upload failed');
       setStatus('success');
       setUploadProgress(100);
-    } catch (_) {
+    } catch {
       setStatus('error');
       setUploadProgress(0);
     }

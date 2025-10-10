@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './shipment-tabs.module.css';
 import FreightFields from './freight-table-components/FreightFields';
-import { FileData } from '@/components/controls/file-input/FileInput';
+import { ShipmentFileDTO as FileData } from '@/api/types';
 import { CurrencyDTO, VendorDTO, UnitDTO, MaterialNameDTO } from '@/api/types';
 import FileInput from '@/components/controls/file-input/FileInput';
 import InvoiceFields from './invoice-table-components/InvoiceFields';

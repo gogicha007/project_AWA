@@ -10,8 +10,8 @@ export function useProjectLocationsApi(projectId: number | null) {
     const [error, setError] = useState<unknown | null>(null);
     const { currentUser, loading: authLoading } = useAuth();
 
-    console.log('useProjectLocationsApi called with projectId:', projectId);
-    const fetchProjectLocations = async () => {
+    console.log(projectId)
+    const fetchProjectLocations = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
@@ -22,7 +22,7 @@ export function useProjectLocationsApi(projectId: number | null) {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
     const mutate = useCallback(() => {
         if (!authLoading) return fetchProjectLocations();
