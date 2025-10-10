@@ -1,3 +1,4 @@
+// file input in React with react-hook-form integration
 import styles from './file-input.module.css';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
