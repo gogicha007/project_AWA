@@ -28,7 +28,7 @@ export const ImportFile: React.FC<Props> = ({ onFileSelect }) => {
         type="file"
         ref={fileInputRef}
         onChange={handleOnChange}
-        accept=".xlsx, .csv"
+        accept=".xlsx, .xls, .csv"
         style={{ display: 'none' }}
       />
       <button
