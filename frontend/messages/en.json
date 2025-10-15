@@ -341,6 +341,7 @@
     "title": "Bill of Quantities",
     "sections": "BoQ Sections",
     "items": "BoQ Items",
+    "select_sheet": "Select sheet name",
     "table": {
       "id": "ID",
       "material": "Material",
