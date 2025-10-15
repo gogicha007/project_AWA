@@ -1,6 +1,6 @@
 import { ImportFile } from './components/ImportFile';
 
-export const ProjectBoq: React.FC<{ projectId: number }> = ({ projectId }) => {
+export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const processFile = (file: File) => {
 
     if (file.name.slice(-4).toString() === '.csv') {

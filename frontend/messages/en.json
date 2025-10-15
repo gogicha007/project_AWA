@@ -339,6 +339,8 @@
   },
   "ProjectBoq": {
     "title": "Bill of Quantities",
+    "sections": "BoQ Sections",
+    "items": "BoQ Items",
     "table": {
       "id": "ID",
       "material": "Material",

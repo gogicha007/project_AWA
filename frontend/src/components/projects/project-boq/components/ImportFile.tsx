@@ -38,6 +38,13 @@ export const ImportFile: React.FC<Props> = ({ onFileSelect }) => {
       >
         XLSX/CSV
       </button>
+      <button
+        className="rounded bg-green-500 text-white"
+        style={{ padding: '8px 16px', marginLeft: '8px' }}
+        onClick={() => { alert('Clipboard import not implemented yet'); }}
+      >
+        Clipboard
+      </button>
     </div>
   );
 };
