@@ -31,8 +31,17 @@
     "save": "Save"
   },
   "FileUploader": {
+    "attached_files": "Attached files",
+    "error": "Error uploading file.",
+    "file_name": "File name",
+    "file_size": "File size",
+    "file_type": "File type",
+    "file_too_large": "File size must be less than ",
     "select_files": "Select files",
-    "attached_files": "Attached files"
+    "select_file": "Select file",
+    "success": "File uploaded successfully!",
+    "upload": "Upload",
+    "uploading": "Uploading"
   },
   "Freights": {
     "title": "Freights",
@@ -269,10 +278,13 @@
     "description": "Manage and track your projects, monitor progress, and collaborate with your team.",
     "form": {
       "title_label": "Title",
+      "display_name_label": "Display Name",
       "description_label": "Description",
       "status_label": "Status",
       "start_date_label": "Start Date",
       "end_date_label": "End Date",
+      "currency_label": "Currency",
+      "currency_placeholder": "Select currency...",
       "create_title": "Add Project",
       "edit_title": "Edit Project details"
     },
@@ -284,6 +296,74 @@
     },
     "actions": {
       "create": "Create New Project"
+    },
+    "errors": {
+      "loading": "Error loading Projects",
+      "delete": "Error deleting Project with id:",
+      "save": "Error saving Project:"
+    },
+
+    "warnings": {
+      "delete": "Are you sure you want to delete this Project?"
+    }
+  },
+  "ProjectDetails": {
+    "overview": "Overview",
+    "tasks": "Tasks",
+    "team": "Team",
+    "files": "Files",
+    "settings": "Settings",
+    "not_found": "Project not found",
+    "errors": {
+      "loading": "Error loading project details"
+    },
+    "labels": {
+      "project_id": "Project ID",
+      "title": "Title",
+      "display_name": "Display Name",
+      "description": "Description",
+      "status": "Status",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "currency": "Project Currency"
+    }
+  },
+  "ProjectLocations": {
+    "title": "Project Locations",
+    "card": {
+      "progress_title": "Overall Progress"
+    },
+    "actions": {
+      "create": "Add location"
+    }
+  },
+  "ProjectBoq": {
+    "title": "Bill of Quantities",
+    "sections": "BoQ Sections",
+    "items": "BoQ Items",
+    "select_sheet": "Select sheet name",
+    "table": {
+      "id": "ID",
+      "material": "Material",
+      "description": "Description",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "price": "Price",
+      "total": "Total"
+    },
+    "actions": {
+      "title": "Actions",
+      "add": "Add new item",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "warnings": {
+      "delete": "Are you sure you want to delete this record?"
+    },
+    "validation": {
+      "min_value": "min value to be 0.01",
+      "required": "value required",
+      "required_fields": "Fill required fields(Material, Quantity, Unit, Price) or Remove the record"
     }
   },
   "RegisterPage": {

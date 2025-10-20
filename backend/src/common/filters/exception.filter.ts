@@ -54,11 +54,14 @@ export class CustomExceptionFilter implements ExceptionFilter {
 
     this.loggingService.error(
       `Error: ${errorMessage} - Request: ${request.method} ${request.url}`,
+      exception instanceof Error ? exception.stack : String(exception),
     );
 
     response.status(status).json({
-      statusCode: status,
+      success: false,
       message: errorMessage,
+      statusCode: status,
+      timestamp: new Date().toISOString(),
     });
   }
 }

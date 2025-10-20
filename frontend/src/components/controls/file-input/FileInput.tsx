@@ -1,13 +1,10 @@
+// file input in React with react-hook-form integration
 import styles from './file-input.module.css';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import convertToBase64 from '@/utils/file-utils';
+import { ShipmentFileDTO as FileData } from '@/api/types';
 
-export type FileData = {
-  fileName: string;
-  fileType: string;
-  fileData: string;
-};
 
 interface FileInputProps {
   disabled: boolean;

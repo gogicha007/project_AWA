@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 
-export default function MasterDataLayoutlayout({
+export default function MasterDataLayout({
   children,
 }: {
   children: React.ReactNode;

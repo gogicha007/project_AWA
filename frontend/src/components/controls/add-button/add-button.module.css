@@ -1,5 +1,4 @@
 .addButton {
-  /* background-color: #10b981; */
   background-color: var(--secondary-500);
   color: white;
   padding: 8px 16px;
@@ -14,6 +13,5 @@
 }
 
 .addButton:hover {
-  /* background-color: #059669; */
   background-color: var(--secondary-600);
 }

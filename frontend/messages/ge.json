@@ -27,11 +27,22 @@
     "error": "შეცდომა მოხდა",
     "loading": "იტვირთება...",
     "no_data": "მონაცემები არ არის",
-    "viewDetails": "დეტალების ნახვა"
+    "viewDetails": "დეტალების ნახვა",
+    "save": "შენახვა"
   },
   "FileUploader": {
+    "attached_files": "მიმაგრებული ფაილები",
+    "error": "ფაილის ატვირთვის შეცდომა.",
+    "file_name": "ფაილის სახელი",
+    "file_size": "ფაილის ზომა",
+    "file_type": "ფაილის ტიპი",
+    "file_too_large": "ფაილის ზომა უნდა იყოს ნაკლები ",
     "select_files": "ფაილების არჩევა",
-    "attached_files": "მიმაგრებული ფაილები"
+    "select_file": "ფაილის არჩევა",
+    "success": "ფაილი წარმატებით აიტვირთა!",
+    "upload": "ატვირთვა",
+    "uploading": "იტვირთება",
+    "remove": "წაშლა"
   },
   "Freights": {
     "title": "სატვირთო",
@@ -266,6 +277,18 @@
   "Projects": {
     "title": "პროექტები",
     "description": "მართეთ და აკონტროლეთ თქვენი პროექტები, დააკვირდით პროგრესს და ითანამშრომლეთ გუნდთან.",
+    "form": {
+      "title_label": "სათაური",
+      "display_name_label": "საჩვენებელი სახელი",
+      "description_label": "აღწერა",
+      "status_label": "სტატუსი",
+      "start_date_label": "დაწყების თარიღი",
+      "end_date_label": "დასრულების თარიღი",
+      "currency_label": "ვალუტა",
+      "currency_placeholder": "აირჩიეთ ვალუტა...",
+      "create_title": "პროექტის დამატება",
+      "edit_title": "პროექტის დეტალების რედაქტირება"
+    },
     "status": {
       "active": "აქტიური",
       "completed": "დასრულებული",
@@ -273,7 +296,45 @@
       "onHold": "შეჩერებულია"
     },
     "actions": {
-      "create": "ახალი პროექტის შექმნა"
+      "create": "პროექტის დამატება"
+    },
+    "errors": {
+      "loading": "პროექტების ჩამოტვირთვის შეცდომა",
+      "delete": "პროექტის წაშლის შეცდომა ID-თ:",
+      "save": "პროექტის შენახვის შეცდომა:"
+    },
+    "warnings": {
+      "delete": "დარწმუნებული ხართ, რომ გსურთ ამ პროექტის წაშლა?"
+    }
+  },
+  "ProjectDetails": {
+    "overview": "მიმოხილვა",
+    "tasks": "ამოცანები",
+    "team": "გუნდი",
+    "files": "ფაილები",
+    "settings": "პარამეტრები",
+    "not_found": "პროექტი ვერ მოიძებნა",
+    "errors": {
+      "loading": "პროექტის დეტალების ჩატვირთვის შეცდომა"
+    },
+    "labels": {
+      "project_id": "პროექტის ID",
+      "title": "სათაური",
+      "display_name": "საჩვენებელი სახელი",
+      "description": "აღწერა",
+      "status": "სტატუსი",
+      "start_date": "დაწყების თარიღი",
+      "end_date": "დასრულების თარიღი",
+      "currency": "პროექტის ვალუტა"
+    }
+  },
+  "ProjectLocations": {
+    "title": "პროექტის ლოკაციები",
+    "card": {
+      "progress_title": "ზოგადი პროგრესი"
+    },
+    "actions": {
+      "create": "ლოკაციის დამატება"
     }
   },
   "RegisterPage": {

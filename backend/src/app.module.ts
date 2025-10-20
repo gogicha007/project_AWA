@@ -21,9 +21,11 @@ import { VendorsModule } from './settings/vendors/vendor.module';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { InvoicesModule } from './purchases/sales-invoices/invoices.module';
 import { FreightsModule } from './purchases/freights/freights.module';
-import { ProjectsModule } from './projects/projects.module';
+import { ProjectsModule } from './projects/list/projects.module';
 import { ProgressModule } from './progress/progress.module';
-import { TasksModule } from './tasks/tasks.module';
+import { TasksModule } from './projects/tasks/tasks.module';
+import { LocationsModule } from './projects/locations/locations.module';
+import { BoqModule } from './projects/boq/boq.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { TasksModule } from './tasks/tasks.module';
     ProjectsModule,
     ProgressModule,
     TasksModule,
+    LocationsModule,
+    BoqModule,
   ],
   controllers: [AppController],
   providers: [
