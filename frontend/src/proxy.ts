@@ -8,7 +8,7 @@ const JWKS = createRemoteJWKSet(
   )
 );
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token = request.cookies.get('authToken')?.value;
 
   if (!token) {

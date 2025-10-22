@@ -2,28 +2,59 @@ import React, { useState } from 'react';
 import { ImportFile } from './components/ImportFile';
 import SelectSheetName from './components/SelectSheetName';
 import * as XLSX from 'xlsx';
+import * as Papa from 'papaparse';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const [isSheetDialogOpen, setIsSheetDialogOpen] = useState(false);
 
   const processFile = (file: File) => {
-    if (file.name.slice(-4).toString() === '.csv') {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const text = e.target!.result as string;
-        try {
-          const csv_file = XLSX.read(text, { type: 'string' });
-          const sheetName = csv_file.SheetNames[0];
-          const worksheet = csv_file.Sheets[sheetName];
+    const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 
-          const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-          console.log('CSV Data:', data);
-        } catch {
-          alert('Invalid SCV file format');
+    if (!file) return;
+
+    if (file.size > MAX_SIZE_BYTES) {
+      alert('File is too large. Please upload files smaller than 10 MB.');
+      return;
+    }
+
+    if (file.name.slice(-4).toLowerCase() === '.csv') {
+
+      const reader = new FileReader();
+
+      reader.onerror = () => {
+        console.error('FileReader error while reading CSV');
+        alert('Failed to read CSV file.');
+        reader.abort();
+      };
+
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        try {
+          type LocalParseCfg = {
+            skipEmptyLines?: boolean;
+            complete?: (results: Papa.ParseResult<string[]>) => void;
+            error?: (err: Papa.ParseError) => void;
+          };
+
+          const cfg: LocalParseCfg = {
+            skipEmptyLines: true,
+            complete: (results) => {
+              console.log('CSV Data (parsed by Papa):', results.data);
+            },
+            error: (err: Papa.ParseError) => {
+              console.error('CSV parse error:', err);
+              alert('Invalid CSV file or parse error.');
+            },
+          };
+
+          Papa.parse(text, cfg as unknown as Papa.ParseConfig<string[]>);
+        } catch (err) {
+          console.error('CSV parsing failed:', err);
+          alert('Invalid CSV file format.');
         }
       };
+
       reader.readAsText(file);
-      console.log('this is csv file');
       return;
     }
 
