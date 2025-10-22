@@ -9,13 +9,18 @@ export type ProcessedFileData = {
 
 export const processFile = (
   file: File,
-  onComplete?: (result: ProcessedFileData) => void
+  onComplete?: (result: ProcessedFileData) => void,
+  onError?: (error: string) => void
 ) => {
   const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 
   if (!file) return;
 
   if (file.size > MAX_SIZE_BYTES) {
+    if (onError) {
+      onError('File is too large');
+      return
+    }
     alert('File is too large. Please upload files smaller than 10 MB.');
     return;
   }

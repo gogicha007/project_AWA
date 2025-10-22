@@ -8,11 +8,15 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const [selectedFile, setSelectedFile] = useState<ProcessedFileData | null>(
     null
   );
+  const [importFileError, setImportFileError] = useState<string | null>(null);
 
   useEffect(() => {
     if (selectedFile) console.log(selectedFile);
-  }, [selectedFile]);
-  
+    if (importFileError) {
+      console.log(importFileError), setImportFileError(null);
+    }
+  }, [selectedFile, importFileError]);
+
   const closeSheetDialog = () => {
     setIsSheetDialogOpen(false);
   };
@@ -22,7 +26,10 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       <h2 className="text-lg font-semibold">
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
-      <ImportFile onFileSelect={setSelectedFile} />
+      <ImportFile
+        onFileSelect={setSelectedFile}
+        onFileError={setImportFileError}
+      />
       <SelectSheetName isOpen={isSheetDialogOpen} onClose={closeSheetDialog} />
     </div>
   );
