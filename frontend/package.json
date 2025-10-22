@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -35,7 +35,6 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/papaparse": "^5.3.16",
