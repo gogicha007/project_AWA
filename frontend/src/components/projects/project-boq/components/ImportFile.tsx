@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
+import { processFile, ProcessedFileData } from '../utils/ProcessFile';
 
 type Props = {
-  onFileSelect?: (file: File) => void;
+  onFileSelect?: (processedData: ProcessedFileData) => void;
 };
 
 export const ImportFile: React.FC<Props> = ({ onFileSelect }) => {
@@ -16,9 +17,11 @@ export const ImportFile: React.FC<Props> = ({ onFileSelect }) => {
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      if (onFileSelect) {
-        onFileSelect(file);
-      }
+      processFile(file, (processedData) => {
+        if (onFileSelect) {
+          onFileSelect(processedData);
+        }
+      });
     }
   };
 
@@ -41,7 +44,9 @@ export const ImportFile: React.FC<Props> = ({ onFileSelect }) => {
       <button
         className="rounded bg-green-500 text-white"
         style={{ padding: '8px 16px', marginLeft: '8px' }}
-        onClick={() => { alert('Clipboard import not implemented yet'); }}
+        onClick={() => {
+          alert('Clipboard import not implemented yet');
+        }}
       >
         Clipboard
       </button>
