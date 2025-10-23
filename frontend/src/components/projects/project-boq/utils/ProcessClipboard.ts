@@ -74,14 +74,11 @@ export const processClipboard = async ({ setProcessingClipboard, onError, onData
     };
 
     try {
-        // Prefer async Clipboard API with items (may require permission)
         const nav = navigator as Navigator;
         if (nav.clipboard && typeof nav.clipboard.read === 'function') {
-            const clipboardItems: any[] = await nav.clipboard.read();
+            const clipboardItems: ClipboardItem[] = await nav.clipboard.read();
             for (const item of clipboardItems) {
-                // prefer native file-like items first
                 const fileTypes = item.types || [];
-                // If there's an Excel-like blob
                 const excelType = fileTypes.find((t: string) =>
                     /excel|spreadsheet|sheet|application\/vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet/i.test(
                         t
