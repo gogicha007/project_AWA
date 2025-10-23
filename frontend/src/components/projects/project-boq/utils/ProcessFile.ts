@@ -9,19 +9,15 @@ export type ProcessedFileData = {
 
 export const processFile = (
   file: File,
-  onComplete?: (result: ProcessedFileData) => void,
-  onError?: (error: string) => void
+  onComplete: (result: ProcessedFileData) => void,
+  onError: (error: string) => void
 ) => {
   const MAX_SIZE_BYTES = 10 * 1024 * 1024;
 
   if (!file) return;
 
   if (file.size > MAX_SIZE_BYTES) {
-    if (onError) {
-      onError('File is too large');
-      return
-    }
-    alert('File is too large. Please upload files smaller than 10 MB.');
+    onError('File is too large. File size must be under 10 MB.');
     return;
   }
 
@@ -29,8 +25,7 @@ export const processFile = (
     const reader = new FileReader();
 
     reader.onerror = () => {
-      console.error('FileReader error while reading CSV');
-      alert('Failed to read CSV file.');
+      onError('Failed to read CSV file.');
       reader.abort();
     };
 
@@ -45,21 +40,16 @@ export const processFile = (
 
         const cfg: LocalParseCfg = {
           skipEmptyLines: true,
-          complete: (results) => {
-            if (onComplete) {
-              onComplete({ data: results, type: 'csv', file });
-            }
-          },
+          complete: (results) => onComplete({ data: results, type: 'csv', file }),
           error: (err: Papa.ParseError) => {
-            console.error('CSV parse error:', err);
-            alert('Invalid CSV file or parse error.');
+            onError(`Invalid CSV file or parse error: ${err.message} || 'Unknown error.'`);
           },
         };
 
         Papa.parse(text, cfg as unknown as Papa.ParseConfig<string[]>);
       } catch (err) {
-        console.error('CSV parsing failed:', err);
-        alert('Invalid CSV file format.');
+        const message = err instanceof Error ? err.message : String(err);
+        onError(`Invalid CSV file format: ${message || 'Unknown error.'}`);
       }
     };
 
@@ -76,17 +66,16 @@ export const processFile = (
       try {
         const workbook = XLSX.read(data, { type: 'array' });
         if (!workbook.SheetNames.length) {
-          alert('Invalid Excel file: No sheets found.');
+          onError('Invalid Excel file: No sheets found.');
           return;
         }
         if (onComplete) {
           onComplete({ data: workbook, type: 'xlsx', file });
         }
       } catch {
-        alert('Invalid Excel file format');
+        onError('Invalid Excel file format');
       }
     };
     reader.readAsArrayBuffer(file);
-    console.log('this is excel file');
   }
 };

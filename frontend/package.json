@@ -12,7 +12,6 @@
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@material/snackbar": "^14.0.0",
-    "@next/eslint-plugin-next": "^16.0.0",
     "@tailwindcss/postcss": "^4.1.13",
     "@tanstack/react-table": "^8.21.3",
     "axios": "^1.9.0",
@@ -39,6 +38,8 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@next/eslint-plugin-next": "^16.0.0",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/papaparse": "^5.3.16",
@@ -46,6 +47,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "eslint-define-config": "^2.1.0",
     "eslint-plugin-next": "^0.0.0",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.14",
