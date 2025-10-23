@@ -1,34 +1,47 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { processFile, ProcessedFileData } from '../utils/ProcessFile';
+import { processClipboard } from '../utils/ProcessClipboard';
+import * as XLSX from 'xlsx';
 
 type Props = {
-  onFileSelect: (processedData: ProcessedFileData | null) => void;
-  onFileError: (error: string | null) => void;
+  onData: (processedData: ProcessedFileData | null) => void;
+  onError: (error: string | null) => void;
 };
 
-export const ImportFile: React.FC<Props> = ({ onFileSelect, onFileError }) => {
+export const ImportData: React.FC<Props> = ({ onData, onError }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [processingClipboard, setProcessingClipboard] = useState(false);
 
+  // handle file input
   const onChooseFile = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
 
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       processFile(
         file,
         (processedData) => {
-          onFileSelect(processedData);
-          onFileError(null);
+          onData(processedData);
+          onError(null);
         },
         (error) => {
-          onFileError(error), onFileSelect(null);
+          onError(error), onData(null);
         }
       );
     }
+  };
+
+  // handle clipboard
+  const onChooseClipboard = async () => {
+    if (processingClipboard) return;
+    setProcessingClipboard(true);
+
+    processClipboard({setProcessingClipboard, onData, onError});
+  
   };
 
   return (
@@ -36,7 +49,7 @@ export const ImportFile: React.FC<Props> = ({ onFileSelect, onFileError }) => {
       <input
         type="file"
         ref={fileInputRef}
-        onChange={handleOnChange}
+        onChange={handleFile}
         accept=".xlsx, .xls, .csv"
         style={{ display: 'none' }}
       />
@@ -50,9 +63,7 @@ export const ImportFile: React.FC<Props> = ({ onFileSelect, onFileError }) => {
       <button
         className="rounded bg-green-500 text-white"
         style={{ padding: '8px 16px', marginLeft: '8px' }}
-        onClick={() => {
-          alert('Clipboard import not implemented yet');
-        }}
+        onClick={onChooseClipboard}
       >
         Clipboard
       </button>

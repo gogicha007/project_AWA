@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { ImportFile } from './components/ImportFile';
+import { ImportData } from './components/ImportData';
 import SelectSheetName from './components/SelectSheetName';
 import { ProcessedFileData } from './utils/ProcessFile';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const [isSheetDialogOpen, setIsSheetDialogOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<ProcessedFileData | null>(
+  const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
     null
   );
-  const [importFileError, setImportFileError] = useState<string | null>(null);
+  const [importError, setImportError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (selectedFile) console.log(selectedFile);
-    if (importFileError) {
-      console.log(importFileError), setImportFileError(null);
+    if (selectedData) console.log(selectedData);
+    if (importError) {
+      console.log(importError), setImportError(null);
     }
-  }, [selectedFile, importFileError]);
+  }, [selectedData, importError]);
 
   const closeSheetDialog = () => {
     setIsSheetDialogOpen(false);
@@ -26,9 +26,9 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       <h2 className="text-lg font-semibold">
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
-      <ImportFile
-        onFileSelect={setSelectedFile}
-        onFileError={setImportFileError}
+      <ImportData
+        onData={setSelectedData}
+        onError={setImportError}
       />
       <SelectSheetName isOpen={isSheetDialogOpen} onClose={closeSheetDialog} />
     </div>
