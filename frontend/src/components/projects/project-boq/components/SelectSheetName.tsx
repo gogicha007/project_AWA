@@ -43,12 +43,14 @@ export default function SelectSheetName({
           ×
         </button>
       </div>
-      <div className="flex flex-col gap-4 p-8">
-        <div>SelectSheetName</div>
+      <div className="flex flex-col items-center gap-4 p-8">
         <select>
           {sheetNames && sheetNames.map((name) => <option>{name}</option>)}
         </select>
-        <button onClick={onClose} className="w-3xs cursor-pointer border p-3">
+        <button
+          onClick={onClose}
+          className={`rounded bg-green-500 text-white text-sm py-2 px-4 ${styles.button}`}
+        >
           Ok
         </button>
       </div>
