@@ -3,6 +3,7 @@ import { ImportData } from './components/ImportData';
 import SelectSheetName from './components/SelectSheetName';
 import { ProcessedFileData } from './utils/ProcessFile';
 import { SectionsGrid } from './components/SectionsGrid';
+import * as XLSX from 'xlsx';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const [isSheetDialogOpen, setIsSheetDialogOpen] = useState(false);
@@ -22,8 +23,24 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   }, [selectedData, importError]);
 
   const handleData = (data: ProcessedFileData) => {
-    if (data.type === 'xlsx') {
-      console.log('excel data', data);
+    if (
+      data.type === 'xlsx' &&
+      data.data &&
+      typeof data.data === 'object' &&
+      'Sheets' in data.data
+    ) {
+      const workbook = data.data as XLSX.WorkBook;
+      const sheetNames = workbook.SheetNames
+      const sheetName = workbook.SheetNames[8];
+      const worksheet = workbook.Sheets[sheetName];
+      const rows = XLSX.utils.sheet_to_json(worksheet, {header: 1})
+      const objects = XLSX.utils.sheet_to_json(worksheet)
+      console.log('workbook', workbook);
+      console.log('sheet Names', sheetNames);
+      console.log('sheetName', sheetName);
+      console.log('work sheet', worksheet);
+      console.log('excel rows', rows);
+      console.log('excel objects', objects);
     }
     if (data.type === 'csv') {
       console.log('csv data', data);
@@ -40,7 +57,7 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
       <ImportData onData={setSelectedData} onError={setImportError} />
-      <SectionsGrid/>
+      <SectionsGrid />
       <SelectSheetName isOpen={isSheetDialogOpen} onClose={closeSheetDialog} />
     </div>
   );

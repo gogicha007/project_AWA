@@ -45,7 +45,8 @@ export const ImportData: React.FC<Props> = ({ onData, onError }) => {
   };
 
   return (
-    <div>
+    <div className='flex gap-3 items-center'>
+      <h3>Import data from </h3>
       <input
         type="file"
         ref={fileInputRef}
@@ -54,15 +55,15 @@ export const ImportData: React.FC<Props> = ({ onData, onError }) => {
         style={{ display: 'none' }}
       />
       <button
-        className="rounded bg-blue-500 text-white"
-        style={{ padding: '8px 16px' }}
+        className="rounded bg-blue-500 text-white text-xs"
+        style={{ padding: '4px 8px' }}
         onClick={onChooseFile}
       >
         XLSX/CSV
       </button>
       <button
-        className="rounded bg-green-500 text-white"
-        style={{ padding: '8px 16px', marginLeft: '8px' }}
+        className="rounded bg-green-500 text-white text-xs"
+        style={{ padding: '4px 8px' }}
         onClick={onChooseClipboard}
       >
         Clipboard

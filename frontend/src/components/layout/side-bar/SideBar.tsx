@@ -134,8 +134,9 @@ const SideBar = ({ collapsed }: { collapsed: boolean }) => {
               src="/visit_logo.svg"
               alt="logo"
               className={styles.logo}
-              width={120}
-              height={39}
+              width="0" // {120}
+              height="0" // {39}
+              style={{width: '120px', height: 'auto'}}
               priority
             />
           </Link>
