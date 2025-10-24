@@ -8,9 +8,14 @@ type Props = {
   isOpen: boolean;
   onClose?: () => void;
   onSelect?: () => void;
+  sheetNames: string[] | null;
 };
 
-export default function SelectSheetName({ isOpen, onClose }: Props) {
+export default function SelectSheetName({
+  isOpen,
+  onClose,
+  sheetNames,
+}: Props) {
   const sheetNamesDialogRef = useRef<HTMLDialogElement>(null);
   const tS = useTranslations('ProjectBoq');
 
@@ -38,8 +43,15 @@ export default function SelectSheetName({ isOpen, onClose }: Props) {
           ×
         </button>
       </div>
-      <div>SelectSheetName</div>
-      <button onClick={onClose}>Ok</button>
+      <div className="flex flex-col gap-4 p-8">
+        <div>SelectSheetName</div>
+        <select>
+          {sheetNames && sheetNames.map((name) => <option>{name}</option>)}
+        </select>
+        <button onClick={onClose} className="w-3xs cursor-pointer border p-3">
+          Ok
+        </button>
+      </div>
     </dialog>
   );
 }

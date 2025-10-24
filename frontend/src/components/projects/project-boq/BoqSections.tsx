@@ -7,6 +7,7 @@ import * as XLSX from 'xlsx';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const [isSheetDialogOpen, setIsSheetDialogOpen] = useState(false);
+  const [sheetNames, setSheetNames] = useState<string[] | null>(null);
   const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
     null
   );
@@ -30,17 +31,21 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       'Sheets' in data.data
     ) {
       const workbook = data.data as XLSX.WorkBook;
-      const sheetNames = workbook.SheetNames
+      const sheetNamesArr = workbook.SheetNames;
       const sheetName = workbook.SheetNames[8];
       const worksheet = workbook.Sheets[sheetName];
-      const rows = XLSX.utils.sheet_to_json(worksheet, {header: 1})
-      const objects = XLSX.utils.sheet_to_json(worksheet)
+      const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      const objects = XLSX.utils.sheet_to_json(worksheet);
       console.log('workbook', workbook);
-      console.log('sheet Names', sheetNames);
+      console.log('sheet Names', sheetNamesArr);
       console.log('sheetName', sheetName);
       console.log('work sheet', worksheet);
       console.log('excel rows', rows);
       console.log('excel objects', objects);
+      if (sheetNamesArr.length > 1) {
+        setIsSheetDialogOpen(true)
+        setSheetNames(sheetNamesArr)
+      }
     }
     if (data.type === 'csv') {
       console.log('csv data', data);
@@ -49,6 +54,7 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
 
   const closeSheetDialog = () => {
     setIsSheetDialogOpen(false);
+    setSheetNames(null)
   };
 
   return (
@@ -58,7 +64,7 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       </h2>
       <ImportData onData={setSelectedData} onError={setImportError} />
       <SectionsGrid />
-      <SelectSheetName isOpen={isSheetDialogOpen} onClose={closeSheetDialog} />
+      <SelectSheetName isOpen={isSheetDialogOpen} onClose={closeSheetDialog} sheetNames={sheetNames} />
     </div>
   );
 };
