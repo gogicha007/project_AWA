@@ -6,7 +6,7 @@ import { SectionsGrid } from './components/SectionsGrid';
 import * as XLSX from 'xlsx';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
-  const [isSheetDialogOpen, setIsSheetDialogOpen] = useState(false);
+  const [isSheetNamesDialogOpen, setIsSheetNamesDialogOpen] = useState(false);
   const [sheetNames, setSheetNames] = useState<string[] | null>(null);
   const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
     null
@@ -14,12 +14,9 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   const [importError, setImportError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (selectedData) {
-      handleData(selectedData);
-      setSelectedData(null);
-    }
+    if (selectedData) handleData(selectedData);
     if (importError) {
-      console.log(importError), setImportError(null);
+      console.error(importError), setImportError(null);
     }
   }, [selectedData, importError]);
 
@@ -43,8 +40,8 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       console.log('excel rows', rows);
       console.log('excel objects', objects);
       if (sheetNamesArr.length > 1) {
-        setIsSheetDialogOpen(true)
-        setSheetNames(sheetNamesArr)
+        setIsSheetNamesDialogOpen(true);
+        setSheetNames(sheetNamesArr);
       }
     }
     if (data.type === 'csv') {
@@ -52,9 +49,16 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
     }
   };
 
+  const handleSelectedSheet = (sheetName: string) => {
+    const workBook = selectedData?.data as XLSX.WorkBook
+    
+    console.log('sheet name', sheetName);
+    closeSheetDialog();
+  };
+
   const closeSheetDialog = () => {
-    setIsSheetDialogOpen(false);
-    setSheetNames(null)
+    setIsSheetNamesDialogOpen(false);
+    setSheetNames(null);
   };
 
   return (
@@ -64,7 +68,12 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       </h2>
       <ImportData onData={setSelectedData} onError={setImportError} />
       <SectionsGrid />
-      <SelectSheetName isOpen={isSheetDialogOpen} onClose={closeSheetDialog} sheetNames={sheetNames} />
+      <SelectSheetName
+        isOpen={isSheetNamesDialogOpen}
+        onClose={closeSheetDialog}
+        sheetNames={sheetNames}
+        onSelect={handleSelectedSheet}
+      />
     </div>
   );
 };

@@ -84,7 +84,7 @@ export default function UnitsClient() {
         </table>
       </div>
       <Snackbar
-        message={errorMessage || ''}
+        status={{ message: errorMessage || '', success: false }}
         open={snackbarOpen}
         onClose={() => setSnackbarOpen(false)}
       />

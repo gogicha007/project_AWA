@@ -16,7 +16,7 @@ import MaterialTypeDialog from '../../forms/master-data-forms/materialTypes-form
 import Loader from '../../feedback/loader/loader';
 import AddButton from '../../controls/add-button/AddButton';
 import { useMaterialTypesLogic } from './useMaterialTypesLogic';
-import Snackbar from '../../feedback/snackbar/snackbar';
+import Snackbar from '@/components/feedback/snackbar/snackbar';;
 
 export default function MaterialTypesClient() {
   const tT = useTranslations('MasterData');
@@ -116,7 +116,7 @@ export default function MaterialTypesClient() {
         </table>
       </div>
       <Snackbar
-        message={errorMessage || ''}
+        status={ {message: errorMessage || '', success: false} }
         open={snackbarOpen}
         onClose={() => setSnackbarOpen(false)}
       />

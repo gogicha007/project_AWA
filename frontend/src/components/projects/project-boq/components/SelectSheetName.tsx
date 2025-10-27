@@ -1,4 +1,4 @@
-'use-client';
+'use client';
 
 import styles from './select-sheet-name.module.css';
 import { useRef, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 type Props = {
   isOpen: boolean;
   onClose?: () => void;
-  onSelect?: () => void;
+  onSelect: (sheetName: string) => void;
   sheetNames: string[] | null;
 };
 
@@ -15,8 +15,10 @@ export default function SelectSheetName({
   isOpen,
   onClose,
   sheetNames,
+  onSelect,
 }: Props) {
   const sheetNamesDialogRef = useRef<HTMLDialogElement>(null);
+  const selectRef = useRef<HTMLSelectElement>(null);
   const tS = useTranslations('ProjectBoq');
 
   useEffect(() => {
@@ -29,7 +31,13 @@ export default function SelectSheetName({
     } else {
       sheetNamesDialog.close();
     }
-  }, [isOpen, onClose]);
+  }, [isOpen]);
+
+  const handleSelect = () => {
+    const value = selectRef.current?.value || '';
+    onSelect(value);
+    onClose?.();
+  };
 
   return (
     <dialog
@@ -44,12 +52,21 @@ export default function SelectSheetName({
         </button>
       </div>
       <div className="flex flex-col items-center gap-4 p-8">
-        <select>
-          {sheetNames && sheetNames.map((name) => <option>{name}</option>)}
+        <select
+          ref={selectRef}
+          defaultValue={sheetNames?.[0] || ''}
+          aria-label="Sheet name"
+        >
+          {sheetNames &&
+            sheetNames.map((name, idx) => (
+              <option key={idx} value={name}>
+                {name}
+              </option>
+            ))}
         </select>
         <button
-          onClick={onClose}
-          className={`rounded bg-green-500 text-white text-sm py-2 px-4 ${styles.button}`}
+          onClick={handleSelect}
+          className={`rounded bg-green-500 px-4 py-2 text-sm text-white ${styles.button}`}
         >
           Ok
         </button>
