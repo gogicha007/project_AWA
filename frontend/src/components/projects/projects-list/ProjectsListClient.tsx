@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './projects.module.css';
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import {
   ProjectCard,
   ProjectCardSkeleton,
@@ -39,7 +39,7 @@ export default function ProjectsListClient() {
   const snackbarStatus = useMemo(() => ({
     message: errorMessage ?? '',
     success: false,
-  }));
+  }),[errorMessage]);
 
   if (loading || loadingCurrencies || navigating) return <Loader />;
 

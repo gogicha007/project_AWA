@@ -68,7 +68,7 @@ export const processClipboard = async ({ setProcessingClipboard, setImportError,
                 type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             });
             processBlobAsFile(blob, 'clipboard_table.xlsx');
-        } catch (err) {
+        } catch {
             handleError('Failed to parse HTML from clipboard');
         }
     };
@@ -124,7 +124,7 @@ export const processClipboard = async ({ setProcessingClipboard, setImportError,
         }
 
         handleError('Clipboard does not contain Excel data or permission denied');
-    } catch (err: unknown) {
+    } catch {
         try {
             const text = await navigator.clipboard.readText();
             if (text && text.trim().length > 0) {
@@ -136,7 +136,7 @@ export const processClipboard = async ({ setProcessingClipboard, setImportError,
                 return;
             }
             handleError('Cannot access clipboard or clipboard is empty');
-        } catch (e) {
+        } catch {
             handleError(
                 'Cannot access clipboard (permission denied or unsupported)'
             );

@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '../settings.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   flexRender,
   getCoreRowModel,
@@ -48,9 +48,12 @@ export default function VendorsClient() {
     }
   }, [errorMessage, error]);
 
+  const memoizedData = useMemo(() => data, [data]);
+  const memoizedColumns = useMemo(() => columns, [columns]);
+
   const table = useReactTable({
-    data,
-    columns,
+    data: memoizedData,
+    columns: memoizedColumns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     state: {
