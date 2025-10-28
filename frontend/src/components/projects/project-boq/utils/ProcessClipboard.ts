@@ -3,15 +3,15 @@ import { processFile, ProcessedFileData } from './ProcessFile';
 
 type Props = {
     setProcessingClipboard: (boolean: boolean) => void
-    onError: (error: string | null) => void
-    onData: (result: ProcessedFileData | null) => void
+    setImportError: (error: string | null) => void
+    setSelectedData: (result: ProcessedFileData | null) => void
 }
-export const processClipboard = async ({ setProcessingClipboard, onError, onData }: Props) => {
+export const processClipboard = async ({ setProcessingClipboard, setImportError, setSelectedData }: Props) => {
 
     const handleError = (msg: string) => {
         setProcessingClipboard(false);
-        onError(msg);
-        onData(null);
+        setImportError(msg);
+        setSelectedData(null);
     };
 
     const processBlobAsFile = (blob: Blob, name = 'clipboard.xlsx') => {
@@ -24,13 +24,13 @@ export const processClipboard = async ({ setProcessingClipboard, onError, onData
             file,
             (processedData) => {
                 setProcessingClipboard(false);
-                onData(processedData);
-                onError(null);
+                setSelectedData(processedData);
+                setImportError(null);
             },
             (error) => {
                 setProcessingClipboard(false);
-                onError(error);
-                onData(null);
+                setImportError(error);
+                setSelectedData(null);
             }
         );
     };

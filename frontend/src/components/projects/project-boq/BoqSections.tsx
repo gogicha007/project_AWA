@@ -6,72 +6,16 @@ import { SectionsGrid } from './components/SectionsGrid';
 import * as XLSX from 'xlsx';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
-  const [isSheetNamesDialogOpen, setIsSheetNamesDialogOpen] = useState(false);
-  const [sheetNames, setSheetNames] = useState<string[] | null>(null);
-  const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
-    null
-  );
-  const [importError, setImportError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (selectedData) handleData(selectedData);
-    if (importError) {
-      console.error(importError), setImportError(null);
-    }
-  }, [selectedData, importError]);
 
-  const handleData = (data: ProcessedFileData) => {
-    if (
-      data.type === 'xlsx' &&
-      data.data &&
-      typeof data.data === 'object' &&
-      'Sheets' in data.data
-    ) {
-      const workbook = data.data as XLSX.WorkBook;
-      const sheetNamesArr = workbook.SheetNames;
-     
-      if (sheetNamesArr.length > 1) {
-        setIsSheetNamesDialogOpen(true);
-        setSheetNames(sheetNamesArr);
-      } else {
-        handleSelectedSheet(workbook.SheetNames[0])
-      }
-    }
-    if (data.type === 'csv') {
-      console.log('csv data', data);
-    }
-  };
-
-  const handleSelectedSheet = (sheetName: string) => {
-    const wb = selectedData?.data as XLSX.WorkBook
-    const wsh = wb.Sheets[sheetName]
-     const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
-      const objects = XLSX.utils.sheet_to_json(wsh);
-      console.log('workbook', wb);
-      console.log('excel rows', rows);
-      console.log('excel objects', objects);
-    console.log('sheet', wsh);
-    closeSheetDialog();
-  };
-
-  const closeSheetDialog = () => {
-    setIsSheetNamesDialogOpen(false);
-    setSheetNames(null);
-  };
 
   return (
     <div className="flex flex-col items-start gap-4 p-6">
       <h2 className="text-lg font-semibold">
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
-      <ImportData onData={setSelectedData} onError={setImportError} />
+      <ImportData />
       <SectionsGrid />
-      <SelectSheetName
-        isOpen={isSheetNamesDialogOpen}
-        onClose={closeSheetDialog}
-        sheetNames={sheetNames}
-        onSelect={handleSelectedSheet}
-      />
     </div>
   );
 };
