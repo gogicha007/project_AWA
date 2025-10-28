@@ -14,9 +14,22 @@ const AuthBar = () => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+useEffect(() => {
+  if (typeof window === 'undefined') return;
+
+  const id =
+    typeof window.requestAnimationFrame === 'function'
+      ? window.requestAnimationFrame(() => setMounted(true))
+      : window.setTimeout(() => setMounted(true), 0);
+
+  return () => {
+    if (typeof window.cancelAnimationFrame === 'function' && typeof id === 'number') {
+      window.cancelAnimationFrame(id as number);
+    } else {
+      clearTimeout(id as number);
+    }
+  };
+}, []);
 
   const signOut = () => {
     logout();

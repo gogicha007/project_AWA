@@ -29,19 +29,12 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
     ) {
       const workbook = data.data as XLSX.WorkBook;
       const sheetNamesArr = workbook.SheetNames;
-      const sheetName = workbook.SheetNames[8];
-      const worksheet = workbook.Sheets[sheetName];
-      const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-      const objects = XLSX.utils.sheet_to_json(worksheet);
-      console.log('workbook', workbook);
-      console.log('sheet Names', sheetNamesArr);
-      console.log('sheetName', sheetName);
-      console.log('work sheet', worksheet);
-      console.log('excel rows', rows);
-      console.log('excel objects', objects);
+     
       if (sheetNamesArr.length > 1) {
         setIsSheetNamesDialogOpen(true);
         setSheetNames(sheetNamesArr);
+      } else {
+        handleSelectedSheet(workbook.SheetNames[0])
       }
     }
     if (data.type === 'csv') {
@@ -50,9 +43,14 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
   };
 
   const handleSelectedSheet = (sheetName: string) => {
-    const workBook = selectedData?.data as XLSX.WorkBook
-    
-    console.log('sheet name', sheetName);
+    const wb = selectedData?.data as XLSX.WorkBook
+    const wsh = wb.Sheets[sheetName]
+     const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
+      const objects = XLSX.utils.sheet_to_json(wsh);
+      console.log('workbook', wb);
+      console.log('excel rows', rows);
+      console.log('excel objects', objects);
+    console.log('sheet', wsh);
     closeSheetDialog();
   };
 

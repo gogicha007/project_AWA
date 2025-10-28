@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './projects.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ProjectCard,
   ProjectCardSkeleton,
@@ -23,6 +23,7 @@ export default function ProjectsListClient() {
   const { currencies, loading: loadingCurrencies } = useCurrencyApiHook();
   const [navigating, setNavigating] = useState(false);
   const {
+    clearError,
     currentProject,
     errorMessage,
     handleAdd,
@@ -34,21 +35,11 @@ export default function ProjectsListClient() {
     setIsDialogOpen,
   } = useProjectsLogic(projects, mutate, tPj, setNavigating);
 
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarStatus, setSnackbarStatus] = useState<{
-    message: string;
-    success: boolean;
-  }>({ message: '', success: false });
-
-  useEffect(() => {
-    if (errorMessage) {
-      setSnackbarStatus({
-        message: error instanceof Error ? errorMessage : 'An error occurred',
-        success: false,
-      });
-      setSnackbarOpen(true);
-    }
-  }, [errorMessage, error]);
+  const snackbarOpen = Boolean(errorMessage);
+  const snackbarStatus = useMemo(() => ({
+    message: errorMessage ?? '',
+    success: false,
+  }));
 
   if (loading || loadingCurrencies || navigating) return <Loader />;
 
@@ -101,7 +92,7 @@ export default function ProjectsListClient() {
       <Snackbar
         status={snackbarStatus}
         open={snackbarOpen}
-        onClose={() => setSnackbarOpen(false)}
+        onClose={() => clearError()}
       />
       <ProjectForm
         currencies={currencies}

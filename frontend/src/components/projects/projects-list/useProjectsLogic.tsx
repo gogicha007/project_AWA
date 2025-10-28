@@ -95,7 +95,10 @@ export function useProjectsLogic(
     [router, setNavigating]
   );
 
+  const clearError = useCallback(() => setErrorMessage(undefined), []);
+
   return {
+    clearError,
     currentProject,
     data,
     errorMessage,

@@ -124,8 +124,7 @@ export const processClipboard = async ({ setProcessingClipboard, onError, onData
         }
 
         handleError('Clipboard does not contain Excel data or permission denied');
-    } catch (err: any) {
-        // try readText fallback on error (e.g., permission denied for read)
+    } catch (err: unknown) {
         try {
             const text = await navigator.clipboard.readText();
             if (text && text.trim().length > 0) {
