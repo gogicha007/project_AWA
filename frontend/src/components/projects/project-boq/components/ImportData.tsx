@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { processFile, ProcessedFileData } from '../utils/ProcessFile';
 import { processClipboard } from '../utils/ProcessClipboard';
 import SelectSheetName from './SelectSheetName';
+import Snackbar from '@/components/feedback/snackbar/snackbar';
 import * as XLSX from 'xlsx';
 
 type Props = {
@@ -19,26 +20,28 @@ export const ImportData: React.FC<Props> = () => {
   );
   const [importError, setImportError] = useState<string | null>(null);
 
-  // handle file input
-  const onChooseFile = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+  const closeSheetDialog = () => {
+    setIsSheetNamesDialogOpen(false);
+    setSheetNames(null);
   };
+
+  // handle selected sheet
   const handleSelectedSheet = (sheetName: string) => {
     const wb = selectedData?.data as XLSX.WorkBook;
     const wsh = wb.Sheets[sheetName];
     const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
-    const objects = XLSX.utils.sheet_to_json(wsh);
-    console.log('workbook', wb);
+    // const objects = XLSX.utils.sheet_to_json(wsh);
+    const rowsLength = rows.length;
+    const rowsMaxWidth = rows.reduce(
+      (acc: number, row) => Math.max(acc, (row as Array<unknown>).length),
+      0
+    );
+    console.log('excel rows length', rowsLength);
+    console.log('excel rows max', rowsMaxWidth)
     console.log('excel rows', rows);
-    console.log('excel objects', objects);
-    console.log('sheet', wsh);
+    // console.log('excel objects', objects);
+    // console.log('sheet', wsh);
     closeSheetDialog();
-  };
-  const closeSheetDialog = () => {
-    setIsSheetNamesDialogOpen(false);
-    setSheetNames(null);
   };
 
   const handleData = (data: ProcessedFileData) => {
@@ -63,20 +66,29 @@ export const ImportData: React.FC<Props> = () => {
     }
   };
 
+  // handle file input
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       processFile(
         file,
         (processedData) => {
-          handleData(processedData)
+          handleData(processedData);
           setSelectedData(processedData);
           setImportError(null);
         },
         (error) => {
-          setImportError(error), setSelectedData(null);
+          setImportError(error);
+          setSelectedData(null);
         }
       );
+    }
+  };
+
+  // handle file input - calls handleFile function
+  const onChooseFile = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
@@ -85,12 +97,17 @@ export const ImportData: React.FC<Props> = () => {
     if (processingClipboard) return;
     setProcessingClipboard(true);
 
-    processClipboard({ setProcessingClipboard, setSelectedData, setImportError });
+    processClipboard({
+      setProcessingClipboard,
+      setSelectedData,
+      setImportError,
+    });
   };
 
   return (
     <div className="flex items-center gap-3">
       <h3>Import data from </h3>
+      {/* handle file input*/}
       <input
         type="file"
         ref={fileInputRef}
@@ -105,6 +122,7 @@ export const ImportData: React.FC<Props> = () => {
       >
         XLSX/CSV
       </button>
+      {/* handle clipboard */}
       <button
         className="rounded bg-green-500 text-xs text-white"
         style={{ padding: '4px 8px' }}
@@ -117,6 +135,11 @@ export const ImportData: React.FC<Props> = () => {
         onClose={closeSheetDialog}
         sheetNames={sheetNames}
         onSelect={handleSelectedSheet}
+      />
+      <Snackbar
+        status={{ message: importError as string, success: false }}
+        open={!!importError}
+        onClose={() => setImportError(null)}
       />
     </div>
   );
