@@ -45,8 +45,3 @@
 .closeButton:hover {
   color: #4b5563;
 }
-
-.buttonBg {
-  background-color: var(--primary-500);
-  color: white;
-}

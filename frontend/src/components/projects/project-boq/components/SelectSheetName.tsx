@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './select-sheet-name.module.css';
+import styles from './modal.module.css';
 import { useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -66,7 +66,7 @@ export default function SelectSheetName({
         </select>
         <button
           onClick={handleSelect}
-          className={`rounded bg-green-500 px-4 py-2 text-sm text-white ${styles.button}`}
+          className="rounded w-18 px-4 py-2 text-sm text-white bg-[var(--gray-500)]"
         >
           Ok
         </button>
