@@ -18,6 +18,7 @@ export const ImportData: React.FC<Props> = () => {
   const [isIdentifyColsDialogOpen, setIsIdentifyColsDialogOpen] =
     useState(false);
   const [sheetNames, setSheetNames] = useState<string[] | null>(null);
+  const [dataRows, setDataRows] = useState<unknown[]>([]);
   const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
     null
   );
@@ -32,21 +33,12 @@ export const ImportData: React.FC<Props> = () => {
 
   // handle selected sheet
   const handleSelectedSheet = (sheetName: string) => {
+    closeSheetDialog();
     const wb = selectedData?.data as XLSX.WorkBook;
     const wsh = wb.Sheets[sheetName];
     const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
-    // const objects = XLSX.utils.sheet_to_json(wsh);
-    const rowsLength = rows.length;
-    const rowsMaxWidth = rows.reduce(
-      (acc: number, row) => Math.max(acc, (row as Array<unknown>).length),
-      0
-    );
-    console.log('excel rows length', rowsLength);
-    console.log('excel rows max', rowsMaxWidth);
-    console.log('excel rows', rows);
-    // console.log('excel objects', objects);
-    // console.log('sheet', wsh);
-    closeSheetDialog();
+    setDataRows(rows);
+    setIsIdentifyColsDialogOpen(true);
   };
 
   const handleData = (data: ProcessedFileData) => {
@@ -138,6 +130,7 @@ export const ImportData: React.FC<Props> = () => {
       <Identifycolumns
         isOpen={isIdentifyColsDialogOpen}
         onClose={closeIdentifyColsDialog}
+        rows={dataRows}
       />
       <SelectSheetName
         isOpen={isSheetNamesDialogOpen}
