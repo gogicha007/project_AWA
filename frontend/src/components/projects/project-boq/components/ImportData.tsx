@@ -4,6 +4,7 @@ import { processClipboard } from '../utils/ProcessClipboard';
 import SelectSheetName from './SelectSheetName';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
 import * as XLSX from 'xlsx';
+import Identifycolumns from './IdentifyColumns';
 
 type Props = {
   onData?: (processedData: ProcessedFileData | null) => void;
@@ -14,11 +15,15 @@ export const ImportData: React.FC<Props> = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [processingClipboard, setProcessingClipboard] = useState(false);
   const [isSheetNamesDialogOpen, setIsSheetNamesDialogOpen] = useState(false);
+  const [isIdentifyColsDialogOpen, setIsIdentifyColsDialogOpen] =
+    useState(false);
   const [sheetNames, setSheetNames] = useState<string[] | null>(null);
   const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
     null
   );
   const [importError, setImportError] = useState<string | null>(null);
+
+  const closeIdentifyColsDialog = () => setIsIdentifyColsDialogOpen(false);
 
   const closeSheetDialog = () => {
     setIsSheetNamesDialogOpen(false);
@@ -37,7 +42,7 @@ export const ImportData: React.FC<Props> = () => {
       0
     );
     console.log('excel rows length', rowsLength);
-    console.log('excel rows max', rowsMaxWidth)
+    console.log('excel rows max', rowsMaxWidth);
     console.log('excel rows', rows);
     // console.log('excel objects', objects);
     // console.log('sheet', wsh);
@@ -130,6 +135,10 @@ export const ImportData: React.FC<Props> = () => {
       >
         Clipboard
       </button>
+      <Identifycolumns
+        isOpen={isIdentifyColsDialogOpen}
+        onClose={closeIdentifyColsDialog}
+      />
       <SelectSheetName
         isOpen={isSheetNamesDialogOpen}
         onClose={closeSheetDialog}

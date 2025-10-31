@@ -351,6 +351,7 @@
       "price": "Price",
       "total": "Total"
     },
+    "identify_columns": "Identify Columns",
     "actions": {
       "title": "Actions",
       "add": "Add new item",
