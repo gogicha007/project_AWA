@@ -13,16 +13,17 @@ type Props = {
 
 export const ImportData: React.FC<Props> = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [processingClipboard, setProcessingClipboard] = useState(false);
+  const [dataRows, setDataRows] = useState<unknown[]>([]);
+  const [importError, setImportError] = useState<string | null>(null);
   const [isSheetNamesDialogOpen, setIsSheetNamesDialogOpen] = useState(false);
   const [isIdentifyColsDialogOpen, setIsIdentifyColsDialogOpen] =
     useState(false);
-  const [sheetNames, setSheetNames] = useState<string[] | null>(null);
-  const [dataRows, setDataRows] = useState<unknown[]>([]);
+  const [processingClipboard, setProcessingClipboard] = useState(false);
   const [selectedData, setSelectedData] = useState<ProcessedFileData | null>(
     null
   );
-  const [importError, setImportError] = useState<string | null>(null);
+  const [selectedSheetName, setSelectedSheetName] = useState('');
+  const [sheetNames, setSheetNames] = useState<string[] | null>(null);
 
   const closeIdentifyColsDialog = () => setIsIdentifyColsDialogOpen(false);
 
@@ -37,6 +38,7 @@ export const ImportData: React.FC<Props> = () => {
     const wb = selectedData?.data as XLSX.WorkBook;
     const wsh = wb.Sheets[sheetName];
     const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
+    setSelectedSheetName(sheetName);
     setDataRows(rows);
     setIsIdentifyColsDialogOpen(true);
   };
@@ -131,6 +133,7 @@ export const ImportData: React.FC<Props> = () => {
         isOpen={isIdentifyColsDialogOpen}
         onClose={closeIdentifyColsDialog}
         rows={dataRows}
+        sheetName={selectedSheetName}
       />
       <SelectSheetName
         isOpen={isSheetNamesDialogOpen}
