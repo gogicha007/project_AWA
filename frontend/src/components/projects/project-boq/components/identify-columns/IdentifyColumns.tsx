@@ -4,6 +4,8 @@ import styles from '../modal.module.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import SheetInfo from './SheetInfo';
+import TableHeaders from './TableHeaders';
+import { DndContext } from '@dnd-kit/core';
 
 type ICDialogProps = {
   isOpen: boolean;
@@ -127,66 +129,59 @@ const Identifycolumns = ({
           rowMaxWidth={rowMaxWidth}
         />
 
-        {/* sections list & table */}
-        <div className="flex gap-6">
-          <div className="flex min-w-30 flex-col gap-3 rounded-lg bg-[var(--background-card)] p-4 shadow-sm">
-            <p className="text-lg font-semibold text-[var(--primary-600)]">
-              {tIC(`sections.title`)}
-            </p>
-            <ul className="flex flex-col gap-2">
-              {sectionFields.map((field) => (
-                <li
-                  value={field}
-                  key={field}
-                  className="rounded bg-[var(--primary-50)] px-3 py-2 text-sm font-medium text-[var(--primary-700)] transition-colors hover:bg-[var(--primary-100)]"
-                >
-                  {tIC(`sections.field.${field}`)}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
-            <table className="w-full border-separate border-spacing-0">
-              <thead>
-                <tr>
-                  {Array.from({ length: rowMaxWidth + 1 }, (_, i) => i + 1).map(
-                    (colNum) => (
-                      <th
-                        key={colNum}
-                        className={`sticky top-0 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-3 text-sm font-semibold text-[var(--primary-700)] ${colNum === 1 ? 'left-0 z-20' : 'z-10'}`}
-                      >
-                        {colNum === 1 ? '#' : 'unidentified'}
-                      </th>
-                    )
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {table.map((row, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    className="transition-colors hover:bg-[var(--gray-50)]"
+        <DndContext>
+          {/* sections list & table */}
+          <div className="flex gap-6">
+            {/* sections list */}
+            <div className="flex min-w-30 flex-col gap-3 rounded-lg bg-[var(--background-card)] p-4 shadow-sm">
+              <p className="text-lg font-semibold text-[var(--primary-600)]">
+                {tIC(`sections.title`)}
+              </p>
+              <ul className="flex flex-col gap-2">
+                {sectionFields.map((field) => (
+                  <li
+                    value={field}
+                    key={field}
+                    id={field}
+                    className="rounded bg-[var(--primary-50)] px-3 py-2 text-sm font-medium text-[var(--primary-700)] transition-colors hover:bg-[var(--primary-100)]"
                   >
-                    <td className="sticky left-0 z-10 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-2 text-sm font-semibold text-[var(--primary-700)]">
-                      {firstRow + rowIndex + 1}
-                    </td>
-                    {Array.from({ length: rowMaxWidth }, (_, i) => i + 1).map(
-                      (colNo) => (
-                        <td
-                          key={colNo}
-                          className="border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm text-[var(--foreground)]"
-                        >
-                          {String((row as unknown[])[colNo - 1] ?? '')}
-                        </td>
-                      )
-                    )}
-                  </tr>
+                    {tIC(`sections.field.${field}`)}
+                  </li>
                 ))}
-              </tbody>
-            </table>
+              </ul>
+            </div>
+            {/* table */}
+            <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
+              <table className="w-full border-separate border-spacing-0">
+                <thead>
+                  <TableHeaders colNumber={rowMaxWidth} />
+                </thead>
+                <tbody>
+                  {table.map((row, rowIndex) => (
+                    <tr
+                      key={rowIndex}
+                      className="transition-colors hover:bg-[var(--gray-50)]"
+                    >
+                      <td className="sticky left-0 z-10 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-2 text-sm font-semibold text-[var(--primary-700)]">
+                        {firstRow + rowIndex + 1}
+                      </td>
+                      {Array.from({ length: rowMaxWidth }, (_, i) => i + 1).map(
+                        (colNo) => (
+                          <td
+                            key={colNo}
+                            className="border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm text-[var(--foreground)]"
+                          >
+                            {String((row as unknown[])[colNo - 1] ?? '')}
+                          </td>
+                        )
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        </DndContext>
 
         {/* footer */}
         <div className="flex items-center justify-end gap-15">
