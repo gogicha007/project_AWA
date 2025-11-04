@@ -1,8 +1,9 @@
 'use client';
 
-import styles from './modal.module.css';
+import styles from '../modal.module.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import SheetInfo from './SheetInfo';
 
 type ICDialogProps = {
   isOpen: boolean;
@@ -27,8 +28,8 @@ const Identifycolumns = ({
     'sectionType',
     'totalAmount',
   ];
-  const [firstRow, setFirstRow]= useState(0)
-  const [lastRow, setLastRow]= useState(rows.length - 1)
+  const [firstRow, setFirstRow] = useState(0);
+  const [lastRow, setLastRow] = useState<number | null>(null);
 
   useEffect(() => {
     const identifyColsDialog = identifyColumnsRef.current;
@@ -52,12 +53,11 @@ const Identifycolumns = ({
   };
 
   const table = useMemo(() => {
-    return filterRange(rows, firstRow, lastRow);
+    const endRow = lastRow !== null ? lastRow : rows.length - 1;
+    return filterRange(rows, firstRow, endRow);
   }, [firstRow, lastRow, rows]);
 
-  console.log('table', table);
-
-  const validateRowsRange = () => {
+  const updateRowsRange = () => {
     const rowsFrom = rowsFromRef.current as HTMLInputElement;
     const rowsTo = rowsToRef.current as HTMLInputElement;
 
@@ -79,9 +79,25 @@ const Identifycolumns = ({
     rowsFrom.value = String(fromValue);
     rowsTo.value = String(toValue);
 
-    setFirstRow(Number(rowsFrom.value)-1);
-    setLastRow(Number(rowsTo.value)-1);
+    setFirstRow(Number(rowsFrom.value) - 1);
+    setLastRow(Number(rowsTo.value) - 1);
+  };
 
+  const resetInputs = () => {
+    setFirstRow(0);
+    setLastRow(null);
+    if (rowsFromRef.current) rowsFromRef.current.value = '1';
+    if (rowsToRef.current) rowsToRef.current.value = String(rowsLength);
+  };
+
+  const handleSubmit = () => {
+    resetInputs();
+    if (onClose) onClose();
+  };
+
+  const handleClose = () => {
+    resetInputs();
+    if (onClose) onClose();
   };
 
   return (
@@ -89,44 +105,27 @@ const Identifycolumns = ({
       ref={identifyColumnsRef}
       className={styles.dialog}
       style={{ maxWidth: '82rem' }}
-      onClose={onClose}
+      onClose={handleClose}
     >
       <div className={styles.dialogHeader}>
         <h2 className="text-2xl font-semibold text-[var(--foreground)]">
           {tIC('identify_columns')}
         </h2>
-        <button type="button" className={styles.closeButton} onClick={onClose}>
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={handleClose}
+        >
           ×
         </button>
       </div>
+
       <div className="flex flex-col gap-5 bg-[var(--background-secondary)] px-5 py-4">
-        {/* sheet info */}
-        <div className="flex gap-6 rounded-lg bg-[var(--background-card)] p-4 shadow-sm">
-          <div className="flex items-center gap-2">
-            <span className="font-medium text-[var(--foreground-secondary)]">
-              Sheet Name:
-            </span>
-            <span className="font-semibold text-[var(--primary-600)]">
-              {sheetName}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-medium text-[var(--foreground-secondary)]">
-              Row quantity:
-            </span>
-            <span className="font-semibold text-[var(--foreground)]">
-              {rowsLength}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-medium text-[var(--foreground-secondary)]">
-              Max width:
-            </span>
-            <span className="font-semibold text-[var(--foreground)]">
-              {rowMaxWidth}
-            </span>
-          </div>
-        </div>
+        <SheetInfo
+          sheetName={sheetName}
+          rowsLength={rowsLength}
+          rowMaxWidth={rowMaxWidth}
+        />
 
         {/* sections list & table */}
         <div className="flex gap-6">
@@ -146,6 +145,7 @@ const Identifycolumns = ({
               ))}
             </ul>
           </div>
+
           <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
             <table className="w-full border-separate border-spacing-0">
               <thead>
@@ -169,7 +169,7 @@ const Identifycolumns = ({
                     className="transition-colors hover:bg-[var(--gray-50)]"
                   >
                     <td className="sticky left-0 z-10 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-2 text-sm font-semibold text-[var(--primary-700)]">
-                      {rowIndex + 1}
+                      {firstRow + rowIndex + 1}
                     </td>
                     {Array.from({ length: rowMaxWidth }, (_, i) => i + 1).map(
                       (colNo) => (
@@ -200,7 +200,7 @@ const Identifycolumns = ({
               type="number"
               id="from"
               defaultValue={1}
-              onChange={validateRowsRange}
+              onChange={updateRowsRange}
             />
             <label htmlFor="to">to</label>
             <input
@@ -210,10 +210,10 @@ const Identifycolumns = ({
               type="number"
               id="to"
               defaultValue={rowsLength}
-              onChange={validateRowsRange}
+              onChange={updateRowsRange}
             />
           </div>
-          <button className="button primary self-end" onClick={onClose}>
+          <button className="button primary self-end" onClick={handleSubmit}>
             {tIC('actions.submit')}
           </button>
         </div>

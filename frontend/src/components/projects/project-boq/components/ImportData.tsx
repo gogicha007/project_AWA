@@ -4,7 +4,7 @@ import { processClipboard } from '../utils/ProcessClipboard';
 import SelectSheetName from './SelectSheetName';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
 import * as XLSX from 'xlsx';
-import Identifycolumns from './IdentifyColumns';
+import Identifycolumns from './identify-columns/IdentifyColumns';
 
 type Props = {
   onData?: (processedData: ProcessedFileData | null) => void;
