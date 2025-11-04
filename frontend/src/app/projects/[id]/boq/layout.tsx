@@ -24,7 +24,7 @@ export default function BoqLayout({ children }: { children: React.ReactNode }) {
             href={`${subPath}`}
             className={`button ${pathname === `${subPath}` ? styles.activeLink : ''}`}
           >
-            {tB('sections')}
+            {tB('sections.title')}
           </Link>
           <Link
             href={`${subPath}/items`}
