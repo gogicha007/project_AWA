@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import SheetInfo from './SheetInfo';
 import TableHeaders from './TableHeaders';
 import SectionList from './SectionList';
+import { nameColumns } from './helper';
 
 type ICDialogProps = {
   isOpen: boolean;
@@ -117,7 +118,8 @@ const Identifycolumns = ({
 
   const handleSubmit = () => {
     console.log('Final column mapping:', columnMapping);
-    console.log('table', table)
+    console.log('table', table);
+    const data = nameColumns(table, columnMapping);
     resetInputs();
     if (onClose) onClose();
   };
@@ -201,7 +203,7 @@ const Identifycolumns = ({
           <div className="flex items-center gap-4">
             <label htmlFor="from">Select rows from</label>
             <input
-              key={`from-${sheetName}`}
+              key={`from-${sheetName}}`}
               ref={rowsFromRef}
               className="h-10"
               style={{ width: '70px' }}

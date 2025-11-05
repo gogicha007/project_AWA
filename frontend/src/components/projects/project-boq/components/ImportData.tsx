@@ -25,7 +25,7 @@ export const ImportData: React.FC<Props> = () => {
   const [selectedSheetName, setSelectedSheetName] = useState('');
   const [sheetNames, setSheetNames] = useState<string[] | null>(null);
 
-  const closeIdentifyColsDialog = () => setIsIdentifyColsDialogOpen(false);
+  const closeIdentifyColsDialog = () => {setIsIdentifyColsDialogOpen(false)};
 
   const closeSheetDialog = () => {
     setIsSheetNamesDialogOpen(false);
