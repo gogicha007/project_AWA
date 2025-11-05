@@ -2,10 +2,10 @@
 
 import styles from '../modal.module.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useTranslations } from 'next-intl';
 import SheetInfo from './SheetInfo';
 import TableHeaders from './TableHeaders';
-import { DndContext } from '@dnd-kit/core';
 import SectionList from './SectionList';
 
 type ICDialogProps = {
@@ -27,6 +27,9 @@ const Identifycolumns = ({
   const tIC = useTranslations('ProjectBoq');
   const [firstRow, setFirstRow] = useState(0);
   const [lastRow, setLastRow] = useState<number | null>(null);
+  const [columnMapping, setColumnMapping] = useState<Record<number, string>>(
+    {}
+  );
 
   useEffect(() => {
     const identifyColsDialog = identifyColumnsRef.current;
@@ -83,11 +86,37 @@ const Identifycolumns = ({
   const resetInputs = () => {
     setFirstRow(0);
     setLastRow(null);
-    // if (rowsFromRef.current) rowsFromRef.current.value = '1';
-    // if (rowsToRef.current) rowsToRef.current.value = String(rowsLength);
+    setColumnMapping({});
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const fieldName = active.id as string; // e.g., 'sectionCode'
+      const columnNumber = over.id as number; // e.g., 2, 3, 4...
+
+      // Update the mapping: columnNumber -> fieldName
+      setColumnMapping((prev) => ({
+        ...prev,
+        [columnNumber]: fieldName,
+      }));
+
+      console.log(`Mapped column ${columnNumber} to ${fieldName}`);
+    }
+  };
+
+  const handleRemoveMapping = (columnNumber: number) => {
+    setColumnMapping((prev) => {
+      const newMapping = { ...prev };
+      delete newMapping[columnNumber];
+      console.log(`Removed mapping for column ${columnNumber}`);
+      return newMapping;
+    });
   };
 
   const handleSubmit = () => {
+    console.log('Final column mapping:', columnMapping);
     resetInputs();
     if (onClose) onClose();
   };
@@ -124,14 +153,19 @@ const Identifycolumns = ({
           rowMaxWidth={rowMaxWidth}
         />
 
-        <DndContext>
+        <DndContext onDragEnd={handleDragEnd}>
           <div className="flex gap-6">
-            <SectionList tVar={tIC} />
+            <SectionList tVar={tIC} usedFields={Object.values(columnMapping)} />
             {/* table */}
             <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
               <table className="w-full border-separate border-spacing-0">
                 <thead>
-                  <TableHeaders colNumber={rowMaxWidth} />
+                  <TableHeaders
+                    colNumber={rowMaxWidth}
+                    columnMapping={columnMapping}
+                    tVar={tIC}
+                    onRemoveMapping={handleRemoveMapping}
+                  />
                 </thead>
                 <tbody>
                   {table.map((row, rowIndex) => (

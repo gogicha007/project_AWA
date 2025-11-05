@@ -1,7 +1,50 @@
+import { useDraggable } from '@dnd-kit/core';
+import { ReactNode } from 'react';
+
 type PropsSectonList = {
   tVar: (key: string) => string;
+  usedFields: string[];
 };
-const SectionList = ({ tVar }: PropsSectonList) => {
+
+interface DraggableProps {
+  id: string;
+  children: ReactNode;
+  disabled?: boolean;
+}
+
+function Draggable({ id, children, disabled }: DraggableProps) {
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: id,
+      disabled: disabled,
+    });
+
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      }
+    : undefined;
+
+  const draggingStyles = isDragging
+    ? 'opacity-50 cursor-grabbing'
+    : disabled
+      ? 'cursor-not-allowed opacity-40'
+      : 'cursor-grab';
+
+  return (
+    <li
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+      className={`rounded bg-[var(--primary-50)] px-3 py-2 text-sm font-medium text-[var(--primary-700)] transition-colors hover:bg-[var(--primary-100)] ${draggingStyles}`}
+    >
+      {children}
+    </li>
+  );
+}
+
+const SectionList = ({ tVar, usedFields }: PropsSectonList) => {
   const sectionFields = [
     'sectionCode',
     'sectionName',
@@ -15,16 +58,14 @@ const SectionList = ({ tVar }: PropsSectonList) => {
         {tVar(`sections.title`)}
       </p>
       <ul className="flex flex-col gap-2">
-        {sectionFields.map((field) => (
-          <li
-            value={field}
-            key={field}
-            id={field}
-            className="rounded bg-[var(--primary-50)] px-3 py-2 text-sm font-medium text-[var(--primary-700)] transition-colors hover:bg-[var(--primary-100)]"
-          >
-            {tVar(`sections.field.${field}`)}
-          </li>
-        ))}
+        {sectionFields.map((field) => {
+          const isUsed = usedFields.includes(field);
+          return (
+            <Draggable key={field} id={field} disabled={isUsed}>
+              {tVar(`sections.field.${field}`)}
+            </Draggable>
+          );
+        })}
       </ul>
     </div>
   );
