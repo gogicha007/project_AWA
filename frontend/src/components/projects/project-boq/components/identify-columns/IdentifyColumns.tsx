@@ -117,6 +117,7 @@ const Identifycolumns = ({
 
   const handleSubmit = () => {
     console.log('Final column mapping:', columnMapping);
+    console.log('table', table)
     resetInputs();
     if (onClose) onClose();
   };

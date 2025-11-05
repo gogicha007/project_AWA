@@ -81,6 +81,7 @@ export const ImportData: React.FC<Props> = () => {
           setSelectedData(null);
         }
       );
+      event.target.value = '';
     }
   };
 
