@@ -166,6 +166,7 @@ const Identifycolumns = ({
           <div className="flex items-center gap-4">
             <label htmlFor="from">Select rows from</label>
             <input
+              key={`from-${sheetName}`}
               ref={rowsFromRef}
               className="h-10"
               style={{ width: '70px' }}
@@ -176,6 +177,7 @@ const Identifycolumns = ({
             />
             <label htmlFor="to">to</label>
             <input
+              key={`to-${sheetName}`}
               ref={rowsToRef}
               className="h-10"
               style={{ width: '70px' }}
@@ -185,7 +187,7 @@ const Identifycolumns = ({
               onChange={updateRange}
             />
           </div>
-          
+
           <button className="button primary self-end" onClick={handleSubmit}>
             {tIC('actions.submit')}
           </button>
