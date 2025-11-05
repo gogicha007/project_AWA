@@ -54,7 +54,7 @@ const Identifycolumns = ({
     return filterRange(rows, firstRow, endRow);
   }, [firstRow, lastRow, rows]);
 
-  const updateRowsRange = () => {
+  const updateRange = () => {
     const rowsFrom = rowsFromRef.current as HTMLInputElement;
     const rowsTo = rowsToRef.current as HTMLInputElement;
 
@@ -83,8 +83,8 @@ const Identifycolumns = ({
   const resetInputs = () => {
     setFirstRow(0);
     setLastRow(null);
-    if (rowsFromRef.current) rowsFromRef.current.value = '1';
-    if (rowsToRef.current) rowsToRef.current.value = String(rowsLength);
+    // if (rowsFromRef.current) rowsFromRef.current.value = '1';
+    // if (rowsToRef.current) rowsToRef.current.value = String(rowsLength);
   };
 
   const handleSubmit = () => {
@@ -172,7 +172,7 @@ const Identifycolumns = ({
               type="number"
               id="from"
               defaultValue={1}
-              onChange={updateRowsRange}
+              onChange={updateRange}
             />
             <label htmlFor="to">to</label>
             <input
@@ -182,7 +182,7 @@ const Identifycolumns = ({
               type="number"
               id="to"
               defaultValue={rowsLength}
-              onChange={updateRowsRange}
+              onChange={updateRange}
             />
           </div>
           
