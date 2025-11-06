@@ -22,6 +22,7 @@ function Draggable({ id, children, disabled }: DraggableProps) {
   const style = transform
     ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        zIndex: 9999,
       }
     : undefined;
 
