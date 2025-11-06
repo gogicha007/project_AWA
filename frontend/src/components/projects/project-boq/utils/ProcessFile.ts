@@ -64,6 +64,7 @@ export const processFile = (
     reader.onload = (e) => {
       const data = new Uint8Array(e.target!.result as ArrayBuffer);
       try {
+        console.log(data)
         const workbook = XLSX.read(data, { type: 'array' });
         if (!workbook.SheetNames.length) {
           onError('Invalid Excel file: No sheets found.');

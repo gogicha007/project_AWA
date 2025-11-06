@@ -156,46 +156,51 @@ const Identifycolumns = ({
           rowMaxWidth={rowMaxWidth}
         />
 
-        <DndContext onDragEnd={handleDragEnd}>
-          <div className="flex gap-6">
-            <SectionList tVar={tIC} usedFields={Object.values(columnMapping)} />
-            {/* table */}
-            <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
-              <table className="w-full border-separate border-spacing-0">
-                <thead>
-                  <TableHeaders
-                    colNumber={rowMaxWidth}
-                    columnMapping={columnMapping}
-                    tVar={tIC}
-                    onRemoveMapping={handleRemoveMapping}
-                  />
-                </thead>
-                <tbody>
-                  {table.map((row, rowIndex) => (
-                    <tr
-                      key={rowIndex}
-                      className="transition-colors hover:bg-[var(--gray-50)]"
-                    >
-                      <td className="sticky left-0 z-10 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-2 text-sm font-semibold text-[var(--primary-700)]">
-                        {firstRow + rowIndex + 1}
-                      </td>
-                      {Array.from({ length: rowMaxWidth }, (_, i) => i + 1).map(
-                        (colNo) => (
-                          <td
-                            key={colNo}
-                            className="border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm text-[var(--foreground)]"
-                          >
-                            {String((row as unknown[])[colNo - 1] ?? '')}
-                          </td>
-                        )
-                      )}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        {isOpen && (
+          <DndContext onDragEnd={handleDragEnd}>
+            <div className="flex gap-6">
+              <SectionList
+                tVar={tIC}
+                usedFields={Object.values(columnMapping)}
+              />
+              {/* table */}
+              <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
+                <table className="w-full border-separate border-spacing-0">
+                  <thead>
+                    <TableHeaders
+                      colNumber={rowMaxWidth}
+                      columnMapping={columnMapping}
+                      tVar={tIC}
+                      onRemoveMapping={handleRemoveMapping}
+                    />
+                  </thead>
+                  <tbody>
+                    {table.map((row, rowIndex) => (
+                      <tr
+                        key={rowIndex}
+                        className="transition-colors hover:bg-[var(--gray-50)]"
+                      >
+                        <td className="sticky left-0 z-10 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-2 text-sm font-semibold text-[var(--primary-700)]">
+                          {firstRow + rowIndex + 1}
+                        </td>
+                        {Array.from({ length: rowMaxWidth }, (_, i) => i + 1).map(
+                          (colNo) => (
+                            <td
+                              key={colNo}
+                              className="border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm text-[var(--foreground)]"
+                            >
+                              {String((row as unknown[])[colNo - 1] ?? '')}
+                            </td>
+                          )
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </DndContext>
+          </DndContext>
+        )}
 
         {/* footer */}
         <div className="flex items-center justify-end gap-15">

@@ -44,6 +44,9 @@ export const ImportData: React.FC<Props> = () => {
   };
 
   const handleData = (data: ProcessedFileData) => {
+    // Set selected data FIRST before processing
+    setSelectedData(data);
+    
     if (
       data.type === 'xlsx' &&
       data.data &&
@@ -57,7 +60,12 @@ export const ImportData: React.FC<Props> = () => {
         setIsSheetNamesDialogOpen(true);
         setSheetNames(sheetNamesArr);
       } else {
-        handleSelectedSheet(workbook.SheetNames[0]);
+        // Pass workbook directly instead of relying on state
+        const wsh = workbook.Sheets[workbook.SheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
+        setSelectedSheetName(workbook.SheetNames[0]);
+        setDataRows(rows);
+        setIsIdentifyColsDialogOpen(true);
       }
     }
     if (data.type === 'csv') {
@@ -73,7 +81,6 @@ export const ImportData: React.FC<Props> = () => {
         file,
         (processedData) => {
           handleData(processedData);
-          setSelectedData(processedData);
           setImportError(null);
         },
         (error) => {
@@ -96,8 +103,10 @@ export const ImportData: React.FC<Props> = () => {
   const onChooseClipboard = async () => {
     if (processingClipboard) return;
     setProcessingClipboard(true);
+    setImportError(null); // Clear any previous errors
 
     processClipboard({
+      handleData,
       setProcessingClipboard,
       setSelectedData,
       setImportError,
@@ -112,7 +121,7 @@ export const ImportData: React.FC<Props> = () => {
         type="file"
         ref={fileInputRef}
         onChange={handleFile}
-        accept=".xlsx, .xls, .csv"
+        accept=".xlsx, .xls"
         style={{ display: 'none' }}
       />
       <button
@@ -120,7 +129,7 @@ export const ImportData: React.FC<Props> = () => {
         style={{ padding: '4px 8px' }}
         onClick={onChooseFile}
       >
-        XLSX/CSV
+        XLSX/XLS
       </button>
       {/* handle clipboard */}
       <button
