@@ -105,7 +105,6 @@ export const processClipboard = async ({ handleData, setProcessingClipboard, set
 
             for (const item of clipboardItems) {
                 const fileTypes = item.types || [];
-                console.log('Clipboard item types:', fileTypes);
 
                 const excelType = fileTypes.find((t: string) =>
                     /excel|spreadsheet|sheet|application\/vnd\.openxmlformats-officedocument\.spreadsheetml\.sheet/i.test(
