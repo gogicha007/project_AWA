@@ -3,7 +3,7 @@
 import styles from '../../page.module.css';
 import React from 'react';
 import { useParams } from 'next/navigation';
-import { ShipmentFormSet } from '@/components/logistics/shipmentsCRUD/ShipmentForm';
+import { ShipmentFormSet } from '@/features/logistics/shipmentsCRUD/ShipmentForm';
 
 const EditShipment = () => {
   const params = useParams();

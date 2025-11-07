@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import ProjectSidebarMenu from '../../projects/projects-list/ProjectSidebarMenu';
+import ProjectSidebarMenu from '../../../features/projects/projects-list/ProjectSidebarMenu';
 import { usePathname } from 'next/navigation';
 
 interface IMenuItem {

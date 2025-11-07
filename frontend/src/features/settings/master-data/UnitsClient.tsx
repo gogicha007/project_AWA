@@ -9,11 +9,11 @@ import {
   getCoreRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import Loader from '../../feedback/loader/loader';
-import AddButton from '../../controls/add-button/AddButton';
+import Loader from '../../../components/feedback/loader/loader';
+import AddButton from '../../../components/controls/add-button/AddButton';
 import { useUnitsLogic } from './useUnitsLogic';
 import UnitDialog from '../../forms/master-data-forms/units-form';
-import Snackbar from '../../feedback/snackbar/snackbar';
+import Snackbar from '../../../components/feedback/snackbar/snackbar';
 
 export default function UnitsClient() {
   const tU = useTranslations('MasterData');

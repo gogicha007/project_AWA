@@ -3,7 +3,7 @@
 import { useMemo, useCallback } from 'react';
 import { GeneralInfoDTO } from '@/api/types';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
-import TableRowActions from '../controls/table-row-actions/TableRowActions';
+import TableRowActions from '../../components/controls/table-row-actions/TableRowActions';
 import { useRouter } from 'next/navigation';
 
 type ShipmentRow = {

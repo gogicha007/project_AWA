@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth';
-import RegisterForm from '@/components/forms/auth-form/registerForm';
+import RegisterForm from '@/features/forms/auth-form/registerForm';
 import Loading from '@/components/feedback/loader/loader';
 
 const SignUp = () => {

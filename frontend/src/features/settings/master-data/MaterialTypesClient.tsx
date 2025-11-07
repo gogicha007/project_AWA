@@ -13,8 +13,8 @@ import {
   SortingState,
 } from '@tanstack/react-table';
 import MaterialTypeDialog from '../../forms/master-data-forms/materialTypes-form';
-import Loader from '../../feedback/loader/loader';
-import AddButton from '../../controls/add-button/AddButton';
+import Loader from '../../../components/feedback/loader/loader';
+import AddButton from '../../../components/controls/add-button/AddButton';
 import { useMaterialTypesLogic } from './useMaterialTypesLogic';
 import Snackbar from '@/components/feedback/snackbar/snackbar';;
 

@@ -1,6 +1,6 @@
 import styles from './page.module.css';
 import React from 'react';
-import VendorsClient from '@/components/settings/vendors/VendorsClient';
+import VendorsClient from '@/features/settings/vendors/VendorsClient';
 
 const Vendors = () => {
   return (

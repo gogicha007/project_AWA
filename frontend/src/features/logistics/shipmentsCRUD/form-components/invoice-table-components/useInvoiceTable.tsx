@@ -9,7 +9,7 @@ import {
 import { arrayToIdValueMap, negIdCounter } from '@/utils/helper';
 import InvoiceColumns from './invoiceTableColumns';
 import { InvoiceRow } from './invoiceTableColumns';
-import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
+import { SnackbarControls } from '../../../../../components/feedback/snackbar/snackbarTypes';
 import { ShipmentFormSchema } from '../../shipmentSchema';
 
 type Props = {

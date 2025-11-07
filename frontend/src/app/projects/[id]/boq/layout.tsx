@@ -5,7 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { usePathname, useParams } from 'next/navigation';
-import { BackButton } from '@/components/projects/shared/back-button/back-button';
+import { BackButton } from '@/features/projects/shared/back-button/back-button';
 
 export default function BoqLayout({ children }: { children: React.ReactNode }) {
   const { id } = useParams();

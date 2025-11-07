@@ -1,7 +1,7 @@
 'use client';
 
-import styles from '../settings.module.css';
-import { useState, useEffect, useMemo } from 'react';
+import styles from './shipments.module.css';
+import { useState } from 'react';
 import {
   flexRender,
   getCoreRowModel,
@@ -10,50 +10,35 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useTranslations } from 'next-intl';
-import Loader from '../../feedback/loader/loader';
-import { useVendorsLogic } from './useVendorsLogic';
+import AddButton from '../../components/controls/add-button/AddButton';
+import { useShipmentsLogic } from './useShipmentsLogic';
+import { useShipmentApi } from '@/api/hooks/shipments/shipmentApiHook';
 import { useVendorsApiHook } from '@/api/hooks/settings/useVendorsApiHook';
-import Snackbar from '../../feedback/snackbar/snackbar';
-import AddButton from '@/components/controls/add-button/AddButton';
-import VendorDialog from '@/components/forms/vendor-form';
+import Loader from '../../components/feedback/loader/loader';
+import SelectVendor from '../../components/controls/dropdown/SelectVendor';
 
-export default function VendorsClient() {
-  const tV = useTranslations('Vendors');
-  const { vendors, loading, error, mutate } = useVendorsApiHook();
+export default function ShipmentsClient() {
+  const tS = useTranslations('Logistics');
+  const { shipments, loading, error, mutate } = useShipmentApi();
+  const { vendors, loading: vendorsLoading } = useVendorsApiHook();
   const [sorting, setSorting] = useState<SortingState>([]);
-  const {
-    data,
-    columns,
-    handleAdd,
-    handleSave,
-    isDialogOpen,
-    setIsDialogOpen,
-    currentVendor,
-    errorMessage,
-  } = useVendorsLogic(vendors, mutate, tV);
+  const [navigating, setNavigating] = useState(false);
+  const [selectedVendor, setSelectedVendor] = useState<number | null>(null);
+  const { data, columns, handleAdd } = useShipmentsLogic(
+    shipments,
+    mutate,
+    tS,
+    setNavigating,
+    selectedVendor
+  );
 
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarStatus, setSnackbarStatus] = useState<{
-    message: string;
-    success: boolean;
-  }>({ message: '', success: false });
-
-  useEffect(() => {
-    if (errorMessage) {
-      setSnackbarStatus({
-        message: error instanceof Error ? errorMessage : 'An error occurred',
-        success: false,
-      });
-      setSnackbarOpen(true);
-    }
-  }, [errorMessage, error]);
-
-  const memoizedData = useMemo(() => data, [data]);
-  const memoizedColumns = useMemo(() => columns, [columns]);
+  const vendorOptions = vendors.map((vendor)=> {
+    return {value: vendor.id, label: vendor.alias}
+  })
 
   const table = useReactTable({
-    data: memoizedData,
-    columns: memoizedColumns,
+    data,
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     state: {
@@ -62,19 +47,25 @@ export default function VendorsClient() {
     onSortingChange: setSorting,
   });
 
-  if (loading) return <Loader />;
+  if (loading || navigating || vendorsLoading) return <Loader />;
 
   if (error)
     return (
       <div>
-        `${tV('errors.loading')}: {String(error)}`
+        `${tS('errors.loading')} : {String(error)}
       </div>
     );
+
   return (
     <div>
-      <h1 className={styles.pageTitle}>{tV('title')}</h1>
+      <h1 className={styles.pageTitle}>{tS('title')}</h1>
       <div className={styles.tableContainer}>
         <div className={styles.tableActions}>
+          <SelectVendor 
+            options={vendorOptions} 
+            setOption={setSelectedVendor} 
+            selectedValue={selectedVendor}
+          />
           <AddButton onAdd={handleAdd} />
         </div>
         <div className={styles.tableScrollContainer}>
@@ -124,19 +115,6 @@ export default function VendorsClient() {
           </table>
         </div>
       </div>
-      <Snackbar
-        status={snackbarStatus}
-        open={snackbarOpen}
-        onClose={() => setSnackbarOpen(false)}
-      />
-      <VendorDialog
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-        onSave={handleSave}
-        initialData={currentVendor}
-        title={currentVendor ? tV('edit_form_title') : tV('add_form_title')}
-        tVar={tV}
-      />
     </div>
   );
 }

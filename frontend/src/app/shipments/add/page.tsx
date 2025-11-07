@@ -1,7 +1,7 @@
 import styles from '../page.module.css';
 import React from 'react';
 // import AddShipmentForm from '@/components/logistics/shipmentsCRUD/shipment-form';
-import { ShipmentFormSet } from '@/components/logistics/shipmentsCRUD/ShipmentForm';
+import { ShipmentFormSet } from '@/features/logistics/shipmentsCRUD/ShipmentForm';
 
 const AddShipment = () => {
   return (

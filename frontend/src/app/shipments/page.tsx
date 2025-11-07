@@ -1,6 +1,6 @@
 import styles from './page.module.css';
 import React from 'react';
-import ShipmentsClient from '@/components/logistics/ShipmentsClient';
+import ShipmentsClient from '@/features/logistics/ShipmentsClient';
 
 const Logistics = () => {
   return (

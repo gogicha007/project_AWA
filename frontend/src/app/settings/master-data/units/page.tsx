@@ -1,5 +1,5 @@
 import React from 'react';
-import UnitsClient from '@/components/settings/master-data/UnitsClient';
+import UnitsClient from '@/features/settings/master-data/UnitsClient';
 
 const Units = () => {
   return <UnitsClient />;

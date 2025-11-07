@@ -9,8 +9,8 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import MaterialGroupDialog from '../../forms/master-data-forms/materialGroups-form';
-import Loader from '../../feedback/loader/loader';
-import AddButton from '../../controls/add-button/AddButton';
+import Loader from '../../../components/feedback/loader/loader';
+import AddButton from '../../../components/controls/add-button/AddButton';
 import { useMaterialGroupsLogic } from './useMaterialGroupsLogic';
 
 export default function MaterialGroupsClient() {

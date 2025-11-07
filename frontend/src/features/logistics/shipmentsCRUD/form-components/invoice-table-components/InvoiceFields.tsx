@@ -11,7 +11,7 @@ import { useInvoiceTable } from './useInvoiceTable';
 import { InvoiceRow } from './invoiceTableColumns';
 import AddButton from '@/components/controls/add-button/AddButton';
 import InvoiceItemsTable from './invoice-items/InvoiceItemsTable';
-import { SnackbarControls } from '../../../../feedback/snackbar/snackbarTypes';
+import { SnackbarControls } from '../../../../../components/feedback/snackbar/snackbarTypes';
 
 type Props = {
   auxData: {
