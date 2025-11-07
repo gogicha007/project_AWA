@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/context/auth';
 import { LocationDTO } from '@/api/types';
-import { locationsApi } from '@/api/endpoints/projects/locationsApi';
+import { locationsApi } from '@/features/projects/project-locations/api/locationsApi';
 
 
 export function useProjectLocationsApi(projectId: number | null) {
