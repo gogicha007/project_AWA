@@ -1,5 +1,7 @@
 import { useDraggable } from '@dnd-kit/core';
 import { ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
+import { boqFields } from '../../utils/boqConstants';
 
 type PropsSectonList = {
   tVar: (key: string) => string;
@@ -45,13 +47,9 @@ function Draggable({ id, children, disabled }: DraggableProps) {
   );
 }
 
-const SectionList = ({ tVar, usedFields }: PropsSectonList) => {
-  const sectionFields = [
-    'sectionCode',
-    'sectionName',
-    'sectionType',
-    'totalAmount',
-  ];
+const FieldList = ({ tVar, usedFields }: PropsSectonList) => {
+  const path = usePathname()
+  const fieldsList = path.includes('items') ? boqFields.items : boqFields.sections
 
   return (
     <div className="flex min-w-30 flex-col gap-3 rounded-lg bg-[var(--background-card)] p-4 shadow-sm">
@@ -59,7 +57,7 @@ const SectionList = ({ tVar, usedFields }: PropsSectonList) => {
         {tVar(`sections.title`)}
       </p>
       <ul className="flex flex-col gap-2">
-        {sectionFields.map((field) => {
+        {fieldsList.map((field) => {
           const isUsed = usedFields.includes(field);
           return (
             <Draggable key={field} id={field} disabled={isUsed}>
@@ -72,4 +70,4 @@ const SectionList = ({ tVar, usedFields }: PropsSectonList) => {
   );
 };
 
-export default SectionList;
+export default FieldList;

@@ -6,7 +6,7 @@ import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useTranslations } from 'next-intl';
 import SheetInfo from './SheetInfo';
 import TableHeaders from './TableHeaders';
-import SectionList from './SectionList';
+import FieldList from './FieldList';
 import { nameColumns } from './helper';
 
 type ICDialogProps = {
@@ -159,7 +159,7 @@ const Identifycolumns = ({
         {isOpen && (
           <DndContext onDragEnd={handleDragEnd}>
             <div className="flex gap-6">
-              <SectionList
+              <FieldList
                 tVar={tIC}
                 usedFields={Object.values(columnMapping)}
               />
