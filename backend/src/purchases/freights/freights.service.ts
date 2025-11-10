@@ -83,6 +83,7 @@ export class FreightsService {
       handlePrismaErrors(error, 'upsert', 'freight');
     }
   }
+
   async findAll() {
     return this.dbService.freight.findMany({
       include: {

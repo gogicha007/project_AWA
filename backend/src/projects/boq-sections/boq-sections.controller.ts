@@ -8,16 +8,16 @@ import {
   Delete,
 } from '@nestjs/common';
 import { BoqSectionsService } from './boq-sections.service';
-import { CreateBoqSectionDto } from './dto/create-boq-section.dto';
+import { CreateBoqSectionBulkDTO } from './dto/create-boq-section.dto';
 import { UpdateBoqSectionDto } from './dto/update-boq-section.dto';
 
 @Controller('boq-sections')
 export class BoqSectionsController {
   constructor(private readonly boqSectionsService: BoqSectionsService) {}
 
-  @Post()
-  create(@Body() createBoqSectionDto: CreateBoqSectionDto) {
-    return this.boqSectionsService.create(createBoqSectionDto);
+  @Post('/bulk')
+  createBulk(@Body() createBoqSectionBulkDto: CreateBoqSectionBulkDTO) {
+    return this.boqSectionsService.upsertBoqSections(createBoqSectionBulkDto);
   }
 
   @Get()
