@@ -4,10 +4,11 @@ import { UpdateBoqSectionDto } from './dto/update-boq-section.dto';
 import { DatabaseService } from 'src/database/database/database.service';
 import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 @Injectable()
 export class BoqSectionsService {
-  constructor(private readonly dbService: DatabaseService) {}
+  constructor(private readonly dbService: DatabaseService) { }
 
   async upsertBoqSections(boqSectionsData: CreateBoqSectionBulkDTO) {
     try {
@@ -46,7 +47,7 @@ export class BoqSectionsService {
     const section = await this.dbService.projectSection.findUnique({
       where: { id },
     });
- if (!section) {
+    if (!section) {
       throw new NotFoundException(`Boq Section with ID ${id} not found`);
     }
     return section;
@@ -90,6 +91,26 @@ export class BoqSectionsService {
         throw new NotFoundException(`Shipment with ID ${id} not found`);
       }
       throw error;
+    }
+  }
+
+  async removeByIdsArray(sectionIdsArr: number[]) {
+    try {
+      const resultsArr: DeleteOperationResult[] = [];
+
+      if (sectionIdsArr.length > 0) {
+        const resultRemovedFreights = await this.dbService.freight.deleteMany({
+          where: { id: { in: sectionIdsArr } },
+        });
+        resultsArr.push({
+          success: true,
+          deletedCount: resultRemovedFreights.count,
+          message: `Deleted ${resultRemovedFreights.count} freights`,
+        });
+      }
+      return resultsArr;
+    } catch (error) {
+      handlePrismaErrors(error, 'update', 'Boq Section');
     }
   }
 }

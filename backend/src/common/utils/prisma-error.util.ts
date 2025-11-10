@@ -1,7 +1,10 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 import {
   PrismaClientKnownRequestError,
   PrismaClientValidationError,
+  PrismaClientUnknownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientInitializationError
 } from '@prisma/client/runtime/library';
 
 export function handlePrismaErrors(
@@ -37,6 +40,15 @@ export function handlePrismaErrors(
 
   if (
     error instanceof PrismaClientKnownRequestError &&
+    error.code === 'P2025'
+  ) {
+    throw new NotFoundException(
+      `${entityName || 'Record'} not found${actionName ? ` for ${actionName}` : ''}`,
+    );
+  }
+
+  if (
+    error instanceof PrismaClientKnownRequestError &&
     error.code === 'P2003'
   ) {
     const fieldName =
@@ -51,8 +63,20 @@ export function handlePrismaErrors(
   if (error instanceof PrismaClientKnownRequestError && error.code === 'P2009')
     throw new BadRequestException('Invalid input data');
 
-  if (error instanceof PrismaClientKnownRequestError)
-    throw new BadRequestException(`Database error: ${error.message}`);
+  if (
+    error instanceof PrismaClientKnownRequestError ||
+    error instanceof PrismaClientUnknownRequestError ||
+    error instanceof PrismaClientRustPanicError ||
+    error instanceof PrismaClientInitializationError
+  ) {
+    const errorCode =
+      error instanceof PrismaClientKnownRequestError
+        ? error.code
+        : error.name || 'Unknown error';
+    throw new BadRequestException(
+      `Failed to ${actionName} ${entityName}: ${errorCode}`,
+    );
+  }
 
   console.log(error);
   throw new BadRequestException(`Failed to ${actionName} ${entityName}`);

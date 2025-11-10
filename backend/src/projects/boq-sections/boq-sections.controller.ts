@@ -13,7 +13,7 @@ import { UpdateBoqSectionDto } from './dto/update-boq-section.dto';
 
 @Controller('boq-sections')
 export class BoqSectionsController {
-  constructor(private readonly boqSectionsService: BoqSectionsService) {}
+  constructor(private readonly boqSectionsService: BoqSectionsService) { }
 
   @Post('/bulk')
   createBulk(@Body() createBoqSectionBulkDto: CreateBoqSectionBulkDTO) {
@@ -41,5 +41,12 @@ export class BoqSectionsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.boqSectionsService.remove(+id);
+  }
+
+  @Delete('delete/bulk')
+  async removeAllByIdsArray(
+    @Body() { ids: sectionIdsArray }: { ids: number[] }
+  ) {
+    return this.boqSectionsService.removeByIdsArray(sectionIdsArray)
   }
 }
