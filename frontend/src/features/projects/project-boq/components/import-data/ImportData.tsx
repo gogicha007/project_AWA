@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { processFile, ProcessedFileData } from '../utils/ProcessFile';
-import { processClipboard } from '../utils/ProcessClipboard';
+import { processFile, ProcessedFileData } from '../../utils/ProcessFile';
+import { processClipboard } from '../../utils/ProcessClipboard';
 import SelectSheetName from './SelectSheetName';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
 import { useTranslations } from 'next-intl';

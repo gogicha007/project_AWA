@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { ImportFile } from '../components/ImportData';
+import { ImportFile } from '../components/import-data/ImportData';
 import { processFile as mockedProcessFileImport } from '../utils/ProcessFile';
 
 jest.mock('../utils/ProcessFile', () => ({

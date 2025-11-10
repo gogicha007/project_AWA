@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImportData } from './components/ImportData';
+import { ImportData } from './components/import-data/ImportData';
 import { SectionsGrid } from './components/SectionsGrid';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {

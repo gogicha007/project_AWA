@@ -1,7 +1,7 @@
 import { useDraggable } from '@dnd-kit/core';
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
-import { boqFields } from '../../utils/boqConstants';
+import { boqFields } from '../../../utils/boqConstants';
 
 type PropsSectonList = {
   tVar: (key: string) => string;
