@@ -9,7 +9,7 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
       <h2 className="text-lg font-semibold">
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
-      <ImportData division='sections'/>
+      <ImportData />
       <SectionsGrid />
     </div>
   );

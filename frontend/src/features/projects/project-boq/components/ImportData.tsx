@@ -10,7 +10,6 @@ import Identifycolumns from './identify-columns/IdentifyColumns';
 type Props = {
   onData?: (processedData: ProcessedFileData | null) => void;
   onError?: (error: string | null) => void;
-  division: string
 };
 
 export const ImportData: React.FC<Props> = () => {
