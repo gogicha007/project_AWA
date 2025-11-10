@@ -3,7 +3,7 @@
 import { ProjectDTO } from "@/api/types";
 import { useAuth } from "@/context/auth";
 import { useCallback, useEffect, useState } from "react";
-import { projectApi } from "@/api/endpoints/projects/projectApi";
+import { projectApi } from "@/features/projects/api/projectsListApi";
 
 export function useProjectsListApi() {
     const [projects, setProjects] = useState<ProjectDTO[]>([]);

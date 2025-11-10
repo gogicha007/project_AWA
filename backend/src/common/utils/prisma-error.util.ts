@@ -4,7 +4,7 @@ import {
   PrismaClientValidationError,
   PrismaClientUnknownRequestError,
   PrismaClientRustPanicError,
-  PrismaClientInitializationError
+  PrismaClientInitializationError,
 } from '@prisma/client/runtime/library';
 
 export function handlePrismaErrors(

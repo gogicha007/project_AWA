@@ -3,15 +3,18 @@ import { processFile, ProcessedFileData } from '../utils/ProcessFile';
 import { processClipboard } from '../utils/ProcessClipboard';
 import SelectSheetName from './SelectSheetName';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
+import { useTranslations } from 'next-intl';
 import * as XLSX from 'xlsx';
 import Identifycolumns from './identify-columns/IdentifyColumns';
 
 type Props = {
   onData?: (processedData: ProcessedFileData | null) => void;
   onError?: (error: string | null) => void;
+  division: string
 };
 
 export const ImportData: React.FC<Props> = () => {
+  const tID = useTranslations('ProjectBoq.import_data')
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [dataRows, setDataRows] = useState<unknown[]>([]);
   const [importError, setImportError] = useState<string | null>(null);
@@ -115,7 +118,7 @@ export const ImportData: React.FC<Props> = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <h3>Import data from </h3>
+      <h3>{tID('title')} </h3>
       {/* handle file input*/}
       <input
         type="file"
@@ -137,7 +140,7 @@ export const ImportData: React.FC<Props> = () => {
         style={{ padding: '4px 8px' }}
         onClick={onChooseClipboard}
       >
-        Clipboard
+        {tID('clipboard')}
       </button>
       <Identifycolumns
         isOpen={isIdentifyColsDialogOpen}

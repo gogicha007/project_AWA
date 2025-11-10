@@ -17,7 +17,7 @@ const ProjectSidebarMenu: React.FC<ProjectSidebarMenuProps> = ({ projectId }) =>
     }
 
     setIsLoadingProject(true);
-    import('@/api/endpoints/projects/projectApi').then(({ projectApi }) => {
+    import('@/features/projects/api/projectsListApi').then(({ projectApi }) => {
       projectApi.getById(+projectId)
         .then((project) => {
           setProjectName(project?.displayName || project?.fullName || null);

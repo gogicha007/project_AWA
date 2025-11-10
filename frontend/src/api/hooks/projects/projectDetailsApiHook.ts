@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { projectApi } from "@/api/endpoints/projects/projectApi";
+import { projectApi } from "@/features/projects/api/projectsListApi";
 import { useAuth } from "@/context/auth";
 import { ProjectDTO } from "@/api/types";
 

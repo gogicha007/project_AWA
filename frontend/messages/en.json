@@ -360,6 +360,10 @@
       "total": "Total"
     },
     "identify_columns": "Identify Columns",
+    "import_data": {
+      "title":"Import data from",
+      "clipboard": "Clipboard"
+    },
     "actions": {
       "title": "Actions",
       "add": "Add new item",

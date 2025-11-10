@@ -1,5 +1,5 @@
 import apiClient from "@/api/api-client";
-import { SectionSchema } from "../schema/sectionSchema";
+import { SectionSchema } from "../project-boq/schema/sectionSchema";
 import { z } from 'zod'
 import { handleApiError } from "@/utils/handleApiError";
 
