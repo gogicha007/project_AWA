@@ -277,7 +277,7 @@ model Freight {
   forwarder   String?
   billNumber  String?          @map("bill_number")
   billDate    DateTime?        @map("bill_date")
-  freightRate Decimal?         @map("freight_rate")
+  freightRate Decimal?         @map("freight_rate") @db.Decimal(15, 2)
   currency    Currency?        @relation(fields: [currencyId], references: [id])
   currencyId  Int?             @map("currency_id")
   shipment    Shipment         @relation(fields: [shipmentId], references: [id])
@@ -305,7 +305,7 @@ model Invoice {
   vendorId      Int              @map("vendor_id")
   invoiceNumber String           @map("invoice_number")
   invoiceDate   DateTime         @map("invoice_date")
-  totalAmount   Decimal          @map("total_amount")
+  totalAmount   Decimal          @map("total_amount") @db.Decimal(15, 2)
   isArrived     Boolean?         @default(false) @map("is_arrived")
   currency      Currency         @relation(fields: [currencyId], references: [id])
   currencyId    Int              @map("currency_id")
@@ -330,8 +330,8 @@ model InvoiceItem {
   quantity    Decimal
   unit        Unit         @relation(fields: [unitId], references: [id])
   unitId      Int
-  unitPrice   Decimal      @map("unit_price")
-  total       Decimal      @map("total")
+  unitPrice   Decimal      @map("unit_price") @db.Decimal(15, 2)
+  total       Decimal      @map("total") @db.Decimal(15, 2)
 
   @@map("invoice_item")
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImportData } from './components/import-data/ImportData';
-import { SectionsGrid } from './components/SectionsGrid';
+import { SectionsTable } from './components/sections-table/SectionsTable';
 
 export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
 
@@ -10,7 +10,7 @@ export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
       <ImportData />
-      <SectionsGrid />
+      <SectionsTable projectId={projectId} />
     </div>
   );
 };
