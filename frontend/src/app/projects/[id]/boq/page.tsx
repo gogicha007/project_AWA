@@ -1,10 +1,9 @@
-'use client';
-
-import { useParams } from 'next/navigation';
 import { BoqSections } from '@/features/projects/project-boq/BoqSections';
 
-export default function BoqPage() {
-  const { id } = useParams();
+type Props = { params: Promise<{ id: string }> };
+
+export default async function BoqPage({ params }: Props) {
+  const { id } = await params;
 
   return (
     <section>

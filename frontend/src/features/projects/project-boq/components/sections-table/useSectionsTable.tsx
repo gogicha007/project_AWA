@@ -20,6 +20,10 @@ export const useSectionsTable = ({
 }: Props) => {
   const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
 
+  const handleImport = ()=> {
+
+  }
+
   const handleAdd = () => {
     const newSection: SectionRow = {
       id: Date.now(),
@@ -151,10 +155,11 @@ export const useSectionsTable = ({
 
   return {
     handleAdd,
-    handleEdit,
-    handleSave,
     handleCancel,
     handleDelete,
+    handleEdit,
+    handleImport,
+    handleSave,
     columns,
   };
 };

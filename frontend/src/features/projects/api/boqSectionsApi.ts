@@ -1,7 +1,7 @@
 import apiClient from "@/api/api-client";
+import { handleApiError } from "@/utils/handleApiError";
 import { SectionSchema } from "../project-boq/schema/sectionSchema";
 import { z } from 'zod'
-import { handleApiError } from "@/utils/handleApiError";
 
 export type BoqSectionDTO = z.infer<typeof SectionSchema>
 export const sectionsApi = {
@@ -10,7 +10,17 @@ export const sectionsApi = {
         return response.data;
     },
 
-    creactBoqSection: async (section: BoqSectionDTO) => { },
+    creactBoqSection: async (section: BoqSectionDTO) => {
+        try {
+            const createSectionResponse = await apiClient.post('/boq-sections', {
+                section
+            })
+            return createSectionResponse.data
+        } catch (error) {
+            handleApiError(error)
+        }
+
+    },
 
     createBoqSectionsInBulk: async (sections: BoqSectionDTO[]) => {
         try {

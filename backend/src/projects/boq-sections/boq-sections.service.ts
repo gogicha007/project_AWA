@@ -1,5 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateBoqSectionBulkDTO, CreateBoqSectionDto } from './dto/create-boq-section.dto';
+import {
+  CreateBoqSectionBulkDTO,
+  CreateBoqSectionDto,
+} from './dto/create-boq-section.dto';
 import { UpdateBoqSectionDto } from './dto/update-boq-section.dto';
 import { DatabaseService } from 'src/database/database/database.service';
 import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
@@ -8,7 +11,7 @@ import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 @Injectable()
 export class BoqSectionsService {
-  constructor(private readonly dbService: DatabaseService) { }
+  constructor(private readonly dbService: DatabaseService) {}
 
   async createBoqSection(boqSection: CreateBoqSectionDto) {
     try {
@@ -20,7 +23,7 @@ export class BoqSectionsService {
       });
       return projectSection;
     } catch (error) {
-      handlePrismaErrors(error, 'create', 'projectSection')
+      handlePrismaErrors(error, 'create', 'projectSection');
     }
   }
 

@@ -30,10 +30,11 @@ export const SectionsTable = ({ projectId, initialData = [] }: Props) => {
 
   const {
     handleAdd,
-    handleEdit,
-    handleSave,
     handleCancel,
     handleDelete,
+    handleEdit,
+    handleImport,
+    handleSave,
     columns,
   } = useSectionsTable({
     sections,
