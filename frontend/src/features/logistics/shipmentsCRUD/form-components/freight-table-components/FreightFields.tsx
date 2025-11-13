@@ -1,7 +1,6 @@
 import styles from './freight-fields.module.css';
 import { CurrencyDTO } from '@/api/types';
 import { SnackbarControls } from '@/components/feedback/snackbar/snackbarTypes';
-import React from 'react';
 import { useTranslations } from 'next-intl';
 import AddButton from '@/components/controls/add-button/AddButton';
 import { useFreightTable } from './useFreightTable';

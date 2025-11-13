@@ -342,11 +342,14 @@
     "sections": {
       "title": "BoQ Sections",
       "field": {
+        "location": "Location",
         "sectionCode": "Section Code",
         "sectionName": "Section Name",
         "sectionType": "Section Type",
+        "currency": "Currency",
         "totalAmount": "Total Amount"
-      }
+      },
+      "no_data": "No data available. Click 'Add' to create one."
     },
     "items": "BoQ Items",
     "select_sheet": "Select sheet name",
@@ -361,7 +364,7 @@
     },
     "identify_columns": "Identify Columns",
     "import_data": {
-      "title":"Import data from",
+      "title": "Import data from",
       "clipboard": "Clipboard"
     },
     "actions": {

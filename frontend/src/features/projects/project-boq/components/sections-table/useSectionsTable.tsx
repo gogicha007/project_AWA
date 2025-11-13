@@ -26,6 +26,8 @@ export const useSectionsTable = ({
       sectionCode: '',
       sectionName: '',
       totalAmount: 0,
+      currencyId: 0,
+      locationId: null,
       isNew: true,
     };
     setSections([...sections, newSection]);
@@ -41,7 +43,6 @@ export const useSectionsTable = ({
   const handleSave = async (row: SectionRow) => {
     try {
       if (row.isNew) {
-        // Create new section via API
         const response = await fetch('/api/sections', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

@@ -1,22 +1,22 @@
 'use client';
 
+import styles from './sections-table.module.css';
 import { useState } from 'react';
 import {
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useSectionsTable } from './useSectionsTable';
+import { z } from 'zod';
 import AddButton from '@/components/controls/add-button/AddButton';
-import styles from './sections-table.module.css';
+import { ImportData } from '../import-data/ImportData';
+import { SectionSchema } from '../../schema/sectionSchema';
+import { useSectionsTable } from './useSectionsTable';
+import { useTranslations } from 'next-intl';
 
-export interface SectionRow {
-  id: number;
-  sectionCode: string;
-  sectionName: string;
-  totalAmount: number;
+export type SectionRow = z.infer<typeof SectionSchema> & {
   isNew?: boolean;
-}
+};
 
 type Props = {
   projectId: number;
@@ -26,6 +26,7 @@ type Props = {
 export const SectionsTable = ({ projectId, initialData = [] }: Props) => {
   const [sections, setSections] = useState<SectionRow[]>(initialData);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const tST = useTranslations('ProjectBoq.sections');
 
   const {
     handleAdd,
@@ -51,6 +52,7 @@ export const SectionsTable = ({ projectId, initialData = [] }: Props) => {
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableActions}>
+        <ImportData />
         <AddButton onAdd={handleAdd} />
       </div>
       <table className={styles.table}>
@@ -74,7 +76,7 @@ export const SectionsTable = ({ projectId, initialData = [] }: Props) => {
           {table.getRowModel().rows.length === 0 ? (
             <tr>
               <td colSpan={columns.length} className={styles.emptyState}>
-                {'No sections yet. Click "Add" to create one.'}
+                {tST('no_data')}
               </td>
             </tr>
           ) : (

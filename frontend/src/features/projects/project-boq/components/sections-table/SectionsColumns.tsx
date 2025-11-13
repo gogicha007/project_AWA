@@ -1,9 +1,8 @@
-// frontend/src/features/projects/project-boq/components/sections-table/sectionsColumns.tsx
-import { ColumnDef } from '@tanstack/react-table';
-import { SectionRow } from './SectionsTable';
 import styles from './sections-table.module.css';
-import { TiDelete } from 'react-icons/ti';
+import { ColumnDef } from '@tanstack/react-table';
 import { FiEdit, FiSave, FiX } from 'react-icons/fi';
+import { SectionRow } from './SectionsTable';
+import { TiDelete } from 'react-icons/ti';
 
 type Props = {
   editingId: number | null;

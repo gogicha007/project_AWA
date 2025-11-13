@@ -10,6 +10,8 @@ export const sectionsApi = {
         return response.data;
     },
 
+    creactBoqSection: async (section: BoqSectionDTO) => { },
+
     createBoqSectionsInBulk: async (sections: BoqSectionDTO[]) => {
         try {
             const createSectionsResopnse = await apiClient.post('/boq-sections/bulk', {
