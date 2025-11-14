@@ -2,13 +2,13 @@ import React from 'react';
 import { SectionsTable } from './components/sections-table/SectionsTable';
 import { BoqSectionDTO } from '../api/boqSectionsApi';
 
-export const BoqSections: React.FC<{ projectId: number, initialData: BoqSectionDTO[] }> = ({ projectId }) => {
+export const BoqSections: React.FC<{ projectId: number; initialData?: BoqSectionDTO[] }> = ({ projectId, initialData }) => {
   return (
     <div className="flex flex-col items-start gap-4 p-6">
       <h2 className="text-lg font-semibold">
         Bill of Quantities (BoQ) for Project ID: {projectId}
       </h2>
-      <SectionsTable projectId={projectId} />
+      <SectionsTable projectId={projectId} initialData={initialData} />
     </div>
   );
 };

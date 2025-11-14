@@ -21,5 +21,6 @@ const projectSchema = z.object({
 });
 
 export type ProjectFormSchema = z.infer<typeof projectSchema>;
+export type ProjectDTO = z.infer<typeof projectSchema>;
 
 export default projectSchema;

@@ -79,7 +79,7 @@ export type FreightDTO = z.infer<typeof freightSchema>;
 
 
 // project section types
-export type ProjectDTO = z.infer<typeof projectFormSchema>;
+
 
 export interface LocationDTO {
   id?: number;

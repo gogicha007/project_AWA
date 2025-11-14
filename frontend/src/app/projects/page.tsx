@@ -1,5 +1,4 @@
 import styles from './page.module.css';
-import React from 'react';
 import ProjectsClient from '@/features/projects/projects-list/ProjectsListClient';
 
 export default function Projects() {

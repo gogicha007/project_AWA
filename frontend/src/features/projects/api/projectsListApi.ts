@@ -1,6 +1,6 @@
 import { handleApiError } from "@/utils/handleApiError";
 import apiClient from "@/api/api-client";
-import { ProjectDTO } from "@/api/types";
+import { ProjectDTO } from "../projects-list/projectsCRUD/projectSchema";
 
 export const projectApi = {
   getAll: async (): Promise<ProjectDTO[]> => {
@@ -18,6 +18,7 @@ export const projectApi = {
       return response.data;
     } catch (error) {
       handleApiError(error);
+      throw error; // Re-throw so the caller knows it failed
     }
   },
 
