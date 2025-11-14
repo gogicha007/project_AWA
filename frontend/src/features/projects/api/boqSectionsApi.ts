@@ -4,10 +4,16 @@ import { SectionSchema } from "../project-boq/schema/sectionSchema";
 import { z } from 'zod'
 
 export type BoqSectionDTO = z.infer<typeof SectionSchema>
+
 export const sectionsApi = {
     getAll: async (): Promise<BoqSectionDTO[]> => {
-        const response = await apiClient.get('/boq-sections');
-        return response.data;
+        try {
+            const response = await apiClient.get('/boq-sections');
+            return response.data;
+        } catch (error) {
+            handleApiError(error)
+        }
+
     },
 
     creactBoqSection: async (section: BoqSectionDTO) => {

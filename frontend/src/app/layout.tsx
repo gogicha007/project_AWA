@@ -5,7 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import LayoutClient from './layoutClient';
 import Header from '../components/layout/header/header';
-import { AuthProvider } from '@/context/auth';
+import Providers from './providers';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -41,7 +41,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <AuthProvider>
+        <Providers>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <LayoutClient>
               <header>
@@ -50,7 +50,7 @@ export default async function RootLayout({
               <main>{children}</main>
             </LayoutClient>
           </NextIntlClientProvider>
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   );

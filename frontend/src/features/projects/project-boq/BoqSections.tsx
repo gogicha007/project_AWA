@@ -1,7 +1,8 @@
 import React from 'react';
 import { SectionsTable } from './components/sections-table/SectionsTable';
+import { BoqSectionDTO } from '../api/boqSectionsApi';
 
-export const BoqSections: React.FC<{ projectId: number }> = ({ projectId }) => {
+export const BoqSections: React.FC<{ projectId: number, initialData: BoqSectionDTO[] }> = ({ projectId }) => {
   return (
     <div className="flex flex-col items-start gap-4 p-6">
       <h2 className="text-lg font-semibold">
