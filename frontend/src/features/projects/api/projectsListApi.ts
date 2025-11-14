@@ -18,7 +18,6 @@ export const projectApi = {
       return response.data;
     } catch (error) {
       handleApiError(error);
-      throw error; // Re-throw so the caller knows it failed
     }
   },
 

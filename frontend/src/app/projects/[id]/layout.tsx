@@ -5,6 +5,8 @@ import { projectApi } from '@/features/projects/api/projectsListApi';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ProjectDTO } from '@/features/projects/projects-list/projectsCRUD/projectSchema';
+import { useAuth } from '@/context/auth';
+import Loader from '@/components/feedback/loader/loader';
 
 export default function ProjectLayout({
   children,
@@ -12,11 +14,16 @@ export default function ProjectLayout({
   children: React.ReactNode;
 }) {
   const params = useParams();
+  const { loading: authLoading } = useAuth();
   const [project, setProject] = useState<ProjectDTO | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (authLoading) {
+      return;
+    }
+
     const fetchProject = async () => {
       try {
         setLoading(true);
@@ -52,7 +59,17 @@ export default function ProjectLayout({
       setLoading(false);
       setError('No project ID in URL');
     }
-  }, [params.id]);
+  }, [params.id, authLoading]);
+
+  if (authLoading || loading) return <Loader />;
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!project) {
+    return <div>Loading project data...</div>;
+  }
 
   return (
     <ProjectContextProvider value={project}>{children}</ProjectContextProvider>
