@@ -8,7 +8,6 @@ const SectionSchema = z.object({
     sectionType: z.string().optional(),
     totalAmount: z.number().min(0.01, 'Quantity must be greater than 0'),
     locationId: z.number().nullable().optional(),
-    currencyId: z.number()
 })
 
 export { SectionSchema }

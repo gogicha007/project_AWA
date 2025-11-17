@@ -201,8 +201,6 @@ model ProjectSection {
   updatedAt   DateTime                  @updatedAt @map("updated_at")
   user        User                      @relation(fields: [userId], references: [id])
   userId      Int                       @map("user_id")
-  Currency    Currency?                 @relation(fields: [currencyId], references: [id])
-  currencyId  Int?
 
   @@map("project_sections")
 }
@@ -373,15 +371,14 @@ model ShipmentFile {
 // SETTINGS
 // ========================================
 model Currency {
-  id             Int              @id @default(autoincrement())
-  code           String           @unique // e.g., "USD"
-  name           String? // e.g., "United States Dollar"
-  symbol         String? // e.g., "$"
-  Invoice        Invoice[]
-  Freight        Freight[]
-  Milestone      Milestone[]
-  Project        Project[]
-  ProjectSection ProjectSection[]
+  id        Int         @id @default(autoincrement())
+  code      String      @unique // e.g., "USD"
+  name      String? // e.g., "United States Dollar"
+  symbol    String? // e.g., "$"
+  Invoice   Invoice[]
+  Freight   Freight[]
+  Milestone Milestone[]
+  Project   Project[]
 
   @@map("currency")
 }

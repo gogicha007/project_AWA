@@ -21,10 +21,8 @@ export const useSectionsTable = ({
 }: Props) => {
   const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
 
-  const tS = useTranslations('ProjectBoq')
-  const handleImport = ()=> {
-
-  }
+  const tS = useTranslations('ProjectBoq');
+  const handleImport = () => {};
 
   const handleAdd = () => {
     const newSection: SectionRow = {
@@ -32,7 +30,6 @@ export const useSectionsTable = ({
       sectionCode: '',
       sectionName: '',
       totalAmount: 0,
-      currencyId: 0,
       locationId: null,
       isNew: true,
     };
@@ -151,9 +148,17 @@ export const useSectionsTable = ({
         onCancel: handleCancel,
         onDelete: handleDelete,
         onFieldChange: handleFieldChange,
-        tS
+        tS,
       }),
-    [editingId, sections]
+    [
+      editingId,
+      handleCancel,
+      handleDelete,
+      handleEdit,
+      handleFieldChange,
+      handleSave,
+      tS,
+    ]
   );
 
   return {
@@ -164,6 +169,6 @@ export const useSectionsTable = ({
     handleImport,
     handleSave,
     columns,
-    tS
+    tS,
   };
 };

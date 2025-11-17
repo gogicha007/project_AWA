@@ -37,10 +37,10 @@ export const SectionsTable = ({ projectId, initialData = [] }: Props) => {
     handleSave,
     columns,
   } = useSectionsTable({
-    sections,
-    setSections,
     editingId,
     setEditingId,
+    sections,
+    setSections,
     projectId,
   });
 

@@ -3658,7 +3658,6 @@ export namespace Prisma {
     Freight: number
     Milestone: number
     Project: number
-    ProjectSection: number
   }
 
   export type CurrencyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3666,7 +3665,6 @@ export namespace Prisma {
     Freight?: boolean | CurrencyCountOutputTypeCountFreightArgs
     Milestone?: boolean | CurrencyCountOutputTypeCountMilestoneArgs
     Project?: boolean | CurrencyCountOutputTypeCountProjectArgs
-    ProjectSection?: boolean | CurrencyCountOutputTypeCountProjectSectionArgs
   }
 
   // Custom InputTypes
@@ -3706,13 +3704,6 @@ export namespace Prisma {
    */
   export type CurrencyCountOutputTypeCountProjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProjectWhereInput
-  }
-
-  /**
-   * CurrencyCountOutputType without action
-   */
-  export type CurrencyCountOutputTypeCountProjectSectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProjectSectionWhereInput
   }
 
 
@@ -13928,7 +13919,6 @@ export namespace Prisma {
     totalAmount: Decimal | null
     locationId: number | null
     userId: number | null
-    currencyId: number | null
   }
 
   export type ProjectSectionSumAggregateOutputType = {
@@ -13937,7 +13927,6 @@ export namespace Prisma {
     totalAmount: Decimal | null
     locationId: number | null
     userId: number | null
-    currencyId: number | null
   }
 
   export type ProjectSectionMinAggregateOutputType = {
@@ -13951,7 +13940,6 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
-    currencyId: number | null
   }
 
   export type ProjectSectionMaxAggregateOutputType = {
@@ -13965,7 +13953,6 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
-    currencyId: number | null
   }
 
   export type ProjectSectionCountAggregateOutputType = {
@@ -13979,7 +13966,6 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     userId: number
-    currencyId: number
     _all: number
   }
 
@@ -13990,7 +13976,6 @@ export namespace Prisma {
     totalAmount?: true
     locationId?: true
     userId?: true
-    currencyId?: true
   }
 
   export type ProjectSectionSumAggregateInputType = {
@@ -13999,7 +13984,6 @@ export namespace Prisma {
     totalAmount?: true
     locationId?: true
     userId?: true
-    currencyId?: true
   }
 
   export type ProjectSectionMinAggregateInputType = {
@@ -14013,7 +13997,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
-    currencyId?: true
   }
 
   export type ProjectSectionMaxAggregateInputType = {
@@ -14027,7 +14010,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
-    currencyId?: true
   }
 
   export type ProjectSectionCountAggregateInputType = {
@@ -14041,7 +14023,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
-    currencyId?: true
     _all?: true
   }
 
@@ -14142,7 +14123,6 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     userId: number
-    currencyId: number | null
     _count: ProjectSectionCountAggregateOutputType | null
     _avg: ProjectSectionAvgAggregateOutputType | null
     _sum: ProjectSectionSumAggregateOutputType | null
@@ -14175,13 +14155,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    currencyId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
     boqItems?: boolean | ProjectSection$boqItemsArgs<ExtArgs>
     breakdowns?: boolean | ProjectSection$breakdownsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
     _count?: boolean | ProjectSectionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["projectSection"]>
 
@@ -14196,11 +14174,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    currencyId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }, ExtArgs["result"]["projectSection"]>
 
   export type ProjectSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14214,11 +14190,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    currencyId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }, ExtArgs["result"]["projectSection"]>
 
   export type ProjectSectionSelectScalar = {
@@ -14232,30 +14206,26 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    currencyId?: boolean
   }
 
-  export type ProjectSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "sectionCode" | "sectionName" | "sectionType" | "totalAmount" | "locationId" | "createdAt" | "updatedAt" | "userId" | "currencyId", ExtArgs["result"]["projectSection"]>
+  export type ProjectSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "sectionCode" | "sectionName" | "sectionType" | "totalAmount" | "locationId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["projectSection"]>
   export type ProjectSectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
     boqItems?: boolean | ProjectSection$boqItemsArgs<ExtArgs>
     breakdowns?: boolean | ProjectSection$breakdownsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
     _count?: boolean | ProjectSectionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectSectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }
   export type ProjectSectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     location?: boolean | ProjectSection$locationArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Currency?: boolean | ProjectSection$CurrencyArgs<ExtArgs>
   }
 
   export type $ProjectSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14266,7 +14236,6 @@ export namespace Prisma {
       boqItems: Prisma.$BoqItemPayload<ExtArgs>[]
       breakdowns: Prisma.$ProjectSectionBreakdownPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
-      Currency: Prisma.$CurrencyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -14279,7 +14248,6 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       userId: number
-      currencyId: number | null
     }, ExtArgs["result"]["projectSection"]>
     composites: {}
   }
@@ -14679,7 +14647,6 @@ export namespace Prisma {
     boqItems<T extends ProjectSection$boqItemsArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$boqItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     breakdowns<T extends ProjectSection$breakdownsArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$breakdownsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Currency<T extends ProjectSection$CurrencyArgs<ExtArgs> = {}>(args?: Subset<T, ProjectSection$CurrencyArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14719,7 +14686,6 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"ProjectSection", 'DateTime'>
     readonly updatedAt: FieldRef<"ProjectSection", 'DateTime'>
     readonly userId: FieldRef<"ProjectSection", 'Int'>
-    readonly currencyId: FieldRef<"ProjectSection", 'Int'>
   }
     
 
@@ -15180,25 +15146,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProjectSectionBreakdownScalarFieldEnum | ProjectSectionBreakdownScalarFieldEnum[]
-  }
-
-  /**
-   * ProjectSection.Currency
-   */
-  export type ProjectSection$CurrencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    where?: CurrencyWhereInput
   }
 
   /**
@@ -25900,7 +25847,6 @@ export namespace Prisma {
     Freight?: boolean | Currency$FreightArgs<ExtArgs>
     Milestone?: boolean | Currency$MilestoneArgs<ExtArgs>
     Project?: boolean | Currency$ProjectArgs<ExtArgs>
-    ProjectSection?: boolean | Currency$ProjectSectionArgs<ExtArgs>
     _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["currency"]>
 
@@ -25931,7 +25877,6 @@ export namespace Prisma {
     Freight?: boolean | Currency$FreightArgs<ExtArgs>
     Milestone?: boolean | Currency$MilestoneArgs<ExtArgs>
     Project?: boolean | Currency$ProjectArgs<ExtArgs>
-    ProjectSection?: boolean | Currency$ProjectSectionArgs<ExtArgs>
     _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CurrencyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -25944,7 +25889,6 @@ export namespace Prisma {
       Freight: Prisma.$FreightPayload<ExtArgs>[]
       Milestone: Prisma.$MilestonePayload<ExtArgs>[]
       Project: Prisma.$ProjectPayload<ExtArgs>[]
-      ProjectSection: Prisma.$ProjectSectionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -26349,7 +26293,6 @@ export namespace Prisma {
     Freight<T extends Currency$FreightArgs<ExtArgs> = {}>(args?: Subset<T, Currency$FreightArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FreightPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Milestone<T extends Currency$MilestoneArgs<ExtArgs> = {}>(args?: Subset<T, Currency$MilestoneArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Project<T extends Currency$ProjectArgs<ExtArgs> = {}>(args?: Subset<T, Currency$ProjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ProjectSection<T extends Currency$ProjectSectionArgs<ExtArgs> = {}>(args?: Subset<T, Currency$ProjectSectionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26864,30 +26807,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
-  }
-
-  /**
-   * Currency.ProjectSection
-   */
-  export type Currency$ProjectSectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProjectSection
-     */
-    select?: ProjectSectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProjectSection
-     */
-    omit?: ProjectSectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProjectSectionInclude<ExtArgs> | null
-    where?: ProjectSectionWhereInput
-    orderBy?: ProjectSectionOrderByWithRelationInput | ProjectSectionOrderByWithRelationInput[]
-    cursor?: ProjectSectionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProjectSectionScalarFieldEnum | ProjectSectionScalarFieldEnum[]
   }
 
   /**
@@ -35297,8 +35216,7 @@ export namespace Prisma {
     locationId: 'locationId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    userId: 'userId',
-    currencyId: 'currencyId'
+    userId: 'userId'
   };
 
   export type ProjectSectionScalarFieldEnum = (typeof ProjectSectionScalarFieldEnum)[keyof typeof ProjectSectionScalarFieldEnum]
@@ -36475,13 +36393,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectSection"> | Date | string
     userId?: IntFilter<"ProjectSection"> | number
-    currencyId?: IntNullableFilter<"ProjectSection"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
     boqItems?: BoqItemListRelationFilter
     breakdowns?: ProjectSectionBreakdownListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
   }
 
   export type ProjectSectionOrderByWithRelationInput = {
@@ -36495,13 +36411,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrderInput | SortOrder
     project?: ProjectOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
     boqItems?: BoqItemOrderByRelationAggregateInput
     breakdowns?: ProjectSectionBreakdownOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
-    Currency?: CurrencyOrderByWithRelationInput
   }
 
   export type ProjectSectionWhereUniqueInput = Prisma.AtLeast<{
@@ -36518,13 +36432,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectSection"> | Date | string
     userId?: IntFilter<"ProjectSection"> | number
-    currencyId?: IntNullableFilter<"ProjectSection"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
     boqItems?: BoqItemListRelationFilter
     breakdowns?: ProjectSectionBreakdownListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
   }, "id">
 
   export type ProjectSectionOrderByWithAggregationInput = {
@@ -36538,7 +36450,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrderInput | SortOrder
     _count?: ProjectSectionCountOrderByAggregateInput
     _avg?: ProjectSectionAvgOrderByAggregateInput
     _max?: ProjectSectionMaxOrderByAggregateInput
@@ -36560,7 +36471,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProjectSection"> | Date | string
     userId?: IntWithAggregatesFilter<"ProjectSection"> | number
-    currencyId?: IntNullableWithAggregatesFilter<"ProjectSection"> | number | null
   }
 
   export type ProjectSectionBreakdownWhereInput = {
@@ -37228,7 +37138,6 @@ export namespace Prisma {
     Freight?: FreightListRelationFilter
     Milestone?: MilestoneListRelationFilter
     Project?: ProjectListRelationFilter
-    ProjectSection?: ProjectSectionListRelationFilter
   }
 
   export type CurrencyOrderByWithRelationInput = {
@@ -37240,7 +37149,6 @@ export namespace Prisma {
     Freight?: FreightOrderByRelationAggregateInput
     Milestone?: MilestoneOrderByRelationAggregateInput
     Project?: ProjectOrderByRelationAggregateInput
-    ProjectSection?: ProjectSectionOrderByRelationAggregateInput
   }
 
   export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
@@ -37255,7 +37163,6 @@ export namespace Prisma {
     Freight?: FreightListRelationFilter
     Milestone?: MilestoneListRelationFilter
     Project?: ProjectListRelationFilter
-    ProjectSection?: ProjectSectionListRelationFilter
   }, "id" | "code">
 
   export type CurrencyOrderByWithAggregationInput = {
@@ -38486,7 +38393,6 @@ export namespace Prisma {
     boqItems?: BoqItemCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
     user: UserCreateNestedOneWithoutProjectSectionInput
-    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateInput = {
@@ -38500,7 +38406,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
@@ -38517,7 +38422,6 @@ export namespace Prisma {
     boqItems?: BoqItemUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
     user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
-    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateInput = {
@@ -38531,7 +38435,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: BoqItemUncheckedUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
@@ -38547,7 +38450,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
   }
 
   export type ProjectSectionUpdateManyMutationInput = {
@@ -38570,7 +38472,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ProjectSectionBreakdownCreateInput = {
@@ -39179,7 +39080,6 @@ export namespace Prisma {
     Freight?: FreightCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
     Project?: ProjectCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateInput = {
@@ -39191,7 +39091,6 @@ export namespace Prisma {
     Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
     Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUpdateInput = {
@@ -39202,7 +39101,6 @@ export namespace Prisma {
     Freight?: FreightUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateInput = {
@@ -39214,7 +39112,6 @@ export namespace Prisma {
     Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyCreateManyInput = {
@@ -40634,7 +40531,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrder
   }
 
   export type ProjectSectionAvgOrderByAggregateInput = {
@@ -40643,7 +40539,6 @@ export namespace Prisma {
     totalAmount?: SortOrder
     locationId?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrder
   }
 
   export type ProjectSectionMaxOrderByAggregateInput = {
@@ -40657,7 +40552,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrder
   }
 
   export type ProjectSectionMinOrderByAggregateInput = {
@@ -40671,7 +40565,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrder
   }
 
   export type ProjectSectionSumOrderByAggregateInput = {
@@ -40680,7 +40573,6 @@ export namespace Prisma {
     totalAmount?: SortOrder
     locationId?: SortOrder
     userId?: SortOrder
-    currencyId?: SortOrder
   }
 
   export type ProjectSectionScalarRelationFilter = {
@@ -42429,12 +42321,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type CurrencyCreateNestedOneWithoutProjectSectionInput = {
-    create?: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
-    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectSectionInput
-    connect?: CurrencyWhereUniqueInput
-  }
-
   export type BoqItemUncheckedCreateNestedManyWithoutSectionInput = {
     create?: XOR<BoqItemCreateWithoutSectionInput, BoqItemUncheckedCreateWithoutSectionInput> | BoqItemCreateWithoutSectionInput[] | BoqItemUncheckedCreateWithoutSectionInput[]
     connectOrCreate?: BoqItemCreateOrConnectWithoutSectionInput | BoqItemCreateOrConnectWithoutSectionInput[]
@@ -42501,16 +42387,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutProjectSectionInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectSectionInput, UserUpdateWithoutProjectSectionInput>, UserUncheckedUpdateWithoutProjectSectionInput>
-  }
-
-  export type CurrencyUpdateOneWithoutProjectSectionNestedInput = {
-    create?: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
-    connectOrCreate?: CurrencyCreateOrConnectWithoutProjectSectionInput
-    upsert?: CurrencyUpsertWithoutProjectSectionInput
-    disconnect?: CurrencyWhereInput | boolean
-    delete?: CurrencyWhereInput | boolean
-    connect?: CurrencyWhereUniqueInput
-    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutProjectSectionInput, CurrencyUpdateWithoutProjectSectionInput>, CurrencyUncheckedUpdateWithoutProjectSectionInput>
   }
 
   export type BoqItemUncheckedUpdateManyWithoutSectionNestedInput = {
@@ -43235,13 +43111,6 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
-  export type ProjectSectionCreateNestedManyWithoutCurrencyInput = {
-    create?: XOR<ProjectSectionCreateWithoutCurrencyInput, ProjectSectionUncheckedCreateWithoutCurrencyInput> | ProjectSectionCreateWithoutCurrencyInput[] | ProjectSectionUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: ProjectSectionCreateOrConnectWithoutCurrencyInput | ProjectSectionCreateOrConnectWithoutCurrencyInput[]
-    createMany?: ProjectSectionCreateManyCurrencyInputEnvelope
-    connect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-  }
-
   export type InvoiceUncheckedCreateNestedManyWithoutCurrencyInput = {
     create?: XOR<InvoiceCreateWithoutCurrencyInput, InvoiceUncheckedCreateWithoutCurrencyInput> | InvoiceCreateWithoutCurrencyInput[] | InvoiceUncheckedCreateWithoutCurrencyInput[]
     connectOrCreate?: InvoiceCreateOrConnectWithoutCurrencyInput | InvoiceCreateOrConnectWithoutCurrencyInput[]
@@ -43268,13 +43137,6 @@ export namespace Prisma {
     connectOrCreate?: ProjectCreateOrConnectWithoutCurrencyInput | ProjectCreateOrConnectWithoutCurrencyInput[]
     createMany?: ProjectCreateManyCurrencyInputEnvelope
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-  }
-
-  export type ProjectSectionUncheckedCreateNestedManyWithoutCurrencyInput = {
-    create?: XOR<ProjectSectionCreateWithoutCurrencyInput, ProjectSectionUncheckedCreateWithoutCurrencyInput> | ProjectSectionCreateWithoutCurrencyInput[] | ProjectSectionUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: ProjectSectionCreateOrConnectWithoutCurrencyInput | ProjectSectionCreateOrConnectWithoutCurrencyInput[]
-    createMany?: ProjectSectionCreateManyCurrencyInputEnvelope
-    connect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
   }
 
   export type InvoiceUpdateManyWithoutCurrencyNestedInput = {
@@ -43333,20 +43195,6 @@ export namespace Prisma {
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
-  export type ProjectSectionUpdateManyWithoutCurrencyNestedInput = {
-    create?: XOR<ProjectSectionCreateWithoutCurrencyInput, ProjectSectionUncheckedCreateWithoutCurrencyInput> | ProjectSectionCreateWithoutCurrencyInput[] | ProjectSectionUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: ProjectSectionCreateOrConnectWithoutCurrencyInput | ProjectSectionCreateOrConnectWithoutCurrencyInput[]
-    upsert?: ProjectSectionUpsertWithWhereUniqueWithoutCurrencyInput | ProjectSectionUpsertWithWhereUniqueWithoutCurrencyInput[]
-    createMany?: ProjectSectionCreateManyCurrencyInputEnvelope
-    set?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    disconnect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    delete?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    connect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    update?: ProjectSectionUpdateWithWhereUniqueWithoutCurrencyInput | ProjectSectionUpdateWithWhereUniqueWithoutCurrencyInput[]
-    updateMany?: ProjectSectionUpdateManyWithWhereWithoutCurrencyInput | ProjectSectionUpdateManyWithWhereWithoutCurrencyInput[]
-    deleteMany?: ProjectSectionScalarWhereInput | ProjectSectionScalarWhereInput[]
-  }
-
   export type InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput = {
     create?: XOR<InvoiceCreateWithoutCurrencyInput, InvoiceUncheckedCreateWithoutCurrencyInput> | InvoiceCreateWithoutCurrencyInput[] | InvoiceUncheckedCreateWithoutCurrencyInput[]
     connectOrCreate?: InvoiceCreateOrConnectWithoutCurrencyInput | InvoiceCreateOrConnectWithoutCurrencyInput[]
@@ -43401,20 +43249,6 @@ export namespace Prisma {
     update?: ProjectUpdateWithWhereUniqueWithoutCurrencyInput | ProjectUpdateWithWhereUniqueWithoutCurrencyInput[]
     updateMany?: ProjectUpdateManyWithWhereWithoutCurrencyInput | ProjectUpdateManyWithWhereWithoutCurrencyInput[]
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
-  }
-
-  export type ProjectSectionUncheckedUpdateManyWithoutCurrencyNestedInput = {
-    create?: XOR<ProjectSectionCreateWithoutCurrencyInput, ProjectSectionUncheckedCreateWithoutCurrencyInput> | ProjectSectionCreateWithoutCurrencyInput[] | ProjectSectionUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: ProjectSectionCreateOrConnectWithoutCurrencyInput | ProjectSectionCreateOrConnectWithoutCurrencyInput[]
-    upsert?: ProjectSectionUpsertWithWhereUniqueWithoutCurrencyInput | ProjectSectionUpsertWithWhereUniqueWithoutCurrencyInput[]
-    createMany?: ProjectSectionCreateManyCurrencyInputEnvelope
-    set?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    disconnect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    delete?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    connect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
-    update?: ProjectSectionUpdateWithWhereUniqueWithoutCurrencyInput | ProjectSectionUpdateWithWhereUniqueWithoutCurrencyInput[]
-    updateMany?: ProjectSectionUpdateManyWithWhereWithoutCurrencyInput | ProjectSectionUpdateManyWithWhereWithoutCurrencyInput[]
-    deleteMany?: ProjectSectionScalarWhereInput | ProjectSectionScalarWhereInput[]
   }
 
   export type MaterialTypeCreateNestedManyWithoutGroupInput = {
@@ -45006,7 +44840,6 @@ export namespace Prisma {
     location?: LocationCreateNestedOneWithoutProjectSectionInput
     breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
     user: UserCreateNestedOneWithoutProjectSectionInput
-    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutBoqItemsInput = {
@@ -45020,7 +44853,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
     breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
 
@@ -45258,7 +45090,6 @@ export namespace Prisma {
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
     user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
-    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutBoqItemsInput = {
@@ -45272,7 +45103,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
 
@@ -45621,7 +45451,6 @@ export namespace Prisma {
     boqItems?: BoqItemCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
     user: UserCreateNestedOneWithoutProjectSectionInput
-    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutLocationInput = {
@@ -45634,7 +45463,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
@@ -45714,7 +45542,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ProjectSection"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectSection"> | Date | string
     userId?: IntFilter<"ProjectSection"> | number
-    currencyId?: IntNullableFilter<"ProjectSection"> | number | null
   }
 
   export type ProgressCreateWithoutMilestoneInput = {
@@ -45761,7 +45588,6 @@ export namespace Prisma {
     Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
     Freight?: FreightCreateNestedManyWithoutCurrencyInput
     Project?: ProjectCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateWithoutMilestoneInput = {
@@ -45772,7 +45598,6 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
     Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
     Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyCreateOrConnectWithoutMilestoneInput = {
@@ -45878,7 +45703,6 @@ export namespace Prisma {
     Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
     Freight?: FreightUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateWithoutMilestoneInput = {
@@ -45889,7 +45713,6 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
     Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type UserUpsertWithoutMilestoneInput = {
@@ -46319,7 +46142,6 @@ export namespace Prisma {
     Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
     Freight?: FreightCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateWithoutProjectInput = {
@@ -46330,7 +46152,6 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
     Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyCreateOrConnectWithoutProjectInput = {
@@ -46475,7 +46296,6 @@ export namespace Prisma {
     boqItems?: BoqItemCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
     user: UserCreateNestedOneWithoutProjectSectionInput
-    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutProjectInput = {
@@ -46488,7 +46308,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
@@ -46580,7 +46399,6 @@ export namespace Prisma {
     Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
     Freight?: FreightUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateWithoutProjectInput = {
@@ -46591,7 +46409,6 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
     Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type UserUpsertWithoutProjectInput = {
@@ -46996,32 +46813,6 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutProjectSectionInput, UserUncheckedCreateWithoutProjectSectionInput>
   }
 
-  export type CurrencyCreateWithoutProjectSectionInput = {
-    code: string
-    name?: string | null
-    symbol?: string | null
-    Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
-    Freight?: FreightCreateNestedManyWithoutCurrencyInput
-    Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
-    Project?: ProjectCreateNestedManyWithoutCurrencyInput
-  }
-
-  export type CurrencyUncheckedCreateWithoutProjectSectionInput = {
-    id?: number
-    code: string
-    name?: string | null
-    symbol?: string | null
-    Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
-    Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
-    Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
-    Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
-  }
-
-  export type CurrencyCreateOrConnectWithoutProjectSectionInput = {
-    where: CurrencyWhereUniqueInput
-    create: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
-  }
-
   export type ProjectUpsertWithoutProjectSectionInput = {
     update: XOR<ProjectUpdateWithoutProjectSectionInput, ProjectUncheckedUpdateWithoutProjectSectionInput>
     create: XOR<ProjectCreateWithoutProjectSectionInput, ProjectUncheckedCreateWithoutProjectSectionInput>
@@ -47184,38 +46975,6 @@ export namespace Prisma {
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type CurrencyUpsertWithoutProjectSectionInput = {
-    update: XOR<CurrencyUpdateWithoutProjectSectionInput, CurrencyUncheckedUpdateWithoutProjectSectionInput>
-    create: XOR<CurrencyCreateWithoutProjectSectionInput, CurrencyUncheckedCreateWithoutProjectSectionInput>
-    where?: CurrencyWhereInput
-  }
-
-  export type CurrencyUpdateToOneWithWhereWithoutProjectSectionInput = {
-    where?: CurrencyWhereInput
-    data: XOR<CurrencyUpdateWithoutProjectSectionInput, CurrencyUncheckedUpdateWithoutProjectSectionInput>
-  }
-
-  export type CurrencyUpdateWithoutProjectSectionInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    symbol?: NullableStringFieldUpdateOperationsInput | string | null
-    Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
-    Freight?: FreightUpdateManyWithoutCurrencyNestedInput
-    Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
-    Project?: ProjectUpdateManyWithoutCurrencyNestedInput
-  }
-
-  export type CurrencyUncheckedUpdateWithoutProjectSectionInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    symbol?: NullableStringFieldUpdateOperationsInput | string | null
-    Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
-    Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
-    Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
-    Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
-  }
-
   export type ProjectSectionCreateWithoutBreakdownsInput = {
     sectionCode: string
     sectionName: string
@@ -47227,7 +46986,6 @@ export namespace Prisma {
     location?: LocationCreateNestedOneWithoutProjectSectionInput
     boqItems?: BoqItemCreateNestedManyWithoutSectionInput
     user: UserCreateNestedOneWithoutProjectSectionInput
-    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutBreakdownsInput = {
@@ -47241,7 +46999,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutSectionInput
   }
 
@@ -47298,7 +47055,6 @@ export namespace Prisma {
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
     boqItems?: BoqItemUpdateManyWithoutSectionNestedInput
     user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
-    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutBreakdownsInput = {
@@ -47312,7 +47068,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: BoqItemUncheckedUpdateManyWithoutSectionNestedInput
   }
 
@@ -47880,7 +47635,6 @@ export namespace Prisma {
     Invoice?: InvoiceCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
     Project?: ProjectCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateWithoutFreightInput = {
@@ -47891,7 +47645,6 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
     Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyCreateOrConnectWithoutFreightInput = {
@@ -48009,7 +47762,6 @@ export namespace Prisma {
     Invoice?: InvoiceUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateWithoutFreightInput = {
@@ -48020,7 +47772,6 @@ export namespace Prisma {
     Invoice?: InvoiceUncheckedUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type ShipmentUpsertWithoutFreightsInput = {
@@ -48296,7 +48047,6 @@ export namespace Prisma {
     Freight?: FreightCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneCreateNestedManyWithoutCurrencyInput
     Project?: ProjectCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateWithoutInvoiceInput = {
@@ -48307,7 +48057,6 @@ export namespace Prisma {
     Freight?: FreightUncheckedCreateNestedManyWithoutCurrencyInput
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutCurrencyInput
     Project?: ProjectUncheckedCreateNestedManyWithoutCurrencyInput
-    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyCreateOrConnectWithoutInvoiceInput = {
@@ -48484,7 +48233,6 @@ export namespace Prisma {
     Freight?: FreightUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateWithoutInvoiceInput = {
@@ -48495,7 +48243,6 @@ export namespace Prisma {
     Freight?: FreightUncheckedUpdateManyWithoutCurrencyNestedInput
     Milestone?: MilestoneUncheckedUpdateManyWithoutCurrencyNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutCurrencyNestedInput
-    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type ShipmentUpsertWithoutInvoicesInput = {
@@ -49303,45 +49050,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProjectSectionCreateWithoutCurrencyInput = {
-    sectionCode: string
-    sectionName: string
-    sectionType: string
-    totalAmount?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    project: ProjectCreateNestedOneWithoutProjectSectionInput
-    location?: LocationCreateNestedOneWithoutProjectSectionInput
-    boqItems?: BoqItemCreateNestedManyWithoutSectionInput
-    breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
-    user: UserCreateNestedOneWithoutProjectSectionInput
-  }
-
-  export type ProjectSectionUncheckedCreateWithoutCurrencyInput = {
-    id?: number
-    projectId: number
-    sectionCode: string
-    sectionName: string
-    sectionType: string
-    totalAmount?: Decimal | DecimalJsLike | number | string | null
-    locationId?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: number
-    boqItems?: BoqItemUncheckedCreateNestedManyWithoutSectionInput
-    breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
-  }
-
-  export type ProjectSectionCreateOrConnectWithoutCurrencyInput = {
-    where: ProjectSectionWhereUniqueInput
-    create: XOR<ProjectSectionCreateWithoutCurrencyInput, ProjectSectionUncheckedCreateWithoutCurrencyInput>
-  }
-
-  export type ProjectSectionCreateManyCurrencyInputEnvelope = {
-    data: ProjectSectionCreateManyCurrencyInput | ProjectSectionCreateManyCurrencyInput[]
-    skipDuplicates?: boolean
-  }
-
   export type InvoiceUpsertWithWhereUniqueWithoutCurrencyInput = {
     where: InvoiceWhereUniqueInput
     update: XOR<InvoiceUpdateWithoutCurrencyInput, InvoiceUncheckedUpdateWithoutCurrencyInput>
@@ -49421,22 +49129,6 @@ export namespace Prisma {
   export type ProjectUpdateManyWithWhereWithoutCurrencyInput = {
     where: ProjectScalarWhereInput
     data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutCurrencyInput>
-  }
-
-  export type ProjectSectionUpsertWithWhereUniqueWithoutCurrencyInput = {
-    where: ProjectSectionWhereUniqueInput
-    update: XOR<ProjectSectionUpdateWithoutCurrencyInput, ProjectSectionUncheckedUpdateWithoutCurrencyInput>
-    create: XOR<ProjectSectionCreateWithoutCurrencyInput, ProjectSectionUncheckedCreateWithoutCurrencyInput>
-  }
-
-  export type ProjectSectionUpdateWithWhereUniqueWithoutCurrencyInput = {
-    where: ProjectSectionWhereUniqueInput
-    data: XOR<ProjectSectionUpdateWithoutCurrencyInput, ProjectSectionUncheckedUpdateWithoutCurrencyInput>
-  }
-
-  export type ProjectSectionUpdateManyWithWhereWithoutCurrencyInput = {
-    where: ProjectSectionScalarWhereInput
-    data: XOR<ProjectSectionUpdateManyMutationInput, ProjectSectionUncheckedUpdateManyWithoutCurrencyInput>
   }
 
   export type MaterialTypeCreateWithoutGroupInput = {
@@ -50520,7 +50212,6 @@ export namespace Prisma {
     location?: LocationCreateNestedOneWithoutProjectSectionInput
     boqItems?: BoqItemCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownCreateNestedManyWithoutSectionInput
-    Currency?: CurrencyCreateNestedOneWithoutProjectSectionInput
   }
 
   export type ProjectSectionUncheckedCreateWithoutUserInput = {
@@ -50533,7 +50224,6 @@ export namespace Prisma {
     locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    currencyId?: number | null
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutSectionInput
     breakdowns?: ProjectSectionBreakdownUncheckedCreateNestedManyWithoutSectionInput
   }
@@ -51132,7 +50822,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
   }
 
   export type TaskUpdateWithoutLocationInput = {
@@ -51194,7 +50883,6 @@ export namespace Prisma {
     boqItems?: BoqItemUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
     user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
-    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutLocationInput = {
@@ -51207,7 +50895,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: BoqItemUncheckedUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
@@ -51222,7 +50909,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ProgressCreateManyMilestoneInput = {
@@ -51319,7 +51005,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    currencyId?: number | null
   }
 
   export type ProjectBoqConfigCreateManyProjectInput = {
@@ -51432,7 +51117,6 @@ export namespace Prisma {
     boqItems?: BoqItemUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
     user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
-    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutProjectInput = {
@@ -51445,7 +51129,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: BoqItemUncheckedUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
@@ -51460,7 +51143,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ProjectBoqConfigUpdateWithoutProjectInput = {
@@ -51904,19 +51586,6 @@ export namespace Prisma {
     userId: number
   }
 
-  export type ProjectSectionCreateManyCurrencyInput = {
-    id?: number
-    projectId: number
-    sectionCode: string
-    sectionName: string
-    sectionType: string
-    totalAmount?: Decimal | DecimalJsLike | number | string | null
-    locationId?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: number
-  }
-
   export type InvoiceUpdateWithoutCurrencyInput = {
     invoiceNumber?: StringFieldUpdateOperationsInput | string
     invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52080,48 +51749,6 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     boqStructureType?: EnumboqStructureTypeFieldUpdateOperationsInput | $Enums.boqStructureType
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ProjectSectionUpdateWithoutCurrencyInput = {
-    sectionCode?: StringFieldUpdateOperationsInput | string
-    sectionName?: StringFieldUpdateOperationsInput | string
-    sectionType?: StringFieldUpdateOperationsInput | string
-    totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    project?: ProjectUpdateOneRequiredWithoutProjectSectionNestedInput
-    location?: LocationUpdateOneWithoutProjectSectionNestedInput
-    boqItems?: BoqItemUpdateManyWithoutSectionNestedInput
-    breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
-    user?: UserUpdateOneRequiredWithoutProjectSectionNestedInput
-  }
-
-  export type ProjectSectionUncheckedUpdateWithoutCurrencyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    projectId?: IntFieldUpdateOperationsInput | number
-    sectionCode?: StringFieldUpdateOperationsInput | string
-    sectionName?: StringFieldUpdateOperationsInput | string
-    sectionType?: StringFieldUpdateOperationsInput | string
-    totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: IntFieldUpdateOperationsInput | number
-    boqItems?: BoqItemUncheckedUpdateManyWithoutSectionNestedInput
-    breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
-  }
-
-  export type ProjectSectionUncheckedUpdateManyWithoutCurrencyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    projectId?: IntFieldUpdateOperationsInput | number
-    sectionCode?: StringFieldUpdateOperationsInput | string
-    sectionName?: StringFieldUpdateOperationsInput | string
-    sectionType?: StringFieldUpdateOperationsInput | string
-    totalAmount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -52665,7 +52292,6 @@ export namespace Prisma {
     locationId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    currencyId?: number | null
   }
 
   export type BoqItemCreateManyUserInput = {
@@ -53052,7 +52678,6 @@ export namespace Prisma {
     location?: LocationUpdateOneWithoutProjectSectionNestedInput
     boqItems?: BoqItemUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUpdateManyWithoutSectionNestedInput
-    Currency?: CurrencyUpdateOneWithoutProjectSectionNestedInput
   }
 
   export type ProjectSectionUncheckedUpdateWithoutUserInput = {
@@ -53065,7 +52690,6 @@ export namespace Prisma {
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
     boqItems?: BoqItemUncheckedUpdateManyWithoutSectionNestedInput
     breakdowns?: ProjectSectionBreakdownUncheckedUpdateManyWithoutSectionNestedInput
   }
@@ -53080,7 +52704,6 @@ export namespace Prisma {
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    currencyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type BoqItemUpdateWithoutUserInput = {

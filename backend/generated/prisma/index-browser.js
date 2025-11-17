@@ -234,8 +234,7 @@ exports.Prisma.ProjectSectionScalarFieldEnum = {
   locationId: 'locationId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId',
-  currencyId: 'currencyId'
+  userId: 'userId'
 };
 
 exports.Prisma.ProjectSectionBreakdownScalarFieldEnum = {
