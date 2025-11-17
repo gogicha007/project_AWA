@@ -1,12 +1,12 @@
 'use client';
 
-import { ProjectContextProvider } from '@/features/projects/context/ProjectContext';
-import { projectApi } from '@/features/projects/api/projectsListApi';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { ProjectDTO } from '@/features/projects/projects-list/projectsCRUD/projectSchema';
-import { useAuth } from '@/context/auth';
 import Loader from '@/components/feedback/loader/loader';
+import { projectApi } from '@/features/projects/api/projectsListApi';
+import { ProjectDTO } from '@/features/projects/projects-list/projectsCRUD/projectSchema';
+import { ProjectContextProvider } from '@/features/projects/context/ProjectContext';
+import { useAuth } from '@/context/auth';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 
 export default function ProjectLayout({
   children,
@@ -36,9 +36,7 @@ export default function ProjectLayout({
           return;
         }
 
-        console.log('Fetching project with ID:', id);
         const data = await projectApi.getById(+id);
-        console.log('Project data received:', data);
         
         if (!data) {
           setError('Project not found');

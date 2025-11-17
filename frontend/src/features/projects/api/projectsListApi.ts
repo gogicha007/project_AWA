@@ -1,5 +1,5 @@
-import { handleApiError } from "@/utils/handleApiError";
 import apiClient from "@/api/api-client";
+import { handleApiError } from "@/utils/handleApiError";
 import { ProjectDTO } from "../projects-list/projectsCRUD/projectSchema";
 
 export const projectApi = {
