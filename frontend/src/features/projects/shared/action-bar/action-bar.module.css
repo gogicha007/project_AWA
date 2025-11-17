@@ -1,0 +1,54 @@
+.actionButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.editButton {
+  color: #3b82f6;
+}
+
+.editButton:hover:not(:disabled) {
+  background: #dbeafe;
+}
+
+.saveButton {
+  color: #10b981;
+}
+
+.saveButton:hover:not(:disabled) {
+  background: #d1fae5;
+}
+
+.cancelButton {
+  color: #f59e0b;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: #fef3c7;
+}
+
+.deleteButton {
+  color: #ef4444;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #fee2e2;
+}

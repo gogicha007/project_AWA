@@ -1,8 +1,7 @@
 import styles from './sections-table.module.css';
+import ActionBar from '@/features/projects/shared/action-bar/action-bar';
 import { ColumnDef } from '@tanstack/react-table';
-import { FiEdit, FiSave, FiX } from 'react-icons/fi';
 import { SectionRow } from './SectionsTable';
-import { TiDelete } from 'react-icons/ti';
 
 type Props = {
   editingId: number | null;
@@ -10,7 +9,12 @@ type Props = {
   onSave: (row: SectionRow) => void;
   onCancel: () => void;
   onDelete: (id: number) => void;
-  onFieldChange: <K extends keyof SectionRow>(id: number, field: keyof SectionRow, value: SectionRow[K]) => void;
+  onFieldChange: <K extends keyof SectionRow>(
+    id: number,
+    field: keyof SectionRow,
+    value: SectionRow[K]
+  ) => void;
+  tS: (key: string) => string;
 };
 
 export const sectionsColumns = ({
@@ -20,9 +24,10 @@ export const sectionsColumns = ({
   onCancel,
   onDelete,
   onFieldChange,
+  tS,
 }: Props): ColumnDef<SectionRow>[] => [
   {
-    header: 'Section Code',
+    header: tS('sections.field.sectionCode'),
     accessorKey: 'sectionCode',
     cell: ({ row }) => {
       const isEditing = editingId === row.original.id;
@@ -50,7 +55,7 @@ export const sectionsColumns = ({
     },
   },
   {
-    header: 'Section Name',
+    header: tS('sections.field.sectionName'),
     accessorKey: 'sectionName',
     cell: ({ row }) => {
       const isEditing = editingId === row.original.id;
@@ -77,7 +82,7 @@ export const sectionsColumns = ({
     },
   },
   {
-    header: 'Total Amount',
+    header: tS('sections.field.totalAmount'),
     accessorKey: 'totalAmount',
     cell: ({ row }) => {
       const isEditing = editingId === row.original.id;
@@ -110,51 +115,21 @@ export const sectionsColumns = ({
   },
   {
     id: 'actions',
-    header: 'Actions',
+    header: tS('actions.title'),
     cell: ({ row }) => {
       const isEditing = editingId === row.original.id;
       const isAnyRowEditing = editingId !== null;
 
       return (
-        <div className={styles.actionButtons}>
-          {isEditing ? (
-            <>
-              <button
-                onClick={() => onSave(row.original)}
-                className={`${styles.actionButton} ${styles.saveButton}`}
-                title="Save"
-              >
-                <FiSave size={18} />
-              </button>
-              <button
-                onClick={onCancel}
-                className={`${styles.actionButton} ${styles.cancelButton}`}
-                title="Cancel"
-              >
-                <FiX size={18} />
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={() => onEdit(row.original)}
-                disabled={isAnyRowEditing}
-                className={`${styles.actionButton} ${styles.editButton}`}
-                title={isAnyRowEditing ? 'Save or cancel current edit first' : 'Edit'}
-              >
-                <FiEdit size={18} />
-              </button>
-              <button
-                onClick={() => onDelete(row.original.id)}
-                disabled={isAnyRowEditing}
-                className={`${styles.actionButton} ${styles.deleteButton}`}
-                title={isAnyRowEditing ? 'Save or cancel current edit first' : 'Delete'}
-              >
-                <TiDelete size={20} />
-              </button>
-            </>
-          )}
-        </div>
+        <ActionBar
+          isEditing={isEditing}
+          isAnyRowEditing={isAnyRowEditing}
+          onCancel={onCancel}
+          onDelete={onDelete}
+          onEdit={onEdit}
+          onSave={onSave}
+          row={row.original}
+        />
       );
     },
   },

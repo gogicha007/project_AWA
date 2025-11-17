@@ -371,8 +371,11 @@
       "title": "Actions",
       "add": "Add new item",
       "edit": "Edit",
+      "cancel": "Cancel",
       "delete": "Delete",
-      "submit": "Submit"
+      "save": "Save",
+      "submit": "Submit",
+      "save_or_cancel":"Save or cancel current edit firstF"
     },
     "warnings": {
       "delete": "Are you sure you want to delete this record?"

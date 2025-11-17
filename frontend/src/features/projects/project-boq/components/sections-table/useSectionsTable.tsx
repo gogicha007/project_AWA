@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { SectionRow } from './SectionsTable';
 import { sectionsColumns } from './SectionsColumns';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   sections: SectionRow[];
@@ -20,6 +21,7 @@ export const useSectionsTable = ({
 }: Props) => {
   const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
 
+  const tS = useTranslations('ProjectBoq')
   const handleImport = ()=> {
 
   }
@@ -149,6 +151,7 @@ export const useSectionsTable = ({
         onCancel: handleCancel,
         onDelete: handleDelete,
         onFieldChange: handleFieldChange,
+        tS
       }),
     [editingId, sections]
   );
@@ -161,5 +164,6 @@ export const useSectionsTable = ({
     handleImport,
     handleSave,
     columns,
+    tS
   };
 };
