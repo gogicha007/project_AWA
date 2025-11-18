@@ -1,10 +1,10 @@
+import ErrorMessage from '../shared/ErrorMessage';
+import Loader from '@/components/feedback/loader/loader';
+import { locationsApi } from '../project-locations/api/locationsApi';
+import { sectionsApi } from '../api/boqSectionsApi';
 import { SectionsTable } from './components/sections-table/SectionsTable';
 import { useProject } from '../context/ProjectContext';
 import { useQuery } from '@tanstack/react-query';
-import { locationsApi } from '../project-locations/api/locationsApi';
-import { sectionsApi } from '../api/boqSectionsApi';
-import Loader from '@/components/feedback/loader/loader';
-import ErrorMessage from '../shared/ErrorMessage';
 
 export const BoqSections = () => {
   const { displayName, id } = useProject();
@@ -18,7 +18,6 @@ export const BoqSections = () => {
     queryKey: ['projectLocations'],
     queryFn: locationsApi.getAll,
   });
-  console.log('locationsError', locationsError);
 
   const {
     isPending: isPendingSections,
@@ -38,13 +37,20 @@ export const BoqSections = () => {
       <h2 className="text-lg font-semibold">
         Bill of Quantities (BoQ) for: {displayName}
       </h2>
-      {isErrorSections && (
+      {(isErrorSections || isErrorLocations) && (
         <ErrorMessage
-          message={
-            sectionsError instanceof Error
-              ? sectionsError.message
-              : String(sectionsError)
-          }
+          message={({
+            location: isErrorLocations
+              ? locationsError instanceof Error
+                ? locationsError.message
+                : String(locationsError)
+              : null,
+            section: isErrorSections
+              ? sectionsError instanceof Error
+                ? sectionsError.message
+                : String(sectionsError)
+              : null,
+          })}
         />
       )}
       {isSuccessSections && (

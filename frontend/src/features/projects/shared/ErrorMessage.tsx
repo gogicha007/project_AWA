@@ -1,9 +1,14 @@
 type ErrorMessageProps = {
-  message: string;
+  message: { location: string | null; section: string | null };
 };
 
 const ErrorMessage = ({ message }: ErrorMessageProps) => {
-  return <div>ErrorMessage: {message}</div>;
+  return (
+    <>
+      {message.location && <div>{message.location}</div>}
+      {message.section && <div>{message.section}</div>}
+    </>
+  );
 };
 
 export default ErrorMessage;
