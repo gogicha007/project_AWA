@@ -1,6 +1,6 @@
 import apiClient from '@/api/api-client';
-import { LocationDTO } from '../schema/locationSchema';
 import { handleApiError } from '@/utils/handleApiError';
+import { LocationDTO } from '../schema/locationSchema';
 
 export const locationsApi = {
     getAll: async (): Promise<LocationDTO[]> => {

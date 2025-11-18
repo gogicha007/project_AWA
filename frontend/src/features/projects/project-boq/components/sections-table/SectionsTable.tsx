@@ -12,7 +12,6 @@ import AddButton from '@/components/controls/add-button/AddButton';
 import { ImportData } from '../import-data/ImportData';
 import { SectionSchema } from '../../schema/sectionSchema';
 import { LocationDTO } from '@/features/projects/project-locations/schema/locationSchema';
-import { LocationSchema } from '@/features/projects/project-locations/schema/locationSchema';
 import { useSectionsTable } from './useSectionsTable';
 import { useTranslations } from 'next-intl';
 
@@ -23,7 +22,7 @@ export type SectionRow = z.infer<typeof SectionSchema> & {
 
 type Props = {
   projectId: number;
-  initialData?: SectionRow[];
+  initialData: SectionRow[];
   locations: LocationDTO[]
 };
 

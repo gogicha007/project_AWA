@@ -1,3 +1,5 @@
+'use client';
+
 import ErrorMessage from '../shared/ErrorMessage';
 import Loader from '@/components/feedback/loader/loader';
 import { locationsApi } from '../project-locations/api/locationsApi';
@@ -12,6 +14,7 @@ export const BoqSections = () => {
   const {
     isPending: isPendingLocations,
     isError: isErrorLocations,
+    isSuccess: isSuccessLocations,
     data: locationsData,
     error: locationsError,
   } = useQuery({
@@ -39,7 +42,7 @@ export const BoqSections = () => {
       </h2>
       {(isErrorSections || isErrorLocations) && (
         <ErrorMessage
-          message={({
+          message={{
             location: isErrorLocations
               ? locationsError instanceof Error
                 ? locationsError.message
@@ -50,14 +53,14 @@ export const BoqSections = () => {
                 ? sectionsError.message
                 : String(sectionsError)
               : null,
-          })}
+          }}
         />
       )}
-      {isSuccessSections && (
+      {(isSuccessSections && isSuccessLocations) && (
         <SectionsTable
           projectId={id as number}
           initialData={sectionsData}
-          locations={locationsData ?? []}
+          locations={locationsData}
         />
       )}
     </div>
