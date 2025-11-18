@@ -1,5 +1,5 @@
 import apiClient from '@/api/api-client';
-import { LocationDTO } from '@/api/types';
+import { LocationDTO } from '../schema/locationSchema';
 import { handleApiError } from '@/utils/handleApiError';
 
 export const locationsApi = {

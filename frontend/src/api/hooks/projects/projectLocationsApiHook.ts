@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/context/auth';
-import { LocationDTO } from '@/api/types';
+import { LocationDTO } from '@/features/projects/project-locations/schema/locationSchema';
 import { locationsApi } from '@/features/projects/project-locations/api/locationsApi';
 
 

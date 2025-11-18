@@ -78,12 +78,3 @@ export type FreightDTO = z.infer<typeof freightSchema>;
 
 
 // project section types
-
-
-export interface LocationDTO {
-  id?: number;
-  locationName: string;
-  latitude?: number;
-  longitude?: number;
-  notes?: string;
-}
