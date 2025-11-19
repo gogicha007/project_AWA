@@ -7958,9 +7958,9 @@ export namespace Prisma {
   export type LocationGroupByOutputType = {
     id: number
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude: number | null
+    longitude: number | null
+    notes: string | null
     _count: LocationCountAggregateOutputType | null
     _avg: LocationAvgAggregateOutputType | null
     _sum: LocationSumAggregateOutputType | null
@@ -8035,9 +8035,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       locationName: string
-      latitude: number
-      longitude: number
-      notes: string
+      latitude: number | null
+      longitude: number | null
+      notes: string | null
     }, ExtArgs["result"]["location"]>
     composites: {}
   }
@@ -35939,9 +35939,9 @@ export namespace Prisma {
     NOT?: LocationWhereInput | LocationWhereInput[]
     id?: IntFilter<"Location"> | number
     locationName?: StringFilter<"Location"> | string
-    latitude?: FloatFilter<"Location"> | number
-    longitude?: FloatFilter<"Location"> | number
-    notes?: StringFilter<"Location"> | string
+    latitude?: FloatNullableFilter<"Location"> | number | null
+    longitude?: FloatNullableFilter<"Location"> | number | null
+    notes?: StringNullableFilter<"Location"> | string | null
     Task?: TaskListRelationFilter
     ProjectSection?: ProjectSectionListRelationFilter
   }
@@ -35949,9 +35949,9 @@ export namespace Prisma {
   export type LocationOrderByWithRelationInput = {
     id?: SortOrder
     locationName?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
-    notes?: SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
     Task?: TaskOrderByRelationAggregateInput
     ProjectSection?: ProjectSectionOrderByRelationAggregateInput
   }
@@ -35962,9 +35962,9 @@ export namespace Prisma {
     OR?: LocationWhereInput[]
     NOT?: LocationWhereInput | LocationWhereInput[]
     locationName?: StringFilter<"Location"> | string
-    latitude?: FloatFilter<"Location"> | number
-    longitude?: FloatFilter<"Location"> | number
-    notes?: StringFilter<"Location"> | string
+    latitude?: FloatNullableFilter<"Location"> | number | null
+    longitude?: FloatNullableFilter<"Location"> | number | null
+    notes?: StringNullableFilter<"Location"> | string | null
     Task?: TaskListRelationFilter
     ProjectSection?: ProjectSectionListRelationFilter
   }, "id">
@@ -35972,9 +35972,9 @@ export namespace Prisma {
   export type LocationOrderByWithAggregationInput = {
     id?: SortOrder
     locationName?: SortOrder
-    latitude?: SortOrder
-    longitude?: SortOrder
-    notes?: SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
     _count?: LocationCountOrderByAggregateInput
     _avg?: LocationAvgOrderByAggregateInput
     _max?: LocationMaxOrderByAggregateInput
@@ -35988,9 +35988,9 @@ export namespace Prisma {
     NOT?: LocationScalarWhereWithAggregatesInput | LocationScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Location"> | number
     locationName?: StringWithAggregatesFilter<"Location"> | string
-    latitude?: FloatWithAggregatesFilter<"Location"> | number
-    longitude?: FloatWithAggregatesFilter<"Location"> | number
-    notes?: StringWithAggregatesFilter<"Location"> | string
+    latitude?: FloatNullableWithAggregatesFilter<"Location"> | number | null
+    longitude?: FloatNullableWithAggregatesFilter<"Location"> | number | null
+    notes?: StringNullableWithAggregatesFilter<"Location"> | string | null
   }
 
   export type MilestoneWhereInput = {
@@ -37925,9 +37925,9 @@ export namespace Prisma {
 
   export type LocationCreateInput = {
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
     Task?: TaskCreateNestedManyWithoutLocationInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutLocationInput
   }
@@ -37935,18 +37935,18 @@ export namespace Prisma {
   export type LocationUncheckedCreateInput = {
     id?: number
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
     Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutLocationInput
   }
 
   export type LocationUpdateInput = {
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     Task?: TaskUpdateManyWithoutLocationNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutLocationNestedInput
   }
@@ -37954,9 +37954,9 @@ export namespace Prisma {
   export type LocationUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutLocationNestedInput
   }
@@ -37964,24 +37964,24 @@ export namespace Prisma {
   export type LocationCreateManyInput = {
     id?: number
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
   }
 
   export type LocationUpdateManyMutationInput = {
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MilestoneCreateInput = {
@@ -39999,15 +39999,15 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type TaskListRelationFilter = {
@@ -40066,20 +40066,20 @@ export namespace Prisma {
     longitude?: SortOrder
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -41847,8 +41847,8 @@ export namespace Prisma {
     connect?: ProjectSectionWhereUniqueInput | ProjectSectionWhereUniqueInput[]
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -44379,20 +44379,20 @@ export namespace Prisma {
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -46681,18 +46681,18 @@ export namespace Prisma {
 
   export type LocationCreateWithoutProjectSectionInput = {
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
     Task?: TaskCreateNestedManyWithoutLocationInput
   }
 
   export type LocationUncheckedCreateWithoutProjectSectionInput = {
     id?: number
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
     Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -46876,18 +46876,18 @@ export namespace Prisma {
 
   export type LocationUpdateWithoutProjectSectionInput = {
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     Task?: TaskUpdateManyWithoutLocationNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutProjectSectionInput = {
     id?: IntFieldUpdateOperationsInput | number
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
   }
 
@@ -47123,18 +47123,18 @@ export namespace Prisma {
 
   export type LocationCreateWithoutTaskInput = {
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
     ProjectSection?: ProjectSectionCreateNestedManyWithoutLocationInput
   }
 
   export type LocationUncheckedCreateWithoutTaskInput = {
     id?: number
     locationName: string
-    latitude: number
-    longitude: number
-    notes: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -47326,18 +47326,18 @@ export namespace Prisma {
 
   export type LocationUpdateWithoutTaskInput = {
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     ProjectSection?: ProjectSectionUpdateManyWithoutLocationNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutTaskInput = {
     id?: IntFieldUpdateOperationsInput | number
     locationName?: StringFieldUpdateOperationsInput | string
-    latitude?: FloatFieldUpdateOperationsInput | number
-    longitude?: FloatFieldUpdateOperationsInput | number
-    notes?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutLocationNestedInput
   }
 

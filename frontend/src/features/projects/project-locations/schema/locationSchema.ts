@@ -3,9 +3,9 @@ import { z } from 'zod'
 export const LocationSchema = z.object({
     id: z.number(),
     locationName: z.string(),
-    latitude: z.number(),
-    longitude: z.number(),
-    notes: z.string()
+    latitude: z.number().optional(),
+    longitude: z.number().optional(),
+    notes: z.string().optional()
 })
 
 

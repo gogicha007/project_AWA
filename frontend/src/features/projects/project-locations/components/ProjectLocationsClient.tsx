@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import AddButton from '@/components/controls/add-button/AddButton';
 import { useTranslations } from 'next-intl';
 import { LocationsCard } from './locations-card/LocationsCard';
-import AddButton from '@/components/controls/add-button/AddButton';
+import LocationForm from './locations-crud/location-form';
+import { useState } from 'react';
 
 const locations = [
   {
@@ -29,7 +30,13 @@ const locations = [
 ];
 
 export const ProjectLocations = ({ id }: { id: number }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const tPjLoc = useTranslations('ProjectLocations');
+
+  const onAdd = () => setIsDialogOpen(true);
+  const onClose = () => setIsDialogOpen(false);
+  const onSave = () => setIsDialogOpen(false);
+
   return (
     <div className="max-w-1400px flex flex-col gap-4 p-24">
       <div className="flex items-center justify-between">
@@ -38,7 +45,7 @@ export const ProjectLocations = ({ id }: { id: number }) => {
         </h2>
         <AddButton
           label={tPjLoc('actions.create')}
-          onAdd={() => alert('Add location clicked')}
+          onAdd={onAdd}
         />
       </div>
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
@@ -46,6 +53,13 @@ export const ProjectLocations = ({ id }: { id: number }) => {
           <LocationsCard key={loc.id} data={loc} tVar={tPjLoc} />
         ))}
       </div>
+      <LocationForm
+        isOpen={isDialogOpen}
+        locationId={null}
+        onClose={onClose}
+        onSave={onSave}
+        tVar={tPjLoc}
+      />
     </div>
   );
 };

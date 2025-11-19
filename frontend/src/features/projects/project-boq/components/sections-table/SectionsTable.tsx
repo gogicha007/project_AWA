@@ -15,7 +15,6 @@ import { LocationDTO } from '@/features/projects/project-locations/schema/locati
 import { useSectionsTable } from './useSectionsTable';
 import { useTranslations } from 'next-intl';
 
-
 export type SectionRow = z.infer<typeof SectionSchema> & {
   isNew?: boolean;
 };
@@ -23,14 +22,16 @@ export type SectionRow = z.infer<typeof SectionSchema> & {
 type Props = {
   projectId: number;
   initialData: SectionRow[];
-  locations: LocationDTO[]
+  locations: LocationDTO[];
 };
 
-export const SectionsTable = ({ projectId, initialData = [] }: Props) => {
+export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   const [sections, setSections] = useState<SectionRow[]>(initialData);
   const [editingId, setEditingId] = useState<number | null>(null);
   const tST = useTranslations('ProjectBoq.sections');
 
+  console.log('locations', locations);
+  
   const {
     handleAdd,
     handleCancel,

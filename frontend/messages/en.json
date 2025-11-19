@@ -333,8 +333,17 @@
     "card": {
       "progress_title": "Overall Progress"
     },
+    "fields": {
+      "locationName": "Location Name",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "notes": "Notes"
+    },
     "actions": {
-      "create": "Add location"
+      "create": "Add location",
+      "edit": "Edit location",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   },
   "ProjectBoq": {
@@ -375,7 +384,7 @@
       "delete": "Delete",
       "save": "Save",
       "submit": "Submit",
-      "save_or_cancel":"Save or cancel current edit firstF"
+      "save_or_cancel": "Save or cancel current edit firstF"
     },
     "warnings": {
       "delete": "Are you sure you want to delete this record?"

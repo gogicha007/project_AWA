@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
 import styles from '../page.module.css';
 import { useParams } from 'next/navigation';
 import { ProjectLocations } from '@/features/projects/project-locations/components/ProjectLocationsClient';
 import { BackButton } from '@/features/projects/shared/back-button/back-button';
 
-export default function Locations() {
+export default function LocationsPage() {
   const { id } = useParams();
 
   return (
