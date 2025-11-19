@@ -77,7 +77,7 @@ const LocationForm = ({
   return (
     <dialog ref={dialogRef} className={styles.dialog} onClose={onClose}>
       <div className={styles.dialogHeader}>
-        <h2>{locationId ? tVar('actions.edit') : tVar('actions.add')}</h2>
+        <h2>{locationId ? tVar('actions.edit') : tVar('actions.create')}</h2>
         <button type="button" className={styles.closeButton} onClick={onClose}>
           ×
         </button>
