@@ -39,13 +39,12 @@ export const ProjectLocations = ({ id }: { id: number }) => {
     status: { message: '', success: false },
   });
 
-  const { createLocation, updateLocation, snackbar } =
-    useLocationMutations();
+  const { createLocation, updateLocation, snackbar } = useLocationMutations(
+    () => setIsDialogOpen(false)
+  );
 
-  const onSave = (data: FormValues) => {
+  const onSave = (data: FormValues) =>
     data.id ? updateLocation(data) : createLocation(data);
-    setIsDialogOpen(snackbar.status.success);
-  };
 
   return (
     <div className="max-w-1400px flex flex-col gap-4 p-24">

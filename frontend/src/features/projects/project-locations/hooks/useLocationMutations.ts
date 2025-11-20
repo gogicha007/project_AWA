@@ -4,7 +4,7 @@ import { FormValues } from "../components/locations-crud/location-form";
 import { useMutation } from "@tanstack/react-query";
 import { locationsApi } from "../api/locationsApi";
 
-export const useLocationMutations = () => {
+export const useLocationMutations = (onSuccessCallback?: () => void) => {
     const { dbUserId } = useAuth();
     const [snackbar, setSnackbar] = useState({ isOpen: false, status: { message: '', success: false } });
 
@@ -13,6 +13,7 @@ export const useLocationMutations = () => {
         mutationFn: (data: FormValues) => locationsApi.create(data, Number(dbUserId)),
         onSuccess: () => {
             setSnackbar({ isOpen: true, status: { message: 'Location created successfully', success: true } });
+            onSuccessCallback?.()
         },
         onError: () => {
             setSnackbar({
@@ -29,6 +30,7 @@ export const useLocationMutations = () => {
                 isOpen: true,
                 status: { message: 'Location updated successfully', success: true },
             });
+            onSuccessCallback?.()
         },
         onError: () => {
             setSnackbar({

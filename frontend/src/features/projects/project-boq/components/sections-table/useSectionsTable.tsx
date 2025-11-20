@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { SectionRow } from './SectionsTable';
 import { sectionsColumns } from './SectionsColumns';
@@ -24,7 +24,7 @@ export const useSectionsTable = ({
   const tS = useTranslations('ProjectBoq');
   const handleImport = () => {};
 
-  const handleAdd = () => {
+  const handleAdd = useCallback(() => {
     const newSection: SectionRow = {
       id: Date.now(),
       sectionCode: '',
@@ -36,14 +36,17 @@ export const useSectionsTable = ({
     setSections([...sections, newSection]);
     setEditingId(newSection.id);
     setOriginalRow(newSection);
-  };
+  }, [sections, setSections, setEditingId]);
 
-  const handleEdit = (row: SectionRow) => {
-    setEditingId(row.id);
-    setOriginalRow({ ...row });
-  };
+  const handleEdit = useCallback(
+    (row: SectionRow) => {
+      setEditingId(row.id);
+      setOriginalRow({ ...row });
+    },
+    [setEditingId]
+  );
 
-  const handleSave = async (row: SectionRow) => {
+  const handleSave = useCallback(async (row: SectionRow) => {
     try {
       if (row.isNew) {
         const response = await fetch('/api/sections', {
@@ -94,9 +97,9 @@ export const useSectionsTable = ({
       console.error('Error saving section:', error);
       alert('Failed to save section. Please try again.');
     }
-  };
+  }, [projectId, sections, setEditingId, setSections]);
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     if (originalRow) {
       if (originalRow.isNew) {
         // Remove unsaved new row
@@ -110,34 +113,40 @@ export const useSectionsTable = ({
     }
     setEditingId(null);
     setOriginalRow(null);
-  };
+  }, [sections, originalRow, setSections, setEditingId]);
 
-  const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this section?')) return;
+  const handleDelete = useCallback(
+    async (id: number) => {
+      if (!confirm('Are you sure you want to delete this section?')) return;
 
-    try {
-      const response = await fetch(`/api/sections/${id}`, {
-        method: 'DELETE',
-      });
+      try {
+        const response = await fetch(`/api/sections/${id}`, {
+          method: 'DELETE',
+        });
 
-      if (!response.ok) throw new Error('Failed to delete section');
+        if (!response.ok) throw new Error('Failed to delete section');
 
-      setSections(sections.filter((s) => s.id !== id));
-    } catch (error) {
-      console.error('Error deleting section:', error);
-      alert('Failed to delete section. Please try again.');
-    }
-  };
+        setSections(sections.filter((s) => s.id !== id));
+      } catch (error) {
+        console.error('Error deleting section:', error);
+        alert('Failed to delete section. Please try again.');
+      }
+    },
+    [sections, setSections]
+  );
 
-  const handleFieldChange = <K extends keyof SectionRow>(
-    id: number,
-    field: keyof SectionRow,
-    value: SectionRow[K]
-  ) => {
-    setSections(
-      sections.map((s) => (s.id === id ? { ...s, [field]: value } : s))
-    );
-  };
+  const handleFieldChange = useCallback(
+    <K extends keyof SectionRow>(
+      id: number,
+      field: keyof SectionRow,
+      value: SectionRow[K]
+    ) => {
+      setSections(
+        sections.map((s) => (s.id === id ? { ...s, [field]: value } : s))
+      );
+    },
+    [setSections]
+  );
 
   const columns = useMemo<ColumnDef<SectionRow>[]>(
     () =>
