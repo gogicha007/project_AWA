@@ -4,12 +4,9 @@ import AddButton from '@/components/controls/add-button/AddButton';
 import { useTranslations } from 'next-intl';
 import { LocationsCard } from './locations-card/LocationsCard';
 import LocationForm, { FormValues } from './locations-crud/location-form';
-import { locationsApi } from '../api/locationsApi';
 import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { useAuth } from '@/context/auth';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
-import { SnackbarControls } from '@/components/feedback/snackbar/snackbarTypes';
+import { useLocationMutations } from '../hooks/useLocationMutations';
 
 const locations = [
   {
@@ -35,7 +32,6 @@ const locations = [
 ];
 
 export const ProjectLocations = ({ id }: { id: number }) => {
-  const { dbUserId, loading: authLoading } = useAuth();
   const tPjLoc = useTranslations('ProjectLocations');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [snackbarControls, setSnackbarControls] = useState({
@@ -43,50 +39,12 @@ export const ProjectLocations = ({ id }: { id: number }) => {
     status: { message: '', success: false },
   });
 
-  const { mutate: createLocation } = useMutation({
-    mutationKey: ['createProjectLocation'],
-    mutationFn: (data: FormValues) =>
-      locationsApi.create(data, Number(dbUserId)),
-    onSuccess: () => {
-      setSnackbarControls({
-        isOpen: true,
-        status: { message: 'Location created successfully', success: true },
-      });
-      setIsDialogOpen(false);
-    },
-    onError: () => {
-      setSnackbarControls({
-        isOpen: true,
-        status: { message: 'Failed to create location', success: false },
-      });
-    },
-  });
-
-  const { mutate: updateLocation } = useMutation({
-    mutationKey: ['updateProjectLocation'],
-    mutationFn: (data: FormValues) =>
-      locationsApi.update(data, Number(dbUserId)),
-    onSuccess: () => {
-      setSnackbarControls({
-        isOpen: true,
-        status: { message: 'Location updated successfully', success: true },
-      });
-      setIsDialogOpen(false);
-    },
-    onError: () => {
-      setSnackbarControls({
-        isOpen: true,
-        status: { message: 'Failed to update location', success: false },
-      });
-    },
-  });
+  const { createLocation, updateLocation, snackbar } =
+    useLocationMutations();
 
   const onSave = (data: FormValues) => {
-    if (data.id) {
-      updateLocation(data);
-    } else {
-      createLocation(data);
-    }
+    data.id ? updateLocation(data) : createLocation(data);
+    setIsDialogOpen(snackbar.status.success);
   };
 
   return (
@@ -112,8 +70,8 @@ export const ProjectLocations = ({ id }: { id: number }) => {
         onSave={onSave}
       />
       <Snackbar
-        status={snackbarControls.status}
-        open={snackbarControls.isOpen}
+        status={snackbar.status}
+        open={snackbar.isOpen}
         onClose={() =>
           setSnackbarControls({ ...snackbarControls, isOpen: false })
         }
