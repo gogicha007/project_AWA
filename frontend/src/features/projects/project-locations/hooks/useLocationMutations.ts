@@ -1,3 +1,6 @@
+/*@params onSucceccCallback**/
+/*@return createLocation, updateLocation, snackbar, setSnackbar **/
+
 import { useState } from "react";
 import { useAuth } from "@/context/auth";
 import { FormValues } from "../components/locations-crud/location-form";
