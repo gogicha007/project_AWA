@@ -342,7 +342,9 @@
     "actions": {
       "create": "Add location",
       "edit": "Edit location",
+      "update": "Update",
       "save": "Save",
+      "saving": "Saving",
       "cancel": "Cancel"
     }
   },

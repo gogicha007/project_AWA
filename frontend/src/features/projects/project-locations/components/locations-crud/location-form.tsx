@@ -5,8 +5,9 @@ import { LocationSchema, LocationDTO } from '../../schema/locationSchema';
 import { useEffect, useRef } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 
-type FormValues = Omit<LocationDTO, 'id'> & { id?: number };
+export type FormValues = Omit<LocationDTO, 'id'> & { id?: number };
 
 type Props = {
   initialData?: LocationDTO;
@@ -14,7 +15,6 @@ type Props = {
   locationId: number | null;
   onClose: () => void;
   onSave: (location: FormValues) => void;
-  tVar: (key: string) => string;
 };
 
 const LocationForm = ({
@@ -23,17 +23,18 @@ const LocationForm = ({
   locationId,
   onClose,
   onSave,
-  tVar,
 }: Props) => {
+  const tVar = useTranslations('ProjectLocations');
   const dialogRef = useRef<HTMLDialogElement>(null);
   const {
     register,
     reset,
     setFocus,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
   } = useForm({
-    resolver: zodResolver(LocationSchema),
+    resolver: zodResolver(LocationSchema.partial({ id: true })),
+    mode: 'onChange',
     defaultValues: {
       locationName: initialData?.locationName || '',
       latitude: initialData?.latitude || 0,
@@ -65,13 +66,19 @@ const LocationForm = ({
     }
   }, [isOpen, setFocus]);
 
-  const onSubmit = (data: FormValues) => {
-    onSave({
-      id: initialData?.id,
-      locationName: data.locationName,
-      notes: data.notes,
-    });
-    onClose();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await Promise.resolve(
+        onSave({
+          id: initialData?.id,
+          locationName: data.locationName,
+          notes: data.notes,
+        })
+      );
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -87,11 +94,14 @@ const LocationForm = ({
         <div className={styles.form_item}>
           <label htmlFor="locationName">{tVar('fields.locationName')}:</label>
           <input
-            {...register('locationName', { required: true })}
+            {...register('locationName')}
             type="text"
             id="locationName"
             className={styles.input}
           />
+          {errors.locationName && (
+            <p className={styles.error}>{errors.locationName.message}</p>
+          )}
         </div>
         <div className={styles.form_item}>
           <label htmlFor="notes">{tVar('fields.notes')}:</label>
@@ -102,6 +112,9 @@ const LocationForm = ({
             rows={3}
             className={styles.textarea}
           />
+          {errors.notes && (
+            <p className={styles.error}>{errors.notes.message}</p>
+          )}
         </div>
         <div className={styles.formActions}>
           <button
@@ -111,8 +124,16 @@ const LocationForm = ({
           >
             {tVar('actions.cancel')}
           </button>
-          <button type="submit" className={styles.saveButton}>
-            {tVar('actions.save')}
+          <button
+            type="submit"
+            className={styles.saveButton}
+            disabled={isSubmitting || !isValid}
+          >
+            {isSubmitting
+              ? tVar('actions.saving')
+              : locationId
+                ? tVar('actions.update')
+                : tVar('actions.save')}
           </button>
         </div>
       </form>

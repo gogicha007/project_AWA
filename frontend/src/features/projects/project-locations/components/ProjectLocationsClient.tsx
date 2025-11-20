@@ -3,7 +3,7 @@
 import AddButton from '@/components/controls/add-button/AddButton';
 import { useTranslations } from 'next-intl';
 import { LocationsCard } from './locations-card/LocationsCard';
-import LocationForm from './locations-crud/location-form';
+import LocationForm, { FormValues } from './locations-crud/location-form';
 import { useState } from 'react';
 
 const locations = [
@@ -35,7 +35,10 @@ export const ProjectLocations = ({ id }: { id: number }) => {
 
   const onAdd = () => setIsDialogOpen(true);
   const onClose = () => setIsDialogOpen(false);
-  const onSave = () => setIsDialogOpen(false);
+  const onSave = (data: FormValues) => {
+    console.log('locations data', data);
+    setIsDialogOpen(false);
+  };
 
   return (
     <div className="max-w-1400px flex flex-col gap-4 p-24">
@@ -43,10 +46,7 @@ export const ProjectLocations = ({ id }: { id: number }) => {
         <h2>
           {tPjLoc('title')} {id}
         </h2>
-        <AddButton
-          label={tPjLoc('actions.create')}
-          onAdd={onAdd}
-        />
+        <AddButton label={tPjLoc('actions.create')} onAdd={onAdd} />
       </div>
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
         {locations.map((loc) => (
@@ -58,7 +58,6 @@ export const ProjectLocations = ({ id }: { id: number }) => {
         locationId={null}
         onClose={onClose}
         onSave={onSave}
-        tVar={tPjLoc}
       />
     </div>
   );
