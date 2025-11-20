@@ -1,4 +1,4 @@
-/*@params onSucceccCallback**/
+/*@params onSucceccCallback*/
 /*@return createLocation, updateLocation, snackbar, setSnackbar **/
 
 import { useState } from "react";

@@ -2,25 +2,23 @@
 
 import ErrorMessage from '../shared/ErrorMessage';
 import Loader from '@/components/feedback/loader/loader';
-import { locationsApi } from '../project-locations/api/locationsApi';
 import { sectionsApi } from '../api/boqSectionsApi';
 import { SectionsTable } from './components/sections-table/SectionsTable';
 import { useProject } from '../context/ProjectContext';
 import { useQuery } from '@tanstack/react-query';
+import { useLocationQueries } from '../project-locations/hooks/useLocationQueries';
+import { LocationDTO } from '../project-locations/schema/locationSchema';
 
 export const BoqSections = () => {
   const { displayName, id } = useProject();
 
   const {
-    isPending: isPendingLocations,
-    isError: isErrorLocations,
-    isSuccess: isSuccessLocations,
-    data: locationsData,
-    error: locationsError,
-  } = useQuery({
-    queryKey: ['projectLocations'],
-    queryFn: locationsApi.getAll,
-  });
+    isPendingLocations,
+    isErrorLocations,
+    isSuccessLocations,
+    locationsData,
+    getAllLocationsError,
+  } = useLocationQueries();
 
   const {
     isPending: isPendingSections,
@@ -44,9 +42,9 @@ export const BoqSections = () => {
         <ErrorMessage
           message={{
             location: isErrorLocations
-              ? locationsError instanceof Error
-                ? locationsError.message
-                : String(locationsError)
+              ? getAllLocationsError instanceof Error
+                ? getAllLocationsError.message
+                : String(getAllLocationsError)
               : null,
             section: isErrorSections
               ? sectionsError instanceof Error
@@ -56,11 +54,11 @@ export const BoqSections = () => {
           }}
         />
       )}
-      {(isSuccessSections && isSuccessLocations) && (
+      {isSuccessSections && isSuccessLocations && (
         <SectionsTable
           projectId={id as number}
           initialData={sectionsData}
-          locations={locationsData}
+          locations={locationsData as LocationDTO[]}
         />
       )}
     </div>
