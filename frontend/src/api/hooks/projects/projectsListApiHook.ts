@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectDTO } from "@/api/types";
+import { ProjectDTO } from "@/features/projects/projects-list/projectsCRUD/projectSchema";
 import { useAuth } from "@/context/auth";
 import { useCallback, useEffect, useState } from "react";
 import { projectApi } from "@/features/projects/api/projectsListApi";

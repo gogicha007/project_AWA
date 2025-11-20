@@ -19,7 +19,7 @@ export const locationsApi = {
             handleApiError(error);
         }
     },
-    create: async (location: LocationDTO, userId: number): Promise<LocationDTO> => {
+    create: async (location: Partial<LocationDTO>, userId: number): Promise<LocationDTO> => {
         try {
             const locationCreateData = {
                 ...location,
@@ -31,7 +31,7 @@ export const locationsApi = {
             handleApiError(error);
         }
     },
-    update: async (location: LocationDTO, userId: number): Promise<LocationDTO> => {
+    update: async (location: Partial<LocationDTO>, userId: number): Promise<LocationDTO> => {
         try {
             const locationUpdateData = {
                 ...location,

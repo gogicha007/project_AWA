@@ -1,13 +1,10 @@
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
 import { shipmentFileApi } from '@/api/endpoints/shipments/shipmentFileApi';
-import { handleSubmitInvoice } from '../utils/submitInvoices';
-import { handleSubmitFreights } from '../utils/submitFreights';
+import { handleSubmitInvoice } from '../../utils/submitInvoices';
+import { handleSubmitFreights } from '../../utils/submitFreights';
 import { shipmentFormBaseSchema } from '../../shipmentSchema';
 import { ShipmentFormSchema } from '../../shipmentSchema';
-import {
-  detectFormChanges,
-  transformFormDataForSubmission,
-} from '../utils/shipmentFormUtils';
+import { detectFormChanges, transformFormDataForSubmission } from '../../utils/shipmentFormUtils';
 import { useRouter } from 'next/navigation';
 import { FieldErrors, FieldNamesMarkedBoolean } from 'react-hook-form';
 import { GeneralInfoDTO } from '@/api/types';

@@ -11,7 +11,7 @@ import { useMaterialNames } from '@/api/hooks/settings/useMaterialNamesHook';
 import { useUnits } from '@/api/hooks/settings/useUnitsHook';
 import { ShipmentFileDTO as FileData } from '@/api/types';
 import { shipmentFormBaseSchema } from '../shipmentSchema';
-import { createDefaultValues } from './utils/shipmentFormUtils';
+import { createDefaultValues } from '../utils/shipmentFormUtils';
 import { useShipmentSubmitHandlers } from './handlers/useShipmentSubmitHandlers';
 import { useShipmentData } from './data/useShipmentData';
 import { zodResolver } from '@hookform/resolvers/zod';

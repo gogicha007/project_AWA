@@ -80,6 +80,8 @@ model Location {
   latitude       Float?
   longitude      Float?
   notes          String?
+  user           User             @relation(fields: [userId], references: [id])
+  userId         Int              @map("user_id")
   Task           Task[]
   ProjectSection ProjectSection[]
 
@@ -371,14 +373,14 @@ model ShipmentFile {
 // SETTINGS
 // ========================================
 model Currency {
-  id             Int              @id @default(autoincrement())
-  code           String           @unique // e.g., "USD"
-  name           String? // e.g., "United States Dollar"
-  symbol         String? // e.g., "$"
-  Invoice        Invoice[]
-  Freight        Freight[]
-  Milestone      Milestone[]
-  Project        Project[]
+  id        Int         @id @default(autoincrement())
+  code      String      @unique // e.g., "USD"
+  name      String? // e.g., "United States Dollar"
+  symbol    String? // e.g., "$"
+  Invoice   Invoice[]
+  Freight   Freight[]
+  Milestone Milestone[]
+  Project   Project[]
 
   @@map("currency")
 }
@@ -479,6 +481,7 @@ model User {
   ProjectSection ProjectSection[]
   boqItems       BoqItem[]
   BoqBreakdown   BoqBreakdown[]
+  locations      Location[]
 
   @@map("user")
 }

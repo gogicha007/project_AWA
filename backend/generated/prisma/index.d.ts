@@ -3915,6 +3915,7 @@ export namespace Prisma {
     ProjectSection: number
     boqItems: number
     BoqBreakdown: number
+    locations: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3930,6 +3931,7 @@ export namespace Prisma {
     ProjectSection?: boolean | UserCountOutputTypeCountProjectSectionArgs
     boqItems?: boolean | UserCountOutputTypeCountBoqItemsArgs
     BoqBreakdown?: boolean | UserCountOutputTypeCountBoqBreakdownArgs
+    locations?: boolean | UserCountOutputTypeCountLocationsArgs
   }
 
   // Custom InputTypes
@@ -4025,6 +4027,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountBoqBreakdownArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BoqBreakdownWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LocationWhereInput
   }
 
 
@@ -7798,12 +7807,14 @@ export namespace Prisma {
     id: number | null
     latitude: number | null
     longitude: number | null
+    userId: number | null
   }
 
   export type LocationSumAggregateOutputType = {
     id: number | null
     latitude: number | null
     longitude: number | null
+    userId: number | null
   }
 
   export type LocationMinAggregateOutputType = {
@@ -7812,6 +7823,7 @@ export namespace Prisma {
     latitude: number | null
     longitude: number | null
     notes: string | null
+    userId: number | null
   }
 
   export type LocationMaxAggregateOutputType = {
@@ -7820,6 +7832,7 @@ export namespace Prisma {
     latitude: number | null
     longitude: number | null
     notes: string | null
+    userId: number | null
   }
 
   export type LocationCountAggregateOutputType = {
@@ -7828,6 +7841,7 @@ export namespace Prisma {
     latitude: number
     longitude: number
     notes: number
+    userId: number
     _all: number
   }
 
@@ -7836,12 +7850,14 @@ export namespace Prisma {
     id?: true
     latitude?: true
     longitude?: true
+    userId?: true
   }
 
   export type LocationSumAggregateInputType = {
     id?: true
     latitude?: true
     longitude?: true
+    userId?: true
   }
 
   export type LocationMinAggregateInputType = {
@@ -7850,6 +7866,7 @@ export namespace Prisma {
     latitude?: true
     longitude?: true
     notes?: true
+    userId?: true
   }
 
   export type LocationMaxAggregateInputType = {
@@ -7858,6 +7875,7 @@ export namespace Prisma {
     latitude?: true
     longitude?: true
     notes?: true
+    userId?: true
   }
 
   export type LocationCountAggregateInputType = {
@@ -7866,6 +7884,7 @@ export namespace Prisma {
     latitude?: true
     longitude?: true
     notes?: true
+    userId?: true
     _all?: true
   }
 
@@ -7961,6 +7980,7 @@ export namespace Prisma {
     latitude: number | null
     longitude: number | null
     notes: string | null
+    userId: number
     _count: LocationCountAggregateOutputType | null
     _avg: LocationAvgAggregateOutputType | null
     _sum: LocationSumAggregateOutputType | null
@@ -7988,6 +8008,8 @@ export namespace Prisma {
     latitude?: boolean
     longitude?: boolean
     notes?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
     Task?: boolean | Location$TaskArgs<ExtArgs>
     ProjectSection?: boolean | Location$ProjectSectionArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
@@ -7999,6 +8021,8 @@ export namespace Prisma {
     latitude?: boolean
     longitude?: boolean
     notes?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["location"]>
 
   export type LocationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8007,6 +8031,8 @@ export namespace Prisma {
     latitude?: boolean
     longitude?: boolean
     notes?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["location"]>
 
   export type LocationSelectScalar = {
@@ -8015,20 +8041,27 @@ export namespace Prisma {
     latitude?: boolean
     longitude?: boolean
     notes?: boolean
+    userId?: boolean
   }
 
-  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationName" | "latitude" | "longitude" | "notes", ExtArgs["result"]["location"]>
+  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationName" | "latitude" | "longitude" | "notes" | "userId", ExtArgs["result"]["location"]>
   export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
     Task?: boolean | Location$TaskArgs<ExtArgs>
     ProjectSection?: boolean | Location$ProjectSectionArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type LocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type LocationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LocationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $LocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Location"
     objects: {
+      user: Prisma.$UserPayload<ExtArgs>
       Task: Prisma.$TaskPayload<ExtArgs>[]
       ProjectSection: Prisma.$ProjectSectionPayload<ExtArgs>[]
     }
@@ -8038,6 +8071,7 @@ export namespace Prisma {
       latitude: number | null
       longitude: number | null
       notes: string | null
+      userId: number
     }, ExtArgs["result"]["location"]>
     composites: {}
   }
@@ -8432,6 +8466,7 @@ export namespace Prisma {
    */
   export interface Prisma__LocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Task<T extends Location$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Location$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ProjectSection<T extends Location$ProjectSectionArgs<ExtArgs> = {}>(args?: Subset<T, Location$ProjectSectionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -8468,6 +8503,7 @@ export namespace Prisma {
     readonly latitude: FieldRef<"Location", 'Float'>
     readonly longitude: FieldRef<"Location", 'Float'>
     readonly notes: FieldRef<"Location", 'String'>
+    readonly userId: FieldRef<"Location", 'Int'>
   }
     
 
@@ -8717,6 +8753,10 @@ export namespace Prisma {
      */
     data: LocationCreateManyInput | LocationCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8787,6 +8827,10 @@ export namespace Prisma {
      * Limit how many Locations to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -33852,6 +33896,7 @@ export namespace Prisma {
     ProjectSection?: boolean | User$ProjectSectionArgs<ExtArgs>
     boqItems?: boolean | User$boqItemsArgs<ExtArgs>
     BoqBreakdown?: boolean | User$BoqBreakdownArgs<ExtArgs>
+    locations?: boolean | User$locationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -33899,6 +33944,7 @@ export namespace Prisma {
     ProjectSection?: boolean | User$ProjectSectionArgs<ExtArgs>
     boqItems?: boolean | User$boqItemsArgs<ExtArgs>
     BoqBreakdown?: boolean | User$BoqBreakdownArgs<ExtArgs>
+    locations?: boolean | User$locationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -33919,6 +33965,7 @@ export namespace Prisma {
       ProjectSection: Prisma.$ProjectSectionPayload<ExtArgs>[]
       boqItems: Prisma.$BoqItemPayload<ExtArgs>[]
       BoqBreakdown: Prisma.$BoqBreakdownPayload<ExtArgs>[]
+      locations: Prisma.$LocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -34334,6 +34381,7 @@ export namespace Prisma {
     ProjectSection<T extends User$ProjectSectionArgs<ExtArgs> = {}>(args?: Subset<T, User$ProjectSectionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     boqItems<T extends User$boqItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$boqItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     BoqBreakdown<T extends User$BoqBreakdownArgs<ExtArgs> = {}>(args?: Subset<T, User$BoqBreakdownArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoqBreakdownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    locations<T extends User$locationsArgs<ExtArgs> = {}>(args?: Subset<T, User$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -35046,6 +35094,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.locations
+   */
+  export type User$locationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Location
+     */
+    select?: LocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Location
+     */
+    omit?: LocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationInclude<ExtArgs> | null
+    where?: LocationWhereInput
+    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
+    cursor?: LocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -35131,7 +35203,8 @@ export namespace Prisma {
     locationName: 'locationName',
     latitude: 'latitude',
     longitude: 'longitude',
-    notes: 'notes'
+    notes: 'notes',
+    userId: 'userId'
   };
 
   export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
@@ -35942,6 +36015,8 @@ export namespace Prisma {
     latitude?: FloatNullableFilter<"Location"> | number | null
     longitude?: FloatNullableFilter<"Location"> | number | null
     notes?: StringNullableFilter<"Location"> | string | null
+    userId?: IntFilter<"Location"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Task?: TaskListRelationFilter
     ProjectSection?: ProjectSectionListRelationFilter
   }
@@ -35952,6 +36027,8 @@ export namespace Prisma {
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
     Task?: TaskOrderByRelationAggregateInput
     ProjectSection?: ProjectSectionOrderByRelationAggregateInput
   }
@@ -35965,6 +36042,8 @@ export namespace Prisma {
     latitude?: FloatNullableFilter<"Location"> | number | null
     longitude?: FloatNullableFilter<"Location"> | number | null
     notes?: StringNullableFilter<"Location"> | string | null
+    userId?: IntFilter<"Location"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Task?: TaskListRelationFilter
     ProjectSection?: ProjectSectionListRelationFilter
   }, "id">
@@ -35975,6 +36054,7 @@ export namespace Prisma {
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
+    userId?: SortOrder
     _count?: LocationCountOrderByAggregateInput
     _avg?: LocationAvgOrderByAggregateInput
     _max?: LocationMaxOrderByAggregateInput
@@ -35991,6 +36071,7 @@ export namespace Prisma {
     latitude?: FloatNullableWithAggregatesFilter<"Location"> | number | null
     longitude?: FloatNullableWithAggregatesFilter<"Location"> | number | null
     notes?: StringNullableWithAggregatesFilter<"Location"> | string | null
+    userId?: IntWithAggregatesFilter<"Location"> | number
   }
 
   export type MilestoneWhereInput = {
@@ -37573,6 +37654,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionListRelationFilter
     boqItems?: BoqItemListRelationFilter
     BoqBreakdown?: BoqBreakdownListRelationFilter
+    locations?: LocationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -37595,6 +37677,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionOrderByRelationAggregateInput
     boqItems?: BoqItemOrderByRelationAggregateInput
     BoqBreakdown?: BoqBreakdownOrderByRelationAggregateInput
+    locations?: LocationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -37620,6 +37703,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionListRelationFilter
     boqItems?: BoqItemListRelationFilter
     BoqBreakdown?: BoqBreakdownListRelationFilter
+    locations?: LocationListRelationFilter
   }, "id" | "firebaseUid" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -37928,6 +38012,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    user: UserCreateNestedOneWithoutLocationsInput
     Task?: TaskCreateNestedManyWithoutLocationInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutLocationInput
   }
@@ -37938,6 +38023,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    userId: number
     Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutLocationInput
   }
@@ -37947,6 +38033,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutLocationsNestedInput
     Task?: TaskUpdateManyWithoutLocationNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutLocationNestedInput
   }
@@ -37957,6 +38044,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutLocationNestedInput
   }
@@ -37967,6 +38055,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    userId: number
   }
 
   export type LocationUpdateManyMutationInput = {
@@ -37982,6 +38071,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type MilestoneCreateInput = {
@@ -39503,6 +39593,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -39525,6 +39616,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -39546,6 +39638,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -39568,6 +39661,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -40036,12 +40130,14 @@ export namespace Prisma {
     latitude?: SortOrder
     longitude?: SortOrder
     notes?: SortOrder
+    userId?: SortOrder
   }
 
   export type LocationAvgOrderByAggregateInput = {
     id?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
+    userId?: SortOrder
   }
 
   export type LocationMaxOrderByAggregateInput = {
@@ -40050,6 +40146,7 @@ export namespace Prisma {
     latitude?: SortOrder
     longitude?: SortOrder
     notes?: SortOrder
+    userId?: SortOrder
   }
 
   export type LocationMinOrderByAggregateInput = {
@@ -40058,12 +40155,14 @@ export namespace Prisma {
     latitude?: SortOrder
     longitude?: SortOrder
     notes?: SortOrder
+    userId?: SortOrder
   }
 
   export type LocationSumOrderByAggregateInput = {
     id?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
+    userId?: SortOrder
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -41453,6 +41552,12 @@ export namespace Prisma {
     none?: BoqBreakdownWhereInput
   }
 
+  export type LocationListRelationFilter = {
+    every?: LocationWhereInput
+    some?: LocationWhereInput
+    none?: LocationWhereInput
+  }
+
   export type VendorOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -41466,6 +41571,10 @@ export namespace Prisma {
   }
 
   export type BoqBreakdownOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LocationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -41819,6 +41928,12 @@ export namespace Prisma {
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
+  export type UserCreateNestedOneWithoutLocationsInput = {
+    create?: XOR<UserCreateWithoutLocationsInput, UserUncheckedCreateWithoutLocationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLocationsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type TaskCreateNestedManyWithoutLocationInput = {
     create?: XOR<TaskCreateWithoutLocationInput, TaskUncheckedCreateWithoutLocationInput> | TaskCreateWithoutLocationInput[] | TaskUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutLocationInput | TaskCreateOrConnectWithoutLocationInput[]
@@ -41853,6 +41968,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutLocationsNestedInput = {
+    create?: XOR<UserCreateWithoutLocationsInput, UserUncheckedCreateWithoutLocationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLocationsInput
+    upsert?: UserUpsertWithoutLocationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLocationsInput, UserUpdateWithoutLocationsInput>, UserUncheckedUpdateWithoutLocationsInput>
   }
 
   export type TaskUpdateManyWithoutLocationNestedInput = {
@@ -43769,6 +43892,13 @@ export namespace Prisma {
     connect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
   }
 
+  export type LocationCreateNestedManyWithoutUserInput = {
+    create?: XOR<LocationCreateWithoutUserInput, LocationUncheckedCreateWithoutUserInput> | LocationCreateWithoutUserInput[] | LocationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutUserInput | LocationCreateOrConnectWithoutUserInput[]
+    createMany?: LocationCreateManyUserInputEnvelope
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+  }
+
   export type VendorUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -43851,6 +43981,13 @@ export namespace Prisma {
     connectOrCreate?: BoqBreakdownCreateOrConnectWithoutUserInput | BoqBreakdownCreateOrConnectWithoutUserInput[]
     createMany?: BoqBreakdownCreateManyUserInputEnvelope
     connect?: BoqBreakdownWhereUniqueInput | BoqBreakdownWhereUniqueInput[]
+  }
+
+  export type LocationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LocationCreateWithoutUserInput, LocationUncheckedCreateWithoutUserInput> | LocationCreateWithoutUserInput[] | LocationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutUserInput | LocationCreateOrConnectWithoutUserInput[]
+    createMany?: LocationCreateManyUserInputEnvelope
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
   export type VendorUpdateManyWithoutUserNestedInput = {
@@ -44021,6 +44158,20 @@ export namespace Prisma {
     deleteMany?: BoqBreakdownScalarWhereInput | BoqBreakdownScalarWhereInput[]
   }
 
+  export type LocationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LocationCreateWithoutUserInput, LocationUncheckedCreateWithoutUserInput> | LocationCreateWithoutUserInput[] | LocationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutUserInput | LocationCreateOrConnectWithoutUserInput[]
+    upsert?: LocationUpsertWithWhereUniqueWithoutUserInput | LocationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LocationCreateManyUserInputEnvelope
+    set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    update?: LocationUpdateWithWhereUniqueWithoutUserInput | LocationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LocationUpdateManyWithWhereWithoutUserInput | LocationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
+  }
+
   export type VendorUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<VendorCreateWithoutUserInput, VendorUncheckedCreateWithoutUserInput> | VendorCreateWithoutUserInput[] | VendorUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VendorCreateOrConnectWithoutUserInput | VendorCreateOrConnectWithoutUserInput[]
@@ -44187,6 +44338,20 @@ export namespace Prisma {
     update?: BoqBreakdownUpdateWithWhereUniqueWithoutUserInput | BoqBreakdownUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: BoqBreakdownUpdateManyWithWhereWithoutUserInput | BoqBreakdownUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: BoqBreakdownScalarWhereInput | BoqBreakdownScalarWhereInput[]
+  }
+
+  export type LocationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LocationCreateWithoutUserInput, LocationUncheckedCreateWithoutUserInput> | LocationCreateWithoutUserInput[] | LocationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutUserInput | LocationCreateOrConnectWithoutUserInput[]
+    upsert?: LocationUpsertWithWhereUniqueWithoutUserInput | LocationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LocationCreateManyUserInputEnvelope
+    set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    update?: LocationUpdateWithWhereUniqueWithoutUserInput | LocationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LocationUpdateManyWithWhereWithoutUserInput | LocationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -44686,6 +44851,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBoqBreakdownInput = {
@@ -44707,6 +44873,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBoqBreakdownInput = {
@@ -44806,6 +44973,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBoqBreakdownInput = {
@@ -44827,6 +44995,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectSectionCreateWithoutBoqItemsInput = {
@@ -45040,6 +45209,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBoqItemsInput = {
@@ -45061,6 +45231,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBoqItemsInput = {
@@ -45289,6 +45460,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBoqItemsInput = {
@@ -45310,6 +45482,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutClientInput = {
@@ -45397,6 +45570,54 @@ export namespace Prisma {
     userId?: IntFilter<"Project"> | number
   }
 
+  export type UserCreateWithoutLocationsInput = {
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentCreateNestedManyWithoutUserInput
+    Freight?: FreightCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutUserInput
+    Staff?: StaffCreateNestedManyWithoutUserInput
+    Progress?: ProgressCreateNestedManyWithoutUserInput
+    Task?: TaskCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneCreateNestedManyWithoutUserInput
+    ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
+    boqItems?: BoqItemCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLocationsInput = {
+    id?: number
+    firebaseUid: string
+    email: string
+    name?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Vendor?: VendorUncheckedCreateNestedManyWithoutUserInput
+    Invoice?: InvoiceUncheckedCreateNestedManyWithoutUserInput
+    Shipment?: ShipmentUncheckedCreateNestedManyWithoutUserInput
+    Freight?: FreightUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    Staff?: StaffUncheckedCreateNestedManyWithoutUserInput
+    Progress?: ProgressUncheckedCreateNestedManyWithoutUserInput
+    Task?: TaskUncheckedCreateNestedManyWithoutUserInput
+    Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
+    boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
+    BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLocationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLocationsInput, UserUncheckedCreateWithoutLocationsInput>
+  }
+
   export type TaskCreateWithoutLocationInput = {
     taskName: string
     taskGroup: $Enums.TaskGroup
@@ -45475,6 +45696,60 @@ export namespace Prisma {
   export type ProjectSectionCreateManyLocationInputEnvelope = {
     data: ProjectSectionCreateManyLocationInput | ProjectSectionCreateManyLocationInput[]
     skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutLocationsInput = {
+    update: XOR<UserUpdateWithoutLocationsInput, UserUncheckedUpdateWithoutLocationsInput>
+    create: XOR<UserCreateWithoutLocationsInput, UserUncheckedCreateWithoutLocationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLocationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLocationsInput, UserUncheckedUpdateWithoutLocationsInput>
+  }
+
+  export type UserUpdateWithoutLocationsInput = {
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUpdateManyWithoutUserNestedInput
+    Freight?: FreightUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutUserNestedInput
+    Staff?: StaffUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUpdateManyWithoutUserNestedInput
+    Task?: TaskUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUpdateManyWithoutUserNestedInput
+    ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
+    boqItems?: BoqItemUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLocationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firebaseUid?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Vendor?: VendorUncheckedUpdateManyWithoutUserNestedInput
+    Invoice?: InvoiceUncheckedUpdateManyWithoutUserNestedInput
+    Shipment?: ShipmentUncheckedUpdateManyWithoutUserNestedInput
+    Freight?: FreightUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    Staff?: StaffUncheckedUpdateManyWithoutUserNestedInput
+    Progress?: ProgressUncheckedUpdateManyWithoutUserNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutUserNestedInput
+    Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
+    boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
+    BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TaskUpsertWithWhereUniqueWithoutLocationInput = {
@@ -45623,6 +45898,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMilestoneInput = {
@@ -45644,6 +45920,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMilestoneInput = {
@@ -45744,6 +46021,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMilestoneInput = {
@@ -45765,6 +46043,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutProgressInput = {
@@ -45899,6 +46178,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProgressInput = {
@@ -45920,6 +46200,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProgressInput = {
@@ -46088,6 +46369,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgressInput = {
@@ -46109,6 +46391,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClientCreateWithoutProjectInput = {
@@ -46177,6 +46460,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectInput = {
@@ -46198,6 +46482,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectInput = {
@@ -46440,6 +46725,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectInput = {
@@ -46461,6 +46747,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgressUpsertWithWhereUniqueWithoutProjectInput = {
@@ -46684,6 +46971,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    user: UserCreateNestedOneWithoutLocationsInput
     Task?: TaskCreateNestedManyWithoutLocationInput
   }
 
@@ -46693,6 +46981,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    userId: number
     Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -46785,6 +47074,7 @@ export namespace Prisma {
     Milestone?: MilestoneCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectSectionInput = {
@@ -46806,6 +47096,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectSectionInput = {
@@ -46879,6 +47170,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutLocationsNestedInput
     Task?: TaskUpdateManyWithoutLocationNestedInput
   }
 
@@ -46888,6 +47180,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
   }
 
@@ -46952,6 +47245,7 @@ export namespace Prisma {
     Milestone?: MilestoneUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectSectionInput = {
@@ -46973,6 +47267,7 @@ export namespace Prisma {
     Milestone?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectSectionCreateWithoutBreakdownsInput = {
@@ -47126,6 +47421,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    user: UserCreateNestedOneWithoutLocationsInput
     ProjectSection?: ProjectSectionCreateNestedManyWithoutLocationInput
   }
 
@@ -47135,6 +47431,7 @@ export namespace Prisma {
     latitude?: number | null
     longitude?: number | null
     notes?: string | null
+    userId: number
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -47205,6 +47502,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTaskInput = {
@@ -47226,6 +47524,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTaskInput = {
@@ -47329,6 +47628,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutLocationsNestedInput
     ProjectSection?: ProjectSectionUpdateManyWithoutLocationNestedInput
   }
 
@@ -47338,6 +47638,7 @@ export namespace Prisma {
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutLocationNestedInput
   }
 
@@ -47420,6 +47721,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTaskInput = {
@@ -47441,6 +47743,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgressUpsertWithWhereUniqueWithoutTaskInput = {
@@ -47716,6 +48019,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFreightInput = {
@@ -47737,6 +48041,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFreightInput = {
@@ -47861,6 +48166,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFreightInput = {
@@ -47882,6 +48188,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type FreightCreateWithoutInvoicesInput = {
@@ -48110,6 +48417,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvoiceInput = {
@@ -48131,6 +48439,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvoiceInput = {
@@ -48308,6 +48617,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvoiceInput = {
@@ -48329,6 +48639,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceItemUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -48569,6 +48880,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutShipmentInput = {
@@ -48590,6 +48902,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutShipmentInput = {
@@ -48719,6 +49032,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutShipmentInput = {
@@ -48740,6 +49054,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ShipmentFileUpsertWithWhereUniqueWithoutShipmentInput = {
@@ -49476,6 +49791,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStaffInput = {
@@ -49497,6 +49813,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStaffInput = {
@@ -49533,6 +49850,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStaffInput = {
@@ -49554,6 +49872,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutVendorInput = {
@@ -49574,6 +49893,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionCreateNestedManyWithoutUserInput
     boqItems?: BoqItemCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownCreateNestedManyWithoutUserInput
+    locations?: LocationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVendorInput = {
@@ -49595,6 +49915,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutUserInput
     boqItems?: BoqItemUncheckedCreateNestedManyWithoutUserInput
     BoqBreakdown?: BoqBreakdownUncheckedCreateNestedManyWithoutUserInput
+    locations?: LocationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVendorInput = {
@@ -49668,6 +49989,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUpdateManyWithoutUserNestedInput
+    locations?: LocationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVendorInput = {
@@ -49689,6 +50011,7 @@ export namespace Prisma {
     ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutUserNestedInput
     boqItems?: BoqItemUncheckedUpdateManyWithoutUserNestedInput
     BoqBreakdown?: BoqBreakdownUncheckedUpdateManyWithoutUserNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type InvoiceUpsertWithWhereUniqueWithoutVendorInput = {
@@ -50316,6 +50639,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LocationCreateWithoutUserInput = {
+    locationName: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
+    Task?: TaskCreateNestedManyWithoutLocationInput
+    ProjectSection?: ProjectSectionCreateNestedManyWithoutLocationInput
+  }
+
+  export type LocationUncheckedCreateWithoutUserInput = {
+    id?: number
+    locationName: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
+    Task?: TaskUncheckedCreateNestedManyWithoutLocationInput
+    ProjectSection?: ProjectSectionUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type LocationCreateOrConnectWithoutUserInput = {
+    where: LocationWhereUniqueInput
+    create: XOR<LocationCreateWithoutUserInput, LocationUncheckedCreateWithoutUserInput>
+  }
+
+  export type LocationCreateManyUserInputEnvelope = {
+    data: LocationCreateManyUserInput | LocationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type VendorUpsertWithWhereUniqueWithoutUserInput = {
     where: VendorWhereUniqueInput
     update: XOR<VendorUpdateWithoutUserInput, VendorUncheckedUpdateWithoutUserInput>
@@ -50559,6 +50911,34 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
     updatedAt?: DateTimeFilter<"BoqBreakdown"> | Date | string
     userId?: IntFilter<"BoqBreakdown"> | number
+  }
+
+  export type LocationUpsertWithWhereUniqueWithoutUserInput = {
+    where: LocationWhereUniqueInput
+    update: XOR<LocationUpdateWithoutUserInput, LocationUncheckedUpdateWithoutUserInput>
+    create: XOR<LocationCreateWithoutUserInput, LocationUncheckedCreateWithoutUserInput>
+  }
+
+  export type LocationUpdateWithWhereUniqueWithoutUserInput = {
+    where: LocationWhereUniqueInput
+    data: XOR<LocationUpdateWithoutUserInput, LocationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LocationUpdateManyWithWhereWithoutUserInput = {
+    where: LocationScalarWhereInput
+    data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LocationScalarWhereInput = {
+    AND?: LocationScalarWhereInput | LocationScalarWhereInput[]
+    OR?: LocationScalarWhereInput[]
+    NOT?: LocationScalarWhereInput | LocationScalarWhereInput[]
+    id?: IntFilter<"Location"> | number
+    locationName?: StringFilter<"Location"> | string
+    latitude?: FloatNullableFilter<"Location"> | number | null
+    longitude?: FloatNullableFilter<"Location"> | number | null
+    notes?: StringNullableFilter<"Location"> | string | null
+    userId?: IntFilter<"Location"> | number
   }
 
   export type BoqItemCreateManyBreakdownInput = {
@@ -52321,6 +52701,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type LocationCreateManyUserInput = {
+    id?: number
+    locationName: string
+    latitude?: number | null
+    longitude?: number | null
+    notes?: string | null
+  }
+
   export type VendorUpdateWithoutUserInput = {
     alias?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -52789,6 +53177,33 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LocationUpdateWithoutUserInput = {
+    locationName?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    Task?: TaskUpdateManyWithoutLocationNestedInput
+    ProjectSection?: ProjectSectionUpdateManyWithoutLocationNestedInput
+  }
+
+  export type LocationUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    locationName?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    Task?: TaskUncheckedUpdateManyWithoutLocationNestedInput
+    ProjectSection?: ProjectSectionUncheckedUpdateManyWithoutLocationNestedInput
+  }
+
+  export type LocationUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    locationName?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

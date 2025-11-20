@@ -80,6 +80,8 @@ model Location {
   latitude       Float?
   longitude      Float?
   notes          String?
+  user           User             @relation(fields: [userId], references: [id])
+  userId         Int              @map("user_id")
   Task           Task[]
   ProjectSection ProjectSection[]
 
@@ -479,6 +481,7 @@ model User {
   ProjectSection ProjectSection[]
   boqItems       BoqItem[]
   BoqBreakdown   BoqBreakdown[]
+  locations      Location[]
 
   @@map("user")
 }

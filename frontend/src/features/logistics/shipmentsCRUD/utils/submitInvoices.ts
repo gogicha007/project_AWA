@@ -1,0 +1,66 @@
+import { ShipmentFormSchema } from '../../shipmentSchema';
+import { originalInvoiceIds } from './shipmentFormUtils';
+import { ensureNumber, ensureInteger } from '@/utils/helper';
+import { invoiceApi } from '@/api/endpoints/purchases/invoiceApi';
+import { invoiceItemApi } from '@/api/endpoints/purchases/invoiceItemApi';
+import { formatToISODateTime } from '@/utils/dateFormat';
+
+export const handleSubmitInvoice = async (
+  data: ShipmentFormSchema,
+  shipmentId: number,
+  dbUserId: number
+) => {
+  const existingInvoiceIds = originalInvoiceIds(data); // forgot the reason
+
+  try {
+    // check hasRemovals.inInvoiceItems
+    if (
+      data._hasRemovals.inInvoiceItems &&
+      data._hasRemovals.inInvoiceItems.length > 0
+    ) {
+      await invoiceItemApi.deleteItemsArray(data._hasRemovals.inInvoiceItems);
+    }
+
+    // check hasRemovals.inInvoices
+    if (
+      data._hasRemovals.inInvoices &&
+      data._hasRemovals.inInvoices.length > 0
+    ) {
+      await invoiceApi.deleteInvoiceArray(data._hasRemovals.inInvoices);
+      console.log('there are removed invoices');
+    }
+
+    if (data.Invoices && data.Invoices.length > 0) {
+      const invoicesWithItems = data.Invoices.map((invoice) => ({
+        id: invoice.id,
+        vendorId: ensureInteger(invoice.vendorId),
+        invoiceNumber: invoice.invoiceNumber,
+        invoiceDate: formatToISODateTime(
+          invoice.invoiceDate === null ? undefined : invoice.invoiceDate
+        ) as Date,
+        totalAmount: ensureNumber(invoice.totalAmount),
+        currencyId: ensureInteger(invoice.currencyId),
+        userId: dbUserId,
+        shipmentId: shipmentId,
+        items: (
+          data.InvoiceItems?.filter((item) => item.invoiceId === invoice.id) ||
+          []
+        ).map((item) => ({
+          ...item,
+          id: item.id,
+          productId: ensureInteger(item.productId),
+          quantity: ensureNumber(item.quantity),
+          unitId: ensureInteger(item.unitId),
+          unitPrice: ensureNumber(item.unitPrice),
+          total: ensureNumber(item.total),
+        })),
+      }));
+      await invoiceApi.createInvoicesWithItemsBulk(invoicesWithItems);
+    }
+
+    return { success: true, originalInvoiceIds: existingInvoiceIds };
+  } catch (error) {
+    console.error('Error submitting invoice(s):', error);
+    throw error;
+  }
+};

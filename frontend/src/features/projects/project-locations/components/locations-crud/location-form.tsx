@@ -68,14 +68,13 @@ const LocationForm = ({
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      await Promise.resolve(
-        onSave({
-          id: initialData?.id,
-          locationName: data.locationName,
-          notes: data.notes,
-        })
-      );
-      onClose();
+      onSave({
+        id: initialData?.id,
+        locationName: data.locationName,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        notes: data.notes,
+      });
     } catch (error) {
       console.error(error);
     }

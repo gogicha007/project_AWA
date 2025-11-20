@@ -164,7 +164,8 @@ exports.Prisma.LocationScalarFieldEnum = {
   locationName: 'locationName',
   latitude: 'latitude',
   longitude: 'longitude',
-  notes: 'notes'
+  notes: 'notes',
+  userId: 'userId'
 };
 
 exports.Prisma.MilestoneScalarFieldEnum = {
