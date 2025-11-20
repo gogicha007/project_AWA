@@ -34,14 +34,9 @@ const locations = [
 export const ProjectLocations = ({ id }: { id: number }) => {
   const tPjLoc = useTranslations('ProjectLocations');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [snackbarControls, setSnackbarControls] = useState({
-    isOpen: false,
-    status: { message: '', success: false },
-  });
-
-  const { createLocation, updateLocation, snackbar } = useLocationMutations(
-    () => setIsDialogOpen(false)
-  );
+  
+  const { createLocation, updateLocation, snackbar, setSnackbar } =
+    useLocationMutations(() => setIsDialogOpen(false));
 
   const onSave = (data: FormValues) =>
     data.id ? updateLocation(data) : createLocation(data);
@@ -71,9 +66,7 @@ export const ProjectLocations = ({ id }: { id: number }) => {
       <Snackbar
         status={snackbar.status}
         open={snackbar.isOpen}
-        onClose={() =>
-          setSnackbarControls({ ...snackbarControls, isOpen: false })
-        }
+        onClose={() => setSnackbar({ ...snackbar, isOpen: false })}
         duration={4000}
       />
     </div>

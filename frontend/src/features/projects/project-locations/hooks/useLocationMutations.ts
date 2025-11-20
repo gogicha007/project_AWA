@@ -40,5 +40,5 @@ export const useLocationMutations = (onSuccessCallback?: () => void) => {
         },
 
     })
-    return { createLocation, updateLocation, isPending: isCreating || isUpdating, snackbar };
+    return { createLocation, updateLocation, isPending: isCreating || isUpdating, snackbar, setSnackbar };
 };

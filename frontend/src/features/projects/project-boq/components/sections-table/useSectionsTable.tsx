@@ -46,58 +46,61 @@ export const useSectionsTable = ({
     [setEditingId]
   );
 
-  const handleSave = useCallback(async (row: SectionRow) => {
-    try {
-      if (row.isNew) {
-        const response = await fetch('/api/sections', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            projectId,
-            sectionCode: row.sectionCode,
-            sectionName: row.sectionName,
-            totalAmount: row.totalAmount,
-          }),
-        });
+  const handleSave = useCallback(
+    async (row: SectionRow) => {
+      try {
+        if (row.isNew) {
+          const response = await fetch('/api/sections', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              projectId,
+              sectionCode: row.sectionCode,
+              sectionName: row.sectionName,
+              totalAmount: row.totalAmount,
+            }),
+          });
 
-        if (!response.ok) throw new Error('Failed to create section');
+          if (!response.ok) throw new Error('Failed to create section');
 
-        const savedSection = await response.json();
+          const savedSection = await response.json();
 
-        // Update with real ID from server
-        setSections(
-          sections.map((s) =>
-            s.id === row.id ? { ...savedSection, isNew: false } : s
-          )
-        );
-      } else {
-        // Update existing section via API
-        const response = await fetch(`/api/sections/${row.id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sectionCode: row.sectionCode,
-            sectionName: row.sectionName,
-            totalAmount: row.totalAmount,
-          }),
-        });
+          // Update with real ID from server
+          setSections(
+            sections.map((s) =>
+              s.id === row.id ? { ...savedSection, isNew: false } : s
+            )
+          );
+        } else {
+          // Update existing section via API
+          const response = await fetch(`/api/sections/${row.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              sectionCode: row.sectionCode,
+              sectionName: row.sectionName,
+              totalAmount: row.totalAmount,
+            }),
+          });
 
-        if (!response.ok) throw new Error('Failed to update section');
+          if (!response.ok) throw new Error('Failed to update section');
 
-        const updatedSection = await response.json();
+          const updatedSection = await response.json();
 
-        setSections(
-          sections.map((s) => (s.id === row.id ? updatedSection : s))
-        );
+          setSections(
+            sections.map((s) => (s.id === row.id ? updatedSection : s))
+          );
+        }
+
+        setEditingId(null);
+        setOriginalRow(null);
+      } catch (error) {
+        console.error('Error saving section:', error);
+        alert('Failed to save section. Please try again.');
       }
-
-      setEditingId(null);
-      setOriginalRow(null);
-    } catch (error) {
-      console.error('Error saving section:', error);
-      alert('Failed to save section. Please try again.');
-    }
-  }, [projectId, sections, setEditingId, setSections]);
+    },
+    [projectId, sections, setEditingId, setSections]
+  );
 
   const handleCancel = useCallback(() => {
     if (originalRow) {
@@ -145,7 +148,7 @@ export const useSectionsTable = ({
         sections.map((s) => (s.id === id ? { ...s, [field]: value } : s))
       );
     },
-    [setSections]
+    [sections, setSections]
   );
 
   const columns = useMemo<ColumnDef<SectionRow>[]>(
