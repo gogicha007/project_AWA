@@ -7,15 +7,8 @@ import { DatabaseService } from 'src/database/database/database.service';
 import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { UpdateInvoiceDTO } from './dto/update-invoice.dto';
 import { InvoiceItemsService } from './invoice-items/invoice-items.service';
-import {
-  PrismaClientKnownRequestError,
-  PrismaClientUnknownRequestError,
-  PrismaClientRustPanicError,
-  PrismaClientInitializationError,
-  PrismaClientValidationError,
-} from '@prisma/client/runtime/library';
+import { Prisma, Invoice } from '@prisma/client';
 import { CreateInvoicesWithItemsDTO } from './dto/create-invoices-with-items.dto';
-import { Invoice } from 'generated/prisma';
 import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 // type InvoiceWithItems = Prisma.InvoiceGetPayload<{
@@ -55,18 +48,18 @@ export class InvoicesService {
       return invoice;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       )
         throw new NotFoundException('Invoice already exists');
 
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2009'
       )
         throw new BadRequestException('Invalid input data');
 
-      if (error instanceof PrismaClientKnownRequestError)
+      if (error instanceof Prisma.PrismaClientKnownRequestError)
         throw new BadRequestException(`Database error: ${error.message}`);
 
       throw new BadRequestException('Invalid input data');
@@ -129,21 +122,21 @@ export class InvoicesService {
       );
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       ) {
         throw new NotFoundException('Invoice already exists');
       }
 
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2009'
       ) {
         throw new BadRequestException('Invalid input data');
       }
 
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2003'
       ) {
         const fieldName =
@@ -155,7 +148,7 @@ export class InvoicesService {
         );
       }
 
-      if (error instanceof PrismaClientKnownRequestError) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
         throw new BadRequestException(
           `Failed to upsert invoices with items ${error.code}`,
         );
@@ -194,7 +187,7 @@ export class InvoicesService {
       return invoice;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Invoice with ID ${id} not found`);
@@ -212,7 +205,7 @@ export class InvoicesService {
       });
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Invoice with ID ${id} not found`);
@@ -244,15 +237,15 @@ export class InvoicesService {
       return resultsArr;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError ||
-        error instanceof PrismaClientUnknownRequestError ||
-        error instanceof PrismaClientRustPanicError ||
-        error instanceof PrismaClientInitializationError ||
-        error instanceof PrismaClientValidationError
+        error instanceof Prisma.PrismaClientKnownRequestError ||
+        error instanceof Prisma.PrismaClientUnknownRequestError ||
+        error instanceof Prisma.PrismaClientRustPanicError ||
+        error instanceof Prisma.PrismaClientInitializationError ||
+        error instanceof Prisma.PrismaClientValidationError
       ) {
         throw new BadRequestException(
           `Failed to delete invoices with items ${
-            error instanceof PrismaClientKnownRequestError
+            error instanceof Prisma.PrismaClientKnownRequestError
               ? error.code
               : error.name || 'Unknown error'
           }`,
@@ -287,7 +280,7 @@ export class InvoicesService {
       };
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(

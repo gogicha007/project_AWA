@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { MaterialNameDTO } from '../dto/materialNames.dto';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class MaterialNamesService {
@@ -22,19 +22,19 @@ export class MaterialNamesService {
       return materialName;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       ) {
         throw new NotFoundException('Material name already exists');
       }
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2009'
       ) {
         throw new BadRequestException('Invalid input data');
       }
 
-      if (error instanceof PrismaClientKnownRequestError) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
         throw new BadRequestException(`Database error: ${error.message}`);
       }
 
@@ -71,7 +71,7 @@ export class MaterialNamesService {
       return materialName;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Material Name with ID ${id} not found`);
@@ -88,7 +88,7 @@ export class MaterialNamesService {
       return materialName;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Material Name with ID ${id} not found`);

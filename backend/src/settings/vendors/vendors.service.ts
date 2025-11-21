@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { VendorDTO } from './vendors.dto';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class VendorsService {
@@ -22,18 +22,18 @@ export class VendorsService {
       return vendor;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       )
         throw new NotFoundException('Vendor already exists');
 
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2009'
       )
         throw new BadRequestException('Invalid input data');
 
-      if (error instanceof PrismaClientKnownRequestError)
+      if (error instanceof Prisma.PrismaClientKnownRequestError)
         throw new BadRequestException(`Database error: ${error.message}`);
 
       throw new BadRequestException('Invalid input data');
@@ -71,7 +71,7 @@ export class VendorsService {
       return vendor;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Vendor with ID ${id} not found`);
@@ -89,7 +89,7 @@ export class VendorsService {
       return vendor;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Vendor with ID ${id} not found`);

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database/database.service';
 import { CreateMaterialGroupDTO } from '../dto/createMaterialGroup.dto';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class MaterialGroupsService {
@@ -18,7 +18,7 @@ export class MaterialGroupsService {
       return materialGroup;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       ) {
         throw new NotFoundException('Unit already exists');
@@ -50,7 +50,7 @@ export class MaterialGroupsService {
       return materialGroup;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Material Group with ID ${id} not found`);
@@ -67,7 +67,7 @@ export class MaterialGroupsService {
       return materialGroup;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Material Group with ID ${id} not found`);

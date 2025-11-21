@@ -3,7 +3,7 @@
  * Client
 **/
 
-import * as runtime from './runtime/library.js';
+import * as runtime from './runtime/client.js';
 import $Types = runtime.Types // general types
 import $Public = runtime.Types.Public
 import $Utils = runtime.Types.Utils
@@ -345,7 +345,6 @@ export class PrismaClient<
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
-
   $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
     extArgs: ExtArgs
   }>>
@@ -649,14 +648,6 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics
-   */
-  export type Metrics = runtime.Metrics
-  export type Metric<T> = runtime.Metric<T>
-  export type MetricHistogram = runtime.MetricHistogram
-  export type MetricHistogramBucket = runtime.MetricHistogramBucket
-
-  /**
   * Extensions
   */
   export import Extension = $Extensions.UserArgs
@@ -667,11 +658,12 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.16.3
-   * Query Engine version: bb420e667c1820a8c05a38023385f6cc7ef8e83a
+   * Prisma Client JS version: 7.0.0
+   * Query Engine version: 0c19ccc313cf9911a90d99d2ac2eb0280c76c513
    */
   export type PrismaVersion = {
     client: string
+    engine: string
   }
 
   export const prismaVersion: PrismaVersion
@@ -681,6 +673,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -1080,9 +1073,6 @@ export namespace Prisma {
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
 
 
-  export type Datasources = {
-    db?: Datasource
-  }
 
   interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
     returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
@@ -3050,14 +3040,6 @@ export namespace Prisma {
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
     /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasources?: Datasources
-    /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasourceUrl?: string
-    /**
      * @default "colorless"
      */
     errorFormat?: ErrorFormat
@@ -3099,7 +3081,11 @@ export namespace Prisma {
     /**
      * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
      */
-    adapter?: runtime.SqlDriverAdapterFactory | null
+    adapter?: runtime.SqlDriverAdapterFactory
+    /**
+     * Prisma Accelerate URL allowing the client to connect through Accelerate instead of a direct database.
+     */
+    accelerateUrl?: string
     /**
      * Global configuration for omitting model fields by default.
      * 
@@ -24628,7 +24614,7 @@ export namespace Prisma {
     shipmentId: number | null
     fileName: string | null
     fileType: string | null
-    fileData: Uint8Array | null
+    fileData: Bytes | null
   }
 
   export type ShipmentFileMaxAggregateOutputType = {
@@ -24636,7 +24622,7 @@ export namespace Prisma {
     shipmentId: number | null
     fileName: string | null
     fileType: string | null
-    fileData: Uint8Array | null
+    fileData: Bytes | null
   }
 
   export type ShipmentFileCountAggregateOutputType = {
@@ -24775,7 +24761,7 @@ export namespace Prisma {
     shipmentId: number
     fileName: string
     fileType: string | null
-    fileData: Uint8Array | null
+    fileData: Bytes | null
     _count: ShipmentFileCountAggregateOutputType | null
     _avg: ShipmentFileAvgAggregateOutputType | null
     _sum: ShipmentFileSumAggregateOutputType | null
@@ -24853,7 +24839,7 @@ export namespace Prisma {
       shipmentId: number
       fileName: string
       fileType: string | null
-      fileData: Uint8Array | null
+      fileData: Prisma.Bytes | null
     }, ExtArgs["result"]["shipmentFile"]>
     composites: {}
   }
@@ -37158,7 +37144,7 @@ export namespace Prisma {
     shipmentId?: IntFilter<"ShipmentFile"> | number
     fileName?: StringFilter<"ShipmentFile"> | string
     fileType?: StringNullableFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+    fileData?: BytesNullableFilter<"ShipmentFile"> | Bytes | null
     shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
   }
 
@@ -37179,7 +37165,7 @@ export namespace Prisma {
     shipmentId?: IntFilter<"ShipmentFile"> | number
     fileName?: StringFilter<"ShipmentFile"> | string
     fileType?: StringNullableFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+    fileData?: BytesNullableFilter<"ShipmentFile"> | Bytes | null
     shipment?: XOR<ShipmentScalarRelationFilter, ShipmentWhereInput>
   }, "id">
 
@@ -37204,7 +37190,7 @@ export namespace Prisma {
     shipmentId?: IntWithAggregatesFilter<"ShipmentFile"> | number
     fileName?: StringWithAggregatesFilter<"ShipmentFile"> | string
     fileType?: StringNullableWithAggregatesFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableWithAggregatesFilter<"ShipmentFile"> | Uint8Array | null
+    fileData?: BytesNullableWithAggregatesFilter<"ShipmentFile"> | Bytes | null
   }
 
   export type CurrencyWhereInput = {
@@ -39113,7 +39099,7 @@ export namespace Prisma {
   export type ShipmentFileCreateInput = {
     fileName: string
     fileType?: string | null
-    fileData?: Uint8Array | null
+    fileData?: Bytes | null
     shipment: ShipmentCreateNestedOneWithoutFilesInput
   }
 
@@ -39122,13 +39108,13 @@ export namespace Prisma {
     shipmentId: number
     fileName: string
     fileType?: string | null
-    fileData?: Uint8Array | null
+    fileData?: Bytes | null
   }
 
   export type ShipmentFileUpdateInput = {
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     shipment?: ShipmentUpdateOneRequiredWithoutFilesNestedInput
   }
 
@@ -39137,7 +39123,7 @@ export namespace Prisma {
     shipmentId?: IntFieldUpdateOperationsInput | number
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
   }
 
   export type ShipmentFileCreateManyInput = {
@@ -39145,13 +39131,13 @@ export namespace Prisma {
     shipmentId: number
     fileName: string
     fileType?: string | null
-    fileData?: Uint8Array | null
+    fileData?: Bytes | null
   }
 
   export type ShipmentFileUpdateManyMutationInput = {
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
   }
 
   export type ShipmentFileUncheckedUpdateManyInput = {
@@ -39159,7 +39145,7 @@ export namespace Prisma {
     shipmentId?: IntFieldUpdateOperationsInput | number
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
   }
 
   export type CurrencyCreateInput = {
@@ -41207,10 +41193,10 @@ export namespace Prisma {
   }
 
   export type BytesNullableFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
+    equals?: Bytes | BytesFieldRefInput<$PrismaModel> | null
+    in?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Bytes | null
   }
 
   export type ShipmentFileCountOrderByAggregateInput = {
@@ -41248,10 +41234,10 @@ export namespace Prisma {
   }
 
   export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
+    equals?: Bytes | BytesFieldRefInput<$PrismaModel> | null
+    in?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Bytes | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
@@ -43195,7 +43181,7 @@ export namespace Prisma {
   }
 
   export type NullableBytesFieldUpdateOperationsInput = {
-    set?: Uint8Array | null
+    set?: Bytes | null
   }
 
   export type ShipmentUpdateOneRequiredWithoutFilesNestedInput = {
@@ -44751,17 +44737,17 @@ export namespace Prisma {
   }
 
   export type NestedBytesNullableFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
+    equals?: Bytes | BytesFieldRefInput<$PrismaModel> | null
+    in?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Bytes | null
   }
 
   export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel> | null
-    in?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Uint8Array[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Uint8Array | null
+    equals?: Bytes | BytesFieldRefInput<$PrismaModel> | null
+    in?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Bytes[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Bytes | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
@@ -48913,14 +48899,14 @@ export namespace Prisma {
   export type ShipmentFileCreateWithoutShipmentInput = {
     fileName: string
     fileType?: string | null
-    fileData?: Uint8Array | null
+    fileData?: Bytes | null
   }
 
   export type ShipmentFileUncheckedCreateWithoutShipmentInput = {
     id?: number
     fileName: string
     fileType?: string | null
-    fileData?: Uint8Array | null
+    fileData?: Bytes | null
   }
 
   export type ShipmentFileCreateOrConnectWithoutShipmentInput = {
@@ -49081,7 +49067,7 @@ export namespace Prisma {
     shipmentId?: IntFilter<"ShipmentFile"> | number
     fileName?: StringFilter<"ShipmentFile"> | string
     fileType?: StringNullableFilter<"ShipmentFile"> | string | null
-    fileData?: BytesNullableFilter<"ShipmentFile"> | Uint8Array | null
+    fileData?: BytesNullableFilter<"ShipmentFile"> | Bytes | null
   }
 
   export type FreightUpsertWithWhereUniqueWithoutShipmentInput = {
@@ -51795,7 +51781,7 @@ export namespace Prisma {
     id?: number
     fileName: string
     fileType?: string | null
-    fileData?: Uint8Array | null
+    fileData?: Bytes | null
   }
 
   export type FreightCreateManyShipmentInput = {
@@ -51824,21 +51810,21 @@ export namespace Prisma {
   export type ShipmentFileUpdateWithoutShipmentInput = {
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
   }
 
   export type ShipmentFileUncheckedUpdateWithoutShipmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
   }
 
   export type ShipmentFileUncheckedUpdateManyWithoutShipmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     fileName?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileData?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    fileData?: NullableBytesFieldUpdateOperationsInput | Bytes | null
   }
 
   export type FreightUpdateWithoutShipmentInput = {

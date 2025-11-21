@@ -9,13 +9,7 @@ import {
   CreateFreightsBulkDTO,
 } from './dto/create-freight.dto';
 import { UpdateFreightDTO } from './dto/update-freight.dto';
-import {
-  PrismaClientKnownRequestError,
-  PrismaClientUnknownRequestError,
-  PrismaClientRustPanicError,
-  PrismaClientInitializationError,
-  PrismaClientValidationError,
-} from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
 
@@ -123,7 +117,7 @@ export class FreightsService {
       return updateFreight;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Shipment with ID ${id} not found`);
@@ -139,7 +133,7 @@ export class FreightsService {
       });
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Shipment with ID ${id} not found`);
@@ -176,15 +170,15 @@ export class FreightsService {
       return resultsArr;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError ||
-        error instanceof PrismaClientUnknownRequestError ||
-        error instanceof PrismaClientRustPanicError ||
-        error instanceof PrismaClientInitializationError ||
-        error instanceof PrismaClientValidationError
+        error instanceof Prisma.PrismaClientKnownRequestError ||
+        error instanceof Prisma.PrismaClientUnknownRequestError ||
+        error instanceof Prisma.PrismaClientRustPanicError ||
+        error instanceof Prisma.PrismaClientInitializationError ||
+        error instanceof Prisma.PrismaClientValidationError
       ) {
         throw new BadRequestException(
           `Failed to delete invoices with items ${
-            error instanceof PrismaClientKnownRequestError
+            error instanceof Prisma.PrismaClientKnownRequestError
               ? error.code
               : error.name || 'Unknown error'
           }`,

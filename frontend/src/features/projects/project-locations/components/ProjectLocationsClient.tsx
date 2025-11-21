@@ -1,12 +1,12 @@
 'use client';
 
 import AddButton from '@/components/controls/add-button/AddButton';
-import { useTranslations } from 'next-intl';
 import { LocationsCard } from './locations-card/LocationsCard';
 import LocationForm, { FormValues } from './locations-crud/location-form';
-import { useState } from 'react';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
 import { useLocationMutations } from '../hooks/useLocationMutations';
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 const locations = [
   {
@@ -34,7 +34,7 @@ const locations = [
 export const ProjectLocations = ({ id }: { id: number }) => {
   const tPjLoc = useTranslations('ProjectLocations');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
+
   const { createLocation, updateLocation, snackbar, setSnackbar } =
     useLocationMutations(() => setIsDialogOpen(false));
 

@@ -9,7 +9,7 @@ import { UpdateShipmentDTO } from './dto/update-shipment.dto';
 import { ShipmentFilesService } from './files/files.service';
 import { InvoicesService } from 'src/purchases/sales-invoices/invoices.service';
 import { FreightsService } from 'src/purchases/freights/freights.service';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ShipmentsService {
@@ -39,18 +39,18 @@ export class ShipmentsService {
       return shipment;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       )
         throw new NotFoundException('Shipment already exists');
 
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2009'
       )
         throw new BadRequestException('Invalid input data');
 
-      if (error instanceof PrismaClientKnownRequestError)
+      if (error instanceof Prisma.PrismaClientKnownRequestError)
         throw new BadRequestException(`Database error: ${error.message}`);
 
       throw new BadRequestException('Invalid input data');
@@ -109,7 +109,7 @@ export class ShipmentsService {
       return shipment;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Shipment with ID ${id} not found`);
@@ -136,7 +136,7 @@ export class ShipmentsService {
       };
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Shipment with ID ${id} not found`);

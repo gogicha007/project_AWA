@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsDateString,
 } from 'class-validator';
-import { ProjectStatus } from 'generated/prisma';
+import { ProjectStatus } from '@prisma/client';
 
 export class CreateProjectDto {
   @ApiProperty()

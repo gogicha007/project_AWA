@@ -6,7 +6,7 @@ import {
 import { UpdateBoqSectionDto } from './dto/update-boq-section.dto';
 import { DatabaseService } from 'src/database/database/database.service';
 import { handlePrismaErrors } from 'src/common/utils/prisma-error.util';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 @Injectable()
@@ -92,7 +92,7 @@ export class BoqSectionsService {
       return updateBoqSection;
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Shipment with ID ${id} not found`);
@@ -106,7 +106,7 @@ export class BoqSectionsService {
       return this.dbService.projectSection.delete({ where: { id } });
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Shipment with ID ${id} not found`);

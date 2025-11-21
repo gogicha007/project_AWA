@@ -6,7 +6,7 @@ import {
 import { DatabaseService } from 'src/database/database/database.service';
 import { CreateInvoiceItemDTO } from './dto/create-invoice-item.dto';
 import { UpdateInvoiceItemDTO } from './dto/update-invoice-item.dto';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class InvoiceItemsService {
@@ -19,18 +19,18 @@ export class InvoiceItemsService {
       });
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'
       )
         throw new NotFoundException('Shipment already exists');
 
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2009'
       )
         throw new BadRequestException('Invalid input data');
 
-      if (error instanceof PrismaClientKnownRequestError)
+      if (error instanceof Prisma.PrismaClientKnownRequestError)
         throw new BadRequestException(`Database error: ${error.message}`);
 
       throw new BadRequestException('Invalid input data');
@@ -45,7 +45,7 @@ export class InvoiceItemsService {
       });
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(`Item with ID ${id} not found`);
@@ -58,7 +58,7 @@ export class InvoiceItemsService {
     try {
       return this.dbService.invoiceItem.findMany();
     } catch (error) {
-      if (error instanceof PrismaClientKnownRequestError) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
         throw new NotFoundException(
           `Failed to fetch invoice items, error code: ${error.code}`,
         );
@@ -118,7 +118,7 @@ export class InvoiceItemsService {
       };
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(
@@ -140,7 +140,7 @@ export class InvoiceItemsService {
       };
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(
@@ -163,7 +163,7 @@ export class InvoiceItemsService {
       };
     } catch (error) {
       if (
-        error instanceof PrismaClientKnownRequestError &&
+        error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
         throw new NotFoundException(

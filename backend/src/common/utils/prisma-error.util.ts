@@ -1,11 +1,5 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
-import {
-  PrismaClientKnownRequestError,
-  PrismaClientValidationError,
-  PrismaClientUnknownRequestError,
-  PrismaClientRustPanicError,
-  PrismaClientInitializationError,
-} from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 
 export function handlePrismaErrors(
   error: unknown,
@@ -13,14 +7,14 @@ export function handlePrismaErrors(
   entityName: string = '',
 ) {
   if (
-    error instanceof PrismaClientValidationError ||
+    error instanceof Prisma.PrismaClientValidationError ||
     (error &&
       typeof error === 'object' &&
       'name' in error &&
-      error.name === 'PrismaClientValidationError') ||
+      error.name === 'Prisma.PrismaClientValidationError') ||
     (error &&
       typeof error === 'object' &&
-      error.constructor?.name === 'PrismaClientValidationError')
+      error.constructor?.name === 'Prisma.PrismaClientValidationError')
   ) {
     const errorMessage =
       error instanceof Error
@@ -39,7 +33,7 @@ export function handlePrismaErrors(
   }
 
   if (
-    error instanceof PrismaClientKnownRequestError &&
+    error instanceof Prisma.PrismaClientKnownRequestError &&
     error.code === 'P2025'
   ) {
     throw new NotFoundException(
@@ -48,7 +42,7 @@ export function handlePrismaErrors(
   }
 
   if (
-    error instanceof PrismaClientKnownRequestError &&
+    error instanceof Prisma.PrismaClientKnownRequestError &&
     error.code === 'P2003'
   ) {
     const fieldName =
@@ -60,17 +54,20 @@ export function handlePrismaErrors(
     );
   }
 
-  if (error instanceof PrismaClientKnownRequestError && error.code === 'P2009')
+  if (
+    error instanceof Prisma.PrismaClientKnownRequestError &&
+    error.code === 'P2009'
+  )
     throw new BadRequestException('Invalid input data');
 
   if (
-    error instanceof PrismaClientKnownRequestError ||
-    error instanceof PrismaClientUnknownRequestError ||
-    error instanceof PrismaClientRustPanicError ||
-    error instanceof PrismaClientInitializationError
+    error instanceof Prisma.PrismaClientKnownRequestError ||
+    error instanceof Prisma.PrismaClientUnknownRequestError ||
+    error instanceof Prisma.PrismaClientRustPanicError ||
+    error instanceof Prisma.PrismaClientInitializationError
   ) {
     const errorCode =
-      error instanceof PrismaClientKnownRequestError
+      error instanceof Prisma.PrismaClientKnownRequestError
         ? error.code
         : error.name || 'Unknown error';
     throw new BadRequestException(
