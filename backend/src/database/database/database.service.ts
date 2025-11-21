@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 
@@ -7,10 +7,15 @@ import { Pool } from 'pg';
 export class DatabaseService extends PrismaClient implements OnModuleInit {
   constructor() {
     const connectionString = process.env.DATABASE_URL;
-    const pool = new Pool({ connectionString });
-    const adapter = new PrismaPg(pool);
+    if (!connectionString) {
+      throw new Error('DATABASE_URL environment variable is not defined');
+    }
 
-    super({ adapter } as any);
+    const pool = new Pool({ connectionString });
+    const adapter: NonNullable<Prisma.PrismaClientOptions['adapter']> =
+      new PrismaPg(pool);
+
+    super({ adapter });
   }
 
   async onModuleInit() {
