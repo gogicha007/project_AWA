@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ProcessedFileData } from '../../utils/ProcessFile';
 import { ColumnDef } from '@tanstack/react-table';
 import { SectionRow } from './SectionsTable';
 import { sectionsColumns } from './SectionsColumns';
@@ -26,6 +25,16 @@ export const useSectionsTable = ({
   const tS = useTranslations('ProjectBoq');
   const handleImport = (data: ImportedDataType[]) => {
     console.log('useSectionsTable imported date', data);
+    const newSections = data.map((item) => ({
+      id: Date.now() + Math.random(), // temporary ID
+      sectionCode: String(item.sectionCode || ''),
+      sectionName: String(item.sectionName || ''),
+      totalAmount: Number(item.totalAmount || 0),
+      locationId: item.locationId ? Number(item.locationId) : null,
+      isNew: true,
+    }));
+
+    setSections([...sections, ...newSections]);
   };
 
   const handleAdd = useCallback(() => {
