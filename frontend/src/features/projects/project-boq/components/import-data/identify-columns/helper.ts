@@ -8,6 +8,5 @@ export const nameColumns = (array: unknown[], mapping: Record<number, string>) =
         }, {})
         return [...acc, arrItem]
     }, [])
-    console.log(result)
     return result;
 }

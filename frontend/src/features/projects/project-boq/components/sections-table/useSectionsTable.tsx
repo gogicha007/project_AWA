@@ -1,28 +1,32 @@
 import { useCallback, useMemo, useState } from 'react';
+import { ProcessedFileData } from '../../utils/ProcessFile';
 import { ColumnDef } from '@tanstack/react-table';
 import { SectionRow } from './SectionsTable';
 import { sectionsColumns } from './SectionsColumns';
 import { useTranslations } from 'next-intl';
+import { ImportedDataType } from '../import-data/ImportData';
 
 type Props = {
-  sections: SectionRow[];
-  setSections: React.Dispatch<React.SetStateAction<SectionRow[]>>;
+  projectId: number;
   editingId: number | null;
   setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
-  projectId: number;
+  sections: SectionRow[];
+  setSections: React.Dispatch<React.SetStateAction<SectionRow[]>>;
 };
 
 export const useSectionsTable = ({
-  sections,
-  setSections,
+  projectId,
   editingId,
   setEditingId,
-  projectId,
+  sections,
+  setSections,
 }: Props) => {
   const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
 
   const tS = useTranslations('ProjectBoq');
-  const handleImport = () => {};
+  const handleImport = (data: ImportedDataType[]) => {
+    console.log('useSectionsTable imported date', data);
+  };
 
   const handleAdd = useCallback(() => {
     const newSection: SectionRow = {

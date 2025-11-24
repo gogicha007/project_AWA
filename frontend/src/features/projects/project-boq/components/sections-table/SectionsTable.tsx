@@ -57,7 +57,7 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableActions}>
-        <ImportData />
+        <ImportData onData={handleImport}/>
         <AddButton onAdd={handleAdd} />
       </div>
       <table className={styles.table}>

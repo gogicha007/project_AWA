@@ -7,13 +7,17 @@ import { useTranslations } from 'next-intl';
 import * as XLSX from 'xlsx';
 import Identifycolumns from './identify-columns/IdentifyColumns';
 
+export type ImportedDataType = {
+  [key: string]: string | number;
+};
+
 type Props = {
-  onData?: (processedData: ProcessedFileData | null) => void;
+  onData?: (data: ImportedDataType[]) => void;
   onError?: (error: string | null) => void;
 };
 
-export const ImportData: React.FC<Props> = () => {
-  const tID = useTranslations('ProjectBoq.import_data')
+export const ImportData: React.FC<Props> = (props) => {
+  const tID = useTranslations('ProjectBoq.import_data');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [dataRows, setDataRows] = useState<unknown[]>([]);
   const [importError, setImportError] = useState<string | null>(null);
@@ -27,7 +31,9 @@ export const ImportData: React.FC<Props> = () => {
   const [selectedSheetName, setSelectedSheetName] = useState('');
   const [sheetNames, setSheetNames] = useState<string[] | null>(null);
 
-  const closeIdentifyColsDialog = () => {setIsIdentifyColsDialogOpen(false)};
+  const closeIdentifyColsDialog = () => {
+    setIsIdentifyColsDialogOpen(false);
+  };
 
   const closeSheetDialog = () => {
     setIsSheetNamesDialogOpen(false);
@@ -48,7 +54,7 @@ export const ImportData: React.FC<Props> = () => {
   const handleData = (data: ProcessedFileData) => {
     // Set selected data FIRST before processing
     setSelectedData(data);
-    
+
     if (
       data.type === 'xlsx' &&
       data.data &&
@@ -62,7 +68,6 @@ export const ImportData: React.FC<Props> = () => {
         setIsSheetNamesDialogOpen(true);
         setSheetNames(sheetNamesArr);
       } else {
-        // Pass workbook directly instead of relying on state
         const wsh = workbook.Sheets[workbook.SheetNames[0]];
         const rows = XLSX.utils.sheet_to_json(wsh, { header: 1 });
         setSelectedSheetName(workbook.SheetNames[0]);
@@ -118,6 +123,7 @@ export const ImportData: React.FC<Props> = () => {
   return (
     <div className="flex items-center gap-3">
       <h3>{tID('title')} </h3>
+
       {/* handle file input*/}
       <input
         type="file"
@@ -133,6 +139,7 @@ export const ImportData: React.FC<Props> = () => {
       >
         XLSX/XLS
       </button>
+
       {/* handle clipboard */}
       <button
         className="rounded bg-green-500 text-xs text-white"
@@ -146,6 +153,7 @@ export const ImportData: React.FC<Props> = () => {
         onClose={closeIdentifyColsDialog}
         rows={dataRows}
         sheetName={selectedSheetName}
+        onData={props.onData}
       />
       <SelectSheetName
         isOpen={isSheetNamesDialogOpen}

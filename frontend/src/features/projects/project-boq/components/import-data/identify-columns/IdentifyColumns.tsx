@@ -4,12 +4,14 @@ import styles from '../modal.module.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useTranslations } from 'next-intl';
+import { ImportedDataType } from '../ImportData';
 import SheetInfo from './SheetInfo';
 import TableHeaders from './TableHeaders';
 import FieldList from './FieldList';
 import { nameColumns } from './helper';
 
 type ICDialogProps = {
+  onData?: (data: ImportedDataType[]) => void;
   isOpen: boolean;
   onClose?: () => void;
   rows: unknown[];
@@ -17,6 +19,7 @@ type ICDialogProps = {
 };
 
 const Identifycolumns = ({
+  onData,
   isOpen,
   onClose,
   rows,
@@ -111,7 +114,6 @@ const Identifycolumns = ({
     setColumnMapping((prev) => {
       const newMapping = { ...prev };
       delete newMapping[columnNumber];
-      console.log(`Removed mapping for column ${columnNumber}`);
       return newMapping;
     });
   };
@@ -119,7 +121,13 @@ const Identifycolumns = ({
   const handleSubmit = () => {
     console.log('Final column mapping:', columnMapping);
     console.log('table', table);
-    const data = nameColumns(table, columnMapping);
+    const data: ImportedDataType[] = nameColumns(
+      table,
+      columnMapping
+    ) as ImportedDataType[];
+
+    if (data && onData) onData(data);
+
     resetInputs();
     if (onClose) onClose();
   };
@@ -159,10 +167,7 @@ const Identifycolumns = ({
         {isOpen && (
           <DndContext onDragEnd={handleDragEnd}>
             <div className="flex gap-6">
-              <FieldList
-                tVar={tIC}
-                usedFields={Object.values(columnMapping)}
-              />
+              <FieldList tVar={tIC} usedFields={Object.values(columnMapping)} />
               {/* table */}
               <div className="relative h-[500px] w-full overflow-auto rounded-lg border border-[var(--border)] bg-[var(--background-card)] shadow-sm">
                 <table className="w-full border-separate border-spacing-0">
@@ -183,16 +188,17 @@ const Identifycolumns = ({
                         <td className="sticky left-0 z-10 border border-[var(--border)] bg-[var(--primary-50)] px-4 py-2 text-sm font-semibold text-[var(--primary-700)]">
                           {firstRow + rowIndex + 1}
                         </td>
-                        {Array.from({ length: rowMaxWidth }, (_, i) => i + 1).map(
-                          (colNo) => (
-                            <td
-                              key={colNo}
-                              className="border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm text-[var(--foreground)]"
-                            >
-                              {String((row as unknown[])[colNo - 1] ?? '')}
-                            </td>
-                          )
-                        )}
+                        {Array.from(
+                          { length: rowMaxWidth },
+                          (_, i) => i + 1
+                        ).map((colNo) => (
+                          <td
+                            key={colNo}
+                            className="border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm text-[var(--foreground)]"
+                          >
+                            {String((row as unknown[])[colNo - 1] ?? '')}
+                          </td>
+                        ))}
                       </tr>
                     ))}
                   </tbody>
@@ -230,7 +236,11 @@ const Identifycolumns = ({
             />
           </div>
 
-          <button className="button primary self-end" onClick={handleSubmit}>
+          <button
+            className="button primary self-end"
+            onClick={handleSubmit}
+            disabled={Object.keys(columnMapping).length === 0}
+          >
             {tIC('actions.submit')}
           </button>
         </div>
