@@ -9,6 +9,8 @@ type Props = {
   projectId: number;
   editingId: number | null;
   setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
+  editingIds: number[] | null;
+  setEditingIds: React.Dispatch<React.SetStateAction<number[] | null>>;
   sections: SectionRow[];
   setSections: React.Dispatch<React.SetStateAction<SectionRow[]>>;
 };
@@ -17,12 +19,16 @@ export const useSectionsTable = ({
   projectId,
   editingId,
   setEditingId,
+  editingIds,
+  setEditingIds,
   sections,
   setSections,
 }: Props) => {
   const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
+  const [originalRows, setOriginalRows] = useState<SectionRow[] | null>(null);
 
   const tS = useTranslations('ProjectBoq');
+
   const handleImport = (data: ImportedDataType[]) => {
     console.log('useSectionsTable imported date', data);
     const newSections = data.map((item) => ({
@@ -33,7 +39,8 @@ export const useSectionsTable = ({
       locationId: item.locationId ? Number(item.locationId) : null,
       isNew: true,
     }));
-
+    setEditingIds(newSections.map((section)=> section.id))
+    setOriginalRows(newSections)
     setSections([...sections, ...newSections]);
   };
 
@@ -168,6 +175,7 @@ export const useSectionsTable = ({
     () =>
       sectionsColumns({
         editingId,
+        editingIds,
         onEdit: handleEdit,
         onSave: handleSave,
         onCancel: handleCancel,
@@ -177,6 +185,7 @@ export const useSectionsTable = ({
       }),
     [
       editingId,
+      editingIds,
       handleCancel,
       handleDelete,
       handleEdit,

@@ -28,10 +28,10 @@ type Props = {
 export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   const [sections, setSections] = useState<SectionRow[]>(initialData);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingIds, setEditingIds] = useState<number[] | null>(null);
   const tST = useTranslations('ProjectBoq.sections');
 
-  console.log('locations', locations);
-  
+
   const {
     handleAdd,
     handleCancel,
@@ -43,6 +43,8 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   } = useSectionsTable({
     editingId,
     setEditingId,
+    editingIds,
+    setEditingIds,
     sections,
     setSections,
     projectId,
@@ -57,7 +59,7 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableActions}>
-        <ImportData onData={handleImport}/>
+        <ImportData onData={handleImport} />
         <AddButton onAdd={handleAdd} />
       </div>
       <table className={styles.table}>

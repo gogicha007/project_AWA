@@ -5,6 +5,7 @@ import { SectionRow } from './SectionsTable';
 
 type Props = {
   editingId: number | null;
+  editingIds: number[] | null;
   onEdit: (row: SectionRow) => void;
   onSave: (row: SectionRow) => void;
   onCancel: () => void;
@@ -19,6 +20,7 @@ type Props = {
 
 export const sectionsColumns = ({
   editingId,
+  editingIds,
   onEdit,
   onSave,
   onCancel,
@@ -30,7 +32,8 @@ export const sectionsColumns = ({
     header: tS('sections.field.sectionCode'),
     accessorKey: 'sectionCode',
     cell: ({ row }) => {
-      const isEditing = editingId === row.original.id;
+      // const isEditing = editingId === row.original.id;
+      const isEditing = (editingIds || []).includes(row.original.id)
       const isAnyRowEditing = editingId !== null;
 
       return isEditing ? (

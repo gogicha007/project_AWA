@@ -40,7 +40,7 @@ const ActionBar = ({
             <button
               onClick={onCancel}
               className={`${styles.actionButton} ${styles.cancelButton}`}
-              title={tA('calcel')}
+              title={tA('cancel')}
             >
               <FiX size={18} />
             </button>
