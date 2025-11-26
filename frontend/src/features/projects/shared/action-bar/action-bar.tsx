@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 type Props = {
   isEditing: boolean;
   isAnyRowEditing: boolean;
-  onCancel: () => void;
+  onCancel: (ros: SectionRow) => void;
   onDelete: (id: number) => void;
   onEdit: (row: SectionRow) => void;
   onSave: (row: SectionRow) => void;
@@ -38,7 +38,7 @@ const ActionBar = ({
               <FiSave size={18} />
             </button>
             <button
-              onClick={onCancel}
+              onClick={()=>onCancel(row)}
               className={`${styles.actionButton} ${styles.cancelButton}`}
               title={tA('cancel')}
             >

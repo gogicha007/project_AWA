@@ -16,10 +16,11 @@ export const sectionsApi = {
 
     },
 
-    creactBoqSection: async (section: BoqSectionDTO) => {
+    creactBoqSection: async (section: Partial<BoqSectionDTO>, userId: number) => {
         try {
             const createSectionResponse = await apiClient.post('/boq-sections', {
-                section
+                ...section,
+                userId
             })
             return createSectionResponse.data
         } catch (error) {
@@ -39,7 +40,7 @@ export const sectionsApi = {
         }
     },
 
-    update: async (section: BoqSectionDTO, userId: number): Promise<BoqSectionDTO> => {
+    updateBoqSection: async (section: BoqSectionDTO, userId: number): Promise<BoqSectionDTO> => {
         try {
             const response = await apiClient.put(`/boq-sections/${section.id}`, {
                 ...section,

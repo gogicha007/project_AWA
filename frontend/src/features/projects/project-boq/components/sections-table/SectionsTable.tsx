@@ -1,6 +1,7 @@
 'use client';
 
 import styles from './sections-table.module.css';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import {
   flexRender,
@@ -13,7 +14,7 @@ import { ImportData } from '../import-data/ImportData';
 import { SectionSchema } from '../../schema/sectionSchema';
 import { LocationDTO } from '@/features/projects/project-locations/schema/locationSchema';
 import { useSectionsTable } from './useSectionsTable';
-import { useTranslations } from 'next-intl';
+import Snackbar from '@/components/feedback/snackbar/snackbar';
 
 export type SectionRow = z.infer<typeof SectionSchema> & {
   isNew?: boolean;
@@ -31,15 +32,16 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   const [editingIds, setEditingIds] = useState<number[] | null>(null);
   const tST = useTranslations('ProjectBoq.sections');
 
-
   const {
+    columns,
     handleAdd,
     handleCancel,
     handleDelete,
     handleEdit,
     handleImport,
     handleSave,
-    columns,
+    snackbar,
+    setSnackbar,
   } = useSectionsTable({
     editingId,
     setEditingId,
@@ -91,7 +93,8 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
               <tr
                 key={row.id}
                 className={`${styles.tableRow} ${
-                  editingId === row.original.id ? styles.editingRow : ''
+                  editingIds?.includes(row.original.id) ? styles.editingRow : ''
+                  // editingId === row.original.id ? styles.editingRow : ''
                 }`}
               >
                 {row.getVisibleCells().map((cell) => (
@@ -104,6 +107,12 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
           )}
         </tbody>
       </table>
+      <Snackbar
+        status={snackbar.status}
+        open={snackbar.isOpen}
+        onClose={() => setSnackbar({ ...snackbar, isOpen: false })}
+        duration={4000}
+      />
     </div>
   );
 };

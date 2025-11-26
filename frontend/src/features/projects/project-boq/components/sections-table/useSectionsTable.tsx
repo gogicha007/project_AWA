@@ -1,9 +1,10 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useRef } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { SectionRow } from './SectionsTable';
 import { sectionsColumns } from './SectionsColumns';
 import { useTranslations } from 'next-intl';
 import { ImportedDataType } from '../import-data/ImportData';
+import { useSectionMutations } from '../../hooks/useSectionMutations';
 
 type Props = {
   projectId: number;
@@ -27,7 +28,32 @@ export const useSectionsTable = ({
   const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
   const [originalRows, setOriginalRows] = useState<SectionRow[] | null>(null);
 
+  const tempIdRef = useRef<number | null>(null);
+
   const tS = useTranslations('ProjectBoq');
+
+  const { createSection, updateSection, snackbar, setSnackbar } =
+    useSectionMutations(
+      (savedSection) => {
+        setSections(
+          sections.map((s) =>
+            s.id === tempIdRef.current ? { ...savedSection, isNew: false } : s
+          )
+        );
+        setEditingIds(
+          (editingIds ?? []).filter((i) => i !== tempIdRef.current)
+        );
+        tempIdRef.current = null;
+      },
+      (updatedSection) => {
+        setSections(
+          sections.map((s) => (s.id === updatedSection.id ? updatedSection : s))
+        );
+        setEditingIds(
+          (editingIds ?? []).filter((i) => i !== tempIdRef.current)
+        );
+      }
+    );
 
   const handleImport = (data: ImportedDataType[]) => {
     console.log('useSectionsTable imported date', data);
@@ -39,8 +65,8 @@ export const useSectionsTable = ({
       locationId: item.locationId ? Number(item.locationId) : null,
       isNew: true,
     }));
-    setEditingIds(newSections.map((section)=> section.id))
-    setOriginalRows(newSections)
+    setEditingIds(newSections.map((section) => section.id));
+    setOriginalRows(newSections);
     setSections([...sections, ...newSections]);
   };
 
@@ -60,8 +86,10 @@ export const useSectionsTable = ({
 
   const handleEdit = useCallback(
     (row: SectionRow) => {
+      setEditingIds([...(editingIds ?? []), row.id]);
       setEditingId(row.id);
       setOriginalRow({ ...row });
+      setOriginalRows([...(originalRows ?? []), { ...row }]);
     },
     [setEditingId]
   );
@@ -70,46 +98,15 @@ export const useSectionsTable = ({
     async (row: SectionRow) => {
       try {
         if (row.isNew) {
-          const response = await fetch('/api/sections', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              projectId,
-              sectionCode: row.sectionCode,
-              sectionName: row.sectionName,
-              totalAmount: row.totalAmount,
-            }),
+          tempIdRef.current = row.id;
+          createSection({
+            projectId,
+            sectionCode: row.sectionCode,
+            sectionName: row.sectionName,
+            sectionType: row.sectionType,
           });
-
-          if (!response.ok) throw new Error('Failed to create section');
-
-          const savedSection = await response.json();
-
-          // Update with real ID from server
-          setSections(
-            sections.map((s) =>
-              s.id === row.id ? { ...savedSection, isNew: false } : s
-            )
-          );
         } else {
-          // Update existing section via API
-          const response = await fetch(`/api/sections/${row.id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              sectionCode: row.sectionCode,
-              sectionName: row.sectionName,
-              totalAmount: row.totalAmount,
-            }),
-          });
-
-          if (!response.ok) throw new Error('Failed to update section');
-
-          const updatedSection = await response.json();
-
-          setSections(
-            sections.map((s) => (s.id === row.id ? updatedSection : s))
-          );
+          updateSection(row);
         }
 
         setEditingId(null);
@@ -122,21 +119,27 @@ export const useSectionsTable = ({
     [projectId, sections, setEditingId, setSections]
   );
 
-  const handleCancel = useCallback(() => {
-    if (originalRow) {
-      if (originalRow.isNew) {
-        // Remove unsaved new row
-        setSections(sections.filter((s) => s.id !== originalRow.id));
-      } else {
-        // Revert changes
-        setSections(
-          sections.map((s) => (s.id === originalRow.id ? originalRow : s))
-        );
+  const handleCancel = useCallback(
+    (row: SectionRow) => {
+      console.log(row);
+      if (originalRows?.includes(row)) {
+        if (row.isNew) {
+          // Remove unsaved new row
+          setSections(sections.filter((s) => s.id !== row.id));
+        } else {
+          // Revert changes
+          setSections(sections.map((s) => (s.id === row.id ? row : s)));
+        }
       }
-    }
-    setEditingId(null);
-    setOriginalRow(null);
-  }, [sections, originalRow, setSections, setEditingId]);
+      // setEditingId(null);
+      // setOriginalRow(null);
+      setEditingIds((editingIds ?? []).filter((i) => i !== row.id));
+      if (originalRows) {
+        setOriginalRows(originalRows.filter((r) => r !== row));
+      }
+    },
+    [sections, originalRow, setSections, setEditingId]
+  );
 
   const handleDelete = useCallback(
     async (id: number) => {
@@ -196,13 +199,15 @@ export const useSectionsTable = ({
   );
 
   return {
+    columns,
     handleAdd,
     handleCancel,
     handleDelete,
     handleEdit,
     handleImport,
     handleSave,
-    columns,
+    snackbar,
+    setSnackbar,
     tS,
   };
 };

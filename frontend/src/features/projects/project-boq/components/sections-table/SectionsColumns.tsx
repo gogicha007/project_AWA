@@ -8,7 +8,7 @@ type Props = {
   editingIds: number[] | null;
   onEdit: (row: SectionRow) => void;
   onSave: (row: SectionRow) => void;
-  onCancel: () => void;
+  onCancel: (row: SectionRow) => void;
   onDelete: (id: number) => void;
   onFieldChange: <K extends keyof SectionRow>(
     id: number,
@@ -33,7 +33,7 @@ export const sectionsColumns = ({
     accessorKey: 'sectionCode',
     cell: ({ row }) => {
       // const isEditing = editingId === row.original.id;
-      const isEditing = (editingIds || []).includes(row.original.id)
+      const isEditing = (editingIds || []).includes(row.original.id);
       const isAnyRowEditing = editingId !== null;
 
       return isEditing ? (
@@ -61,7 +61,8 @@ export const sectionsColumns = ({
     header: tS('sections.field.sectionName'),
     accessorKey: 'sectionName',
     cell: ({ row }) => {
-      const isEditing = editingId === row.original.id;
+      // const isEditing = editingId === row.original.id;
+      const isEditing = (editingIds || []).includes(row.original.id);
       const isAnyRowEditing = editingId !== null;
 
       return isEditing ? (
@@ -88,7 +89,8 @@ export const sectionsColumns = ({
     header: tS('sections.field.totalAmount'),
     accessorKey: 'totalAmount',
     cell: ({ row }) => {
-      const isEditing = editingId === row.original.id;
+      // const isEditing = editingId === row.original.id;
+      const isEditing = (editingIds || []).includes(row.original.id);
       const isAnyRowEditing = editingId !== null;
 
       return isEditing ? (
@@ -120,7 +122,8 @@ export const sectionsColumns = ({
     id: 'actions',
     header: tS('actions.title'),
     cell: ({ row }) => {
-      const isEditing = editingId === row.original.id;
+      // const isEditing = editingId === row.original.id;
+      const isEditing = (editingIds || []).includes(row.original.id);
       const isAnyRowEditing = editingId !== null;
 
       return (
