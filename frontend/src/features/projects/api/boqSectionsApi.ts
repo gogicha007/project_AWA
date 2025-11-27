@@ -40,7 +40,7 @@ export const sectionsApi = {
 
     updateBoqSection: async (section: BoqSectionDTO, userId: number): Promise<BoqSectionDTO> => {
         try {
-            const response = await apiClient.put(`/boq-sections/${section.id}`, {
+            const response = await apiClient.patch(`/boq-sections/${section.id}`, {
                 ...section,
                 userId
             });

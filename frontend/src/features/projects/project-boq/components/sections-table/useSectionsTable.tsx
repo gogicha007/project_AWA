@@ -43,6 +43,7 @@ export const useSectionsTable = ({
           sections.map((s) => (s.id === updatedSection.id ? updatedSection : s))
         );
         setEditingIds(editingIds.filter((i) => i !== tempIdRef.current));
+        setOriginalRows(originalRows.filter((r) => r.id !== tempIdRef.current));
       }
     );
 
@@ -57,7 +58,6 @@ export const useSectionsTable = ({
       isNew: true,
     }));
     setEditingIds(newSections.map((section) => section.id));
-    setOriginalRows(newSections);
     setSections([...sections, ...newSections]);
   };
 
@@ -117,12 +117,8 @@ export const useSectionsTable = ({
           setSections(sections.map((s) => (s.id === row.id ? row : s)));
         }
       }
-      // setEditingId(null);
-      // setOriginalRow(null);
       setEditingIds(editingIds.filter((i) => i !== row.id));
-      if (originalRows) {
-        setOriginalRows(originalRows.filter((r) => r !== row));
-      }
+      setOriginalRows(originalRows.filter((r) => r.id !== row.id));
     },
     [
       editingIds,

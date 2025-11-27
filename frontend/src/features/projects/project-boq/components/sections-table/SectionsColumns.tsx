@@ -30,8 +30,7 @@ export const sectionsColumns = ({
     header: tS('sections.field.sectionCode'),
     accessorKey: 'sectionCode',
     cell: ({ row }) => {
-      const isEditing = (editingIds || []).includes(row.original.id);
-      // const isAnyRowEditing = editingId !== null;
+      const isEditing = editingIds.includes(row.original.id);
       const isAnyRowEditing = editingIds.length > 0;
 
       return isEditing ? (
