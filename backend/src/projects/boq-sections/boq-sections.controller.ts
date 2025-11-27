@@ -38,6 +38,11 @@ export class BoqSectionsController {
     return this.boqSectionsService.findOne(+id);
   }
 
+  @Get('/project/:id')
+  async findAllByProjectId(@Param('id') id: string) {
+    return this.boqSectionsService.getAllByProjectId(+id)
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

@@ -11,7 +11,7 @@ import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 @Injectable()
 export class BoqSectionsService {
-  constructor(private readonly dbService: DatabaseService) {}
+  constructor(private readonly dbService: DatabaseService) { }
 
   async createBoqSection(boqSection: CreateBoqSectionDto) {
     const {
@@ -87,6 +87,26 @@ export class BoqSectionsService {
       });
     } catch (error) {
       handlePrismaErrors(error, 'find_all', 'projectSection');
+    }
+  }
+
+  async getAllByProjectId(projectId: number) {
+    try {
+      return this.dbService.projectSection.findMany({
+        where: { projectId },
+        select: {
+          id: true,
+          sectionCode: true,
+          sectionName: true,
+          sectionType: true,
+          locationId: true,
+          projectId: true,
+          totalAmount: true,
+          userId: true,
+        },
+      });
+    } catch (error) {
+      handlePrismaErrors(error, 'get all by projectID', 'projectSection');
     }
   }
 

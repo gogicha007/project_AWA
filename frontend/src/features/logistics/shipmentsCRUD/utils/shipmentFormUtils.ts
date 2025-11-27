@@ -1,7 +1,7 @@
 import { FreightDTO, InvoiceDTO } from '@/api/types';
 import { FieldNamesMarkedBoolean } from 'react-hook-form';
 import { ensureNumber, ensureInteger, ensureDate } from '@/utils/helper';
-import { ShipmentFormSchema } from '../../shipmentSchema';
+import { ShipmentFormSchema } from '../shipmentSchema';
 
 export const createDefaultValues = (): ShipmentFormSchema => ({
   alias: '',

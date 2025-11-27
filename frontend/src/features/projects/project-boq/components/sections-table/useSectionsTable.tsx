@@ -108,15 +108,14 @@ export const useSectionsTable = ({
 
   const handleCancel = useCallback(
     (row: SectionRow) => {
-      if (originalRows.includes(row)) {
-        if (row.isNew) {
-          // Remove unsaved new row
-          setSections(sections.filter((s) => s.id !== row.id));
-        } else {
-          // Revert changes
-          setSections(sections.map((s) => (s.id === row.id ? row : s)));
-        }
+      if (row.isNew) {
+        // Remove unsaved new row
+        setSections(sections.filter((s) => s.id !== row.id));
+      } else {
+        // Revert changes
+        setSections(sections.map((s) => (s.id === row.id ? row : s)));
       }
+
       setEditingIds(editingIds.filter((i) => i !== row.id));
       setOriginalRows(originalRows.filter((r) => r.id !== row.id));
     },

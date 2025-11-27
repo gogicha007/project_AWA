@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { shipmentApi } from '@/api/endpoints/shipments/shipmentApi';
-import { transformShipmentToFormData } from '../utils/shipmentFormUtils';
+import { transformShipmentToFormData } from '../../utils/shipmentFormUtils';
 import { ShipmentFormSchema } from '../../shipmentSchema';
 import { ShipmentFileDTO as FileData } from '@/api/types';
 
