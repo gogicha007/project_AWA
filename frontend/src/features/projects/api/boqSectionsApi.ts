@@ -13,7 +13,6 @@ export const sectionsApi = {
         } catch (error) {
             handleApiError(error)
         }
-
     },
 
     creactBoqSection: async (section: Partial<BoqSectionDTO>, userId: number) => {
@@ -26,7 +25,6 @@ export const sectionsApi = {
         } catch (error) {
             handleApiError(error)
         }
-
     },
 
     createBoqSectionsInBulk: async (sections: BoqSectionDTO[]) => {
@@ -60,6 +58,4 @@ export const sectionsApi = {
             handleApiError(error)
         }
     }
-
-
 };

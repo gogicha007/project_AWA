@@ -11,12 +11,15 @@ import { DeleteOperationResult } from 'src/common/types/operation-result_types';
 
 @Injectable()
 export class BoqSectionsService {
-  constructor(private readonly dbService: DatabaseService) {}
+  constructor(private readonly dbService: DatabaseService) { }
 
   async createBoqSection(boqSection: CreateBoqSectionDto) {
+    const { projectId, sectionName, sectionCode, sectionType, totalAmount, userId } = boqSection
     try {
       const projectSection = await this.dbService.projectSection.create({
-        data: boqSection,
+        data: {
+          projectId, sectionName, sectionCode, sectionType, totalAmount, userId
+        },
         select: {
           sectionName: true,
         },

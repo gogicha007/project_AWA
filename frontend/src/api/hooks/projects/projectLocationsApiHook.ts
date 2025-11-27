@@ -4,7 +4,7 @@ import { LocationDTO } from '@/features/projects/project-locations/schema/locati
 import { locationsApi } from '@/features/projects/project-locations/api/locationsApi';
 
 
-export function useProjectLocationsApi(projectId: number | null) {
+export function useProjectLocationsApi() {
     const [locations, setLocations] = useState<LocationDTO[] | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<unknown | null>(null);

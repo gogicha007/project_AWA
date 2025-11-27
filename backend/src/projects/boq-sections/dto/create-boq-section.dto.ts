@@ -11,6 +11,7 @@ import { Type } from 'class-transformer';
 
 export class CreateBoqSectionDto {
   @ApiProperty()
+  @IsOptional()
   @IsInt()
   id: number;
 

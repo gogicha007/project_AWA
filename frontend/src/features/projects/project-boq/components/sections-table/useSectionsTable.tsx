@@ -8,29 +8,24 @@ import { useSectionMutations } from '../../hooks/useSectionMutations';
 
 type Props = {
   projectId: number;
-  editingId: number | null;
-  setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
-  editingIds: number[] | null;
-  setEditingIds: React.Dispatch<React.SetStateAction<number[] | null>>;
+  editingIds: number[];
+  setEditingIds: React.Dispatch<React.SetStateAction<number[]>>;
   sections: SectionRow[];
   setSections: React.Dispatch<React.SetStateAction<SectionRow[]>>;
 };
 
 export const useSectionsTable = ({
   projectId,
-  editingId,
-  setEditingId,
   editingIds,
   setEditingIds,
   sections,
   setSections,
 }: Props) => {
-  const [originalRow, setOriginalRow] = useState<SectionRow | null>(null);
-  const [originalRows, setOriginalRows] = useState<SectionRow[] | null>(null);
+  const tS = useTranslations('ProjectBoq');
+
+  const [originalRows, setOriginalRows] = useState<SectionRow[]>([]);
 
   const tempIdRef = useRef<number | null>(null);
-
-  const tS = useTranslations('ProjectBoq');
 
   const { createSection, updateSection, snackbar, setSnackbar } =
     useSectionMutations(
@@ -40,18 +35,14 @@ export const useSectionsTable = ({
             s.id === tempIdRef.current ? { ...savedSection, isNew: false } : s
           )
         );
-        setEditingIds(
-          (editingIds ?? []).filter((i) => i !== tempIdRef.current)
-        );
+        setEditingIds(editingIds.filter((i) => i !== tempIdRef.current));
         tempIdRef.current = null;
       },
       (updatedSection) => {
         setSections(
           sections.map((s) => (s.id === updatedSection.id ? updatedSection : s))
         );
-        setEditingIds(
-          (editingIds ?? []).filter((i) => i !== tempIdRef.current)
-        );
+        setEditingIds(editingIds.filter((i) => i !== tempIdRef.current));
       }
     );
 
@@ -80,18 +71,15 @@ export const useSectionsTable = ({
       isNew: true,
     };
     setSections([...sections, newSection]);
-    setEditingId(newSection.id);
-    setOriginalRow(newSection);
-  }, [sections, setSections, setEditingId]);
+    setEditingIds([...editingIds, newSection.id]);
+  }, [sections, setSections, editingIds, setEditingIds]);
 
   const handleEdit = useCallback(
     (row: SectionRow) => {
-      setEditingIds([...(editingIds ?? []), row.id]);
-      setEditingId(row.id);
-      setOriginalRow({ ...row });
-      setOriginalRows([...(originalRows ?? []), { ...row }]);
+      setEditingIds([...editingIds, row.id]);
+      setOriginalRows([...originalRows, { ...row }]);
     },
-    [setEditingId]
+    [editingIds, setEditingIds, originalRows]
   );
 
   const handleSave = useCallback(
@@ -103,26 +91,23 @@ export const useSectionsTable = ({
             projectId,
             sectionCode: row.sectionCode,
             sectionName: row.sectionName,
-            sectionType: row.sectionType,
+            sectionType: row.sectionType || '',
+            totalAmount: row.totalAmount,
           });
         } else {
           updateSection(row);
         }
-
-        setEditingId(null);
-        setOriginalRow(null);
       } catch (error) {
         console.error('Error saving section:', error);
         alert('Failed to save section. Please try again.');
       }
     },
-    [projectId, sections, setEditingId, setSections]
+    [projectId, createSection, updateSection]
   );
 
   const handleCancel = useCallback(
     (row: SectionRow) => {
-      console.log(row);
-      if (originalRows?.includes(row)) {
+      if (originalRows.includes(row)) {
         if (row.isNew) {
           // Remove unsaved new row
           setSections(sections.filter((s) => s.id !== row.id));
@@ -133,12 +118,19 @@ export const useSectionsTable = ({
       }
       // setEditingId(null);
       // setOriginalRow(null);
-      setEditingIds((editingIds ?? []).filter((i) => i !== row.id));
+      setEditingIds(editingIds.filter((i) => i !== row.id));
       if (originalRows) {
         setOriginalRows(originalRows.filter((r) => r !== row));
       }
     },
-    [sections, originalRow, setSections, setEditingId]
+    [
+      editingIds,
+      setEditingIds,
+      originalRows,
+      setOriginalRows,
+      sections,
+      setSections,
+    ]
   );
 
   const handleDelete = useCallback(
@@ -177,7 +169,6 @@ export const useSectionsTable = ({
   const columns = useMemo<ColumnDef<SectionRow>[]>(
     () =>
       sectionsColumns({
-        editingId,
         editingIds,
         onEdit: handleEdit,
         onSave: handleSave,
@@ -187,7 +178,6 @@ export const useSectionsTable = ({
         tS,
       }),
     [
-      editingId,
       editingIds,
       handleCancel,
       handleDelete,

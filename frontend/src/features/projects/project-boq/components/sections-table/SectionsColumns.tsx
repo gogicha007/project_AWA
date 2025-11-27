@@ -4,8 +4,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { SectionRow } from './SectionsTable';
 
 type Props = {
-  editingId: number | null;
-  editingIds: number[] | null;
+  editingIds: number[];
   onEdit: (row: SectionRow) => void;
   onSave: (row: SectionRow) => void;
   onCancel: (row: SectionRow) => void;
@@ -19,7 +18,6 @@ type Props = {
 };
 
 export const sectionsColumns = ({
-  editingId,
   editingIds,
   onEdit,
   onSave,
@@ -32,9 +30,9 @@ export const sectionsColumns = ({
     header: tS('sections.field.sectionCode'),
     accessorKey: 'sectionCode',
     cell: ({ row }) => {
-      // const isEditing = editingId === row.original.id;
       const isEditing = (editingIds || []).includes(row.original.id);
-      const isAnyRowEditing = editingId !== null;
+      // const isAnyRowEditing = editingId !== null;
+      const isAnyRowEditing = editingIds.length > 0;
 
       return isEditing ? (
         <input
@@ -61,9 +59,8 @@ export const sectionsColumns = ({
     header: tS('sections.field.sectionName'),
     accessorKey: 'sectionName',
     cell: ({ row }) => {
-      // const isEditing = editingId === row.original.id;
       const isEditing = (editingIds || []).includes(row.original.id);
-      const isAnyRowEditing = editingId !== null;
+      const isAnyRowEditing = editingIds.length > 0;
 
       return isEditing ? (
         <input
@@ -89,9 +86,8 @@ export const sectionsColumns = ({
     header: tS('sections.field.totalAmount'),
     accessorKey: 'totalAmount',
     cell: ({ row }) => {
-      // const isEditing = editingId === row.original.id;
       const isEditing = (editingIds || []).includes(row.original.id);
-      const isAnyRowEditing = editingId !== null;
+      const isAnyRowEditing = editingIds.length !== 0;
 
       return isEditing ? (
         <input
@@ -110,7 +106,7 @@ export const sectionsColumns = ({
         />
       ) : (
         <span className={isAnyRowEditing ? styles.disabledText : ''}>
-          {row.original.totalAmount.toLocaleString('en-US', {
+          {(row.original.totalAmount ?? 0).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
           })}
@@ -122,9 +118,8 @@ export const sectionsColumns = ({
     id: 'actions',
     header: tS('actions.title'),
     cell: ({ row }) => {
-      // const isEditing = editingId === row.original.id;
       const isEditing = (editingIds || []).includes(row.original.id);
-      const isAnyRowEditing = editingId !== null;
+      const isAnyRowEditing = editingIds.length !== 0;
 
       return (
         <ActionBar

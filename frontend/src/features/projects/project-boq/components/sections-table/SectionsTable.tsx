@@ -27,24 +27,18 @@ type Props = {
 };
 
 export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
-  const [sections, setSections] = useState<SectionRow[]>(initialData);
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [editingIds, setEditingIds] = useState<number[] | null>(null);
   const tST = useTranslations('ProjectBoq.sections');
+
+  const [sections, setSections] = useState<SectionRow[]>(initialData);
+  const [editingIds, setEditingIds] = useState<number[]>([]);
 
   const {
     columns,
     handleAdd,
-    handleCancel,
-    handleDelete,
-    handleEdit,
     handleImport,
-    handleSave,
     snackbar,
     setSnackbar,
   } = useSectionsTable({
-    editingId,
-    setEditingId,
     editingIds,
     setEditingIds,
     sections,
@@ -93,8 +87,7 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
               <tr
                 key={row.id}
                 className={`${styles.tableRow} ${
-                  editingIds?.includes(row.original.id) ? styles.editingRow : ''
-                  // editingId === row.original.id ? styles.editingRow : ''
+                  editingIds.includes(row.original.id) ? styles.editingRow : ''
                 }`}
               >
                 {row.getVisibleCells().map((cell) => (
