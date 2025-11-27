@@ -73,16 +73,18 @@ export class BoqSectionsService {
 
   async findAll() {
     try {
-      return this.dbService.projectSection.findMany({select: {
-        id: true,
-        sectionCode: true,
-        sectionName: true,
-        sectionType: true,
-        locationId: true,
-        projectId: true,
-        totalAmount: true,
-        userId: true
-      }});
+      return this.dbService.projectSection.findMany({
+        select: {
+          id: true,
+          sectionCode: true,
+          sectionName: true,
+          sectionType: true,
+          locationId: true,
+          projectId: true,
+          totalAmount: true,
+          userId: true,
+        },
+      });
     } catch (error) {
       handlePrismaErrors(error, 'find_all', 'projectSection');
     }
@@ -144,9 +146,10 @@ export class BoqSectionsService {
       const resultsArr: DeleteOperationResult[] = [];
 
       if (sectionIdsArr.length > 0) {
-        const resultRemovedSections = await this.dbService.projectSection.deleteMany({
-          where: { id: { in: sectionIdsArr } },
-        });
+        const resultRemovedSections =
+          await this.dbService.projectSection.deleteMany({
+            where: { id: { in: sectionIdsArr } },
+          });
         resultsArr.push({
           success: true,
           deletedCount: resultRemovedSections.count,

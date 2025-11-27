@@ -42,8 +42,8 @@ export const useSectionsTable = ({
         setSections(
           sections.map((s) => (s.id === updatedSection.id ? updatedSection : s))
         );
-        setEditingIds(editingIds.filter((i) => i !== tempIdRef.current));
-        setOriginalRows(originalRows.filter((r) => r.id !== tempIdRef.current));
+        setEditingIds(editingIds.filter((i) => i !== updatedSection.id));
+        setOriginalRows(originalRows.filter((r) => r.id !== updatedSection.id));
       }
     );
 
