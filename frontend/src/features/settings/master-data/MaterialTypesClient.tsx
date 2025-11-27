@@ -20,12 +20,15 @@ import Snackbar from '@/components/feedback/snackbar/snackbar';;
 
 export default function MaterialTypesClient() {
   const tT = useTranslations('MasterData');
+
   const { materialTypes, loading, error, mutate } = useMaterialTypes();
+
   const {
     materialGroups,
     loading: groupsLoading,
     error: groupsError,
   } = useMaterialGroups();
+
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const {
@@ -46,6 +49,7 @@ export default function MaterialTypesClient() {
     if (errorMessage) setSnackbarOpen(true);
   }, [errorMessage]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

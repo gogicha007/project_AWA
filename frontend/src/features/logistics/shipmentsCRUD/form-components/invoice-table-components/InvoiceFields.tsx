@@ -1,5 +1,5 @@
 import styles from './invoice-fields.module.css';
-import React from 'react';
+import { useMemo } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -26,7 +26,7 @@ type Props = {
 const InvoiceFields = ({ auxData, snackbarControls }: Props) => {
   const tI = useTranslations('Invoices');
   const {
-    columns,
+    columns: rawColumns,
     currentInvoice,
     fields,
     handleAddInvoice,
@@ -39,8 +39,12 @@ const InvoiceFields = ({ auxData, snackbarControls }: Props) => {
     tVar: tI,
   });
 
-  const table = useReactTable({
-    data: fields as InvoiceRow[],
+  const columns = useMemo(()=> rawColumns, [rawColumns])
+  const data = useMemo(()=> fields as InvoiceRow[], [fields])
+
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const table = useReactTable<InvoiceRow>({
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -69,15 +73,21 @@ const InvoiceFields = ({ auxData, snackbarControls }: Props) => {
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className={styles.tableRow}>
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className={styles.tableCell}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+            {table.getRowModel().rows.length === 0 ? (
+              <tr>
+                <td colSpan={columns.length}>No invoices found.</td>
               </tr>
-            ))}
+            ) : (
+              table.getRowModel().rows.map((row) => (
+                <tr key={row.id} className={styles.tableRow}>
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className={styles.tableCell}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

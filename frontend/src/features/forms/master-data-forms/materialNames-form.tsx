@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import styles from '../form.module.css';
 import { MaterialNameDTO, MaterialTypeDTO } from '@/api/types';
 import { useTranslations } from 'use-intl';
@@ -30,7 +30,7 @@ export default function MaterialNameDialog({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tB = useTranslations('Buttons');
 
-  const { register, handleSubmit, reset, setFocus, watch, setValue } =
+  const { register, handleSubmit, reset, setFocus, control, setValue } =
     useForm<FormValues>({
       defaultValues: {
         name: initialData?.name || '',
@@ -42,10 +42,10 @@ export default function MaterialNameDialog({
       },
     });
 
-  const materialType = watch('materialType');
-  const dn = watch('dn');
-  const pn = watch('pn');
-  const degree = watch('degree');
+  const materialType = useWatch({ control, name: 'materialType' });
+  const dn = useWatch({ control, name: 'dn' });
+  const pn = useWatch({ control, name: 'pn' });
+  const degree = useWatch({ control, name: 'degree' });
 
   const selectedType =
     materialTypes.find((type) => String(type.id) === materialType)?.type || '';

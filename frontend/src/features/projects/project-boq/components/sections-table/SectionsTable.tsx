@@ -32,6 +32,7 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
   const [sections, setSections] = useState<SectionRow[]>(initialData);
   const [editingIds, setEditingIds] = useState<number[]>([]);
 
+  console.log('locations', locations)
   const {
     columns,
     handleAdd,
@@ -46,6 +47,7 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
     projectId,
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: sections,
     columns,

@@ -106,6 +106,7 @@ export default function InvoiceItemsTable({
     onClose(totalAmount);
   };
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const itemsTable = useReactTable({
     data: currentInvoiceItems as InvoiceItemRow[],
     columns,

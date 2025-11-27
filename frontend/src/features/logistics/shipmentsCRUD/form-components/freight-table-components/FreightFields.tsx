@@ -25,6 +25,7 @@ const FreightFields = ({ currencies, snackbarControls }: Props) => {
     tVar: tF,
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: fields as FreightRow[],
     columns,

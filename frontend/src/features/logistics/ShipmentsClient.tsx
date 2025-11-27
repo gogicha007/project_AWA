@@ -36,6 +36,7 @@ export default function ShipmentsClient() {
     return {value: vendor.id, label: vendor.alias}
   })
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

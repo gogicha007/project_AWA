@@ -59,6 +59,7 @@ export default function MaterialNamesClient() {
     prevDataLength.current = data.length;
   }, [data.length]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

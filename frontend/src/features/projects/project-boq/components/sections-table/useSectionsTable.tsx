@@ -47,11 +47,11 @@ export const useSectionsTable = ({
     );
 
   const handleImport = (data: ImportedDataType[]) => {
-    console.log('useSectionsTable imported date', data);
     const newSections = data.map((item) => ({
       id: Date.now() + Math.random(), // temporary ID
       sectionCode: String(item.sectionCode || ''),
       sectionName: String(item.sectionName || ''),
+      sectionType: String(item.sectionType || ''),
       totalAmount: Number(item.totalAmount || 0),
       locationId: item.locationId ? Number(item.locationId) : null,
       isNew: true,
@@ -66,6 +66,7 @@ export const useSectionsTable = ({
       id: Date.now(),
       sectionCode: '',
       sectionName: '',
+      sectionType: '',
       totalAmount: 0,
       locationId: null,
       isNew: true,

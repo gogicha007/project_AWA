@@ -9,7 +9,7 @@ import { BoqSectionDTO, sectionsApi } from "../../api/boqSectionsApi";
 
 export const useSectionMutations = (
     onSuccessCreate?: (savedSection: BoqSectionDTO) => void,
-    onSuccessUpdate?: (updateSection: BoqSectionDTO) => void
+    onSuccessUpdate?: (updatedSection: BoqSectionDTO) => void
 ) => {
     const { dbUserId } = useAuth()
     const [snackbar, setSnackbar] = useState({ isOpen: false, status: { message: '', success: false } })
@@ -31,8 +31,9 @@ export const useSectionMutations = (
     const { mutate: updateSection, isPending: isUpdating, isSuccess: isSuccessUpdateSection } = useMutation({
         mutationKey: ['updateProjectSection'],
         mutationFn: (data: BoqSectionDTO) => sectionsApi.updateBoqSection(data, Number(dbUserId)),
-        onSuccess: () => {
+        onSuccess: (updatedSection) => {
             setSnackbar({ isOpen: true, status: { message: 'Section updated successfully', success: true } })
+            onSuccessUpdate?.(updatedSection)
         },
         onError: () => {
             setSnackbar({ isOpen: true, status: { message: 'Failed to update section', success: false } })

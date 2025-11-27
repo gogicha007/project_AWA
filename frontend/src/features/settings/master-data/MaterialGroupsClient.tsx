@@ -27,6 +27,7 @@ export default function MaterialGroupsClient() {
     currentMaterialGroup,
   } = useMaterialGroupsLogic(materialGroups, mutate, tM);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,
