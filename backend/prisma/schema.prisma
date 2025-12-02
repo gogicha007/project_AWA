@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../node_modules/.prisma/client"
+  // output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -370,9 +370,15 @@ model ShipmentFile {
 // ========================================
 // SETTINGS
 // ========================================
+enum CurrencyCode {
+  EUR
+  GEL
+  USD
+}
+
 model Currency {
   id        Int         @id @default(autoincrement())
-  code      String      @unique // e.g., "USD"
+  code      CurrencyCode      @unique // e.g., "USD"
   name      String? // e.g., "United States Dollar"
   symbol    String? // e.g., "$"
   Invoice   Invoice[]
