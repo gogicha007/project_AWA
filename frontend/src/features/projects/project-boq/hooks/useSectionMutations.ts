@@ -1,5 +1,5 @@
 /*@params onSucceccCallback*/
-/*@return createSection, updateSection, snackbar, setSnackbar **/
+/*@return createSection, updateSection, snackbarControll, setSnackbarControl **/
 
 import { useState } from "react";
 import { useAuth } from "@/context/auth";
@@ -13,7 +13,7 @@ export const useSectionMutations = (
     onSuccessUpdate?: (updatedSection: BoqSectionDTO) => void
 ) => {
     const { dbUserId } = useAuth()
-    const [snackbar, setSnackbar] = useState({ isOpen: false, status: { message: '', success: false } })
+    const [snackbarControl, setSnackbarControl] = useState({ isOpen: false, status: { message: '', success: false } })
     const queryClient = useQueryClient()
 
     const { mutate: createSection, isPending: isCreating, isSuccess: isSuccessCreateSection } = useMutation({
@@ -21,11 +21,11 @@ export const useSectionMutations = (
         mutationFn: (data: Partial<BoqSectionDTO>) => sectionsApi.creactBoqSection(data, Number(dbUserId)),
         onSuccess: (savedSection) => {
             queryClient.invalidateQueries({ queryKey: ['projectSectionsByProjectid'] })
-            setSnackbar({ isOpen: true, status: { message: 'Seciton created successfully', success: true } });
+            setSnackbarControl({ isOpen: true, status: { message: 'Seciton created successfully', success: true } });
             onSuccessCreate?.(savedSection)
         },
         onError: () => {
-            setSnackbar({
+            setSnackbarControl({
                 isOpen: true, status: { message: 'Failed to create location', success: false }
             })
         }
@@ -36,13 +36,13 @@ export const useSectionMutations = (
         mutationFn: (data: BoqSectionDTO) => sectionsApi.updateBoqSection(data, Number(dbUserId)),
         onSuccess: (updatedSection) => {
             queryClient.invalidateQueries({ queryKey: ['projectSectionsByProjectid'] })
-            setSnackbar({ isOpen: true, status: { message: 'Section updated successfully', success: true } })
+            setSnackbarControl({ isOpen: true, status: { message: 'Section updated successfully', success: true } })
             onSuccessUpdate?.(updatedSection)
         },
         onError: () => {
-            setSnackbar({ isOpen: true, status: { message: 'Failed to update section', success: false } })
+            setSnackbarControl({ isOpen: true, status: { message: 'Failed to update section', success: false } })
         }
     })
 
-    return { createSection, updateSection, isPending: isCreating || isUpdating, snackbar, isSuccessCreateSection, isSuccessUpdateSection, setSnackbar }
+    return { createSection, updateSection, isPending: isCreating || isUpdating, snackbarControl, isSuccessCreateSection, isSuccessUpdateSection, setSnackbarControl }
 }

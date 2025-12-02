@@ -27,7 +27,7 @@ export const useSectionsTable = ({
 
   const tempIdRef = useRef<number | null>(null);
 
-  const { createSection, updateSection, snackbar, setSnackbar } =
+  const { createSection, updateSection, snackbarControl, setSnackbarControl } =
     useSectionMutations(
       (savedSection) => {
         setSections(
@@ -63,7 +63,7 @@ export const useSectionsTable = ({
 
   const handleAdd = useCallback(() => {
     const newSection: SectionRow = {
-      id: Date.now(),
+      id: Date.now() + Math.random(),
       sectionCode: '',
       sectionName: '',
       sectionType: '',
@@ -192,8 +192,8 @@ export const useSectionsTable = ({
     handleEdit,
     handleImport,
     handleSave,
-    snackbar,
-    setSnackbar,
+    snackbarControl,
+    setSnackbarControl,
     tS,
   };
 };

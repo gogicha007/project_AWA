@@ -38,8 +38,8 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
     columns,
     handleAdd,
     handleImport,
-    snackbar,
-    setSnackbar,
+    snackbarControl,
+    setSnackbarControl,
   } = useSectionsTable({
     editingIds,
     setEditingIds,
@@ -104,9 +104,9 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
         </tbody>
       </table>
       <Snackbar
-        status={snackbar.status}
-        open={snackbar.isOpen}
-        onClose={() => setSnackbar({ ...snackbar, isOpen: false })}
+        status={snackbarControl.status}
+        open={snackbarControl.isOpen}
+        onClose={() => setSnackbarControl({ ...snackbarControl, isOpen: false })}
         duration={4000}
       />
     </div>
