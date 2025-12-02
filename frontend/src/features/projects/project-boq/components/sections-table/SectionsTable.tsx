@@ -46,9 +46,15 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
     projectId,
   });
 
+  const sortedData = sections.sort((a, b) => {
+    if (a.sectionCode < b.sectionCode) return -1;
+    if (a.sectionCode > b.sectionCode) return 1;
+    return 0;
+  });
+
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
-    data: sections,
+    data: sortedData,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -104,7 +110,9 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
       <Snackbar
         status={snackbarControl.status}
         open={snackbarControl.isOpen}
-        onClose={() => setSnackbarControl({ ...snackbarControl, isOpen: false })}
+        onClose={() =>
+          setSnackbarControl({ ...snackbarControl, isOpen: false })
+        }
         duration={4000}
       />
     </div>
