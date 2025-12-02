@@ -25,8 +25,8 @@ export class CurrencyController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id:string) {
-    return this.currencyService.findOne(+id)
+  async findOne(@Param('id') id: string) {
+    return this.currencyService.findOne(+id);
   }
 
   @Patch(':id')

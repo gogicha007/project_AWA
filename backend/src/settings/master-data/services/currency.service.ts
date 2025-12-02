@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class CurrencyService {
-  constructor(private readonly dbService: DatabaseService) { }
+  constructor(private readonly dbService: DatabaseService) {}
   async create(payload: CurrencyDTO) {
     const createCurrency = await this.dbService.currency.create({
       data: payload,
@@ -19,9 +19,9 @@ export class CurrencyService {
   async findOne(id: number) {
     try {
       const currency = await this.dbService.currency.findUnique({
-        where: { id }
-      })
-      return currency
+        where: { id },
+      });
+      return currency;
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&

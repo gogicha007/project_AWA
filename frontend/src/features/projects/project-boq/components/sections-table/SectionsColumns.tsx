@@ -5,6 +5,7 @@ import { SectionRow } from './SectionsTable';
 
 type Props = {
   editingIds: number[];
+  numberFormatter: Intl.NumberFormat
   onEdit: (row: SectionRow) => void;
   onSave: (row: SectionRow) => void;
   onCancel: (row: SectionRow) => void;
@@ -19,6 +20,7 @@ type Props = {
 
 export const sectionsColumns = ({
   editingIds,
+  numberFormatter,
   onEdit,
   onSave,
   onCancel,
@@ -105,10 +107,7 @@ export const sectionsColumns = ({
         />
       ) : (
         <span className={isAnyRowEditing ? styles.disabledText : ''}>
-          {(row.original.totalAmount ?? 0).toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })}
+          {numberFormatter.format(row.original.totalAmount?? 0)}
         </span>
       );
     },

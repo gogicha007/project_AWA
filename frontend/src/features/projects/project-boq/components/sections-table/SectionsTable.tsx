@@ -15,7 +15,6 @@ import { SectionSchema } from '../../schema/sectionSchema';
 import { LocationDTO } from '@/features/projects/project-locations/schema/locationSchema';
 import { useSectionsTable } from './useSectionsTable';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
-import { CurrencyDTO } from '@/api/types';
 
 export type SectionRow = z.infer<typeof SectionSchema> & {
   isNew?: boolean;
@@ -47,6 +46,7 @@ export const SectionsTable = ({
     setSnackbarControl,
   } = useSectionsTable({
     editingIds,
+    currencyCode,
     setEditingIds,
     sections,
     setSections,

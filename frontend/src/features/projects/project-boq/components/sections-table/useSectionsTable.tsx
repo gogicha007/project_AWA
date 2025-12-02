@@ -7,6 +7,7 @@ import { ImportedDataType } from '../import-data/ImportData';
 import { useSectionMutations } from '../../hooks/useSectionMutations';
 
 type Props = {
+  currencyCode: string;
   projectId: number;
   editingIds: number[];
   setEditingIds: React.Dispatch<React.SetStateAction<number[]>>;
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export const useSectionsTable = ({
+  currencyCode,
   projectId,
   editingIds,
   setEditingIds,
@@ -46,6 +48,11 @@ export const useSectionsTable = ({
         setOriginalRows(originalRows.filter((r) => r.id !== updatedSection.id));
       }
     );
+
+  const numberFormatter = new Intl.NumberFormat(undefined, {
+    currency: currencyCode,
+    style: 'currency',
+  });
 
   const handleImport = (data: ImportedDataType[]) => {
     const newSections = data.map((item) => ({
@@ -166,6 +173,7 @@ export const useSectionsTable = ({
     () =>
       sectionsColumns({
         editingIds,
+        numberFormatter,
         onEdit: handleEdit,
         onSave: handleSave,
         onCancel: handleCancel,
