@@ -5,12 +5,14 @@ import Loader from '@/components/feedback/loader/loader';
 import { SectionsTable } from './components/sections-table/SectionsTable';
 import { useProject } from '../context/ProjectContext';
 import { useSectionQueries } from './hooks/useSectionQueries';
+import { useCurrencyQueries } from '@/api/hooks/settings/useCurrencyQueries';
 import { useLocationQueries } from '../project-locations/hooks/useLocationQueries';
 import { LocationDTO } from '../project-locations/schema/locationSchema';
 
-
 export const BoqSections = () => {
-  const { displayName, id } = useProject();
+  const { displayName, currencyId, id } = useProject();
+
+  const { currency } = useCurrencyQueries(currencyId);
 
   const {
     isPendingLocations,
@@ -26,7 +28,7 @@ export const BoqSections = () => {
     isSuccessSections,
     sectionsData,
     getAllSectionsError,
-  } = useSectionQueries(id as number)
+  } = useSectionQueries(id as number);
 
   if (isPendingLocations || isPendingSections) return <Loader />;
 
@@ -55,6 +57,7 @@ export const BoqSections = () => {
         <SectionsTable
           projectId={id as number}
           initialData={sectionsData ?? []}
+          currencyCode={currency?.code ?? ''}
           locations={locationsData as LocationDTO[]}
         />
       )}

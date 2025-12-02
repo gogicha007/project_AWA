@@ -209,4 +209,9 @@ export const currencyApi = {
     const response = await apiClient.get('/currency');
     return response.data;
   },
+
+  getById: async (id: number): Promise<CurrencyDTO> => {
+    const response = await apiClient.get(`/currency/${id}`)
+    return response.data
+  }
 };

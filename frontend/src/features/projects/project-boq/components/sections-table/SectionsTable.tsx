@@ -15,6 +15,7 @@ import { SectionSchema } from '../../schema/sectionSchema';
 import { LocationDTO } from '@/features/projects/project-locations/schema/locationSchema';
 import { useSectionsTable } from './useSectionsTable';
 import Snackbar from '@/components/feedback/snackbar/snackbar';
+import { CurrencyDTO } from '@/api/types';
 
 export type SectionRow = z.infer<typeof SectionSchema> & {
   isNew?: boolean;
@@ -24,9 +25,15 @@ type Props = {
   projectId: number;
   initialData: SectionRow[];
   locations: LocationDTO[];
+  currencyCode: string;
 };
 
-export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
+export const SectionsTable = ({
+  projectId,
+  initialData,
+  locations,
+  currencyCode,
+}: Props) => {
   const tST = useTranslations('ProjectBoq.sections');
 
   const [sections, setSections] = useState<SectionRow[]>(initialData);
@@ -59,6 +66,8 @@ export const SectionsTable = ({ projectId, initialData, locations }: Props) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  console.log('currency code/sections table', currencyCode);
+  console.log('locations/sections table', locations);
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableActions}>

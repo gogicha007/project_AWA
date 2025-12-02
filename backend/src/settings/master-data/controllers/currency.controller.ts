@@ -24,6 +24,11 @@ export class CurrencyController {
     return this.currencyService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id') id:string) {
+    return this.currencyService.findOne(+id)
+  }
+
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateCurrencyDTO: CurrencyDTO) {
     return this.currencyService.update(+id, updateCurrencyDTO);
