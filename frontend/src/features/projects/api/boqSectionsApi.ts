@@ -8,7 +8,6 @@ export type BoqSectionDTO = z.infer<typeof SectionSchema>
 export const sectionsApi = {
     getAll: async (): Promise<BoqSectionDTO[]> => {
         try {
-            console.log('call getAll')
             const response = await apiClient.get('/boq-sections');
             return response.data;
         } catch (error) {
@@ -18,7 +17,7 @@ export const sectionsApi = {
 
     getAllByProjectId: async (projectId: number): Promise<BoqSectionDTO[]> => {
         try {
-            const response = await apiClient.get(`/boq-sections/proj/${projectId}`);
+            const response = await apiClient.get(`/boq-sections/project/${projectId}`);
             return response.data
         } catch (error) { handleApiError(error) }
     },

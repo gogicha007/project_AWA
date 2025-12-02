@@ -40,7 +40,7 @@ export class BoqSectionsController {
 
   @Get('/project/:id')
   async findAllByProjectId(@Param('id') id: string) {
-    return this.boqSectionsService.getAllByProjectId(+id)
+    return this.boqSectionsService.getAllByProjectId(+id);
   }
 
   @Patch(':id')

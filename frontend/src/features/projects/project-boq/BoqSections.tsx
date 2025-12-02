@@ -2,12 +2,13 @@
 
 import ErrorMessage from '../shared/ErrorMessage';
 import Loader from '@/components/feedback/loader/loader';
-import { sectionsApi } from '../api/boqSectionsApi';
 import { SectionsTable } from './components/sections-table/SectionsTable';
 import { useProject } from '../context/ProjectContext';
-import { useQuery } from '@tanstack/react-query';
+import { useSectionQueries } from './hooks/useSectionQueries';
 import { useLocationQueries } from '../project-locations/hooks/useLocationQueries';
+
 import { LocationDTO } from '../project-locations/schema/locationSchema';
+
 
 export const BoqSections = () => {
   const { displayName, id } = useProject();
@@ -21,15 +22,12 @@ export const BoqSections = () => {
   } = useLocationQueries();
 
   const {
-    isPending: isPendingSections,
-    isError: isErrorSections,
-    isSuccess: isSuccessSections,
-    data: sectionsData,
-    error: sectionsError,
-  } = useQuery({
-    queryKey: ['projectSections'],
-    queryFn: sectionsApi.getAll,
-  });
+    isPendingSections,
+    isErrorSections,
+    isSuccessSections,
+    sectionsData,
+    getAllSectionsError,
+  } = useSectionQueries(id as number)
 
   if (isPendingLocations || isPendingSections) return <Loader />;
 
@@ -47,9 +45,9 @@ export const BoqSections = () => {
                 : String(getAllLocationsError)
               : null,
             section: isErrorSections
-              ? sectionsError instanceof Error
-                ? sectionsError.message
-                : String(sectionsError)
+              ? getAllSectionsError instanceof Error
+                ? getAllSectionsError.message
+                : String(getAllSectionsError)
               : null,
           }}
         />
@@ -57,7 +55,7 @@ export const BoqSections = () => {
       {isSuccessSections && isSuccessLocations && (
         <SectionsTable
           projectId={id as number}
-          initialData={sectionsData}
+          initialData={sectionsData ?? []}
           locations={locationsData as LocationDTO[]}
         />
       )}
