@@ -28,7 +28,6 @@ export const BoqSections = () => {
     getAllSectionsError,
   } = useSectionQueries(id as number)
 
-  console.log('sectionsData', sectionsData)
   if (isPendingLocations || isPendingSections) return <Loader />;
 
   return (
