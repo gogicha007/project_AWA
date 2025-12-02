@@ -93,10 +93,10 @@ export const useSectionsTable = ({
             sectionCode: row.sectionCode,
             sectionName: row.sectionName,
             sectionType: row.sectionType || '',
-            totalAmount: row.totalAmount,
+            totalAmount: Number(row.totalAmount),
           });
         } else {
-          updateSection(row);
+          updateSection({ ...row, totalAmount: Number(row.totalAmount) });
         }
       } catch (error) {
         console.error('Error saving section:', error);

@@ -1,3 +1,4 @@
+/* these constants used to identify excell columns in identifyColumns function */
 export const boqFields = {
     sections: [
         'sectionCode',

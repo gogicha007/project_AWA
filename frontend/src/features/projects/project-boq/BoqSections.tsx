@@ -6,7 +6,6 @@ import { SectionsTable } from './components/sections-table/SectionsTable';
 import { useProject } from '../context/ProjectContext';
 import { useSectionQueries } from './hooks/useSectionQueries';
 import { useLocationQueries } from '../project-locations/hooks/useLocationQueries';
-
 import { LocationDTO } from '../project-locations/schema/locationSchema';
 
 
@@ -29,6 +28,7 @@ export const BoqSections = () => {
     getAllSectionsError,
   } = useSectionQueries(id as number)
 
+  console.log('sectionsData', sectionsData)
   if (isPendingLocations || isPendingSections) return <Loader />;
 
   return (
