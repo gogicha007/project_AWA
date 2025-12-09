@@ -8,8 +8,8 @@ import { useSectionMutations } from '../../hooks/useSectionMutations';
 
 type Props = {
   currencyCode: string;
-  projectId: number;
   editingIds: number[];
+  projectId: number;
   setEditingIds: React.Dispatch<React.SetStateAction<number[]>>;
   sections: SectionRow[];
   setSections: React.Dispatch<React.SetStateAction<SectionRow[]>>;
@@ -17,8 +17,8 @@ type Props = {
 
 export const useSectionsTable = ({
   currencyCode,
-  projectId,
   editingIds,
+  projectId,
   setEditingIds,
   sections,
   setSections,
@@ -188,6 +188,7 @@ export const useSectionsTable = ({
       handleEdit,
       handleFieldChange,
       handleSave,
+      numberFormatter,
       tS,
     ]
   );
