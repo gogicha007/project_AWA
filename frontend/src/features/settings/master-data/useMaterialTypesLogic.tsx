@@ -62,7 +62,14 @@ export function useMaterialTypesLogic(
               : Number(type.id),
           group: materialGroupsObject[type.groupId],
         }))
-        .sort((a, b) => a.id - b.id),
+        .sort((a, b) =>
+          a.groupId.toString().localeCompare(b.groupId.toString()) ||
+          a.type === b.type
+            ? 0
+            : a.type > b.type
+              ? 1
+              : -1
+        ),
     [materialTypes, materialGroupsObject]
   );
 
