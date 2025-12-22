@@ -34,11 +34,11 @@ logs every request, response, error to log file. limited in size 1024kb.
 
 - PE100 PIPE : pipe
 - PE100 BEND : fitting
+- PE100 COUPLER : fitting
+- PE100 CROSS : fitting
+- PE100 END CAP : fitting
 - PE100 REDUCER : fitting
 - PE100 TEE : fitting
-- PE100 COUPLER : fitting
-- PE100 END CAP : fitting
-- PE100 CROSS : fitting
 - PE100 VALVE : valve
 - STEEL PIPE : pipe
 - STEEL FLANGE : fitting
